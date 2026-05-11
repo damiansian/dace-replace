@@ -52,12 +52,14 @@ export default function L03ColorPage() {
               <p className="text-sm font-medium text-foreground">
                 Figma Lesson
               </p>
-              <span
-                className="text-sm text-text-secondary cursor-not-allowed"
-                aria-disabled="true"
+              <a
+                href="https://www.figma.com/design/mNFDFtVojYP1yvNO20bhfb/DACE---Cohort-2?node-id=307-2476"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm text-primary-text underline hover:text-primary-dark"
               >
-                Figma link coming soon
-              </span>
+                Open in Figma
+              </a>
             </div>
           </div>
           <div className="p-4 flex items-start gap-3">
