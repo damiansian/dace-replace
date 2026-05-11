@@ -43,15 +43,20 @@ export default function Home() {
             </div>
           </Link>
 
-          <Link
-            href="/week-3"
-            className="group bg-white border border-border rounded-lg p-6 shadow-sm hover:shadow-md hover:border-primary transition-all"
+          <div
+            className="relative bg-white border border-border rounded-lg p-6 shadow-sm opacity-60"
+            aria-label="Week 3: Keyboard and Reflow - Coming Soon"
           >
             <div className="space-y-3">
-              <span className="inline-flex items-center rounded-full bg-primary/10 px-3 py-1 text-sm font-medium text-primary-dark">
-                Week 3
-              </span>
-              <h3 className="text-xl font-semibold text-foreground group-hover:text-primary-text">
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="inline-flex items-center rounded-full bg-primary/10 px-3 py-1 text-sm font-medium text-primary-dark">
+                  Week 3
+                </span>
+                <span className="inline-flex items-center rounded-full bg-surface px-3 py-1 text-sm font-medium text-text-secondary">
+                  Coming Soon
+                </span>
+              </div>
+              <h3 className="text-xl font-semibold text-foreground">
                 Keyboard &amp; Reflow
               </h3>
               <ul className="space-y-1.5 text-sm text-text-secondary" role="list">
@@ -59,11 +64,11 @@ export default function Home() {
                 <li>L06: Reflow &amp; Zoom</li>
                 <li>Applied Practice: Blueline Annotations</li>
               </ul>
-              <p className="text-sm font-medium text-primary-text underline">
-                View week materials &rarr;
+              <p className="text-sm text-text-secondary">
+                Available soon
               </p>
             </div>
-          </Link>
+          </div>
         </div>
       </section>
 
@@ -91,20 +96,25 @@ export default function Home() {
               L04 Forms Quiz
             </Link>
           </div>
-          <div className="space-y-3">
-            <h3 className="text-lg font-semibold text-foreground">Week 3</h3>
-            <Link
-              href="/week-3/l05-keyboard/quiz"
-              className="block rounded-lg border border-border bg-white px-4 py-3 text-sm font-medium text-primary-text underline hover:bg-surface transition-colors"
+          <div className="space-y-3 opacity-60">
+            <h3 className="text-lg font-semibold text-foreground">
+              Week 3
+              <span className="ml-2 inline-flex items-center rounded-full bg-surface px-2.5 py-0.5 text-xs font-medium text-text-secondary align-middle">
+                Coming Soon
+              </span>
+            </h3>
+            <span
+              className="block rounded-lg border border-border bg-white px-4 py-3 text-sm font-medium text-text-secondary"
+              aria-disabled="true"
             >
               L05 Keyboard Quiz
-            </Link>
-            <Link
-              href="/week-3/l06-reflow/quiz"
-              className="block rounded-lg border border-border bg-white px-4 py-3 text-sm font-medium text-primary-text underline hover:bg-surface transition-colors"
+            </span>
+            <span
+              className="block rounded-lg border border-border bg-white px-4 py-3 text-sm font-medium text-text-secondary"
+              aria-disabled="true"
             >
               L06 Reflow Quiz
-            </Link>
+            </span>
           </div>
         </div>
       </section>
@@ -144,31 +154,31 @@ export default function Home() {
             </div>
           </Link>
 
-          <Link
-            href="/week-3/applied-practice"
-            className="group rounded-lg border border-border bg-white p-6 shadow-sm hover:shadow-md hover:border-primary transition-all"
+          <div
+            className="rounded-lg border border-border bg-white p-6 shadow-sm opacity-60"
+            aria-label="Week 3 Blueline Annotations - Coming Soon"
           >
             <div className="space-y-3">
               <div className="flex flex-wrap gap-2">
                 <span className="inline-flex items-center rounded-full bg-primary/10 px-3 py-1 text-sm font-medium text-primary-dark">
                   Week 3
                 </span>
-                <span className="inline-flex items-center rounded-full bg-accent-green/10 px-3 py-1 text-sm font-medium text-accent-green">
-                  28 Points
+                <span className="inline-flex items-center rounded-full bg-surface px-3 py-1 text-sm font-medium text-text-secondary">
+                  Coming Soon
                 </span>
               </div>
-              <h3 className="text-lg font-semibold text-foreground group-hover:text-primary-text">
+              <h3 className="text-lg font-semibold text-foreground">
                 Blueline Annotations
               </h3>
               <p className="text-sm text-text-secondary">
                 Create accessibility annotations for keyboard, touch targets,
                 and responsive design on a Figma mockup.
               </p>
-              <p className="text-sm font-medium text-primary-text underline">
-                View project &rarr;
+              <p className="text-sm text-text-secondary">
+                Available soon
               </p>
             </div>
-          </Link>
+          </div>
         </div>
       </section>
 
