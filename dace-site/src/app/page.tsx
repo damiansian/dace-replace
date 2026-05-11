@@ -154,10 +154,7 @@ export default function Home() {
             </div>
           </Link>
 
-          <div
-            className="rounded-lg border border-border bg-white p-6 shadow-sm opacity-60"
-            aria-label="Week 3 Blueline Annotations - Coming Soon"
-          >
+          <div className="rounded-lg border border-border/60 bg-surface p-6 shadow-sm">
             <div className="space-y-3">
               <div className="flex flex-wrap gap-2">
                 <span className="inline-flex items-center rounded-full bg-primary/10 px-3 py-1 text-sm font-medium text-primary-dark">
