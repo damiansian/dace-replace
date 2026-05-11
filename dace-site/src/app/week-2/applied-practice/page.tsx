@@ -24,6 +24,22 @@ export default function Week2Practice() {
         <p className="text-base text-text-secondary">Written Response Assessment: Analyzing a Modal Dialog Design</p>
       </header>
 
+      <div className="rounded-lg border-2 border-primary bg-primary/5 p-6 flex flex-col sm:flex-row sm:items-center gap-4">
+        <div className="space-y-1 flex-1">
+          <p className="text-base font-semibold text-foreground">Start here: open the design file</p>
+          <p className="text-sm text-text-secondary">Duplicate this Figma file, then answer the questions about color contrast and form labeling.</p>
+        </div>
+        <a
+          href="https://www.figma.com/design/mNFDFtVojYP1yvNO20bhfb/DACE---Cohort-2?node-id=307-15362"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-6 py-3 text-sm font-medium text-white hover:bg-primary-dark transition-colors whitespace-nowrap"
+        >
+          <svg className="h-4 w-4 shrink-0" viewBox="0 0 38 57" fill="currentColor" aria-hidden="true"><path d="M19 28.5a9.5 9.5 0 1 1 19 0 9.5 9.5 0 0 1-19 0z"/><path d="M0 47.5A9.5 9.5 0 0 1 9.5 38H19v9.5a9.5 9.5 0 1 1-19 0z"/><path d="M19 0v19h9.5a9.5 9.5 0 1 0 0-19H19z"/><path d="M0 9.5A9.5 9.5 0 0 0 9.5 19H19V0H9.5A9.5 9.5 0 0 0 0 9.5z"/><path d="M0 28.5A9.5 9.5 0 0 0 9.5 38H19V19H9.5A9.5 9.5 0 0 0 0 28.5z"/></svg>
+          Open in Figma
+        </a>
+      </div>
+
       <section aria-labelledby="submit-heading" className="space-y-3">
         <h2 id="submit-heading" className="text-2xl font-semibold text-foreground">Submission</h2>
         <div className="rounded-lg border-2 border-primary bg-primary/5 p-6 space-y-4">
