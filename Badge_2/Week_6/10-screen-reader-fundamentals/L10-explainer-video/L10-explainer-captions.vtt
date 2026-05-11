@@ -1,0 +1,517 @@
+WEBVTT
+
+1
+00:00:00.145 --> 00:00:01.795
+Welcome to the Explainer.
+
+2
+00:00:02.005 --> 00:00:03.755
+Today we're gonna talk about how millions
+
+3
+00:00:03.755 --> 00:00:06.355
+of people experience the web, but not by sight.
+
+4
+00:00:06.605 --> 00:00:07.875
+We're talking about sound.
+
+5
+00:00:08.085 --> 00:00:11.475
+We're diving into the world of screen readers. Okay?
+
+6
+00:00:11.535 --> 00:00:13.155
+So what a sighted person sees
+
+7
+00:00:13.155 --> 00:00:15.275
+and what a screen reader user actually hears.
+
+8
+00:00:15.465 --> 00:00:17.475
+Well, they can be two totally different things.
+
+9
+00:00:17.775 --> 00:00:20.675
+You've got this beautiful visual design on one side,
+
+10
+00:00:20.815 --> 00:00:22.995
+but the screen reader, it's all about the plain
+
+11
+00:00:23.025 --> 00:00:24.075
+text you see on the other.
+
+12
+00:00:24.495 --> 00:00:26.195
+And the thing that connects these two worlds,
+
+13
+00:00:26.415 --> 00:00:27.915
+that's the accessibility tree.
+
+14
+00:00:28.385 --> 00:00:30.835
+Yeah. A screen reader doesn't see your design
+
+15
+00:00:30.835 --> 00:00:32.275
+and the way you and I do, it doesn't
+
+16
+00:00:32.275 --> 00:00:33.395
+care about the colors or the layout.
+
+17
+00:00:33.745 --> 00:00:35.355
+Instead, it reads the code,
+
+18
+00:00:35.355 --> 00:00:37.155
+that underlying structure we just mentioned,
+
+19
+00:00:37.215 --> 00:00:38.475
+the accessibility tree.
+
+20
+00:00:38.935 --> 00:00:41.715
+And what it does is it announces the key info
+
+21
+00:00:41.715 --> 00:00:42.755
+for every single element.
+
+22
+00:00:43.015 --> 00:00:46.115
+You know its name, its role, is it a button, a link?
+
+23
+00:00:46.335 --> 00:00:48.715
+And it's state like is it checked or disabled?
+
+24
+00:00:49.455 --> 00:00:51.115
+So how does someone actually get
+
+25
+00:00:51.115 --> 00:00:52.275
+around the page with this thing?
+
+26
+00:00:52.505 --> 00:00:55.075
+It's not just one simple method on a desktop.
+
+27
+00:00:55.165 --> 00:00:57.515
+Users have two completely different modes
+
+28
+00:00:57.615 --> 00:00:59.035
+for two very different tasks.
+
+29
+00:00:59.615 --> 00:01:02.435
+And honestly, getting your head around this is probably one
+
+30
+00:01:02.435 --> 00:01:04.435
+of the most important concepts for understanding
+
+31
+00:01:04.455 --> 00:01:05.635
+how screen readers work.
+
+32
+00:01:06.255 --> 00:01:08.475
+And this right here, this is the core idea.
+
+33
+00:01:08.855 --> 00:01:11.395
+You've got browse mode, which is for well browsing,
+
+34
+00:01:11.415 --> 00:01:12.875
+you're reading, you're scanning.
+
+35
+00:01:13.245 --> 00:01:16.915
+Think of it like reading a book. Then you have focus mode.
+
+36
+00:01:17.095 --> 00:01:18.195
+That's for interacting
+
+37
+00:01:18.195 --> 00:01:20.195
+with things like when you need your keyboard
+
+38
+00:01:20.335 --> 00:01:22.115
+to actually type inside a form field.
+
+39
+00:01:22.335 --> 00:01:24.915
+That's focus mode. And screen readers are
+
+40
+00:01:25.115 --> 00:01:26.195
+actually really smart about this.
+
+41
+00:01:26.505 --> 00:01:28.235
+They give you these little audio cues,
+
+42
+00:01:28.235 --> 00:01:29.715
+so you always know which mode you're in.
+
+43
+00:01:30.185 --> 00:01:32.835
+Take NVDA, A really popular one for Windows.
+
+44
+00:01:33.295 --> 00:01:35.995
+It plays a little high pitch tone when you land in a form
+
+45
+00:01:35.995 --> 00:01:38.995
+field that tells you, okay, you're in focus mode now,
+
+46
+00:01:39.215 --> 00:01:41.315
+and when you leave, you get a low pitch tone.
+
+47
+00:01:41.655 --> 00:01:42.995
+All right, you're back in browse mode.
+
+48
+00:01:43.705 --> 00:01:46.115
+Okay, so knowing that these two modes exist, it kind
+
+49
+00:01:46.115 --> 00:01:47.355
+of raises a big question, right?
+
+50
+00:01:47.575 --> 00:01:49.795
+How do people actually use them to navigate a page?
+
+51
+00:01:50.095 --> 00:01:51.195
+Do they just start at the very top
+
+52
+00:01:51.255 --> 00:01:53.595
+and listen to every single word all the way to the bottom?
+
+53
+00:01:54.095 --> 00:01:58.035
+The answer to that is a huge resounding no, absolutely not.
+
+54
+00:01:58.255 --> 00:01:59.715
+And the data on this is wild.
+
+55
+00:01:59.775 --> 00:02:00.835
+It will completely change
+
+56
+00:02:00.855 --> 00:02:02.475
+how you think about designing a webpage.
+
+57
+00:02:02.735 --> 00:02:05.875
+It turns out that less than 4%, 4%
+
+58
+00:02:06.135 --> 00:02:08.275
+of screen reader users actually read a page
+
+59
+00:02:08.475 --> 00:02:09.555
+straight through from top to bottom.
+
+60
+00:02:10.055 --> 00:02:13.835
+And this chart, this is the big aha moment according to tons
+
+61
+00:02:13.835 --> 00:02:15.315
+of survey data from web aim.
+
+62
+00:02:15.345 --> 00:02:18.835
+Look at that over two thirds of screen reader users find
+
+63
+00:02:18.835 --> 00:02:20.755
+what they're looking for by jumping from
+
+64
+00:02:20.775 --> 00:02:21.875
+one heading to the next.
+
+65
+00:02:22.375 --> 00:02:24.915
+That's it. That is their number one way of getting around.
+
+66
+00:02:25.415 --> 00:02:28.395
+So here's the absolute key takeaway. Your heading structure.
+
+67
+00:02:28.545 --> 00:02:30.355
+It's not just some nice to have
+
+68
+00:02:30.355 --> 00:02:32.235
+for SEO for screen reader users.
+
+69
+00:02:32.375 --> 00:02:33.635
+It is the navigation system.
+
+70
+00:02:33.865 --> 00:02:35.715
+It's how they build a mental map of your page.
+
+71
+00:02:35.995 --> 00:02:38.155
+A power user isn't gonna arrow down through everything.
+
+72
+00:02:38.265 --> 00:02:40.555
+They're just gonna hit the H key to jump from heading
+
+73
+00:02:40.655 --> 00:02:42.475
+to heading to heading HH.
+
+74
+00:02:42.815 --> 00:02:45.835
+That's it. And this idea of navigating by structure,
+
+75
+00:02:46.025 --> 00:02:47.275
+it's not just a desktop thing.
+
+76
+00:02:47.465 --> 00:02:50.195
+It's absolutely crucial on mobile too, even though
+
+77
+00:02:50.195 --> 00:02:51.515
+how it works is a little bit different.
+
+78
+00:02:51.975 --> 00:02:55.435
+So on your phone screen, readers like voiceover on iOS
+
+79
+00:02:55.575 --> 00:02:58.675
+or talkback on Android are basically always
+
+80
+00:02:58.775 --> 00:02:59.775
+In browse node.
+
+81
+00:02:59.825 --> 00:03:01.885
+You don't have that whole mode switching thing going on.
+
+82
+00:03:02.305 --> 00:03:05.205
+And instead of keyboard shortcuts, it's all about gestures.
+
+83
+00:03:05.505 --> 00:03:06.765
+On an iPhone, for example,
+
+84
+00:03:07.205 --> 00:03:10.525
+a user does this cool two finger twist gesture on the screen
+
+85
+00:03:10.915 --> 00:03:12.325
+that brings up something called the
+
+86
+00:03:12.335 --> 00:03:13.445
+rotor, which is like a menu.
+
+87
+00:03:13.835 --> 00:03:16.365
+They can set it to headings and then just swipe up
+
+88
+00:03:16.385 --> 00:03:19.565
+or down to jump from one to the next. Super efficient.
+
+89
+00:03:20.025 --> 00:03:21.045
+So what does that mean for you?
+
+90
+00:03:21.385 --> 00:03:23.685
+It means that the semantic foundation of your design,
+
+91
+00:03:23.795 --> 00:03:25.965
+your headings, your landmarks, is just
+
+92
+00:03:25.965 --> 00:03:27.645
+as critical on a tiny phone screen
+
+93
+00:03:27.745 --> 00:03:29.485
+as it is on a huge desktop monitor.
+
+94
+00:03:29.795 --> 00:03:31.125
+That rotor on iOS
+
+95
+00:03:31.125 --> 00:03:32.565
+or the reading controls on Android,
+
+96
+00:03:32.715 --> 00:03:35.205
+they're completely useless if there's no structure
+
+97
+00:03:35.225 --> 00:03:36.565
+for them to navigate through.
+
+98
+00:03:36.985 --> 00:03:38.725
+Now, Look, the goal here is not for you
+
+99
+00:03:38.725 --> 00:03:41.165
+to become a screen reader expert overnight, not at all.
+
+100
+00:03:41.315 --> 00:03:43.325
+It's about doing a simple check on your own work.
+
+101
+00:03:43.635 --> 00:03:45.245
+It's about building empathy, not
+
+102
+00:03:45.245 --> 00:03:46.685
+by pretending you have a disability,
+
+103
+00:03:46.865 --> 00:03:48.125
+but by actually understanding
+
+104
+00:03:48.185 --> 00:03:50.005
+how the tool works with the thing you built.
+
+105
+00:03:50.665 --> 00:03:53.765
+So here is a super simple actionable test you can do.
+
+106
+00:03:54.275 --> 00:03:57.285
+Like right now, just turn on your computer's built in screen
+
+107
+00:03:57.285 --> 00:03:58.645
+reader, go to your page
+
+108
+00:03:58.745 --> 00:04:01.045
+and just press the H key again and again.
+
+109
+00:04:01.315 --> 00:04:02.645
+Does it jump you through the content
+
+110
+00:04:02.825 --> 00:04:04.005
+in a way that makes sense?
+
+111
+00:04:04.515 --> 00:04:06.325
+Then pull up the elements list.
+
+112
+00:04:06.355 --> 00:04:07.565
+It's just a keyboard shortcut,
+
+113
+00:04:07.745 --> 00:04:09.645
+and that will show you a complete outline
+
+114
+00:04:09.645 --> 00:04:10.845
+of all the headings on your page.
+
+115
+00:04:11.705 --> 00:04:13.165
+And when you're looking at that list,
+
+116
+00:04:13.395 --> 00:04:15.405
+just ask yourself this one simple question,
+
+117
+00:04:16.035 --> 00:04:18.445
+does this list look like a logical table
+
+118
+00:04:18.445 --> 00:04:19.605
+of contents for the page?
+
+119
+00:04:19.825 --> 00:04:21.565
+Or is it just a flat confusing mess?
+
+120
+00:04:21.875 --> 00:04:23.845
+Seriously, if you can answer that question,
+
+121
+00:04:23.845 --> 00:04:25.245
+you'll catch the single biggest
+
+122
+00:04:25.345 --> 00:04:27.365
+and most common navigation problem out there.
+
+123
+00:04:27.775 --> 00:04:30.365
+Doing this simple test really moves you from only seeing
+
+124
+00:04:30.365 --> 00:04:32.165
+your design to truly hearing it,
+
+125
+00:04:32.265 --> 00:04:33.645
+and that is a fundamental shift.
+
+126
+00:04:33.985 --> 00:04:36.245
+It helps make sure that what you create isn't just pretty,
+
+127
+00:04:36.545 --> 00:04:38.605
+but that it actually works for everyone.
+
+128
+00:04:39.025 --> 00:04:40.725
+So the question I wanna leave you with is this.
+
+129
+00:04:41.075 --> 00:04:42.765
+What will your design sound like?

@@ -1,0 +1,557 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<questestinterop xmlns="http://www.imsglobal.org/xsd/ims_qtiasiv1p2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.imsglobal.org/xsd/ims_qtiasiv1p2 http://www.imsglobal.org/xsd/ims_qtiasiv1p2p1.xsd">
+  <assessment ident="L08_motion_animation_quiz" title="L08: Motion and Animation Quiz">
+    <qtimetadata>
+      <qtimetadatafield>
+        <fieldlabel>cc_maxattempts</fieldlabel>
+        <fieldentry>unlimited</fieldentry>
+      </qtimetadatafield>
+      <qtimetadatafield>
+        <fieldlabel>qmd_timelimit</fieldlabel>
+        <fieldentry/>
+      </qtimetadatafield>
+      <qtimetadatafield>
+        <fieldlabel>cc_profile</fieldlabel>
+        <fieldentry>cc.exam.v0p1</fieldentry>
+      </qtimetadatafield>
+    </qtimetadata>
+    <section ident="root_section">
+      
+      <!-- Question 1: Reduced Motion User Preference -->
+      <item ident="q1_reduced_motion" title="Q1: Reduced Motion User Preference">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield>
+              <fieldlabel>question_type</fieldlabel>
+              <fieldentry>multiple_choice_question</fieldentry>
+            </qtimetadatafield>
+            <qtimetadatafield>
+              <fieldlabel>points_possible</fieldlabel>
+              <fieldentry>1</fieldentry>
+            </qtimetadatafield>
+            <qtimetadatafield>
+              <fieldlabel>original_answer_ids</fieldlabel>
+              <fieldentry>q1_a,q1_b,q1_c,q1_d</fieldentry>
+            </qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material>
+            <mattext texttype="text/html"><![CDATA[<p>A user has enabled "Reduce motion" in their operating system settings. How should a website respond to this preference?</p>]]></mattext>
+          </material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice shuffle="true">
+              <response_label ident="q1_a">
+                <material>
+                  <mattext texttype="text/plain">Use prefers-reduced-motion media query to simplify or disable animations</mattext>
+                </material>
+              </response_label>
+              <response_label ident="q1_b">
+                <material>
+                  <mattext texttype="text/plain">Websites cannot detect OS system settings, they need to set preferences in the browser</mattext>
+                </material>
+              </response_label>
+              <response_label ident="q1_c">
+                <material>
+                  <mattext texttype="text/plain">Display a popup dialog asking users to confirm their animation preference</mattext>
+                </material>
+              </response_label>
+              <response_label ident="q1_d">
+                <material>
+                  <mattext texttype="text/plain">Automatically redirect users to a simplified text-only version of the site</mattext>
+                </material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes>
+            <decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/>
+          </outcomes>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q1_a</varequal>
+            </conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q1_a_fb"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q1_b</varequal>
+            </conditionvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q1_b_fb"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q1_c</varequal>
+            </conditionvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q1_c_fb"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q1_d</varequal>
+            </conditionvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q1_d_fb"/>
+          </respcondition>
+        </resprocessing>
+        <itemfeedback ident="q1_a_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Correct.</strong> The prefers-reduced-motion CSS media query detects when a user has requested reduced motion in their operating system settings. Websites should use this query to disable complex animations, replace motion with simple fades or instant transitions, and stop auto-playing content.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="q1_b_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Incorrect.</strong> Websites can detect OS system settings through CSS media queries. The prefers-reduced-motion media query automatically exposes the operating system's reduced motion setting to websites without requiring users to set separate browser preferences.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="q1_c_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Incorrect.</strong> Popups add friction to the user experience and may themselves not be accessible. Users have already expressed their preference through system settings; asking again is redundant and burdensome.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="q1_d_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Incorrect.</strong> Text-only versions are an extreme solution that removes visual design entirely. Users who prefer reduced motion still want and deserve a full visual experience, just without problematic animations.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+      </item>
+
+      <!-- Question 2: Who Benefits from Reduced Motion -->
+      <item ident="q2_who_benefits" title="Q2: Who Benefits from Reduced Motion">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield>
+              <fieldlabel>question_type</fieldlabel>
+              <fieldentry>multiple_choice_question</fieldentry>
+            </qtimetadatafield>
+            <qtimetadatafield>
+              <fieldlabel>points_possible</fieldlabel>
+              <fieldentry>1</fieldentry>
+            </qtimetadatafield>
+            <qtimetadatafield>
+              <fieldlabel>original_answer_ids</fieldlabel>
+              <fieldentry>q2_a,q2_b,q2_c,q2_d</fieldentry>
+            </qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material>
+            <mattext texttype="text/html"><![CDATA[<p>Which group of users is most likely to enable the "Reduce motion" setting in their operating system?</p>]]></mattext>
+          </material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice shuffle="true">
+              <response_label ident="q2_a">
+                <material>
+                  <mattext texttype="text/plain">Users with vestibular disorders who experience dizziness or nausea from motion</mattext>
+                </material>
+              </response_label>
+              <response_label ident="q2_b">
+                <material>
+                  <mattext texttype="text/plain">Users with slow internet connections who want faster page loading times</mattext>
+                </material>
+              </response_label>
+              <response_label ident="q2_c">
+                <material>
+                  <mattext texttype="text/plain">Users with color blindness who have difficulty distinguishing animated elements</mattext>
+                </material>
+              </response_label>
+              <response_label ident="q2_d">
+                <material>
+                  <mattext texttype="text/plain">Users with motor impairments who have difficulty clicking on moving targets</mattext>
+                </material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes>
+            <decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/>
+          </outcomes>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q2_a</varequal>
+            </conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q2_a_fb"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q2_b</varequal>
+            </conditionvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q2_b_fb"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q2_c</varequal>
+            </conditionvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q2_c_fb"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q2_d</varequal>
+            </conditionvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q2_d_fb"/>
+          </respcondition>
+        </resprocessing>
+        <itemfeedback ident="q2_a_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Correct.</strong> The reduced motion setting primarily helps users with vestibular disorders, which affect the inner ear and balance system. These users can experience dizziness, nausea, vertigo, or disorientation when viewing animations, parallax effects, or other motion on screen.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="q2_b_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Incorrect.</strong> Reduced motion settings do not affect page loading times or bandwidth usage. Users with slow connections would benefit from data saver modes or lite versions of sites, not motion reduction settings.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="q2_c_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Incorrect.</strong> Color blindness relates to color perception, not motion sensitivity. Users with color blindness benefit from sufficient color contrast and non-color indicators, not reduced motion.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="q2_d_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Incorrect.</strong> While moving targets can be difficult to click, users with motor impairments primarily benefit from larger click targets, keyboard navigation, and sufficient time limits. The reduced motion setting addresses vestibular concerns, not motor control challenges.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+      </item>
+
+      <!-- Question 3: The 5-Second Rule -->
+      <item ident="q3_five_second_rule" title="Q3: The 5-Second Rule">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield>
+              <fieldlabel>question_type</fieldlabel>
+              <fieldentry>multiple_choice_question</fieldentry>
+            </qtimetadatafield>
+            <qtimetadatafield>
+              <fieldlabel>points_possible</fieldlabel>
+              <fieldentry>1</fieldentry>
+            </qtimetadatafield>
+            <qtimetadatafield>
+              <fieldlabel>original_answer_ids</fieldlabel>
+              <fieldentry>q3_a,q3_b,q3_c,q3_d</fieldentry>
+            </qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material>
+            <mattext texttype="text/html"><![CDATA[<p>A hero section contains an auto-playing background (no-audio) video that loops continuously. According to SC 2.2.2 (Pause, Stop, Hide), what is required?</p>]]></mattext>
+          </material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice shuffle="true">
+              <response_label ident="q3_a">
+                <material>
+                  <mattext texttype="text/plain">A visible control to pause, stop, or hide the video must be provided</mattext>
+                </material>
+              </response_label>
+              <response_label ident="q3_b">
+                <material>
+                  <mattext texttype="text/plain">No action is required because video content is exempt from motion rules</mattext>
+                </material>
+              </response_label>
+              <response_label ident="q3_c">
+                <material>
+                  <mattext texttype="text/plain">The video must be accompanied by synchronized closed caption tracks</mattext>
+                </material>
+              </response_label>
+              <response_label ident="q3_d">
+                <material>
+                  <mattext texttype="text/plain">The video must be replaced with a static image on all mobile devices</mattext>
+                </material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes>
+            <decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/>
+          </outcomes>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q3_a</varequal>
+            </conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q3_a_fb"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q3_b</varequal>
+            </conditionvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q3_b_fb"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q3_c</varequal>
+            </conditionvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q3_c_fb"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q3_d</varequal>
+            </conditionvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q3_d_fb"/>
+          </respcondition>
+        </resprocessing>
+        <itemfeedback ident="q3_a_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Correct.</strong> SC 2.2.2 requires that any moving, blinking, or auto-updating content that starts automatically and lasts more than 5 seconds must have a mechanism to pause, stop, or hide it. A continuously looping video clearly exceeds 5 seconds and requires visible controls.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="q3_b_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Incorrect.</strong> Video content is not exempt from motion requirements. Background videos, hero videos, and any auto-playing video content must provide pause controls just like any other moving content.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="q3_c_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Incorrect.</strong> Closed captions address a different accessibility need (providing audio information for users who cannot hear). Since the question specifies a no-audio background video, captions would have no content to display. Regardless, captions do not address the motion accessibility requirement of SC 2.2.2.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="q3_d_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Incorrect.</strong> Mobile-only changes do not address the requirement for desktop users. SC 2.2.2 applies across all devices and platforms. All users need access to pause controls.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+      </item>
+
+      <!-- Question 4: Flash Threshold -->
+      <item ident="q4_flash_threshold" title="Q4: Flash Threshold">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield>
+              <fieldlabel>question_type</fieldlabel>
+              <fieldentry>multiple_choice_question</fieldentry>
+            </qtimetadatafield>
+            <qtimetadatafield>
+              <fieldlabel>points_possible</fieldlabel>
+              <fieldentry>1</fieldentry>
+            </qtimetadatafield>
+            <qtimetadatafield>
+              <fieldlabel>original_answer_ids</fieldlabel>
+              <fieldentry>q4_a,q4_b,q4_c,q4_d</fieldentry>
+            </qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material>
+            <mattext texttype="text/html"><![CDATA[<p>A designer wants to add a pulsing "alert" animation to draw attention to urgent notifications. What is the maximum flash rate allowed by the WCAG?</p>]]></mattext>
+          </material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice shuffle="true">
+              <response_label ident="q4_a">
+                <material>
+                  <mattext texttype="text/plain">Content must not flash more than 3 times in any one second period</mattext>
+                </material>
+              </response_label>
+              <response_label ident="q4_b">
+                <material>
+                  <mattext texttype="text/plain">No flashing of any kind is permitted in accessible design interfaces</mattext>
+                </material>
+              </response_label>
+              <response_label ident="q4_c">
+                <material>
+                  <mattext texttype="text/plain">Content can flash at any rate as long as the flashing area is small</mattext>
+                </material>
+              </response_label>
+              <response_label ident="q4_d">
+                <material>
+                  <mattext texttype="text/plain">Flashing is permitted if a seizure warning is displayed beforehand</mattext>
+                </material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes>
+            <decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/>
+          </outcomes>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q4_a</varequal>
+            </conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q4_a_fb"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q4_b</varequal>
+            </conditionvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q4_b_fb"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q4_c</varequal>
+            </conditionvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q4_c_fb"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q4_d</varequal>
+            </conditionvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q4_d_fb"/>
+          </respcondition>
+        </resprocessing>
+        <itemfeedback ident="q4_a_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Correct.</strong> SC 2.3.1 sets a hard limit: content must not flash more than 3 times per second. This threshold exists because higher flash rates can trigger photosensitive epileptic seizures. Designers can use pulsing animations if they stay below this rate.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="q4_b_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Incorrect.</strong> Some flashing is acceptable if it stays below the threshold. WCAG does not prohibit all flashing, only dangerous flashing that exceeds the 3 times per second limit or the specific luminance thresholds.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="q4_c_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Incorrect.</strong> While size does factor into the detailed threshold calculations (the "small safe area" exception), this is a technical edge case. The fundamental requirement is the 3 times per second limit, and relying on size alone is incomplete and potentially dangerous.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="q4_d_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Incorrect.</strong> Warnings do not make dangerous content accessible. Users with photosensitive epilepsy may not be able to look away quickly enough once a seizure is triggered. The content itself must be safe, not just warned about.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+      </item>
+
+      <!-- Question 5: Designing Motion Alternatives -->
+      <item ident="q5_motion_alternatives" title="Q5: Designing Motion Alternatives">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield>
+              <fieldlabel>question_type</fieldlabel>
+              <fieldentry>multiple_choice_question</fieldentry>
+            </qtimetadatafield>
+            <qtimetadatafield>
+              <fieldlabel>points_possible</fieldlabel>
+              <fieldentry>1</fieldentry>
+            </qtimetadatafield>
+            <qtimetadatafield>
+              <fieldlabel>original_answer_ids</fieldlabel>
+              <fieldentry>q5_a,q5_b,q5_c,q5_d</fieldentry>
+            </qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material>
+            <mattext texttype="text/html"><![CDATA[<p>A product page features a carousel that auto-rotates through product images every 3 seconds. The designer wants to make this accessible. Which approach best addresses motion accessibility requirements?</p>]]></mattext>
+          </material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice shuffle="true">
+              <response_label ident="q5_a">
+                <material>
+                  <mattext texttype="text/plain">Provide a visible pause button and show a static gallery for reduced-motion users</mattext>
+                </material>
+              </response_label>
+              <response_label ident="q5_b">
+                <material>
+                  <mattext texttype="text/plain">Speed up carousel rotation to complete all image transitions within 5 seconds total</mattext>
+                </material>
+              </response_label>
+              <response_label ident="q5_c">
+                <material>
+                  <mattext texttype="text/plain">Replace the entire carousel component with a single representative static image</mattext>
+                </material>
+              </response_label>
+              <response_label ident="q5_d">
+                <material>
+                  <mattext texttype="text/plain">Display a motion warning and allow users to choose whether to stay or leave page</mattext>
+                </material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes>
+            <decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/>
+          </outcomes>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q5_a</varequal>
+            </conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q5_a_fb"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q5_b</varequal>
+            </conditionvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q5_b_fb"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q5_c</varequal>
+            </conditionvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q5_c_fb"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q5_d</varequal>
+            </conditionvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q5_d_fb"/>
+          </respcondition>
+        </resprocessing>
+        <itemfeedback ident="q5_a_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Correct.</strong> This approach addresses both SC 2.2.2 (pause control for auto-playing content) and reduced motion preferences. The pause button gives users immediate control to stop the auto-rotation. The reduced-motion alternative (static gallery) preserves access to all product images without animation.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="q5_b_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Incorrect.</strong> This misunderstands the 5-second rule. SC 2.2.2 requires controls for motion that lasts more than 5 seconds, it does not mean content should complete within 5 seconds. Speeding up the carousel would make it more disorienting, not more accessible.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="q5_c_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Incorrect.</strong> Replacing the carousel with a single image removes functionality and content. Users would lose access to the other product images. Accessible alternatives should preserve functionality, not eliminate it.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="q5_d_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Incorrect.</strong> Warnings do not make content accessible. Users should not have to leave a page to avoid motion effects. The content itself should be designed to be accessible, with controls and alternatives that allow all users to engage with it.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+      </item>
+
+    </section>
+  </assessment>
+</questestinterop>

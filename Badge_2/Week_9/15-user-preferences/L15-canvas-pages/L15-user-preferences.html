@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lesson 15: User Preferences and System Settings - Canvas Preview</title>
+</head>
+<body style="margin: 0; padding: 20px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif; background-color: #ffffff; color: #333333; line-height: 1.6;">
+  <!-- Note: This is a preview file. When copying to Canvas, copy only the content below this line -->
+  
+  <div style="max-width: 900px; margin: 0; padding: 24px 0 48px 0;">
+
+    <!-- Header Section -->
+    <div style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); border-radius: 8px; padding: 24px 28px; margin-bottom: 28px; border-left: 5px solid #FF6B6B;">
+      <h2 style="margin: 0 0 12px 0; font-size: 28px; font-weight: 600; color: #212529;">Lesson 15: User Preferences and System Settings</h2>
+      <div style="display: flex; flex-wrap: wrap; gap: 14px; margin-top: 18px;">
+        <span style="display: inline-flex; align-items: center; gap: 8px; background-color: #ffe3e3; color: #c92a2a; padding: 10px 18px; border-radius: 24px; font-size: 15px; font-weight: 500;">
+          <span style="font-size: 18px;">🎯</span> Define Badge
+        </span>
+        <span style="display: inline-flex; align-items: center; gap: 8px; background-color: #e7f5ff; color: #1864ab; padding: 10px 18px; border-radius: 24px; font-size: 15px; font-weight: 500;">
+          <span style="font-size: 18px;">🏷️</span> Module 2F
+        </span>
+      </div>
+    </div>
+
+    <!-- Introduction -->
+    <p style="font-size: 17px; color: #495057; margin-bottom: 16px; padding: 0 4px;">
+      Users configure accessibility preferences at the operating system level: reduced motion, dark mode, increased text size, and high contrast. Well-designed products detect and respond to these preferences automatically. As a designer, you need to know where these settings live, how to specify responsive behaviors in your annotations, and how to test that your designs adapt correctly.
+    </p>
+    <p style="font-size: 17px; color: #495057; margin-bottom: 32px; padding: 0 4px;">
+      In this lesson, you will learn the full preference landscape across platforms, how CSS media queries detect user preferences, and how to design and test for preference responsiveness. This lesson unifies concepts from L08 (reduced motion), L12 (text scaling), and L14 (high contrast) into a systematic approach to preference-responsive design.
+    </p>
+
+    <!-- Lesson Activities Section -->
+    <div style="background-color: #fff; border: 1px solid #dee2e6; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #FF6B6B;">
+      <h3 style="margin: 0 0 8px 0; font-size: 20px; font-weight: 600; color: #212529; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">🎯</span> Lesson Activities
+      </h3>
+      <p style="margin: 0 0 20px 0; color: #495057; font-size: 15px;">Complete these activities for this lesson.</p>
+      
+      <!-- Activity Links -->
+      <table role="presentation" style="width: 100%; border-collapse: separate; border-spacing: 0 12px;">
+        <tr>
+          <td style="width: 44px; background-color: #f8f9fa; border: 1px solid #e9ecef; border-radius: 8px 0 0 8px; padding: 16px; text-align: center; vertical-align: middle;">
+            <span style="display: inline-block; width: 44px; height: 44px; background-color: #ffe3e3; border-radius: 8px; font-size: 22px; text-align: center; line-height: 44px;">🎨</span>
+          </td>
+          <td style="background-color: #f8f9fa; border-top: 1px solid #e9ecef; border-bottom: 1px solid #e9ecef; padding: 16px 12px; vertical-align: middle;">
+            <strong style="color: #212529; font-size: 15px;">Lesson in Figma</strong><br>
+            <span style="color: #495057; font-size: 13px;">View the lesson walkthrough (link to be added)</span>
+          </td>
+          <td style="width: 40px; background-color: #f8f9fa; border: 1px solid #e9ecef; border-radius: 0 8px 8px 0; padding: 16px 16px 16px 0; text-align: right; vertical-align: middle;">
+            <span style="color: #495057; font-size: 18px;">&rarr;</span>
+          </td>
+        </tr>
+        <tr>
+          <td style="width: 44px; background-color: #f8f9fa; border: 1px solid #e9ecef; border-radius: 8px 0 0 8px; padding: 16px; text-align: center; vertical-align: middle;">
+            <span style="display: inline-block; width: 44px; height: 44px; background-color: #fff3bf; border-radius: 8px; font-size: 22px; text-align: center; line-height: 44px;">📋</span>
+          </td>
+          <td style="background-color: #f8f9fa; border-top: 1px solid #e9ecef; border-bottom: 1px solid #e9ecef; padding: 16px 12px; vertical-align: middle;">
+            <strong style="color: #212529; font-size: 15px;">Knowledge Check Quiz</strong><br>
+            <span style="color: #495057; font-size: 13px;">5 questions · Auto-graded · 5 points</span>
+          </td>
+          <td style="width: 40px; background-color: #f8f9fa; border: 1px solid #e9ecef; border-radius: 0 8px 8px 0; padding: 16px 16px 16px 0; text-align: right; vertical-align: middle;">
+            <span style="color: #495057; font-size: 18px;">&rarr;</span>
+          </td>
+        </tr>
+        <tr>
+          <td style="width: 44px; background-color: #f8f9fa; border: 1px solid #e9ecef; border-radius: 8px 0 0 8px; padding: 16px; text-align: center; vertical-align: middle;">
+            <span style="display: inline-block; width: 44px; height: 44px; background-color: #d0ebff; border-radius: 8px; font-size: 22px; text-align: center; line-height: 44px;">🛠️</span>
+          </td>
+          <td style="background-color: #f8f9fa; border-top: 1px solid #e9ecef; border-bottom: 1px solid #e9ecef; padding: 16px 12px; vertical-align: middle;">
+            <strong style="color: #212529; font-size: 15px;">Applied Practice</strong><br>
+            <span style="color: #495057; font-size: 13px;">Hands-on assessment (assignment to be linked)</span>
+          </td>
+          <td style="width: 40px; background-color: #f8f9fa; border: 1px solid #e9ecef; border-radius: 0 8px 8px 0; padding: 16px 16px 16px 0; text-align: right; vertical-align: middle;">
+            <span style="color: #495057; font-size: 18px;">&rarr;</span>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- Video Section -->
+    <div style="background-color: #f8f9fa; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #845ef7;">
+      <h3 style="margin: 0 0 8px 0; font-size: 20px; font-weight: 600; color: #212529; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">🎬</span> The Explainer
+      </h3>
+      <p style="margin: 0 0 20px 0; color: #495057; font-size: 15px;">Get an overview of user preferences and system settings before the live session.</p>
+      
+      <div style="background-color: #e9ecef; border-radius: 6px; padding: 40px; text-align: center; color: #868e96;">
+        <p style="margin: 0; font-size: 16px; font-weight: 500;">Video placeholder</p>
+        <p style="margin: 8px 0 0 0; font-size: 14px;">Explainer video will be embedded here after production</p>
+      </div>
+    </div>
+
+    <!-- Learning Objectives Section -->
+    <div id="learning-objectives" style="background-color: #fff; border: 1px solid #dee2e6; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #1971c2;">
+      <h3 style="margin: 0 0 8px 0; font-size: 20px; font-weight: 600; color: #212529; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">📋</span> Learning Objectives
+      </h3>
+      <p style="margin: 0 0 24px 0; color: #495057; font-size: 15px;">Learn how system accessibility preferences affect your designs and how to create preference-responsive experiences.</p>
+      
+      <!-- Learning Outcomes -->
+      <h4 style="margin: 0 0 12px 0; font-size: 17px; font-weight: 600; color: #212529;">Learning Outcomes</h4>
+      <p style="margin: 0 0 16px 0; color: #495057; font-size: 14px;">By the end of this lesson, you will be able to:</p>
+      
+      <table style="width: 100%; border-collapse: collapse; font-size: 15px; margin-bottom: 28px;">
+        <thead>
+          <tr style="background-color: #f1f3f4;">
+            <th scope="col" style="padding: 12px 16px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6; width: 70px;">ID</th>
+            <th scope="col" style="padding: 12px 16px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">Outcome</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="padding: 14px 16px; border-bottom: 1px solid #e9ecef; color: #212529; font-weight: 600; font-family: monospace;">2F.01</td>
+            <td style="padding: 14px 16px; border-bottom: 1px solid #e9ecef; color: #212529;"><strong>Identify system accessibility settings</strong> and know where users configure preferences across platforms, mapping them to CSS media queries</td>
+          </tr>
+          <tr style="background-color: #f8f9fa;">
+            <td style="padding: 14px 16px; border-bottom: 1px solid #e9ecef; color: #212529; font-weight: 600; font-family: monospace;">2F.02</td>
+            <td style="padding: 14px 16px; border-bottom: 1px solid #e9ecef; color: #212529;"><strong>Design for preference responsiveness</strong> by specifying alternatives for reduced motion, color scheme, text size, and contrast preferences</td>
+          </tr>
+          <tr>
+            <td style="padding: 14px 16px; color: #212529; font-weight: 600; font-family: monospace;">2F.03</td>
+            <td style="padding: 14px 16px; color: #212529;"><strong>Test with modified user preferences</strong> using browser DevTools and system settings to validate designs across preference states</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Knowledge/Skills/Application Objectives -->
+      <h4 style="margin: 0 0 12px 0; font-size: 17px; font-weight: 600; color: #212529; padding-bottom: 8px; border-bottom: 2px solid #d0ebff;">Knowledge Objectives</h4>
+      <ul style="margin: 0 0 28px 0; padding-left: 24px; color: #212529; font-size: 14px;">
+        <li style="margin-bottom: 10px;">Identify where users configure accessibility preferences on macOS, Windows, iOS, and Android.</li>
+        <li style="margin-bottom: 10px;">Explain the CSS media queries that detect user preferences: <code style="background: #e9ecef; padding: 2px 4px; border-radius: 3px;">prefers-reduced-motion</code>, <code style="background: #e9ecef; padding: 2px 4px; border-radius: 3px;">prefers-color-scheme</code>, and <code style="background: #e9ecef; padding: 2px 4px; border-radius: 3px;">prefers-contrast</code>.</li>
+        <li style="margin-bottom: 10px;">Describe how text size preferences (Dynamic Type, browser font size) affect layout through relative units like <code style="background: #e9ecef; padding: 2px 4px; border-radius: 3px;">rem</code>.</li>
+        <li style="margin-bottom: 10px;">Explain the principle of graceful adaptation: preference-responsive designs that maintain quality across all states.</li>
+        <li>Know the difference between <code style="background: #e9ecef; padding: 2px 4px; border-radius: 3px;">prefers-contrast: more</code> (a request for higher contrast) and <code style="background: #e9ecef; padding: 2px 4px; border-radius: 3px;">forced-colors: active</code> (a system color override from Windows High Contrast Mode).</li>
+      </ul>
+
+      <h4 style="margin: 0 0 12px 0; font-size: 17px; font-weight: 600; color: #212529; padding-bottom: 8px; border-bottom: 2px solid #d0ebff;">Skills Objectives</h4>
+      <ul style="margin: 0 0 28px 0; padding-left: 24px; color: #212529; font-size: 14px;">
+        <li style="margin-bottom: 10px;">Toggle accessibility preferences in system settings and emulate them in Chrome DevTools (Rendering tab).</li>
+        <li style="margin-bottom: 10px;">Specify dark mode color tokens that maintain WCAG contrast requirements in both light and dark modes.</li>
+        <li style="margin-bottom: 10px;">Design reduced motion alternatives that replace spatial animation with opacity transitions or instant state changes.</li>
+        <li>Test designs at 200% text size and document overflow or layout behavior changes.</li>
+      </ul>
+
+      <h4 style="margin: 0 0 12px 0; font-size: 17px; font-weight: 600; color: #212529; padding-bottom: 8px; border-bottom: 2px solid #d0ebff;">Application Objectives</h4>
+      <ul style="margin: 0 0 0 0; padding-left: 24px; color: #212529; font-size: 14px;">
+        <li style="margin-bottom: 10px;">Audit an existing design for preference responsiveness across reduced motion, color scheme, text size, and contrast.</li>
+        <li style="margin-bottom: 10px;">Create preference response documentation specifying how each component adapts to user preferences.</li>
+        <li>Build preference testing into a design review workflow with a systematic checklist.</li>
+      </ul>
+    </div>
+
+    <!-- Related WCAG Success Criteria Section -->
+    <div style="background-color: #f8f9fa; border: 1px solid #dee2e6; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #0ca678;">
+      <h3 style="margin: 0 0 16px 0; font-size: 20px; font-weight: 600; color: #212529; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">📜</span> Related WCAG Success Criteria
+      </h3>
+      <ul style="margin: 0; padding-left: 24px; color: #212529;">
+        <li style="margin-bottom: 8px;"><strong>1.4.4 Resize Text (Level AA):</strong> Text can be resized up to 200% without loss of content or functionality</li>
+        <li style="margin-bottom: 8px;"><strong>1.4.12 Text Spacing (Level AA):</strong> Content adapts when users override line height, letter spacing, word spacing, and paragraph spacing</li>
+        <li style="margin-bottom: 8px;"><strong>2.3.3 Animation from Interactions (Level AAA):</strong> Motion animation triggered by interaction can be disabled unless essential</li>
+        <li style="margin-bottom: 8px;"><strong>1.4.3 Contrast (Minimum) (Level AA):</strong> Text and images of text have a contrast ratio of at least 4.5:1, applicable in all color scheme states</li>
+        <li><strong>1.4.11 Non-text Contrast (Level AA):</strong> User interface components and graphical objects have a contrast ratio of at least 3:1, across all preference states</li>
+      </ul>
+    </div>
+
+    <!-- Key Concepts Section -->
+    <div style="background-color: #fff; border: 1px solid #dee2e6; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #f59f00;">
+      <h3 style="margin: 0 0 20px 0; font-size: 20px; font-weight: 600; color: #212529; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">💡</span> Key Concepts
+      </h3>
+
+      <!-- Concept 1: CSS Media Queries for Preferences -->
+      <div style="margin-bottom: 32px;">
+        <h4 style="margin: 0 0 12px 0; font-size: 18px; font-weight: 600; color: #212529;">CSS Media Queries for User Preferences</h4>
+        <p style="margin: 0 0 16px 0; color: #495057; font-size: 15px;">Browsers expose user preferences through CSS media queries. When a user enables a system-level accessibility setting, the browser makes the corresponding media query value available to CSS, allowing web applications to adapt automatically.</p>
+        
+        <table style="width: 100%; border-collapse: collapse; font-size: 14px; margin-bottom: 16px;">
+          <thead>
+            <tr style="background-color: #f1f3f4;">
+              <th scope="col" style="padding: 10px 12px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">Media Query</th>
+              <th scope="col" style="padding: 10px 12px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">Detects</th>
+              <th scope="col" style="padding: 10px 12px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">Values</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; font-weight: 600; font-family: monospace;">prefers-reduced-motion</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">System reduced motion setting</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; font-family: monospace;">no-preference, reduce</td>
+            </tr>
+            <tr style="background-color: #f8f9fa;">
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; font-weight: 600; font-family: monospace;">prefers-color-scheme</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Light or dark theme preference</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; font-family: monospace;">light, dark</td>
+            </tr>
+            <tr>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; font-weight: 600; font-family: monospace;">prefers-contrast</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Contrast level preference</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; font-family: monospace;">no-preference, more, less, custom</td>
+            </tr>
+            <tr style="background-color: #f8f9fa;">
+              <td style="padding: 10px 12px; font-weight: 600; font-family: monospace;">forced-colors</td>
+              <td style="padding: 10px 12px;">Windows High Contrast Mode</td>
+              <td style="padding: 10px 12px; font-family: monospace;">none, active</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div style="background-color: #e7f5ff; border-left: 4px solid #1971c2; padding: 16px;">
+          <p style="margin: 0; color: #495057; font-size: 15px;"><strong>Designer Impact:</strong> These media queries are the bridge between system settings and web experiences. As a designer, you specify what should change when each preference is active. Engineering implements the CSS media queries based on your specifications.</p>
+        </div>
+      </div>
+
+      <!-- Concept 2: Dark Mode Design -->
+      <div style="margin-bottom: 32px;">
+        <h4 style="margin: 0 0 12px 0; font-size: 18px; font-weight: 600; color: #212529;">Dark Mode Design</h4>
+        <p style="margin: 0 0 16px 0; color: #495057; font-size: 15px;">Dark mode is the most widely-adopted accessibility preference. It requires intentional color design, not simple color inversion. Key principles include using dark gray backgrounds instead of pure black, off-white text instead of pure white, and replacing shadow-based elevation with borders.</p>
+        
+        <div style="background-color: #f8f9fa; border-left: 4px solid #1971c2; padding: 16px; margin-bottom: 16px;">
+          <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 15px;">Why not pure black and pure white?</p>
+          <p style="margin: 0; color: #495057; font-size: 14px;">Maximum contrast between #FFFFFF and #000000 can cause <strong>halation</strong> for users with astigmatism or certain low vision conditions. Bright text appears to glow or blur against very dark backgrounds. Best practice: dark gray backgrounds (#1E1E1E) with off-white text (#E0E0E0).</p>
+        </div>
+
+        <div style="background-color: #f8f9fa; border-left: 4px solid #1971c2; padding: 16px; margin-bottom: 16px;">
+          <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 15px;">Semantic design tokens</p>
+          <p style="margin: 0; color: #495057; font-size: 14px;">Use semantic tokens like <code style="background: #e9ecef; padding: 2px 4px; border-radius: 3px;">surface-primary</code> and <code style="background: #e9ecef; padding: 2px 4px; border-radius: 3px;">text-primary</code> instead of hard-coded colors. Map tokens to different values per color scheme so components adapt automatically when the user switches modes.</p>
+        </div>
+
+        <div style="background-color: #fff3bf; border-left: 4px solid #fab005; padding: 16px;">
+          <p style="margin: 0; color: #495057; font-size: 15px;"><strong>Designer Impact:</strong> Specify dark mode color tokens with verified contrast ratios. Do not assume light mode contrast passes in dark mode. Verify contrast for both color schemes and document shadows that need to be replaced with borders.</p>
+        </div>
+      </div>
+
+      <!-- Concept 3: Reduced Motion Alternatives -->
+      <div style="margin-bottom: 32px;">
+        <h4 style="margin: 0 0 12px 0; font-size: 18px; font-weight: 600; color: #212529;">Reduced Motion Alternatives</h4>
+        <p style="margin: 0 0 16px 0; color: #495057; font-size: 15px;">When <code style="background: #e9ecef; padding: 2px 4px; border-radius: 3px;">prefers-reduced-motion: reduce</code> is active, designs should minimize vestibular-triggering motion while maintaining usable feedback. Reduced motion does not mean no motion: it means replacing spatial movement with less triggering alternatives.</p>
+        
+        <table style="width: 100%; border-collapse: collapse; font-size: 14px; margin-bottom: 16px;">
+          <thead>
+            <tr style="background-color: #f1f3f4;">
+              <th scope="col" style="padding: 10px 12px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">Default Animation</th>
+              <th scope="col" style="padding: 10px 12px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">Reduced Motion Alternative</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Content slides in from right (300ms)</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Content fades in (150ms opacity transition)</td>
+            </tr>
+            <tr style="background-color: #f8f9fa;">
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Card scales up on hover (1.05x, 200ms)</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Subtle shadow change, instant</td>
+            </tr>
+            <tr>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Menu drops down with spring animation</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Menu appears instantly</td>
+            </tr>
+            <tr style="background-color: #f8f9fa;">
+              <td style="padding: 10px 12px;">Loading spinner rotates continuously</td>
+              <td style="padding: 10px 12px;">Static progress bar or "Loading..." text</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div style="background-color: #e7f5ff; border-left: 4px solid #1971c2; padding: 16px;">
+          <p style="margin: 0; color: #495057; font-size: 15px;"><strong>Key principle:</strong> Spatial motion (slide, scale, bounce, parallax) triggers vestibular responses. Opacity changes (fade in/out) generally do not. Replace spatial motion with opacity or instant transitions when reduced motion is active.</p>
+        </div>
+      </div>
+
+      <!-- Concept 4: Text Size and Spacing -->
+      <div style="margin-bottom: 32px;">
+        <h4 style="margin: 0 0 12px 0; font-size: 18px; font-weight: 600; color: #212529;">Text Size and Spacing Preferences</h4>
+        <p style="margin: 0 0 16px 0; color: #495057; font-size: 15px;">Text size preferences work differently from other preferences: they do not use a CSS media query. Instead, when users increase their preferred text size, the browser adjusts the base font size, and CSS <code style="background: #e9ecef; padding: 2px 4px; border-radius: 3px;">rem</code> units scale automatically. Layouts must accommodate text at 200% size without hiding or clipping content (WCAG 1.4.4).</p>
+        
+        <div style="background-color: #f8f9fa; border-left: 4px solid #1971c2; padding: 16px; margin-bottom: 16px;">
+          <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 15px;">Common text scaling failures</p>
+          <ul style="margin: 0; padding-left: 20px; color: #495057; font-size: 14px;">
+            <li style="margin-bottom: 6px;">Fixed-height containers with <code style="background: #e9ecef; padding: 2px 4px; border-radius: 3px;">overflow: hidden</code> clip scaled text</li>
+            <li style="margin-bottom: 6px;">Absolutely-positioned elements overlap when nearby text grows</li>
+            <li style="margin-bottom: 6px;">Button labels truncated with ellipsis at large sizes with no access to full text</li>
+            <li>Navigation items that overflow their container horizontally</li>
+          </ul>
+        </div>
+
+        <div style="background-color: #fff3bf; border-left: 4px solid #fab005; padding: 16px;">
+          <p style="margin: 0; color: #495057; font-size: 15px;"><strong>Designer Impact:</strong> Specify <code style="background: #e9ecef; padding: 2px 4px; border-radius: 3px;">rem</code> units for text sizing. Use <code style="background: #e9ecef; padding: 2px 4px; border-radius: 3px;">min-height</code> instead of fixed <code style="background: #e9ecef; padding: 2px 4px; border-radius: 3px;">height</code>. Design layouts that flex when text scales. Document overflow behavior for each component.</p>
+        </div>
+      </div>
+
+      <!-- Concept 5: Testing with DevTools -->
+      <div>
+        <h4 style="margin: 0 0 12px 0; font-size: 18px; font-weight: 600; color: #212529;">Testing Preferences in Chrome DevTools</h4>
+        <p style="margin: 0 0 16px 0; color: #495057; font-size: 15px;">Chrome DevTools provides a Rendering tab that can emulate CSS media feature preferences without changing system settings. This enables fast, reversible preference testing during design reviews.</p>
+        
+        <div style="background-color: #f8f9fa; border-left: 4px solid #1971c2; padding: 16px; margin-bottom: 16px;">
+          <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 15px;">How to access preference emulation</p>
+          <ol style="margin: 0; padding-left: 20px; color: #495057; font-size: 14px;">
+            <li style="margin-bottom: 6px;">Open Chrome DevTools (Cmd+Option+I on Mac, F12 on Windows)</li>
+            <li style="margin-bottom: 6px;">Open the Rendering tab (three-dot menu &gt; More tools &gt; Rendering)</li>
+            <li style="margin-bottom: 6px;">Scroll to "Emulate CSS media feature" section</li>
+            <li>Toggle: prefers-color-scheme, prefers-reduced-motion, prefers-contrast, forced-colors</li>
+          </ol>
+        </div>
+
+        <div style="background-color: #e7f5ff; border-left: 4px solid #1971c2; padding: 16px;">
+          <p style="margin: 0; color: #495057; font-size: 15px;"><strong>Testing strategy:</strong> Use DevTools for fast iteration during reviews. Validate with actual system settings before shipping. Test common combinations (dark mode + reduced motion, large text + high contrast), not just individual preferences.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Assessment Section -->
+    <div style="background-color: #f8f9fa; border: 1px solid #dee2e6; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #845ef7;">
+      <h3 style="margin: 0 0 20px 0; font-size: 20px; font-weight: 600; color: #212529; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">📝</span> Assessment
+      </h3>
+
+      <!-- Knowledge Check -->
+      <div style="background-color: #fff; border-radius: 6px; padding: 20px; margin-bottom: 20px; border: 1px solid #e9ecef;">
+        <h4 style="margin: 0 0 8px 0; font-size: 16px; font-weight: 600; color: #212529;">Knowledge Check Quiz</h4>
+        <p style="margin: 0 0 4px 0; font-size: 13px; color: #495057;">5 questions | 5 points | Auto-graded</p>
+        <p style="margin: 12px 0 0 0; font-size: 14px; color: #212529;">
+          Test your understanding of CSS media queries for user preferences, dark mode design principles, reduced motion alternatives, and preference testing methodology.
+        </p>
+      </div>
+
+      <!-- Applied Practice -->
+      <div style="background-color: #fff; border-radius: 6px; padding: 20px; border: 1px solid #e9ecef;">
+        <h4 style="margin: 0 0 8px 0; font-size: 16px; font-weight: 600; color: #212529;">Applied Practice</h4>
+        <p style="margin: 0 0 12px 0; font-size: 13px; color: #495057;">Instructor-graded | Assignment details to be added</p>
+        <p style="margin: 0; font-size: 14px; color: #212529;">
+          Conduct a preference responsiveness audit on a design system component. Test with each preference state using DevTools and system settings. Document findings and specify preference-responsive design tokens and alternative behaviors for engineering.
+        </p>
+      </div>
+    </div>
+
+    <!-- Resources Section -->
+    <div style="background-color: #fff; border: 1px solid #dee2e6; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #20c997;">
+      <h3 style="margin: 0 0 20px 0; font-size: 20px; font-weight: 600; color: #212529; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">📚</span> Resources
+      </h3>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 20px;">
+        <!-- W3C and WCAG -->
+        <div style="flex: 1; min-width: 260px;">
+          <h4 style="margin: 0 0 12px 0; font-size: 15px; font-weight: 600; color: #212529;">W3C and WCAG</h4>
+          <ul style="margin: 0; padding-left: 20px; font-size: 14px;">
+            <li style="margin-bottom: 8px;">
+              <a href="https://www.w3.org/WAI/WCAG22/Understanding/resize-text" style="color: #1864ab; text-decoration: underline;">Understanding SC 1.4.4: Resize Text</a>
+            </li>
+            <li style="margin-bottom: 8px;">
+              <a href="https://www.w3.org/WAI/WCAG22/Understanding/text-spacing" style="color: #1864ab; text-decoration: underline;">Understanding SC 1.4.12: Text Spacing</a>
+            </li>
+            <li style="margin-bottom: 8px;">
+              <a href="https://drafts.csswg.org/mediaqueries-5/#prefers-reduced-motion" style="color: #1864ab; text-decoration: underline;">CSS Media Queries Level 5: prefers-reduced-motion</a>
+            </li>
+            <li>
+              <a href="https://drafts.csswg.org/mediaqueries-5/#prefers-color-scheme" style="color: #1864ab; text-decoration: underline;">CSS Media Queries Level 5: prefers-color-scheme</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Developer References -->
+        <div style="flex: 1; min-width: 260px;">
+          <h4 style="margin: 0 0 12px 0; font-size: 15px; font-weight: 600; color: #212529;">Developer References</h4>
+          <ul style="margin: 0; padding-left: 20px; font-size: 14px;">
+            <li style="margin-bottom: 8px;">
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion" style="color: #1864ab; text-decoration: underline;">MDN: prefers-reduced-motion</a>
+            </li>
+            <li style="margin-bottom: 8px;">
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme" style="color: #1864ab; text-decoration: underline;">MDN: prefers-color-scheme</a>
+            </li>
+            <li style="margin-bottom: 8px;">
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-contrast" style="color: #1864ab; text-decoration: underline;">MDN: prefers-contrast</a>
+            </li>
+            <li>
+              <a href="https://web.dev/articles/prefers-reduced-motion" style="color: #1864ab; text-decoration: underline;">web.dev: prefers-reduced-motion</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Up Next Section -->
+    <div style="background: linear-gradient(135deg, #ffe3e3 0%, #ffc9c9 100%); border-radius: 8px; padding: 20px 24px; border-left: 5px solid #FF6B6B;">
+      <h3 style="margin: 0 0 8px 0; font-size: 18px; font-weight: 600; color: #c92a2a; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 20px;">➡️</span> Up Next
+      </h3>
+      <p style="margin: 0; font-size: 15px; color: #212529;">
+        <strong>Lesson 16: Perceptual and Cognitive Design Considerations</strong> moves from AT-specific testing to broader design principles. You will learn how spatial hierarchy, visual density, and component semantics affect users with cognitive and perceptual disabilities. This is the final Define Badge lesson before the assessment, pulling together everything you have learned about how users experience digital products.
+      </p>
+    </div>
+
+  </div>
+
+</body>
+</html>

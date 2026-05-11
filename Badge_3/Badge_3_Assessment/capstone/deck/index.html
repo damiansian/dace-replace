@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Capstone Portfolio: Adobe's Path to an A in Accessibility</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --slide-w: 1280px;
+    --slide-h: 800px;
+    --black: #0A0A0A;
+    --gray-900: #1A1A1A;
+    --gray-800: #292929;
+    --gray-700: #3D3D3D;
+    --gray-600: #555;
+    --gray-500: #585E68;       /* was #6B7280 (4.07:1), now 5.44:1 on white */
+    --gray-400: #717782;       /* was #9CA3AF (2.86:1), now 4.52:1 on white */
+    --gray-300: #D1D5DB;       /* decorative only (borders, sidebar) */
+    --gray-200: #E5E7EB;
+    --gray-100: #F3F4F6;
+    --gray-50: #F9FAFB;
+    --white: #FFFFFF;
+    --blue: #2B62CC;           /* was #3478F6 (3.98:1 on blue-light), now 5.8:1 on white, 5.2:1 on blue-light */
+    --blue-light: #EBF2FF;
+    --orange: #B45309;         /* was #E97316 (3.31:1), now 5.06:1 on white, 4.82:1 on orange-light */
+    --orange-light: #FFF7ED;
+    --red: #B91C1C;            /* was #DC2626 (4.49:1 on red-light), now 5.74:1 on white, 5.46:1 on red-light */
+    --red-light: #FEF2F2;
+    --green: #15803D;          /* was #16A34A (4.48:1), now 5.47:1 on white */
+    --green-light: #F0FDF4;
+    --cyan: #0E6F8A;           /* was #0891B2 (3.55:1), now 4.97:1 on white */
+    --purple: #6D28D9;         /* was #7C3AED, now 5.96:1 on white */
+    --purple-light: #F3EEFF;
+    --font: 'DM Sans', system-ui, sans-serif;
+    --mono: 'JetBrains Mono', ui-monospace, monospace;
+    --radius: 8px;
+  }
+
+  body {
+    font-family: var(--font);
+    background: #0C0C10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    color: var(--gray-900);
+  }
+
+  /* ── Nav ── */
+  .nav {
+    position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+    display: flex; align-items: center; gap: 6px;
+    background: rgba(10,10,10,0.92); padding: 6px 10px; border-radius: 36px;
+    z-index: 200; backdrop-filter: blur(16px);
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  .nav button {
+    background: none; border: 1px solid rgba(255,255,255,0.12);
+    color: rgba(255,255,255,0.6); width: 32px; height: 32px;
+    border-radius: 50%; cursor: pointer; font-size: 13px;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.12s; font-family: var(--font);
+  }
+  .nav button:hover { background: rgba(255,255,255,0.1); color: #fff; }
+  .nav .ctr {
+    color: rgba(255,255,255,0.4); font-size: 11px;
+    font-family: var(--mono); min-width: 56px; text-align: center;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ── TOC toggle ── */
+  .toc-btn {
+    position: fixed; top: 20px; right: 20px; z-index: 200;
+    background: rgba(10,10,10,0.88); border: 1px solid rgba(255,255,255,0.08);
+    color: rgba(255,255,255,0.5); padding: 8px 14px; border-radius: 8px;
+    cursor: pointer; font-family: var(--mono); font-size: 11px;
+    backdrop-filter: blur(12px); transition: all 0.12s;
+  }
+  .toc-btn:hover { color: #fff; background: rgba(30,30,30,0.95); }
+
+  /* ── TOC panel ── */
+  .toc-panel {
+    position: fixed; top: 0; right: -380px; width: 360px; height: 100vh;
+    background: rgba(10,10,10,0.96); backdrop-filter: blur(20px);
+    z-index: 300; padding: 24px; overflow-y: auto;
+    transition: right 0.25s ease; border-left: 1px solid rgba(255,255,255,0.06);
+  }
+  .toc-panel.open { right: 0; }
+  .toc-panel h2 { color: rgba(255,255,255,0.4); font-size: 11px; font-family: var(--mono); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 16px; }
+  .toc-panel .toc-close {
+    position: absolute; top: 20px; right: 20px; background: none; border: none;
+    color: rgba(255,255,255,0.4); font-size: 20px; cursor: pointer;
+  }
+  .toc-list { list-style: none; }
+  .toc-list li { margin-bottom: 2px; }
+  .toc-list button {
+    display: block; width: 100%; text-align: left; background: none; border: none;
+    padding: 8px 12px; border-radius: 6px; cursor: pointer;
+    color: rgba(255,255,255,0.55); font-size: 12px; font-family: var(--font);
+    transition: all 0.1s; line-height: 1.35;
+  }
+  .toc-list button:hover { background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.8); }
+  .toc-list button.active { background: rgba(52,120,246,0.15); color: var(--blue); }
+  .toc-tag { font-family: var(--mono); font-size: 10px; color: rgba(255,255,255,0.45); display: block; margin-bottom: 2px; }
+
+  /* ── Slide frame ── */
+  .slide-wrap { width: var(--slide-w); max-width: 100%; aspect-ratio: 1280 / 800; }
+  .slide {
+    display: none; width: var(--slide-w); height: var(--slide-h);
+    background: var(--white); position: relative; overflow: hidden;
+    border-radius: 4px; box-shadow: 0 20px 80px rgba(0,0,0,0.5);
+  }
+  .slide.active { display: block; }
+
+  /* ── Topbar ── */
+  .topbar {
+    position: absolute; top: 0; left: 0; right: 0; height: 48px;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 40px; border-bottom: 1px solid var(--gray-200); z-index: 10;
+    background: var(--white);
+  }
+  .topbar-left { display: flex; align-items: center; gap: 10px; font-size: 12px; color: var(--gray-500); }
+  .comp-pill {
+    font-family: var(--mono); font-size: 10px; font-weight: 600;
+    padding: 3px 10px; border-radius: 4px; background: var(--blue-light);
+    color: var(--blue); letter-spacing: 0.01em;
+  }
+  .outcome-pill {
+    font-family: var(--mono); font-size: 10px;
+    padding: 3px 10px; border-radius: 4px; background: var(--gray-100);
+    color: var(--gray-500);
+  }
+  .topbar-badge {
+    font-size: 11px; font-weight: 600; color: var(--green);
+    padding: 4px 12px; border-radius: 16px; background: var(--green-light);
+    border: 1px solid rgba(22,163,74,0.2);
+  }
+
+  /* ── Sidebar ── */
+  .sidebar {
+    position: absolute; bottom: 40px; left: 14px;
+    writing-mode: vertical-rl; transform: rotate(180deg);
+    font-size: 8px; color: var(--gray-500); letter-spacing: 0.04em;
+    font-weight: 500; line-height: 1.3;
+  }
+
+  /* ── Slide number ── */
+  .snum {
+    position: absolute; bottom: 16px; right: 40px;
+    font-family: var(--mono); font-size: 10px; color: var(--gray-500);
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ── Content ── */
+  .content {
+    position: absolute; top: 48px; left: 56px; right: 40px; bottom: 16px;
+    padding: 32px 0 0 0; display: flex; flex-direction: column; overflow: hidden;
+  }
+
+  /* ── Typography ── */
+  h1.hdl { font-size: 38px; font-weight: 700; color: var(--black); line-height: 1.1; letter-spacing: -0.025em; margin-bottom: 12px; }
+  h2.hdl { font-size: 30px; font-weight: 700; color: var(--black); line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 10px; }
+  .intro { font-size: 16px; font-weight: 400; color: var(--gray-600); line-height: 1.45; margin-bottom: 20px; }
+  .sub { font-size: 12px; font-weight: 700; color: var(--gray-500); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 10px; }
+  h3.sh { font-size: 15px; font-weight: 700; color: var(--gray-900); margin-bottom: 8px; }
+  h4.sh { font-size: 13px; font-weight: 700; color: var(--gray-700); margin-bottom: 6px; }
+  p.body { font-size: 14px; color: var(--gray-700); line-height: 1.5; margin-bottom: 10px; }
+  p.sm { font-size: 12px; color: var(--gray-500); line-height: 1.45; margin-bottom: 8px; }
+  .text-orange { color: var(--orange); font-weight: 700; }
+  .text-cyan { color: var(--cyan); font-family: var(--mono); font-size: 12px; }
+
+  /* ── Lists ── */
+  ul.bl, ol.bl { padding-left: 18px; margin-bottom: 10px; }
+  ul.bl li, ol.bl li { font-size: 13px; color: var(--gray-700); line-height: 1.5; padding: 2px 0; }
+  ul.bl li::marker { color: var(--gray-500); }
+  ol.bl li::marker { color: var(--gray-500); font-family: var(--mono); font-size: 12px; }
+
+  /* ── Grids ── */
+  .g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .g3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+
+  /* ── Cards ── */
+  .card {
+    background: var(--gray-50); border: 1px solid var(--gray-200);
+    border-radius: var(--radius); padding: 18px 20px;
+  }
+  .card h3 { font-size: 14px; font-weight: 700; color: var(--gray-900); margin-bottom: 8px; }
+  .card.blue-left { border-left: 3px solid var(--blue); }
+  .card.orange-left { border-left: 3px solid var(--orange); }
+
+  /* ── Stat blocks ── */
+  .stats { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 16px; }
+  .stat {
+    background: var(--gray-50); border: 1px solid var(--gray-200);
+    border-radius: var(--radius); padding: 14px 18px; flex: 1; min-width: 120px;
+    text-align: center;
+  }
+  .stat .val { font-size: 26px; font-weight: 700; color: var(--black); font-family: var(--mono); letter-spacing: -0.02em; line-height: 1.2; }
+  .stat .lbl { font-size: 11px; color: var(--gray-500); margin-top: 2px; }
+  .stat.warn { border-color: var(--orange); background: var(--orange-light); }
+  .stat.warn .val { color: var(--orange); }
+  .stat.hl { border-color: var(--red); background: var(--red-light); }
+  .stat.hl .val { color: var(--red); }
+
+  /* ── Severity bars ── */
+  .sev-bars { margin-bottom: 10px; }
+  .sev-row { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
+  .sev-label { font-family: var(--mono); font-size: 11px; color: var(--gray-500); width: 40px; flex-shrink: 0; }
+  .sev-bar {
+    height: 22px; border-radius: 4px; display: flex; align-items: center;
+    padding: 0 8px; font-size: 11px; font-weight: 600;
+    font-family: var(--mono); min-width: 40px;
+  }
+  .sev-bar.s1 { background: #FECACA; color: #7F1D1D; }    /* red-200 bg, red-900 text: 10.2:1 */
+  .sev-bar.s2 { background: #FED7AA; color: #7C2D12; }    /* orange-200 bg, orange-900 text: 9.1:1 */
+  .sev-bar.s3 { background: #FEF08A; color: #713F12; }    /* yellow-200 bg, yellow-900 text: 7.5:1 */
+  .sev-bar.s4 { background: var(--gray-200); color: var(--gray-800); } /* 10.8:1 */
+
+  /* ── Tables ── */
+  table { width: 100%; border-collapse: collapse; margin-bottom: 10px; font-size: 13px; }
+  table caption { text-align: left; font-size: 11px; color: var(--gray-500); margin-bottom: 6px; }
+  th { text-align: left; font-weight: 600; color: var(--gray-500); font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em; padding: 6px 10px; border-bottom: 2px solid var(--gray-200); }
+  td { padding: 6px 10px; border-bottom: 1px solid var(--gray-100); color: var(--gray-700); vertical-align: top; }
+  td strong { color: var(--gray-900); }
+  code { font-family: var(--mono); font-size: 12px; background: var(--gray-100); padding: 1px 5px; border-radius: 3px; }
+
+  /* ── Stakeholder cards ── */
+  .sk-card {
+    border-left: 3px solid var(--blue); background: var(--gray-50);
+    border-radius: 0 var(--radius) var(--radius) 0; padding: 12px 16px; margin-bottom: 10px;
+  }
+  .sk-card .name { font-size: 13px; font-weight: 700; color: var(--blue); margin-bottom: 2px; }
+  .sk-card .role { font-size: 11px; color: var(--gray-500); margin-bottom: 6px; }
+  .sk-card p { font-size: 12px; color: var(--gray-700); line-height: 1.45; margin-bottom: 4px; }
+  .sk-card.orange { border-left-color: var(--orange); }
+  .sk-card.orange .name { color: var(--orange); }
+
+  /* ── Takeaway bar ── */
+  .takeaway {
+    background: var(--blue-light); border-left: 3px solid var(--blue);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    padding: 10px 14px; font-size: 13px; color: var(--gray-700);
+    line-height: 1.4; margin-top: auto;
+  }
+  .takeaway strong { color: var(--black); }
+
+  /* ── Timeline ── */
+  .timeline { display: flex; gap: 12px; margin-bottom: 12px; }
+  .stage {
+    flex: 1; background: var(--gray-50); border: 1px solid var(--gray-200);
+    border-radius: var(--radius); padding: 14px 16px; position: relative;
+  }
+  .stage-label {
+    font-family: var(--mono); font-size: 10px; font-weight: 600;
+    color: var(--blue); margin-bottom: 4px;
+  }
+  .stage h3 { font-size: 14px; font-weight: 700; color: var(--gray-900); margin-bottom: 4px; }
+  .stage p { font-size: 12px; color: var(--gray-600); line-height: 1.4; }
+
+  /* ── Title slide ── */
+  .title-center {
+    display: flex; flex-direction: column; align-items: center;
+    justify-content: center; height: 100%; text-align: center;
+  }
+  .title-h1 {
+    font-size: 44px; font-weight: 700; color: var(--black);
+    line-height: 1.08; letter-spacing: -0.03em; margin-bottom: 8px;
+    max-width: 760px;
+  }
+  .title-sub { font-size: 18px; color: var(--gray-500); margin-bottom: 6px; font-weight: 400; }
+  .title-tagline { font-size: 14px; color: var(--gray-500); margin-bottom: 32px; max-width: 600px; line-height: 1.4; font-style: italic; }
+  .title-meta { display: grid; grid-template-columns: repeat(4, auto); gap: 24px; text-align: left; }
+  .title-meta dt { font-size: 10px; font-weight: 600; color: var(--gray-500); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 2px; }
+  .title-meta dd { font-size: 13px; color: var(--gray-600); }
+
+  /* ── Video placeholder ── */
+  .video-box {
+    flex: 1; background: var(--gray-900); border-radius: var(--radius);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 12px; position: relative; overflow: hidden;
+  }
+  .video-box iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+
+  /* ── Closing slide ── */
+  .closing-center {
+    display: flex; flex-direction: column; align-items: center;
+    justify-content: center; height: 100%; text-align: center;
+  }
+
+  /* ── Scroll helper for dense slides ── */
+  .scroll-y { overflow-y: auto; flex: 1; padding-right: 8px; }
+  .scroll-y::-webkit-scrollbar { width: 3px; }
+  .scroll-y::-webkit-scrollbar-thumb { background: var(--gray-200); border-radius: 4px; }
+
+  /* ── Print ── */
+  @media print {
+    body { background: white; padding: 0; }
+    .nav, .toc-btn, .toc-panel { display: none; }
+    .slide { display: block !important; page-break-after: always; box-shadow: none; border-radius: 0; }
+    .slide-wrap { width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<div class="slide-wrap" id="wrap"></div>
+
+<button class="toc-btn" id="tocToggle">Contents</button>
+<div class="toc-panel" id="tocPanel">
+  <h2>Contents</h2>
+  <button class="toc-close" id="tocClose">&times;</button>
+  <ul class="toc-list" id="tocList"></ul>
+</div>
+
+<div class="nav">
+  <button onclick="go(-1)" aria-label="Previous slide">&#8592;</button>
+  <span class="ctr" id="ctr"></span>
+  <button onclick="go(1)" aria-label="Next slide">&#8594;</button>
+</div>
+
+<script>
+const TB = (comp, outcome) => `
+<div class="topbar">
+  <div class="topbar-left">
+    ${comp ? `<span class="comp-pill">${comp}</span>` : ''}
+    ${outcome ? `<span class="outcome-pill">${outcome}</span>` : ''}
+  </div>
+  <div class="topbar-badge">Deliver Badge</div>
+</div>`;
+
+const SB = `<div class="sidebar">Design Accessibility Certified Expert (DACE)<br>Cohort 1 : 2025–2026</div>`;
+const SN = (n, t) => `<div class="snum">${n}/${t}</div>`;
+
+const slides = [
+
+// ═══ 1. TITLE ═══
+{ label: 'Title', tag: 'Title', html: `
+<div class="content"><div class="title-center">
+  <div class="title-h1">Adobe's Path to an A<br>in Accessibility</div>
+  <div class="title-sub">A Web Testing Practice Story</div>
+  <div class="title-tagline">We say accessibility is a priority. Here's what the data says, and what I did about it.</div>
+  <dl class="title-meta">
+    <div><dt>Badge</dt><dd>Deliver</dd></div>
+    <div><dt>Product</dt><dd>Adobe.com &amp; CC Web</dd></div>
+    <div><dt>Target</dt><dd>Exemplary (4 across all six)</dd></div>
+    <div><dt>Persona</dt><dd>Mid-level practitioner</dd></div>
+  </dl>
+</div></div>${SB}` },
+
+// ═══ 2. C1 DASHBOARD ═══
+{ label: 'C1: Problem Definition — Dashboard Data', tag: 'C1: Problem Definition', html: `
+${TB('C1: Problem Definition', 'Week 11 | 3A.01-03 | L17')}
+<div class="content"><div class="scroll-y">
+  <h2 class="hdl">Adobe A11y Dashboard: Executive Summary</h2>
+
+  <div class="stats">
+    <div class="stat"><div class="val">15,199</div><div class="lbl">Total issues</div></div>
+    <div class="stat"><div class="val">6,826</div><div class="lbl">Open</div></div>
+    <div class="stat"><div class="val">34%</div><div class="lbl">Fixed</div></div>
+    <div class="stat"><div class="val">3,142</div><div class="lbl">Closed without fix</div></div>
+    <div class="stat hl"><div class="val">523d</div><div class="lbl">Avg age, open issues</div></div>
+    <div class="stat"><div class="val">287d</div><div class="lbl">Avg time to fix</div></div>
+  </div>
+
+  <div class="g2">
+    <div>
+      <h3 class="sh">Severity Breakdown</h3>
+      <div class="sev-bars">
+        <div class="sev-row"><span class="sev-label">Sev 1</span><div class="sev-bar s1" style="width:74%" role="img" aria-label="Sev 1: 5,512">5,512</div></div>
+        <div class="sev-row"><span class="sev-label">Sev 2</span><div class="sev-bar s2" style="width:100%" role="img" aria-label="Sev 2: 7,414">7,414</div></div>
+        <div class="sev-row"><span class="sev-label">Sev 3</span><div class="sev-bar s3" style="width:15%" role="img" aria-label="Sev 3: 1,130">1,130</div></div>
+        <div class="sev-row"><span class="sev-label">Sev 4</span><div class="sev-bar s4" style="width:3%" role="img" aria-label="Sev 4: 138">138</div></div>
+        <div class="sev-row"><span class="sev-label">None</span><div class="sev-bar s4" style="width:14%" role="img" aria-label="No Severity: 1,005">1,005</div></div>
+      </div>
+      <p class="sm">85% are Sev 1 or Sev 2: block or severely degrade task completion.</p>
+    </div>
+    <div>
+      <h3 class="sh">Top Categories by Volume</h3>
+      <table>
+        <thead><tr><th>Category</th><th>WCAG Criteria</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Accessible Names &amp; Descriptions</strong> (largest)</td><td><span class="text-cyan">SC 4.1.2</span>, <span class="text-cyan">SC 1.1.1</span></td></tr>
+          <tr><td><strong>Keyboard &amp; Focus</strong> (second largest)</td><td><span class="text-cyan">SC 2.1.1</span>, <span class="text-cyan">SC 2.1.2</span>, <span class="text-cyan">SC 2.4.3</span></td></tr>
+        </tbody>
+      </table>
+      <p class="sm">These two categories represent the majority of defect volume.</p>
+    </div>
+  </div>
+</div></div>${SB}` },
+
+// ═══ 3. C1 ROOT CAUSE ═══
+{ label: 'C1: Root Cause Analysis', tag: 'C1: Problem Definition', html: `
+${TB('C1: Problem Definition', '')}
+<div class="content"><div class="scroll-y">
+  <h2 class="hdl">Root Cause: Two Compounding Gaps</h2>
+
+  <div class="g2" style="flex:1">
+    <div>
+      <h3 class="sh">Upstream: Manual Testing Gap</h3>
+      <p class="body">Automated scanners (axe, Stark, Deque) catch 30-40% of accessibility issues. The two categories that dominate the dashboard are exactly what they miss.</p>
+      <h4 class="sh">What scanners cannot do:</h4>
+      <ul class="bl">
+        <li>Confirm screen reader announces name correctly in context</li>
+        <li>Detect focus disappearing into a modal and never returning</li>
+        <li>Catch live region firing with wrong announcement timing</li>
+        <li>Verify error message is audibly connected to its field</li>
+      </ul>
+      <p class="sm">Manual testing isn't happening consistently. Not because people don't care, but because there is no standardized, low-friction method built into the workflow.</p>
+    </div>
+    <div>
+      <h3 class="sh">Downstream: Prioritization Failure</h3>
+      <p class="body">Issues that do get filed wait <strong>523 days</strong> to be fixed. The backlog stalls.</p>
+      <h4 class="sh">Three patterns account for the majority of Sev 1/2:</h4>
+      <ol class="bl">
+        <li><strong>Missing accessible names</strong> on interactive controls (SC 4.1.2): icon-only buttons, custom dropdowns, inputs without visible labels</li>
+        <li><strong>Focus management failures</strong> in modal/overlay patterns (SC 2.1.1, 2.1.2): dialog, drawer, tooltip components where focus doesn't move, isn't trapped, or doesn't return</li>
+        <li><strong>Inadequate error identification</strong> (SC 3.3.1, 3.3.2): form validation where errors aren't programmatically associated or announced</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="takeaway">Issues that could be caught at dev time aren't, and issues that do get filed wait 523 days. The intervention has to address both stages.</div>
+</div></div>${SB}` },
+
+// ═══ 4. C2 PEAS ═══
+{ label: 'C2: PEAS Session Reflection', tag: 'C2: PEAS Session', html: `
+${TB('C2: PEAS Session Reflection', 'Weeks 11-14 | 3A.01-03, 3B.01-03 | L17, L18')}
+<div class="content"><div class="scroll-y">
+  <h2 class="hdl">Live Session: Educational Comic Strip Maker</h2>
+  <p class="intro">Accessible Names &amp; Keyboard</p>
+
+  <div class="g2">
+    <div>
+      <table>
+        <caption>Session details</caption>
+        <tbody>
+          <tr><td><strong>Mode</strong></td><td>Live PEAS session (Week 12 cohort)</td></tr>
+          <tr><td><strong>Date</strong></td><td>March 31, 2026</td></tr>
+          <tr><td><strong>Product</strong></td><td>Educational comic strip maker (web)</td></tr>
+          <tr><td><strong>Focus</strong></td><td>Accessible names and keyboard interaction</td></tr>
+        </tbody>
+      </table>
+
+      <h3 class="sh">What the Session Surfaced</h3>
+      <p class="body">Walking the comic strip maker highlighted a <span class="text-orange">shallow understanding of accessible naming</span>: how controls are identified in AT was not yet part of the team's shared mental model. The same session showed <span class="text-orange">keyboard and focus as an afterthought</span>. Concrete before-and-after examples were covered in a <span class="text-orange">separate demo</span>, not as part of the PEAS test.</p>
+
+      <h3 class="sh">The Broader Pattern</h3>
+      <p class="sm">The dashboard already says accessible names and keyboard/focus issues dominate volume. The PEAS session showed why that keeps happening: without live exposure, teams underestimate how naming and keyboard behavior land for real users.</p>
+    </div>
+    <div>
+      <h3 class="sh">Actions Taken</h3>
+      <ul class="bl">
+        <li>Documented accessible name and focus management patterns as core interaction chain steps in a11y-skill (C3)</li>
+        <li>Proposed live screen reader demo as part of the working session in the product strategy rollout (C5)</li>
+      </ul>
+    </div>
+  </div>
+</div></div>${SB}` },
+
+// ═══ 5. C3 ARTIFACT ═══
+{ label: 'C3: Contribution Artifact — a11y-skill overview', tag: 'C3: Contribution Artifact', html: `
+${TB('C3: Contribution Artifact', 'Week 11 | 3H.01-03 | L19')}
+<div class="content"><div class="scroll-y">
+  <h2 class="hdl">a11y-skill: A Cursor Agent Skill for Accessibility Testing</h2>
+  <p class="intro">A structured, AI-assisted manual accessibility testing workflow built directly into the IDE. Not a checklist document: a working tool that changes how testing gets done.</p>
+
+  <div class="g2">
+    <div>
+      <h3 class="sh">The Interaction Chain (Rendered Page Testing)</h3>
+      <ol class="bl">
+        <li><strong>Tab order</strong> &mdash; logical focus sequence, all interactive elements reachable</li>
+        <li><strong>Accessible names</strong> &mdash; screen reader announces correct names for every control</li>
+        <li><strong>Focus visibility</strong> &mdash; indicator visible at all times, meets contrast</li>
+        <li><strong>Sticky UI occlusion</strong> &mdash; fixed headers/banners don't obscure focused elements</li>
+        <li><strong>Activation</strong> &mdash; controls activate correctly with keyboard (Enter, Space)</li>
+        <li><strong>Live regions</strong> &mdash; dynamic updates announced at correct urgency level</li>
+        <li><strong>Zoom and reflow</strong> &mdash; content reflows without horizontal scroll at 400% (SC 1.4.10)</li>
+      </ol>
+    </div>
+    <div>
+      <h3 class="sh">Package Contents</h3>
+      <table>
+        <thead><tr><th>Asset</th><th>Purpose</th></tr></thead>
+        <tbody>
+          <tr><td><code>a11y/SKILL.md</code></td><td>Core testing protocol, WCAG 2.2 AA reference</td></tr>
+          <tr><td>Reference guides</td><td>Playwright testing, audits, remediation, design review</td></tr>
+          <tr><td><code>a11y-test-helpers.ts</code></td><td>Playwright helper library for automating repeatable checks</td></tr>
+          <tr><td><code>evals.json</code></td><td>Evaluation prompts: "with skill" vs "without skill"</td></tr>
+          <tr><td><code>a11y-workspace/</code></td><td>Saved outputs: tests, checklists, remediated code</td></tr>
+        </tbody>
+      </table>
+      <h3 class="sh">Why This Closes the Gap</h3>
+      <p class="sm">The two top defect categories (Accessible Names, Keyboard &amp; Focus) are what manual testing catches and automated scanning misses. This tool makes that manual testing structured, repeatable, and integrated into the dev workflow.</p>
+    </div>
+  </div>
+</div></div>${SB}` },
+
+// ═══ 6. C3 VIDEO ═══
+{ label: 'C3: Tool Demonstration Video', tag: 'C3: Contribution Artifact', html: `
+${TB('C3: Contribution Artifact', '')}
+<div class="content">
+  <h2 class="hdl">a11y-skill in Use</h2>
+  <div class="video-box">
+    <iframe src="https://player.vimeo.com/video/1182725180" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="a11y-skill interaction chain running against a CC web component"></iframe>
+  </div>
+  <p class="sm">Demonstration of the a11y-skill package running the full interaction chain (tab order, accessible names, focus management, activation, live regions) against a Creative Cloud dialog component in Cursor.</p>
+</div>${SB}` },
+
+// ═══ 7. C4 LEGAL ═══
+{ label: 'C4: Legal Exposure', tag: 'C4: Legal & Business Case', html: `
+${TB('C4: Legal &amp; Business Case', 'Week 12 | 3E.01-04, 3F.01-03 | L20, L21')}
+<div class="content"><div class="scroll-y">
+  <h2 class="hdl">Legal Exposure</h2>
+
+  <div class="g2">
+    <div>
+      <h3 class="sh">Applicable Frameworks</h3>
+      <table>
+        <caption>Adobe.com and CC web serve federal agencies, EU customers, public sector, and higher ed.</caption>
+        <thead><tr><th>Framework</th><th>Applicability</th><th>Standard</th></tr></thead>
+        <tbody>
+          <tr><td>Section 508</td><td>Adobe sells to US federal agencies; VPATs required</td><td>WCAG 2.0 AA</td></tr>
+          <tr><td>EN 301 549</td><td>Products ship to EU markets</td><td>WCAG 2.1 AA</td></tr>
+          <tr><td><span class="text-orange">EAA</span></td><td>Enforcement active June 2025; extraterritorial; up to 4% revenue/member state</td><td>WCAG 2.1 AA</td></tr>
+          <tr><td><span class="text-orange">ADA Title II</span></td><td>April 2026 deadline; higher ed now requiring 2.1 AA for procurement</td><td>WCAG 2.1 AA</td></tr>
+        </tbody>
+      </table>
+      <p class="sm">Every open Sev 1 is a binary pass/fail in Adobe's <strong>publicly published</strong> ACRs. A missing accessible name is not a quality gap; it is a conformance failure in a document Adobe has already committed to.</p>
+    </div>
+    <div>
+      <h3 class="sh">Exposure Mapping</h3>
+      <div class="stats">
+        <div class="stat warn"><div class="val">5,512</div><div class="lbl">Open Sev 1, all Adobe</div></div>
+        <div class="stat warn"><div class="val">4</div><div class="lbl">Frameworks with direct applicability</div></div>
+      </div>
+      <p class="body">The 5,512 Sev 1 issues map to Level A and AA criteria referenced by all four frameworks.</p>
+    </div>
+  </div>
+</div></div>${SB}` },
+
+// ═══ 8. C4 COST OF INACTION ═══
+{ label: 'C4: Cost of Inaction & Business Case', tag: 'C4: Legal & Business Case', html: `
+${TB('C4: Legal &amp; Business Case', '')}
+<div class="content"><div class="scroll-y">
+  <h2 class="hdl">Cost of Inaction</h2>
+
+  <div class="g2" style="margin-bottom:16px">
+    <div>
+      <ul class="bl">
+        <li><span class="text-orange">Late discovery cost:</span> Sev 1 found in external audit requires filing, triaging, context-rebuilding, fixing, re-verification. The same issue at design review is a 10-minute conversation.</li>
+        <li><span class="text-orange">Procurement risk:</span> HECVAT 4 (2025) added a dedicated IT Accessibility tab. Buyers now ask directly about WCAG 2.1 AA conformance.</li>
+        <li><span class="text-orange">Brand risk:</span> Adobe's public accessibility commitment and internal testing practice are not currently aligned.</li>
+      </ul>
+    </div>
+    <div>
+      <h3 class="sh">Business Case</h3>
+      <p class="body">Shifting review from audit-time to design/dev-time does not require headcount. It requires a testing standard, a shared checklist, and a process change.</p>
+      <p class="body">The return: fewer rework cycles, lower audit risk, more defensible ACRs.</p>
+    </div>
+  </div>
+</div></div>${SB}` },
+
+// ═══ 9. C5 PRODUCT STRATEGY ═══
+{ label: 'C5: Product Strategy Recommendation', tag: 'C5: Product Strategy', html: `
+${TB('C5: Product Strategy', 'Week 12 | 3G.01-03 | L22')}
+<div class="content"><div class="scroll-y">
+  <h2 class="hdl">Shift-Left for Three Component Patterns</h2>
+  <p class="intro">74% of Sev 1/2 issues</p>
+
+  <div class="g3" style="margin-bottom:14px">
+    <div class="card blue-left">
+      <h3>Interactive Controls</h3>
+      <ul class="bl">
+        <li>Accessible name verified in browser accessibility tree (not just code)</li>
+        <li>Icon-only controls tested with screen reader</li>
+        <li>SC 2.5.3 verified for controls with visible text</li>
+      </ul>
+    </div>
+    <div class="card blue-left">
+      <h3>Modals &amp; Overlays</h3>
+      <ul class="bl">
+        <li>Focus moves to dialog on open (verified manually)</li>
+        <li>Focus trapped inside while open (Tab key only)</li>
+        <li>Escape key closes dialog</li>
+        <li>Focus returns to trigger on close</li>
+      </ul>
+    </div>
+    <div class="card blue-left">
+      <h3>Error Handling</h3>
+      <ul class="bl">
+        <li>Errors programmatically associated with fields</li>
+        <li>Errors announced by screen reader without requiring user action</li>
+        <li>Error text describes what went wrong and how to fix it</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3 class="sh">Adoption Roadmap</h3>
+  <div class="timeline">
+    <div class="stage"><div class="stage-label">Stage 1: Pilot</div><h3>Weeks 1-2</h3><p>Two engineers install the skill. Run against one active feature. Compare findings against last audit.</p></div>
+    <div class="stage"><div class="stage-label">Stage 2: Team Rollout</div><h3>Month 2</h3><p>Distributed to all engineers. Added to onboarding. Playwright helpers in CI pipeline.</p></div>
+    <div class="stage"><div class="stage-label">Stage 3: Contribution</div><h3>Month 3+</h3><p>Share with Corporate Accessibility as input to cross-company AI testing governance.</p></div>
+  </div>
+
+  <p class="sm">Add these three acceptance criteria sets to the Jira ticket template for features touching these patterns. 2-hour implementation, no new tooling. Pair rollout with a 30-minute working session including a live screen reader demo.</p>
+</div></div>${SB}` },
+
+// ═══ 10. C6 STAKEHOLDERS ═══
+{ label: 'C6: Stakeholder Connections', tag: 'C6: Stakeholder Connections', html: `
+${TB('C6: Stakeholder Connections', 'Weeks 11-14 | 3E.01, 3F.01, 3G.01 | L20-22')}
+<div class="content"><div class="scroll-y">
+  <h2 class="hdl">Stakeholder Connections &amp; Organizational Alignment</h2>
+
+  <div class="g2">
+    <div>
+      <div class="sk-card">
+        <div class="name">Rob Haverty</div>
+        <div class="role">Corporate Accessibility, Adobe</div>
+        <p>Owns Adobe's corporate accessibility posture: policy, external commitments, regulatory engagement, and the public ACR program.</p>
+        <p><strong>Key insight:</strong> AI-assisted accessibility testing is already being explored across multiple teams. Corporate Accessibility is actively establishing governance to prevent fragmented, incompatible approaches.</p>
+      </div>
+      <div class="sk-card">
+        <div class="name">Gurpreet Kaur</div>
+        <div class="role">Corporate Accessibility, Adobe</div>
+        <p>Works alongside Rob on how accessibility practices are applied and governed across product teams.</p>
+        <p><strong>Key insight:</strong> "Control" means ensuring teams aren't independently solving the same problems in incompatible ways. A skill package built on existing test cases with documented methodology can be standardized and distributed rather than siloed.</p>
+      </div>
+    </div>
+    <div>
+      <h3 class="sh">What the Conversation Revealed</h3>
+      <p class="body">The conversation confirmed what the dashboard data suggested: the use of AI for accessibility testing is already being explored across multiple teams inside Adobe and by external vendors. Corporate Accessibility is actively working to establish governance around this space.</p>
+
+      <h3 class="sh">Organizational Alignment</h3>
+      <div class="card" style="margin-bottom:10px">
+        <h4 class="sh">Not a parallel effort</h4>
+        <ul class="bl">
+          <li>Built on Adobe's existing test cases, not new criteria</li>
+          <li>Documented methodology with shareable output format</li>
+          <li>Designed for standardization, not team-level siloing</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h4 class="sh">An extension of existing infrastructure</h4>
+        <ul class="bl">
+          <li>Cursor Agent Skills for execution</li>
+          <li>MCP servers for integration</li>
+          <li>AI-driven testing within existing workflow</li>
+          <li>Fits Corporate Accessibility governance model</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div></div>${SB}` },
+
+// ═══ 11. PORTFOLIO SUMMARY ═══
+{ label: 'Portfolio Summary', tag: 'Summary', html: `
+${TB('', '')}
+<div class="content"><div class="scroll-y">
+  <h2 class="hdl">Portfolio Summary</h2>
+  <p class="intro">Adobe says accessibility is a priority. The dashboard says <strong>523 days</strong>. This portfolio is the story of the gap between those two things and what I did about it.</p>
+
+  <div class="g2">
+    <div>
+      <table>
+        <caption>Component-to-outcome mapping</caption>
+        <thead><tr><th>Component</th><th>What it establishes</th></tr></thead>
+        <tbody>
+          <tr><td>1. Problem Definition</td><td>15,199 issues, systemic root cause in two compounding gaps</td></tr>
+          <tr><td>2. PEAS Session</td><td>What the failure mode looks like in practice; SBI to own product</td></tr>
+          <tr><td>3. Contribution Artifact</td><td>Working tool built to close the specific gap the data identified</td></tr>
+          <tr><td>4. Legal &amp; Business Case</td><td>Four frameworks, public ACRs, active enforcement timelines</td></tr>
+          <tr><td>5. Product Strategy</td><td>Acceptance criteria + adoption roadmap for three patterns</td></tr>
+          <tr><td>6. Stakeholder Connections</td><td>Validated approach fits corporate governance</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <h3 class="sh">Concrete Outcomes</h3>
+      <div class="stats">
+        <div class="stat"><div class="val" style="font-size:16px">Sev 1 Filed</div><div class="lbl">CC-A11Y-2847, dialog focus pattern</div></div>
+        <div class="stat"><div class="val" style="font-size:16px">Tool Built</div><div class="lbl">a11y-skill package ready for pilot</div></div>
+      </div>
+      <div class="stats">
+        <div class="stat"><div class="val" style="font-size:16px">Strategy</div><div class="lbl">Acceptance criteria + roadmap delivered</div></div>
+        <div class="stat"><div class="val" style="font-size:16px">Validated</div><div class="lbl">Corporate Accessibility confirmed fit</div></div>
+      </div>
+      <p class="sm">The strategy recommendation is specific enough to drop into a Jira ticket template and a CI pipeline. The conversation with Rob Haverty and Gurpreet Kaur revealed that Corporate Accessibility is already governing AI-assisted testing across Adobe, and this project fits inside that effort.</p>
+    </div>
+  </div>
+</div></div>${SB}` }
+
+];
+
+const TOTAL = slides.length;
+let cur = 0;
+const wrap = document.getElementById('wrap');
+const ctr = document.getElementById('ctr');
+const tocList = document.getElementById('tocList');
+const tocPanel = document.getElementById('tocPanel');
+
+// Build TOC
+slides.forEach((s, i) => {
+  const li = document.createElement('li');
+  const btn = document.createElement('button');
+  btn.innerHTML = `<span class="toc-tag">${s.tag}</span>${s.label}`;
+  btn.dataset.i = i;
+  btn.addEventListener('click', () => { cur = i; render(); closeToc(); });
+  li.appendChild(btn);
+  tocList.appendChild(li);
+});
+
+function render() {
+  wrap.innerHTML = `<div class="slide active">${slides[cur].html}${SN(cur+1, TOTAL)}</div>`;
+  ctr.textContent = `${cur+1} / ${TOTAL}`;
+  scale();
+  tocList.querySelectorAll('button').forEach((b, i) => b.classList.toggle('active', i === cur));
+}
+
+function go(d) { const n = cur + d; if (n >= 0 && n < TOTAL) { cur = n; render(); } }
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); go(1); }
+  if (e.key === 'ArrowLeft') { e.preventDefault(); go(-1); }
+  if (e.key === 'Escape' && tocPanel.classList.contains('open')) { e.preventDefault(); closeToc(); }
+});
+
+function scale() {
+  const maxW = Math.min(window.innerWidth - 40, 1280);
+  const s = maxW / 1280;
+  const sl = document.querySelector('.slide');
+  if (sl && s < 1) { sl.style.transform = `scale(${s})`; sl.style.transformOrigin = 'top left'; wrap.style.height = `${800*s}px`; }
+  else if (sl) { sl.style.transform = 'none'; wrap.style.height = '800px'; }
+}
+window.addEventListener('resize', scale);
+
+// TOC
+function openToc() { tocPanel.classList.add('open'); }
+function closeToc() { tocPanel.classList.remove('open'); }
+document.getElementById('tocToggle').addEventListener('click', () => tocPanel.classList.contains('open') ? closeToc() : openToc());
+document.getElementById('tocClose').addEventListener('click', closeToc);
+
+render();
+</script>
+</body>
+</html>

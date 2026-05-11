@@ -1,0 +1,25 @@
+Adobe Firefly, Card UI Example. Web content.
+[[slnc 600]]
+Ideate with Adobe Firefly. Heading level 2.
+[[slnc 500]]
+Text to image. Heading level 3.
+[[slnc 400]]
+Generate high-quality images using text with latest Image Model 4.
+[[slnc 500]]
+Open, Text to image. Link.
+[[slnc 600]]
+Text to image. Heading level 3.
+[[slnc 400]]
+Generate video. Heading level 3.
+[[slnc 400]]
+Transform ideas into stunning video using an image or text prompt.
+[[slnc 500]]
+Open, Generate video. Link.
+[[slnc 600]]
+Text to vector. Heading level 3.
+[[slnc 400]]
+Generate SVGs from a detailed text description.
+[[slnc 500]]
+Open, Text to vector. Link.
+[[slnc 400]]
+End of web content.

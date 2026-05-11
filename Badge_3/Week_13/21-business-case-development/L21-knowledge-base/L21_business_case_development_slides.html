@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L21: Business Case Development — DACE Deliver Badge</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap');
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{--slide-w:1440px;--slide-h:900px;--badge-green:#51CF66;--badge-green-light:#EBFBEE;--badge-green-dark:#2B8A3E;--black:#1A1A1A;--dark:#333;--mid:#666;--light-gray:#F5F5F5;--border-gray:#E0E0E0;--white:#FFFFFF;--insight-bg:#F5F7FA;--font:'DM Sans',system-ui,sans-serif}
+  body{font-family:var(--font);background:#1a1a2e;display:flex;flex-direction:column;align-items:center;min-height:100vh;padding:20px;color:var(--black)}
+  .nav{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:12px;background:rgba(0,0,0,0.85);padding:10px 20px;border-radius:40px;z-index:100;backdrop-filter:blur(10px)}
+  .nav button{background:none;border:1px solid rgba(255,255,255,0.3);color:white;width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;transition:all 0.2s}
+  .nav button:hover{background:rgba(255,255,255,0.15);border-color:rgba(255,255,255,0.6)}
+  .nav .counter{color:rgba(255,255,255,0.7);font-size:13px;font-variant-numeric:tabular-nums;min-width:60px;text-align:center}
+  .slide-container{width:var(--slide-w);max-width:100%;aspect-ratio:1440/900}
+  .slide{display:none;width:var(--slide-w);height:var(--slide-h);background:var(--white);position:relative;overflow:hidden;border-radius:4px;box-shadow:0 20px 60px rgba(0,0,0,0.4)}
+  .slide.active{display:block}
+  .topbar{position:absolute;top:0;left:0;right:0;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 40px;border-bottom:1px solid var(--border-gray);z-index:10}
+  .topbar-left{display:flex;align-items:center;gap:12px;font-size:14px;color:var(--dark)}
+  .topbar-icon{width:32px;height:32px;border:1.5px solid var(--dark);border-radius:6px;display:flex;align-items:center;justify-content:center}
+  .topbar-icon svg{width:16px;height:16px}
+  .topbar-lesson{font-weight:600}
+  .topbar-sep{color:#ccc}
+  .topbar-topic{font-weight:400}
+  .badge-pill{display:flex;align-items:center;gap:6px;padding:6px 16px;border-radius:20px;background:var(--badge-green-light);border:1.5px solid var(--badge-green);font-size:13px;font-weight:600;color:var(--badge-green-dark)}
+  .badge-pill svg{width:14px;height:14px}
+  .footer-text{position:absolute;bottom:40px;left:18px;writing-mode:vertical-rl;transform:rotate(180deg);font-size:10px;color:#999;letter-spacing:0.02em;line-height:1.4}
+  .content{position:absolute;top:64px;left:70px;right:40px;bottom:20px;padding:40px 0}
+  .slide.divider .topbar{border-bottom-color:transparent}
+  .divider-bg{position:absolute;top:0;left:0;right:0;bottom:0;overflow:hidden}
+  .divider-bg .geo{position:absolute;stroke:#ddd;stroke-width:1.5;fill:none}
+  .divider-title{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:64px;font-weight:700;color:var(--black);text-align:center;line-height:1.15;max-width:900px}
+  h1.slide-headline{font-size:48px;font-weight:700;color:var(--black);line-height:1.15;margin-bottom:24px;letter-spacing:-0.02em}
+  h2.slide-subhead{font-size:20px;font-weight:600;color:var(--dark);margin-bottom:16px}
+  .slide-body{font-size:18px;color:var(--dark);line-height:1.5;margin-bottom:16px}
+  .slide-intro{font-size:20px;font-weight:600;color:var(--dark);line-height:1.5;margin-bottom:24px}
+  .bullet-list{list-style:none;padding:0}
+  .bullet-list li{font-size:18px;color:var(--dark);line-height:1.55;padding:6px 0 6px 20px;position:relative}
+  .bullet-list li::before{content:'•';position:absolute;left:0;color:#999}
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-bottom:24px}
+  .col-card{background:var(--white);border:1px solid var(--border-gray);border-radius:12px;padding:28px}
+  .col-card h3{font-size:18px;font-weight:700;margin-bottom:16px;color:var(--black)}
+  .col-card.green-accent{border-top:3px solid var(--badge-green)}
+  .col-card.gray-accent{border-top:3px solid #ccc}
+  .col-card.red-accent{border-top:3px solid #FA5252}
+  .four-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px}
+  .three-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:24px}
+  .card{background:var(--light-gray);border-radius:12px;padding:20px}
+  .card h4{font-size:15px;font-weight:700;color:var(--black);margin-bottom:8px}
+  .card p{font-size:14px;color:var(--mid);line-height:1.45}
+  .key-insight{background:var(--insight-bg);border-radius:12px;padding:20px 24px 20px 64px;position:relative;margin-top:16px}
+  .key-insight::before{content:'';position:absolute;left:20px;top:50%;transform:translateY(-50%);width:32px;height:32px;background:#3478F6;border-radius:50%}
+  .key-insight::after{content:'💡';position:absolute;left:25px;top:50%;transform:translateY(-50%);font-size:16px}
+  .key-insight strong{display:block;font-size:15px;font-weight:700;color:var(--black);margin-bottom:4px}
+  .key-insight p,.key-insight span{font-size:15px;color:var(--dark);line-height:1.5}
+  .checklist{list-style:none;padding:0}
+  .checklist li{font-size:17px;color:var(--dark);line-height:1.5;padding:8px 0 8px 36px;position:relative}
+  .checklist li::before{content:'';position:absolute;left:0;top:10px;width:20px;height:20px;border:2px solid #ccc;border-radius:4px}
+  .outcome-card{background:var(--insight-bg);border-radius:16px;padding:28px;text-align:center}
+  .outcome-card .outcome-icon{width:56px;height:56px;background:#3478F6;border-radius:50%;margin:0 auto 16px;display:flex;align-items:center;justify-content:center;font-size:24px}
+  .outcome-card .outcome-label{font-size:16px;font-weight:700;color:var(--black);margin-bottom:12px}
+  .outcome-card .outcome-text{font-size:14px;color:var(--mid);line-height:1.5}
+  .lo-pill{display:inline-flex;align-items:center;padding:3px 10px;border-radius:12px;background:var(--badge-green-light);font-size:12px;font-weight:600;color:var(--badge-green-dark);margin-top:8px}
+  .objectives-list{list-style:none;padding:0}
+  .objectives-list li{padding:16px 0;border-bottom:1px solid var(--border-gray);display:flex;gap:16px;align-items:flex-start}
+  .objectives-list li:last-child{border-bottom:none}
+  .obj-code{font-size:14px;font-weight:700;color:var(--badge-green-dark);background:var(--badge-green-light);padding:4px 10px;border-radius:6px;white-space:nowrap;flex-shrink:0}
+  .obj-text{font-size:17px;color:var(--dark);line-height:1.5}
+  .obj-text strong{color:var(--black)}
+  .connection-callout{background:var(--badge-green-light);border-left:3px solid var(--badge-green);padding:16px 20px;border-radius:0 8px 8px 0;margin-top:16px}
+  .connection-callout p{font-size:14px;color:var(--dark);line-height:1.5}
+  .principles{display:flex;flex-direction:column;gap:16px}
+  .principle-row{display:flex;gap:16px;align-items:flex-start;padding:16px;background:var(--light-gray);border-radius:12px}
+  .principle-icon{width:44px;height:44px;background:#3478F6;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:20px}
+  .principle-text{font-size:15px;color:var(--dark);line-height:1.5}
+  .principle-text strong{color:var(--black)}
+  .title-content{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center}
+  .title-lesson-num{font-size:16px;font-weight:600;color:var(--mid);letter-spacing:0.05em;text-transform:uppercase;margin-bottom:12px}
+  .title-main{font-size:52px;font-weight:700;color:var(--black);line-height:1.1;margin-bottom:12px;letter-spacing:-0.02em}
+  .title-subtitle{font-size:20px;color:var(--mid);font-weight:400;margin-bottom:32px;font-style:italic;max-width:700px;line-height:1.4}
+  .title-meta{display:flex;gap:24px;font-size:13px;color:#999}
+  .title-meta span{padding:4px 12px;background:var(--light-gray);border-radius:16px}
+  .audience-card{background:var(--light-gray);border-radius:12px;padding:24px;position:relative}
+  .audience-card .aud-tag{display:inline-block;font-size:11px;font-weight:700;padding:3px 8px;border-radius:8px;margin-bottom:10px;letter-spacing:0.03em;background:#E8F0F8;color:#1864AB}
+  .audience-card h4{font-size:17px;font-weight:700;color:var(--black);margin-bottom:8px}
+  .audience-card p{font-size:14px;color:var(--mid);line-height:1.5}
+  .metric-card{background:var(--light-gray);border-radius:12px;padding:24px;border-left:4px solid var(--badge-green)}
+  .metric-card h4{font-size:16px;font-weight:700;color:var(--black);margin-bottom:8px}
+  .metric-card p{font-size:14px;color:var(--mid);line-height:1.5}
+</style>
+</head>
+<body>
+<div class="slide-container" id="slideContainer"></div>
+<div class="nav">
+  <button onclick="prevSlide()">←</button>
+  <span class="counter" id="counter">1 / 16</span>
+  <button onclick="nextSlide()">→</button>
+</div>
+<script>
+const TB = `<div class="topbar"><div class="topbar-left"><div class="topbar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M6 8l3 3-3 3"/></svg></div><span class="topbar-lesson">Lesson 21</span><span class="topbar-sep">|</span><span class="topbar-topic">Business Case Development</span></div><div class="badge-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg> Deliver Badge</div></div>`;
+const TB_PLAIN = `<div class="topbar"><div class="topbar-left"><div class="topbar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M6 8l3 3-3 3"/></svg></div><span class="topbar-lesson">Lesson 21</span><span class="topbar-sep">|</span><span class="topbar-topic">Business Case Development</span></div></div>`;
+const FT = `<div class="footer-text">Design Accessibility Certified Expert (DACE)<br>Cohort 1: 2025 – 2026</div>`;
+const GEO = `<div class="divider-bg"><svg class="geo" style="left:-20px;top:80px" width="120" height="120" viewBox="0 0 120 120"><polygon points="60,0 120,120 0,120"/></svg><svg class="geo" style="left:-10px;top:320px" width="100" height="100" viewBox="0 0 100 100"><rect x="10" y="10" width="80" height="80"/></svg><svg class="geo" style="left:-5px;top:540px" width="100" height="100" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45"/></svg></div>`;
+
+const slides = [
+
+// ===== 0.1 TITLE =====
+{type:'title', html:`${TB}
+<div class="content"><div class="title-content">
+  <div class="title-lesson-num">Lesson 21</div>
+  <div class="title-main">Business Case<br>Development</div>
+  <div class="title-subtitle">Make accessibility work fundable and visible</div>
+  <div class="title-meta"><span>Deliver Badge</span><span>~30 minutes</span><span>In-Person Lesson</span><span>Week 12</span></div>
+</div></div>${FT}`},
+
+// ===== 0.2 OBJECTIVES =====
+{type:'content', html:`${TB}
+<div class="content">
+  <h1 class="slide-headline">What you'll be able to do</h1>
+  <p class="slide-body" style="margin-bottom:24px">By the end of this lesson, you'll be able to:</p>
+  <ul class="objectives-list">
+    <li><span class="obj-code">3F.01</span><span class="obj-text"><strong>Build compelling accessibility business cases:</strong> Connect accessibility investments to business goals leadership cares about</span></li>
+    <li><span class="obj-code">3F.02</span><span class="obj-text"><strong>Communicate ROI to leadership:</strong> Present accessibility metrics and impact in business terms</span></li>
+    <li><span class="obj-code">3F.03</span><span class="obj-text"><strong>Connect accessibility to business goals:</strong> Frame accessibility work in terms of user reach, legal risk, brand value, and efficiency</span></li>
+  </ul>
+  <div class="connection-callout"><p>L20 explained the legal context. L21 turns that context into a prioritization and investment argument.</p></div>
+</div>${FT}`},
+
+// ===== 1.1 DIVIDER =====
+{type:'divider', html:`${TB_PLAIN}${GEO}<div class="divider-title">Business Case<br>Structure</div>${FT}`},
+
+// ===== 1.2 FOUR PARTS =====
+{type:'content', html:`${TB}
+<div class="content">
+  <h1 class="slide-headline" style="font-size:42px">Core parts of the accessibility business case</h1>
+  <div class="four-cards">
+    <div class="card" style="padding:24px;border-top:3px solid #3478F6">
+      <h4 style="font-size:18px;margin-bottom:10px">User reach</h4>
+      <p style="font-size:15px">Who benefits and how many users are affected. Accessibility expands the addressable market.</p>
+    </div>
+    <div class="card" style="padding:24px;border-top:3px solid #FA5252">
+      <h4 style="font-size:18px;margin-bottom:10px">Legal risk</h4>
+      <p style="font-size:15px">What exposure or compliance pressure exists. Framework obligations from L20 become concrete here.</p>
+    </div>
+    <div class="card" style="padding:24px;border-top:3px solid #BE4BDB">
+      <h4 style="font-size:18px;margin-bottom:10px">Brand value</h4>
+      <p style="font-size:15px">Trust, reputation, and product credibility. Inclusive products strengthen customer relationships.</p>
+    </div>
+    <div class="card" style="padding:24px;border-top:3px solid var(--badge-green)">
+      <h4 style="font-size:18px;margin-bottom:10px">Efficiency gains</h4>
+      <p style="font-size:15px">Reduced rework, lower support burden, better system quality. Accessible defaults save time downstream.</p>
+    </div>
+  </div>
+  <div class="key-insight"><strong>Key insight</strong><span>If the case only says "this matters," it is incomplete. It needs a business consequence.</span></div>
+  <div class="lo-pill" style="margin-top:12px">LO 3F.01</div>
+</div>${FT}`},
+
+// ===== 1.3 COST OF INACTION =====
+{type:'content', html:`${TB}
+<div class="content">
+  <h1 class="slide-headline">Accessibility debt has a real price</h1>
+  <div class="two-col">
+    <div class="col-card red-accent">
+      <h3>If we wait</h3>
+      <ul class="bullet-list">
+        <li>Rework gets more expensive</li>
+        <li>Legal exposure grows</li>
+        <li>Customer frustration compounds</li>
+        <li>Support and exception handling increase</li>
+      </ul>
+      <p style="font-size:13px;color:var(--mid);margin-top:16px;font-style:italic">Each sprint of delay adds cost that someone eventually pays</p>
+    </div>
+    <div class="col-card green-accent">
+      <h3>If we invest now</h3>
+      <ul class="bullet-list">
+        <li>Remediation is cheaper</li>
+        <li>Quality improves earlier</li>
+        <li>Teams build better defaults</li>
+        <li>Trust and retention strengthen</li>
+      </ul>
+      <p style="font-size:13px;color:var(--mid);margin-top:16px;font-style:italic">Early investment compounds into better products and lower risk</p>
+    </div>
+  </div>
+  <div class="key-insight"><strong>Key insight</strong><span>This is not fear-based messaging. It is consequence-based messaging. Teams that understand the cost of delay make better prioritization decisions.</span></div>
+  <div class="lo-pill" style="margin-top:12px">LO 3F.01</div>
+</div>${FT}`},
+
+// ===== 1.4 CHECKPOINT =====
+{type:'content', html:`${TB}
+<div class="content">
+  <h1 class="slide-headline">Checkpoint: Business Case Structure</h1>
+  <p class="slide-intro">Verify you can build a structured accessibility business case:</p>
+  <div style="display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:start">
+    <div>
+      <h2 class="slide-subhead">Checklist:</h2>
+      <ul class="checklist">
+        <li>I can structure a business case around user reach, legal risk, brand value, and efficiency</li>
+        <li>I can explain the cost of inaction in product terms</li>
+        <li>I know why business framing is different from standards language</li>
+      </ul>
+    </div>
+    <div class="outcome-card">
+      <div class="outcome-icon">💡</div>
+      <div class="outcome-label">Learning Outcome 3F.01</div>
+      <div class="outcome-text">Build compelling accessibility business cases: Connect accessibility investments to business goals leadership cares about.</div>
+    </div>
+  </div>
+</div>${FT}`},
+
+// ===== 2.1 DIVIDER =====
+{type:'divider', html:`${TB_PLAIN}${GEO}<div class="divider-title">ROI and<br>Metrics</div>${FT}`},
+
+// ===== 2.2 WHAT TO MEASURE =====
+{type:'content', html:`${TB}
+<div class="content">
+  <h1 class="slide-headline">Useful ROI signals</h1>
+  <div class="three-cards">
+    <div class="metric-card">
+      <h4>Trend metrics</h4>
+      <p>Issue volume, severity distribution, time to remediation. Are things getting better or worse over time?</p>
+    </div>
+    <div class="metric-card">
+      <h4>Product metrics</h4>
+      <p>Task success rates, support ticket burden, retention signals. Does accessibility work improve the product?</p>
+    </div>
+    <div class="metric-card">
+      <h4>Process metrics</h4>
+      <p>Fewer regressions, less rework, stronger definition of done. Is the team building better defaults?</p>
+    </div>
+  </div>
+  <div class="key-insight"><strong>Key insight</strong><span>ROI communication gets stronger when it shows direction over time, not a single isolated number. Trends are more persuasive than snapshots.</span></div>
+  <div class="lo-pill" style="margin-top:12px">LO 3F.02</div>
+</div>${FT}`},
+
+// ===== 2.3 METRICS TO LEADERSHIP LANGUAGE =====
+{type:'content', html:`${TB}
+<div class="content">
+  <h1 class="slide-headline" style="font-size:38px">Translate technical progress into business language</h1>
+  <div class="two-col">
+    <div class="col-card red-accent">
+      <h3>What not to say</h3>
+      <ul class="bullet-list">
+        <li style="font-style:italic">"We fixed 14 accessibility bugs"</li>
+        <li style="font-style:italic">"Screen reader output is cleaner now"</li>
+        <li style="font-style:italic">"We improved semantic markup"</li>
+      </ul>
+      <p style="font-size:13px;color:var(--mid);margin-top:16px">Technically accurate, but invisible to leadership. No business consequence attached.</p>
+    </div>
+    <div class="col-card green-accent">
+      <h3>What leaders hear</h3>
+      <ul class="bullet-list">
+        <li>Reduced critical barriers in a core revenue flow</li>
+        <li>Lower risk in a regulated market segment</li>
+        <li>Fewer expensive late-stage fixes in the release cycle</li>
+      </ul>
+      <p style="font-size:13px;color:var(--mid);margin-top:16px">Same work, reframed. The technical evidence stays underneath the business statement.</p>
+    </div>
+  </div>
+  <div class="lo-pill">LO 3F.02</div>
+</div>${FT}`},
+
+// ===== 2.4 CHECKPOINT =====
+{type:'content', html:`${TB}
+<div class="content">
+  <h1 class="slide-headline">Checkpoint: ROI Communication</h1>
+  <p class="slide-intro">Verify you can present accessibility progress in business terms:</p>
+  <div style="display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:start">
+    <div>
+      <h2 class="slide-subhead">Checklist:</h2>
+      <ul class="checklist">
+        <li>I can name at least two useful accessibility ROI signals</li>
+        <li>I can translate technical progress into leadership language</li>
+        <li>I understand why trend reporting is more persuasive than a one-time number</li>
+      </ul>
+    </div>
+    <div class="outcome-card">
+      <div class="outcome-icon">💡</div>
+      <div class="outcome-label">Learning Outcome 3F.02</div>
+      <div class="outcome-text">Communicate ROI to leadership: Present accessibility metrics and impact in business terms.</div>
+    </div>
+  </div>
+</div>${FT}`},
+
+// ===== 3.1 DIVIDER =====
+{type:'divider', html:`${TB_PLAIN}${GEO}<div class="divider-title">Case<br>Construction</div>${FT}`},
+
+// ===== 3.2 CHOOSING THE STRONGEST COMPONENTS =====
+{type:'content', html:`${TB}
+<div class="content">
+  <h1 class="slide-headline" style="font-size:42px">Not every case leads with the same lens</h1>
+  <div class="two-col">
+    <div class="col-card red-accent">
+      <h3>High legal exposure</h3>
+      <ul class="bullet-list">
+        <li>Lead with compliance risk and cost of remediation</li>
+        <li>Support with user reach and brand</li>
+      </ul>
+      <p style="font-size:13px;color:var(--mid);margin-top:16px;font-style:italic">When legal risk is high, consequences are the strongest opening</p>
+    </div>
+    <div class="col-card green-accent">
+      <h3>Low legal exposure</h3>
+      <ul class="bullet-list">
+        <li>Lead with user reach and product quality</li>
+        <li>Support with efficiency gains and rework reduction</li>
+      </ul>
+      <p style="font-size:13px;color:var(--mid);margin-top:16px;font-style:italic">When legal risk is low, product value and user impact carry the argument</p>
+    </div>
+  </div>
+  <div class="key-insight"><strong>Key insight</strong><span>Match the lead argument to the situation. The four lenses stay available — the emphasis shifts.</span></div>
+  <div class="lo-pill" style="margin-top:12px">LO 3F.03</div>
+</div>${FT}`},
+
+// ===== 3.3 PUTTING IT TOGETHER =====
+{type:'content', html:`${TB}
+<div class="content">
+  <h1 class="slide-headline" style="font-size:42px">A complete business case combines three layers</h1>
+  <div class="three-cards">
+    <div class="metric-card">
+      <h4>Business-case lenses</h4>
+      <p>User reach, legal risk, brand value, efficiency gains. These are the reasons the work matters.</p>
+    </div>
+    <div class="metric-card">
+      <h4>ROI signals</h4>
+      <p>Trend metrics, product metrics, process metrics. These are the evidence that the work is having impact.</p>
+    </div>
+    <div class="metric-card">
+      <h4>Cost of inaction</h4>
+      <p>What gets more expensive if the work is deferred. This is what makes the timing argument.</p>
+    </div>
+  </div>
+  <div class="key-insight"><strong>Key insight</strong><span>If any layer is missing, the case is easier to defer. All three together make prioritization more likely.</span></div>
+  <div class="lo-pill" style="margin-top:12px">LO 3F.03</div>
+</div>${FT}`},
+
+// ===== 3.4 CHECKPOINT =====
+{type:'content', html:`${TB}
+<div class="content">
+  <h1 class="slide-headline">Checkpoint: Case Construction</h1>
+  <p class="slide-intro">Verify you can construct a situation-appropriate business case:</p>
+  <div style="display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:start">
+    <div>
+      <h2 class="slide-subhead">Checklist:</h2>
+      <ul class="checklist">
+        <li>I can explain the cost of inaction in product terms</li>
+        <li>I can identify which business-case components are strongest for a given situation</li>
+        <li>I can describe what a complete business case includes</li>
+      </ul>
+    </div>
+    <div class="outcome-card">
+      <div class="outcome-icon">💡</div>
+      <div class="outcome-label">Learning Outcome 3F.03</div>
+      <div class="outcome-text">Connect accessibility to business goals: Frame work in terms of user reach, legal risk, brand value, and efficiency.</div>
+    </div>
+  </div>
+</div>${FT}`},
+
+// ===== 4.1 SUMMARY =====
+{type:'content', html:`${TB}
+<div class="content">
+  <h1 class="slide-headline">Key takeaways</h1>
+  <div class="principles">
+    <div class="principle-row">
+      <div class="principle-icon">📊</div>
+      <div class="principle-text"><strong>Strong accessibility work still needs a business case.</strong> Structure it around user reach, legal risk, brand value, and efficiency gains. Include the cost of inaction.</div>
+    </div>
+    <div class="principle-row">
+      <div class="principle-icon">📈</div>
+      <div class="principle-text"><strong>ROI communication depends on useful metrics and good translation.</strong> Show trends over time. Translate technical progress into business language. The evidence stays underneath the statement.</div>
+    </div>
+    <div class="principle-row">
+      <div class="principle-icon">🎯</div>
+      <div class="principle-text"><strong>Match the case to the situation.</strong> Choose which lenses to lead with based on the context. Combine lenses, ROI signals, and cost-of-inaction into a complete case that is harder to defer.</div>
+    </div>
+  </div>
+</div>${FT}`},
+
+// ===== 4.2 UP NEXT =====
+{type:'content', html:`${TB}
+<div class="content" style="display:flex;flex-direction:column;justify-content:center;height:calc(100% - 64px);padding-top:0;padding-bottom:0">
+  <h1 class="slide-headline">Up next: L22</h1>
+  <p class="slide-body" style="font-size:20px;max-width:800px;margin-bottom:32px">You now know how to build the case. L22 is about where and when to deploy it — in planning meetings, in acceptance criteria, and before design direction hardens.</p>
+  <div class="connection-callout"><p>L20 gave you the legal landscape. L21 gave you the business case. L22 takes both into the room — adapting the message for different audiences, writing testable criteria, and intervening before costly decisions solidify.</p></div>
+</div>${FT}`}
+
+];
+
+let current = 0;
+const container = document.getElementById('slideContainer');
+const counter = document.getElementById('counter');
+function render() {
+  container.innerHTML = `<div class="slide ${slides[current].type === 'divider' ? 'divider' : ''} active">${slides[current].html}</div>`;
+  counter.textContent = `${current + 1} / ${slides.length}`;
+  scaleSlide();
+}
+function nextSlide() { if (current < slides.length - 1) { current++; render(); } }
+function prevSlide() { if (current > 0) { current--; render(); } }
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); nextSlide(); }
+  if (e.key === 'ArrowLeft') { e.preventDefault(); prevSlide(); }
+});
+function scaleSlide() {
+  const maxW = Math.min(window.innerWidth - 40, 1440);
+  const scale = maxW / 1440;
+  const slide = document.querySelector('.slide');
+  if (slide && scale < 1) { slide.style.transform = `scale(${scale})`; container.style.height = `${900 * scale}px`; }
+  else if (slide) { slide.style.transform = 'none'; container.style.height = '900px'; }
+}
+window.addEventListener('resize', scaleSlide);
+render();
+</script>
+</body>
+</html>

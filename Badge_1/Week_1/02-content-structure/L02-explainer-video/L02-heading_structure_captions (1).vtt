@@ -1,0 +1,785 @@
+WEBVTT
+
+1
+00:00:00.020 --> 00:00:02.865
+Alright, let's talk about something that might seem kind
+
+2
+00:00:02.865 --> 00:00:05.025
+of small, but is actually a huge deal
+
+3
+00:00:05.125 --> 00:00:07.745
+for a well-built website headings.
+
+4
+00:00:08.245 --> 00:00:09.345
+Now I know what you're thinking.
+
+5
+00:00:09.375 --> 00:00:11.825
+They're just big, bold text, right?
+
+6
+00:00:12.175 --> 00:00:14.465
+Well, not exactly as we're about to see,
+
+7
+00:00:14.475 --> 00:00:16.745
+there may be the most important tool we have
+
+8
+00:00:16.745 --> 00:00:19.825
+for making content easy to navigate for everyone.
+
+9
+00:00:20.375 --> 00:00:23.185
+Okay? To really get this, let's use a simple metaphor.
+
+10
+00:00:23.495 --> 00:00:25.985
+Imagine I hand you a book, the one on the left,
+
+11
+00:00:26.295 --> 00:00:27.745
+it's got clear chapters, right?
+
+12
+00:00:28.005 --> 00:00:29.825
+You can easily flip to whatever you need,
+
+13
+00:00:30.125 --> 00:00:33.025
+but the one on the right, it's just a solid block of text.
+
+14
+00:00:33.325 --> 00:00:34.625
+No chapters, no sections.
+
+15
+00:00:34.915 --> 00:00:36.505
+Which one would you even want to read?
+
+16
+00:00:37.055 --> 00:00:39.145
+Well, for a lot of people, this is exactly
+
+17
+00:00:39.145 --> 00:00:40.945
+what the web feels like when it doesn't have a good
+
+18
+00:00:41.065 --> 00:00:43.905
+structure, and that quote just hits the nail on the head.
+
+19
+00:00:44.365 --> 00:00:46.665
+You know, for someone using a screen reader, someone
+
+20
+00:00:46.725 --> 00:00:48.945
+who can't see all the visual stuff, like big fonts
+
+21
+00:00:48.945 --> 00:00:51.025
+and spacing, a page without headings
+
+22
+00:00:51.035 --> 00:00:52.345
+isn't just a little annoying.
+
+23
+00:00:52.525 --> 00:00:53.985
+It can be a total deal breaker,
+
+24
+00:00:54.375 --> 00:00:56.745
+just an impossible wall of text.
+
+25
+00:00:57.685 --> 00:00:59.985
+So yeah, let's really dig into that first idea.
+
+26
+00:01:00.505 --> 00:01:03.145
+A book without chapters. What's it actually like?
+
+27
+00:01:03.145 --> 00:01:05.665
+Trying to find your way around when there are no signposts,
+
+28
+00:01:05.765 --> 00:01:07.185
+no map, just words.
+
+29
+00:01:07.925 --> 00:01:08.985
+You know, when you
+
+30
+00:01:09.045 --> 00:01:12.185
+or I look at a page, our brains do this amazing thing.
+
+31
+00:01:12.205 --> 00:01:16.825
+Almost instantly we see a visual hierarchy. Big, bold text.
+
+32
+00:01:17.135 --> 00:01:18.505
+Okay, that's an important section.
+
+33
+00:01:18.975 --> 00:01:21.345
+Smaller text underneath, that's a subsection.
+
+34
+00:01:21.925 --> 00:01:25.105
+We just get it. But a screen reader needs a completely
+
+35
+00:01:25.105 --> 00:01:26.305
+different kind of map.
+
+36
+00:01:26.605 --> 00:01:28.425
+One that's literally written into the code.
+
+37
+00:01:28.685 --> 00:01:31.785
+That's the only way a user can build that same mental model
+
+38
+00:01:31.785 --> 00:01:33.025
+of how the page is laid out.
+
+39
+00:01:33.485 --> 00:01:36.265
+So the big question is, how do we build that map?
+
+40
+00:01:36.655 --> 00:01:39.545
+Well, it turns out the web has had this really elegant
+
+41
+00:01:40.025 --> 00:01:41.465
+solution baked in from the very beginning,
+
+42
+00:01:41.765 --> 00:01:44.185
+and it's all about something called semantic headings.
+
+43
+00:01:44.965 --> 00:01:46.855
+Okay? Semantic sounds a little technical,
+
+44
+00:01:46.875 --> 00:01:48.695
+but all it really means is meaning.
+
+45
+00:01:49.235 --> 00:01:50.775
+See, we're not just telling the browser
+
+46
+00:01:50.835 --> 00:01:53.015
+to make some texts look big and bold.
+
+47
+00:01:53.385 --> 00:01:55.415
+We're giving it a structural meaning.
+
+48
+00:01:55.875 --> 00:01:57.855
+So an H two tag, it doesn't just say, Hey,
+
+49
+00:01:57.855 --> 00:01:59.135
+make this text 24 points.
+
+50
+00:01:59.515 --> 00:02:02.055
+It says, Hey, this is the official start
+
+51
+00:02:02.055 --> 00:02:03.975
+of a major new section on this page.
+
+52
+00:02:03.975 --> 00:02:05.735
+It's about meaning, not just looks.
+
+53
+00:02:06.435 --> 00:02:08.255
+And this is where it gets really cool
+
+54
+00:02:08.645 --> 00:02:10.255
+because those headings have
+
+55
+00:02:10.255 --> 00:02:12.255
+that special programmatic meaning
+
+56
+00:02:12.775 --> 00:02:15.295
+a screen reader can instantly pull all of them out
+
+57
+00:02:15.355 --> 00:02:17.535
+and just show them to the user as a list.
+
+58
+00:02:18.005 --> 00:02:19.855
+It's like a popup table of contents.
+
+59
+00:02:20.235 --> 00:02:22.695
+And just like that, that giant wall of text
+
+60
+00:02:23.255 --> 00:02:25.695
+transforms into a perfectly navigable outline.
+
+61
+00:02:26.105 --> 00:02:28.455
+Check it out. This is that superpower in action.
+
+62
+00:02:29.055 --> 00:02:31.175
+A user can literally just pull up this menu,
+
+63
+00:02:31.595 --> 00:02:33.375
+see the whole page structure laid out,
+
+64
+00:02:33.435 --> 00:02:36.455
+and then bam, with one command jump straight
+
+65
+00:02:36.455 --> 00:02:37.655
+to the eligibility section.
+
+66
+00:02:37.965 --> 00:02:39.295
+They don't have to listen to all
+
+67
+00:02:39.295 --> 00:02:40.335
+the stuff that came before it.
+
+68
+00:02:40.615 --> 00:02:43.775
+I mean, think about what a massive time saver that is. Okay?
+
+69
+00:02:43.775 --> 00:02:46.375
+So we've got this amazing and table of contents feature,
+
+70
+00:02:46.675 --> 00:02:49.175
+but for it to actually be useful, it has
+
+71
+00:02:49.175 --> 00:02:50.495
+to be logical, right?
+
+72
+00:02:50.795 --> 00:02:52.735
+It needs to follow a few, pretty simple
+
+73
+00:02:52.835 --> 00:02:54.455
+but really, really crucial rules.
+
+74
+00:02:55.275 --> 00:02:57.095
+The easiest way to think about this is
+
+75
+00:02:57.095 --> 00:02:58.735
+to just picture an outline. You'd write
+
+76
+00:02:58.735 --> 00:02:59.735
+For a school paper.
+
+77
+00:02:59.755 --> 00:03:03.085
+Seriously, you've got one main title, that's your H one.
+
+78
+00:03:03.395 --> 00:03:05.445
+Then you have your main points or chapters.
+
+79
+00:03:05.495 --> 00:03:06.845
+Those are all your H twos
+
+80
+00:03:07.185 --> 00:03:09.565
+and any supporting details inside those chapters.
+
+81
+00:03:09.785 --> 00:03:12.605
+Yep, those become H threes, H fours, and so on.
+
+82
+00:03:12.865 --> 00:03:14.285
+The key thing to remember is
+
+83
+00:03:14.285 --> 00:03:16.285
+that the number is all about its place in the structure.
+
+84
+00:03:16.475 --> 00:03:18.765
+It's I importance. It has nothing to do with
+
+85
+00:03:18.765 --> 00:03:20.045
+how big the text looks on the screen.
+
+86
+00:03:20.235 --> 00:03:21.525
+Alright? So to keep
+
+87
+00:03:21.525 --> 00:03:23.045
+That outline nice and logical,
+
+88
+00:03:23.475 --> 00:03:24.725
+There's one really important
+
+89
+00:03:24.875 --> 00:03:26.605
+Best practice we should all try
+
+90
+00:03:26.605 --> 00:03:27.605
+To follow. And it's
+
+91
+00:03:27.605 --> 00:03:29.005
+this, try not
+
+92
+00:03:29.005 --> 00:03:31.165
+to skip heading levels as you go down the page.
+
+93
+00:03:31.625 --> 00:03:33.965
+So for Example, jumping from your main title,
+
+94
+00:03:34.185 --> 00:03:35.645
+the H one straight to
+
+95
+00:03:35.925 --> 00:03:37.125
+A subsection, an H
+
+96
+00:03:37.125 --> 00:03:39.765
+Three, like you see on the right side there, it kind
+
+97
+00:03:39.765 --> 00:03:41.085
+of breaks the logical flow.
+
+98
+00:03:41.275 --> 00:03:43.925
+Imagine a screen reader, user hears, heading level one,
+
+99
+00:03:44.065 --> 00:03:46.165
+and then the very next thing is heading level three.
+
+100
+00:03:46.415 --> 00:03:48.525
+Their mental map is expecting a level two.
+
+101
+00:03:48.525 --> 00:03:49.725
+In between when it's missing,
+
+102
+00:03:49.985 --> 00:03:52.525
+the structure can feel a little broken, a little confusing.
+
+103
+00:03:52.795 --> 00:03:53.965
+It's a small detail for us,
+
+104
+00:03:53.985 --> 00:03:56.205
+but it can make a big difference for usability.
+
+105
+00:03:56.745 --> 00:03:59.165
+And This brings up another super important point.
+
+106
+00:03:59.625 --> 00:04:02.245
+Not all big, fancy text is actually a heading.
+
+107
+00:04:02.625 --> 00:04:03.685
+You have to ask yourself,
+
+108
+00:04:03.835 --> 00:04:07.325
+does this text kick off a totally new distinct section
+
+109
+00:04:07.385 --> 00:04:09.645
+of content featured collections here on the left?
+
+110
+00:04:10.165 --> 00:04:13.285
+Absolutely. It's introducing a whole new grid of items.
+
+111
+00:04:13.865 --> 00:04:16.085
+But a descriptive tagline, like the one on the right,
+
+112
+00:04:16.155 --> 00:04:18.845
+even if it's styled to be really prominent, that's just part
+
+113
+00:04:18.845 --> 00:04:20.085
+of the section that came before it.
+
+114
+00:04:20.395 --> 00:04:21.965
+It's not a new chapter in our book.
+
+115
+00:04:22.075 --> 00:04:23.845
+It's more like a sentence in the current chapter.
+
+116
+00:04:24.555 --> 00:04:26.045
+Okay, let's look at a real world
+
+117
+00:04:26.045 --> 00:04:27.405
+example of how this can go wrong.
+
+118
+00:04:27.825 --> 00:04:30.405
+So here, the main H one, connect and get inspired.
+
+119
+00:04:30.465 --> 00:04:31.645
+That's totally correct.
+
+120
+00:04:32.065 --> 00:04:35.125
+But then notice how it jumps straight to an H three
+
+121
+00:04:35.185 --> 00:04:38.605
+for the free use section, it skipped H two entirely.
+
+122
+00:04:39.385 --> 00:04:41.125
+And then that more to discover section,
+
+123
+00:04:41.125 --> 00:04:44.085
+which is obviously introducing new stuff isn't even marked
+
+124
+00:04:44.105 --> 00:04:46.525
+as a heading at all for a screen reader user.
+
+125
+00:04:46.635 --> 00:04:49.765
+This outline is just, well, it's confusing an incomplete.
+
+126
+00:04:50.465 --> 00:04:53.685
+But now let's contrast that with this perfect example.
+
+127
+00:04:54.145 --> 00:04:56.405
+See this, we have a nice clear H two
+
+128
+00:04:56.405 --> 00:04:58.725
+for the whole frequently asked questions section.
+
+129
+00:04:59.075 --> 00:05:02.125
+Then every category under it, general program information,
+
+130
+00:05:02.485 --> 00:05:04.525
+deadlines, eligibility, they're all correctly
+
+131
+00:05:04.525 --> 00:05:05.605
+marked as h threes.
+
+132
+00:05:05.795 --> 00:05:07.845
+This creates this beautiful, predictable,
+
+133
+00:05:07.865 --> 00:05:09.725
+and super easy to navigate outline
+
+134
+00:05:09.735 --> 00:05:11.285
+where the code structure perfectly
+
+135
+00:05:11.285 --> 00:05:12.485
+mirrors what you see on the screen.
+
+136
+00:05:12.755 --> 00:05:14.525
+This is what we're aiming for. Alright,
+
+137
+00:05:14.745 --> 00:05:15.805
+So you're feeling good.
+
+138
+00:05:15.805 --> 00:05:17.285
+You've got the rules down, right?
+
+139
+00:05:17.755 --> 00:05:19.365
+Well, hold on. 'cause here comes the
+
+140
+00:05:19.365 --> 00:05:20.365
+Plot twist. Things
+
+141
+00:05:20.365 --> 00:05:23.045
+get a little different when
+
+142
+00:05:23.045 --> 00:05:24.085
+we start talking about mobile.
+
+143
+00:05:24.745 --> 00:05:26.855
+So what's so fascinating here is this
+
+144
+00:05:27.165 --> 00:05:28.895
+Huge difference between how iOS
+
+145
+00:05:28.895 --> 00:05:30.935
+and Android screen readers handle headings.
+
+146
+00:05:31.395 --> 00:05:34.935
+On an iPhone. A voiceover user hears the whole story heading
+
+147
+00:05:34.935 --> 00:05:36.575
+Level two, they get the full context.
+
+148
+00:05:37.195 --> 00:05:39.775
+But on Android, a talkback user just hears heading.
+
+149
+00:05:40.155 --> 00:05:41.215
+That's It. All
+
+150
+00:05:41.215 --> 00:05:42.975
+that information about the level, it's just gone.
+
+151
+00:05:43.355 --> 00:05:45.735
+So what does this mean for us as designers?
+
+152
+00:05:46.365 --> 00:05:47.655
+It's actually pretty simple.
+
+153
+00:05:48.275 --> 00:05:50.855
+For an Android user, the difference between an H two
+
+154
+00:05:50.855 --> 00:05:52.615
+and an H three just doesn't exist,
+
+155
+00:05:52.995 --> 00:05:54.215
+at least not in what they hear.
+
+156
+00:05:54.795 --> 00:05:56.895
+But what is still incredibly important
+
+157
+00:05:56.895 --> 00:05:58.930
+Is that the text is marked as a heading at all
+
+158
+00:05:58.995 --> 00:06:01.125
+because that's what lets them skip from one heading
+
+159
+00:06:01.125 --> 00:06:03.325
+to the next, even if they don't know the specific level.
+
+160
+00:06:03.905 --> 00:06:06.125
+So you might be wondering, how do we handle this?
+
+161
+00:06:06.265 --> 00:06:08.605
+Do we have to design two totally different experiences?
+
+162
+00:06:09.585 --> 00:06:10.925
+No way. Absolutely not.
+
+163
+00:06:11.265 --> 00:06:14.485
+The answer is to design one single logical blueprint
+
+164
+00:06:14.485 --> 00:06:16.165
+that works for everyone everywhere.
+
+165
+00:06:16.785 --> 00:06:18.125
+So as a designer, your job
+
+166
+00:06:18.125 --> 00:06:19.405
+is actually pretty straightforward.
+
+167
+00:06:19.745 --> 00:06:22.365
+You just have to define the one correct logical hierarchy
+
+168
+00:06:22.365 --> 00:06:24.445
+from H one down to H six in your designs.
+
+169
+00:06:24.445 --> 00:06:26.605
+That's it. You create that one perfect outline.
+
+170
+00:06:26.705 --> 00:06:29.285
+The engineers will take that and implement it, and then iOS
+
+171
+00:06:29.285 --> 00:06:31.445
+and the web will use all that juicy detail you provided.
+
+172
+00:06:31.715 --> 00:06:34.325
+Android. It'll just use the basic fact that, yep,
+
+173
+00:06:34.325 --> 00:06:35.445
+this is a heading to power.
+
+174
+00:06:35.505 --> 00:06:37.605
+Its navigation. It's one smart design decision
+
+175
+00:06:37.605 --> 00:06:38.965
+that each platform interprets
+
+176
+00:06:38.965 --> 00:06:40.085
+in the way that works best for it.
+
+177
+00:06:40.555 --> 00:06:42.885
+Okay, let's wrap this up with the key takeaways.
+
+178
+00:06:42.945 --> 00:06:45.605
+Number one, headings are basically a table
+
+179
+00:06:45.605 --> 00:06:47.045
+of contents for screen reader users.
+
+180
+00:06:47.215 --> 00:06:49.565
+Super important. Two, always,
+
+181
+00:06:49.585 --> 00:06:51.365
+always use a logical hierarchy,
+
+182
+00:06:51.395 --> 00:06:53.005
+just like an outline for a paper.
+
+183
+00:06:53.495 --> 00:06:55.205
+Three, it's a really good idea
+
+184
+00:06:55.305 --> 00:06:56.925
+to not skip levels on your way down.
+
+185
+00:06:56.985 --> 00:06:58.085
+It just keeps things clear.
+
+186
+00:06:58.425 --> 00:07:00.565
+And finally, number four, you just need
+
+187
+00:07:00.565 --> 00:07:01.885
+to annotate one good structure
+
+188
+00:07:01.985 --> 00:07:03.485
+and the platforms will do the heavy lift.
+
+189
+00:07:03.865 --> 00:07:06.205
+So I'll leave you with this one last thought.
+
+190
+00:07:06.505 --> 00:07:08.205
+The next time you're designing a page
+
+191
+00:07:08.345 --> 00:07:12.245
+or a screen, ask yourself, am I designing a clear story
+
+192
+00:07:12.465 --> 00:07:14.205
+or am I just creating a wall of words?
+
+193
+00:07:14.515 --> 00:07:16.965
+Because remember, you're not just styling text,
+
+194
+00:07:17.265 --> 00:07:19.765
+you're crafting a structure, you're telling a story,
+
+195
+00:07:20.105 --> 00:07:23.405
+and your job is to make sure that story has chapters so
+
+196
+00:07:23.405 --> 00:07:25.325
+that absolutely everyone can follow along.

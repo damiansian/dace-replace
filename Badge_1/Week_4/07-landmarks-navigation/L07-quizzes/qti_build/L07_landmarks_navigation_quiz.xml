@@ -1,0 +1,557 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<questestinterop xmlns="http://www.imsglobal.org/xsd/ims_qtiasiv1p2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.imsglobal.org/xsd/ims_qtiasiv1p2 http://www.imsglobal.org/xsd/ims_qtiasiv1p2p1.xsd">
+  <assessment ident="L07_landmarks_navigation_quiz" title="L07: Landmarks and Navigation Quiz">
+    <qtimetadata>
+      <qtimetadatafield>
+        <fieldlabel>cc_maxattempts</fieldlabel>
+        <fieldentry>unlimited</fieldentry>
+      </qtimetadatafield>
+      <qtimetadatafield>
+        <fieldlabel>qmd_timelimit</fieldlabel>
+        <fieldentry/>
+      </qtimetadatafield>
+      <qtimetadatafield>
+        <fieldlabel>cc_profile</fieldlabel>
+        <fieldentry>cc.exam.v0p1</fieldentry>
+      </qtimetadatafield>
+    </qtimetadata>
+    <section ident="root_section">
+      
+      <!-- Question 1: Purpose of Page Regions -->
+      <item ident="q1_page_regions" title="Q1: Purpose of Page Regions">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield>
+              <fieldlabel>question_type</fieldlabel>
+              <fieldentry>multiple_choice_question</fieldentry>
+            </qtimetadatafield>
+            <qtimetadatafield>
+              <fieldlabel>points_possible</fieldlabel>
+              <fieldentry>1</fieldentry>
+            </qtimetadatafield>
+            <qtimetadatafield>
+              <fieldlabel>original_answer_ids</fieldlabel>
+              <fieldentry>q1_a,q1_b,q1_c,q1_d</fieldentry>
+            </qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material>
+            <mattext texttype="text/html"><![CDATA[<p>Why is it important to define distinct regions on a web page, such as header, main content, and footer?</p>]]></mattext>
+          </material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice shuffle="true">
+              <response_label ident="q1_a">
+                <material>
+                  <mattext texttype="text/plain">It helps assistive technology users jump directly to the section they need.</mattext>
+                </material>
+              </response_label>
+              <response_label ident="q1_b">
+                <material>
+                  <mattext texttype="text/plain">It improves the visual appearance and layout of the page for all users.</mattext>
+                </material>
+              </response_label>
+              <response_label ident="q1_c">
+                <material>
+                  <mattext texttype="text/plain">It is only required for mobile websites to meet compliance standards.</mattext>
+                </material>
+              </response_label>
+              <response_label ident="q1_d">
+                <material>
+                  <mattext texttype="text/plain">It speeds up page loading time by reducing the amount of code.</mattext>
+                </material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes>
+            <decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/>
+          </outcomes>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q1_a</varequal>
+            </conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q1_a_fb"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q1_b</varequal>
+            </conditionvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q1_b_fb"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q1_c</varequal>
+            </conditionvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q1_c_fb"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q1_d</varequal>
+            </conditionvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q1_d_fb"/>
+          </respcondition>
+        </resprocessing>
+        <itemfeedback ident="q1_a_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Correct.</strong> Defining page regions allows screen reader users to navigate directly to specific sections. This saves time and reduces frustration, especially on pages with repeated content like navigation menus.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="q1_b_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Incorrect.</strong> While good structure can support visual design, the primary accessibility purpose of page regions is to provide programmatic structure for assistive technology, not visual styling.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="q1_c_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Incorrect.</strong> Page regions benefit all websites, not just mobile. Users on any device who rely on assistive technology need this structure to navigate efficiently.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="q1_d_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Incorrect.</strong> Page regions do not affect page loading speed or code size. They affect how assistive technology interprets and presents the page structure to users.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+      </item>
+
+      <!-- Question 2: Labeling Multiple Navigation Areas -->
+      <item ident="q2_multiple_nav" title="Q2: Labeling Multiple Navigation Areas">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield>
+              <fieldlabel>question_type</fieldlabel>
+              <fieldentry>multiple_choice_question</fieldentry>
+            </qtimetadatafield>
+            <qtimetadatafield>
+              <fieldlabel>points_possible</fieldlabel>
+              <fieldentry>1</fieldentry>
+            </qtimetadatafield>
+            <qtimetadatafield>
+              <fieldlabel>original_answer_ids</fieldlabel>
+              <fieldentry>q2_a,q2_b,q2_c,q2_d</fieldentry>
+            </qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material>
+            <mattext texttype="text/html"><![CDATA[<p>A website has two navigation areas: one at the top of the page for main site navigation and one in the footer for legal links. What should designers specify to help screen reader users distinguish between them?</p>]]></mattext>
+          </material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice shuffle="true">
+              <response_label ident="q2_a">
+                <material>
+                  <mattext texttype="text/plain">Each navigation area should have a unique descriptive label.</mattext>
+                </material>
+              </response_label>
+              <response_label ident="q2_b">
+                <material>
+                  <mattext texttype="text/plain">Only one navigation area is allowed per page for accessibility.</mattext>
+                </material>
+              </response_label>
+              <response_label ident="q2_c">
+                <material>
+                  <mattext texttype="text/plain">The footer links should be converted to regular text without structure.</mattext>
+                </material>
+              </response_label>
+              <response_label ident="q2_d">
+                <material>
+                  <mattext texttype="text/plain">No labels are needed because screen readers detect the difference.</mattext>
+                </material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes>
+            <decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/>
+          </outcomes>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q2_a</varequal>
+            </conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q2_a_fb"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q2_b</varequal>
+            </conditionvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q2_b_fb"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q2_c</varequal>
+            </conditionvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q2_c_fb"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q2_d</varequal>
+            </conditionvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q2_d_fb"/>
+          </respcondition>
+        </resprocessing>
+        <itemfeedback ident="q2_a_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Correct.</strong> When a page has multiple navigation areas, each one needs a unique label so screen reader users can tell them apart. Without labels, users hear "navigation" for both and cannot distinguish between them.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="q2_b_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Incorrect.</strong> Pages commonly have multiple navigation areas (main nav, footer nav, sidebar nav). This is valid and expected in web design, not a violation.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="q2_c_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Incorrect.</strong> Converting navigation to plain text removes helpful structure. Footer navigation should remain structured as navigation but with a distinguishing label.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="q2_d_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Incorrect.</strong> Screen readers cannot automatically detect the purpose of each navigation area. They rely on labels provided by the design and code to announce meaningful distinctions.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+      </item>
+
+      <!-- Question 3: Consistent Navigation Order -->
+      <item ident="q3_consistent_nav" title="Q3: Consistent Navigation Order">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield>
+              <fieldlabel>question_type</fieldlabel>
+              <fieldentry>multiple_choice_question</fieldentry>
+            </qtimetadatafield>
+            <qtimetadatafield>
+              <fieldlabel>points_possible</fieldlabel>
+              <fieldentry>1</fieldentry>
+            </qtimetadatafield>
+            <qtimetadatafield>
+              <fieldlabel>original_answer_ids</fieldlabel>
+              <fieldentry>q3_a,q3_b,q3_c,q3_d</fieldentry>
+            </qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material>
+            <mattext texttype="text/html"><![CDATA[<p>A website's main navigation shows links in this order on the homepage: Home, Products, About, Contact. On the Products page, the same navigation shows: Home, About, Products, Contact. What accessibility problem does this create?</p>]]></mattext>
+          </material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice shuffle="true">
+              <response_label ident="q3_a">
+                <material>
+                  <mattext texttype="text/plain">Users who rely on consistent patterns will have difficulty finding items.</mattext>
+                </material>
+              </response_label>
+              <response_label ident="q3_b">
+                <material>
+                  <mattext texttype="text/plain">No problem exists because all the same links are still present on the page.</mattext>
+                </material>
+              </response_label>
+              <response_label ident="q3_c">
+                <material>
+                  <mattext texttype="text/plain">This only affects users with visual disabilities who cannot see colors.</mattext>
+                </material>
+              </response_label>
+              <response_label ident="q3_d">
+                <material>
+                  <mattext texttype="text/plain">This is acceptable as long as the navigation remains keyboard accessible.</mattext>
+                </material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes>
+            <decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/>
+          </outcomes>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q3_a</varequal>
+            </conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q3_a_fb"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q3_b</varequal>
+            </conditionvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q3_b_fb"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q3_c</varequal>
+            </conditionvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q3_c_fb"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q3_d</varequal>
+            </conditionvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q3_d_fb"/>
+          </respcondition>
+        </resprocessing>
+        <itemfeedback ident="q3_a_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Correct.</strong> WCAG requires navigation to appear in the same relative order across pages. Changing the order forces users to relearn the navigation on each page, which is especially difficult for users with cognitive disabilities.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="q3_b_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Incorrect.</strong> Having the same links present is not enough. The order matters because users build mental models and expectations based on consistent positioning.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="q3_c_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Incorrect.</strong> Inconsistent navigation affects many users, including those with cognitive disabilities and motor disabilities who rely on muscle memory, not just those with visual disabilities.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="q3_d_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Incorrect.</strong> Keyboard accessibility and consistent navigation are separate requirements. A navigation can be fully keyboard accessible but still fail the consistency requirement.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+      </item>
+
+      <!-- Question 4: Identifying Components Consistently -->
+      <item ident="q4_consistent_id" title="Q4: Identifying Components Consistently">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield>
+              <fieldlabel>question_type</fieldlabel>
+              <fieldentry>multiple_choice_question</fieldentry>
+            </qtimetadatafield>
+            <qtimetadatafield>
+              <fieldlabel>points_possible</fieldlabel>
+              <fieldentry>1</fieldentry>
+            </qtimetadatafield>
+            <qtimetadatafield>
+              <fieldlabel>original_answer_ids</fieldlabel>
+              <fieldentry>q4_a,q4_b,q4_c,q4_d</fieldentry>
+            </qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material>
+            <mattext texttype="text/html"><![CDATA[<p>A website uses a magnifying glass icon for search. On the homepage, it is labeled "Search." On the product pages, the same icon is labeled "Find." What is the accessibility concern?</p>]]></mattext>
+          </material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice shuffle="true">
+              <response_label ident="q4_a">
+                <material>
+                  <mattext texttype="text/plain">Components with the same function should be labeled consistently.</mattext>
+                </material>
+              </response_label>
+              <response_label ident="q4_b">
+                <material>
+                  <mattext texttype="text/plain">There is no concern because both labels describe the same action.</mattext>
+                </material>
+              </response_label>
+              <response_label ident="q4_c">
+                <material>
+                  <mattext texttype="text/plain">Only the icon matters for accessibility, not the text label.</mattext>
+                </material>
+              </response_label>
+              <response_label ident="q4_d">
+                <material>
+                  <mattext texttype="text/plain">This is only a problem if the search works differently on each page.</mattext>
+                </material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes>
+            <decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/>
+          </outcomes>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q4_a</varequal>
+            </conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q4_a_fb"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q4_b</varequal>
+            </conditionvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q4_b_fb"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q4_c</varequal>
+            </conditionvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q4_c_fb"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q4_d</varequal>
+            </conditionvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q4_d_fb"/>
+          </respcondition>
+        </resprocessing>
+        <itemfeedback ident="q4_a_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Correct.</strong> WCAG requires that components with the same functionality be identified consistently. Using "Search" on some pages and "Find" on others creates unnecessary confusion, especially for users with cognitive disabilities who benefit from predictable, consistent terminology.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="q4_b_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Incorrect.</strong> Even though both words relate to searching, inconsistent labeling forces users to recognize that different terms mean the same thing. Consistency reduces cognitive load.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="q4_c_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Incorrect.</strong> Labels are essential for accessibility. Screen reader users rely on labels to understand the purpose of interactive elements. The icon alone does not provide accessible information.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="q4_d_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Incorrect.</strong> Consistent identification is required even when the functionality is identical. The requirement is about predictability in labeling, not about differences in behavior.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+      </item>
+
+      <!-- Question 5: Helping Users Skip Repeated Content -->
+      <item ident="q5_skip_links" title="Q5: Helping Users Skip Repeated Content">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield>
+              <fieldlabel>question_type</fieldlabel>
+              <fieldentry>multiple_choice_question</fieldentry>
+            </qtimetadatafield>
+            <qtimetadatafield>
+              <fieldlabel>points_possible</fieldlabel>
+              <fieldentry>1</fieldentry>
+            </qtimetadatafield>
+            <qtimetadatafield>
+              <fieldlabel>original_answer_ids</fieldlabel>
+              <fieldentry>q5_a,q5_b,q5_c,q5_d</fieldentry>
+            </qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material>
+            <mattext texttype="text/html"><![CDATA[<p>A website has a large navigation menu with 30 links that appears on every page. What mechanism should be provided to help keyboard users avoid tabbing through all 30 links to reach the main content?</p>]]></mattext>
+          </material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice shuffle="true">
+              <response_label ident="q5_a">
+                <material>
+                  <mattext texttype="text/plain">A "Skip to main content" link at the top of the page.</mattext>
+                </material>
+              </response_label>
+              <response_label ident="q5_b">
+                <material>
+                  <mattext texttype="text/plain">No mechanism is needed because users can scroll past it.</mattext>
+                </material>
+              </response_label>
+              <response_label ident="q5_c">
+                <material>
+                  <mattext texttype="text/plain">The navigation should be removed from most pages.</mattext>
+                </material>
+              </response_label>
+              <response_label ident="q5_d">
+                <material>
+                  <mattext texttype="text/plain">Users should switch to using a mouse for navigation.</mattext>
+                </material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes>
+            <decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/>
+          </outcomes>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q5_a</varequal>
+            </conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q5_a_fb"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q5_b</varequal>
+            </conditionvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q5_b_fb"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q5_c</varequal>
+            </conditionvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q5_c_fb"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q5_d</varequal>
+            </conditionvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q5_d_fb"/>
+          </respcondition>
+        </resprocessing>
+        <itemfeedback ident="q5_a_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Correct.</strong> Skip links allow keyboard users to bypass repeated blocks of content like navigation menus. Without a skip link, users would need to tab through all 30 links on every page to reach the main content.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="q5_b_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Incorrect.</strong> Scrolling does not help keyboard users. When using Tab to navigate, focus moves through every focusable element regardless of scroll position. Skip links address keyboard navigation, not scrolling.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="q5_c_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Incorrect.</strong> Navigation is essential on all pages and should not be removed. The solution is to provide a bypass mechanism, not to remove helpful navigation structure from most pages.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="q5_d_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Incorrect.</strong> Many users cannot use a mouse due to motor disabilities. Accessible design must support keyboard users, not suggest they switch to a different input method.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+      </item>
+
+    </section>
+  </assessment>
+</questestinterop>

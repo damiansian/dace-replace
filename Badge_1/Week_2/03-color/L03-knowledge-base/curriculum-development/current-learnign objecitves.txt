@@ -1,0 +1,22 @@
+Color
+−
+Learn how color contrast and color usage affect users with low vision and color vision deficiencies. This lesson covers contrast ratios, color as information, and testing with Stark's contrast tools.
+
+Knowledge Objectives
+Explain why color alone cannot be the sole method of conveying information (e.g., error states, required fields, status indicators).
+Define the contrast ratio requirements: 4.5:1 for regular text, 3:1 for large text (24px+ or 18.5px bold), and 3:1 for UI components.
+Describe how users with color vision deficiencies (protanopia, deuteranopia, tritanopia) perceive interfaces differently.
+Explain WCAG 1.4.1 (Use of Color), 1.4.3 (Contrast Minimum), and 1.4.11 (Non-text Contrast) requirements.
+Skills Objectives
+Test designs against the Adobe Design Accessibility Checklist color section with 90%+ accuracy.
+Use Stark's contrast checker to measure text and UI element contrast ratios.
+Use Stark's color vision simulator to view designs as users with color vision deficiencies would see them.
+Identify instances where color is the only indicator of meaning (errors, links, status) and flag for remediation.
+Application Objectives
+Flag color contrast and color-only issues during design reviews using the Adobe Design Accessibility Checklist.
+Document contrast failures with specific ratio measurements and recommend fixes.
+Explain color accessibility requirements to team members in clear, non-technical language.
+Assessment
+Checklist-based testing: Review sample interfaces and identify color issues with 90%+ accuracy.
+Contrast audit: Use Stark to test a design and document all contrast failures with measurements.
+Color-only identification: Find all instances in a design where color alone conveys meaning.

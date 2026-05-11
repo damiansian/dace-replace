@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lesson 03: Color - Canvas Preview</title>
+</head>
+<body style="margin: 0; padding: 20px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif; background-color: #ffffff; color: #333333; line-height: 1.6;">
+  <!-- Note: This is a preview file. When copying to Canvas, copy only the content below this line -->
+  
+  <div style="max-width: 900px; margin: 0; padding: 24px 0 48px 0;">
+
+    <!-- Header Section -->
+    <div style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); border-radius: 8px; padding: 24px 28px; margin-bottom: 28px; border-left: 5px solid #495057;">
+      <h2 style="margin: 0 0 12px 0; font-size: 28px; font-weight: 600; color: #212529;">Lesson 03: Color</h2>
+      <div style="display: flex; flex-wrap: wrap; gap: 14px; margin-top: 18px;">
+        <span style="display: inline-flex; align-items: center; gap: 8px; background-color: #e6fcf5; color: #087f5b; padding: 10px 18px; border-radius: 24px; font-size: 15px; font-weight: 500;">
+          <span style="font-size: 18px;">🔍</span> Discover Badge
+        </span>
+        <span style="display: inline-flex; align-items: center; gap: 8px; background-color: #e7f5ff; color: #1864ab; padding: 10px 18px; border-radius: 24px; font-size: 15px; font-weight: 500;">
+          <span style="font-size: 18px;">🏷️</span> Module 1C
+        </span>
+      </div>
+    </div>
+
+    <!-- Introduction -->
+    <p style="font-size: 17px; color: #495057; margin-bottom: 16px; padding: 0 4px;">
+      Color is one of the most powerful—and most commonly misused—tools in design. When used well, color enhances understanding and guides attention. When used poorly, it creates barriers that exclude millions of users.
+    </p>
+    <p style="font-size: 17px; color: #495057; margin-bottom: 32px; padding: 0 4px;">
+      In this lesson, you'll learn WCAG color requirements, how to test contrast ratios, identify when color alone is conveying information, and use simulation tools to verify your designs work for users with color vision deficiencies.
+    </p>
+
+    <!-- Lesson Activities Section -->
+    <div style="background-color: #fff; border: 1px solid #dee2e6; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #fa5252;">
+      <h3 style="margin: 0 0 8px 0; font-size: 20px; font-weight: 600; color: #212529; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">🎯</span> Lesson Activities
+      </h3>
+      <p style="margin: 0 0 20px 0; color: #495057; font-size: 15px;">Complete these activities for this in-person lesson.</p>
+      
+      <!-- Activity Links -->
+      <table role="presentation" style="width: 100%; border-collapse: separate; border-spacing: 0 12px;">
+        <tr>
+          <td style="width: 44px; background-color: #f8f9fa; border: 1px solid #e9ecef; border-radius: 8px 0 0 8px; padding: 16px; text-align: center; vertical-align: middle;">
+            <span style="display: inline-block; width: 44px; height: 44px; background-color: #f3d9fa; border-radius: 8px; font-size: 22px; text-align: center; line-height: 44px;">🎨</span>
+          </td>
+          <td style="background-color: #f8f9fa; border-top: 1px solid #e9ecef; border-bottom: 1px solid #e9ecef; padding: 16px 12px; vertical-align: middle;">
+            <a href="https://www.figma.com/design/qqZXLIs7sA9HQVIUqHUoGt/DACE---Cohort-1?node-id=366-1163" target="_blank" style="text-decoration: none;"><strong style="color: #212529; font-size: 15px;">Lesson in Figma</strong></a><br>
+            <span style="color: #495057; font-size: 13px;">View the lesson walkthrough</span>
+          </td>
+          <td style="width: 40px; background-color: #f8f9fa; border: 1px solid #e9ecef; border-radius: 0 8px 8px 0; padding: 16px 16px 16px 0; text-align: right; vertical-align: middle;">
+            <span style="color: #495057; font-size: 18px;">→</span>
+          </td>
+        </tr>
+        <tr>
+          <td style="width: 44px; background-color: #f8f9fa; border: 1px solid #e9ecef; border-radius: 8px 0 0 8px; padding: 16px; text-align: center; vertical-align: middle;">
+            <span style="display: inline-block; width: 44px; height: 44px; background-color: #fff3bf; border-radius: 8px; font-size: 22px; text-align: center; line-height: 44px;">📋</span>
+          </td>
+          <td style="background-color: #f8f9fa; border-top: 1px solid #e9ecef; border-bottom: 1px solid #e9ecef; padding: 16px 12px; vertical-align: middle;">
+            <a href="#QUIZ_PLACEHOLDER" style="text-decoration: none;"><strong style="color: #212529; font-size: 15px;">Knowledge Check Quiz</strong></a><br>
+            <span style="color: #495057; font-size: 13px;">3 questions · Auto-graded · 3 points</span>
+          </td>
+          <td style="width: 40px; background-color: #f8f9fa; border: 1px solid #e9ecef; border-radius: 0 8px 8px 0; padding: 16px 16px 16px 0; text-align: right; vertical-align: middle;">
+            <span style="color: #495057; font-size: 18px;">→</span>
+          </td>
+        </tr>
+        <tr>
+          <td style="width: 44px; background-color: #f8f9fa; border: 1px solid #e9ecef; border-radius: 8px 0 0 8px; padding: 16px; text-align: center; vertical-align: middle;">
+            <span style="display: inline-block; width: 44px; height: 44px; background-color: #d0ebff; border-radius: 8px; font-size: 22px; text-align: center; line-height: 44px;">🛠️</span>
+          </td>
+          <td style="background-color: #f8f9fa; border-top: 1px solid #e9ecef; border-bottom: 1px solid #e9ecef; padding: 16px 12px; vertical-align: middle;">
+            <a href="#PROJECT_PLACEHOLDER" style="text-decoration: none;"><strong style="color: #212529; font-size: 15px;">Color and Forms Applied Practice</strong></a><br>
+            <span style="color: #495057; font-size: 13px;">Written response assessment · 24 points</span>
+          </td>
+          <td style="width: 40px; background-color: #f8f9fa; border: 1px solid #e9ecef; border-radius: 0 8px 8px 0; padding: 16px 16px 16px 0; text-align: right; vertical-align: middle;">
+            <span style="color: #495057; font-size: 18px;">→</span>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- Video Section -->
+    <div style="background-color: #f8f9fa; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #845ef7;">
+      <h3 style="margin: 0 0 8px 0; font-size: 20px; font-weight: 600; color: #212529; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">🎬</span> The Explainer
+      </h3>
+      <p style="margin: 0 0 20px 0; color: #495057; font-size: 15px;">Get an overview of color accessibility before the live session.</p>
+      
+      <div style="padding:56.25% 0 0 0;position:relative;border-radius: 6px; overflow: hidden;">
+        <iframe src="https://player.vimeo.com/video/1146014372?badge=0&autopause=0&player_id=0&app_id=58479" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" allowfullscreen title="Lesson 03: Color Explainer"></iframe>
+      </div>
+    </div>
+
+    <!-- Learning Objectives Section -->
+    <div id="learning-objectives" style="background-color: #fff; border: 1px solid #dee2e6; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #1971c2;">
+      <h3 style="margin: 0 0 8px 0; font-size: 20px; font-weight: 600; color: #212529; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">📋</span> Learning Objectives
+      </h3>
+      <p style="margin: 0 0 24px 0; color: #495057; font-size: 15px;">Learn WCAG color requirements, how to test contrast ratios, identify when color alone is conveying information, and use simulation tools to verify your designs work for users with color vision deficiencies.</p>
+      
+      <!-- Learning Outcomes -->
+      <h4 style="margin: 0 0 12px 0; font-size: 17px; font-weight: 600; color: #212529;">Learning Outcomes</h4>
+      <p style="margin: 0 0 16px 0; color: #495057; font-size: 14px;">By the end of this lesson, you will be able to:</p>
+      
+      <table style="width: 100%; border-collapse: collapse; font-size: 15px; margin-bottom: 28px;">
+        <thead>
+          <tr style="background-color: #f1f3f4;">
+            <th scope="col" style="padding: 12px 16px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6; width: 70px;">ID</th>
+            <th scope="col" style="padding: 12px 16px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">Outcome</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="padding: 14px 16px; border-bottom: 1px solid #e9ecef; color: #212529; font-weight: 600; font-family: monospace;">1C.01</td>
+            <td style="padding: 14px 16px; border-bottom: 1px solid #e9ecef; color: #212529;"><strong>Apply WCAG color contrast requirements</strong> to test and specify contrast ratios meeting WCAG 2.2 AA for text, images of text, and user interface components</td>
+          </tr>
+          <tr style="background-color: #f8f9fa;">
+            <td style="padding: 14px 16px; border-bottom: 1px solid #e9ecef; color: #212529; font-weight: 600; font-family: monospace;">1C.02</td>
+            <td style="padding: 14px 16px; border-bottom: 1px solid #e9ecef; color: #212529;"><strong>Identify color-only information failures</strong> by recognizing when color is used as the only visual means of conveying information and propose non-color alternatives</td>
+          </tr>
+          <tr>
+            <td style="padding: 14px 16px; color: #212529; font-weight: 600; font-family: monospace;">1C.03</td>
+            <td style="padding: 14px 16px; color: #212529;"><strong>Test designs with color vision simulation</strong> using grayscale simulation to verify that information conveyed with color remains perceivable to users with color vision deficiencies</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Related WCAG Success Criteria Section -->
+    <div style="background-color: #f8f9fa; border: 1px solid #dee2e6; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #0ca678;">
+      <h3 style="margin: 0 0 16px 0; font-size: 20px; font-weight: 600; color: #212529; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">📜</span> Related WCAG Success Criteria
+      </h3>
+      <ul style="margin: 0; padding-left: 24px; color: #212529;">
+        <li style="margin-bottom: 8px;"><strong>1.4.1 Use of Color (Level A):</strong> Color cannot be the only way information is conveyed</li>
+        <li style="margin-bottom: 8px;"><strong>1.4.3 Contrast (Minimum) (Level AA):</strong> Text must have sufficient lightness difference from background</li>
+        <li><strong>1.4.11 Non-text Contrast (Level AA):</strong> UI components and graphical objects must have sufficient contrast</li>
+      </ul>
+    </div>
+
+    <!-- Key Concepts Section -->
+    <div style="background-color: #fff; border: 1px solid #dee2e6; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #f59f00;">
+      <h3 style="margin: 0 0 20px 0; font-size: 20px; font-weight: 600; color: #212529; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">💡</span> Key Concepts
+      </h3>
+
+      <!-- Concept 1: The Three WCAG Requirements -->
+      <div style="margin-bottom: 32px;">
+        <h4 style="margin: 0 0 12px 0; font-size: 18px; font-weight: 600; color: #212529;">The Three WCAG Color Requirements</h4>
+        <p style="margin: 0 0 16px 0; color: #495057; font-size: 15px;">WCAG has three success criteria that govern how we use color in design:</p>
+        
+        <div style="background-color: #f8f9fa; border-left: 4px solid #1971c2; padding: 16px; margin-bottom: 16px;">
+          <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 15px;">SC 1.4.3: Contrast (Minimum) — Level AA</p>
+          <p style="margin: 0; color: #495057; font-size: 14px;">Text and images of text must have sufficient contrast:</p>
+          <ul style="margin: 8px 0 0 0; padding-left: 20px; color: #495057; font-size: 14px;">
+            <li><strong>4.5:1</strong> for regular text (&lt; 24px or &lt; 18.5px bold)</li>
+            <li><strong>3:1</strong> for large text (≥ 24px or ≥ 18.5px bold)</li>
+          </ul>
+        </div>
+
+        <div style="background-color: #f8f9fa; border-left: 4px solid #1971c2; padding: 16px; margin-bottom: 16px;">
+          <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 15px;">SC 1.4.11: Non-text Contrast — Level AA</p>
+          <p style="margin: 0; color: #495057; font-size: 14px;">User interface components and graphical objects must have sufficient contrast:</p>
+          <ul style="margin: 8px 0 0 0; padding-left: 20px; color: #495057; font-size: 14px;">
+            <li><strong>3:1</strong> for UI component boundaries (buttons, inputs, focus indicators)</li>
+            <li><strong>3:1</strong> for graphical objects (icons, charts, diagrams)</li>
+          </ul>
+        </div>
+
+        <div style="background-color: #f8f9fa; border-left: 4px solid #1971c2; padding: 16px;">
+          <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 15px;">SC 1.4.1: Use of Color — Level A</p>
+          <p style="margin: 0; color: #495057; font-size: 14px;">Color cannot be the only way you convey information:</p>
+          <ul style="margin: 8px 0 0 0; padding-left: 20px; color: #495057; font-size: 14px;">
+            <li>Required form fields need more than color (add asterisk or text label)</li>
+            <li>Links need more than color (add underline)</li>
+            <li>Status indicators need more than color (add icons or text)</li>
+            <li>Chart categories need more than color (add labels or patterns)</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Concept 2: Who's Affected -->
+      <div style="margin-bottom: 32px;">
+        <h4 style="margin: 0 0 12px 0; font-size: 18px; font-weight: 600; color: #212529;">Who's Affected by Color Accessibility</h4>
+        <ul style="margin: 0; padding-left: 20px; color: #495057; font-size: 15px;">
+          <li style="margin-bottom: 8px;"><strong>15% of working-age adults</strong> have some form of vision impairment, including reduced contrast sensitivity that makes text difficult to read.</li>
+          <li style="margin-bottom: 8px;"><strong>~300 million people globally</strong> (approximately 8% of males and 0.5% of females) have color vision deficiencies that affect how they perceive hue differences.</li>
+          <li style="margin-bottom: 0;"><strong>Everyone</strong> experiences situational disabilities: glare on screens, low battery mode (grayscale), bright sunlight reducing contrast.</li>
+        </ul>
+        <p style="margin: 12px 0 0 0; color: #495057; font-size: 15px; font-style: italic;">This isn't a small edge case. Color accessibility helps a significant portion of your users every day.</p>
+      </div>
+
+      <!-- Concept 3: Contrast Requirements Explained -->
+      <div style="margin-bottom: 32px;">
+        <h4 style="margin: 0 0 12px 0; font-size: 18px; font-weight: 600; color: #212529;">Contrast Requirements Explained</h4>
+        
+        <p style="margin: 0 0 12px 0; font-weight: 600; color: #212529; font-size: 15px;">Why Different Ratios?</p>
+        <p style="margin: 0 0 16px 0; color: #495057; font-size: 15px;">Larger text with thicker strokes is easier to read at lower contrast. That's why WCAG allows 3:1 for large text (24px or larger, or 18.5px bold or larger) but requires 4.5:1 for regular text.</p>
+
+        <p style="margin: 0 0 12px 0; font-weight: 600; color: #212529; font-size: 15px;">What About Disabled Buttons?</p>
+        <div style="background-color: #e7f5ff; border-left: 4px solid #1971c2; padding: 16px; margin-bottom: 16px;">
+          <p style="margin: 0 0 8px 0; color: #495057; font-size: 15px;">Inactive/disabled UI components are explicitly exempt from contrast requirements per WCAG:</p>
+          <p style="margin: 0; color: #495057; font-size: 14px; font-style: italic;">"User Interface Components that are not available for user interaction (e.g., a disabled control in HTML) are not required to meet contrast requirements."</p>
+          <p style="margin: 8px 0 0 0; color: #495057; font-size: 15px; font-weight: 600;">Don't waste time testing disabled buttons—focus on active states.</p>
+        </div>
+
+        <p style="margin: 0 0 12px 0; font-weight: 600; color: #212529; font-size: 15px;">How to Measure UI Component Contrast</p>
+        <p style="margin: 0 0 12px 0; color: #495057; font-size: 15px;">We need to test the <strong>visible information required to understand the purpose and function</strong> of the control. This is sometimes, but not always, the border or the fill.</p>
+
+        <div style="background-color: #e7f5ff; border-left: 4px solid #1971c2; padding: 16px; margin-bottom: 16px;">
+          <p style="margin: 0 0 12px 0; font-weight: 600; color: #212529; font-size: 14px;">Examples:</p>
+          <ul style="margin: 0; padding-left: 20px; color: #495057; font-size: 14px; line-height: 1.7;">
+            <li style="margin-bottom: 10px;"><strong>Icon-only button with no fill:</strong> Test the icon against the background it sits on (3:1 required)</li>
+            <li style="margin-bottom: 10px;"><strong>Icon or text on a button with fill:</strong> Test the icon/text against the button fill (3:1 for icons, 4.5:1 or 3:1 for text depending on size). The button fill does NOT need to be 3:1 to the background.</li>
+            <li style="margin-bottom: 10px;"><strong>Button with both fill and border:</strong> Apply the same principle—test what's needed to identify the button's purpose</li>
+            <li style="margin-bottom: 0;"><strong>Focus indicators:</strong> Test outline color vs background (3:1 required)</li>
+          </ul>
+        </div>
+
+        <div style="background-color: #fff3bf; border-left: 4px solid #fab005; padding: 16px; margin-bottom: 16px;">
+          <p style="margin: 0; color: #495057; font-size: 15px;"><strong>The Test:</strong> "If this button had no fill, could I understand its purpose and function?" If yes, then the fill and border are incidental and not required to meet contrast minimums.</p>
+        </div>
+
+        <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 15px;">Common Failures:</p>
+        <ul style="margin: 0; padding-left: 20px; color: #495057; font-size: 15px;">
+          <li>Gray text on white background: Often fails 4.5:1</li>
+          <li>Light borders on light backgrounds: Often fails 3:1</li>
+          <li>Icon-only buttons with insufficient icon contrast: Often fails 3:1</li>
+          <li>Placeholder text too light: Should meet 4.5:1 (but don't rely on placeholders as labels)</li>
+        </ul>
+      </div>
+
+      <!-- Concept 4: Color as Information -->
+      <div style="margin-bottom: 32px;">
+        <h4 style="margin: 0 0 12px 0; font-size: 18px; font-weight: 600; color: #212529;">Color as Information</h4>
+        <p style="margin: 0 0 16px 0; color: #495057; font-size: 15px;">Color can enhance meaning, but it can't carry meaning alone.</p>
+
+        <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 15px;">Common Failures:</p>
+
+        <div style="margin-bottom: 16px;">
+          <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 14px;">Required Fields (F81)</p>
+          <ul style="margin: 0; padding-left: 20px; color: #495057; font-size: 14px;">
+            <li>❌ Fail: Field label shown only in red</li>
+            <li>✓ Pass: Field label with asterisk (*), optionally in red</li>
+            <li>✓ Pass: Field label with "(required)" text, optionally in red</li>
+          </ul>
+        </div>
+
+        <div style="margin-bottom: 16px;">
+          <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 14px;">Links in Body Text (F73)</p>
+          <ul style="margin: 0; padding-left: 20px; color: #495057; font-size: 14px;">
+            <li>❌ Fail: Blue text with no underline</li>
+            <li>✓ Pass: Blue text with underline</li>
+            <li>✓ Pass: Text with 3:1 contrast to surrounding text PLUS underline on hover</li>
+          </ul>
+        </div>
+
+        <div style="margin-bottom: 16px;">
+          <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 14px;">Status Indicators</p>
+          <ul style="margin: 0; padding-left: 20px; color: #495057; font-size: 14px;">
+            <li>❌ Fail: "Active" in green, "Inactive" in red (color only)</li>
+            <li>✓ Pass: "Active ✓" with checkmark icon + green</li>
+            <li>✓ Pass: "Inactive ⨉" with X icon + red</li>
+          </ul>
+        </div>
+
+        <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 15px;">Non-Color Indicators Include:</p>
+        <ul style="margin: 0 0 16px 0; padding-left: 20px; color: #495057; font-size: 15px;">
+          <li>Icons or symbols (✓ ⚠ ⨉)</li>
+          <li>Text labels</li>
+          <li>Underlines or borders</li>
+          <li>Patterns or textures</li>
+          <li>Shape differences</li>
+        </ul>
+
+        <div style="background-color: #fff3bf; border-left: 4px solid #fab005; padding: 16px;">
+          <p style="margin: 0; color: #495057; font-size: 15px; font-weight: 600;">The Test:</p>
+          <p style="margin: 8px 0 0 0; color: #495057; font-size: 15px;">If you removed all color and showed your design in grayscale, could users still get all the same information? If no, you have a color-only failure.</p>
+        </div>
+      </div>
+
+      <!-- Concept 5: Grayscale Simulation -->
+      <div style="margin-bottom: 32px;">
+        <h4 style="margin: 0 0 12px 0; font-size: 18px; font-weight: 600; color: #212529;">Grayscale Simulation</h4>
+        
+        <p style="margin: 0 0 12px 0; font-weight: 600; color: #212529; font-size: 15px;">Why Grayscale is Sufficient</p>
+        <p style="margin: 0 0 16px 0; color: #495057; font-size: 15px;">Color vision deficiencies affect hue perception (red vs green, blue vs yellow). Grayscale removes all hue information, leaving only luminance (lightness).</p>
+        <div style="background-color: #e7f5ff; border-left: 4px solid #1971c2; padding: 16px; margin-bottom: 16px;">
+          <p style="margin: 0; color: #495057; font-size: 15px;">If your design works in grayscale, it works for ALL types of color vision deficiency—including protanopia (red-blind), deuteranopia (green-blind), and tritanopia (blue-blind).</p>
+          <p style="margin: 8px 0 0 0; color: #495057; font-size: 15px; font-weight: 600;">You don't need to test every CVD type separately. Grayscale is the most stringent test and covers everything.</p>
+        </div>
+
+        <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 15px;">How to Test with Stark</p>
+        <ol style="margin: 0 0 16px 0; padding-left: 20px; color: #495057; font-size: 15px;">
+          <li>Open Stark in Figma</li>
+          <li>Navigate to Vision Simulator</li>
+          <li>Select Achromatopsia (grayscale/complete color blindness)</li>
+          <li>Review your design: Is all information still perceivable?</li>
+          <li>Document anything that becomes unclear</li>
+          <li>Propose fixes (icons, text, patterns, underlines)</li>
+          <li>Verify fixes by running simulation again</li>
+        </ol>
+
+        <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 15px;">What to Check:</p>
+        <ul style="margin: 0; padding-left: 20px; color: #495057; font-size: 15px;">
+          <li>Required fields still visible?</li>
+          <li>Links distinguishable from body text?</li>
+          <li>Status indicators clear?</li>
+          <li>Interactive controls visible?</li>
+          <li>Chart categories identifiable?</li>
+          <li>Error states obvious?</li>
+        </ul>
+      </div>
+
+      <!-- Concept 6: Testing Workflow -->
+      <div>
+        <h4 style="margin: 0 0 12px 0; font-size: 18px; font-weight: 600; color: #212529;">Testing Workflow with Stark</h4>
+        <p style="margin: 0 0 16px 0; color: #495057; font-size: 15px; font-weight: 600;">Your Complete Color Accessibility Workflow:</p>
+
+        <div style="background-color: #f8f9fa; border-radius: 8px; padding: 20px; border-left: 5px solid #1c7ed6;">
+          <div style="margin-bottom: 20px;">
+            <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 15px;">Step 1: Text Contrast (SC 1.4.3)</p>
+            <ul style="margin: 0; padding-left: 20px; color: #495057; font-size: 14px;">
+              <li>Use Stark &gt; Contrast Checker</li>
+              <li>Test all text elements (skip disabled text)</li>
+              <li>Verify 4.5:1 for regular text, 3:1 for large text</li>
+              <li>Document failures with current and required ratios</li>
+            </ul>
+          </div>
+
+          <div style="margin-bottom: 20px;">
+            <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 15px;">Step 2: UI Component Contrast (SC 1.4.11)</p>
+            <ul style="margin: 0; padding-left: 20px; color: #495057; font-size: 14px;">
+              <li>Test button borders, input borders, focus indicators</li>
+              <li>Verify 3:1 for component boundaries vs background</li>
+              <li>Skip disabled components (they're exempt)</li>
+              <li>Document failures</li>
+            </ul>
+          </div>
+
+          <div style="margin-bottom: 20px;">
+            <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 15px;">Step 3: Grayscale Simulation (SC 1.4.1)</p>
+            <ul style="margin: 0; padding-left: 20px; color: #495057; font-size: 14px;">
+              <li>Run Stark &gt; Vision Simulator &gt; Achromatopsia</li>
+              <li>Scan entire design: Is everything still perceivable?</li>
+              <li>Document elements that become unclear</li>
+            </ul>
+          </div>
+
+          <div style="margin-bottom: 20px;">
+            <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 15px;">Step 4: Identify Color-Only Failures</p>
+            <ul style="margin: 0; padding-left: 20px; color: #495057; font-size: 14px;">
+              <li>List: required fields, links, status indicators, errors, selections</li>
+              <li>For each: propose non-color alternative</li>
+              <li>Verify fixes work in grayscale</li>
+            </ul>
+          </div>
+
+          <div>
+            <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 15px;">Step 5: Annotate for Engineering</p>
+            <ul style="margin: 0; padding-left: 20px; color: #495057; font-size: 14px;">
+              <li>Use Stark Blueline annotations (from L01)</li>
+              <li>Include: colors, ratios, WCAG SCs, recommended fixes</li>
+              <li>Example: "Text #999999 on #FFFFFF = 2.8:1. Fails SC 1.4.3 (requires 4.5:1). Recommend #595959 (7.0:1)."</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Assessment Section -->
+    <div style="background-color: #f8f9fa; border: 1px solid #dee2e6; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #845ef7;">
+      <h3 style="margin: 0 0 20px 0; font-size: 20px; font-weight: 600; color: #212529; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">📝</span> Assessment
+      </h3>
+
+      <!-- Knowledge Check -->
+      <div style="background-color: #fff; border-radius: 6px; padding: 20px; margin-bottom: 20px; border: 1px solid #e9ecef;">
+        <h4 style="margin: 0 0 8px 0; font-size: 16px; font-weight: 600; color: #212529;">Knowledge Check Quiz</h4>
+        <p style="margin: 0 0 4px 0; font-size: 13px; color: #495057;">5 questions | 5 points | Auto-graded</p>
+        <p style="margin: 12px 0 0 0; font-size: 14px; color: #212529;">
+          Test your understanding of color accessibility requirements. Open-book, just like real design work.
+        </p>
+      </div>
+
+      <!-- Applied Practice -->
+      <div style="background-color: #fff; border-radius: 6px; padding: 20px; border: 1px solid #e9ecef;">
+        <h4 style="margin: 0 0 8px 0; font-size: 16px; font-weight: 600; color: #212529;">Applied Practice: Color and Forms</h4>
+        <p style="margin: 0 0 12px 0; font-size: 13px; color: #495057;">24 points | Instructor-graded | Covers L03 + L04</p>
+        <p style="margin: 0 0 16px 0; font-size: 14px; color: #212529;">
+          You'll analyze a single design stimulus (an "Invite people to project" modal) for both color contrast issues and form labeling issues. This reflects real-world practice where designers evaluate multiple accessibility concerns on one design.
+        </p>
+        
+        <table style="width: 100%; border-collapse: collapse; font-size: 13px;">
+          <thead>
+            <tr style="background-color: #f3f0ff;">
+              <th scope="col" style="padding: 10px 12px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #d0bfff;">Response</th>
+              <th scope="col" style="padding: 10px 12px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #d0bfff;">Outcome</th>
+              <th scope="col" style="padding: 10px 12px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #d0bfff;">What We're Looking For</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="background-color: #fff;">
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; color: #212529;">1: Contrast Checker Analysis</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;"><a href="#learning-objectives" style="font-family: monospace; color: #5f3dc4; font-weight: 600; text-decoration: underline;">1C.01</a></td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; color: #212529;">Identify layer name; determine real issue vs false positive</td>
+            </tr>
+            <tr style="background-color: #f8f9fa;">
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; color: #212529;">2: TextField Border Contrast</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;"><a href="#learning-objectives" style="font-family: monospace; color: #5f3dc4; font-weight: 600; text-decoration: underline;">1C.01</a></td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; color: #212529;">Apply SC 1.4.11 "required for identification" test</td>
+            </tr>
+            <tr style="background-color: #fff;">
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; color: #212529;">3: Cancel Button Border</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;"><a href="#learning-objectives" style="font-family: monospace; color: #5f3dc4; font-weight: 600; text-decoration: underline;">1C.01</a></td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; color: #212529;">Apply SC 1.4.11 "required for identification" test</td>
+            </tr>
+            <tr style="background-color: #f8f9fa;">
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; color: #212529;">4: Tag Field Label</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;"><a href="#learning-objectives" style="font-family: monospace; color: #5f3dc4; font-weight: 600; text-decoration: underline;">1D.01</a></td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; color: #212529;">Evaluate visible label; explain SC 3.3.2 to stakeholder</td>
+            </tr>
+            <tr style="background-color: #fff;">
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; color: #212529;">5: Picker Label</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;"><a href="#learning-objectives" style="font-family: monospace; color: #5f3dc4; font-weight: 600; text-decoration: underline;">1D.01</a></td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; color: #212529;">Evaluate visible label; explain SC 3.3.2 to stakeholder</td>
+            </tr>
+            <tr style="background-color: #f8f9fa;">
+              <td style="padding: 10px 12px; color: #212529;">6: TextField Label</td>
+              <td style="padding: 10px 12px;"><a href="#learning-objectives" style="font-family: monospace; color: #5f3dc4; font-weight: 600; text-decoration: underline;">1D.01</a></td>
+              <td style="padding: 10px 12px; color: #212529;">Identify placeholder-only label failure</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Resources Section -->
+    <div style="background-color: #fff; border: 1px solid #dee2e6; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #20c997;">
+      <h3 style="margin: 0 0 20px 0; font-size: 20px; font-weight: 600; color: #212529; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">📚</span> Resources
+      </h3>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 20px;">
+        <!-- W3C Resources -->
+        <div style="flex: 1; min-width: 260px;">
+          <h4 style="margin: 0 0 12px 0; font-size: 15px; font-weight: 600; color: #212529;">W3C Resources</h4>
+          <ul style="margin: 0; padding-left: 20px; font-size: 14px;">
+            <li style="margin-bottom: 8px;">
+              <a href="https://www.w3.org/WAI/WCAG22/Understanding/use-of-color.html" style="color: #1864ab; text-decoration: underline;">SC 1.4.1: Use of Color</a>
+            </li>
+            <li style="margin-bottom: 8px;">
+              <a href="https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html" style="color: #1864ab; text-decoration: underline;">SC 1.4.3: Contrast (Minimum)</a>
+            </li>
+            <li style="margin-bottom: 8px;">
+              <a href="https://www.w3.org/WAI/WCAG22/Understanding/non-text-contrast.html" style="color: #1864ab; text-decoration: underline;">SC 1.4.11: Non-text Contrast</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- WCAG Techniques -->
+        <div style="flex: 1; min-width: 260px;">
+          <h4 style="margin: 0 0 12px 0; font-size: 15px; font-weight: 600; color: #212529;">WCAG Techniques</h4>
+          <ul style="margin: 0; padding-left: 20px; font-size: 14px;">
+            <li style="margin-bottom: 8px;">
+              <a href="https://www.w3.org/WAI/WCAG22/Techniques/general/G14" style="color: #1864ab; text-decoration: underline;">G14: Information conveyed by color also in text</a>
+            </li>
+            <li style="margin-bottom: 8px;">
+              <a href="https://www.w3.org/WAI/WCAG22/Techniques/general/G18" style="color: #1864ab; text-decoration: underline;">G18: Ensuring 4.5:1 contrast for text</a>
+            </li>
+            <li>
+              <a href="https://www.w3.org/WAI/WCAG22/Techniques/general/G207" style="color: #1864ab; text-decoration: underline;">G207: Ensuring 3:1 contrast for icons</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Adobe Resources & Tools -->
+        <div style="flex: 1; min-width: 260px;">
+          <h4 style="margin: 0 0 12px 0; font-size: 15px; font-weight: 600; color: #212529;">Adobe Resources & Tools</h4>
+          <ul style="margin: 0; padding-left: 20px; font-size: 14px; color: #212529;">
+            <li style="margin-bottom: 8px;">Design Accessibility Checklist (Color section)</li>
+            <li style="margin-bottom: 8px;">Adobe Spectrum Design System (color tokens)</li>
+            <li style="margin-bottom: 8px;"><strong>Stark (Figma plugin)</strong> — Primary DACE tool</li>
+            <li style="margin-bottom: 8px;"><strong>WebAIM Contrast Checker</strong> — Quick checks</li>
+            <li><strong>Colour Contrast Analyser</strong> — Desktop app</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Up Next Section -->
+    <div style="background: linear-gradient(135deg, #d0ebff 0%, #a5d8ff 100%); border-radius: 8px; padding: 20px 24px; border-left: 5px solid #1971c2;">
+      <h3 style="margin: 0 0 8px 0; font-size: 18px; font-weight: 600; color: #1864ab; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 20px;">➡️</span> Up Next
+      </h3>
+      <p style="margin: 0; font-size: 15px; color: #212529;">
+        <strong>Lesson 04: Forms & Errors</strong> covers form field labeling, input purpose, and accessible error identification. You'll apply the color requirements you learned today specifically to form validation and error states. L04 builds directly on L03: error messages must not use color alone (SC 1.4.1), and error text must meet contrast requirements (SC 1.4.3).
+      </p>
+    </div>
+
+  </div>
+
+</body>
+</html>
+

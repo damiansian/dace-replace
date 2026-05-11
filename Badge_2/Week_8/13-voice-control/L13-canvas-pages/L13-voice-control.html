@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lesson 13: Voice Control - Canvas Preview</title>
+</head>
+<body style="margin: 0; padding: 20px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif; background-color: #ffffff; color: #333333; line-height: 1.6;">
+  <!-- Note: This is a preview file. When copying to Canvas, copy only the content below this line -->
+  
+  <div style="max-width: 900px; margin: 0; padding: 24px 0 48px 0;">
+
+    <!-- Header Section -->
+    <div style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); border-radius: 8px; padding: 24px 28px; margin-bottom: 28px; border-left: 5px solid #FF6B6B;">
+      <h2 style="margin: 0 0 12px 0; font-size: 28px; font-weight: 600; color: #212529;">Lesson 13: Voice Control</h2>
+      <div style="display: flex; flex-wrap: wrap; gap: 14px; margin-top: 18px;">
+        <span style="display: inline-flex; align-items: center; gap: 8px; background-color: #ffe3e3; color: #c92a2a; padding: 10px 18px; border-radius: 24px; font-size: 15px; font-weight: 500;">
+          <span style="font-size: 18px;">🎯</span> Define Badge
+        </span>
+        <span style="display: inline-flex; align-items: center; gap: 8px; background-color: #e7f5ff; color: #1864ab; padding: 10px 18px; border-radius: 24px; font-size: 15px; font-weight: 500;">
+          <span style="font-size: 18px;">🏷️</span> Module 2D
+        </span>
+      </div>
+    </div>
+
+    <!-- Introduction -->
+    <p style="font-size: 17px; color: #495057; margin-bottom: 16px; padding: 0 4px;">
+      Voice control is an assistive technology used by people who can see the screen but cannot reliably use a mouse or keyboard. Unlike screen reader users who navigate sequentially, voice control users interact by speaking commands: "click Submit," "type my email," "scroll down." The core principle is simple: voice control works best when users can say what they see.
+    </p>
+    <p style="font-size: 17px; color: #495057; margin-bottom: 32px; padding: 0 4px;">
+      In this lesson, you'll learn how voice control tools work, identify the six design patterns that create barriers for voice users, and master the Label in Name requirement (WCAG 2.5.3), the single most important success criterion for voice control accessibility. You'll also get hands-on experience using macOS Voice Control to test designs.
+    </p>
+
+    <!-- Lesson Activities Section -->
+    <div style="background-color: #fff; border: 1px solid #dee2e6; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #FF6B6B;">
+      <h3 style="margin: 0 0 8px 0; font-size: 20px; font-weight: 600; color: #212529; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">🎯</span> Lesson Activities
+      </h3>
+      <p style="margin: 0 0 20px 0; color: #495057; font-size: 15px;">Complete these activities for this lesson.</p>
+      
+      <!-- Activity Links -->
+      <table role="presentation" style="width: 100%; border-collapse: separate; border-spacing: 0 12px;">
+        <tr>
+          <td style="width: 44px; background-color: #f8f9fa; border: 1px solid #e9ecef; border-radius: 8px 0 0 8px; padding: 16px; text-align: center; vertical-align: middle;">
+            <span style="display: inline-block; width: 44px; height: 44px; background-color: #ffe3e3; border-radius: 8px; font-size: 22px; text-align: center; line-height: 44px;">🎨</span>
+          </td>
+          <td style="background-color: #f8f9fa; border-top: 1px solid #e9ecef; border-bottom: 1px solid #e9ecef; padding: 16px 12px; vertical-align: middle;">
+            <strong style="color: #212529; font-size: 15px;">Lesson in Figma</strong><br>
+            <span style="color: #495057; font-size: 13px;"><a href="https://www.figma.com/design/qqZXLIs7sA9HQVIUqHUoGt/DACE---Cohort-1?node-id=2650-5" target="_blank" rel="noopener noreferrer" style="color: #1864ab; text-decoration: underline;">View the lesson walkthrough</a></span>
+          </td>
+          <td style="width: 40px; background-color: #f8f9fa; border: 1px solid #e9ecef; border-radius: 0 8px 8px 0; padding: 16px 16px 16px 0; text-align: right; vertical-align: middle;">
+            <span style="color: #495057; font-size: 18px;">→</span>
+          </td>
+        </tr>
+        <tr>
+          <td style="width: 44px; background-color: #f8f9fa; border: 1px solid #e9ecef; border-radius: 8px 0 0 8px; padding: 16px; text-align: center; vertical-align: middle;">
+            <span style="display: inline-block; width: 44px; height: 44px; background-color: #fff3bf; border-radius: 8px; font-size: 22px; text-align: center; line-height: 44px;">📋</span>
+          </td>
+          <td style="background-color: #f8f9fa; border-top: 1px solid #e9ecef; border-bottom: 1px solid #e9ecef; padding: 16px 12px; vertical-align: middle;">
+            <strong style="color: #212529; font-size: 15px;">Knowledge Check Quiz</strong><br>
+            <span style="color: #495057; font-size: 13px;"><a href="https://canvas.instructure.com/courses/13608566/quizzes/25148716?module_item_id=149844747" target="_blank" rel="noopener noreferrer" style="color: #1864ab; text-decoration: underline;">5 questions · Auto-graded · 5 points</a></span>
+          </td>
+          <td style="width: 40px; background-color: #f8f9fa; border: 1px solid #e9ecef; border-radius: 0 8px 8px 0; padding: 16px 16px 16px 0; text-align: right; vertical-align: middle;">
+            <span style="color: #495057; font-size: 18px;">→</span>
+          </td>
+        </tr>
+        <tr>
+          <td style="width: 44px; background-color: #f8f9fa; border: 1px solid #e9ecef; border-radius: 8px 0 0 8px; padding: 16px; text-align: center; vertical-align: middle;">
+            <span style="display: inline-block; width: 44px; height: 44px; background-color: #d0ebff; border-radius: 8px; font-size: 22px; text-align: center; line-height: 44px;">🛠️</span>
+          </td>
+          <td style="background-color: #f8f9fa; border-top: 1px solid #e9ecef; border-bottom: 1px solid #e9ecef; padding: 16px 12px; vertical-align: middle;">
+            <strong style="color: #212529; font-size: 15px;">Applied Practice</strong><br>
+            <span style="color: #495057; font-size: 13px;"><a href="https://canvas.instructure.com/courses/13608566/assignments/62635629?module_item_id=149990789" target="_blank" rel="noopener noreferrer" style="color: #1864ab; text-decoration: underline;">Combined with L14: Voice control and high contrast testing</a></span>
+          </td>
+          <td style="width: 40px; background-color: #f8f9fa; border: 1px solid #e9ecef; border-radius: 0 8px 8px 0; padding: 16px 16px 16px 0; text-align: right; vertical-align: middle;">
+            <span style="color: #495057; font-size: 18px;">→</span>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- Video Section -->
+    <div style="background-color: #f8f9fa; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #845ef7;">
+      <h3 style="margin: 0 0 8px 0; font-size: 20px; font-weight: 600; color: #212529; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">🎬</span> The Explainer
+      </h3>
+      <p style="margin: 0 0 20px 0; color: #495057; font-size: 15px;">Get an overview of voice control accessibility before the live session.</p>
+      
+      <div style="padding:56.25% 0 0 0;position:relative;border-radius: 6px; overflow: hidden;">
+        <iframe src="https://player.vimeo.com/video/1168918698?badge=0&autopause=0&player_id=0&app_id=58479" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" allowfullscreen title="Lesson 13: Voice Control Explainer"></iframe>
+      </div>
+    </div>
+
+    <!-- Learning Objectives Section -->
+    <div id="learning-objectives" style="background-color: #fff; border: 1px solid #dee2e6; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #1971c2;">
+      <h3 style="margin: 0 0 8px 0; font-size: 20px; font-weight: 600; color: #212529; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">📋</span> Learning Objectives
+      </h3>
+      <p style="margin: 0 0 24px 0; color: #495057; font-size: 15px;">Learn how voice control users interact with digital interfaces, identify common barriers, and apply the Label in Name requirement.</p>
+      
+      <!-- Learning Outcomes -->
+      <h4 style="margin: 0 0 12px 0; font-size: 17px; font-weight: 600; color: #212529;">Learning Outcomes</h4>
+      <p style="margin: 0 0 16px 0; color: #495057; font-size: 14px;">By the end of this lesson, you will be able to:</p>
+      
+      <table style="width: 100%; border-collapse: collapse; font-size: 15px; margin-bottom: 28px;">
+        <thead>
+          <tr style="background-color: #f1f3f4;">
+            <th scope="col" style="padding: 12px 16px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6; width: 70px;">ID</th>
+            <th scope="col" style="padding: 12px 16px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">Outcome</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="padding: 14px 16px; border-bottom: 1px solid #e9ecef; color: #212529; font-weight: 600; font-family: monospace;">2D.01</td>
+            <td style="padding: 14px 16px; border-bottom: 1px solid #e9ecef; color: #212529;"><strong>Navigate digital interfaces using voice control</strong> including name-based targeting, number overlay, and grid overlay methods</td>
+          </tr>
+          <tr style="background-color: #f8f9fa;">
+            <td style="padding: 14px 16px; border-bottom: 1px solid #e9ecef; color: #212529; font-weight: 600; font-family: monospace;">2D.02</td>
+            <td style="padding: 14px 16px; border-bottom: 1px solid #e9ecef; color: #212529;"><strong>Identify design patterns that create barriers for voice control users</strong> including missing accessible names, Label in Name mismatches, and duplicate names</td>
+          </tr>
+          <tr>
+            <td style="padding: 14px 16px; color: #212529; font-weight: 600; font-family: monospace;">2D.03</td>
+            <td style="padding: 14px 16px; color: #212529;"><strong>Apply Label in Name requirements (WCAG 2.5.3)</strong> to ensure visible labels match accessible names for voice activation</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Knowledge/Skills/Application Objectives -->
+      <h4 style="margin: 0 0 12px 0; font-size: 17px; font-weight: 600; color: #212529; padding-bottom: 8px; border-bottom: 2px solid #d0ebff;">Knowledge Objectives</h4>
+      <ul style="margin: 0 0 28px 0; padding-left: 24px; color: #212529; font-size: 14px;">
+        <li style="margin-bottom: 10px;">Explain how voice control tools query the accessibility tree to identify and target interactive elements by name.</li>
+        <li style="margin-bottom: 10px;">Describe the three voice control targeting methods: name-based (fastest), number overlay (fallback), and grid overlay (last resort).</li>
+        <li style="margin-bottom: 10px;">List the six common design patterns that create barriers for voice control users: missing accessible names, Label in Name mismatches, duplicate names, dynamic content, no keyboard support, and complex interactions.</li>
+        <li style="margin-bottom: 10px;">Explain WCAG 2.5.3 Label in Name (Level A): when a UI component has visible text, the accessible name must include that text.</li>
+        <li>Describe how accessible name calculation affects voice control targeting and why aria-label can break Label in Name compliance.</li>
+      </ul>
+
+      <h4 style="margin: 0 0 12px 0; font-size: 17px; font-weight: 600; color: #212529; padding-bottom: 8px; border-bottom: 2px solid #d0ebff;">Skills Objectives</h4>
+      <ul style="margin: 0 0 28px 0; padding-left: 24px; color: #212529; font-size: 14px;">
+        <li style="margin-bottom: 10px;">Navigate a digital interface using macOS Voice Control or Windows Voice Access, including name-based commands and overlay methods.</li>
+        <li style="margin-bottom: 10px;">Inspect accessible names in browser developer tools and compare them to visible text to detect Label in Name violations.</li>
+        <li style="margin-bottom: 10px;">Audit a page for voice control barriers using a structured checklist of the six barrier patterns.</li>
+        <li>Test interactive elements for keyboard operability as a prerequisite for voice control functionality.</li>
+      </ul>
+
+      <h4 style="margin: 0 0 12px 0; font-size: 17px; font-weight: 600; color: #212529; padding-bottom: 8px; border-bottom: 2px solid #d0ebff;">Application Objectives</h4>
+      <ul style="margin: 0 0 0 0; padding-left: 24px; color: #212529; font-size: 14px;">
+        <li style="margin-bottom: 10px;">Evaluate designs for voice control compatibility before engineering handoff, checking that visible labels will work as voice commands.</li>
+        <li style="margin-bottom: 10px;">Write accessible name annotations that satisfy both screen reader and voice control users by including visible text.</li>
+        <li>Integrate voice control testing into existing accessibility review workflows alongside screen reader and magnification testing.</li>
+      </ul>
+    </div>
+
+    <!-- Related WCAG Success Criteria Section -->
+    <div style="background-color: #f8f9fa; border: 1px solid #dee2e6; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #0ca678;">
+      <h3 style="margin: 0 0 16px 0; font-size: 20px; font-weight: 600; color: #212529; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">📜</span> Related WCAG Success Criteria
+      </h3>
+      <ul style="margin: 0; padding-left: 24px; color: #212529;">
+        <li style="margin-bottom: 8px;"><strong>2.5.3 Label in Name (Level A):</strong> For user interface components with labels that include text, the accessible name contains the text that is presented visually (the key voice control criterion)</li>
+        <li style="margin-bottom: 8px;"><strong>4.1.2 Name, Role, Value (Level A):</strong> All user interface components must have programmatic names and roles so voice control can target them</li>
+        <li style="margin-bottom: 8px;"><strong>1.1.1 Non-text Content (Level A):</strong> Non-text content (icon-only buttons, images) must have text alternatives that voice control can use as targets</li>
+        <li style="margin-bottom: 8px;"><strong>2.4.6 Headings and Labels (Level AA):</strong> Labels must be descriptive enough for voice control users to identify and target elements</li>
+        <li style="margin-bottom: 8px;"><strong>2.1.1 Keyboard (Level A):</strong> All functionality must be keyboard accessible because voice control sends keyboard events to interact with elements</li>
+        <li><strong>1.3.1 Info and Relationships (Level A):</strong> Programmatic structure helps voice control tools present available interactive targets</li>
+      </ul>
+    </div>
+
+    <!-- Key Concepts Section -->
+    <div style="background-color: #fff; border: 1px solid #dee2e6; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #f59f00;">
+      <h3 style="margin: 0 0 20px 0; font-size: 20px; font-weight: 600; color: #212529; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">💡</span> Key Concepts
+      </h3>
+
+      <!-- Concept 1: How Voice Control Works -->
+      <div style="margin-bottom: 32px;">
+        <h4 style="margin: 0 0 12px 0; font-size: 18px; font-weight: 600; color: #212529;">How Voice Control Works</h4>
+        <p style="margin: 0 0 16px 0; color: #495057; font-size: 15px;">Voice control allows users to operate digital interfaces by speaking commands. Unlike screen reader users who cannot see the screen, voice control users have full vision but cannot reliably use a mouse or keyboard. They may have motor disabilities, repetitive strain injuries, temporary injuries, or situational limitations. Voice control is built into every major platform: macOS Voice Control, Windows Voice Access, Dragon NaturallySpeaking, iOS Voice Control, and Android Voice Access.</p>
+        
+        <table style="width: 100%; border-collapse: collapse; font-size: 14px; margin-bottom: 16px;">
+          <thead>
+            <tr style="background-color: #f1f3f4;">
+              <th scope="col" style="padding: 10px 12px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">Targeting Method</th>
+              <th scope="col" style="padding: 10px 12px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">How It Works</th>
+              <th scope="col" style="padding: 10px 12px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">Speed</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; font-weight: 600;">Name-based</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">"Click Submit": activates the element whose accessible name matches</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Fast (ideal)</td>
+            </tr>
+            <tr style="background-color: #f8f9fa;">
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; font-weight: 600;">Number overlay</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">"Show numbers" then "click 7": numbers appear on all interactive elements</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Slow (fallback)</td>
+            </tr>
+            <tr>
+              <td style="padding: 10px 12px; font-weight: 600;">Grid overlay</td>
+              <td style="padding: 10px 12px;">"Show grid" then "click 3-7": a numbered grid covers the screen for precise positioning</td>
+              <td style="padding: 10px 12px;">Very slow (last resort)</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div style="background-color: #e7f5ff; border-left: 4px solid #1971c2; padding: 16px;">
+          <p style="margin: 0; color: #495057; font-size: 15px;"><strong>Designer Impact:</strong> Your goal is to make name-based targeting work for every interactive element. When it works, voice control is effortless. When it fails, users must fall back to slower, more cognitively demanding overlay methods.</p>
+        </div>
+      </div>
+
+      <!-- Concept 2: Voice Control Barriers -->
+      <div style="margin-bottom: 32px;">
+        <h4 style="margin: 0 0 12px 0; font-size: 18px; font-weight: 600; color: #212529;">Six Voice Control Barrier Patterns</h4>
+        <p style="margin: 0 0 16px 0; color: #495057; font-size: 15px;">Six design patterns account for the vast majority of voice control accessibility issues. Knowing these patterns helps you prevent barriers in your design specifications.</p>
+        
+        <table style="width: 100%; border-collapse: collapse; font-size: 14px; margin-bottom: 16px;">
+          <thead>
+            <tr style="background-color: #f1f3f4;">
+              <th scope="col" style="padding: 10px 12px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6; width: 30%;">Barrier</th>
+              <th scope="col" style="padding: 10px 12px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">Example</th>
+              <th scope="col" style="padding: 10px 12px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6; width: 25%;">Fix</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; font-weight: 600;">1. Missing accessible names</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Icon-only buttons (hamburger, close X) with no accessible name</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Always provide accessible names</td>
+            </tr>
+            <tr style="background-color: #f8f9fa;">
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; font-weight: 600;">2. Label in Name mismatch</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Button says "Search" but accessible name is "Find products"</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Accessible name must include visible text</td>
+            </tr>
+            <tr>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; font-weight: 600;">3. Duplicate accessible names</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Five "Read more" links on the same page</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Use unique, descriptive names</td>
+            </tr>
+            <tr style="background-color: #f8f9fa;">
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; font-weight: 600;">4. Dynamic content</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Dropdown menu disappears when user speaks a command</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Make targets stable and persistent</td>
+            </tr>
+            <tr>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; font-weight: 600;">5. No keyboard support</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Custom control only responds to mouse events</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Ensure keyboard operability</td>
+            </tr>
+            <tr style="background-color: #f8f9fa;">
+              <td style="padding: 10px 12px; font-weight: 600;">6. Complex interactions</td>
+              <td style="padding: 10px 12px;">Drag-and-drop with no alternative</td>
+              <td style="padding: 10px 12px;">Provide simple alternatives</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div style="background-color: #fff3bf; border-left: 4px solid #fab005; padding: 16px;">
+          <p style="margin: 0; color: #495057; font-size: 15px;"><strong>Designer Impact:</strong> These six patterns are all preventable through design decisions. Specifying accessible names, matching labels, using unique descriptors, and providing keyboard alternatives are design responsibilities.</p>
+        </div>
+      </div>
+
+      <!-- Concept 3: Label in Name -->
+      <div style="margin-bottom: 32px;">
+        <h4 style="margin: 0 0 12px 0; font-size: 18px; font-weight: 600; color: #212529;">Label in Name (WCAG 2.5.3)</h4>
+        <p style="margin: 0 0 16px 0; color: #495057; font-size: 15px;">WCAG 2.5.3 Label in Name (Level A) is the core success criterion for voice control. It requires that when a UI component has visible text, the accessible name must include that text. This ensures that voice commands using the visible label will match the accessible name.</p>
+        
+        <table style="width: 100%; border-collapse: collapse; font-size: 14px; margin-bottom: 16px;">
+          <thead>
+            <tr style="background-color: #f1f3f4;">
+              <th scope="col" style="padding: 10px 12px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">Visible Text</th>
+              <th scope="col" style="padding: 10px 12px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">Accessible Name</th>
+              <th scope="col" style="padding: 10px 12px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">Result</th>
+              <th scope="col" style="padding: 10px 12px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">Why</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Search</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; font-family: monospace;">Search</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; color: #1b5e20; font-weight: 600;">Pass</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Exact match</td>
+            </tr>
+            <tr style="background-color: #f8f9fa;">
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Submit</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; font-family: monospace;">Submit order</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; color: #1b5e20; font-weight: 600;">Pass</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Starts with visible text</td>
+            </tr>
+            <tr>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Close</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; font-family: monospace;">Close dialog</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; color: #1b5e20; font-weight: 600;">Pass</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Starts with visible text</td>
+            </tr>
+            <tr style="background-color: #f8f9fa;">
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Search</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; font-family: monospace;">Find products in catalog</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; color: #b91c1c; font-weight: 600;">Fail</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">"Search" not in accessible name</td>
+            </tr>
+            <tr>
+              <td style="padding: 10px 12px;">Submit</td>
+              <td style="padding: 10px 12px; font-family: monospace;">Send form data</td>
+              <td style="padding: 10px 12px; color: #b91c1c; font-weight: 600;">Fail</td>
+              <td style="padding: 10px 12px;">"Submit" not in accessible name</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div style="background-color: #e7f5ff; border-left: 4px solid #1971c2; padding: 16px; margin-bottom: 16px;">
+          <p style="margin: 0; color: #495057; font-size: 15px;"><strong>Best Practice:</strong> The accessible name should start with the visible text. "Submit order" is better than "Order submission form: Submit" because voice users naturally say "click Submit."</p>
+        </div>
+
+        <div style="background-color: #fff3bf; border-left: 4px solid #fab005; padding: 16px;">
+          <p style="margin: 0; color: #495057; font-size: 15px;"><strong>Designer Impact:</strong> What you write as the visible label in your design becomes what voice users will say. If the accessible name must differ, ensure it starts with the visible text. Add accessible name annotations to your design specs.</p>
+        </div>
+      </div>
+
+      <!-- Concept 4: Voice Control vs Screen Readers -->
+      <div>
+        <h4 style="margin: 0 0 12px 0; font-size: 18px; font-weight: 600; color: #212529;">Voice Control vs Screen Readers: Different Needs, Same Tree</h4>
+        <p style="margin: 0 0 16px 0; color: #495057; font-size: 15px;">Both voice control and screen readers depend on the accessibility tree, but their interaction models are fundamentally different. Understanding this helps designers write accessible names that work for both.</p>
+        
+        <table style="width: 100%; border-collapse: collapse; font-size: 14px; margin-bottom: 16px;">
+          <thead>
+            <tr style="background-color: #f1f3f4;">
+              <th scope="col" style="padding: 10px 12px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;"></th>
+              <th scope="col" style="padding: 10px 12px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">Screen Reader</th>
+              <th scope="col" style="padding: 10px 12px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">Voice Control</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; font-weight: 600;">User can see screen?</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">No</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Yes</td>
+            </tr>
+            <tr style="background-color: #f8f9fa;">
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; font-weight: 600;">Navigation model</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Sequential (reads content in order)</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Direct targeting (says element name)</td>
+            </tr>
+            <tr>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; font-weight: 600;">Key requirement</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Descriptive accessible names</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Accessible names match visible text</td>
+            </tr>
+            <tr style="background-color: #f8f9fa;">
+              <td style="padding: 10px 12px; font-weight: 600;">Primary WCAG SC</td>
+              <td style="padding: 10px 12px;">4.1.2 Name, Role, Value</td>
+              <td style="padding: 10px 12px;">2.5.3 Label in Name</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div style="background-color: #e7f5ff; border-left: 4px solid #1971c2; padding: 16px;">
+          <p style="margin: 0; color: #495057; font-size: 15px;"><strong>The Balance:</strong> Screen reader users benefit from descriptive accessible names ("Close dialog" is more helpful than "Close"). Voice control users need the accessible name to start with the visible text ("Close dialog" starts with "Close," so both needs are met). The best accessible names serve both audiences.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Assessment Section -->
+    <div style="background-color: #f8f9fa; border: 1px solid #dee2e6; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #845ef7;">
+      <h3 style="margin: 0 0 20px 0; font-size: 20px; font-weight: 600; color: #212529; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">📝</span> Assessment
+      </h3>
+
+      <!-- Knowledge Check -->
+      <div style="background-color: #fff; border-radius: 6px; padding: 20px; margin-bottom: 20px; border: 1px solid #e9ecef;">
+        <h4 style="margin: 0 0 8px 0; font-size: 16px; font-weight: 600; color: #212529;">Knowledge Check Quiz</h4>
+        <p style="margin: 0 0 4px 0; font-size: 13px; color: #495057;">5 questions | 5 points | Auto-graded</p>
+        <p style="margin: 12px 0 0 0; font-size: 14px; color: #212529;">
+          Test your understanding of voice control navigation, barrier patterns, and the Label in Name requirement.
+        </p>
+      </div>
+
+      <!-- Applied Practice -->
+      <div style="background-color: #fff; border-radius: 6px; padding: 20px; border: 1px solid #e9ecef;">
+        <h4 style="margin: 0 0 8px 0; font-size: 16px; font-weight: 600; color: #212529;">Applied Practice</h4>
+        <p style="margin: 0 0 12px 0; font-size: 13px; color: #495057;">Combined with L14 | Instructor-graded | Assignment details to be added</p>
+        <p style="margin: 0; font-size: 14px; color: #212529;">
+          Test a design or live product using voice control. Identify voice control barriers, verify Label in Name compliance, and document findings with specific recommendations for design improvements.
+        </p>
+      </div>
+    </div>
+
+    <!-- Resources Section -->
+    <div style="background-color: #fff; border: 1px solid #dee2e6; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #20c997;">
+      <h3 style="margin: 0 0 20px 0; font-size: 20px; font-weight: 600; color: #212529; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">📚</span> Resources
+      </h3>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 20px;">
+        <!-- WCAG and W3C -->
+        <div style="flex: 1; min-width: 260px;">
+          <h4 style="margin: 0 0 12px 0; font-size: 15px; font-weight: 600; color: #212529;">WCAG and W3C Resources</h4>
+          <ul style="margin: 0; padding-left: 20px; font-size: 14px;">
+            <li style="margin-bottom: 8px;">
+              <a href="https://www.w3.org/WAI/WCAG22/Understanding/label-in-name.html" style="color: #1864ab; text-decoration: underline;">Understanding 2.5.3 Label in Name</a>
+            </li>
+            <li style="margin-bottom: 8px;">
+              <a href="https://www.w3.org/WAI/WCAG22/Understanding/name-role-value.html" style="color: #1864ab; text-decoration: underline;">Understanding 4.1.2 Name, Role, Value</a>
+            </li>
+            <li style="margin-bottom: 8px;">
+              <a href="https://www.w3.org/TR/accname-1.2/" style="color: #1864ab; text-decoration: underline;">Accessible Name and Description Computation 1.2</a>
+            </li>
+            <li>
+              <a href="https://www.w3.org/WAI/WCAG22/Techniques/general/G211" style="color: #1864ab; text-decoration: underline;">Technique G211: Matching the accessible name to the visible label</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Voice Control Guides -->
+        <div style="flex: 1; min-width: 260px;">
+          <h4 style="margin: 0 0 12px 0; font-size: 15px; font-weight: 600; color: #212529;">Voice Control Documentation</h4>
+          <ul style="margin: 0; padding-left: 20px; font-size: 14px;">
+            <li style="margin-bottom: 8px;">
+              <a href="https://support.apple.com/guide/mac-help/use-voice-control-mh40719/mac" style="color: #1864ab; text-decoration: underline;">Apple: Use Voice Control on Mac</a>
+            </li>
+            <li style="margin-bottom: 8px;">
+              <a href="https://support.microsoft.com/en-us/topic/use-voice-access-to-control-your-pc-speak-commands-with-your-voice-0f862aae-58c6-4a76-9185-2b24c7316b5e" style="color: #1864ab; text-decoration: underline;">Microsoft: Use Voice Access</a>
+            </li>
+            <li style="margin-bottom: 8px;">
+              <a href="https://support.apple.com/guide/iphone/use-voice-control-iph2c21a3c88/ios" style="color: #1864ab; text-decoration: underline;">Apple: Voice Control on iPhone</a>
+            </li>
+            <li>
+              <a href="https://support.google.com/accessibility/android/answer/6151848" style="color: #1864ab; text-decoration: underline;">Google: Voice Access for Android</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Up Next Section -->
+    <div style="background: linear-gradient(135deg, #ffe3e3 0%, #ffc9c9 100%); border-radius: 8px; padding: 20px 24px; border-left: 5px solid #FF6B6B;">
+      <h3 style="margin: 0 0 8px 0; font-size: 18px; font-weight: 600; color: #c92a2a; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 20px;">➡️</span> Up Next
+      </h3>
+      <p style="margin: 0; font-size: 15px; color: #212529;">
+        <strong>Lesson 14: Windows High Contrast Mode</strong> introduces a completely different AT category focused on visual accessibility. You'll learn how forced colors affect design, test with Windows High Contrast Mode, and design for forced colors compatibility. Like voice control, high contrast mode reveals how design decisions affect real users with specific needs.
+      </p>
+    </div>
+
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,262 @@
+
+<p>&nbsp;</p>
+<div style="max-width: 900px; margin: 0; padding: 24px 0 48px 0;">
+<div style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); border-radius: 8px; padding: 24px 28px; margin-bottom: 28px; border-left: 5px solid #495057;">
+<h2 style="margin: 0 0 12px 0; font-size: 28px; color: #212529;">Lesson 06: Reflow & Zoom</h2>
+<div style="display: flex; flex-wrap: wrap; gap: 14px; margin-top: 18px;"><span style="display: inline-flex; align-items: center; gap: 8px; background-color: #e6fcf5; color: #087f5b; padding: 10px 18px; border-radius: 24px; font-size: 15px;"> <span style="font-size: 18px;">🔍</span> Discover Badge </span> <span style="display: inline-flex; align-items: center; gap: 8px; background-color: #e7f5ff; color: #1864ab; padding: 10px 18px; border-radius: 24px; font-size: 15px;"> <span style="font-size: 18px;">🏷️</span> Module 1F </span></div>
+</div>
+<p style="font-size: 17px; color: #495057; margin-bottom: 16px; padding: 0 4px;">Zoom accessibility is essential for millions of users with low vision who rely on browser zoom to read content. When designs break at high zoom levels, you're excluding more people than screen reader users combined. Text spacing adjustments help users with dyslexia, cognitive disabilities, and reading fatigue.</p>
+<p style="font-size: 17px; color: #495057; margin-bottom: 32px; padding: 0 4px;">In this lesson, you'll learn how to design layouts that reflow at 400% zoom, create components that accommodate text spacing adjustments, and ensure your designs work in both portrait and landscape orientations.</p>
+<div style="background-color: #f8f9fa; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #845ef7;">
+<h3 style="margin: 0 0 8px 0; font-size: 20px; color: #212529; display: flex; align-items: center; gap: 10px;"><span style="font-size: 22px;">🎬</span> The Explainer</h3>
+<p style="margin: 0 0 20px 0; color: #495057; font-size: 15px;">See why reflow and zoom accessibility matters for users with disabilities.</p>
+<div style="padding: 56.25% 0 0 0; position: relative; border-radius: 6px; overflow: hidden;"><iframe src="https://player.vimeo.com/video/1157686175?badge=0&autopause=0&player_id=0&app_id=58479" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" allowfullscreen title="Lesson 06: Reflow & Zoom Explainer"></iframe></div>
+</div>
+<div style="background-color: #fff; border: 1px solid #dee2e6; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #fa5252;">
+<h3 style="margin: 0 0 8px 0; font-size: 20px; color: #212529; display: flex; align-items: center; gap: 10px;"><span style="font-size: 22px;">🎯</span> Lesson Activities</h3>
+<p style="margin: 0 0 20px 0; color: #495057; font-size: 15px;">Here's what we're covering in this lesson.</p>
+<table style="width: 100%; border-collapse: separate; border-spacing: 0 12px;" role="presentation">
+<tbody>
+<tr>
+<td style="width: 44px; background-color: #f8f9fa; border: 1px solid #e9ecef; border-radius: 8px 0 0 8px; padding: 16px; text-align: center; vertical-align: middle;"><span style="display: inline-block; width: 44px; height: 44px; background-color: #f3d9fa; border-radius: 8px; font-size: 22px; text-align: center; line-height: 44px;">🎨</span></td>
+<td style="background-color: #f8f9fa; border-top: 1px solid #e9ecef; border-bottom: 1px solid #e9ecef; padding: 16px 12px; vertical-align: middle;"><a style="text-decoration: none;" href="#FIGMA_LINK_PLACEHOLDER"><strong style="color: #212529; font-size: 15px;">Lesson in Figma</strong></a><br /><span style="color: #495057; font-size: 13px;">View the lesson walkthrough</span></td>
+<td style="width: 40px; background-color: #f8f9fa; border: 1px solid #e9ecef; border-radius: 0 8px 8px 0; padding: 16px 16px 16px 0; text-align: right; vertical-align: middle;"><span style="color: #495057; font-size: 18px;">&rarr;</span></td>
+</tr>
+<tr>
+<td style="width: 44px; background-color: #f8f9fa; border: 1px solid #e9ecef; border-radius: 8px 0 0 8px; padding: 16px; text-align: center; vertical-align: middle;"><span style="display: inline-block; width: 44px; height: 44px; background-color: #fff3bf; border-radius: 8px; font-size: 22px; text-align: center; line-height: 44px;">📋</span></td>
+<td style="background-color: #f8f9fa; border-top: 1px solid #e9ecef; border-bottom: 1px solid #e9ecef; padding: 16px 12px; vertical-align: middle;"><a style="text-decoration: none;" href="#ASSESSMENT_PLACEHOLDER"><strong style="color: #212529; font-size: 15px;">Knowledge Check Quiz</strong></a><br /><span style="color: #495057; font-size: 13px;">5 questions &middot; Auto-graded &middot; 5 points</span></td>
+<td style="width: 40px; background-color: #f8f9fa; border: 1px solid #e9ecef; border-radius: 0 8px 8px 0; padding: 16px 16px 16px 0; text-align: right; vertical-align: middle;"><span style="color: #495057; font-size: 18px;">&rarr;</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="learning-objectives" style="background-color: #fff; border: 1px solid #dee2e6; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #1971c2;">
+<h3 style="margin: 0 0 8px 0; font-size: 20px; color: #212529; display: flex; align-items: center; gap: 10px;"><span style="font-size: 22px;">📋</span> Learning Objectives</h3>
+<p style="margin: 0 0 24px 0; color: #495057; font-size: 15px;">Learn how to design layouts that reflow at 400% zoom, create components that accommodate text spacing adjustments, and ensure designs work in both portrait and landscape orientations. These skills are essential for users with low vision, dyslexia, and anyone using mobile devices.</p>
+<h4 style="margin: 0 0 12px 0; font-size: 17px; color: #212529;">Learning Outcomes</h4>
+<p style="margin: 0 0 16px 0; color: #495057; font-size: 14px;">By the end of this lesson, you will be able to:</p>
+<table style="width: 100%; border-collapse: collapse; font-size: 15px; margin-bottom: 28px;">
+<thead>
+<tr style="background-color: #f1f3f4;">
+<th style="padding: 12px 16px; text-align: left; color: #212529; border-bottom: 2px solid #dee2e6; width: 70px;" scope="col">ID</th>
+<th style="padding: 12px 16px; text-align: left; color: #212529; border-bottom: 2px solid #dee2e6;" scope="col">Outcome</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="padding: 14px 16px; border-bottom: 1px solid #e9ecef; color: #212529; font-family: monospace;">1F.01</td>
+<td style="padding: 14px 16px; border-bottom: 1px solid #e9ecef; color: #212529;"><strong>Design for 400% zoom without horizontal scroll</strong> by creating layouts that reflow to single column at high zoom levels</td>
+</tr>
+<tr style="background-color: #f8f9fa;">
+<td style="padding: 14px 16px; border-bottom: 1px solid #e9ecef; color: #212529; font-family: monospace;">1F.02</td>
+<td style="padding: 14px 16px; border-bottom: 1px solid #e9ecef; color: #212529;"><strong>Ensure text spacing adjustments work</strong> by designing components that accommodate increased line height, letter spacing, and word spacing</td>
+</tr>
+<tr>
+<td style="padding: 14px 16px; color: #212529; font-family: monospace;">1F.03</td>
+<td style="padding: 14px 16px; color: #212529;"><strong>Apply orientation requirements</strong> by ensuring content works in both portrait and landscape orientations</td>
+</tr>
+</tbody>
+</table>
+<h4 style="margin: 0 0 12px 0; font-size: 17px; color: #212529; padding-bottom: 8px; border-bottom: 2px solid #d0ebff;">Knowledge Objectives</h4>
+<ul style="margin: 0 0 28px 0; padding-left: 24px; color: #212529; font-size: 14px;">
+<li style="margin-bottom: 10px;">Understand that SC 1.4.10 (Reflow) requires content to be usable at 400% zoom without horizontal scrolling.</li>
+<li style="margin-bottom: 10px;">Know that 400% zoom on a 1280px viewport creates a 320px equivalent viewport (similar to mobile).</li>
+<li style="margin-bottom: 10px;">Understand SC 1.4.12 (Text Spacing) requires content to remain usable when users adjust line height (1.5x), letter spacing (0.12x), word spacing (0.16x), and paragraph spacing (2x).</li>
+<li style="margin-bottom: 10px;">Know that fixed-height containers cause text to overflow or become clipped when text spacing is adjusted.</li>
+<li style="margin-bottom: 10px;">Understand that SC 1.3.4 (Orientation) requires content to work in both portrait and landscape unless a specific orientation is essential for the function.</li>
+<li>Recognize legitimate orientation exceptions: piano keyboard, check deposit scanning, projector interface.</li>
+</ul>
+<h4 style="margin: 0 0 12px 0; font-size: 17px; color: #212529; padding-bottom: 8px; border-bottom: 2px solid #d0ebff;">Skills Objectives</h4>
+<ul style="margin: 0 0 28px 0; padding-left: 24px; color: #212529; font-size: 14px;">
+<li style="margin-bottom: 10px;">Design flexible layouts that stack to single column at narrow viewports.</li>
+<li style="margin-bottom: 10px;">Avoid fixed-width containers that prevent reflow.</li>
+<li style="margin-bottom: 10px;">Design components with flexible heights that expand with content (min-height instead of fixed height).</li>
+<li style="margin-bottom: 10px;">Test designs at 400% zoom and with text spacing adjustments using browser extensions or bookmarklets.</li>
+<li>Design layouts that adapt to both portrait and landscape orientations.</li>
+</ul>
+<h4 style="margin: 0 0 12px 0; font-size: 17px; color: #212529; padding-bottom: 8px; border-bottom: 2px solid #d0ebff;">Application Objectives</h4>
+<ul style="margin: 0; padding-left: 24px; color: #212529; font-size: 14px;">
+<li style="margin-bottom: 10px;">Review designs at 400% zoom to verify reflow behavior and document expected responsive behavior.</li>
+<li style="margin-bottom: 10px;">Identify components that would clip or overflow text when text spacing is adjusted.</li>
+<li style="margin-bottom: 10px;">Document flexible sizing requirements in design specs (min-height rather than fixed height).</li>
+<li style="margin-bottom: 10px;">Communicate responsive requirements and reflow behavior to engineering.</li>
+<li>Verify designs work in portrait and landscape on target devices and document any essential orientation restrictions with justification.</li>
+</ul>
+</div>
+<div style="background-color: #f8f9fa; border: 1px solid #dee2e6; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #0ca678;">
+<h3 style="margin: 0 0 16px 0; font-size: 20px; color: #212529; display: flex; align-items: center; gap: 10px;"><span style="font-size: 22px;">📜</span> Related WCAG Success Criteria</h3>
+<ul style="margin: 0; padding-left: 24px; color: #212529;">
+<li style="margin-bottom: 8px;"><strong>1.3.4 Orientation (Level AA):</strong> Content must not restrict display to a single orientation unless essential</li>
+<li style="margin-bottom: 8px;"><strong>1.4.4 Resize Text (Level AA):</strong> Text must be resizable to 200% without loss of content or functionality</li>
+<li style="margin-bottom: 8px;"><strong>1.4.10 Reflow (Level AA):</strong> Content must reflow at 400% zoom without horizontal scrolling</li>
+<li><strong>1.4.12 Text Spacing (Level AA):</strong> No loss of content when users adjust line height, letter spacing, word spacing, and paragraph spacing</li>
+</ul>
+</div>
+<div style="background-color: #fff; border: 1px solid #dee2e6; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #f59f00;">
+<h3 style="margin: 0 0 20px 0; font-size: 20px; color: #212529; display: flex; align-items: center; gap: 10px;"><span style="font-size: 22px;">💡</span> Key Concepts</h3>
+<div style="margin-bottom: 28px;">
+<h4 style="margin: 0 0 12px 0; font-size: 17px; color: #212529; padding-bottom: 8px; border-bottom: 2px solid #fff3bf; display: flex; align-items: center; gap: 10px;">Why Reflow and Zoom Matter <span style="background-color: #d0ebff; color: #1864ab; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-family: monospace;">All</span></h4>
+<p style="margin: 0 0 16px 0; color: #212529;">Browser zoom is more common than screen readers. When designs break at zoom, you're excluding millions of users including people with low vision (12+ million in the US), aging users whose vision changes naturally, mobile users zooming for comfort, and users with cognitive needs who find larger text reduces reading fatigue.</p>
+<div style="background-color: #fff3bf; border-radius: 6px; padding: 14px 16px; border-left: 4px solid #fab005;">
+<p style="margin: 0; font-size: 14px; color: #212529;"><strong>Key insight:</strong> When content breaks at zoom, users must scroll horizontally for every line of text. This makes reading exhausting or impossible.</p>
+</div>
+</div>
+<div style="margin-bottom: 28px;">
+<h4 style="margin: 0 0 12px 0; font-size: 17px; color: #212529; padding-bottom: 8px; border-bottom: 2px solid #fff3bf; display: flex; align-items: center; gap: 10px;">The Reflow Requirement <span style="background-color: #d0ebff; color: #1864ab; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-family: monospace;">1F.01</span></h4>
+<div style="background-color: #d0ebff; border-radius: 6px; padding: 16px; margin-bottom: 16px; border-left: 4px solid #1971c2;">
+<p style="margin: 0 0 8px 0; color: #212529; font-size: 18px;"><strong>400% zoom on 1280px = 320px viewport</strong></p>
+<p style="margin: 0; font-size: 14px; color: #212529;">Content must reflow at 400% zoom without requiring horizontal scrolling to read text. At 400% zoom on a 1280px viewport, users see the equivalent of a 320px wide viewport, similar to a mobile phone.</p>
+</div>
+<p style="margin: 0 0 8px 0; color: #212529;"><strong>Content that must reflow:</strong></p>
+<ul style="margin: 0 0 16px 0; padding-left: 24px; color: #212529;">
+<li style="margin-bottom: 6px;">Body text and paragraphs</li>
+<li style="margin-bottom: 6px;">Navigation menus (collapse to hamburger)</li>
+<li style="margin-bottom: 6px;">Form fields and labels</li>
+<li style="margin-bottom: 6px;">Images (scale or stack)</li>
+<li style="margin-bottom: 6px;">Cards and content blocks</li>
+<li>Sidebars (collapse or move below main content)</li>
+</ul>
+<p style="margin: 0 0 8px 0; color: #212529;"><strong>Exceptions (may scroll horizontally):</strong></p>
+<ul style="margin: 0 0 16px 0; padding-left: 24px; color: #212529;">
+<li style="margin-bottom: 6px;">Data tables (two-dimensional by nature)</li>
+<li style="margin-bottom: 6px;">Complex diagrams and maps</li>
+<li style="margin-bottom: 6px;">Video player controls</li>
+<li>Toolbars with many options</li>
+</ul>
+<div style="background-color: #ffe3e3; border-radius: 6px; padding: 14px 16px; border-left: 4px solid #fa5252;">
+<p style="margin: 0 0 8px 0; font-size: 14px; color: #a61e1e;"><strong>Common reflow failures:</strong></p>
+<ul style="margin: 0; padding-left: 18px; color: #212529; font-size: 14px;">
+<li style="margin-bottom: 4px;"><strong>Fixed-width containers:</strong> Container wider than viewport causes horizontal scroll</li>
+<li style="margin-bottom: 4px;"><strong>Multi-column layouts that don't stack:</strong> Columns too narrow to read</li>
+<li><strong>Absolutely positioned elements:</strong> Element overlaps or goes off-screen</li>
+</ul>
+</div>
+</div>
+<div style="margin-bottom: 28px;">
+<h4 style="margin: 0 0 12px 0; font-size: 17px; color: #212529; padding-bottom: 8px; border-bottom: 2px solid #fff3bf; display: flex; align-items: center; gap: 10px;">Text Spacing Requirements <span style="background-color: #d0ebff; color: #1864ab; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-family: monospace;">1F.02</span></h4>
+<p style="margin: 0 0 16px 0; color: #212529;">Users must be able to adjust text spacing without losing content or functionality. SC 1.4.12 requires content to support these adjustments:</p>
+<table style="width: 100%; border-collapse: collapse; font-size: 14px; margin-bottom: 16px;">
+<thead>
+<tr>
+<th style="padding: 12px; text-align: left; background-color: #d0ebff; color: #1864ab; border-bottom: 2px solid #74c0fc;" scope="col">Property</th>
+<th style="padding: 12px; text-align: left; background-color: #d0ebff; color: #1864ab; border-bottom: 2px solid #74c0fc;" scope="col">Minimum</th>
+<th style="padding: 12px; text-align: left; background-color: #d0ebff; color: #1864ab; border-bottom: 2px solid #74c0fc;" scope="col">Example (16px font)</th>
+</tr>
+</thead>
+<tbody>
+<tr style="background-color: #fff;">
+<td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Line height</td>
+<td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">1.5x font size</td>
+<td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">24px line height</td>
+</tr>
+<tr style="background-color: #f8f9fa;">
+<td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Letter spacing</td>
+<td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">0.12x font size</td>
+<td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">1.92px spacing</td>
+</tr>
+<tr style="background-color: #fff;">
+<td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Word spacing</td>
+<td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">0.16x font size</td>
+<td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">2.56px spacing</td>
+</tr>
+<tr style="background-color: #f8f9fa;">
+<td style="padding: 10px 12px;">Paragraph spacing</td>
+<td style="padding: 10px 12px;">2x font size</td>
+<td style="padding: 10px 12px;">32px paragraph gap</td>
+</tr>
+</tbody>
+</table>
+<p style="margin: 0 0 16px 0; color: #212529;">Users with dyslexia, low vision, or cognitive disabilities benefit from text spacing adjustments. Increased spacing prevents letters from "dancing" or merging and makes text easier to track across lines.</p>
+<div style="display: flex; flex-wrap: wrap; gap: 16px;">
+<div style="flex: 1; min-width: 250px; background-color: #ffe3e3; border-radius: 6px; padding: 16px;">
+<h5 style="margin: 0 0 10px 0; font-size: 14px; color: #a61e1e;">✗ Fixed-Height Container Problem:</h5>
+<p style="margin: 0; font-size: 14px; color: #212529;">A button with <code style="background-color: #f8f9fa; padding: 2px 6px; border-radius: 3px; font-family: monospace; font-size: 13px;">height: 40px</code> clips text when spacing is adjusted. "Subscribe to Newsletter" becomes "Subscribe to Newslet..."</p>
+</div>
+<div style="flex: 1; min-width: 250px; background-color: #d3f9d8; border-radius: 6px; padding: 16px;">
+<h5 style="margin: 0 0 10px 0; font-size: 14px; color: #1e7b34;">✓ Flexible Height Solution:</h5>
+<p style="margin: 0; font-size: 14px; color: #212529;">Use <code style="background-color: #f8f9fa; padding: 2px 6px; border-radius: 3px; font-family: monospace; font-size: 13px;">min-height: 40px</code> instead. The button grows to fit text when line height increases.</p>
+</div>
+</div>
+</div>
+<div>
+<h4 style="margin: 0 0 12px 0; font-size: 17px; color: #212529; padding-bottom: 8px; border-bottom: 2px solid #fff3bf; display: flex; align-items: center; gap: 10px;">Orientation Support <span style="background-color: #d0ebff; color: #1864ab; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-family: monospace;">1F.03</span></h4>
+<p style="margin: 0 0 16px 0; color: #212529;">SC 1.3.4 requires content to work in both portrait AND landscape unless a specific orientation is essential for the function. Users with mounted devices (wheelchairs, bed stands, kitchen mounts) cannot always rotate their device.</p>
+<div style="background-color: #fff3bf; border-radius: 6px; padding: 14px 16px; border-left: 4px solid #fab005; margin-bottom: 16px;">
+<p style="margin: 0; font-size: 14px; color: #212529;"><strong>The test question:</strong> Would the core function break if orientation changed? If no, it's not an essential restriction.</p>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 16px;">
+<div style="flex: 1; min-width: 250px; background-color: #d3f9d8; border-radius: 6px; padding: 16px;">
+<h5 style="margin: 0 0 10px 0; font-size: 14px; color: #1e7b34;">✓ Valid Exceptions (function requires it):</h5>
+<ul style="margin: 0; padding-left: 18px; font-size: 14px; color: #212529;">
+<li>Piano keyboard (needs horizontal space)</li>
+<li>Bank check deposit (camera alignment)</li>
+<li>Projector remote (matches projector)</li>
+</ul>
+</div>
+<div style="flex: 1; min-width: 250px; background-color: #ffe3e3; border-radius: 6px; padding: 16px;">
+<h5 style="margin: 0 0 10px 0; font-size: 14px; color: #a61e1e;">✗ Invalid Exceptions (preference only):</h5>
+<ul style="margin: 0; padding-left: 18px; font-size: 14px; color: #212529;">
+<li>"Looks better in portrait"</li>
+<li>"Designed for landscape scrolling"</li>
+<li>"Mobile version is portrait-only"</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div style="background-color: #fff; border: 1px solid #dee2e6; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #20c997;">
+<h3 style="margin: 0 0 20px 0; font-size: 20px; color: #212529; display: flex; align-items: center; gap: 10px;"><span style="font-size: 22px;">🎨</span> Designer's Role</h3>
+<div style="background-color: #d3f9d8; border-radius: 6px; padding: 16px; margin-bottom: 16px; border-left: 4px solid #0ca678;">
+<p style="margin: 0 0 8px 0; color: #212529;"><strong>Your job is not to code responsiveness, but to design for it.</strong></p>
+<p style="margin: 0; font-size: 14px; color: #212529;">Reflow behavior is primarily implemented by engineering. You don't annotate reflow in Bluelines. But you must design layouts that CAN reflow.</p>
+</div>
+<h4 style="margin: 0 0 12px 0; font-size: 16px; color: #212529;">Your action items:</h4>
+<ul style="margin: 0; padding-left: 24px; color: #212529; font-size: 14px;">
+<li style="margin-bottom: 10px;"><strong>Design with breakpoints in mind:</strong> Show how layouts adapt at 320px</li>
+<li style="margin-bottom: 10px;"><strong>Avoid fixed widths in specs:</strong> Use percentage-based or flexible sizing</li>
+<li style="margin-bottom: 10px;"><strong>Use min-height instead of height:</strong> Components should grow with content</li>
+<li style="margin-bottom: 10px;"><strong>Document reflow behavior:</strong> "Sidebar collapses to hamburger menu at narrow viewports"</li>
+<li><strong>Test your prototypes:</strong> Zoom to 400% and verify the experience</li>
+</ul>
+</div>
+<div style="background-color: #f8f9fa; border: 1px solid #dee2e6; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #845ef7;">
+<h3 style="margin: 0 0 20px 0; font-size: 20px; color: #212529; display: flex; align-items: center; gap: 10px;"><span style="font-size: 22px;">📝</span> Assessment</h3>
+<div style="background-color: #fff; border-radius: 6px; padding: 20px; border: 1px solid #e9ecef;">
+<h4 style="margin: 0 0 8px 0; font-size: 16px; color: #212529;">Knowledge Check Quiz</h4>
+<p style="margin: 0 0 4px 0; font-size: 13px; color: #495057;">5 questions | 5 points | Auto-graded</p>
+<p style="margin: 12px 0 0 0; font-size: 14px; color: #212529;">Test your understanding of reflow requirements, text spacing adjustments, and orientation support. Open-book, just like real design work.</p>
+</div>
+</div>
+<div style="background-color: #fff; border: 1px solid #dee2e6; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #20c997;">
+<h3 style="margin: 0 0 20px 0; font-size: 20px; color: #212529; display: flex; align-items: center; gap: 10px;"><span style="font-size: 22px;">📚</span> Resources</h3>
+<div style="display: flex; flex-wrap: wrap; gap: 20px;">
+<div style="flex: 1; min-width: 260px;">
+<h4 style="margin: 0 0 12px 0; font-size: 15px; color: #212529;">WCAG Documents</h4>
+<ul style="margin: 0; padding-left: 20px; font-size: 14px;">
+<li style="margin-bottom: 8px;"><a style="color: #1864ab; text-decoration: underline;" href="https://www.w3.org/WAI/WCAG22/Understanding/reflow.html">1.4.10 Reflow</a></li>
+<li style="margin-bottom: 8px;"><a style="color: #1864ab; text-decoration: underline;" href="https://www.w3.org/WAI/WCAG22/Understanding/text-spacing.html">1.4.12 Text Spacing</a></li>
+<li style="margin-bottom: 8px;"><a style="color: #1864ab; text-decoration: underline;" href="https://www.w3.org/WAI/WCAG22/Understanding/orientation.html">1.3.4 Orientation</a></li>
+<li><a style="color: #1864ab; text-decoration: underline;" href="https://www.w3.org/WAI/WCAG22/Understanding/resize-text.html">1.4.4 Resize Text</a></li>
+</ul>
+</div>
+<div style="flex: 1; min-width: 260px;">
+<h4 style="margin: 0 0 12px 0; font-size: 15px; color: #212529;">Testing Tools</h4>
+<ul style="margin: 0; padding-left: 20px; font-size: 14px;">
+<li style="margin-bottom: 8px;"><a style="color: #1864ab; text-decoration: underline;" href="https://dylanb.github.io/bookmarklets.html">Text Spacing Bookmarklet</a></li>
+<li>Browser DevTools for viewport simulation</li>
+</ul>
+</div>
+<div style="flex: 1; min-width: 260px;">
+<h4 style="margin: 0 0 12px 0; font-size: 15px; color: #212529;">Adobe Resources</h4>
+<ul style="margin: 0; padding-left: 20px; font-size: 14px; color: #212529;">
+<li style="margin-bottom: 8px;">Design Accessibility Checklist (Responsive Design section)</li>
+<li>Spectrum Design System: Responsive Layout Guidelines</li>
+</ul>
+</div>
+</div>
+</div>
+<div style="background: linear-gradient(135deg, #d0ebff 0%, #a5d8ff 100%); border-radius: 8px; padding: 20px 24px; border-left: 5px solid #1971c2;">
+<h3 style="margin: 0 0 8px 0; font-size: 18px; color: #1864ab; display: flex; align-items: center; gap: 10px;"><span style="font-size: 20px;">➡️</span> Up Next</h3>
+<p style="margin: 0; font-size: 15px; color: #212529;"><strong>Lesson 07: Landmarks & Navigation</strong> covers page structure and navigation accessibility. You'll learn how to use landmark regions, skip links, and breadcrumbs to help users navigate content efficiently, especially keyboard and screen reader users.</p>
+</div>
+</div>

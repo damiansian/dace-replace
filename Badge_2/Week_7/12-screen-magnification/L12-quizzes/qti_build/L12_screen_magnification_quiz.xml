@@ -1,0 +1,557 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<questestinterop xmlns="http://www.imsglobal.org/xsd/ims_qtiasiv1p2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.imsglobal.org/xsd/ims_qtiasiv1p2 http://www.imsglobal.org/xsd/ims_qtiasiv1p2p1.xsd">
+  <assessment ident="L12_screen_magnification_quiz" title="L12: Screen Magnification Quiz">
+    <qtimetadata>
+      <qtimetadatafield>
+        <fieldlabel>cc_maxattempts</fieldlabel>
+        <fieldentry>unlimited</fieldentry>
+      </qtimetadatafield>
+      <qtimetadatafield>
+        <fieldlabel>qmd_timelimit</fieldlabel>
+        <fieldentry/>
+      </qtimetadatafield>
+      <qtimetadatafield>
+        <fieldlabel>cc_profile</fieldlabel>
+        <fieldentry>cc.exam.v0p1</fieldentry>
+      </qtimetadatafield>
+    </qtimetadata>
+    <section ident="root_section">
+      
+      <!-- Question 1: System Magnification vs Browser Zoom -->
+      <item ident="q1_system_vs_browser" title="Q1: System Magnification vs Browser Zoom">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield>
+              <fieldlabel>question_type</fieldlabel>
+              <fieldentry>multiple_choice_question</fieldentry>
+            </qtimetadatafield>
+            <qtimetadatafield>
+              <fieldlabel>points_possible</fieldlabel>
+              <fieldentry>1</fieldentry>
+            </qtimetadatafield>
+            <qtimetadatafield>
+              <fieldlabel>original_answer_ids</fieldlabel>
+              <fieldentry>q1_a,q1_b,q1_c,q1_d</fieldentry>
+            </qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material>
+            <mattext texttype="text/html"><![CDATA[<p>Which of the following best describes the fundamental difference between system-level magnification (like Windows Magnifier) and browser zoom (Ctrl/Cmd +)?</p>]]></mattext>
+          </material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice shuffle="true">
+              <response_label ident="q1_a">
+                <material>
+                  <mattext texttype="text/plain">System magnification magnifies pixels without changing the layout, while browser zoom reflows the content to fit the window.</mattext>
+                </material>
+              </response_label>
+              <response_label ident="q1_b">
+                <material>
+                  <mattext texttype="text/plain">Browser zoom increases the resolution of the page, while system magnification decreases the resolution to save processing power.</mattext>
+                </material>
+              </response_label>
+              <response_label ident="q1_c">
+                <material>
+                  <mattext texttype="text/plain">Browser zoom is only intended for text resizing, whereas system magnification is intended for images and video.</mattext>
+                </material>
+              </response_label>
+              <response_label ident="q1_d">
+                <material>
+                  <mattext texttype="text/plain">System magnification is exclusively used by blind users, while browser zoom is used by low vision users.</mattext>
+                </material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes>
+            <decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/>
+          </outcomes>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q1_a</varequal>
+            </conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q1_a_fb"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q1_b</varequal>
+            </conditionvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q1_b_fb"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q1_c</varequal>
+            </conditionvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q1_c_fb"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q1_d</varequal>
+            </conditionvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q1_d_fb"/>
+          </respcondition>
+        </resprocessing>
+        <itemfeedback ident="q1_a_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Correct.</strong> System magnification tools enlarge the existing display area like a magnifying glass, whereas browser zoom triggers responsive design changes and layout adjustments. This distinction matters because a layout that reflows gracefully under browser zoom may still create spatial challenges under system magnification, where multi-column layouts remain intact but only a portion is visible.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="q1_b_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Incorrect.</strong> Neither tool changes resolution in this way. Browser zoom scales CSS pixels and triggers layout reflow. System magnification enlarges the rendered output without altering resolution or processing load.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="q1_c_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Incorrect.</strong> Browser zoom affects all page content (text, images, layout), not just text. System magnification also enlarges everything on screen, not just images and video.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="q1_d_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Incorrect.</strong> System magnification is primarily used by people with low vision who have some usable sight, not by blind users. Blind users typically rely on screen readers. Browser zoom is used by a wide range of people, not exclusively low vision users.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+      </item>
+
+      <!-- Question 2: Focus Indicator Thickness -->
+      <item ident="q2_focus_indicator" title="Q2: Focus Indicator Thickness">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield>
+              <fieldlabel>question_type</fieldlabel>
+              <fieldentry>multiple_choice_question</fieldentry>
+            </qtimetadatafield>
+            <qtimetadatafield>
+              <fieldlabel>points_possible</fieldlabel>
+              <fieldentry>1</fieldentry>
+            </qtimetadatafield>
+            <qtimetadatafield>
+              <fieldlabel>original_answer_ids</fieldlabel>
+              <fieldentry>q2_a,q2_b,q2_c,q2_d</fieldentry>
+            </qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material>
+            <mattext texttype="text/html"><![CDATA[<p>A designer wants to ensure that a focus indicator is easily trackable for a magnification user. What is the recommended minimum thickness for the focus ring?</p>]]></mattext>
+          </material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice shuffle="true">
+              <response_label ident="q2_a">
+                <material>
+                  <mattext texttype="text/plain">At least 2 pixels</mattext>
+                </material>
+              </response_label>
+              <response_label ident="q2_b">
+                <material>
+                  <mattext texttype="text/plain">10 pixels</mattext>
+                </material>
+              </response_label>
+              <response_label ident="q2_c">
+                <material>
+                  <mattext texttype="text/plain">Focus indicators should be avoided as they distract magnification users.</mattext>
+                </material>
+              </response_label>
+              <response_label ident="q2_d">
+                <material>
+                  <mattext texttype="text/plain">1 pixel</mattext>
+                </material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes>
+            <decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/>
+          </outcomes>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q2_a</varequal>
+            </conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q2_a_fb"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q2_b</varequal>
+            </conditionvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q2_b_fb"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q2_c</varequal>
+            </conditionvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q2_c_fb"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q2_d</varequal>
+            </conditionvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q2_d_fb"/>
+          </respcondition>
+        </resprocessing>
+        <itemfeedback ident="q2_a_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Correct.</strong> A 2px or thicker outline provides a much more visible target for users who are panning around a magnified screen. This aligns with WCAG 2.2 SC 2.4.13 (Focus Appearance), which specifies a minimum 2px thick focus indicator for AAA conformance and establishes the principle that thin outlines are insufficient.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="q2_b_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Incorrect.</strong> While 10px would certainly be visible, it is not the recommended minimum. Overly thick focus rings can obscure content and create visual clutter. The standard recommendation is at least 2px.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="q2_c_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Incorrect.</strong> Focus indicators are essential for all keyboard users, including magnification users. Removing them would make it nearly impossible for magnification users to track their position on the page, since they can only see a small portion of the screen at a time.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="q2_d_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Incorrect.</strong> A 1px focus ring is too thin to be reliably visible, especially at high magnification where the user is panning across the screen. A 1px outline can easily blend into surrounding content or be missed entirely.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+      </item>
+
+      <!-- Question 3: Text Alignment for Magnification -->
+      <item ident="q3_text_alignment" title="Q3: Text Alignment for Magnification">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield>
+              <fieldlabel>question_type</fieldlabel>
+              <fieldentry>multiple_choice_question</fieldentry>
+            </qtimetadatafield>
+            <qtimetadatafield>
+              <fieldlabel>points_possible</fieldlabel>
+              <fieldentry>1</fieldentry>
+            </qtimetadatafield>
+            <qtimetadatafield>
+              <fieldlabel>original_answer_ids</fieldlabel>
+              <fieldentry>q3_a,q3_b,q3_c,q3_d</fieldentry>
+            </qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material>
+            <mattext texttype="text/html"><![CDATA[<p>Which alignment is generally preferred for text and labels to support users who scan pages at high magnification?</p>]]></mattext>
+          </material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice shuffle="true">
+              <response_label ident="q3_a">
+                <material>
+                  <mattext texttype="text/plain">Left-aligned</mattext>
+                </material>
+              </response_label>
+              <response_label ident="q3_b">
+                <material>
+                  <mattext texttype="text/plain">Justified</mattext>
+                </material>
+              </response_label>
+              <response_label ident="q3_c">
+                <material>
+                  <mattext texttype="text/plain">Right-aligned</mattext>
+                </material>
+              </response_label>
+              <response_label ident="q3_d">
+                <material>
+                  <mattext texttype="text/plain">Centered</mattext>
+                </material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes>
+            <decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/>
+          </outcomes>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q3_a</varequal>
+            </conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q3_a_fb"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q3_b</varequal>
+            </conditionvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q3_b_fb"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q3_c</varequal>
+            </conditionvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q3_c_fb"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q3_d</varequal>
+            </conditionvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q3_d_fb"/>
+          </respcondition>
+        </resprocessing>
+        <itemfeedback ident="q3_a_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Correct.</strong> Left-alignment provides a consistent "starting edge" for the eye and the viewport, making it easier to scan following standard reading order. Magnification users navigating with a limited viewport benefit from a predictable left edge where all content begins.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="q3_b_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Incorrect.</strong> Justified text creates uneven spacing between words, which can make reading more difficult for magnification users. The irregular gaps are amplified at high zoom levels and disrupt the reading flow.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="q3_c_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Incorrect.</strong> Right-aligned text creates an inconsistent left edge, forcing magnification users to hunt for where each line begins. This is especially disorienting when panning across a magnified viewport.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="q3_d_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Incorrect.</strong> Centered text shifts the starting position of each line, creating an unpredictable left edge. Magnification users would need to reposition their viewport for every new line to find where the text begins.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+      </item>
+
+      <!-- Question 4: Error Message Placement -->
+      <item ident="q4_error_placement" title="Q4: Error Message Placement">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield>
+              <fieldlabel>question_type</fieldlabel>
+              <fieldentry>multiple_choice_question</fieldentry>
+            </qtimetadatafield>
+            <qtimetadatafield>
+              <fieldlabel>points_possible</fieldlabel>
+              <fieldentry>1</fieldentry>
+            </qtimetadatafield>
+            <qtimetadatafield>
+              <fieldlabel>original_answer_ids</fieldlabel>
+              <fieldentry>q4_a,q4_b,q4_c,q4_d</fieldentry>
+            </qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material>
+            <mattext texttype="text/html"><![CDATA[<p>When designing a form for magnification compatibility, which placement for error messages is most effective?</p>]]></mattext>
+          </material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice shuffle="true">
+              <response_label ident="q4_a">
+                <material>
+                  <mattext texttype="text/plain">Inline, directly adjacent to or below the specific input field.</mattext>
+                </material>
+              </response_label>
+              <response_label ident="q4_b">
+                <material>
+                  <mattext texttype="text/plain">In a summary box at the very top of the page.</mattext>
+                </material>
+              </response_label>
+              <response_label ident="q4_c">
+                <material>
+                  <mattext texttype="text/plain">In a popup alert that must be dismissed before continuing.</mattext>
+                </material>
+              </response_label>
+              <response_label ident="q4_d">
+                <material>
+                  <mattext texttype="text/plain">At the very bottom of the form next to the Submit button.</mattext>
+                </material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes>
+            <decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/>
+          </outcomes>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q4_a</varequal>
+            </conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q4_a_fb"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q4_b</varequal>
+            </conditionvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q4_b_fb"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q4_c</varequal>
+            </conditionvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q4_c_fb"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q4_d</varequal>
+            </conditionvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q4_d_fb"/>
+          </respcondition>
+        </resprocessing>
+        <itemfeedback ident="q4_a_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Correct.</strong> Proximity is critical for magnification users. Keeping the error near the field ensures they see the feedback without having to search the page. At high magnification, the viewport is limited, so related information must be spatially close to be visible at the same time.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="q4_b_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Incorrect.</strong> A summary box at the top of the page is far from the fields where errors occurred. At high magnification, users would need to scroll up to read the error, remember which field it refers to, then scroll back down to find and fix the field, creating a significant cognitive and navigation burden.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="q4_c_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Incorrect.</strong> Popup alerts interrupt the user's workflow and may appear outside the magnified viewport. Once dismissed, the user has no persistent reference for the error and must rely on memory to locate and fix the issue.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="q4_d_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Incorrect.</strong> Placing errors at the bottom of the form near the Submit button separates the error message from the relevant field. Magnification users would need to pan between the bottom of the form and the specific field, losing context in the process.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+      </item>
+
+      <!-- Question 5: Sticky Headers at High Magnification -->
+      <item ident="q5_sticky_headers" title="Q5: Sticky Headers at High Magnification">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield>
+              <fieldlabel>question_type</fieldlabel>
+              <fieldentry>multiple_choice_question</fieldentry>
+            </qtimetadatafield>
+            <qtimetadatafield>
+              <fieldlabel>points_possible</fieldlabel>
+              <fieldentry>1</fieldentry>
+            </qtimetadatafield>
+            <qtimetadatafield>
+              <fieldlabel>original_answer_ids</fieldlabel>
+              <fieldentry>q5_a,q5_b,q5_c,q5_d</fieldentry>
+            </qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material>
+            <mattext texttype="text/html"><![CDATA[<p>What is a major accessibility risk of using large "sticky" headers at high magnification levels?</p>]]></mattext>
+          </material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice shuffle="true">
+              <response_label ident="q5_a">
+                <material>
+                  <mattext texttype="text/plain">They consume a significant percentage of the limited vertical viewport, leaving little room for the actual content.</mattext>
+                </material>
+              </response_label>
+              <response_label ident="q5_b">
+                <material>
+                  <mattext texttype="text/plain">They can obscure the focus indicator as the user tabs through the page.</mattext>
+                </material>
+              </response_label>
+              <response_label ident="q5_c">
+                <material>
+                  <mattext texttype="text/plain">Sticky headers are automatically hidden by macOS Zoom to improve readability.</mattext>
+                </material>
+              </response_label>
+              <response_label ident="q5_d">
+                <material>
+                  <mattext texttype="text/plain">They prevent the user from using spatial memory to find the navigation menu.</mattext>
+                </material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes>
+            <decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/>
+          </outcomes>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q5_a</varequal>
+            </conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q5_a_fb"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q5_b</varequal>
+            </conditionvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q5_b_fb"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q5_c</varequal>
+            </conditionvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q5_c_fb"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q5_d</varequal>
+            </conditionvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q5_d_fb"/>
+          </respcondition>
+        </resprocessing>
+        <itemfeedback ident="q5_a_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Correct.</strong> At high zoom, a sticky header that takes up 10% of a standard screen might take up 50% or more of the magnified viewport, making the page nearly unusable. The fixed positioning means it cannot be scrolled out of view, permanently reducing the usable content area.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="q5_b_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Incorrect.</strong> While sticky headers can occasionally overlap with focused elements, this is a general keyboard navigation concern rather than the primary barrier unique to magnification users. The far greater issue is the permanent loss of viewport space.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="q5_c_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Incorrect.</strong> macOS Zoom does not automatically hide sticky headers. The magnification tool enlarges everything on screen as-is, including sticky elements. The operating system does not selectively remove page elements.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="q5_d_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Incorrect.</strong> Sticky headers actually remain persistently visible (which is the problem at high magnification). They do not interfere with spatial memory for navigation. The core issue is that they consume too much of the limited viewport.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+      </item>
+
+    </section>
+  </assessment>
+</questestinterop>

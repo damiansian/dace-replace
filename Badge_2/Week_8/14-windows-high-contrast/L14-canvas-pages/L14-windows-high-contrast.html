@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lesson 14: Windows High Contrast Mode - Canvas Preview</title>
+</head>
+<body style="margin: 0; padding: 20px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif; background-color: #ffffff; color: #333333; line-height: 1.6;">
+  <!-- Note: This is a preview file. When copying to Canvas, copy only the content below this line -->
+  
+  <div style="max-width: 900px; margin: 0; padding: 24px 0 48px 0;">
+
+    <!-- Header Section -->
+    <div style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); border-radius: 8px; padding: 24px 28px; margin-bottom: 28px; border-left: 5px solid #FF6B6B;">
+      <h2 style="margin: 0 0 12px 0; font-size: 28px; font-weight: 600; color: #212529;">Lesson 14: Windows High Contrast Mode</h2>
+      <div style="display: flex; flex-wrap: wrap; gap: 14px; margin-top: 18px;">
+        <span style="display: inline-flex; align-items: center; gap: 8px; background-color: #ffe3e3; color: #c92a2a; padding: 10px 18px; border-radius: 24px; font-size: 15px; font-weight: 500;">
+          <span style="font-size: 18px;">🎯</span> Define Badge
+        </span>
+        <span style="display: inline-flex; align-items: center; gap: 8px; background-color: #e7f5ff; color: #1864ab; padding: 10px 18px; border-radius: 24px; font-size: 15px; font-weight: 500;">
+          <span style="font-size: 18px;">🏷️</span> Module 2E
+        </span>
+      </div>
+    </div>
+
+    <!-- Introduction -->
+    <p style="font-size: 17px; color: #495057; margin-bottom: 16px; padding: 0 4px;">
+      Windows High Contrast Mode (also called Forced Colors Mode) is a system-level feature where the operating system overrides author-defined CSS colors with user-chosen system colors. Approximately 4% of Windows users enable this feature because they need different colors than what authors provide: users with low vision, light sensitivity, migraines, or reading difficulties.
+    </p>
+    <p style="font-size: 17px; color: #495057; margin-bottom: 32px; padding: 0 4px;">
+      In this lesson, you'll learn how forced colors work at the CSS level, identify common failure patterns where elements disappear or become unusable, and practice design techniques that ensure your components remain functional regardless of the user's color preferences. This builds on L03 (Color Contrast) from the Discover Badge, but at a deeper, implementation-aware level.
+    </p>
+
+    <!-- Lesson Activities Section -->
+    <div style="background-color: #fff; border: 1px solid #dee2e6; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #FF6B6B;">
+      <h3 style="margin: 0 0 8px 0; font-size: 20px; font-weight: 600; color: #212529; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">🎯</span> Lesson Activities
+      </h3>
+      <p style="margin: 0 0 20px 0; color: #495057; font-size: 15px;">Complete these activities for this lesson.</p>
+      
+      <!-- Activity Links -->
+      <table role="presentation" style="width: 100%; border-collapse: separate; border-spacing: 0 12px;">
+        <tr>
+          <td style="width: 44px; background-color: #f8f9fa; border: 1px solid #e9ecef; border-radius: 8px 0 0 8px; padding: 16px; text-align: center; vertical-align: middle;">
+            <span style="display: inline-block; width: 44px; height: 44px; background-color: #ffe3e3; border-radius: 8px; font-size: 22px; text-align: center; line-height: 44px;">🎨</span>
+          </td>
+          <td style="background-color: #f8f9fa; border-top: 1px solid #e9ecef; border-bottom: 1px solid #e9ecef; padding: 16px 12px; vertical-align: middle;">
+            <a href="https://www.figma.com/design/qqZXLIs7sA9HQVIUqHUoGt/DACE---Cohort-1?node-id=2650-6" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: none;">
+              <strong style="color: #212529; font-size: 15px;">Lesson in Figma</strong><br>
+              <span style="color: #495057; font-size: 13px;">View the lesson walkthrough</span>
+            </a>
+          </td>
+          <td style="width: 40px; background-color: #f8f9fa; border: 1px solid #e9ecef; border-radius: 0 8px 8px 0; padding: 16px 16px 16px 0; text-align: right; vertical-align: middle;">
+            <span style="color: #495057; font-size: 18px;">→</span>
+          </td>
+        </tr>
+        <tr>
+          <td style="width: 44px; background-color: #f8f9fa; border: 1px solid #e9ecef; border-radius: 8px 0 0 8px; padding: 16px; text-align: center; vertical-align: middle;">
+            <span style="display: inline-block; width: 44px; height: 44px; background-color: #fff3bf; border-radius: 8px; font-size: 22px; text-align: center; line-height: 44px;">📋</span>
+          </td>
+          <td style="background-color: #f8f9fa; border-top: 1px solid #e9ecef; border-bottom: 1px solid #e9ecef; padding: 16px 12px; vertical-align: middle;">
+            <a href="https://canvas.instructure.com/courses/13608566/quizzes/25148722?module_item_id=149844749" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: none;">
+              <strong style="color: #212529; font-size: 15px;">Knowledge Check Quiz</strong><br>
+              <span style="color: #495057; font-size: 13px;">5 questions · Auto-graded · 5 points</span>
+            </a>
+          </td>
+          <td style="width: 40px; background-color: #f8f9fa; border: 1px solid #e9ecef; border-radius: 0 8px 8px 0; padding: 16px 16px 16px 0; text-align: right; vertical-align: middle;">
+            <span style="color: #495057; font-size: 18px;">→</span>
+          </td>
+        </tr>
+        <tr>
+          <td style="width: 44px; background-color: #f8f9fa; border: 1px solid #e9ecef; border-radius: 8px 0 0 8px; padding: 16px; text-align: center; vertical-align: middle;">
+            <span style="display: inline-block; width: 44px; height: 44px; background-color: #d0ebff; border-radius: 8px; font-size: 22px; text-align: center; line-height: 44px;">🛠️</span>
+          </td>
+          <td style="background-color: #f8f9fa; border-top: 1px solid #e9ecef; border-bottom: 1px solid #e9ecef; padding: 16px 12px; vertical-align: middle;">
+            <a href="https://canvas.instructure.com/courses/13608566/assignments/62635629?module_item_id=149990789" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: none;">
+              <strong style="color: #212529; font-size: 15px;">Applied Practice</strong><br>
+              <span style="color: #495057; font-size: 13px;">Combined with L13: Voice control and high contrast testing</span>
+            </a>
+          </td>
+          <td style="width: 40px; background-color: #f8f9fa; border: 1px solid #e9ecef; border-radius: 0 8px 8px 0; padding: 16px 16px 16px 0; text-align: right; vertical-align: middle;">
+            <span style="color: #495057; font-size: 18px;">→</span>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- Video Section -->
+    <div style="background-color: #f8f9fa; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #845ef7;">
+      <h3 style="margin: 0 0 8px 0; font-size: 20px; font-weight: 600; color: #212529; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">🎬</span> The Explainer
+      </h3>
+      <p style="margin: 0 0 20px 0; color: #495057; font-size: 15px;">Get an overview of Windows High Contrast Mode before the live session.</p>
+      
+      <div style="padding:56.25% 0 0 0;position:relative;border-radius: 6px; overflow: hidden;">
+        <iframe src="https://player.vimeo.com/video/1168930637?badge=0&autopause=0&player_id=0&app_id=58479" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" allowfullscreen title="Lesson 14: Windows High Contrast Mode Explainer"></iframe>
+      </div>
+    </div>
+
+    <!-- Learning Objectives Section -->
+    <div id="learning-objectives" style="background-color: #fff; border: 1px solid #dee2e6; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #1971c2;">
+      <h3 style="margin: 0 0 8px 0; font-size: 20px; font-weight: 600; color: #212529; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">📋</span> Learning Objectives
+      </h3>
+      <p style="margin: 0 0 24px 0; color: #495057; font-size: 15px;">Learn how to test for, identify failures in, and design for Windows High Contrast Mode (Forced Colors).</p>
+      
+      <!-- Learning Outcomes -->
+      <h4 style="margin: 0 0 12px 0; font-size: 17px; font-weight: 600; color: #212529;">Learning Outcomes</h4>
+      <p style="margin: 0 0 16px 0; color: #495057; font-size: 14px;">By the end of this lesson, you will be able to:</p>
+      
+      <table style="width: 100%; border-collapse: collapse; font-size: 15px; margin-bottom: 28px;">
+        <thead>
+          <tr style="background-color: #f1f3f4;">
+            <th scope="col" style="padding: 12px 16px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6; width: 70px;">ID</th>
+            <th scope="col" style="padding: 12px 16px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">Outcome</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="padding: 14px 16px; border-bottom: 1px solid #e9ecef; color: #212529; font-weight: 600; font-family: monospace;">2E.01</td>
+            <td style="padding: 14px 16px; border-bottom: 1px solid #e9ecef; color: #212529;"><strong>Test designs in Windows High Contrast Mode</strong> and validate that designs remain usable with forced colors</td>
+          </tr>
+          <tr style="background-color: #f8f9fa;">
+            <td style="padding: 14px 16px; border-bottom: 1px solid #e9ecef; color: #212529; font-weight: 600; font-family: monospace;">2E.02</td>
+            <td style="padding: 14px 16px; border-bottom: 1px solid #e9ecef; color: #212529;"><strong>Identify high contrast mode failures</strong> where design elements disappear, lose their boundaries, or become unusable in forced colors</td>
+          </tr>
+          <tr>
+            <td style="padding: 14px 16px; color: #212529; font-weight: 600; font-family: monospace;">2E.03</td>
+            <td style="padding: 14px 16px; color: #212529;"><strong>Design for forced colors compatibility</strong> using CSS techniques that ensure designs adapt appropriately to user color preferences</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Knowledge/Skills/Application Objectives -->
+      <h4 style="margin: 0 0 12px 0; font-size: 17px; font-weight: 600; color: #212529; padding-bottom: 8px; border-bottom: 2px solid #d0ebff;">Knowledge Objectives</h4>
+      <ul style="margin: 0 0 28px 0; padding-left: 24px; color: #212529; font-size: 14px;">
+        <li style="margin-bottom: 10px;">Explain how Windows Forced Colors Mode overrides author-defined CSS colors with user-chosen system colors.</li>
+        <li style="margin-bottom: 10px;">Identify which CSS properties are overridden (<code style="background: #e9ecef; padding: 2px 4px; border-radius: 3px;">color</code>, <code style="background: #e9ecef; padding: 2px 4px; border-radius: 3px;">background-color</code>, <code style="background: #e9ecef; padding: 2px 4px; border-radius: 3px;">border-color</code>, <code style="background: #e9ecef; padding: 2px 4px; border-radius: 3px;">box-shadow</code>) and which are preserved (<code style="background: #e9ecef; padding: 2px 4px; border-radius: 3px;">background-image</code>, <code style="background: #e9ecef; padding: 2px 4px; border-radius: 3px;">outline</code>).</li>
+        <li style="margin-bottom: 10px;">Describe common failure patterns: invisible buttons, lost focus indicators, disappearing icons, and form control states that rely only on <code style="background: #e9ecef; padding: 2px 4px; border-radius: 3px;">background-color</code>.</li>
+        <li>Understand the <code style="background: #e9ecef; padding: 2px 4px; border-radius: 3px;">forced-colors</code> media query and CSS system color keywords (<code style="background: #e9ecef; padding: 2px 4px; border-radius: 3px;">Canvas</code>, <code style="background: #e9ecef; padding: 2px 4px; border-radius: 3px;">CanvasText</code>, <code style="background: #e9ecef; padding: 2px 4px; border-radius: 3px;">ButtonText</code>, etc.).</li>
+      </ul>
+
+      <h4 style="margin: 0 0 12px 0; font-size: 17px; font-weight: 600; color: #212529; padding-bottom: 8px; border-bottom: 2px solid #d0ebff;">Skills Objectives</h4>
+      <ul style="margin: 0 0 28px 0; padding-left: 24px; color: #212529; font-size: 14px;">
+        <li style="margin-bottom: 10px;">Enable and test with Windows High Contrast Mode or Chrome DevTools forced-colors emulation.</li>
+        <li style="margin-bottom: 10px;">Identify forced-colors failures in product interfaces: invisible boundaries, missing focus indicators, indistinguishable states.</li>
+        <li style="margin-bottom: 10px;">Test custom form controls, icons, and data visualizations in forced colors mode.</li>
+        <li>Use browser DevTools to emulate forced colors when a Windows machine is unavailable.</li>
+      </ul>
+
+      <h4 style="margin: 0 0 12px 0; font-size: 17px; font-weight: 600; color: #212529; padding-bottom: 8px; border-bottom: 2px solid #d0ebff;">Application Objectives</h4>
+      <ul style="margin: 0 0 0 0; padding-left: 24px; color: #212529; font-size: 14px;">
+        <li style="margin-bottom: 10px;">Incorporate forced-colors testing into the design review process.</li>
+        <li style="margin-bottom: 10px;">Recommend CSS-level fixes for forced-colors failures (transparent borders, outline-based focus, <code style="background: #e9ecef; padding: 2px 4px; border-radius: 3px;">currentColor</code> for icons).</li>
+        <li>Annotate designs with forced-colors requirements for engineering teams.</li>
+      </ul>
+    </div>
+
+    <!-- Related WCAG Success Criteria Section -->
+    <div style="background-color: #f8f9fa; border: 1px solid #dee2e6; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #0ca678;">
+      <h3 style="margin: 0 0 16px 0; font-size: 20px; font-weight: 600; color: #212529; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">📜</span> Related WCAG Success Criteria
+      </h3>
+      <ul style="margin: 0; padding-left: 24px; color: #212529;">
+        <li style="margin-bottom: 8px;"><strong>1.4.11 Non-text Contrast (Level AA):</strong> UI components and graphical objects must have sufficient contrast. In forced colors, the system handles contrast, but component boundaries must remain visible.</li>
+        <li style="margin-bottom: 8px;"><strong>1.4.1 Use of Color (Level A):</strong> Color must not be the only visual means of conveying information. Forced colors mode strips author colors, exposing any color-only information patterns.</li>
+        <li style="margin-bottom: 8px;"><strong>1.4.3 Contrast (Minimum) (Level AA):</strong> Text must have sufficient contrast against its background. Forced colors mode exists because some users need different contrast than authors provide.</li>
+        <li style="margin-bottom: 8px;"><strong>1.3.1 Info and Relationships (Level A):</strong> Information and relationships conveyed through visual presentation must be programmatically determinable. Visual boundaries lost in forced colors may indicate missing structural relationships.</li>
+        <li><strong>1.1.1 Non-text Content (Level A):</strong> Non-text content must have text alternatives. Icons and graphical elements that disappear in forced colors highlight the importance of text alternatives.</li>
+      </ul>
+    </div>
+
+    <!-- Key Concepts Section -->
+    <div style="background-color: #fff; border: 1px solid #dee2e6; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #f59f00;">
+      <h3 style="margin: 0 0 20px 0; font-size: 20px; font-weight: 600; color: #212529; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">💡</span> Key Concepts
+      </h3>
+
+      <!-- Concept 1: How Forced Colors Work -->
+      <div style="margin-bottom: 32px;">
+        <h4 style="margin: 0 0 12px 0; font-size: 18px; font-weight: 600; color: #212529;">How Forced Colors Work</h4>
+        <p style="margin: 0 0 16px 0; color: #495057; font-size: 15px;">Windows High Contrast Mode (renamed "Contrast themes" in Windows 11) overrides author-defined CSS color properties with user-chosen system colors. This is not the same as dark mode: the user has full control over all colors, and the system replaces your <code style="background: #e9ecef; padding: 2px 4px; border-radius: 3px;">background-color</code>, <code style="background: #e9ecef; padding: 2px 4px; border-radius: 3px;">color</code>, <code style="background: #e9ecef; padding: 2px 4px; border-radius: 3px;">border-color</code>, and SVG <code style="background: #e9ecef; padding: 2px 4px; border-radius: 3px;">fill</code>/<code style="background: #e9ecef; padding: 2px 4px; border-radius: 3px;">stroke</code> with system color keywords.</p>
+        
+        <table style="width: 100%; border-collapse: collapse; font-size: 14px; margin-bottom: 16px;">
+          <thead>
+            <tr style="background-color: #f1f3f4;">
+              <th scope="col" style="padding: 10px 12px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">Overridden by System</th>
+              <th scope="col" style="padding: 10px 12px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">Preserved (Not Overridden)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; font-family: monospace;">color</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; font-family: monospace;">background-image</td>
+            </tr>
+            <tr style="background-color: #f8f9fa;">
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; font-family: monospace;">background-color</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; font-family: monospace;">opacity</td>
+            </tr>
+            <tr>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; font-family: monospace;">border-color</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; font-family: monospace;">outline (color overridden, visible)</td>
+            </tr>
+            <tr style="background-color: #f8f9fa;">
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; font-family: monospace;">box-shadow (removed entirely)</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Images via <code style="background: #e9ecef; padding: 2px 4px; border-radius: 3px;">&lt;img&gt;</code> tag</td>
+            </tr>
+            <tr>
+              <td style="padding: 10px 12px; font-family: monospace;">SVG fill / stroke</td>
+              <td style="padding: 10px 12px; font-family: monospace;">filter</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div style="background-color: #e7f5ff; border-left: 4px solid #1971c2; padding: 16px;">
+          <p style="margin: 0; color: #495057; font-size: 15px;"><strong>Key Insight:</strong> <code style="background: #e9ecef; padding: 2px 4px; border-radius: 3px;">box-shadow</code> is not just recolored: it is completely removed. And <code style="background: #e9ecef; padding: 2px 4px; border-radius: 3px;">background-image</code> survives while <code style="background: #e9ecef; padding: 2px 4px; border-radius: 3px;">background-color</code> does not. Understanding this distinction is essential for forced-colors testing.</p>
+        </div>
+      </div>
+
+      <!-- Concept 2: Common Failure Patterns -->
+      <div style="margin-bottom: 32px;">
+        <h4 style="margin: 0 0 12px 0; font-size: 18px; font-weight: 600; color: #212529;">Common Failure Patterns</h4>
+        <p style="margin: 0 0 16px 0; color: #495057; font-size: 15px;">Most forced-colors failures happen because designs assume the author controls the final color rendering. In forced colors mode, the user controls the colors. Elements must communicate their purpose through structure, not just color.</p>
+        
+        <div style="background-color: #f8f9fa; border-left: 4px solid #fa5252; padding: 16px; margin-bottom: 12px;">
+          <p style="margin: 0 0 4px 0; font-weight: 600; color: #212529; font-size: 15px;">Invisible Buttons</p>
+          <p style="margin: 0; color: #495057; font-size: 14px;">Buttons styled with <code style="background: #e9ecef; padding: 2px 4px; border-radius: 3px;">background-color</code> and <code style="background: #e9ecef; padding: 2px 4px; border-radius: 3px;">border: none</code> disappear when the background is overridden to match the page background.</p>
+        </div>
+
+        <div style="background-color: #f8f9fa; border-left: 4px solid #fa5252; padding: 16px; margin-bottom: 12px;">
+          <p style="margin: 0 0 4px 0; font-weight: 600; color: #212529; font-size: 15px;">Lost Focus Indicators</p>
+          <p style="margin: 0; color: #495057; font-size: 14px;">Custom focus styles using only <code style="background: #e9ecef; padding: 2px 4px; border-radius: 3px;">box-shadow</code> with <code style="background: #e9ecef; padding: 2px 4px; border-radius: 3px;">outline: none</code> are completely removed. Keyboard navigation becomes impossible.</p>
+        </div>
+
+        <div style="background-color: #f8f9fa; border-left: 4px solid #fa5252; padding: 16px; margin-bottom: 12px;">
+          <p style="margin: 0 0 4px 0; font-weight: 600; color: #212529; font-size: 15px;">Disappearing Icons</p>
+          <p style="margin: 0; color: #495057; font-size: 14px;">SVG icons with hardcoded <code style="background: #e9ecef; padding: 2px 4px; border-radius: 3px;">fill</code> colors get overridden, potentially matching the background color and becoming invisible.</p>
+        </div>
+
+        <div style="background-color: #f8f9fa; border-left: 4px solid #fa5252; padding: 16px; margin-bottom: 12px;">
+          <p style="margin: 0 0 4px 0; font-weight: 600; color: #212529; font-size: 15px;">Indistinguishable Form Control States</p>
+          <p style="margin: 0; color: #495057; font-size: 14px;">Custom checkboxes and toggles that indicate state through <code style="background: #e9ecef; padding: 2px 4px; border-radius: 3px;">background-color</code> only: both states look identical when the system overrides the background.</p>
+        </div>
+
+        <div style="background-color: #fff3bf; border-left: 4px solid #fab005; padding: 16px;">
+          <p style="margin: 0; color: #495057; font-size: 15px;"><strong>Severity Priority:</strong> Focus indicator loss is the most critical failure (makes keyboard navigation impossible), followed by invisible interactive elements, then indistinguishable states, then lost visual boundaries.</p>
+        </div>
+      </div>
+
+      <!-- Concept 3: Design Techniques for Compatibility -->
+      <div style="margin-bottom: 32px;">
+        <h4 style="margin: 0 0 12px 0; font-size: 18px; font-weight: 600; color: #212529;">Design Techniques for Forced Colors Compatibility</h4>
+        <p style="margin: 0 0 16px 0; color: #495057; font-size: 15px;">Resilient designs communicate through structure (borders, outlines, content) in addition to color. The following CSS techniques ensure components remain visible and functional in forced colors mode.</p>
+        
+        <div style="background-color: #f8f9fa; border-left: 4px solid #1971c2; padding: 16px; margin-bottom: 12px;">
+          <p style="margin: 0 0 4px 0; font-weight: 600; color: #212529; font-size: 15px;">Transparent Border Technique</p>
+          <p style="margin: 0; color: #495057; font-size: 14px;">Add <code style="background: #e9ecef; padding: 2px 4px; border-radius: 3px;">border: 2px solid transparent</code> to interactive elements. In normal mode, the border is invisible. In forced colors, the border-color is overridden to a system color, making the boundary visible. This single technique fixes the majority of invisible-element failures.</p>
+        </div>
+
+        <div style="background-color: #f8f9fa; border-left: 4px solid #1971c2; padding: 16px; margin-bottom: 12px;">
+          <p style="margin: 0 0 4px 0; font-weight: 600; color: #212529; font-size: 15px;">Outline-Based Focus Indicators</p>
+          <p style="margin: 0; color: #495057; font-size: 14px;">Use <code style="background: #e9ecef; padding: 2px 4px; border-radius: 3px;">outline</code> as the primary focus indicator (its color is overridden to a system color, remaining visible). <code style="background: #e9ecef; padding: 2px 4px; border-radius: 3px;">box-shadow</code> can supplement in normal mode but must never be the sole focus indicator.</p>
+        </div>
+
+        <div style="background-color: #f8f9fa; border-left: 4px solid #1971c2; padding: 16px; margin-bottom: 12px;">
+          <p style="margin: 0 0 4px 0; font-weight: 600; color: #212529; font-size: 15px;">Icons with currentColor</p>
+          <p style="margin: 0; color: #495057; font-size: 14px;">Set SVG <code style="background: #e9ecef; padding: 2px 4px; border-radius: 3px;">fill</code> and <code style="background: #e9ecef; padding: 2px 4px; border-radius: 3px;">stroke</code> to <code style="background: #e9ecef; padding: 2px 4px; border-radius: 3px;">currentColor</code>. Icons inherit the text color, which in forced colors resolves to the system text color. Icons automatically adapt to any color theme.</p>
+        </div>
+
+        <div style="background-color: #f8f9fa; border-left: 4px solid #1971c2; padding: 16px; margin-bottom: 12px;">
+          <p style="margin: 0 0 4px 0; font-weight: 600; color: #212529; font-size: 15px;">The forced-colors Media Query</p>
+          <p style="margin: 0; color: #495057; font-size: 14px;">Use <code style="background: #e9ecef; padding: 2px 4px; border-radius: 3px;">@media (forced-colors: active)</code> for specific fixes when simpler techniques are not sufficient. Reference system color keywords (<code style="background: #e9ecef; padding: 2px 4px; border-radius: 3px;">CanvasText</code>, <code style="background: #e9ecef; padding: 2px 4px; border-radius: 3px;">ButtonText</code>) instead of hardcoded color values.</p>
+        </div>
+
+        <div style="background-color: #e7f5ff; border-left: 4px solid #1971c2; padding: 16px;">
+          <p style="margin: 0; color: #495057; font-size: 15px;"><strong>Designer Impact:</strong> These techniques are not just forced-colors fixes: they make designs more robust for everyone. Better keyboard visibility, clearer component boundaries, and more resilient state indicators benefit all users.</p>
+        </div>
+      </div>
+
+      <!-- Concept 4: Testing Methods -->
+      <div>
+        <h4 style="margin: 0 0 12px 0; font-size: 18px; font-weight: 600; color: #212529;">How to Test for Forced Colors</h4>
+        <p style="margin: 0 0 16px 0; color: #495057; font-size: 15px;">Testing can be done natively on Windows or through browser DevTools emulation on any platform.</p>
+        <p style="margin: 0 0 16px 0; color: #495057; font-size: 15px;">Native Windows High Contrast Mode is available only on Windows. On Mac, iOS, and Android, use browser DevTools emulation.</p>
+        
+        <table style="width: 100%; border-collapse: collapse; font-size: 14px; margin-bottom: 16px;">
+          <thead>
+            <tr style="background-color: #f1f3f4;">
+              <th scope="col" style="padding: 10px 12px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">Method</th>
+              <th scope="col" style="padding: 10px 12px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">How to Enable</th>
+              <th scope="col" style="padding: 10px 12px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; font-weight: 600;">Windows Native</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Settings > Accessibility > Contrast themes, or Left Alt + Left Shift + Print Screen</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Most accurate. Tests all themes.</td>
+            </tr>
+            <tr style="background-color: #f8f9fa;">
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; font-weight: 600;">Chrome DevTools</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">F12 > Rendering panel > Emulate CSS media feature: forced-colors: active</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Works on any OS. Emulates one theme.</td>
+            </tr>
+            <tr>
+              <td style="padding: 10px 12px; font-weight: 600;">Firefox DevTools</td>
+              <td style="padding: 10px 12px;">F12 > Accessibility panel > Simulate</td>
+              <td style="padding: 10px 12px;">Alternative emulation option.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div style="background-color: #fff3bf; border-left: 4px solid #fab005; padding: 16px;">
+          <p style="margin: 0; color: #495057; font-size: 15px;"><strong>Testing Checklist:</strong> When testing in forced colors, verify: (1) all buttons and controls have visible boundaries, (2) focus indicators are visible, (3) icons are visible, (4) form control states (checked/unchecked, on/off) are distinguishable, and (5) data visualizations remain interpretable.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Assessment Section -->
+    <div style="background-color: #f8f9fa; border: 1px solid #dee2e6; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #845ef7;">
+      <h3 style="margin: 0 0 20px 0; font-size: 20px; font-weight: 600; color: #212529; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">📝</span> Assessment
+      </h3>
+
+      <!-- Knowledge Check -->
+      <div style="background-color: #fff; border-radius: 6px; padding: 20px; margin-bottom: 20px; border: 1px solid #e9ecef;">
+        <h4 style="margin: 0 0 8px 0; font-size: 16px; font-weight: 600; color: #212529;">Knowledge Check Quiz</h4>
+        <p style="margin: 0 0 4px 0; font-size: 13px; color: #495057;">5 questions | 5 points | Auto-graded</p>
+        <p style="margin: 12px 0 0 0; font-size: 14px; color: #212529;">
+          Test your understanding of how Windows Forced Colors Mode affects CSS properties, common failure patterns, and design techniques for compatibility.
+        </p>
+      </div>
+
+      <!-- Applied Practice -->
+      <div style="background-color: #fff; border-radius: 6px; padding: 20px; border: 1px solid #e9ecef;">
+        <h4 style="margin: 0 0 8px 0; font-size: 16px; font-weight: 600; color: #212529;">Applied Practice</h4>
+        <p style="margin: 0 0 12px 0; font-size: 13px; color: #495057;">Instructor-graded | Assignment details to be added</p>
+        <p style="margin: 0; font-size: 14px; color: #212529;">
+          Test a product interface in Windows Forced Colors Mode (or DevTools emulation). Identify failure patterns, prioritize by severity, and recommend specific CSS-level fixes. Document your findings with before/after comparisons.
+        </p>
+      </div>
+    </div>
+
+    <!-- Resources Section -->
+    <div style="background-color: #fff; border: 1px solid #dee2e6; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #20c997;">
+      <h3 style="margin: 0 0 20px 0; font-size: 20px; font-weight: 600; color: #212529; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">📚</span> Resources
+      </h3>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 20px;">
+        <!-- Reference Materials -->
+        <div style="flex: 1; min-width: 260px;">
+          <h4 style="margin: 0 0 12px 0; font-size: 15px; font-weight: 600; color: #212529;">CSS and Forced Colors</h4>
+          <ul style="margin: 0; padding-left: 20px; font-size: 14px;">
+            <li style="margin-bottom: 8px;">
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/forced-colors" style="color: #1864ab; text-decoration: underline;">MDN: forced-colors media feature</a>
+            </li>
+            <li style="margin-bottom: 8px;">
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/forced-color-adjust" style="color: #1864ab; text-decoration: underline;">MDN: forced-color-adjust property</a>
+            </li>
+            <li style="margin-bottom: 8px;">
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/system-color" style="color: #1864ab; text-decoration: underline;">MDN: CSS system color keywords</a>
+            </li>
+            <li>
+              <a href="https://www.w3.org/TR/css-color-adjust-1/" style="color: #1864ab; text-decoration: underline;">W3C: CSS Color Adjustment Module</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Testing and Articles -->
+        <div style="flex: 1; min-width: 260px;">
+          <h4 style="margin: 0 0 12px 0; font-size: 15px; font-weight: 600; color: #212529;">Testing and Articles</h4>
+          <ul style="margin: 0; padding-left: 20px; font-size: 14px;">
+            <li style="margin-bottom: 8px;">
+              <a href="https://www.smashingmagazine.com/2022/06/guide-windows-high-contrast-mode/" style="color: #1864ab; text-decoration: underline;">Smashing Magazine: Guide to Windows High Contrast Mode</a>
+            </li>
+            <li style="margin-bottom: 8px;">
+              <a href="https://www.w3.org/WAI/WCAG22/Understanding/non-text-contrast" style="color: #1864ab; text-decoration: underline;">Understanding SC 1.4.11: Non-text Contrast</a>
+            </li>
+            <li style="margin-bottom: 8px;">
+              <a href="https://www.w3.org/WAI/WCAG22/Understanding/use-of-color" style="color: #1864ab; text-decoration: underline;">Understanding SC 1.4.1: Use of Color</a>
+            </li>
+            <li>
+              <a href="https://adrianroselli.com/2021/02/whcm-and-system-colors.html" style="color: #1864ab; text-decoration: underline;">Adrian Roselli: WHCM and System Colors</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Up Next Section -->
+    <div style="background: linear-gradient(135deg, #ffe3e3 0%, #ffc9c9 100%); border-radius: 8px; padding: 20px 24px; border-left: 5px solid #FF6B6B;">
+      <h3 style="margin: 0 0 8px 0; font-size: 18px; font-weight: 600; color: #c92a2a; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 20px;">➡️</span> Up Next
+      </h3>
+      <p style="margin: 0; font-size: 15px; color: #212529;">
+        <strong>Lesson 15: User Preferences and System Settings</strong> broadens the forced colors concept to the full spectrum of user accessibility preferences. You'll learn how to test and design for <code style="background: rgba(0,0,0,0.08); padding: 2px 4px; border-radius: 3px;">prefers-reduced-motion</code>, <code style="background: rgba(0,0,0,0.08); padding: 2px 4px; border-radius: 3px;">prefers-color-scheme</code>, <code style="background: rgba(0,0,0,0.08); padding: 2px 4px; border-radius: 3px;">prefers-contrast</code>, and system text size settings.
+      </p>
+    </div>
+
+  </div>
+
+</body>
+</html>

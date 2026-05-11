@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lesson 10: Screen Reader Fundamentals - Canvas Preview</title>
+</head>
+<body style="margin: 0; padding: 20px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif; background-color: #ffffff; color: #333333; line-height: 1.6;">
+  <!-- Note: This is a preview file. When copying to Canvas, copy only the content below this line -->
+  
+  <div style="max-width: 900px; margin: 0; padding: 24px 0 48px 0;">
+
+    <!-- Header Section -->
+    <div style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); border-radius: 8px; padding: 24px 28px; margin-bottom: 28px; border-left: 5px solid #FF6B6B;">
+      <h2 style="margin: 0 0 12px 0; font-size: 28px; font-weight: 600; color: #212529;">Lesson 10: Screen Reader Fundamentals</h2>
+      <div style="display: flex; flex-wrap: wrap; gap: 14px; margin-top: 18px;">
+        <span style="display: inline-flex; align-items: center; gap: 8px; background-color: #ffe3e3; color: #c92a2a; padding: 10px 18px; border-radius: 24px; font-size: 15px; font-weight: 500;">
+          <span style="font-size: 18px;">🎯</span> Define Badge
+        </span>
+        <span style="display: inline-flex; align-items: center; gap: 8px; background-color: #e7f5ff; color: #1864ab; padding: 10px 18px; border-radius: 24px; font-size: 15px; font-weight: 500;">
+          <span style="font-size: 18px;">🏷️</span> Module 2B
+        </span>
+      </div>
+    </div>
+
+    <!-- Introduction -->
+    <p style="font-size: 17px; color: #495057; margin-bottom: 16px; padding: 0 4px;">
+      Screen readers are the primary assistive technology for people who are blind or have low vision. Understanding how screen readers work transforms how designers think about accessibility, because you hear your design the way AT users experience it.
+    </p>
+    <p style="font-size: 17px; color: #495057; margin-bottom: 32px; padding: 0 4px;">
+      In this lesson, you'll learn how to navigate web content using VoiceOver (desktop and iOS), NVDA, and TalkBack. You'll understand the critical distinction between browse mode and focus mode on desktop, learn that mobile screen readers are essentially browse mode only, and practice efficient navigation using quick keys, the Rotor, and Reading Controls. This builds directly on L09's accessibility tree foundation: now you'll hear what you've been seeing.
+    </p>
+
+    <!-- Lesson Activities Section -->
+    <div style="background-color: #fff; border: 1px solid #dee2e6; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #FF6B6B;">
+      <h3 style="margin: 0 0 8px 0; font-size: 20px; font-weight: 600; color: #212529; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">🎯</span> Lesson Activities
+      </h3>
+      <p style="margin: 0 0 20px 0; color: #495057; font-size: 15px;">Complete these activities for this lesson.</p>
+      
+      <!-- Activity Links -->
+      <table role="presentation" style="width: 100%; border-collapse: separate; border-spacing: 0 12px;">
+        <tr>
+          <td style="width: 44px; background-color: #f8f9fa; border: 1px solid #e9ecef; border-radius: 8px 0 0 8px; padding: 16px; text-align: center; vertical-align: middle;">
+            <span style="display: inline-block; width: 44px; height: 44px; background-color: #ffe3e3; border-radius: 8px; font-size: 22px; text-align: center; line-height: 44px;">🎨</span>
+          </td>
+          <td style="background-color: #f8f9fa; border-top: 1px solid #e9ecef; border-bottom: 1px solid #e9ecef; padding: 16px 12px; vertical-align: middle;">
+            <strong style="color: #212529; font-size: 15px;">Lesson in Figma</strong><br>
+            <span style="color: #495057; font-size: 13px;">View the lesson walkthrough (link to be added)</span>
+          </td>
+          <td style="width: 40px; background-color: #f8f9fa; border: 1px solid #e9ecef; border-radius: 0 8px 8px 0; padding: 16px 16px 16px 0; text-align: right; vertical-align: middle;">
+            <span style="color: #495057; font-size: 18px;">→</span>
+          </td>
+        </tr>
+        <tr>
+          <td style="width: 44px; background-color: #f8f9fa; border: 1px solid #e9ecef; border-radius: 8px 0 0 8px; padding: 16px; text-align: center; vertical-align: middle;">
+            <span style="display: inline-block; width: 44px; height: 44px; background-color: #fff3bf; border-radius: 8px; font-size: 22px; text-align: center; line-height: 44px;">📋</span>
+          </td>
+          <td style="background-color: #f8f9fa; border-top: 1px solid #e9ecef; border-bottom: 1px solid #e9ecef; padding: 16px 12px; vertical-align: middle;">
+            <strong style="color: #212529; font-size: 15px;">Knowledge Check Quiz</strong><br>
+            <span style="color: #495057; font-size: 13px;">5 questions · Auto-graded · 5 points</span>
+          </td>
+          <td style="width: 40px; background-color: #f8f9fa; border: 1px solid #e9ecef; border-radius: 0 8px 8px 0; padding: 16px 16px 16px 0; text-align: right; vertical-align: middle;">
+            <span style="color: #495057; font-size: 18px;">→</span>
+          </td>
+        </tr>
+        <tr>
+          <td style="width: 44px; background-color: #f8f9fa; border: 1px solid #e9ecef; border-radius: 8px 0 0 8px; padding: 16px; text-align: center; vertical-align: middle;">
+            <span style="display: inline-block; width: 44px; height: 44px; background-color: #d0ebff; border-radius: 8px; font-size: 22px; text-align: center; line-height: 44px;">🛠️</span>
+          </td>
+          <td style="background-color: #f8f9fa; border-top: 1px solid #e9ecef; border-bottom: 1px solid #e9ecef; padding: 16px 12px; vertical-align: middle;">
+            <a href="https://canvas.instructure.com/courses/13608566/assignments/61998451" style="text-decoration: none;"><strong style="color: #212529; font-size: 15px;">DOM and Screen Readers Applied Practice</strong></a><br>
+            <span style="color: #495057; font-size: 13px;">Hands-on assessment · Covers L09 + L10</span>
+          </td>
+          <td style="width: 40px; background-color: #f8f9fa; border: 1px solid #e9ecef; border-radius: 0 8px 8px 0; padding: 16px 16px 16px 0; text-align: right; vertical-align: middle;">
+            <span style="color: #495057; font-size: 18px;">→</span>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- Video Section -->
+    <div style="background-color: #f8f9fa; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #845ef7;">
+      <h3 style="margin: 0 0 8px 0; font-size: 20px; font-weight: 600; color: #212529; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">🎬</span> The Explainer
+      </h3>
+      <p style="margin: 0 0 20px 0; color: #495057; font-size: 15px;">Get an overview of screen reader fundamentals before the live session.</p>
+      
+      <div style="padding:56.25% 0 0 0;position:relative;border-radius: 6px; overflow: hidden;">
+        <iframe src="https://player.vimeo.com/video/1165701770?badge=0&autopause=0&player_id=0&app_id=58479" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" allowfullscreen title="Lesson 10: Screen Reader Fundamentals Explainer"></iframe>
+      </div>
+    </div>
+
+    <!-- Learning Objectives Section -->
+    <div id="learning-objectives" style="background-color: #fff; border: 1px solid #dee2e6; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #1971c2;">
+      <h3 style="margin: 0 0 8px 0; font-size: 20px; font-weight: 600; color: #212529; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">📋</span> Learning Objectives
+      </h3>
+      <p style="margin: 0 0 24px 0; color: #495057; font-size: 15px;">Learn how to navigate and test with screen readers, understand navigation modes, and use efficient navigation techniques.</p>
+      
+      <!-- Learning Outcomes -->
+      <h4 style="margin: 0 0 12px 0; font-size: 17px; font-weight: 600; color: #212529;">Learning Outcomes</h4>
+      <p style="margin: 0 0 16px 0; color: #495057; font-size: 14px;">By the end of this lesson, you will be able to:</p>
+      
+      <table style="width: 100%; border-collapse: collapse; font-size: 15px; margin-bottom: 28px;">
+        <thead>
+          <tr style="background-color: #f1f3f4;">
+            <th scope="col" style="padding: 12px 16px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6; width: 70px;">ID</th>
+            <th scope="col" style="padding: 12px 16px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">Outcome</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="padding: 14px 16px; border-bottom: 1px solid #e9ecef; color: #212529; font-weight: 600; font-family: monospace;">2B.01</td>
+            <td style="padding: 14px 16px; border-bottom: 1px solid #e9ecef; color: #212529;"><strong>Navigate pages using VoiceOver and NVDA</strong> by demonstrating basic screen reader navigation on web content</td>
+          </tr>
+          <tr style="background-color: #f8f9fa;">
+            <td style="padding: 14px 16px; border-bottom: 1px solid #e9ecef; color: #212529; font-weight: 600; font-family: monospace;">2B.02</td>
+            <td style="padding: 14px 16px; border-bottom: 1px solid #e9ecef; color: #212529;"><strong>Distinguish browse mode vs focus mode</strong> by explaining when and why screen readers switch between reading and interaction modes</td>
+          </tr>
+          <tr>
+            <td style="padding: 14px 16px; color: #212529; font-weight: 600; font-family: monospace;">2B.03</td>
+            <td style="padding: 14px 16px; color: #212529;"><strong>Use quick navigation for headings, landmarks, and links</strong> by navigating efficiently using screen reader element lists and shortcuts</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Knowledge/Skills/Application Objectives -->
+      <h4 style="margin: 0 0 12px 0; font-size: 17px; font-weight: 600; color: #212529; padding-bottom: 8px; border-bottom: 2px solid #d0ebff;">Knowledge Objectives</h4>
+      <ul style="margin: 0 0 28px 0; padding-left: 24px; color: #212529; font-size: 14px;">
+        <li style="margin-bottom: 10px;">Explain how screen readers consume the accessibility tree to create the aural experience.</li>
+        <li style="margin-bottom: 10px;">Describe the difference between browse mode (reading content) and focus mode (interacting with controls) on desktop, and understand that mobile screen readers are essentially browse mode only.</li>
+        <li style="margin-bottom: 10px;">Identify basic screen reader commands for VoiceOver (Cmd+F5, VO+Arrow), NVDA (Ctrl+Alt+N, Arrow keys), iOS VoiceOver (swipe right/left, double-tap), and TalkBack (swipe right/left, double-tap).</li>
+        <li style="margin-bottom: 10px;">Understand quick navigation: keyboard shortcuts (H, D, K) on desktop, iOS Rotor (two-finger twist), and TalkBack Reading Controls (swipe up-down).</li>
+        <li>Know how to access element lists in VoiceOver (Web Rotor: VO+U), NVDA (Elements List: Insert+F7), and use the Rotor/Reading Controls on mobile for the same purpose.</li>
+      </ul>
+
+      <h4 style="margin: 0 0 12px 0; font-size: 17px; font-weight: 600; color: #212529; padding-bottom: 8px; border-bottom: 2px solid #d0ebff;">Skills Objectives</h4>
+      <ul style="margin: 0 0 28px 0; padding-left: 24px; color: #212529; font-size: 14px;">
+        <li style="margin-bottom: 10px;">Navigate a web page using VoiceOver or NVDA, moving forward and backward through content.</li>
+        <li style="margin-bottom: 10px;">Identify which mode a screen reader is operating in and recognize mode-switching signals.</li>
+        <li style="margin-bottom: 10px;">Use quick navigation to jump between headings, landmarks, and links.</li>
+        <li>Compare screen reader output to expected behavior from the accessibility tree (connecting to L09).</li>
+      </ul>
+
+      <h4 style="margin: 0 0 12px 0; font-size: 17px; font-weight: 600; color: #212529; padding-bottom: 8px; border-bottom: 2px solid #d0ebff;">Application Objectives</h4>
+      <ul style="margin: 0 0 0 0; padding-left: 24px; color: #212529; font-size: 14px;">
+        <li style="margin-bottom: 10px;">Validate design annotations by testing with a screen reader.</li>
+        <li style="margin-bottom: 10px;">Document screen reader findings clearly for engineering teams.</li>
+        <li>Use screen reader testing as a regular step in the design review process.</li>
+      </ul>
+    </div>
+
+    <!-- Related WCAG Success Criteria Section -->
+    <div style="background-color: #f8f9fa; border: 1px solid #dee2e6; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #0ca678;">
+      <h3 style="margin: 0 0 16px 0; font-size: 20px; font-weight: 600; color: #212529; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">📜</span> Related WCAG Success Criteria
+      </h3>
+      <ul style="margin: 0; padding-left: 24px; color: #212529;">
+        <li style="margin-bottom: 8px;"><strong>4.1.2 Name, Role, Value (Level A):</strong> For all user interface components, the name and role can be programmatically determined; states, properties, and values can be programmatically set</li>
+        <li style="margin-bottom: 8px;"><strong>1.3.1 Info and Relationships (Level A):</strong> Information, structure, and relationships conveyed through presentation can be programmatically determined</li>
+        <li style="margin-bottom: 8px;"><strong>2.4.6 Headings and Labels (Level AA):</strong> Headings and labels describe topic or purpose</li>
+        <li><strong>2.4.1 Bypass Blocks (Level A):</strong> A mechanism is available to bypass blocks of content that are repeated on multiple web pages</li>
+      </ul>
+    </div>
+
+    <!-- Key Concepts Section -->
+    <div style="background-color: #fff; border: 1px solid #dee2e6; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #f59f00;">
+      <h3 style="margin: 0 0 20px 0; font-size: 20px; font-weight: 600; color: #212529; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">💡</span> Key Concepts
+      </h3>
+
+      <!-- Concept 1: Screen Reader Basics -->
+      <div style="margin-bottom: 32px;">
+        <h4 style="margin: 0 0 12px 0; font-size: 18px; font-weight: 600; color: #212529;">How Screen Readers Work</h4>
+        <p style="margin: 0 0 16px 0; color: #495057; font-size: 15px;">Screen readers are software that reads the accessibility tree aloud (not the visual display). They convert the name, role, state, and value properties you learned about in L09 into speech output. When a screen reader encounters a button, it announces something like "Submit, button" (the name followed by the role).</p>
+        
+        <div style="background-color: #e7f5ff; border-left: 4px solid #1971c2; padding: 16px; margin-bottom: 16px;">
+          <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 15px;">The Connection to L09</p>
+          <p style="margin: 0; color: #495057; font-size: 14px;">Accessibility Tree (what you inspected) → Screen Reader (what users hear). Same data, different output. If the tree is wrong, the announcements will be wrong.</p>
+        </div>
+      </div>
+
+      <!-- Concept 2: Browse Mode vs Focus Mode -->
+      <div style="margin-bottom: 32px;">
+        <h4 style="margin: 0 0 12px 0; font-size: 18px; font-weight: 600; color: #212529;">Browse Mode vs Focus Mode</h4>
+        <p style="margin: 0 0 16px 0; color: #495057; font-size: 15px;">Screen readers have two navigation modes that serve different purposes:</p>
+        
+        <div style="background-color: #f8f9fa; border-left: 4px solid #1971c2; padding: 16px; margin-bottom: 16px;">
+          <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 15px;">Browse Mode (Reading Mode)</p>
+          <p style="margin: 0; color: #495057; font-size: 14px;">Navigate through all content: headings, text, images, links. Arrow keys move between elements. Single-key shortcuts (H for headings, D for landmarks) are active. Used for reading and scanning page content.</p>
+        </div>
+        
+        <div style="background-color: #f8f9fa; border-left: 4px solid #1971c2; padding: 16px; margin-bottom: 16px;">
+          <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 15px;">Focus Mode (Forms Mode)</p>
+          <p style="margin: 0; color: #495057; font-size: 14px;">Interact with form fields and widgets. Arrow keys control the focused element (text cursor, dropdown options). Single-key shortcuts are disabled so keystrokes go to the control. Used for filling forms and operating interactive components.</p>
+        </div>
+
+        <div style="background-color: #f8f9fa; border-left: 4px solid #1971c2; padding: 16px; margin-bottom: 16px;">
+          <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 15px;">Mobile: Browse Mode Only</p>
+          <p style="margin: 0; color: #495057; font-size: 14px;">iOS VoiceOver and TalkBack do not have a separate focus mode. All navigation uses gestures: swipe right/left to move between elements, double-tap to activate. When you reach a text field, the on-screen keyboard appears automatically. The Rotor (iOS) and Reading Controls (TalkBack) provide quick navigation without mode switching.</p>
+        </div>
+
+        <div style="background-color: #fff3bf; border-left: 4px solid #fab005; padding: 16px;">
+          <p style="margin: 0; color: #495057; font-size: 15px;"><strong>Designer Impact:</strong> On desktop, incorrect ARIA roles can force screen readers into the wrong mode. On mobile, the same semantic structure is needed for Rotor and Reading Controls to work. Proper headings, landmarks, and labels are required across all platforms.</p>
+        </div>
+      </div>
+
+      <!-- Concept 3: Quick Navigation -->
+      <div style="margin-bottom: 32px;">
+        <h4 style="margin: 0 0 12px 0; font-size: 18px; font-weight: 600; color: #212529;">Quick Navigation</h4>
+        <p style="margin: 0 0 16px 0; color: #495057; font-size: 15px;">Real screen reader users rarely read pages from top to bottom. According to WebAIM surveys, 67.5% of screen reader users navigate by headings as their primary strategy. Quick navigation works across all platforms:</p>
+        
+        <table style="width: 100%; border-collapse: collapse; font-size: 14px; margin-bottom: 16px;">
+          <thead>
+            <tr style="background-color: #f1f3f4;">
+              <th scope="col" style="padding: 10px 12px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">Action</th>
+              <th scope="col" style="padding: 10px 12px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">NVDA (Desktop)</th>
+              <th scope="col" style="padding: 10px 12px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">VoiceOver (Desktop)</th>
+              <th scope="col" style="padding: 10px 12px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">iOS / TalkBack (Mobile)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; font-weight: 600;">Next heading</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; font-family: monospace;">H</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Web Rotor (VO+U)</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Rotor / Reading Controls → Headings → Swipe</td>
+            </tr>
+            <tr style="background-color: #f8f9fa;">
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; font-weight: 600;">Heading by level</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; font-family: monospace;">1-6</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Web Rotor filtered</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Not available on mobile</td>
+            </tr>
+            <tr>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; font-weight: 600;">Next landmark</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; font-family: monospace;">D</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Web Rotor → Landmarks</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Rotor / Reading Controls → Landmarks → Swipe</td>
+            </tr>
+            <tr style="background-color: #f8f9fa;">
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; font-weight: 600;">Next link</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; font-family: monospace;">K</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Web Rotor → Links</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Rotor / Reading Controls → Links → Swipe</td>
+            </tr>
+            <tr>
+              <td style="padding: 10px 12px; font-weight: 600;">Next form field</td>
+              <td style="padding: 10px 12px; font-family: monospace;">F</td>
+              <td style="padding: 10px 12px;">Web Rotor → Form Controls</td>
+              <td style="padding: 10px 12px;">Rotor / Reading Controls → Controls → Swipe</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div style="background-color: #e7f5ff; border-left: 4px solid #1971c2; padding: 16px;">
+          <p style="margin: 0; color: #495057; font-size: 15px;"><strong>Why This Matters:</strong> Your heading structure (L02) and landmark annotations (L07) directly create the navigation structure screen reader users depend on across all platforms. Flat headings and missing landmarks break quick navigation on desktop and mobile alike.</p>
+        </div>
+      </div>
+
+      <!-- Concept 4: Essential Commands Reference -->
+      <div>
+        <h4 style="margin: 0 0 12px 0; font-size: 18px; font-weight: 600; color: #212529;">Essential Commands Reference</h4>
+        <p style="margin: 0 0 16px 0; color: #495057; font-size: 15px;">Keep these handy when testing:</p>
+        
+        <div style="display: flex; flex-wrap: wrap; gap: 16px;">
+          <div style="flex: 1; min-width: 200px; background-color: #f8f9fa; border-radius: 6px; padding: 16px;">
+            <p style="margin: 0 0 12px 0; font-weight: 600; color: #212529; font-size: 15px;">VoiceOver (Mac)</p>
+            <ul style="margin: 0; padding-left: 20px; font-size: 13px; color: #495057;">
+              <li style="margin-bottom: 6px;">On/Off: <strong>Cmd+F5</strong></li>
+              <li style="margin-bottom: 6px;">Next: <strong>VO+Right Arrow</strong></li>
+              <li style="margin-bottom: 6px;">Activate: <strong>VO+Space</strong></li>
+              <li style="margin-bottom: 6px;">Web Rotor: <strong>VO+U</strong></li>
+              <li>Stop speech: <strong>Ctrl</strong></li>
+            </ul>
+          </div>
+          <div style="flex: 1; min-width: 200px; background-color: #f8f9fa; border-radius: 6px; padding: 16px;">
+            <p style="margin: 0 0 12px 0; font-weight: 600; color: #212529; font-size: 15px;">NVDA (Windows)</p>
+            <ul style="margin: 0; padding-left: 20px; font-size: 13px; color: #495057;">
+              <li style="margin-bottom: 6px;">Start: <strong>Ctrl+Alt+N</strong></li>
+              <li style="margin-bottom: 6px;">Quit: <strong>Insert+Q</strong></li>
+              <li style="margin-bottom: 6px;">Navigate: <strong>Arrow keys</strong></li>
+              <li style="margin-bottom: 6px;">Elements List: <strong>Insert+F7</strong></li>
+              <li>Stop speech: <strong>Ctrl</strong></li>
+            </ul>
+          </div>
+          <div style="flex: 1; min-width: 200px; background-color: #f8f9fa; border-radius: 6px; padding: 16px;">
+            <p style="margin: 0 0 12px 0; font-weight: 600; color: #212529; font-size: 15px;">iOS VoiceOver</p>
+            <ul style="margin: 0; padding-left: 20px; font-size: 13px; color: #495057;">
+              <li style="margin-bottom: 6px;">Next: <strong>Swipe right</strong></li>
+              <li style="margin-bottom: 6px;">Previous: <strong>Swipe left</strong></li>
+              <li style="margin-bottom: 6px;">Activate: <strong>Double-tap</strong></li>
+              <li style="margin-bottom: 6px;">Rotor: <strong>Two-finger twist</strong></li>
+              <li>Stop speech: <strong>Two-finger tap</strong></li>
+            </ul>
+          </div>
+          <div style="flex: 1; min-width: 200px; background-color: #f8f9fa; border-radius: 6px; padding: 16px;">
+            <p style="margin: 0 0 12px 0; font-weight: 600; color: #212529; font-size: 15px;">TalkBack (Android)</p>
+            <ul style="margin: 0; padding-left: 20px; font-size: 13px; color: #495057;">
+              <li style="margin-bottom: 6px;">Next: <strong>Swipe right</strong></li>
+              <li style="margin-bottom: 6px;">Previous: <strong>Swipe left</strong></li>
+              <li style="margin-bottom: 6px;">Activate: <strong>Double-tap</strong></li>
+              <li style="margin-bottom: 6px;">Reading Controls: <strong>Swipe up-down</strong></li>
+              <li>Stop speech: <strong>Two-finger tap</strong></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Assessment Section -->
+    <div style="background-color: #f8f9fa; border: 1px solid #dee2e6; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #845ef7;">
+      <h3 style="margin: 0 0 20px 0; font-size: 20px; font-weight: 600; color: #212529; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">📝</span> Assessment
+      </h3>
+
+      <!-- Knowledge Check -->
+      <div style="background-color: #fff; border-radius: 6px; padding: 20px; margin-bottom: 20px; border: 1px solid #e9ecef;">
+        <h4 style="margin: 0 0 8px 0; font-size: 16px; font-weight: 600; color: #212529;">Knowledge Check Quiz</h4>
+        <p style="margin: 0 0 4px 0; font-size: 13px; color: #495057;">5 questions | 5 points | Auto-graded</p>
+        <p style="margin: 12px 0 0 0; font-size: 14px; color: #212529;">
+          Test your understanding of screen reader navigation, browse mode vs focus mode, and quick navigation techniques.
+        </p>
+      </div>
+
+      <!-- Applied Practice -->
+      <div style="background-color: #fff; border-radius: 6px; padding: 20px; border: 1px solid #e9ecef;">
+        <h4 style="margin: 0 0 8px 0; font-size: 16px; font-weight: 600; color: #212529;">Applied Practice: DOM and Screen Readers</h4>
+        <p style="margin: 0 0 12px 0; font-size: 13px; color: #495057;">Instructor-graded | Covers L09 + L10</p>
+        <p style="margin: 0; font-size: 14px; color: #212529;">
+          Analyze a provided web page by inspecting the accessibility tree (L09 skills) and then navigating with a screen reader (L10 skills). Compare your dev tools predictions to the actual screen reader experience and document your findings.
+        </p>
+      </div>
+    </div>
+
+    <!-- Resources Section -->
+    <div style="background-color: #fff; border: 1px solid #dee2e6; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #20c997;">
+      <h3 style="margin: 0 0 20px 0; font-size: 20px; font-weight: 600; color: #212529; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">📚</span> Resources
+      </h3>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 20px;">
+        <!-- Screen Reader Guides -->
+        <div style="flex: 1; min-width: 260px;">
+          <h4 style="margin: 0 0 12px 0; font-size: 15px; font-weight: 600; color: #212529;">Screen Reader Guides</h4>
+          <ul style="margin: 0; padding-left: 20px; font-size: 14px;">
+            <li style="margin-bottom: 8px;">
+              <a href="https://webaim.org/articles/voiceover/" style="color: #1864ab; text-decoration: underline;">WebAIM: Using VoiceOver</a>
+            </li>
+            <li style="margin-bottom: 8px;">
+              <a href="https://webaim.org/articles/nvda/" style="color: #1864ab; text-decoration: underline;">WebAIM: Using NVDA</a>
+            </li>
+            <li style="margin-bottom: 8px;">
+              <a href="https://www.nvaccess.org/download/" style="color: #1864ab; text-decoration: underline;">NVDA Download (free)</a>
+            </li>
+            <li style="margin-bottom: 8px;">
+              <a href="https://webaim.org/articles/voiceover/mobile" style="color: #1864ab; text-decoration: underline;">WebAIM: Using VoiceOver (iOS)</a>
+            </li>
+            <li>
+              <a href="https://webaim.org/articles/talkback/" style="color: #1864ab; text-decoration: underline;">WebAIM: Using TalkBack</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Reference Materials -->
+        <div style="flex: 1; min-width: 260px;">
+          <h4 style="margin: 0 0 12px 0; font-size: 15px; font-weight: 600; color: #212529;">Reference Materials</h4>
+          <ul style="margin: 0; padding-left: 20px; font-size: 14px;">
+            <li style="margin-bottom: 8px;">
+              <a href="https://dequeuniversity.com/screenreaders/" style="color: #1864ab; text-decoration: underline;">Deque: Screen Reader Keyboard Shortcuts</a>
+            </li>
+            <li style="margin-bottom: 8px;">
+              <a href="https://webaim.org/projects/screenreadersurvey10/" style="color: #1864ab; text-decoration: underline;">WebAIM Screen Reader User Survey</a>
+            </li>
+            <li>
+              <a href="https://www.w3.org/WAI/people-use-web/" style="color: #1864ab; text-decoration: underline;">WAI: How People with Disabilities Use the Web</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Up Next Section -->
+    <div style="background: linear-gradient(135deg, #ffe3e3 0%, #ffc9c9 100%); border-radius: 8px; padding: 20px 24px; border-left: 5px solid #FF6B6B;">
+      <h3 style="margin: 0 0 8px 0; font-size: 18px; font-weight: 600; color: #c92a2a; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 20px;">➡️</span> Up Next
+      </h3>
+      <p style="margin: 0; font-size: 15px; color: #212529;">
+        <strong>Lesson 11: Screen Reader Navigation Patterns</strong> builds on today's fundamentals with advanced patterns. You'll learn how screen readers handle tables, forms, dialogs, tab panels, and live regions. The basic navigation and mode concepts from this lesson are the foundation for all advanced screen reader testing.
+      </p>
+    </div>
+
+  </div>
+
+</body>
+</html>

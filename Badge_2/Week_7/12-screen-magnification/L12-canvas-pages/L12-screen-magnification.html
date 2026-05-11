@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lesson 12: Screen Magnification - Canvas Preview</title>
+</head>
+<body style="margin: 0; padding: 20px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif; background-color: #ffffff; color: #333333; line-height: 1.6;">
+  <!-- Note: This is a preview file. When copying to Canvas, copy only the content below this line -->
+  
+  <div style="max-width: 900px; margin: 0; padding: 24px 0 48px 0;">
+
+    <!-- Header Section -->
+    <div style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); border-radius: 8px; padding: 24px 28px; margin-bottom: 28px; border-left: 5px solid #FF6B6B;">
+      <h2 style="margin: 0 0 12px 0; font-size: 28px; font-weight: 600; color: #212529;">Lesson 12: Screen Magnification</h2>
+      <div style="display: flex; flex-wrap: wrap; gap: 14px; margin-top: 18px;">
+        <span style="display: inline-flex; align-items: center; gap: 8px; background-color: #ffe3e3; color: #c92a2a; padding: 10px 18px; border-radius: 24px; font-size: 15px; font-weight: 500;">
+          <span style="font-size: 18px;">🎯</span> Define Badge
+        </span>
+        <span style="display: inline-flex; align-items: center; gap: 8px; background-color: #e7f5ff; color: #1864ab; padding: 10px 18px; border-radius: 24px; font-size: 15px; font-weight: 500;">
+          <span style="font-size: 18px;">🏷️</span> Module 2C
+        </span>
+      </div>
+    </div>
+
+    <!-- Introduction -->
+    <p style="font-size: 17px; color: #495057; margin-bottom: 16px; padding: 0 4px;">
+      Screen magnification is the most widely-used visual assistive technology. More people rely on magnification than on screen readers. Users with low vision, age-related vision changes, and temporary visual impairment use tools like ZoomText, Windows Magnifier, macOS Zoom, and browser zoom to enlarge content so they can read and interact with it.
+    </p>
+    <p style="font-size: 17px; color: #495057; margin-bottom: 32px; padding: 0 4px;">
+      In this lesson, you'll learn how magnification users experience digital interfaces through a narrow viewport, explore the major magnification tools and how they differ, practice testing at various magnification levels, and learn design patterns that support or hinder magnification users. This lesson builds on the WCAG reflow and zoom concepts from L06 (Discover Badge) by shifting from compliance testing to real AT user experience.
+    </p>
+
+    <!-- Lesson Activities Section -->
+    <div style="background-color: #fff; border: 1px solid #dee2e6; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #FF6B6B;">
+      <h3 style="margin: 0 0 8px 0; font-size: 20px; font-weight: 600; color: #212529; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">🎯</span> Lesson Activities
+      </h3>
+      <p style="margin: 0 0 20px 0; color: #495057; font-size: 15px;">Complete these activities for this lesson.</p>
+      
+      <!-- Activity Links -->
+      <table role="presentation" style="width: 100%; border-collapse: separate; border-spacing: 0 12px;">
+        <tr>
+          <td style="width: 44px; background-color: #f8f9fa; border: 1px solid #e9ecef; border-radius: 8px 0 0 8px; padding: 16px; text-align: center; vertical-align: middle;">
+            <span style="display: inline-block; width: 44px; height: 44px; background-color: #ffe3e3; border-radius: 8px; font-size: 22px; text-align: center; line-height: 44px;">🎨</span>
+          </td>
+          <td style="background-color: #f8f9fa; border-top: 1px solid #e9ecef; border-bottom: 1px solid #e9ecef; padding: 16px 12px; vertical-align: middle;">
+            <strong style="color: #212529; font-size: 15px;">Lesson in Figma</strong><br>
+            <span style="color: #495057; font-size: 13px;"><a href="https://www.figma.com/design/qqZXLIs7sA9HQVIUqHUoGt/DACE---Cohort-1?node-id=2468-4" style="color: #1864ab; text-decoration: underline;">View the lesson walkthrough</a></span>
+          </td>
+          <td style="width: 40px; background-color: #f8f9fa; border: 1px solid #e9ecef; border-radius: 0 8px 8px 0; padding: 16px 16px 16px 0; text-align: right; vertical-align: middle;">
+            <span style="color: #495057; font-size: 18px;">→</span>
+          </td>
+        </tr>
+        <tr>
+          <td style="width: 44px; background-color: #f8f9fa; border: 1px solid #e9ecef; border-radius: 8px 0 0 8px; padding: 16px; text-align: center; vertical-align: middle;">
+            <span style="display: inline-block; width: 44px; height: 44px; background-color: #fff3bf; border-radius: 8px; font-size: 22px; text-align: center; line-height: 44px;">📋</span>
+          </td>
+          <td style="background-color: #f8f9fa; border-top: 1px solid #e9ecef; border-bottom: 1px solid #e9ecef; padding: 16px 12px; vertical-align: middle;">
+            <strong style="color: #212529; font-size: 15px;">Knowledge Check Quiz</strong><br>
+            <span style="color: #495057; font-size: 13px;"><a href="https://canvas.instructure.com/courses/13608566/quizzes/25122394" style="color: #1864ab; text-decoration: underline;">5 questions · Auto-graded · 5 points</a></span>
+          </td>
+          <td style="width: 40px; background-color: #f8f9fa; border: 1px solid #e9ecef; border-radius: 0 8px 8px 0; padding: 16px 16px 16px 0; text-align: right; vertical-align: middle;">
+            <span style="color: #495057; font-size: 18px;">→</span>
+          </td>
+        </tr>
+        <tr>
+          <td style="width: 44px; background-color: #f8f9fa; border: 1px solid #e9ecef; border-radius: 8px 0 0 8px; padding: 16px; text-align: center; vertical-align: middle;">
+            <span style="display: inline-block; width: 44px; height: 44px; background-color: #d0ebff; border-radius: 8px; font-size: 22px; text-align: center; line-height: 44px;">🛠️</span>
+          </td>
+          <td style="background-color: #f8f9fa; border-top: 1px solid #e9ecef; border-bottom: 1px solid #e9ecef; padding: 16px 12px; vertical-align: middle;">
+            <strong style="color: #212529; font-size: 15px;">Applied Practice</strong><br>
+            <span style="color: #495057; font-size: 13px;"><a href="https://canvas.instructure.com/courses/13608566/assignments/62501779" style="color: #1864ab; text-decoration: underline;">Hands-on assessment</a></span>
+          </td>
+          <td style="width: 40px; background-color: #f8f9fa; border: 1px solid #e9ecef; border-radius: 0 8px 8px 0; padding: 16px 16px 16px 0; text-align: right; vertical-align: middle;">
+            <span style="color: #495057; font-size: 18px;">→</span>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- Video Section -->
+    <div style="background-color: #f8f9fa; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #845ef7;">
+      <h3 style="margin: 0 0 8px 0; font-size: 20px; font-weight: 600; color: #212529; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">🎬</span> The Explainer
+      </h3>
+      <p style="margin: 0 0 20px 0; color: #495057; font-size: 15px;">Get an overview of screen magnification tools and design implications before the live session.</p>
+      
+      <iframe src="https://player.vimeo.com/video/1167451661" width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="border-radius: 6px; max-width: 100%;"></iframe>
+      <p style="margin: 12px 0 0 0; font-size: 14px;">
+        <a href="https://vimeo.com/1167451661?share=copy&fl=sv&fe=ci" style="color: #1864ab; text-decoration: underline;">Watch on Vimeo</a> (opens in new tab)
+      </p>
+    </div>
+
+    <!-- Learning Objectives Section -->
+    <div id="learning-objectives" style="background-color: #fff; border: 1px solid #dee2e6; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #1971c2;">
+      <h3 style="margin: 0 0 8px 0; font-size: 20px; font-weight: 600; color: #212529; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">📋</span> Learning Objectives
+      </h3>
+      <p style="margin: 0 0 24px 0; color: #495057; font-size: 15px;">Learn how magnification users experience digital interfaces and how to test and design for magnification compatibility.</p>
+      
+      <!-- Learning Outcomes -->
+      <h4 style="margin: 0 0 12px 0; font-size: 17px; font-weight: 600; color: #212529;">Learning Outcomes</h4>
+      <p style="margin: 0 0 16px 0; color: #495057; font-size: 14px;">By the end of this lesson, you will be able to:</p>
+      
+      <table style="width: 100%; border-collapse: collapse; font-size: 15px; margin-bottom: 28px;">
+        <thead>
+          <tr style="background-color: #f1f3f4;">
+            <th scope="col" style="padding: 12px 16px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6; width: 70px;">ID</th>
+            <th scope="col" style="padding: 12px 16px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">Outcome</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="padding: 14px 16px; border-bottom: 1px solid #e9ecef; color: #212529; font-weight: 600; font-family: monospace;">2C.01</td>
+            <td style="padding: 14px 16px; border-bottom: 1px solid #e9ecef; color: #212529;"><strong>Understand screen magnification tools and user needs:</strong> Explain how ZoomText, Windows Magnifier, macOS Zoom, and browser zoom work and the user populations they serve</td>
+          </tr>
+          <tr style="background-color: #f8f9fa;">
+            <td style="padding: 14px 16px; border-bottom: 1px solid #e9ecef; color: #212529; font-weight: 600; font-family: monospace;">2C.02</td>
+            <td style="padding: 14px 16px; border-bottom: 1px solid #e9ecef; color: #212529;"><strong>Test designs with screen magnification tools:</strong> Validate designs at various magnification levels using system and browser zoom, identifying spatial and navigation issues</td>
+          </tr>
+          <tr>
+            <td style="padding: 14px 16px; color: #212529; font-weight: 600; font-family: monospace;">2C.03</td>
+            <td style="padding: 14px 16px; color: #212529;"><strong>Design for screen magnification compatibility:</strong> Create layouts that maintain spatial relationships and orientation cues for users viewing content through a magnified viewport</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Knowledge/Skills/Application Objectives -->
+      <h4 style="margin: 0 0 12px 0; font-size: 17px; font-weight: 600; color: #212529; padding-bottom: 8px; border-bottom: 2px solid #d0ebff;">Knowledge Objectives</h4>
+      <ul style="margin: 0 0 28px 0; padding-left: 24px; color: #212529; font-size: 14px;">
+        <li style="margin-bottom: 10px;">Explain how major screen magnification tools work (ZoomText, Windows Magnifier, macOS Zoom, browser zoom) and how they differ from each other.</li>
+        <li style="margin-bottom: 10px;">Describe the "viewport within a viewport" experience: at 4x magnification, users see approximately 6% of the page at any moment.</li>
+        <li style="margin-bottom: 10px;">Explain the critical difference between pixel magnification (system zoom) and layout reflow (browser zoom).</li>
+        <li style="margin-bottom: 10px;">Describe why spatial proximity and consistent layout are essential for magnification users who navigate by spatial memory.</li>
+        <li>Identify which WCAG success criteria apply to magnification: 1.4.4 (Resize Text), 1.4.10 (Reflow), 1.4.12 (Text Spacing).</li>
+      </ul>
+
+      <h4 style="margin: 0 0 12px 0; font-size: 17px; font-weight: 600; color: #212529; padding-bottom: 8px; border-bottom: 2px solid #d0ebff;">Skills Objectives</h4>
+      <ul style="margin: 0 0 28px 0; padding-left: 24px; color: #212529; font-size: 14px;">
+        <li style="margin-bottom: 10px;">Test designs at 200% and 400% browser zoom, and with system-level magnification at 4x.</li>
+        <li style="margin-bottom: 10px;">Identify layouts that break spatial relationships between labels, inputs, and error messages at high magnification.</li>
+        <li style="margin-bottom: 10px;">Test tooltip, dropdown, and popup positioning at magnified zoom levels.</li>
+        <li>Verify focus indicator visibility and focus tracking behavior at high magnification.</li>
+      </ul>
+
+      <h4 style="margin: 0 0 12px 0; font-size: 17px; font-weight: 600; color: #212529; padding-bottom: 8px; border-bottom: 2px solid #d0ebff;">Application Objectives</h4>
+      <ul style="margin: 0 0 0 0; padding-left: 24px; color: #212529; font-size: 14px;">
+        <li style="margin-bottom: 10px;">Document magnification testing findings with magnified viewport screenshots showing what users actually see.</li>
+        <li style="margin-bottom: 10px;">Recommend layout improvements that benefit magnification users (labels above inputs, inline validation, compact sticky elements).</li>
+        <li>Annotate designs with magnification-specific requirements for proximity, popup positioning, and reflow behavior.</li>
+      </ul>
+    </div>
+
+    <!-- Related WCAG Success Criteria Section -->
+    <div style="background-color: #f8f9fa; border: 1px solid #dee2e6; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #0ca678;">
+      <h3 style="margin: 0 0 16px 0; font-size: 20px; font-weight: 600; color: #212529; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">📜</span> Related WCAG Success Criteria
+      </h3>
+      <ul style="margin: 0; padding-left: 24px; color: #212529;">
+        <li style="margin-bottom: 8px;"><strong>1.4.4 Resize Text (Level AA):</strong> Text can be resized up to 200 percent without assistive technology, without loss of content or functionality.</li>
+        <li style="margin-bottom: 8px;"><strong>1.4.10 Reflow (Level AA):</strong> Content can be presented without loss of information or functionality, and without requiring scrolling in two dimensions, at a width equivalent to 320 CSS pixels (400% zoom on a 1280px viewport).</li>
+        <li style="margin-bottom: 8px;"><strong>1.4.12 Text Spacing (Level AA):</strong> No loss of content or functionality occurs when users adjust line height, paragraph spacing, letter spacing, and word spacing.</li>
+        <li style="margin-bottom: 8px;"><strong>1.4.3 Contrast (Minimum) (Level AA):</strong> Text and images of text have a contrast ratio of at least 4.5:1. Contrast remains critical for low vision users at all magnification levels.</li>
+        <li><strong>1.3.1 Info and Relationships (Level A):</strong> Information, structure, and relationships conveyed through presentation can be programmatically determined. Spatial relationships must remain understandable when only part of the layout is visible.</li>
+      </ul>
+    </div>
+
+    <!-- Key Concepts Section -->
+    <div style="background-color: #fff; border: 1px solid #dee2e6; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #f59f00;">
+      <h3 style="margin: 0 0 20px 0; font-size: 20px; font-weight: 600; color: #212529; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">💡</span> Key Concepts
+      </h3>
+
+      <!-- Concept 1: Magnification Tools -->
+      <div style="margin-bottom: 32px;">
+        <h4 style="margin: 0 0 12px 0; font-size: 18px; font-weight: 600; color: #212529;">Magnification Tools: A Category, Not a Single Tool</h4>
+        <p style="margin: 0 0 16px 0; color: #495057; font-size: 15px;">Screen magnification spans four categories: dedicated software (ZoomText), OS-level zoom (Windows Magnifier, macOS Zoom), browser zoom (Ctrl/Cmd +), and mobile zoom (pinch-to-zoom). Each creates a different user experience because they work differently under the hood.</p>
+        
+        <table style="width: 100%; border-collapse: collapse; font-size: 14px; margin-bottom: 16px;">
+          <thead>
+            <tr style="background-color: #f1f3f4;">
+              <th scope="col" style="padding: 10px 12px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">Category</th>
+              <th scope="col" style="padding: 10px 12px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">Examples</th>
+              <th scope="col" style="padding: 10px 12px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">Behavior</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; font-weight: 600;">Dedicated software</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">ZoomText</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Pixel magnification + smoothing + built-in screen reader</td>
+            </tr>
+            <tr style="background-color: #f8f9fa;">
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; font-weight: 600;">OS-level zoom</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Windows Magnifier, macOS Zoom</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Full-screen, lens, or docked magnification</td>
+            </tr>
+            <tr>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; font-weight: 600;">Browser zoom</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Ctrl/Cmd +</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Reflows page layout (changes CSS rendering)</td>
+            </tr>
+            <tr style="background-color: #f8f9fa;">
+              <td style="padding: 10px 12px; font-weight: 600;">Mobile zoom</td>
+              <td style="padding: 10px 12px;">Pinch-to-zoom, system zoom</td>
+              <td style="padding: 10px 12px;">Touch-based viewport magnification</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div style="background-color: #e7f5ff; border-left: 4px solid #1971c2; padding: 16px;">
+          <p style="margin: 0; color: #495057; font-size: 15px;"><strong>Critical Distinction:</strong> Browser zoom reflows the layout (like triggering a responsive breakpoint). System magnification enlarges pixels without changing the layout. A design that passes WCAG 1.4.10 Reflow with browser zoom can still be unusable with system magnification tools.</p>
+        </div>
+      </div>
+
+      <!-- Concept 2: Viewport Within a Viewport -->
+      <div style="margin-bottom: 32px;">
+        <h4 style="margin: 0 0 12px 0; font-size: 18px; font-weight: 600; color: #212529;">The Viewport Within a Viewport</h4>
+        <p style="margin: 0 0 16px 0; color: #495057; font-size: 15px;">When using system magnification, users view the page through a magnified window that shows only a portion of the full layout. The higher the magnification, the smaller the visible area. This fundamentally changes how users navigate and understand the interface.</p>
+        
+        <table style="width: 100%; border-collapse: collapse; font-size: 14px; margin-bottom: 16px;">
+          <thead>
+            <tr style="background-color: #f1f3f4;">
+              <th scope="col" style="padding: 10px 12px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">Magnification</th>
+              <th scope="col" style="padding: 10px 12px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">Visible Width</th>
+              <th scope="col" style="padding: 10px 12px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">Total Area Visible</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; font-weight: 600;">2x</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">50%</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">~25% of the page</td>
+            </tr>
+            <tr style="background-color: #f8f9fa;">
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; font-weight: 600;">4x</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">25%</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">~6% of the page</td>
+            </tr>
+            <tr>
+              <td style="padding: 10px 12px; font-weight: 600;">8x</td>
+              <td style="padding: 10px 12px;">12.5%</td>
+              <td style="padding: 10px 12px;">~1.5% of the page</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div style="background-color: #fff3bf; border-left: 4px solid #fab005; padding: 16px;">
+          <p style="margin: 0; color: #495057; font-size: 15px;"><strong>User Impact:</strong> At 4x magnification, over 90% of the page is invisible at any given moment. Users navigate by moving the magnified viewport, relying on spatial memory and consistent layouts. This is why proximity between related elements is essential.</p>
+        </div>
+      </div>
+
+      <!-- Concept 3: Testing Approach -->
+      <div style="margin-bottom: 32px;">
+        <h4 style="margin: 0 0 12px 0; font-size: 18px; font-weight: 600; color: #212529;">Magnification Testing: Compliance + Experience</h4>
+        <p style="margin: 0 0 16px 0; color: #495057; font-size: 15px;">Effective magnification testing combines WCAG compliance testing (browser zoom) with AT experience testing (system magnification). Each level reveals different issues.</p>
+        
+        <table style="width: 100%; border-collapse: collapse; font-size: 14px; margin-bottom: 16px;">
+          <thead>
+            <tr style="background-color: #f1f3f4;">
+              <th scope="col" style="padding: 10px 12px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">Test Level</th>
+              <th scope="col" style="padding: 10px 12px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">Tool</th>
+              <th scope="col" style="padding: 10px 12px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">What It Reveals</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; font-weight: 600;">Browser 200%</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Ctrl/Cmd +</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Text truncation, overflow, clipping (SC 1.4.4)</td>
+            </tr>
+            <tr style="background-color: #f8f9fa;">
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; font-weight: 600;">Browser 400%</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Ctrl/Cmd +</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Layout reflow, horizontal scrolling (SC 1.4.10)</td>
+            </tr>
+            <tr>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; font-weight: 600;">System 4x</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">macOS Zoom / Magnifier</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Spatial separation, popup positioning, focus tracking</td>
+            </tr>
+            <tr style="background-color: #f8f9fa;">
+              <td style="padding: 10px 12px; font-weight: 600;">System 8x</td>
+              <td style="padding: 10px 12px;">macOS Zoom / Magnifier</td>
+              <td style="padding: 10px 12px;">Label-input proximity, viewport consumption by sticky elements</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div style="background-color: #e7f5ff; border-left: 4px solid #1971c2; padding: 16px;">
+          <p style="margin: 0; color: #495057; font-size: 15px;"><strong>Testing Tip:</strong> Browser zoom tests (levels 1-2) are WCAG compliance testing you learned in L06. System magnification tests (levels 3-4) are AT experience testing new in L12. Both are necessary for comprehensive magnification coverage.</p>
+        </div>
+      </div>
+
+      <!-- Concept 4: Design Patterns -->
+      <div>
+        <h4 style="margin: 0 0 12px 0; font-size: 18px; font-weight: 600; color: #212529;">Designing for Magnification: Proximity and Predictability</h4>
+        <p style="margin: 0 0 16px 0; color: #495057; font-size: 15px;">Two principles guide magnification-friendly design: keep related elements close together (proximity) and maintain consistent layouts (predictability). These reduce the cognitive load and navigation effort for users viewing through a magnified viewport.</p>
+        
+        <div style="background-color: #f8f9fa; border-left: 4px solid #1971c2; padding: 16px; margin-bottom: 16px;">
+          <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 15px;">Proximity patterns</p>
+          <ul style="margin: 0; padding-left: 20px; color: #495057; font-size: 14px;">
+            <li style="margin-bottom: 6px;">Labels directly above inputs (not in a separate column)</li>
+            <li style="margin-bottom: 6px;">Error messages inline, immediately below the relevant field</li>
+            <li style="margin-bottom: 6px;">Tooltips and popups positioned near their trigger element</li>
+            <li>Action buttons near the content they act upon</li>
+          </ul>
+        </div>
+
+        <div style="background-color: #f8f9fa; border-left: 4px solid #1971c2; padding: 16px; margin-bottom: 16px;">
+          <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 15px;">Layout patterns</p>
+          <ul style="margin: 0; padding-left: 20px; color: #495057; font-size: 14px;">
+            <li style="margin-bottom: 6px;">Left-aligned single-column layouts for primary content</li>
+            <li style="margin-bottom: 6px;">Consistent navigation placement across all pages</li>
+            <li style="margin-bottom: 6px;">Compact sticky elements (or none at all) to preserve viewport space</li>
+            <li>Predictable multi-column collapse behavior at high zoom</li>
+          </ul>
+        </div>
+
+        <div style="background-color: #fff3bf; border-left: 4px solid #fab005; padding: 16px;">
+          <p style="margin: 0; color: #495057; font-size: 15px;"><strong>Designer Impact:</strong> Annotate spatial proximity requirements for label-input pairs, specify tooltip/popup positioning, note sticky element behavior at high zoom, and call out multi-column collapse behavior. These decisions directly affect magnification users.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Assessment Section -->
+    <div style="background-color: #f8f9fa; border: 1px solid #dee2e6; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #845ef7;">
+      <h3 style="margin: 0 0 20px 0; font-size: 20px; font-weight: 600; color: #212529; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">📝</span> Assessment
+      </h3>
+
+      <!-- Knowledge Check -->
+      <div style="background-color: #fff; border-radius: 6px; padding: 20px; margin-bottom: 20px; border: 1px solid #e9ecef;">
+        <h4 style="margin: 0 0 8px 0; font-size: 16px; font-weight: 600; color: #212529;">Knowledge Check Quiz</h4>
+        <p style="margin: 0 0 4px 0; font-size: 13px; color: #495057;">5 questions | 5 points | Auto-graded | <a href="https://canvas.instructure.com/courses/13608566/quizzes/25122394" style="color: #1864ab; text-decoration: underline;">Quiz</a></p>
+        <p style="margin: 12px 0 0 0; font-size: 14px; color: #212529;">
+          Test your understanding of magnification tools, the difference between system magnification and browser zoom, testing techniques at various magnification levels, and design patterns that support magnification users.
+        </p>
+      </div>
+
+      <!-- Applied Practice -->
+      <div style="background-color: #fff; border-radius: 6px; padding: 20px; border: 1px solid #e9ecef;">
+        <h4 style="margin: 0 0 8px 0; font-size: 16px; font-weight: 600; color: #212529;">Applied Practice</h4>
+        <p style="margin: 0 0 12px 0; font-size: 13px; color: #495057;">Instructor-graded | <a href="https://canvas.instructure.com/courses/13608566/assignments/62501779" style="color: #1864ab; text-decoration: underline;">Assignment</a></p>
+        <p style="margin: 0; font-size: 14px; color: #212529;">
+          Test a design at multiple magnification levels (browser zoom and system magnification). Document spatial proximity issues, tooltip positioning problems, and focus tracking behavior. Provide recommendations for improving magnification compatibility with specific layout and interaction changes.
+        </p>
+      </div>
+    </div>
+
+    <!-- Resources Section -->
+    <div style="background-color: #fff; border: 1px solid #dee2e6; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #20c997;">
+      <h3 style="margin: 0 0 20px 0; font-size: 20px; font-weight: 600; color: #212529; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">📚</span> Resources
+      </h3>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 20px;">
+        <!-- Magnification Tools -->
+        <div style="flex: 1; min-width: 260px;">
+          <h4 style="margin: 0 0 12px 0; font-size: 15px; font-weight: 600; color: #212529;">Magnification Tools</h4>
+          <ul style="margin: 0; padding-left: 20px; font-size: 14px;">
+            <li style="margin-bottom: 8px;">
+              <a href="https://support.apple.com/guide/mac-help/zoom-in-on-the-mac-screen-mh40579/mac" style="color: #1864ab; text-decoration: underline;">Apple: Use Zoom on Mac</a>
+            </li>
+            <li style="margin-bottom: 8px;">
+              <a href="https://support.microsoft.com/en-us/windows/use-magnifier-to-make-things-on-the-screen-easier-to-see-414948ba-8b1c-d3bd-8615-0e5e32204198" style="color: #1864ab; text-decoration: underline;">Microsoft: Use Magnifier</a>
+            </li>
+            <li style="margin-bottom: 8px;">
+              <a href="https://www.freedomscientific.com/products/software/zoomtext/" style="color: #1864ab; text-decoration: underline;">Freedom Scientific: ZoomText</a>
+            </li>
+            <li>
+              <a href="https://webaim.org/articles/visual/lowvision" style="color: #1864ab; text-decoration: underline;">WebAIM: Designing for Low Vision</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- WCAG References -->
+        <div style="flex: 1; min-width: 260px;">
+          <h4 style="margin: 0 0 12px 0; font-size: 15px; font-weight: 600; color: #212529;">WCAG References</h4>
+          <ul style="margin: 0; padding-left: 20px; font-size: 14px;">
+            <li style="margin-bottom: 8px;">
+              <a href="https://www.w3.org/WAI/WCAG22/Understanding/resize-text" style="color: #1864ab; text-decoration: underline;">Understanding SC 1.4.4: Resize Text</a>
+            </li>
+            <li style="margin-bottom: 8px;">
+              <a href="https://www.w3.org/WAI/WCAG22/Understanding/reflow" style="color: #1864ab; text-decoration: underline;">Understanding SC 1.4.10: Reflow</a>
+            </li>
+            <li style="margin-bottom: 8px;">
+              <a href="https://www.w3.org/WAI/WCAG22/Understanding/text-spacing" style="color: #1864ab; text-decoration: underline;">Understanding SC 1.4.12: Text Spacing</a>
+            </li>
+            <li>
+              <a href="https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum" style="color: #1864ab; text-decoration: underline;">Understanding SC 1.4.3: Contrast (Minimum)</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Up Next Section -->
+    <div style="background: linear-gradient(135deg, #ffe3e3 0%, #ffc9c9 100%); border-radius: 8px; padding: 20px 24px; border-left: 5px solid #FF6B6B;">
+      <h3 style="margin: 0 0 8px 0; font-size: 18px; font-weight: 600; color: #c92a2a; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 20px;">➡️</span> Up Next
+      </h3>
+      <p style="margin: 0; font-size: 15px; color: #212529;">
+        <strong>Lesson 13: Voice Control</strong> introduces another distinct assistive technology category: voice-based interaction. You'll learn how Voice Control, Dragon, and voice assistants interact with interfaces, why "Label in Name" (WCAG 2.5.3) matters for voice users, and how motor disability, repetitive strain, and situational use drive voice control adoption.
+      </p>
+    </div>
+
+  </div>
+
+</body>
+</html>

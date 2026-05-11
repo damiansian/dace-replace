@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lesson 01: Accessible Names - Canvas Preview</title>
+</head>
+<body style="margin: 0; padding: 20px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif; background-color: #ffffff; color: #333333; line-height: 1.6;">
+  <!-- Note: This is a preview file. When copying to Canvas, copy only the content below this line -->
+  
+  <div style="max-width: 900px; margin: 0; padding: 24px 0 48px 0;">
+
+    <!-- Header Section -->
+    <div style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); border-radius: 8px; padding: 24px 28px; margin-bottom: 28px; border-left: 5px solid #495057;">
+      <h2 style="margin: 0 0 12px 0; font-size: 28px; font-weight: 600; color: #212529;">Lesson 01: Accessible Names</h2>
+      <div style="display: flex; flex-wrap: wrap; gap: 14px; margin-top: 18px;">
+        <span style="display: inline-flex; align-items: center; gap: 8px; background-color: #e6fcf5; color: #087f5b; padding: 10px 18px; border-radius: 24px; font-size: 15px; font-weight: 500;">
+          <span style="font-size: 18px;">🔍</span> Discover Badge
+        </span>
+        <span style="display: inline-flex; align-items: center; gap: 8px; background-color: #e7f5ff; color: #1864ab; padding: 10px 18px; border-radius: 24px; font-size: 15px; font-weight: 500;">
+          <span style="font-size: 18px;">🏷️</span> Module 1A
+        </span>
+      </div>
+    </div>
+
+    <!-- Introduction -->
+    <p style="font-size: 17px; color: #495057; margin-bottom: 16px; padding: 0 4px;">
+      Accessible names are the bridge between humans and digital interfaces. When someone uses a screen reader or voice control, the accessible name is what tells them what an element is and what it does.
+    </p>
+    <p style="font-size: 17px; color: #495057; margin-bottom: 32px; padding: 0 4px;">
+      In this lesson, you'll learn what accessible names are, when they're needed, how to write good ones, and how to communicate them to engineering through annotations.
+    </p>
+
+    <!-- Lesson Activities Section -->
+    <div style="background-color: #fff; border: 1px solid #dee2e6; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #fa5252;">
+      <h3 style="margin: 0 0 8px 0; font-size: 20px; font-weight: 600; color: #212529; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">🎯</span> Lesson Activities
+      </h3>
+      <p style="margin: 0 0 20px 0; color: #495057; font-size: 15px;">Here's what we're covering in this lesson.</p>
+      
+      <!-- Activity Links -->
+      <table role="presentation" style="width: 100%; border-collapse: separate; border-spacing: 0 12px;">
+        <tr>
+          <td style="width: 44px; background-color: #f8f9fa; border: 1px solid #e9ecef; border-radius: 8px 0 0 8px; padding: 16px; text-align: center; vertical-align: middle;">
+            <span style="display: inline-block; width: 44px; height: 44px; background-color: #f3d9fa; border-radius: 8px; font-size: 22px; text-align: center; line-height: 44px;">🎨</span>
+          </td>
+          <td style="background-color: #f8f9fa; border-top: 1px solid #e9ecef; border-bottom: 1px solid #e9ecef; padding: 16px 12px; vertical-align: middle;">
+            <a href="https://www.figma.com/design/qqZXLIs7sA9HQVIUqHUoGt/DACE---Cohort-1?node-id=0-1" target="_blank" style="text-decoration: none;"><strong style="color: #212529; font-size: 15px;">Lesson in Figma</strong></a><br>
+            <span style="color: #495057; font-size: 13px;">View the lesson walkthrough</span>
+          </td>
+          <td style="width: 40px; background-color: #f8f9fa; border: 1px solid #e9ecef; border-radius: 0 8px 8px 0; padding: 16px 16px 16px 0; text-align: right; vertical-align: middle;">
+            <span style="color: #495057; font-size: 18px;">→</span>
+          </td>
+        </tr>
+        <tr>
+          <td style="width: 44px; background-color: #f8f9fa; border: 1px solid #e9ecef; border-radius: 8px 0 0 8px; padding: 16px; text-align: center; vertical-align: middle;">
+            <span style="display: inline-block; width: 44px; height: 44px; background-color: #d3f9d8; border-radius: 8px; font-size: 22px; text-align: center; line-height: 44px;">✏️</span>
+          </td>
+          <td style="background-color: #f8f9fa; border-top: 1px solid #e9ecef; border-bottom: 1px solid #e9ecef; padding: 16px 12px; vertical-align: middle;">
+            <a href="https://canvas.instructure.com/courses/13608566/assignments/61006853" style="text-decoration: none;"><strong style="color: #212529; font-size: 15px;">Applied Skill Project</strong></a><br>
+            <span style="color: #495057; font-size: 13px;">Submit your Blueline Annotations</span>
+          </td>
+          <td style="width: 40px; background-color: #f8f9fa; border: 1px solid #e9ecef; border-radius: 0 8px 8px 0; padding: 16px 16px 16px 0; text-align: right; vertical-align: middle;">
+            <span style="color: #495057; font-size: 18px;">→</span>
+          </td>
+        </tr>
+        <tr>
+          <td style="width: 44px; background-color: #f8f9fa; border: 1px solid #e9ecef; border-radius: 8px 0 0 8px; padding: 16px; text-align: center; vertical-align: middle;">
+            <span style="display: inline-block; width: 44px; height: 44px; background-color: #fff3bf; border-radius: 8px; font-size: 22px; text-align: center; line-height: 44px;">📋</span>
+          </td>
+          <td style="background-color: #f8f9fa; border-top: 1px solid #e9ecef; border-bottom: 1px solid #e9ecef; padding: 16px 12px; vertical-align: middle;">
+            <a href="https://canvas.instructure.com/courses/13608566/quizzes/24471633" style="text-decoration: none;"><strong style="color: #212529; font-size: 15px;">Knowledge Check Quiz</strong></a><br>
+            <span style="color: #495057; font-size: 13px;">5 questions · Auto-graded</span>
+          </td>
+          <td style="width: 40px; background-color: #f8f9fa; border: 1px solid #e9ecef; border-radius: 0 8px 8px 0; padding: 16px 16px 16px 0; text-align: right; vertical-align: middle;">
+            <span style="color: #495057; font-size: 18px;">→</span>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- Video Section -->
+    <div style="background-color: #f8f9fa; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #845ef7;">
+      <h3 style="margin: 0 0 8px 0; font-size: 20px; font-weight: 600; color: #212529; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">🎬</span> The Explainer
+      </h3>
+      <p style="margin: 0 0 20px 0; color: #495057; font-size: 15px;">Get a quick overview of accessible names before the live session.</p>
+      
+      <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 6px; background-color: #dee2e6;">
+        <iframe 
+          src="https://player.vimeo.com/video/1144283754?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" 
+          style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;"
+          allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" 
+          referrerpolicy="strict-origin-when-cross-origin" 
+          title="L01 Explainer video: Accessible Names">
+        </iframe>
+      </div>
+    </div>
+
+    <!-- Learning Objectives Section -->
+    <div id="learning-objectives" style="background-color: #fff; border: 1px solid #dee2e6; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #1971c2;">
+      <h3 style="margin: 0 0 8px 0; font-size: 20px; font-weight: 600; color: #212529; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">📋</span> Learning Objectives
+      </h3>
+      <p style="margin: 0 0 24px 0; color: #495057; font-size: 15px;">Learn how accessible names connect users to digital interfaces through assistive technology. This lesson covers images, icons, and interactive elements, ensuring each has a proper accessible name or is marked decorative.</p>
+      
+      <!-- Learning Outcomes -->
+      <h4 style="margin: 0 0 12px 0; font-size: 17px; font-weight: 600; color: #212529;">Learning Outcomes</h4>
+      <p style="margin: 0 0 16px 0; color: #495057; font-size: 14px;">By the end of this lesson, you will be able to:</p>
+      
+      <table style="width: 100%; border-collapse: collapse; font-size: 15px; margin-bottom: 28px;">
+        <thead>
+          <tr style="background-color: #f1f3f4;">
+            <th scope="col" style="padding: 12px 16px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6; width: 70px;">ID</th>
+            <th scope="col" style="padding: 12px 16px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">Outcome</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="padding: 14px 16px; border-bottom: 1px solid #e9ecef; color: #1864ab; font-weight: 600; font-family: monospace;">1A.01</td>
+            <td style="padding: 14px 16px; border-bottom: 1px solid #e9ecef; color: #212529;"><strong>Define accessible names</strong> and explain their role in assistive technology interaction</td>
+          </tr>
+          <tr style="background-color: #f8f9fa;">
+            <td style="padding: 14px 16px; border-bottom: 1px solid #e9ecef; color: #1864ab; font-weight: 600; font-family: monospace;">1A.02</td>
+            <td style="padding: 14px 16px; border-bottom: 1px solid #e9ecef; color: #212529;"><strong>Identify when accessible names are required</strong> versus optional for different element types</td>
+          </tr>
+          <tr>
+            <td style="padding: 14px 16px; border-bottom: 1px solid #e9ecef; color: #1864ab; font-weight: 600; font-family: monospace;">1A.03</td>
+            <td style="padding: 14px 16px; border-bottom: 1px solid #e9ecef; color: #212529;"><strong>Evaluate accessible name quality</strong> using established criteria (concise, functional, distinguishable)</td>
+          </tr>
+          <tr style="background-color: #f8f9fa;">
+            <td style="padding: 14px 16px; border-bottom: 1px solid #e9ecef; color: #1864ab; font-weight: 600; font-family: monospace;">1A.04</td>
+            <td style="padding: 14px 16px; border-bottom: 1px solid #e9ecef; color: #212529;"><strong>Specify accessible names</strong> in design annotations using standard documentation methods</td>
+          </tr>
+          <tr>
+            <td style="padding: 14px 16px; color: #1864ab; font-weight: 600; font-family: monospace;">1A.05</td>
+            <td style="padding: 14px 16px; color: #212529;"><strong>Distinguish between visible labels and programmatic names</strong> and know when each applies</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Knowledge Objectives -->
+      <h4 style="margin: 0 0 12px 0; font-size: 17px; font-weight: 600; color: #212529; padding-bottom: 8px; border-bottom: 2px solid #d0ebff;">Knowledge Objectives</h4>
+      <ul style="margin: 0 0 28px 0; padding-left: 24px; color: #212529; font-size: 14px;">
+        <li style="margin-bottom: 10px;">Define what an accessible name is and explain how screen readers and voice control use them to identify buttons, links, images, and other UI elements.</li>
+        <li style="margin-bottom: 10px;">Identify which UI elements require accessible names (e.g., buttons, links, form fields, images) and which should be marked as decorative.</li>
+        <li style="margin-bottom: 10px;">Explain WCAG 1.1.1 (Non-text Content) and WCAG 4.1.2 (Name, Role, Value) requirements and Adobe's accessibility policies.</li>
+        <li style="margin-bottom: 10px;">Recognize common accessible name failures such as missing alt text, unlabeled buttons, and vague link text. Describe how these create barriers for screen reader users.</li>
+        <li style="margin-bottom: 10px;">Distinguish between functional images that need descriptive alt text and decorative images that should be hidden from assistive technology.</li>
+        <li>Describe the scope of accessible name barriers at Adobe and in the industry, and estimate the level of effort required to fix common issues.</li>
+      </ul>
+
+      <!-- Skills Objectives -->
+      <h4 style="margin: 0 0 12px 0; font-size: 17px; font-weight: 600; color: #212529; padding-bottom: 8px; border-bottom: 2px solid #d0ebff;">Skills Objectives</h4>
+      <ul style="margin: 0 0 28px 0; padding-left: 24px; color: #212529; font-size: 14px;">
+        <li style="margin-bottom: 10px;">Test designs against the Adobe Design Accessibility Checklist accessible name section with 90%+ accuracy.</li>
+        <li style="margin-bottom: 10px;">Use Stark or equivalent tools to scan designs and identify elements missing accessible names.</li>
+        <li style="margin-bottom: 10px;">Categorize UI elements as requiring accessible names, needing decorative treatment, or already having sufficient visible labels.</li>
+        <li>Spot generic link text like "Click here" or "Learn more" and flag it for content review.</li>
+      </ul>
+
+      <!-- Application Objectives -->
+      <h4 style="margin: 0 0 12px 0; font-size: 17px; font-weight: 600; color: #212529; padding-bottom: 8px; border-bottom: 2px solid #d0ebff;">Application Objectives</h4>
+      <ul style="margin: 0; padding-left: 24px; color: #212529; font-size: 14px;">
+        <li style="margin-bottom: 10px;">Flag accessible name issues during design reviews using the Adobe Design Accessibility Checklist.</li>
+        <li style="margin-bottom: 10px;">Annotate designs to indicate which elements need accessible names before engineering handoff.</li>
+        <li>Explain accessible name requirements to team members in clear, non-technical language.</li>
+      </ul>
+    </div>
+
+    <!-- Related WCAG Success Criteria Section -->
+    <div style="background-color: #f8f9fa; border: 1px solid #dee2e6; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #0ca678;">
+      <h3 style="margin: 0 0 16px 0; font-size: 20px; font-weight: 600; color: #212529; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">📜</span> Related WCAG Success Criteria
+      </h3>
+      <ul style="margin: 0; padding-left: 24px; color: #212529;">
+        <li style="margin-bottom: 8px;"><strong>1.1.1 Non-text Content (Level A):</strong> All non-text content has a text alternative</li>
+        <li style="margin-bottom: 8px;"><strong>4.1.2 Name, Role, Value (Level A):</strong> User interface components have accessible names</li>
+        <li><strong>2.5.3 Label in Name (Level A):</strong> Visible labels are included in accessible names</li>
+      </ul>
+    </div>
+
+    <!-- Key Concepts Section -->
+    <div style="background-color: #fff; border: 1px solid #dee2e6; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #f59f00;">
+      <h3 style="margin: 0 0 20px 0; font-size: 20px; font-weight: 600; color: #212529; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">💡</span> Key Concepts
+      </h3>
+
+      <!-- What is an Accessible Name -->
+      <div style="margin-bottom: 28px;">
+        <h4 style="margin: 0 0 12px 0; font-size: 17px; font-weight: 600; color: #212529; padding-bottom: 8px; border-bottom: 2px solid #fff3bf; display: flex; align-items: center; gap: 10px;">What is an Accessible Name? <span style="background-color: #d0ebff; color: #1864ab; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; font-family: monospace;">1A.01</span></h4>
+        <p style="margin: 0 0 16px 0; color: #212529;">A short text string that identifies an element's purpose and distinguishes it from other elements on the page. Typically 1 to 3 words.</p>
+        
+        <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529;">Two jobs for every accessible name:</p>
+        <ol style="margin: 0; padding-left: 24px; color: #212529;">
+          <li style="margin-bottom: 6px;"><strong>Convey purpose:</strong> What does this element do?</li>
+          <li><strong>Distinguish:</strong> Which element is this, among similar elements?</li>
+        </ol>
+      </div>
+
+      <!-- When Are Names Required -->
+      <div style="margin-bottom: 28px;">
+        <h4 style="margin: 0 0 12px 0; font-size: 17px; font-weight: 600; color: #212529; padding-bottom: 8px; border-bottom: 2px solid #fff3bf; display: flex; align-items: center; gap: 10px;">When Are Names Required? <span style="background-color: #d0ebff; color: #1864ab; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; font-family: monospace;">1A.02</span></h4>
+        
+        <table style="width: 100%; border-collapse: collapse; font-size: 14px; margin-bottom: 16px;">
+          <thead>
+            <tr>
+              <th scope="col" style="padding: 12px; text-align: left; font-weight: 600; background-color: #d3f9d8; color: #1e7b34; border-bottom: 2px solid #8ce99a;">✓ Always</th>
+              <th scope="col" style="padding: 12px; text-align: left; font-weight: 600; background-color: #fff3bf; color: #744210; border-bottom: 2px solid #ffd43b;">~ Sometimes</th>
+              <th scope="col" style="padding: 12px; text-align: left; font-weight: 600; background-color: #ffe3e3; color: #a61e1e; border-bottom: 2px solid #ffa8a8;">✗ Never (Mark Decorative)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="background-color: #fff;">
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; vertical-align: top;">
+                <ul style="margin: 0; padding-left: 18px; font-size: 13px; color: #212529;">
+                  <li>Buttons</li>
+                  <li>Links</li>
+                  <li>Informative images</li>
+                  <li>Form inputs</li>
+                  <li>Icon-only controls</li>
+                  <li>Navigation landmarks</li>
+                </ul>
+              </td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; vertical-align: top;">
+                <ul style="margin: 0; padding-left: 18px; font-size: 13px; color: #212529;">
+                  <li>Regions and sections</li>
+                  <li>Groups of related content</li>
+                  <li>Tables (when multiple)</li>
+                  <li>Dialogs</li>
+                  <li>Frames and iframes</li>
+                </ul>
+              </td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; vertical-align: top;">
+                <ul style="margin: 0; padding-left: 18px; font-size: 13px; color: #212529;">
+                  <li>Decorative images</li>
+                  <li>Visual dividers</li>
+                  <li>Background graphics</li>
+                  <li>Icons with adjacent text</li>
+                  <li>Redundant graphics</li>
+                </ul>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div style="background-color: #d0ebff; border-radius: 6px; padding: 14px 16px; border-left: 4px solid #1971c2;">
+          <p style="margin: 0; font-size: 14px; color: #1864ab;">
+            <strong>The core question:</strong> Does this element convey information or enable interaction? If yes, name it. If no, hide it from assistive technology.
+          </p>
+        </div>
+      </div>
+
+      <!-- What Makes a Good Name -->
+      <div style="margin-bottom: 28px;">
+        <h4 style="margin: 0 0 12px 0; font-size: 17px; font-weight: 600; color: #212529; padding-bottom: 8px; border-bottom: 2px solid #fff3bf; display: flex; align-items: center; gap: 10px;">What Makes a Good Name? <span style="background-color: #d0ebff; color: #1864ab; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; font-family: monospace;">1A.03</span></h4>
+        <ol style="margin: 0; padding-left: 24px; color: #212529;">
+          <li style="margin-bottom: 10px;"><strong>Function over form:</strong> Describe what it does, not what it looks like</li>
+          <li style="margin-bottom: 10px;"><strong>Concise:</strong> 1 to 3 words is ideal</li>
+          <li style="margin-bottom: 10px;"><strong>Distinguishing words first:</strong> Front-load unique information for scanning</li>
+          <li><strong>Consistent patterns:</strong> Same action = same verb across your interface</li>
+        </ol>
+      </div>
+
+      <!-- Specifying Names for Engineering -->
+      <div style="margin-bottom: 28px;">
+        <h4 style="margin: 0 0 12px 0; font-size: 17px; font-weight: 600; color: #212529; padding-bottom: 8px; border-bottom: 2px solid #fff3bf; display: flex; align-items: center; gap: 10px;">Specifying Names for Engineering <span style="background-color: #d0ebff; color: #1864ab; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; font-family: monospace;">1A.04</span></h4>
+        <p style="margin: 0 0 16px 0; color: #212529;">Your job is to decide what each element should be called. Engineering decides how to implement it. Use Stark's Accessible Name annotation type to document your decisions clearly.</p>
+        
+        <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529;">Include in your annotations:</p>
+        <ul style="margin: 0; padding-left: 24px; color: #212529;">
+          <li style="margin-bottom: 6px;">The accessible name text</li>
+          <li style="margin-bottom: 6px;">Whether the element is decorative (mark as "[n/a decorative]")</li>
+          <li>Notes for edge cases or implementation context</li>
+        </ul>
+      </div>
+
+      <!-- Visible Labels vs Programmatic Names -->
+      <div>
+        <h4 style="margin: 0 0 12px 0; font-size: 17px; font-weight: 600; color: #212529; padding-bottom: 8px; border-bottom: 2px solid #fff3bf; display: flex; align-items: center; gap: 10px;">Visible Labels vs Programmatic Names <span style="background-color: #d0ebff; color: #1864ab; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; font-family: monospace;">1A.05</span></h4>
+        
+        <div style="display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 16px;">
+          <div style="flex: 1; min-width: 250px; background-color: #d3f9d8; border-radius: 6px; padding: 16px;">
+            <h5 style="margin: 0 0 10px 0; font-size: 14px; font-weight: 600; color: #1e7b34;">✓ When visible text is enough:</h5>
+            <ul style="margin: 0; padding-left: 20px; font-size: 14px; color: #212529;">
+              <li>Button with text label</li>
+              <li>Link with descriptive text</li>
+              <li>Form field with visible label</li>
+            </ul>
+          </div>
+          <div style="flex: 1; min-width: 250px; background-color: #ffe8cc; border-radius: 6px; padding: 16px;">
+            <h5 style="margin: 0 0 10px 0; font-size: 14px; font-weight: 600; color: #744210;">⚠️ When you need a programmatic name:</h5>
+            <ul style="margin: 0; padding-left: 20px; font-size: 14px; color: #212529;">
+              <li>Icon-only buttons</li>
+              <li>Search fields without visible labels</li>
+              <li>Informative images</li>
+              <li>Ambiguous links ("Read more," "Watch now")</li>
+            </ul>
+          </div>
+        </div>
+
+        <div style="background-color: #fff3bf; border-radius: 6px; padding: 14px 16px; border-left: 4px solid #f59f00;">
+          <p style="margin: 0; font-size: 14px; color: #212529;">
+            <strong>Label in Name rule (WCAG 2.5.3):</strong> When expanding visible text, the accessible name must start with the visible text. Voice control users say what they see.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Assessment Section -->
+    <div style="background-color: #f8f9fa; border: 1px solid #dee2e6; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #845ef7;">
+      <h3 style="margin: 0 0 20px 0; font-size: 20px; font-weight: 600; color: #212529; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">📝</span> Assessment
+      </h3>
+
+      <!-- Knowledge Check -->
+      <div style="background-color: #fff; border-radius: 6px; padding: 20px; margin-bottom: 20px; border: 1px solid #e9ecef;">
+        <h4 style="margin: 0 0 8px 0; font-size: 16px; font-weight: 600; color: #212529;">Knowledge Check Quiz</h4>
+        <p style="margin: 0 0 4px 0; font-size: 13px; color: #495057;">5 questions | 5 points | Auto-graded</p>
+        <p style="margin: 12px 0 0 0; font-size: 14px; color: #212529;">
+          Test your understanding of accessible name concepts. Open-book, just like real design work.
+        </p>
+      </div>
+
+      <!-- Applied Skill Project -->
+      <div style="background-color: #fff; border-radius: 6px; padding: 20px; border: 1px solid #e9ecef;">
+        <h4 style="margin: 0 0 8px 0; font-size: 16px; font-weight: 600; color: #212529;">Applied Skill Project: Blueline Annotations</h4>
+        <p style="margin: 0 0 12px 0; font-size: 13px; color: #495057;">20 points | Rubric-graded</p>
+        <p style="margin: 0 0 16px 0; font-size: 14px; color: #212529;">
+          You'll receive a design mockup and annotate it for accessible names using Stark. Identify all elements needing names, write quality names, and mark decorative elements.
+        </p>
+        
+        <table style="width: 100%; border-collapse: collapse; font-size: 13px;">
+          <thead>
+            <tr style="background-color: #f3f0ff;">
+              <th scope="col" style="padding: 10px 12px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #d0bfff;">Rubric Criterion</th>
+              <th scope="col" style="padding: 10px 12px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #d0bfff;">Outcome</th>
+              <th scope="col" style="padding: 10px 12px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #d0bfff;">What We're Looking For</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="background-color: #fff;">
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; color: #212529;">Element Identification</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;"><a href="#learning-objectives" style="font-family: monospace; color: #5f3dc4; font-weight: 600; text-decoration: underline;">1A.02</a></td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; color: #212529;">Did you find all elements needing names?</td>
+            </tr>
+            <tr style="background-color: #f8f9fa;">
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; color: #212529;">Accessible Name Quality</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;"><a href="#learning-objectives" style="font-family: monospace; color: #5f3dc4; font-weight: 600; text-decoration: underline;">1A.03</a></td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; color: #212529;">Are names concise, functional, and distinguishable?</td>
+            </tr>
+            <tr style="background-color: #fff;">
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; color: #212529;">Annotation Clarity</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;"><a href="#learning-objectives" style="font-family: monospace; color: #5f3dc4; font-weight: 600; text-decoration: underline;">1A.04</a></td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; color: #212529;">Can engineering implement from your specs?</td>
+            </tr>
+            <tr style="background-color: #f8f9fa;">
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; color: #212529;">Visible vs Programmatic</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;"><a href="#learning-objectives" style="font-family: monospace; color: #5f3dc4; font-weight: 600; text-decoration: underline;">1A.05</a></td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; color: #212529;">Did you correctly identify when to expand names?</td>
+            </tr>
+            <tr style="background-color: #fff;">
+              <td style="padding: 10px 12px; color: #212529;">Decorative Handling</td>
+              <td style="padding: 10px 12px;"><a href="#learning-objectives" style="font-family: monospace; color: #5f3dc4; font-weight: 600; text-decoration: underline;">1A.02</a></td>
+              <td style="padding: 10px 12px; color: #212529;">Did you correctly mark decorative elements?</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Resources Section -->
+    <div style="background-color: #fff; border: 1px solid #dee2e6; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #20c997;">
+      <h3 style="margin: 0 0 20px 0; font-size: 20px; font-weight: 600; color: #212529; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">📚</span> Resources
+      </h3>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 20px;">
+        <!-- W3C Resources -->
+        <div style="flex: 1; min-width: 260px;">
+          <h4 style="margin: 0 0 12px 0; font-size: 15px; font-weight: 600; color: #212529;">W3C Resources</h4>
+          <ul style="margin: 0; padding-left: 20px; font-size: 14px;">
+            <li style="margin-bottom: 8px;">
+              <a href="https://www.w3.org/WAI/ARIA/apg/practices/names-and-descriptions/" style="color: #1864ab; text-decoration: underline;">APG: Providing Accessible Names and Descriptions</a>
+            </li>
+            <li>
+              <a href="https://www.w3.org/WAI/ARIA/apg/practices/names-and-descriptions/#composing-effective-and-user-friendly-accessible-names" style="color: #1864ab; text-decoration: underline;">Composing Effective Accessible Names</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- WCAG Understanding -->
+        <div style="flex: 1; min-width: 260px;">
+          <h4 style="margin: 0 0 12px 0; font-size: 15px; font-weight: 600; color: #212529;">WCAG Documents</h4>
+          <ul style="margin: 0; padding-left: 20px; font-size: 14px;">
+            <li style="margin-bottom: 8px;">
+              <a href="https://www.w3.org/WAI/WCAG22/Understanding/non-text-content.html" style="color: #1864ab; text-decoration: underline;">1.1.1 Non-text Content</a>
+            </li>
+            <li style="margin-bottom: 8px;">
+              <a href="https://www.w3.org/WAI/WCAG22/Understanding/name-role-value.html" style="color: #1864ab; text-decoration: underline;">4.1.2 Name, Role, Value</a>
+            </li>
+            <li>
+              <a href="https://www.w3.org/WAI/WCAG22/Understanding/label-in-name.html" style="color: #1864ab; text-decoration: underline;">2.5.3 Label in Name</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Adobe Resources -->
+        <div style="flex: 1; min-width: 260px;">
+          <h4 style="margin: 0 0 12px 0; font-size: 15px; font-weight: 600; color: #212529;">Adobe Resources</h4>
+          <ul style="margin: 0; padding-left: 20px; font-size: 14px; color: #212529;">
+            <li style="margin-bottom: 8px;">Design Accessibility Checklist (Accessible Names section)</li>
+            <li style="margin-bottom: 8px;">Stark Figma Plugin Guide</li>
+            <li>Digital Accessibility Guide (internal)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Up Next Section -->
+    <div style="background: linear-gradient(135deg, #d0ebff 0%, #a5d8ff 100%); border-radius: 8px; padding: 20px 24px; border-left: 5px solid #1971c2;">
+      <h3 style="margin: 0 0 8px 0; font-size: 18px; font-weight: 600; color: #1864ab; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 20px;">➡️</span> Up Next
+      </h3>
+      <p style="margin: 0; font-size: 15px; color: #212529;">
+        <strong>Lesson 02: Headings</strong> covers heading hierarchies and how screen reader users navigate content structure. You'll learn how headings create a scannable outline that enables efficient navigation. Reading order is covered in Lesson 05 alongside keyboard and focus order.
+      </p>
+    </div>
+
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L19: Contribution — DACE Deliver Badge</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap');
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{--slide-w:1440px;--slide-h:900px;--badge-green:#51CF66;--badge-green-light:#EBFBEE;--badge-green-dark:#2B8A3E;--black:#1A1A1A;--dark:#333;--mid:#666;--light-gray:#F5F5F5;--border-gray:#E0E0E0;--white:#FFFFFF;--insight-bg:#F5F7FA;--font:'DM Sans',system-ui,sans-serif}
+  body{font-family:var(--font);background:#1a1a2e;display:flex;flex-direction:column;align-items:center;min-height:100vh;padding:20px;color:var(--black)}
+  .nav{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:12px;background:rgba(0,0,0,0.85);padding:10px 20px;border-radius:40px;z-index:100;backdrop-filter:blur(10px)}
+  .nav button{background:none;border:1px solid rgba(255,255,255,0.3);color:white;width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;transition:all 0.2s}
+  .nav button:hover{background:rgba(255,255,255,0.15);border-color:rgba(255,255,255,0.6)}
+  .nav .counter{color:rgba(255,255,255,0.7);font-size:13px;font-variant-numeric:tabular-nums;min-width:60px;text-align:center}
+  .slide-container{width:var(--slide-w);max-width:100%;aspect-ratio:1440/900}
+  .slide{display:none;width:var(--slide-w);height:var(--slide-h);background:var(--white);position:relative;overflow:hidden;border-radius:4px;box-shadow:0 20px 60px rgba(0,0,0,0.4)}
+  .slide.active{display:block}
+  .topbar{position:absolute;top:0;left:0;right:0;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 40px;border-bottom:1px solid var(--border-gray);z-index:10}
+  .topbar-left{display:flex;align-items:center;gap:12px;font-size:14px;color:var(--dark)}
+  .topbar-icon{width:32px;height:32px;border:1.5px solid var(--dark);border-radius:6px;display:flex;align-items:center;justify-content:center}
+  .topbar-icon svg{width:16px;height:16px}
+  .topbar-lesson{font-weight:600}
+  .topbar-sep{color:#ccc}
+  .topbar-topic{font-weight:400}
+  .badge-pill{display:flex;align-items:center;gap:6px;padding:6px 16px;border-radius:20px;background:var(--badge-green-light);border:1.5px solid var(--badge-green);font-size:13px;font-weight:600;color:var(--badge-green-dark)}
+  .badge-pill svg{width:14px;height:14px}
+  .footer-text{position:absolute;bottom:40px;left:18px;writing-mode:vertical-rl;transform:rotate(180deg);font-size:10px;color:#999;letter-spacing:0.02em;line-height:1.4}
+  .content{position:absolute;top:64px;left:70px;right:40px;bottom:20px;padding:40px 0}
+  .slide.divider .topbar{border-bottom-color:transparent}
+  .divider-bg{position:absolute;top:0;left:0;right:0;bottom:0;overflow:hidden}
+  .divider-bg .geo{position:absolute;stroke:#ddd;stroke-width:1.5;fill:none}
+  .divider-title{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:64px;font-weight:700;color:var(--black);text-align:center;line-height:1.15;max-width:900px}
+  h1.slide-headline{font-size:48px;font-weight:700;color:var(--black);line-height:1.15;margin-bottom:24px;letter-spacing:-0.02em}
+  h2.slide-subhead{font-size:20px;font-weight:600;color:var(--dark);margin-bottom:16px}
+  .slide-body{font-size:18px;color:var(--dark);line-height:1.5;margin-bottom:16px}
+  .slide-intro{font-size:20px;font-weight:600;color:var(--dark);line-height:1.5;margin-bottom:24px}
+  .bullet-list{list-style:none;padding:0}
+  .bullet-list li{font-size:18px;color:var(--dark);line-height:1.55;padding:6px 0 6px 20px;position:relative}
+  .bullet-list li::before{content:'•';position:absolute;left:0;color:#999}
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-bottom:24px}
+  .col-card{background:var(--white);border:1px solid var(--border-gray);border-radius:12px;padding:28px}
+  .col-card h3{font-size:18px;font-weight:700;margin-bottom:16px;color:var(--black)}
+  .col-card.green-accent{border-top:3px solid var(--badge-green)}
+  .col-card.gray-accent{border-top:3px solid #ccc}
+  .col-card.red-accent{border-top:3px solid #FA5252}
+  .four-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px}
+  .card{background:var(--light-gray);border-radius:12px;padding:20px}
+  .card h4{font-size:15px;font-weight:700;color:var(--black);margin-bottom:8px}
+  .card p{font-size:14px;color:var(--mid);line-height:1.45}
+  .key-insight{background:var(--insight-bg);border-radius:12px;padding:20px 24px 20px 64px;position:relative;margin-top:16px}
+  .key-insight::before{content:'';position:absolute;left:20px;top:50%;transform:translateY(-50%);width:32px;height:32px;background:#3478F6;border-radius:50%}
+  .key-insight::after{content:'💡';position:absolute;left:25px;top:50%;transform:translateY(-50%);font-size:16px}
+  .key-insight strong{display:block;font-size:15px;font-weight:700;color:var(--black);margin-bottom:4px}
+  .key-insight p,.key-insight span{font-size:15px;color:var(--dark);line-height:1.5}
+  .checklist{list-style:none;padding:0}
+  .checklist li{font-size:17px;color:var(--dark);line-height:1.5;padding:8px 0 8px 36px;position:relative}
+  .checklist li::before{content:'';position:absolute;left:0;top:10px;width:20px;height:20px;border:2px solid #ccc;border-radius:4px}
+  .outcome-card{background:var(--insight-bg);border-radius:16px;padding:28px;text-align:center}
+  .outcome-card .outcome-icon{width:56px;height:56px;background:#3478F6;border-radius:50%;margin:0 auto 16px;display:flex;align-items:center;justify-content:center;font-size:24px}
+  .outcome-card .outcome-label{font-size:16px;font-weight:700;color:var(--black);margin-bottom:12px}
+  .outcome-card .outcome-text{font-size:14px;color:var(--mid);line-height:1.5}
+  .lo-pill{display:inline-flex;align-items:center;padding:3px 10px;border-radius:12px;background:var(--badge-green-light);font-size:12px;font-weight:600;color:var(--badge-green-dark);margin-top:8px}
+  .objectives-list{list-style:none;padding:0}
+  .objectives-list li{padding:16px 0;border-bottom:1px solid var(--border-gray);display:flex;gap:16px;align-items:flex-start}
+  .objectives-list li:last-child{border-bottom:none}
+  .obj-code{font-size:14px;font-weight:700;color:var(--badge-green-dark);background:var(--badge-green-light);padding:4px 10px;border-radius:6px;white-space:nowrap;flex-shrink:0}
+  .obj-text{font-size:17px;color:var(--dark);line-height:1.5}
+  .obj-text strong{color:var(--black)}
+  .connection-callout{background:var(--badge-green-light);border-left:3px solid var(--badge-green);padding:16px 20px;border-radius:0 8px 8px 0;margin-top:16px}
+  .connection-callout p{font-size:14px;color:var(--dark);line-height:1.5}
+  .principles{display:flex;flex-direction:column;gap:16px}
+  .principle-row{display:flex;gap:16px;align-items:flex-start;padding:16px;background:var(--light-gray);border-radius:12px}
+  .principle-icon{width:44px;height:44px;background:#3478F6;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:20px}
+  .principle-text{font-size:15px;color:var(--dark);line-height:1.5}
+  .principle-text strong{color:var(--black)}
+  .title-content{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center}
+  .title-lesson-num{font-size:16px;font-weight:600;color:var(--mid);letter-spacing:0.05em;text-transform:uppercase;margin-bottom:12px}
+  .title-main{font-size:56px;font-weight:700;color:var(--black);line-height:1.1;margin-bottom:12px;letter-spacing:-0.02em}
+  .title-subtitle{font-size:20px;color:var(--mid);font-weight:400;margin-bottom:32px;font-style:italic;max-width:700px;line-height:1.4}
+  .title-meta{display:flex;gap:24px;font-size:13px;color:#999}
+  .title-meta span{padding:4px 12px;background:var(--light-gray);border-radius:16px}
+</style>
+</head>
+<body>
+<div class="slide-container" id="slideContainer"></div>
+<div class="nav">
+  <button onclick="prevSlide()">&#8592;</button>
+  <span class="counter" id="counter">1 / 14</span>
+  <button onclick="nextSlide()">&#8594;</button>
+</div>
+<script>
+const TB = `<div class="topbar"><div class="topbar-left"><div class="topbar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M6 8l3 3-3 3"/></svg></div><span class="topbar-lesson">Lesson 19</span><span class="topbar-sep">|</span><span class="topbar-topic">Contribution</span></div><div class="badge-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg> Deliver Badge</div></div>`;
+const TB_PLAIN = `<div class="topbar"><div class="topbar-left"><div class="topbar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M6 8l3 3-3 3"/></svg></div><span class="topbar-lesson">Lesson 19</span><span class="topbar-sep">|</span><span class="topbar-topic">Contribution</span></div></div>`;
+const FT = `<div class="footer-text">Design Accessibility Certified Expert (DACE)<br>Cohort 1: 2025 &ndash; 2026</div>`;
+const GEO = `<div class="divider-bg"><svg class="geo" style="left:-20px;top:80px" width="120" height="120" viewBox="0 0 120 120"><polygon points="60,0 120,120 0,120"/></svg><svg class="geo" style="left:-10px;top:320px" width="100" height="100" viewBox="0 0 100 100"><rect x="10" y="10" width="80" height="80"/></svg><svg class="geo" style="left:-5px;top:540px" width="100" height="100" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45"/></svg></div>`;
+
+const slides = [
+
+// 0.1 TITLE
+{type:'title', html:`${TB}
+<div class="content"><div class="title-content">
+  <div class="title-lesson-num">Lesson 19</div>
+  <div class="title-main">Contribution</div>
+  <div class="title-subtitle">Leave artifacts that outlast you</div>
+  <div class="title-meta"><span>Deliver Badge</span><span>~20 minutes</span><span>In-Person Lesson</span><span>Week 11</span></div>
+</div></div>${FT}`},
+
+// 0.2 OBJECTIVES
+{type:'content', html:`${TB}
+<div class="content">
+  <h1 class="slide-headline">What you'll be able to do</h1>
+  <p class="slide-body" style="margin-bottom:24px">By the end of this lesson, you'll be able to:</p>
+  <ul class="objectives-list">
+    <li><span class="obj-code">3H.01</span><span class="obj-text"><strong>Contribute reusable accessibility resources:</strong> Create checklists, pattern guidance, onboarding materials, and shared examples that raise the baseline for your team</span></li>
+    <li><span class="obj-code">3H.02</span><span class="obj-text"><strong>Build accessibility communities of practice:</strong> Establish durable structures that spread accessibility knowledge beyond individual effort</span></li>
+    <li><span class="obj-code">3H.03</span><span class="obj-text"><strong>Contribute to organizational standards:</strong> Identify and make process improvements that encode accessibility expectations into team workflows</span></li>
+  </ul>
+  <div class="connection-callout"><p>L17 taught you what to find. L18 taught you how to communicate it. L19 teaches you how to change the system so the same issues stop recurring.</p></div>
+</div>${FT}`},
+
+// 1.1 DIVIDER
+{type:'divider', html:`${TB_PLAIN}${GEO}<div class="divider-title">Reusable<br>Resources</div>${FT}`},
+
+// 1.2 WHAT TO CONTRIBUTE
+{type:'content', html:`${TB}
+<div class="content">
+  <h1 class="slide-headline">Artifacts that raise the baseline</h1>
+  <div class="four-cards">
+    <div class="card" style="padding:24px">
+      <h4 style="font-size:18px;margin-bottom:10px">Checklists</h4>
+      <p style="font-size:15px">Reusable accessibility checklists tied to specific component patterns or workflows, not generic WCAG lists</p>
+    </div>
+    <div class="card" style="padding:24px">
+      <h4 style="font-size:18px;margin-bottom:10px">Pattern guidance</h4>
+      <p style="font-size:15px">Documentation of how to implement common patterns accessibly, grounded in real team examples</p>
+    </div>
+    <div class="card" style="padding:24px">
+      <h4 style="font-size:18px;margin-bottom:10px">Onboarding materials</h4>
+      <p style="font-size:15px">Resources that help new team members understand accessibility expectations without starting from zero</p>
+    </div>
+    <div class="card" style="padding:24px">
+      <h4 style="font-size:18px;margin-bottom:10px">Shared examples</h4>
+      <p style="font-size:15px">Paired good and bad implementations from real work that show what correct looks like alongside what fails</p>
+    </div>
+  </div>
+  <div class="key-insight"><strong>Key insight</strong><span>The same issues recur because nobody contributes prevention infrastructure. Every resource you create is an issue that doesn't get filed next audit cycle.</span></div>
+  <div class="lo-pill" style="margin-top:12px">LO 3H.01</div>
+</div>${FT}`},
+
+// 1.3 GETS USED VS GETS IGNORED
+{type:'content', html:`${TB}
+<div class="content">
+  <h1 class="slide-headline" style="font-size:40px">Resources that get used vs. resources that get ignored</h1>
+  <div class="two-col">
+    <div class="col-card green-accent">
+      <h3>Gets used</h3>
+      <ul class="bullet-list">
+        <li>Specific to team patterns and components</li>
+        <li>Short enough to reference during work</li>
+        <li>Grounded in real examples from the codebase</li>
+        <li>Updated when patterns change</li>
+        <li>Placed where the work happens (PR templates, component docs)</li>
+      </ul>
+    </div>
+    <div class="col-card red-accent">
+      <h3>Gets ignored</h3>
+      <ul class="bullet-list">
+        <li>Generic WCAG summary copied from the web</li>
+        <li>Long document nobody reads after the first week</li>
+        <li>Abstract principles with no connection to team code</li>
+        <li>Written once and never maintained</li>
+        <li>Stored in a wiki nobody visits</li>
+      </ul>
+    </div>
+  </div>
+  <div class="key-insight"><strong>Key insight</strong><span>The test of a good contribution is whether someone uses it six months later without being told to.</span></div>
+  <div class="lo-pill" style="margin-top:12px">LO 3H.01</div>
+</div>${FT}`},
+
+// 1.4 CHECKPOINT
+{type:'content', html:`${TB}
+<div class="content">
+  <h1 class="slide-headline">Checkpoint: Reusable Resources</h1>
+  <p class="slide-intro">Verify you can identify a concrete contribution opportunity:</p>
+  <div style="display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:start">
+    <div>
+      <h2 class="slide-subhead">Checklist:</h2>
+      <ul class="checklist">
+        <li>I can name one reusable resource I could create for my team</li>
+        <li>I understand the difference between a contribution that gets used and one that gets ignored</li>
+        <li>I can connect the resource to a specific recurring issue pattern on my team</li>
+      </ul>
+    </div>
+    <div class="outcome-card">
+      <div class="outcome-icon">💡</div>
+      <div class="outcome-label">Learning Outcome 3H.01</div>
+      <div class="outcome-text">Contribute reusable accessibility resources: checklists, pattern guidance, onboarding materials, and shared examples.</div>
+    </div>
+  </div>
+</div>${FT}`},
+
+// 2.1 DIVIDER
+{type:'divider', html:`${TB_PLAIN}${GEO}<div class="divider-title">Communities<br>of Practice</div>${FT}`},
+
+// 2.2 WHY COMMUNITIES MATTER
+{type:'content', html:`${TB}
+<div class="content">
+  <h1 class="slide-headline" style="font-size:42px">Accessibility capability needs structure</h1>
+  <div class="four-cards">
+    <div class="card" style="padding:24px">
+      <h4 style="font-size:18px;margin-bottom:10px">Shared language</h4>
+      <p style="font-size:15px">Common vocabulary so the team can discuss accessibility without translation overhead every time</p>
+    </div>
+    <div class="card" style="padding:24px">
+      <h4 style="font-size:18px;margin-bottom:10px">Reusable examples</h4>
+      <p style="font-size:15px">A library of real findings and solutions that new reviewers can learn from without starting over</p>
+    </div>
+    <div class="card" style="padding:24px">
+      <h4 style="font-size:18px;margin-bottom:10px">Recurring critique spaces</h4>
+      <p style="font-size:15px">Scheduled forums where accessibility gets discussed regularly, not just when something breaks</p>
+    </div>
+    <div class="card" style="padding:24px">
+      <h4 style="font-size:18px;margin-bottom:10px">Onboarding pathways</h4>
+      <p style="font-size:15px">Clear routes for new team members to build accessibility skills incrementally</p>
+    </div>
+  </div>
+  <div class="key-insight"><strong>Key insight</strong><span>If accessibility depends on one person, progress is fragile. Communities of practice make accessibility visible between formal reviews.</span></div>
+  <div class="lo-pill" style="margin-top:12px">LO 3H.02</div>
+</div>${FT}`},
+
+// 2.3 CHECKPOINT
+{type:'content', html:`${TB}
+<div class="content">
+  <h1 class="slide-headline">Checkpoint: Communities of Practice</h1>
+  <p class="slide-intro">Verify you can describe a durable community structure:</p>
+  <div style="display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:start">
+    <div>
+      <h2 class="slide-subhead">Checklist:</h2>
+      <ul class="checklist">
+        <li>I can explain the purpose of a community of practice</li>
+        <li>I can name at least one durable structure that spreads accessibility knowledge</li>
+        <li>I can connect accessibility culture to team routines, not just individual effort</li>
+      </ul>
+    </div>
+    <div class="outcome-card">
+      <div class="outcome-icon">💡</div>
+      <div class="outcome-label">Learning Outcome 3H.02</div>
+      <div class="outcome-text">Build accessibility communities of practice: durable structures that spread knowledge beyond individual effort.</div>
+    </div>
+  </div>
+</div>${FT}`},
+
+// 3.1 DIVIDER
+{type:'divider', html:`${TB_PLAIN}${GEO}<div class="divider-title">Standards<br>and Systems</div>${FT}`},
+
+// 3.2 PROCESS IMPROVEMENTS
+{type:'content', html:`${TB}
+<div class="content">
+  <h1 class="slide-headline" style="font-size:38px">Small system changes scale better than repeated explanation</h1>
+  <div class="two-col">
+    <div class="col-card green-accent">
+      <h3>Possible contributions</h3>
+      <ul class="bullet-list">
+        <li>Accessibility acceptance criteria in user story templates</li>
+        <li>Component docs that include accessibility requirements</li>
+        <li>PR review checklists with specific accessibility checks</li>
+        <li>Definition of done that names accessibility benchmarks</li>
+      </ul>
+    </div>
+    <div class="col-card green-accent">
+      <h3>Result</h3>
+      <ul class="bullet-list">
+        <li>Higher baseline without repeated teaching</li>
+        <li>Clearer expectations for new work</li>
+        <li>Issues caught at implementation time, not audit time</li>
+        <li>Accessibility encoded into process, not dependent on memory</li>
+      </ul>
+    </div>
+  </div>
+  <div class="key-insight"><strong>Key insight</strong><span>The highest-leverage contribution is one that changes the default. If the PR template includes an accessibility checklist, every PR gets reviewed. If it doesn't, only the ones you happen to be on get reviewed.</span></div>
+  <div class="lo-pill" style="margin-top:12px">LO 3H.03</div>
+</div>${FT}`},
+
+// 3.3 CHECKPOINT
+{type:'content', html:`${TB}
+<div class="content">
+  <h1 class="slide-headline">Checkpoint: Standards and Systems</h1>
+  <p class="slide-intro">Verify you can identify and make systemic contributions:</p>
+  <div style="display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:start">
+    <div>
+      <h2 class="slide-subhead">Checklist:</h2>
+      <ul class="checklist">
+        <li>I can identify one process or standards contribution I could make</li>
+        <li>I understand how process-level changes scale better than individual teaching</li>
+        <li>I can connect this work to reducing repeated accessibility findings</li>
+      </ul>
+    </div>
+    <div class="outcome-card">
+      <div class="outcome-icon">💡</div>
+      <div class="outcome-label">Learning Outcome 3H.03</div>
+      <div class="outcome-text">Contribute to organizational standards: process improvements that encode accessibility expectations into team workflows.</div>
+    </div>
+  </div>
+</div>${FT}`},
+
+// 4.1 SUMMARY
+{type:'content', html:`${TB}
+<div class="content">
+  <h1 class="slide-headline">Key takeaways</h1>
+  <div class="principles">
+    <div class="principle-row">
+      <div class="principle-icon">📋</div>
+      <div class="principle-text"><strong>Reusable resources raise the baseline.</strong> Checklists, pattern guidance, onboarding materials, and shared examples. Specific, short, and placed where the work happens. The test: does someone use it six months later without being told to?</div>
+    </div>
+    <div class="principle-row">
+      <div class="principle-icon">🏘️</div>
+      <div class="principle-text"><strong>Communities of practice make contributions durable.</strong> Shared language, recurring critique spaces, and onboarding pathways keep accessibility visible between reviews. A checklist alone can be forgotten. A recurring session keeps it alive.</div>
+    </div>
+    <div class="principle-row">
+      <div class="principle-icon">⚙️</div>
+      <div class="principle-text"><strong>Standards and process changes are the highest leverage.</strong> A PR template with an accessibility checklist reaches every PR, not just the ones you review. The highest-leverage contribution is one that changes the default.</div>
+    </div>
+  </div>
+</div>${FT}`},
+
+// 4.2 UP NEXT
+{type:'content', html:`${TB}
+<div class="content" style="display:flex;flex-direction:column;justify-content:center;height:calc(100% - 64px);padding-top:0;padding-bottom:0">
+  <h1 class="slide-headline">Up next: Week 12</h1>
+  <p class="slide-body" style="font-size:20px;max-width:800px;margin-bottom:32px">Week 12 moves from internal capability-building to organizational decision-making through legal frameworks and business-case development.</p>
+  <div class="connection-callout"><p>L17 gave you the methodology. L18 gave you the communication skills. L19 gave you the contribution playbook. Week 12 connects all of this to the legal and business context that shapes how organizations invest in accessibility.</p></div>
+</div>${FT}`}
+
+];
+
+let current = 0;
+const container = document.getElementById('slideContainer');
+const counter = document.getElementById('counter');
+function render() {
+  container.innerHTML = `<div class="slide ${slides[current].type === 'divider' ? 'divider' : ''} active">${slides[current].html}</div>`;
+  counter.textContent = `${current + 1} / ${slides.length}`;
+  scaleSlide();
+}
+function nextSlide() { if (current < slides.length - 1) { current++; render(); } }
+function prevSlide() { if (current > 0) { current--; render(); } }
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); nextSlide(); }
+  if (e.key === 'ArrowLeft') { e.preventDefault(); prevSlide(); }
+});
+function scaleSlide() {
+  const maxW = Math.min(window.innerWidth - 40, 1440);
+  const scale = maxW / 1440;
+  const slide = document.querySelector('.slide');
+  if (slide && scale < 1) { slide.style.transform = `scale(${scale})`; container.style.height = `${900 * scale}px`; }
+  else if (slide) { slide.style.transform = 'none'; container.style.height = '900px'; }
+}
+window.addEventListener('resize', scaleSlide);
+render();
+</script>
+</body>
+</html>

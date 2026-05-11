@@ -1,0 +1,27 @@
+	•	Here we see the graphical user interface for GenStudio.
+	•	This is a snapshot in time, and I edited it for training purposes.
+	•	This is the piece we’ll be using for our training today so let’s dig into a bit first.
+	•	Looking at this piece, we see there is a banner region. 
+	•	Several navigation regions. 
+	•	Several headings. 
+	•	And many interactive controls. 
+	•	The process of adding Blueline annotations asks us to consider this visual experience through lens of assistive technologies like screen readers and voice control. 
+	•	What does this interface sound like? 
+	•	How can a screen reader user navigate it without the use of a pointing device like a mouse? 
+	•	All those questions become specifications that Designers consider in the hand off to engineering. 
+	•	The first, and most critical, lesson is to see this interface as the machine sees it. 
+	•	The web browser is looking at this interface as a Document Object Model (DOM).
+	•	The content in the DOM then works with the Accessibility API to present that information to the non-sighted user’s screen reader. 
+	•	It may be easier to see a visual representation of this principle. 
+	•	What I have done here is to break down each element of the that interface into categories of attributes that the web browser uses to inform the accessibility API. 
+
+	•	The first element in the GenStudio UI is a button, that was our home page link. 
+	•	This is the first item in the Document Object Model indicated here as Reading order item number one.
+	•	It also happens to be interactive and not static so it receives a Focus order value of one. 
+	•	The element is focused the tab key. 
+	•	This button also has visible text that reads “Adobe GenStudio” so we will not need to supply Engineering with an accessible name as we can see here the screen reader will use that visible text. 
+	•	We can also see the transcript of what the screen reader will read aloud when it encounters this element. 
+	•	This element is located in a region of the UI called “Header” or “Banner”. 
+	•	Let’s now take a listen to the Banner region of this interface. 
+	•	Every element in the banner except the first button does not have a visible text label to act as the accessible name for the screen reader. 
+	•	You can see here that I have highlighted in Blue with a dashed border, all the areas where the screen reader user had additional information provided to them that would need to be considered in the development process.

@@ -1,0 +1,39 @@
+Color 
+This section is for any meaningful element in the UI to ensure proper color contrast and does not rely on color alone to communicate information. If something is purely decorative, such as a logo, it can be considered exempt. Use Stark’s contrast testing tool to assess contrast of text and UI elements.
+
+Do not convey meaning with color aloneCategory:Stark
+Regular text is at least 4.5:1 to backgroundCategory:Stark
+Large text is at least 3:1 to backgroundCategory:Stark
+UI elements have 3:1 ratio to backgroundCategory:Stark
+Content and motion
+This section deals with clarity of text in the UI as well a user’s ability to focus on that text. There are no Stark testing tools to assist here.
+
+Headings create structure in the UICategory:Stark
+A heading is a text element with a structural markup of <h1> through <h6> that describes the content that follows it. Stark’s Blueline annotation tool is used to annotate text that serves the purpose of a heading as <h1> through <h6>.
+
+Good
+In this good example, the <h1> of the page is specified using Stark’s Blueline annotation tool.
+
+Bad
+In this bad example, the subheading is marked as an <h2>. Not all large text should be defined as heading. Headings should be used to group pieces of content together.
+
+No movement over 5 seconds without a means to stop it
+Any movement on the screen that starts automatically and lasts for more than 5 seconds needs to have a way to pause that movement. At a minimum, we also need to honor the prefers-reduced-motion media query to honor users' device settings to limit motion on their screen. As shown in this example, providing control stop motion on screen is acceptable, providing it stops all motion on the screen and is persistent across the entire experience, not just screen-by-screen.
+
+Good
+In this good example there is a mechanism to pause movement on the page such as animation or video.
+
+Bad
+In the bad example movement on the page plays on load on a loop with no means to stop it.
+
+Write meaningful link text
+Be mindful of link placement and language. People using screen readers may tab between links without getting the text in between, so generic link wording like “learn more” or “click here” doesn’t communicate any context from elsewhere in the experience. Identify the target of each link directly in the link text to communicate context and set clear expectations about where the link will go.
+
+Good
+In this good example, the link describes where the link will go. If a screen reader user pulls up a list of all the links to aid in their navigation, they will know exactly what this link is about without the context of the surrounding text.
+
+Bad
+In this bad example, the link text does not describe where the link will go. The user has to read the rest of the text to glean that information.
+
+Note
+This checklist does not cover adding captions, transcriptions, and audio descriptions to video content.

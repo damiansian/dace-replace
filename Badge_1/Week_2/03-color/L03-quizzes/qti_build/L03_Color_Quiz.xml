@@ -1,0 +1,590 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<questestinterop xmlns="http://www.imsglobal.org/xsd/ims_qtiasiv1p2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.imsglobal.org/xsd/ims_qtiasiv1p2 http://www.imsglobal.org/xsd/ims_qtiasiv1p2p1.xsd">
+  <assessment ident="L03_Color_Quiz" title="L03: Color - Knowledge Check Quiz">
+    <qtimetadata>
+      <qtimetadatafield>
+        <fieldlabel>qmd_timelimit</fieldlabel>
+        <fieldentry></fieldentry>
+      </qtimetadatafield>
+      <qtimetadatafield>
+        <fieldlabel>cc_maxattempts</fieldlabel>
+        <fieldentry>1</fieldentry>
+      </qtimetadatafield>
+    </qtimetadata>
+    <section ident="root_section">
+      
+      <!-- Question 1: Button Contrast (UI Component) -->
+      <item ident="Q1_button_contrast" title="Question 1: Contrast Requirements">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield>
+              <fieldlabel>question_type</fieldlabel>
+              <fieldentry>multiple_choice_question</fieldentry>
+            </qtimetadatafield>
+            <qtimetadatafield>
+              <fieldlabel>points_possible</fieldlabel>
+              <fieldentry>1</fieldentry>
+            </qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material>
+            <mattext texttype="text/html"><![CDATA[
+<p><img src="images/button_contrast.png" alt="Clean UI design mockup showing a rectangular button with rounded corners. Button has solid blue fill (#0078D4) with white text Submit centered inside. Light gray background (#F5F5F5). Modern minimal interface style. Flat design, no shadows or gradients. Desktop web interface." style="max-width: 100%;"></p>
+<p>You're testing a button with the following specifications:</p>
+<ul>
+  <li>Button text: "Submit" (16px, white #FFFFFF)</li>
+  <li>Button fill: Blue (#0078D4)</li>
+  <li>Page background: Light gray (#F5F5F5)</li>
+  <li>Hover state: Darker blue (#005A9E)</li>
+</ul>
+<p>Which contrast tests are required for SC 1.4.11 (Non-text Contrast)?</p>
+            ]]></mattext>
+          </material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice shuffle="Yes">
+              <response_label ident="A">
+                <material>
+                  <mattext texttype="text/plain">Submit must be 4.5:1 to the blue button fill</mattext>
+                </material>
+              </response_label>
+              <response_label ident="B">
+                <material>
+                  <mattext texttype="text/plain">The blue button fill must be 3:1 to the light gray background</mattext>
+                </material>
+              </response_label>
+              <response_label ident="C">
+                <material>
+                  <mattext texttype="text/plain">Both the text and button fill must be 3:1 to the light gray background</mattext>
+                </material>
+              </response_label>
+              <response_label ident="D">
+                <material>
+                  <mattext texttype="text/plain">The hover state must be 3:1 to the light gray background</mattext>
+                </material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes>
+            <decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/>
+          </outcomes>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">A</varequal>
+            </conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+            <displayfeedback feedbacktype="Response" linkrefid="A_feedback"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">B</varequal>
+            </conditionvar>
+            <setvar action="Set" varname="SCORE">0</setvar>
+            <displayfeedback feedbacktype="Response" linkrefid="B_feedback"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">C</varequal>
+            </conditionvar>
+            <setvar action="Set" varname="SCORE">0</setvar>
+            <displayfeedback feedbacktype="Response" linkrefid="C_feedback"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">D</varequal>
+            </conditionvar>
+            <setvar action="Set" varname="SCORE">0</setvar>
+            <displayfeedback feedbacktype="Response" linkrefid="D_feedback"/>
+          </respcondition>
+        </resprocessing>
+        <itemfeedback ident="A_feedback">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p>Correct! The button text 'Submit' is what identifies the button's purpose and function. Text contrast falls under SC 1.4.3, which requires 4.5:1 for normal text against its background (the button fill). The button fill itself does not need to meet SC 1.4.11 requirements because the text provides sufficient visual information to identify the component. The key test: 'If I removed the fill, could I still understand what this button does?' Yes, because the text remains visible.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="B_feedback">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p>Incorrect. The button fill does not need to meet 3:1 with the page background under SC 1.4.11. Why? Because the text 'Submit' is what identifies the button, not the fill color. SC 1.4.11 applies to UI components where the visual boundary or state indicator is essential for understanding. Here, the text provides that information, making the fill incidental.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="C_feedback">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p>Incorrect. Text contrast is governed by SC 1.4.3, not SC 1.4.11. The text does need 4.5:1 contrast, but against the button fill (its immediate background), not the page background. The button fill does not need to meet any contrast requirement with the page background because the text identifies the button's purpose.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="D_feedback">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p>Incorrect. The hover state fill (#005A9E) does not need to meet 3:1 contrast with the page background under SC 1.4.11. However, the white text 'Submit' still needs to meet 4.5:1 contrast against the hover state fill under SC 1.4.3. The key requirement here is text contrast, not UI component contrast. The pointer provides the visual information needed to understand a control is being hovered.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+      </item>
+
+      <!-- Question 2: Text Contrast (Large vs Normal) -->
+      <item ident="Q2_text_contrast" title="Question 2: Text Contrast Requirements">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield>
+              <fieldlabel>question_type</fieldlabel>
+              <fieldentry>multiple_choice_question</fieldentry>
+            </qtimetadatafield>
+            <qtimetadatafield>
+              <fieldlabel>points_possible</fieldlabel>
+              <fieldentry>1</fieldentry>
+            </qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material>
+            <mattext texttype="text/html"><![CDATA[
+<p><img src="images/text_contrast.png" alt="Simple web dashboard header mockup on white background. Large bold title text Dashboard at top in dark gray. Smaller body text below reading Welcome back in same dark gray color. Clean minimal design, left-aligned text. Modern sans-serif font. No other UI elements, just the two text sizes on white." style="max-width: 100%;"></p>
+<p>A design includes the following text elements on a white background (#FFFFFF):</p>
+<ul>
+  <li>Page title: "Dashboard" (32px, dark gray #595959)</li>
+  <li>Body text: "Welcome back" (14px, dark gray #595959)</li>
+</ul>
+<p>Which statement correctly describes the AA contrast requirements for these text elements?</p>
+            ]]></mattext>
+          </material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice shuffle="Yes">
+              <response_label ident="A">
+                <material>
+                  <mattext texttype="text/plain">The title needs 3:1 contrast and the body text needs 4.5:1 contrast</mattext>
+                </material>
+              </response_label>
+              <response_label ident="B">
+                <material>
+                  <mattext texttype="text/plain">Both the title and body text need 4.5:1 contrast</mattext>
+                </material>
+              </response_label>
+              <response_label ident="C">
+                <material>
+                  <mattext texttype="text/plain">Both the title and body text need 3:1 contrast</mattext>
+                </material>
+              </response_label>
+              <response_label ident="D">
+                <material>
+                  <mattext texttype="text/plain">The title needs 4.5:1 contrast and the body text needs 3:1 contrast</mattext>
+                </material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes>
+            <decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/>
+          </outcomes>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">A</varequal>
+            </conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+            <displayfeedback feedbacktype="Response" linkrefid="A_feedback"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">B</varequal>
+            </conditionvar>
+            <setvar action="Set" varname="SCORE">0</setvar>
+            <displayfeedback feedbacktype="Response" linkrefid="B_feedback"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">C</varequal>
+            </conditionvar>
+            <setvar action="Set" varname="SCORE">0</setvar>
+            <displayfeedback feedbacktype="Response" linkrefid="C_feedback"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">D</varequal>
+            </conditionvar>
+            <setvar action="Set" varname="SCORE">0</setvar>
+            <displayfeedback feedbacktype="Response" linkrefid="D_feedback"/>
+          </respcondition>
+        </resprocessing>
+        <itemfeedback ident="A_feedback">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p>Correct! Under SC 1.4.3, large text requires 3:1 contrast and normal text requires 4.5:1 contrast for AA conformance. Large text is defined as 18pt (24px) or larger, or 14pt (18.5px) bold or larger. The 32px title qualifies as large text (3:1 required), while the 14px body text is normal text (4.5:1 required). The dark gray #595959 on white provides approximately 5.9:1 contrast, which passes both requirements.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="B_feedback">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p>Incorrect. While 4.5:1 would certainly pass for both, it's not what's required. Large text (18pt/24px or larger) only needs 3:1 contrast under SC 1.4.3. The 32px title qualifies as large text, so it only requires 3:1 contrast, not 4.5:1.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="C_feedback">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p>Incorrect. Only large text qualifies for the reduced 3:1 contrast requirement. Normal text (below 18pt/24px, or below 14pt/18.5px bold) requires 4.5:1 contrast under SC 1.4.3. The 14px body text is normal text and needs 4.5:1 contrast.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="D_feedback">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p>Incorrect. You have the requirements reversed. Large text (like the 32px title) needs the lower 3:1 ratio, while normal text (like the 14px body) needs the higher 4.5:1 ratio. The logic: smaller text is harder to read, so it requires more contrast.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+      </item>
+
+      <!-- Question 3: Graphics Contrast (Graph Lines) -->
+      <item ident="Q3_graphics_contrast" title="Question 3: Graphics Contrast">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield>
+              <fieldlabel>question_type</fieldlabel>
+              <fieldentry>multiple_choice_question</fieldentry>
+            </qtimetadatafield>
+            <qtimetadatafield>
+              <fieldlabel>points_possible</fieldlabel>
+              <fieldentry>1</fieldentry>
+            </qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material>
+            <mattext texttype="text/html"><![CDATA[
+<p><img src="images/graph_lines_contrast.png" alt="Simple line chart data visualization with three trend lines on white background. One red line, one blue line, one green line showing different sales trends over time. X-axis shows months, Y-axis shows values. Clean minimal style. Each line has a small text label. No grid lines, just the colored lines on white canvas. Business analytics chart style." style="max-width: 100%;"></p>
+<p>A data visualization shows three trend lines on a graph:</p>
+<ul>
+  <li>Red line (#E53935) representing Q1 sales</li>
+  <li>Blue line (#1E88E5) representing Q2 sales</li>
+  <li>Green line (#43A047) representing Q3 sales</li>
+  <li>Graph background: White (#FFFFFF)</li>
+  <li>Each line has a text label identifying it</li>
+</ul>
+<p>Under SC 1.4.11 (Non-text Contrast), which contrast requirements apply to the lines?</p>
+            ]]></mattext>
+          </material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice shuffle="Yes">
+              <response_label ident="A">
+                <material>
+                  <mattext texttype="text/plain">Each line must be 3:1 to the white background, but lines do not need 3:1 to each other</mattext>
+                </material>
+              </response_label>
+              <response_label ident="B">
+                <material>
+                  <mattext texttype="text/plain">Each line must be 3:1 to both the background and to adjacent lines</mattext>
+                </material>
+              </response_label>
+              <response_label ident="C">
+                <material>
+                  <mattext texttype="text/plain">Lines only need 3:1 contrast to each other, not to the background</mattext>
+                </material>
+              </response_label>
+              <response_label ident="D">
+                <material>
+                  <mattext texttype="text/plain">No contrast requirements apply because the lines have text labels</mattext>
+                </material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes>
+            <decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/>
+          </outcomes>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">A</varequal>
+            </conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+            <displayfeedback feedbacktype="Response" linkrefid="A_feedback"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">B</varequal>
+            </conditionvar>
+            <setvar action="Set" varname="SCORE">0</setvar>
+            <displayfeedback feedbacktype="Response" linkrefid="B_feedback"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">C</varequal>
+            </conditionvar>
+            <setvar action="Set" varname="SCORE">0</setvar>
+            <displayfeedback feedbacktype="Response" linkrefid="C_feedback"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">D</varequal>
+            </conditionvar>
+            <setvar action="Set" varname="SCORE">0</setvar>
+            <displayfeedback feedbacktype="Response" linkrefid="D_feedback"/>
+          </respcondition>
+        </resprocessing>
+        <itemfeedback ident="A_feedback">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p>Correct! Under SC 1.4.11, graphical objects that convey information must have 3:1 contrast against adjacent colors. For data visualization lines, 'adjacent' means the background they sit on, not the other lines. Each line must meet 3:1 contrast with the white background. The lines do not need to contrast with each other because they are not adjacent to each other in the visual layout. The text labels help identify which line is which, but SC 1.4.11 still requires each line to be visible against its background.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="B_feedback">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p>Incorrect. Lines do not need to meet contrast requirements with each other under SC 1.4.11. The criterion requires 3:1 contrast against 'adjacent colors,' which for lines on a graph means the background, not other lines that may cross or run parallel. Each line only needs to be distinguishable from the background it's drawn on.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="C_feedback">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p>Incorrect. SC 1.4.11 requires graphical objects to contrast with adjacent colors, which means the background for lines on a graph. The lines must be visible against the white background. Contrast between lines is not a requirement under SC 1.4.11, though SC 1.4.1 (Use of Color) may require non-color differentiation like patterns or labels.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="D_feedback">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p>Incorrect. Text labels help with SC 1.4.1 (Use of Color) by providing non-color identification, but they do not exempt the lines from SC 1.4.11 requirements. The lines themselves are graphical objects that convey information (the trend data), so they must still meet 3:1 contrast against the background to be visible to users with low vision.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+      </item>
+
+      <!-- Question 4: Color-Only Information (Required Fields) -->
+      <item ident="Q4_color_only" title="Question 4: Color-Only Information">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield>
+              <fieldlabel>question_type</fieldlabel>
+              <fieldentry>multiple_choice_question</fieldentry>
+            </qtimetadatafield>
+            <qtimetadatafield>
+              <fieldlabel>points_possible</fieldlabel>
+              <fieldentry>1</fieldentry>
+            </qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material>
+            <mattext texttype="text/html"><![CDATA[
+<p><img src="images/required_fields.png" alt="Web form design with three input fields stacked vertically. Two field labels shown in red text with asterisk symbols next to them indicating required. One field label in black text without asterisk for optional field. Simple rectangular input boxes with gray borders. White background. Clean form UI mockup." style="max-width: 100%;"></p>
+<p>A designer creates a form with the following pattern:</p>
+<ul>
+  <li>Required field labels are displayed in red (#CC0000)</li>
+  <li>Optional field labels are displayed in black (#000000)</li>
+  <li>All labels include asterisks (*) next to required fields</li>
+  <li>Field borders remain the same for all fields</li>
+</ul>
+<p>When tested with grayscale simulation, the required fields are still clearly identifiable due to the asterisks. Does this design meet SC 1.4.1 (Use of Color)?</p>
+            ]]></mattext>
+          </material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice shuffle="Yes">
+              <response_label ident="A">
+                <material>
+                  <mattext texttype="text/plain">Yes, because the asterisks provide a non-color indicator</mattext>
+                </material>
+              </response_label>
+              <response_label ident="B">
+                <material>
+                  <mattext texttype="text/plain">No, because the labels are shown in red</mattext>
+                </material>
+              </response_label>
+              <response_label ident="C">
+                <material>
+                  <mattext texttype="text/plain">No, because color is used to indicate required status</mattext>
+                </material>
+              </response_label>
+              <response_label ident="D">
+                <material>
+                  <mattext texttype="text/plain">Yes, because the contrast between red and black is sufficient</mattext>
+                </material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes>
+            <decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/>
+          </outcomes>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">A</varequal>
+            </conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+            <displayfeedback feedbacktype="Response" linkrefid="A_feedback"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">B</varequal>
+            </conditionvar>
+            <setvar action="Set" varname="SCORE">0</setvar>
+            <displayfeedback feedbacktype="Response" linkrefid="B_feedback"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">C</varequal>
+            </conditionvar>
+            <setvar action="Set" varname="SCORE">0</setvar>
+            <displayfeedback feedbacktype="Response" linkrefid="C_feedback"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">D</varequal>
+            </conditionvar>
+            <setvar action="Set" varname="SCORE">0</setvar>
+            <displayfeedback feedbacktype="Response" linkrefid="D_feedback"/>
+          </respcondition>
+        </resprocessing>
+        <itemfeedback ident="A_feedback">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p>Correct! The asterisks (*) serve as the non-color indicator for required status. The red color enhances this indicator but is not the sole means of conveying the information. When tested in grayscale, users can still identify required fields by the asterisks, confirming that color is not being used alone. This pattern meets SC 1.4.1 and is considered best practice: use both visual indicators (color) and non-color indicators (text/symbols) together.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="B_feedback">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p>Incorrect. Using red color is not a problem. The violation would only occur if red were the <em>only</em> indicator of required status. In this case, the asterisks serve as a non-color indicator, so the red color is acceptable as an additional cue. SC 1.4.1 prohibits using color alone, not using color at all.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="C_feedback">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p>Incorrect. While color is used to indicate required status, it's not the <em>only</em> indicator. The asterisks (*) serve as the non-color indicator. SC 1.4.1 requires that information not be conveyed by color alone: it allows color as an enhancement when paired with other indicators. The combination of asterisks + red color is recommended practice.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="D_feedback">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p>Incorrect. While contrast helps with visibility (SC 1.4.3), contrast between colors does not address SC 1.4.1's requirement for non-color indicators. Even with 3:1 or greater luminance contrast between the red and black, some users with certain types of color vision deficiency might not be able to distinguish the hue difference. The asterisks provide the necessary non-color indicator, not the contrast ratio.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+      </item>
+
+      <!-- Question 5: Color Vision Simulation (Status Badges) -->
+      <item ident="Q5_cvd_simulation" title="Question 5: Color Vision Simulation">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield>
+              <fieldlabel>question_type</fieldlabel>
+              <fieldentry>multiple_choice_question</fieldentry>
+            </qtimetadatafield>
+            <qtimetadatafield>
+              <fieldlabel>points_possible</fieldlabel>
+              <fieldentry>1</fieldentry>
+            </qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material>
+            <mattext texttype="text/html"><![CDATA[
+<p><img src="images/status_badges.png" alt="Three horizontal status badge pills in a row. First badge is green with white text Active. Second badge is yellow/amber with dark text Pending. Third badge is red with white text Inactive. Solid colored rounded rectangle badges. White background. Simple flat design UI components. No icons, text only." style="max-width: 100%;"></p>
+<p>A designer is testing a design with multiple color-coded status badges: green for "Active," yellow for "Pending," and red for "Inactive." To verify the design works for users with color vision deficiencies, what is the most efficient testing method?</p>
+            ]]></mattext>
+          </material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice shuffle="Yes">
+              <response_label ident="A">
+                <material>
+                  <mattext texttype="text/plain">Test the design with grayscale (achromatopsia) simulation</mattext>
+                </material>
+              </response_label>
+              <response_label ident="B">
+                <material>
+                  <mattext texttype="text/plain">Test the design separately with protanopia, deuteranopia, and tritanopia simulations</mattext>
+                </material>
+              </response_label>
+              <response_label ident="C">
+                <material>
+                  <mattext texttype="text/plain">Test the design with protanopia and deuteranopia (skip tritanopia because it's rare)</mattext>
+                </material>
+              </response_label>
+              <response_label ident="D">
+                <material>
+                  <mattext texttype="text/plain">No simulation is needed if the colors have sufficient contrast ratios</mattext>
+                </material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes>
+            <decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/>
+          </outcomes>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">A</varequal>
+            </conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+            <displayfeedback feedbacktype="Response" linkrefid="A_feedback"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">B</varequal>
+            </conditionvar>
+            <setvar action="Set" varname="SCORE">0</setvar>
+            <displayfeedback feedbacktype="Response" linkrefid="B_feedback"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">C</varequal>
+            </conditionvar>
+            <setvar action="Set" varname="SCORE">0</setvar>
+            <displayfeedback feedbacktype="Response" linkrefid="C_feedback"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">D</varequal>
+            </conditionvar>
+            <setvar action="Set" varname="SCORE">0</setvar>
+            <displayfeedback feedbacktype="Response" linkrefid="D_feedback"/>
+          </respcondition>
+        </resprocessing>
+        <itemfeedback ident="A_feedback">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p>Correct! Grayscale (achromatopsia) simulation is the most efficient testing method because it removes all hue information. If your design conveys information clearly in grayscale, it will work for all types of color vision deficiency: protanopia (red-blind), deuteranopia (green-blind), and tritanopia (blue-blind). For the status badges in this scenario, grayscale testing would quickly reveal that the badges are indistinguishable without color, prompting the designer to add icons or text labels. This is the recommended method in the DACE course.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="B_feedback">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p>Incorrect. While testing all three CVD types would be thorough, it's unnecessary. Grayscale simulation removes all hue information, making it the most stringent test. If your design works in grayscale, it will work for all types of color vision deficiency. Testing all three types separately is time-consuming and doesn't provide additional value beyond what grayscale reveals. Use grayscale for efficiency.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="C_feedback">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p>Incorrect. While protanopia and deuteranopia are the most common types of CVD, skipping tritanopia doesn't make this method more efficient than simply using grayscale. Grayscale simulation covers all CVD types at once, including tritanopia. There's no benefit to testing two out of three CVD types when grayscale provides comprehensive coverage in a single test.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="D_feedback">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p>Incorrect. Contrast ratios (SC 1.4.3) and color as information (SC 1.4.1) are separate requirements. Having sufficient contrast doesn't guarantee that information isn't being conveyed by color alone. In this scenario, the status badges likely need icons (✓ for Active, ⏱ for Pending, ⨉ for Inactive) or text labels to ensure users with CVD can distinguish between them. Grayscale simulation would reveal this need by showing that the badges become indistinguishable without color.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+      </item>
+
+    </section>
+  </assessment>
+</questestinterop>

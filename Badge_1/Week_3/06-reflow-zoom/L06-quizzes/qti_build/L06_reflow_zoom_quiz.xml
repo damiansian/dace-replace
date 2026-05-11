@@ -1,0 +1,557 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<questestinterop xmlns="http://www.imsglobal.org/xsd/ims_qtiasiv1p2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.imsglobal.org/xsd/ims_qtiasiv1p2 http://www.imsglobal.org/xsd/ims_qtiasiv1p2p1.xsd">
+  <assessment ident="L06_reflow_zoom_quiz" title="L06: Reflow and Zoom Quiz">
+    <qtimetadata>
+      <qtimetadatafield>
+        <fieldlabel>cc_maxattempts</fieldlabel>
+        <fieldentry>unlimited</fieldentry>
+      </qtimetadatafield>
+      <qtimetadatafield>
+        <fieldlabel>qmd_timelimit</fieldlabel>
+        <fieldentry/>
+      </qtimetadatafield>
+      <qtimetadatafield>
+        <fieldlabel>cc_profile</fieldlabel>
+        <fieldentry>cc.exam.v0p1</fieldentry>
+      </qtimetadatafield>
+    </qtimetadata>
+    <section ident="root_section">
+      
+      <!-- Question 1: Effective Viewport Width at Zoom -->
+      <item ident="q1_effective_viewport" title="Q1: Effective Viewport Width at Zoom">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield>
+              <fieldlabel>question_type</fieldlabel>
+              <fieldentry>multiple_choice_question</fieldentry>
+            </qtimetadatafield>
+            <qtimetadatafield>
+              <fieldlabel>points_possible</fieldlabel>
+              <fieldentry>1</fieldentry>
+            </qtimetadatafield>
+            <qtimetadatafield>
+              <fieldlabel>original_answer_ids</fieldlabel>
+              <fieldentry>q1_a,q1_b,q1_c,q1_d</fieldentry>
+            </qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material>
+            <mattext texttype="text/html"><![CDATA[<p>When you set your browser window to 1280px wide and zoom to 200%, what is the effective viewport width? What about at 400% zoom?</p>]]></mattext>
+          </material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice shuffle="true">
+              <response_label ident="q1_a">
+                <material>
+                  <mattext texttype="text/plain">640px at 200% zoom, 320px at 400% zoom.</mattext>
+                </material>
+              </response_label>
+              <response_label ident="q1_b">
+                <material>
+                  <mattext texttype="text/plain">2560px at 200% zoom, 5120px at 400% zoom.</mattext>
+                </material>
+              </response_label>
+              <response_label ident="q1_c">
+                <material>
+                  <mattext texttype="text/plain">1280px at both zoom levels.</mattext>
+                </material>
+              </response_label>
+              <response_label ident="q1_d">
+                <material>
+                  <mattext texttype="text/plain">1080px at 200% zoom, 720px at 400% zoom.</mattext>
+                </material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes>
+            <decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/>
+          </outcomes>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q1_a</varequal>
+            </conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q1_a_fb"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q1_b</varequal>
+            </conditionvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q1_b_fb"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q1_c</varequal>
+            </conditionvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q1_c_fb"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q1_d</varequal>
+            </conditionvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q1_d_fb"/>
+          </respcondition>
+        </resprocessing>
+        <itemfeedback ident="q1_a_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Correct.</strong> The effective viewport width is calculated by dividing the actual viewport by the zoom percentage. At 200% zoom: 1280 ÷ 2 = 640px. At 400% zoom: 1280 ÷ 4 = 320px. This is why SC 1.4.10 (Reflow) uses 400% zoom on 1280px as the test condition, as it creates a 320px effective viewport similar to a mobile device.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="q1_b_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Incorrect.</strong> This multiplies instead of divides. Zooming in makes content larger, which means less content fits in the viewport, resulting in a smaller effective width, not larger.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="q1_c_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Incorrect.</strong> The physical viewport remains 1280px, but the effective viewport (how much content fits) decreases as zoom increases. At higher zoom, users see less content at a time.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="q1_d_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Incorrect.</strong> These numbers do not follow the correct calculation. The effective viewport is the actual width divided by the zoom factor (200% = 2, 400% = 4).</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+      </item>
+
+      <!-- Question 2: Identifying Reflow Exceptions -->
+      <item ident="q2_reflow_exceptions" title="Q2: Identifying Reflow Exceptions">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield>
+              <fieldlabel>question_type</fieldlabel>
+              <fieldentry>multiple_choice_question</fieldentry>
+            </qtimetadatafield>
+            <qtimetadatafield>
+              <fieldlabel>points_possible</fieldlabel>
+              <fieldentry>1</fieldentry>
+            </qtimetadatafield>
+            <qtimetadatafield>
+              <fieldlabel>original_answer_ids</fieldlabel>
+              <fieldentry>q2_a,q2_b,q2_c,q2_d</fieldentry>
+            </qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material>
+            <mattext texttype="text/html"><![CDATA[<p>A web application contains four components: (1) A product comparison table with feature names in rows and three product tiers in columns, (2) A three-card testimonial section with customer quotes side by side, (3) A sidebar navigation menu with category links, (4) A blog article with body text paragraphs. Which component is a valid exception to SC 1.4.10 where horizontal scrolling may be acceptable at 400% zoom?</p>]]></mattext>
+          </material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice shuffle="true">
+              <response_label ident="q2_a">
+                <material>
+                  <mattext texttype="text/plain">The product comparison table.</mattext>
+                </material>
+              </response_label>
+              <response_label ident="q2_b">
+                <material>
+                  <mattext texttype="text/plain">The sidebar navigation because it contains a large number of category links.</mattext>
+                </material>
+              </response_label>
+              <response_label ident="q2_c">
+                <material>
+                  <mattext texttype="text/plain">The blog article because the paragraphs contain long sentences.</mattext>
+                </material>
+              </response_label>
+              <response_label ident="q2_d">
+                <material>
+                  <mattext texttype="text/plain">The testimonial cards because they are designed to display side by side.</mattext>
+                </material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes>
+            <decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/>
+          </outcomes>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q2_a</varequal>
+            </conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q2_a_fb"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q2_b</varequal>
+            </conditionvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q2_b_fb"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q2_c</varequal>
+            </conditionvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q2_c_fb"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q2_d</varequal>
+            </conditionvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q2_d_fb"/>
+          </respcondition>
+        </resprocessing>
+        <itemfeedback ident="q2_a_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Correct.</strong> Data tables are an explicit exception in SC 1.4.10 because they require two-dimensional spatial relationships to convey meaning. Users need to see the relationship between rows (features) and columns (products) simultaneously. Removing columns would break the table's purpose.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="q2_b_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Incorrect.</strong> Navigation menus must reflow. Sidebars should collapse to hamburger menus or move below main content at narrow viewports. Having many links does not justify horizontal scrolling.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="q2_c_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Incorrect.</strong> Body text and paragraphs are the primary content that must reflow. Text content should never require horizontal scrolling. Long paragraphs simply wrap to fit the viewport width.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="q2_d_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Incorrect.</strong> Visual preference is not a valid exception. Testimonial cards are independent content blocks that can stack vertically without losing meaning. Each quote stands alone and does not require comparison with adjacent cards.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+      </item>
+
+      <!-- Question 3: Button Text Clipping with Text Spacing -->
+      <item ident="q3_text_clipping" title="Q3: Button Text Clipping with Text Spacing">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield>
+              <fieldlabel>question_type</fieldlabel>
+              <fieldentry>multiple_choice_question</fieldentry>
+            </qtimetadatafield>
+            <qtimetadatafield>
+              <fieldlabel>points_possible</fieldlabel>
+              <fieldentry>1</fieldentry>
+            </qtimetadatafield>
+            <qtimetadatafield>
+              <fieldlabel>original_answer_ids</fieldlabel>
+              <fieldentry>q3_a,q3_b,q3_c,q3_d</fieldentry>
+            </qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material>
+            <mattext texttype="text/html"><![CDATA[<p>A "Subscribe to Newsletter" button is specified with height: 40px and overflow: hidden. When a user applies text spacing adjustments (line height 1.5x, letter spacing 0.12x, word spacing 0.16x), the button text becomes clipped, showing only "Subscribe to Newslet..." with the remaining text cut off. What change would fix this text spacing failure?</p>]]></mattext>
+          </material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice shuffle="true">
+              <response_label ident="q3_a">
+                <material>
+                  <mattext texttype="text/plain">Use min-height: 40px instead of height: 40px.</mattext>
+                </material>
+              </response_label>
+              <response_label ident="q3_b">
+                <material>
+                  <mattext texttype="text/plain">Shorten the button label to "Subscribe" so it fits within the container.</mattext>
+                </material>
+              </response_label>
+              <response_label ident="q3_c">
+                <material>
+                  <mattext texttype="text/plain">Reduce the font size so the text fits within the fixed 40px height.</mattext>
+                </material>
+              </response_label>
+              <response_label ident="q3_d">
+                <material>
+                  <mattext texttype="text/plain">Add a tooltip that displays the full button text on hover for screen reader users.</mattext>
+                </material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes>
+            <decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/>
+          </outcomes>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q3_a</varequal>
+            </conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q3_a_fb"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q3_b</varequal>
+            </conditionvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q3_b_fb"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q3_c</varequal>
+            </conditionvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q3_c_fb"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q3_d</varequal>
+            </conditionvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q3_d_fb"/>
+          </respcondition>
+        </resprocessing>
+        <itemfeedback ident="q3_a_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Correct.</strong> SC 1.4.12 (Text Spacing) requires content to remain visible when users adjust spacing. Using min-height instead of fixed height allows the button to grow vertically when line height increases. The button maintains its minimum size in default state but expands to accommodate user preferences.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="q3_b_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Incorrect.</strong> SC 1.4.12 requires no loss of content when spacing is adjusted. Users need to understand what they are subscribing to. The design must accommodate the full text at adjusted spacing, not remove content.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="q3_c_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Incorrect.</strong> Reducing font size works against users who need text spacing adjustments for readability. Users with dyslexia or low vision apply spacing to make text easier to read. Making text smaller defeats their purpose.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="q3_d_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Incorrect.</strong> Tooltips do not solve the core problem of clipped visible text. Users who need text spacing adjustments need to see the text, not hover for hidden content. Additionally, touch users cannot access hover-only content.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+      </item>
+
+      <!-- Question 4: Text Spacing Adjustment Values -->
+      <item ident="q4_text_spacing_values" title="Q4: Text Spacing Adjustment Values">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield>
+              <fieldlabel>question_type</fieldlabel>
+              <fieldentry>multiple_choice_question</fieldentry>
+            </qtimetadatafield>
+            <qtimetadatafield>
+              <fieldlabel>points_possible</fieldlabel>
+              <fieldentry>1</fieldentry>
+            </qtimetadatafield>
+            <qtimetadatafield>
+              <fieldlabel>original_answer_ids</fieldlabel>
+              <fieldentry>q4_a,q4_b,q4_c,q4_d</fieldentry>
+            </qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material>
+            <mattext texttype="text/html"><![CDATA[<p>According to SC 1.4.12 (Text Spacing), content must remain readable when users adjust text spacing. Which set of values must designs support without loss of content?</p>]]></mattext>
+          </material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice shuffle="true">
+              <response_label ident="q4_a">
+                <material>
+                  <mattext texttype="text/plain">Line height 1.5x font size, letter spacing 0.12x, word spacing 0.16x, paragraph spacing 2x.</mattext>
+                </material>
+              </response_label>
+              <response_label ident="q4_b">
+                <material>
+                  <mattext texttype="text/plain">Line height 2.5x font size, letter spacing 0.5x, word spacing 0.5x, paragraph spacing 4x.</mattext>
+                </material>
+              </response_label>
+              <response_label ident="q4_c">
+                <material>
+                  <mattext texttype="text/plain">Only line height adjustments up to 1.5x font size.</mattext>
+                </material>
+              </response_label>
+              <response_label ident="q4_d">
+                <material>
+                  <mattext texttype="text/plain">Only letter spacing and word spacing adjustments.</mattext>
+                </material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes>
+            <decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/>
+          </outcomes>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q4_a</varequal>
+            </conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q4_a_fb"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q4_b</varequal>
+            </conditionvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q4_b_fb"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q4_c</varequal>
+            </conditionvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q4_c_fb"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q4_d</varequal>
+            </conditionvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q4_d_fb"/>
+          </respcondition>
+        </resprocessing>
+        <itemfeedback ident="q4_a_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Correct.</strong> SC 1.4.12 specifies these exact minimum values that must be supported: line height at least 1.5 times the font size, letter spacing at least 0.12 times the font size, word spacing at least 0.16 times the font size, and paragraph spacing at least 2 times the font size.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="q4_b_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Incorrect.</strong> These values exceed the SC 1.4.12 requirements. While designs may support larger adjustments, only the values in the correct answer are required for conformance.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="q4_c_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Incorrect.</strong> SC 1.4.12 requires support for all four properties: line height, letter spacing, word spacing, AND paragraph spacing. Supporting only line height would not meet the requirement.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="q4_d_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Incorrect.</strong> SC 1.4.12 requires all four spacing properties to be supported. Line height and paragraph spacing are equally important for users with dyslexia, low vision, and cognitive disabilities.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+      </item>
+
+      <!-- Question 5: Recipe App Orientation Lock -->
+      <item ident="q5_orientation_lock" title="Q5: Recipe App Orientation Lock">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield>
+              <fieldlabel>question_type</fieldlabel>
+              <fieldentry>multiple_choice_question</fieldentry>
+            </qtimetadatafield>
+            <qtimetadatafield>
+              <fieldlabel>points_possible</fieldlabel>
+              <fieldentry>1</fieldentry>
+            </qtimetadatafield>
+            <qtimetadatafield>
+              <fieldlabel>original_answer_ids</fieldlabel>
+              <fieldentry>q5_a,q5_b,q5_c,q5_d</fieldentry>
+            </qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material>
+            <mattext texttype="text/html"><![CDATA[<p>A recipe app design document states: "Lock to portrait orientation. The single-column layout looks better in portrait and matches how users typically hold their phones while cooking." The app displays recipe ingredients, step-by-step instructions, and cooking timers. Does this orientation restriction meet WCAG SC 1.3.4 requirements?</p>]]></mattext>
+          </material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice shuffle="true">
+              <response_label ident="q5_a">
+                <material>
+                  <mattext texttype="text/plain">No, "looks better" is preference, not essential function.</mattext>
+                </material>
+              </response_label>
+              <response_label ident="q5_b">
+                <material>
+                  <mattext texttype="text/plain">Yes, because cooking apps are typically used in portrait mode based on user research.</mattext>
+                </material>
+              </response_label>
+              <response_label ident="q5_c">
+                <material>
+                  <mattext texttype="text/plain">Yes, because the designer can determine the optimal experience.</mattext>
+                </material>
+              </response_label>
+              <response_label ident="q5_d">
+                <material>
+                  <mattext texttype="text/plain">No, all apps must default to landscape orientation first.</mattext>
+                </material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes>
+            <decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/>
+          </outcomes>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q5_a</varequal>
+            </conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q5_a_fb"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q5_b</varequal>
+            </conditionvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q5_b_fb"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q5_c</varequal>
+            </conditionvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q5_c_fb"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q5_d</varequal>
+            </conditionvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q5_d_fb"/>
+          </respcondition>
+        </resprocessing>
+        <itemfeedback ident="q5_a_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Correct.</strong> SC 1.3.4 (Orientation) requires content to work in both portrait and landscape unless a specific orientation is essential for function. The test question is: "Would the core function break if orientation changed?" A recipe app works identically in both orientations. Visual preference and typical usage patterns do not justify restricting access.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="q5_b_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Incorrect.</strong> Typical usage does not create essential requirements. Users with devices mounted to wheelchairs, bed stands, or kitchen mounts may have fixed orientations they cannot change. These users would be completely locked out of the app.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="q5_c_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Incorrect.</strong> Designer preference does not override accessibility requirements. SC 1.3.4 only permits orientation restrictions when the function itself requires it, such as a piano keyboard needing horizontal space for all keys, or a check deposit requiring camera alignment.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="q5_d_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Incorrect.</strong> The requirement is not to prefer one orientation over another. Apps must work in BOTH orientations. Locking to landscape would be equally non-compliant as locking to portrait, unless landscape is essential for the function.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+      </item>
+
+    </section>
+  </assessment>
+</questestinterop>

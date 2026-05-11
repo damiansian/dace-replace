@@ -1,0 +1,1345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L21: Product Team POV — DACE Deliver Badge</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --slide-w: 1440px;
+    --slide-h: 900px;
+    --badge-green: #51CF66;
+    --badge-green-light: #EBFBEE;
+    --badge-green-dark: #2B8A3E;
+    --black: #1A1A1A;
+    --dark: #333;
+    --mid: #666;
+    --light-gray: #F5F5F5;
+    --border-gray: #E0E0E0;
+    --white: #FFFFFF;
+    --insight-bg: #F5F7FA;
+    --font: 'DM Sans', system-ui, sans-serif;
+  }
+
+  body {
+    font-family: var(--font);
+    background: #1a1a2e;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    color: var(--black);
+  }
+
+  .nav {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(0,0,0,0.85);
+    padding: 10px 20px;
+    border-radius: 40px;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+  }
+  .nav button {
+    background: none;
+    border: 1px solid rgba(255,255,255,0.3);
+    color: white;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+  }
+  .nav button:hover { background: rgba(255,255,255,0.15); border-color: rgba(255,255,255,0.6); }
+  .nav .counter { color: rgba(255,255,255,0.7); font-size: 13px; font-variant-numeric: tabular-nums; min-width: 60px; text-align: center; }
+
+  .slide-container {
+    width: var(--slide-w);
+    max-width: 100%;
+    aspect-ratio: 1440 / 900;
+  }
+
+  .slide {
+    display: none;
+    width: var(--slide-w);
+    height: var(--slide-h);
+    background: var(--white);
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    transform-origin: top left;
+  }
+  .slide.active { display: block; }
+
+  /* === TOP BAR === */
+  .topbar {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    border-bottom: 1px solid var(--border-gray);
+    z-index: 10;
+  }
+  .topbar-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+    color: var(--dark);
+  }
+  .topbar-icon {
+    width: 32px;
+    height: 32px;
+    border: 1.5px solid var(--dark);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .topbar-icon svg { width: 16px; height: 16px; }
+  .topbar-lesson { font-weight: 600; }
+  .topbar-sep { color: #ccc; }
+  .topbar-topic { font-weight: 400; }
+
+  .badge-pill {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 16px;
+    border-radius: 20px;
+    background: var(--badge-green-light);
+    border: 1.5px solid var(--badge-green);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--badge-green-dark);
+  }
+  .badge-pill svg { width: 14px; height: 14px; }
+
+  /* === FOOTER === */
+  .footer-text {
+    position: absolute;
+    bottom: 40px;
+    left: 18px;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    font-size: 10px;
+    color: #999;
+    letter-spacing: 0.02em;
+    line-height: 1.4;
+  }
+
+  /* === SLIDE CONTENT AREA === */
+  .content {
+    position: absolute;
+    top: 64px;
+    left: 70px;
+    right: 40px;
+    bottom: 20px;
+    padding: 40px 0;
+  }
+
+  /* === SECTION DIVIDER === */
+  .slide.divider {
+    display: none;
+  }
+  .slide.divider.active { display: block; }
+  .divider .topbar { border-bottom-color: transparent; }
+  .divider-bg {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    overflow: hidden;
+  }
+  .divider-bg .geo {
+    position: absolute;
+    stroke: #ddd;
+    stroke-width: 1.5;
+    fill: none;
+  }
+  .divider-title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 64px;
+    font-weight: 700;
+    color: var(--black);
+    text-align: center;
+    line-height: 1.15;
+    max-width: 900px;
+  }
+
+  /* === TYPOGRAPHY === */
+  h1.slide-headline {
+    font-size: 48px;
+    font-weight: 700;
+    color: var(--black);
+    line-height: 1.15;
+    margin-bottom: 24px;
+    letter-spacing: -0.02em;
+  }
+  h2.slide-subhead {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--dark);
+    margin-bottom: 16px;
+  }
+  .slide-body {
+    font-size: 18px;
+    color: var(--dark);
+    line-height: 1.5;
+    margin-bottom: 16px;
+  }
+  .slide-intro {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--dark);
+    line-height: 1.5;
+    margin-bottom: 24px;
+  }
+
+  /* === BULLET LIST === */
+  .bullet-list {
+    list-style: none;
+    padding: 0;
+  }
+  .bullet-list li {
+    font-size: 18px;
+    color: var(--dark);
+    line-height: 1.55;
+    padding: 6px 0 6px 20px;
+    position: relative;
+  }
+  .bullet-list li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: #999;
+  }
+
+  /* === TWO COLUMN === */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 24px;
+  }
+  .col-card {
+    background: var(--white);
+    border: 1px solid var(--border-gray);
+    border-radius: 12px;
+    padding: 28px;
+  }
+  .col-card h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: var(--black);
+  }
+  .col-card.green-accent { border-top: 3px solid var(--badge-green); }
+  .col-card.gray-accent { border-top: 3px solid #ccc; }
+
+  /* === FOUR CARDS === */
+  .four-cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .card {
+    background: var(--light-gray);
+    border-radius: 12px;
+    padding: 20px;
+  }
+  .card h4 {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--black);
+    margin-bottom: 8px;
+  }
+  .card p {
+    font-size: 13px;
+    color: var(--mid);
+    line-height: 1.45;
+  }
+
+  /* === THREE CARDS === */
+  .three-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 24px;
+  }
+
+  /* === TABLE === */
+  .slide-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 24px;
+    font-size: 15px;
+  }
+  .slide-table th {
+    background: var(--light-gray);
+    font-weight: 600;
+    text-align: left;
+    padding: 12px 16px;
+    border-bottom: 2px solid var(--border-gray);
+    color: var(--black);
+  }
+  .slide-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border-gray);
+    color: var(--dark);
+    line-height: 1.4;
+    vertical-align: top;
+  }
+  .slide-table tr:last-child td { border-bottom: none; }
+
+  /* === KEY INSIGHT CALLOUT === */
+  .key-insight {
+    background: var(--insight-bg);
+    border-radius: 12px;
+    padding: 20px 24px 20px 64px;
+    position: relative;
+    margin-top: 16px;
+  }
+  .key-insight::before {
+    content: '';
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 32px;
+    height: 32px;
+    background: #3478F6;
+    border-radius: 50%;
+  }
+  .key-insight::after {
+    content: '💡';
+    position: absolute;
+    left: 25px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 16px;
+  }
+  .key-insight strong {
+    display: block;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--black);
+    margin-bottom: 4px;
+  }
+  .key-insight p, .key-insight span {
+    font-size: 15px;
+    color: var(--dark);
+    line-height: 1.5;
+  }
+
+  /* === CHECKPOINT === */
+  .checklist {
+    list-style: none;
+    padding: 0;
+  }
+  .checklist li {
+    font-size: 17px;
+    color: var(--dark);
+    line-height: 1.5;
+    padding: 8px 0 8px 36px;
+    position: relative;
+  }
+  .checklist li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+  }
+
+  .outcome-card {
+    background: var(--insight-bg);
+    border-radius: 16px;
+    padding: 28px;
+    text-align: center;
+  }
+  .outcome-card .outcome-icon {
+    width: 56px;
+    height: 56px;
+    background: #3478F6;
+    border-radius: 50%;
+    margin: 0 auto 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+  }
+  .outcome-card .outcome-label {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--black);
+    margin-bottom: 12px;
+  }
+  .outcome-card .outcome-text {
+    font-size: 14px;
+    color: var(--mid);
+    line-height: 1.5;
+  }
+
+  /* === OUTCOME PILL (inline) === */
+  .lo-pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 10px;
+    border-radius: 12px;
+    background: var(--badge-green-light);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--badge-green-dark);
+    margin-top: 8px;
+  }
+
+  /* === OBJECTIVES LIST === */
+  .objectives-list {
+    list-style: none;
+    padding: 0;
+  }
+  .objectives-list li {
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border-gray);
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .objectives-list li:last-child { border-bottom: none; }
+  .obj-code {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--badge-green-dark);
+    background: var(--badge-green-light);
+    padding: 4px 10px;
+    border-radius: 6px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .obj-text {
+    font-size: 17px;
+    color: var(--dark);
+    line-height: 1.5;
+  }
+  .obj-text strong { color: var(--black); }
+
+  /* === FLOW STEPS === */
+  .flow-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .flow-step {
+    text-align: center;
+    padding: 20px 12px;
+    background: var(--light-gray);
+    border-radius: 12px;
+    position: relative;
+  }
+  .flow-step:not(:last-child)::after {
+    content: '→';
+    position: absolute;
+    right: -14px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    color: #bbb;
+    z-index: 2;
+  }
+  .flow-step .step-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--badge-green-dark);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 6px;
+  }
+  .flow-step .step-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--black);
+    margin-bottom: 6px;
+  }
+  .flow-step .step-desc {
+    font-size: 12px;
+    color: var(--mid);
+    line-height: 1.4;
+  }
+
+  /* === DO/DON'T === */
+  .do-dont {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .dont-col {
+    background: #FFF5F5;
+    border: 1px solid #FFC9C9;
+    border-radius: 12px;
+    padding: 24px;
+  }
+  .dont-col h3 { color: #C92A2A; }
+  .do-col {
+    background: #F0FFF4;
+    border: 1px solid #B2F2BB;
+    border-radius: 12px;
+    padding: 24px;
+  }
+  .do-col h3 { color: #2B8A3E; }
+
+  /* === SUMMARY PRINCIPLES === */
+  .principles {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .principle-row {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    padding: 16px;
+    background: var(--light-gray);
+    border-radius: 12px;
+  }
+  .principle-icon {
+    width: 44px;
+    height: 44px;
+    background: #3478F6;
+    border-radius: 50%;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+  }
+  .principle-text {
+    font-size: 15px;
+    color: var(--dark);
+    line-height: 1.5;
+  }
+  .principle-text strong { color: var(--black); }
+
+  /* === CONNECTION CALLOUT === */
+  .connection-callout {
+    background: var(--badge-green-light);
+    border-left: 3px solid var(--badge-green);
+    padding: 16px 20px;
+    border-radius: 0 8px 8px 0;
+    margin-top: 16px;
+  }
+  .connection-callout p {
+    font-size: 14px;
+    color: var(--dark);
+    line-height: 1.5;
+  }
+
+  /* === SCALE CONTAINER === */
+  @media (max-width: 1480px) {
+    .slide-container {
+      transform-origin: top center;
+    }
+    .slide {
+      transform: scale(calc(min(100vw - 40px, 1440px) / 1440));
+    }
+  }
+
+  /* Title slide special */
+  .title-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    text-align: center;
+  }
+  .title-lesson-num {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--mid);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .title-main {
+    font-size: 56px;
+    font-weight: 700;
+    color: var(--black);
+    line-height: 1.1;
+    margin-bottom: 12px;
+    letter-spacing: -0.02em;
+  }
+  .title-subtitle {
+    font-size: 22px;
+    color: var(--mid);
+    font-weight: 400;
+    margin-bottom: 32px;
+    font-style: italic;
+  }
+  .title-meta {
+    display: flex;
+    gap: 24px;
+    font-size: 13px;
+    color: #999;
+  }
+  .title-meta span {
+    padding: 4px 12px;
+    background: var(--light-gray);
+    border-radius: 16px;
+  }
+
+  .practice-callout {
+    background: var(--badge-green-light);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-top: 16px;
+  }
+  .practice-callout strong {
+    font-size: 14px;
+    color: var(--badge-green-dark);
+    display: block;
+    margin-bottom: 8px;
+  }
+  .practice-callout p, .practice-callout li {
+    font-size: 14px;
+    color: var(--dark);
+    line-height: 1.5;
+  }
+  .practice-callout ol {
+    padding-left: 20px;
+    margin-top: 4px;
+  }
+</style>
+</head>
+<body>
+
+<div class="slide-container" id="slideContainer"></div>
+
+<div class="nav">
+  <button onclick="prevSlide()">←</button>
+  <span class="counter" id="counter">1 / 21</span>
+  <button onclick="nextSlide()">→</button>
+</div>
+
+<script>
+const slides = [
+
+// ===== FRAME 0.1: TITLE =====
+{type:'title', html:`
+<div class="topbar">
+  <div class="topbar-left">
+    <div class="topbar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M6 8l3 3-3 3"/></svg></div>
+    <span class="topbar-lesson">Lesson 21</span>
+    <span class="topbar-sep">|</span>
+    <span class="topbar-topic">Product Team POV</span>
+  </div>
+  <div class="badge-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg> Deliver Badge</div>
+</div>
+<div class="content">
+  <div class="title-content">
+    <div class="title-lesson-num">Lesson 21</div>
+    <div class="title-main">Product Team POV</div>
+    <div class="title-subtitle">From Specialist to Collaborator</div>
+    <div class="title-meta">
+      <span>Deliver Badge</span>
+      <span>~25 minutes</span>
+      <span>In-Person Lesson</span>
+      <span>Week 13</span>
+    </div>
+  </div>
+</div>
+<div class="footer-text">Design Accessibility Certified Expert (DACE)<br>Cohort 1: 2025 – 2026</div>
+`},
+
+// ===== FRAME 0.2: OBJECTIVES =====
+{type:'content', html:`
+<div class="topbar">
+  <div class="topbar-left">
+    <div class="topbar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M6 8l3 3-3 3"/></svg></div>
+    <span class="topbar-lesson">Lesson 21</span>
+    <span class="topbar-sep">|</span>
+    <span class="topbar-topic">Product Team POV</span>
+  </div>
+  <div class="badge-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg> Deliver Badge</div>
+</div>
+<div class="content">
+  <h1 class="slide-headline">What you'll be able to do</h1>
+  <p class="slide-body" style="margin-bottom:24px">By the end of this lesson, you'll be able to:</p>
+  <ul class="objectives-list">
+    <li>
+      <span class="obj-code">3G.01</span>
+      <span class="obj-text"><strong>Identify stakeholder motivations:</strong> Map the roles, incentives, and decision-making patterns of cross-functional product team members as they relate to accessibility</span>
+    </li>
+    <li>
+      <span class="obj-code">3G.02</span>
+      <span class="obj-text"><strong>Frame accessibility in product language:</strong> Translate accessibility findings into the vocabulary and priorities your product partners already use (risk, velocity, quality, customer impact)</span>
+    </li>
+    <li>
+      <span class="obj-code">3G.03</span>
+      <span class="obj-text"><strong>Influence product decisions without authority:</strong> Apply strategies for embedding accessibility perspective into planning, design reviews, and prioritization conversations</span>
+    </li>
+  </ul>
+  <div class="connection-callout">
+    <p>L17 taught you systematic review methodology. L18 taught you how to deliver feedback. L21 zooms out: how do you make sure accessibility has a seat at the table before the review even happens?</p>
+  </div>
+</div>
+<div class="footer-text">Design Accessibility Certified Expert (DACE)<br>Cohort 1: 2025 – 2026</div>
+`},
+
+// ===== FRAME 1.1: SECTION DIVIDER =====
+{type:'divider', html:`
+<div class="topbar">
+  <div class="topbar-left">
+    <div class="topbar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M6 8l3 3-3 3"/></svg></div>
+    <span class="topbar-lesson">Lesson 21</span>
+    <span class="topbar-sep">|</span>
+    <span class="topbar-topic">Product Team POV</span>
+  </div>
+</div>
+<div class="divider-bg">
+  <svg class="geo" style="left:-20px;top:80px" width="120" height="120" viewBox="0 0 120 120"><polygon points="60,0 120,120 0,120"/></svg>
+  <svg class="geo" style="left:-10px;top:320px" width="100" height="100" viewBox="0 0 100 100"><rect x="10" y="10" width="80" height="80"/></svg>
+  <svg class="geo" style="left:-5px;top:540px" width="100" height="100" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45"/></svg>
+</div>
+<div class="divider-title">Why the Product Team<br>Needs Your POV</div>
+<div class="footer-text">Design Accessibility Certified Expert (DACE)<br>Cohort 1: 2025 – 2026</div>
+`},
+
+// ===== FRAME 1.2: THE GAP YOU FILL =====
+{type:'content', html:`
+<div class="topbar">
+  <div class="topbar-left">
+    <div class="topbar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M6 8l3 3-3 3"/></svg></div>
+    <span class="topbar-lesson">Lesson 21</span>
+    <span class="topbar-sep">|</span>
+    <span class="topbar-topic">Product Team POV</span>
+  </div>
+  <div class="badge-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg> Deliver Badge</div>
+</div>
+<div class="content">
+  <h1 class="slide-headline">Without you vs. with you</h1>
+  <div class="two-col">
+    <div class="col-card gray-accent">
+      <h3>Without accessibility POV on the team</h3>
+      <ul class="bullet-list">
+        <li>Accessibility treated as a compliance checkbox</li>
+        <li>Issues found late in the development cycle</li>
+        <li>Remediation is reactive and expensive</li>
+        <li>Team lacks vocabulary to discuss accessibility trade-offs</li>
+      </ul>
+    </div>
+    <div class="col-card green-accent">
+      <h3>With accessibility POV on the team</h3>
+      <ul class="bullet-list">
+        <li>Accessibility considered during design and planning</li>
+        <li>Issues prevented or caught early</li>
+        <li>Trade-offs made explicitly, not by default</li>
+        <li>Team builds accessibility literacy over time</li>
+      </ul>
+    </div>
+  </div>
+  <div class="key-insight">
+    <strong>Key insight</strong>
+    <span>You are not the person who does the accessibility work for the team. You are the person who makes the team capable of doing accessibility work.</span>
+  </div>
+  <div class="lo-pill" style="margin-top:12px">LO 3G.01</div>
+</div>
+<div class="footer-text">Design Accessibility Certified Expert (DACE)<br>Cohort 1: 2025 – 2026</div>
+`},
+
+// ===== FRAME 1.3: CHECKPOINT =====
+{type:'content', html:`
+<div class="topbar">
+  <div class="topbar-left">
+    <div class="topbar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M6 8l3 3-3 3"/></svg></div>
+    <span class="topbar-lesson">Lesson 21</span>
+    <span class="topbar-sep">|</span>
+    <span class="topbar-topic">Product Team POV</span>
+  </div>
+  <div class="badge-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg> Deliver Badge</div>
+</div>
+<div class="content">
+  <h1 class="slide-headline">Checkpoint: Why Your POV Matters</h1>
+  <p class="slide-intro">Before mapping stakeholders, verify you understand the strategic framing:</p>
+  <div style="display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:start">
+    <div>
+      <h2 class="slide-subhead">Checklist:</h2>
+      <ul class="checklist">
+        <li>I understand that my role is to build team capability, not to be the team's sole accessibility resource</li>
+        <li>I can explain why accessibility perspective needs to be present during planning, not just during review</li>
+        <li>I recognize the difference between doing accessibility work for the team and enabling the team to do it</li>
+      </ul>
+    </div>
+    <div class="outcome-card">
+      <div class="outcome-icon">💡</div>
+      <div class="outcome-label">Learning Outcome 3G.01</div>
+      <div class="outcome-text">Identify stakeholder motivations: Map the roles, incentives, and decision-making patterns of XFN product team members.</div>
+    </div>
+  </div>
+</div>
+<div class="footer-text">Design Accessibility Certified Expert (DACE)<br>Cohort 1: 2025 – 2026</div>
+`},
+
+// ===== FRAME 2.1: SECTION DIVIDER =====
+{type:'divider', html:`
+<div class="topbar">
+  <div class="topbar-left">
+    <div class="topbar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M6 8l3 3-3 3"/></svg></div>
+    <span class="topbar-lesson">Lesson 21</span>
+    <span class="topbar-sep">|</span>
+    <span class="topbar-topic">Product Team POV</span>
+  </div>
+</div>
+<div class="divider-bg">
+  <svg class="geo" style="left:-20px;top:80px" width="120" height="120" viewBox="0 0 120 120"><polygon points="60,0 120,120 0,120"/></svg>
+  <svg class="geo" style="left:-10px;top:320px" width="100" height="100" viewBox="0 0 100 100"><rect x="10" y="10" width="80" height="80"/></svg>
+  <svg class="geo" style="left:-5px;top:540px" width="100" height="100" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45"/></svg>
+</div>
+<div class="divider-title">Mapping Stakeholders<br>and Incentives</div>
+<div class="footer-text">Design Accessibility Certified Expert (DACE)<br>Cohort 1: 2025 – 2026</div>
+`},
+
+// ===== FRAME 2.2: YOUR XFN PARTNERS =====
+{type:'content', html:`
+<div class="topbar">
+  <div class="topbar-left">
+    <div class="topbar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M6 8l3 3-3 3"/></svg></div>
+    <span class="topbar-lesson">Lesson 21</span>
+    <span class="topbar-sep">|</span>
+    <span class="topbar-topic">Product Team POV</span>
+  </div>
+  <div class="badge-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg> Deliver Badge</div>
+</div>
+<div class="content">
+  <h1 class="slide-headline">Who is on your product team</h1>
+  <div class="four-cards">
+    <div class="card">
+      <h4>Product Manager</h4>
+      <p><strong>Owns:</strong> Roadmap, priorities, trade-offs</p>
+      <p style="margin-top:8px"><strong>Optimizes for:</strong> Customer value, velocity, business metrics</p>
+    </div>
+    <div class="card">
+      <h4>Engineering Lead</h4>
+      <p><strong>Owns:</strong> Implementation, technical constraints</p>
+      <p style="margin-top:8px"><strong>Optimizes for:</strong> Feasibility, code quality, sprint commitments</p>
+    </div>
+    <div class="card">
+      <h4>Design Lead</h4>
+      <p><strong>Owns:</strong> Design quality, user experience</p>
+      <p style="margin-top:8px"><strong>Optimizes for:</strong> Craft, consistency, user satisfaction</p>
+    </div>
+    <div class="card">
+      <h4>Research</h4>
+      <p><strong>Owns:</strong> Evidence, user insight</p>
+      <p style="margin-top:8px"><strong>Optimizes for:</strong> Validity, confidence, user needs</p>
+    </div>
+  </div>
+  <div class="key-insight">
+    <strong>Key insight</strong>
+    <span>None of these roles are against accessibility. They just don't start from it. Your job is to connect accessibility to what they already care about.</span>
+  </div>
+  <div class="lo-pill" style="margin-top:12px">LO 3G.01</div>
+</div>
+<div class="footer-text">Design Accessibility Certified Expert (DACE)<br>Cohort 1: 2025 – 2026</div>
+`},
+
+// ===== FRAME 2.3: INCENTIVE ALIGNMENT =====
+{type:'content', html:`
+<div class="topbar">
+  <div class="topbar-left">
+    <div class="topbar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M6 8l3 3-3 3"/></svg></div>
+    <span class="topbar-lesson">Lesson 21</span>
+    <span class="topbar-sep">|</span>
+    <span class="topbar-topic">Product Team POV</span>
+  </div>
+  <div class="badge-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg> Deliver Badge</div>
+</div>
+<div class="content">
+  <h1 class="slide-headline" style="font-size:40px">What each partner cares about</h1>
+  <table class="slide-table">
+    <thead><tr><th>Partner</th><th>Their priority</th><th>Accessibility framed as...</th><th>Example</th></tr></thead>
+    <tbody>
+      <tr><td><strong>PM</strong></td><td>Ship features that drive metrics</td><td>Risk reduction and quality signal</td><td style="font-size:13px;font-style:italic">"This issue affects task completion for ~15% of users on mobile with magnification"</td></tr>
+      <tr><td><strong>Engineering</strong></td><td>Clean implementation within capacity</td><td>Clear specs and early input</td><td style="font-size:13px;font-style:italic">"If I flag this in the design phase, it's a CSS change. After build, it's a refactor."</td></tr>
+      <tr><td><strong>Design Lead</strong></td><td>Consistent, high-quality experience</td><td>Design excellence, not an add-on</td><td style="font-size:13px;font-style:italic">"Accessible focus states improve the experience for everyone, including keyboard power users"</td></tr>
+      <tr><td><strong>Research</strong></td><td>Valid evidence about user needs</td><td>Inclusive research methodology</td><td style="font-size:13px;font-style:italic">"Our usability study excluded screen reader users. Here's what we might be missing."</td></tr>
+    </tbody>
+  </table>
+  <div class="lo-pill">LO 3G.01</div>
+</div>
+<div class="footer-text">Design Accessibility Certified Expert (DACE)<br>Cohort 1: 2025 – 2026</div>
+`},
+
+// ===== FRAME 2.4: TIMING =====
+{type:'content', html:`
+<div class="topbar">
+  <div class="topbar-left">
+    <div class="topbar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M6 8l3 3-3 3"/></svg></div>
+    <span class="topbar-lesson">Lesson 21</span>
+    <span class="topbar-sep">|</span>
+    <span class="topbar-topic">Product Team POV</span>
+  </div>
+  <div class="badge-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg> Deliver Badge</div>
+</div>
+<div class="content">
+  <h1 class="slide-headline">When to show up</h1>
+  <div class="flow-steps">
+    <div class="flow-step">
+      <div class="step-label">Stage 1</div>
+      <div class="step-title">Planning</div>
+      <div class="step-desc">Shape the scope before it's locked. "Have we considered accessibility requirements?"</div>
+    </div>
+    <div class="flow-step">
+      <div class="step-label">Stage 2</div>
+      <div class="step-title">Design review</div>
+      <div class="step-desc">Catch issues in the design, not the build. Apply your L17 review methodology.</div>
+    </div>
+    <div class="flow-step">
+      <div class="step-label">Stage 3</div>
+      <div class="step-title">Pre-implementation</div>
+      <div class="step-desc">Confirm specs are complete for engineering. Blueline annotations included.</div>
+    </div>
+    <div class="flow-step">
+      <div class="step-label">Stage 4</div>
+      <div class="step-title">Post-launch</div>
+      <div class="step-desc">Close the loop. "Here's what we shipped well and what to address next."</div>
+    </div>
+  </div>
+  <div class="key-insight">
+    <strong>Key insight</strong>
+    <span>One comment during planning is worth ten bug reports after launch.</span>
+  </div>
+  <div class="lo-pill" style="margin-top:12px">LO 3G.01</div>
+</div>
+<div class="footer-text">Design Accessibility Certified Expert (DACE)<br>Cohort 1: 2025 – 2026</div>
+`},
+
+// ===== FRAME 2.5: CHECKPOINT =====
+{type:'content', html:`
+<div class="topbar">
+  <div class="topbar-left">
+    <div class="topbar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M6 8l3 3-3 3"/></svg></div>
+    <span class="topbar-lesson">Lesson 21</span>
+    <span class="topbar-sep">|</span>
+    <span class="topbar-topic">Product Team POV</span>
+  </div>
+  <div class="badge-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg> Deliver Badge</div>
+</div>
+<div class="content">
+  <h1 class="slide-headline">Checkpoint: Stakeholder Mapping</h1>
+  <p class="slide-intro">Before moving to communication framing, verify you understand your product team landscape:</p>
+  <div style="display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:start">
+    <div>
+      <h2 class="slide-subhead">Checklist:</h2>
+      <ul class="checklist">
+        <li>I can name the four key XFN partners and what each optimizes for</li>
+        <li>I understand that framing accessibility in each partner's language increases adoption</li>
+        <li>I recognize that timing (when I engage) matters as much as content (what I say)</li>
+        <li>I know that planning is the highest-leverage moment for accessibility input</li>
+      </ul>
+    </div>
+    <div class="outcome-card">
+      <div class="outcome-icon">💡</div>
+      <div class="outcome-label">Learning Outcome 3G.01</div>
+      <div class="outcome-text">Identify stakeholder motivations: Map the roles, incentives, and decision-making patterns of XFN product team members.</div>
+    </div>
+  </div>
+</div>
+<div class="footer-text">Design Accessibility Certified Expert (DACE)<br>Cohort 1: 2025 – 2026</div>
+`},
+
+// ===== FRAME 3.1: SECTION DIVIDER =====
+{type:'divider', html:`
+<div class="topbar">
+  <div class="topbar-left">
+    <div class="topbar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M6 8l3 3-3 3"/></svg></div>
+    <span class="topbar-lesson">Lesson 21</span>
+    <span class="topbar-sep">|</span>
+    <span class="topbar-topic">Product Team POV</span>
+  </div>
+</div>
+<div class="divider-bg">
+  <svg class="geo" style="left:-20px;top:80px" width="120" height="120" viewBox="0 0 120 120"><polygon points="60,0 120,120 0,120"/></svg>
+  <svg class="geo" style="left:-10px;top:320px" width="100" height="100" viewBox="0 0 100 100"><rect x="10" y="10" width="80" height="80"/></svg>
+  <svg class="geo" style="left:-5px;top:540px" width="100" height="100" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45"/></svg>
+</div>
+<div class="divider-title">Framing Accessibility<br>in Product Language</div>
+<div class="footer-text">Design Accessibility Certified Expert (DACE)<br>Cohort 1: 2025 – 2026</div>
+`},
+
+// ===== FRAME 3.2: TRANSLATION NOT DILUTION =====
+{type:'content', html:`
+<div class="topbar">
+  <div class="topbar-left">
+    <div class="topbar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M6 8l3 3-3 3"/></svg></div>
+    <span class="topbar-lesson">Lesson 21</span>
+    <span class="topbar-sep">|</span>
+    <span class="topbar-topic">Product Team POV</span>
+  </div>
+  <div class="badge-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg> Deliver Badge</div>
+</div>
+<div class="content">
+  <h1 class="slide-headline" style="font-size:42px">Speak their language without losing the message</h1>
+  <p class="slide-body">Framing accessibility in product language does not mean softening it, minimizing it, or making it optional. It means connecting it to the priorities your partners already hold.</p>
+  <div class="two-col">
+    <div class="col-card green-accent">
+      <h3>Translation (effective)</h3>
+      <p style="font-size:16px;color:var(--dark);line-height:1.5;font-style:italic">"This focus indicator issue blocks keyboard-only users from completing checkout. That's a task-completion failure on our primary revenue flow."</p>
+    </div>
+    <div class="col-card" style="border-top:3px solid #FA5252">
+      <h3>Dilution (ineffective)</h3>
+      <p style="font-size:16px;color:var(--dark);line-height:1.5;font-style:italic">"It would be nice if we could improve the focus states at some point, if there's time."</p>
+    </div>
+  </div>
+  <div class="key-insight">
+    <strong>Key insight</strong>
+    <span>Translation preserves urgency and specificity. Dilution loses both.</span>
+  </div>
+  <div class="lo-pill" style="margin-top:12px">LO 3G.02</div>
+</div>
+<div class="footer-text">Design Accessibility Certified Expert (DACE)<br>Cohort 1: 2025 – 2026</div>
+`},
+
+// ===== FRAME 3.3: FIVE FRAMING PATTERNS =====
+{type:'content', html:`
+<div class="topbar">
+  <div class="topbar-left">
+    <div class="topbar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M6 8l3 3-3 3"/></svg></div>
+    <span class="topbar-lesson">Lesson 21</span>
+    <span class="topbar-sep">|</span>
+    <span class="topbar-topic">Product Team POV</span>
+  </div>
+  <div class="badge-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg> Deliver Badge</div>
+</div>
+<div class="content">
+  <h1 class="slide-headline">Framing patterns that work</h1>
+  <table class="slide-table">
+    <thead><tr><th style="width:140px">Pattern</th><th style="width:240px">Structure</th><th>Example</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Risk frame</strong></td><td>"If we ship this, [consequence]"</td><td style="font-size:13px;font-style:italic">"If we ship without keyboard support, Edu customers under Title II can't deploy it"</td></tr>
+      <tr><td><strong>Cost frame</strong></td><td>"Fixing now costs X; later costs Y"</td><td style="font-size:13px;font-style:italic">"A CSS change now vs. a component refactor after launch"</td></tr>
+      <tr><td><strong>Quality frame</strong></td><td>"This is a [quality] issue"</td><td style="font-size:13px;font-style:italic">"Users with magnification lose context because the tooltip renders off-screen at 400% zoom"</td></tr>
+      <tr><td><strong>Evidence frame</strong></td><td>"We know [data point]"</td><td style="font-size:13px;font-style:italic">"12% of our DAU on iPad use at least one accessibility setting"</td></tr>
+      <tr><td><strong>Policy frame</strong></td><td>"Our policy requires [X]"</td><td style="font-size:13px;font-style:italic">"The Digital Accessibility Policy requires Sev 1 resolution before public beta"</td></tr>
+    </tbody>
+  </table>
+  <div class="key-insight">
+    <strong>Key insight</strong>
+    <span>Use risk and cost frames for PMs. Quality frame for design leads. Evidence frame for researchers. Policy frame sparingly, as a backstop, not a lead.</span>
+  </div>
+  <div class="lo-pill" style="margin-top:12px">LO 3G.02</div>
+</div>
+<div class="footer-text">Design Accessibility Certified Expert (DACE)<br>Cohort 1: 2025 – 2026</div>
+`},
+
+// ===== FRAME 3.4: ANTI-PATTERNS =====
+{type:'content', html:`
+<div class="topbar">
+  <div class="topbar-left">
+    <div class="topbar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M6 8l3 3-3 3"/></svg></div>
+    <span class="topbar-lesson">Lesson 21</span>
+    <span class="topbar-sep">|</span>
+    <span class="topbar-topic">Product Team POV</span>
+  </div>
+  <div class="badge-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg> Deliver Badge</div>
+</div>
+<div class="content">
+  <h1 class="slide-headline">What doesn't work</h1>
+  <div class="do-dont">
+    <div class="dont-col">
+      <h3 style="font-size:18px;font-weight:700;margin-bottom:16px">Anti-patterns</h3>
+      <ul class="bullet-list">
+        <li>Leading with guilt or moral arguments in a prioritization meeting</li>
+        <li>Presenting an unsorted list of WCAG failures without context</li>
+        <li>Saying "we have to" without explaining the impact</li>
+        <li>Positioning accessibility as your personal cause rather than a product quality dimension</li>
+      </ul>
+    </div>
+    <div class="do-col">
+      <h3 style="font-size:18px;font-weight:700;margin-bottom:16px">Better alternatives</h3>
+      <ul class="bullet-list">
+        <li>Lead with user impact and business consequence</li>
+        <li>Prioritize your findings (L17) and present the top 3</li>
+        <li>Explain who is affected and how severely</li>
+        <li>Position accessibility as something the team delivers together</li>
+      </ul>
+    </div>
+  </div>
+  <div class="lo-pill" style="margin-top:20px">LO 3G.02</div>
+</div>
+<div class="footer-text">Design Accessibility Certified Expert (DACE)<br>Cohort 1: 2025 – 2026</div>
+`},
+
+// ===== FRAME 3.5: CHECKPOINT =====
+{type:'content', html:`
+<div class="topbar">
+  <div class="topbar-left">
+    <div class="topbar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M6 8l3 3-3 3"/></svg></div>
+    <span class="topbar-lesson">Lesson 21</span>
+    <span class="topbar-sep">|</span>
+    <span class="topbar-topic">Product Team POV</span>
+  </div>
+  <div class="badge-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg> Deliver Badge</div>
+</div>
+<div class="content">
+  <h1 class="slide-headline">Checkpoint: Product Language</h1>
+  <p class="slide-intro">Before moving to influence strategies, verify you understand how to translate findings:</p>
+  <div style="display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:start">
+    <div>
+      <h2 class="slide-subhead">Checklist:</h2>
+      <ul class="checklist">
+        <li>I can explain the difference between translating and diluting accessibility arguments</li>
+        <li>I can name the five framing patterns and which partners each resonates with</li>
+        <li>I recognize the common anti-patterns and why they reduce effectiveness</li>
+        <li>I understand that the policy frame is a backstop, not a lead</li>
+      </ul>
+    </div>
+    <div class="outcome-card">
+      <div class="outcome-icon">💡</div>
+      <div class="outcome-label">Learning Outcome 3G.02</div>
+      <div class="outcome-text">Frame accessibility in product language: Translate findings into the vocabulary your product partners already use.</div>
+    </div>
+  </div>
+</div>
+<div class="footer-text">Design Accessibility Certified Expert (DACE)<br>Cohort 1: 2025 – 2026</div>
+`},
+
+// ===== FRAME 4.1: SECTION DIVIDER =====
+{type:'divider', html:`
+<div class="topbar">
+  <div class="topbar-left">
+    <div class="topbar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M6 8l3 3-3 3"/></svg></div>
+    <span class="topbar-lesson">Lesson 21</span>
+    <span class="topbar-sep">|</span>
+    <span class="topbar-topic">Product Team POV</span>
+  </div>
+</div>
+<div class="divider-bg">
+  <svg class="geo" style="left:-20px;top:80px" width="120" height="120" viewBox="0 0 120 120"><polygon points="60,0 120,120 0,120"/></svg>
+  <svg class="geo" style="left:-10px;top:320px" width="100" height="100" viewBox="0 0 100 100"><rect x="10" y="10" width="80" height="80"/></svg>
+  <svg class="geo" style="left:-5px;top:540px" width="100" height="100" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45"/></svg>
+</div>
+<div class="divider-title">Influencing<br>Without Authority</div>
+<div class="footer-text">Design Accessibility Certified Expert (DACE)<br>Cohort 1: 2025 – 2026</div>
+`},
+
+// ===== FRAME 4.2: THREE INFLUENCE STRATEGIES =====
+{type:'content', html:`
+<div class="topbar">
+  <div class="topbar-left">
+    <div class="topbar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M6 8l3 3-3 3"/></svg></div>
+    <span class="topbar-lesson">Lesson 21</span>
+    <span class="topbar-sep">|</span>
+    <span class="topbar-topic">Product Team POV</span>
+  </div>
+  <div class="badge-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg> Deliver Badge</div>
+</div>
+<div class="content">
+  <h1 class="slide-headline" style="font-size:40px">You don't own the roadmap. You can still shape it.</h1>
+  <div class="three-cards" style="margin-top:8px">
+    <div class="card" style="padding:24px">
+      <h4 style="font-size:17px;margin-bottom:12px">Make the invisible visible</h4>
+      <p style="font-size:14px;margin-bottom:10px"><strong>How:</strong> Surface accessibility data the team doesn't currently see</p>
+      <p style="font-size:13px;font-style:italic;color:#888">"Add accessibility metrics to the existing quality dashboard; share AT testing results in design critique"</p>
+    </div>
+    <div class="card" style="padding:24px">
+      <h4 style="font-size:17px;margin-bottom:12px">Reduce the cost of doing the right thing</h4>
+      <p style="font-size:14px;margin-bottom:10px"><strong>How:</strong> Make the accessible path the easiest path</p>
+      <p style="font-size:13px;font-style:italic;color:#888">"Provide Blueline specs upfront; pre-test components so engineering gets clear requirements"</p>
+    </div>
+    <div class="card" style="padding:24px">
+      <h4 style="font-size:17px;margin-bottom:12px">Build allies, not dependents</h4>
+      <p style="font-size:14px;margin-bottom:10px"><strong>How:</strong> Invest in one person per discipline who carries the work forward</p>
+      <p style="font-size:13px;font-style:italic;color:#888">"Pair with an engineer on a keyboard nav fix; coach a PM through their first VPAT request"</p>
+    </div>
+  </div>
+  <div class="key-insight">
+    <strong>Key insight</strong>
+    <span>Influence compounds. Each time the team ships something accessible because of your input, it becomes easier next time. You're building a track record, not winning a single argument.</span>
+  </div>
+  <div class="lo-pill" style="margin-top:12px">LO 3G.03</div>
+</div>
+<div class="footer-text">Design Accessibility Certified Expert (DACE)<br>Cohort 1: 2025 – 2026</div>
+`},
+
+// ===== FRAME 4.3: CHECKPOINT =====
+{type:'content', html:`
+<div class="topbar">
+  <div class="topbar-left">
+    <div class="topbar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M6 8l3 3-3 3"/></svg></div>
+    <span class="topbar-lesson">Lesson 21</span>
+    <span class="topbar-sep">|</span>
+    <span class="topbar-topic">Product Team POV</span>
+  </div>
+  <div class="badge-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg> Deliver Badge</div>
+</div>
+<div class="content">
+  <h1 class="slide-headline">Checkpoint: Influence Strategies</h1>
+  <p class="slide-intro">Before we wrap up, verify you understand the influence strategies:</p>
+  <div style="display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:start">
+    <div>
+      <h2 class="slide-subhead">Checklist:</h2>
+      <ul class="checklist">
+        <li>I can describe the three influence strategies and give an example of each</li>
+        <li>I understand that influence is cumulative, not transactional</li>
+        <li>I know that building allies across disciplines is more durable than winning individual arguments</li>
+        <li>I recognize that reducing the cost of the accessible path is as important as advocating for it</li>
+      </ul>
+    </div>
+    <div class="outcome-card">
+      <div class="outcome-icon">💡</div>
+      <div class="outcome-label">Learning Outcome 3G.03</div>
+      <div class="outcome-text">Influence product decisions without authority: Apply strategies for embedding accessibility into planning and prioritization.</div>
+    </div>
+  </div>
+</div>
+<div class="footer-text">Design Accessibility Certified Expert (DACE)<br>Cohort 1: 2025 – 2026</div>
+`},
+
+// ===== FRAME 5.1: SECTION DIVIDER =====
+{type:'divider', html:`
+<div class="topbar">
+  <div class="topbar-left">
+    <div class="topbar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M6 8l3 3-3 3"/></svg></div>
+    <span class="topbar-lesson">Lesson 21</span>
+    <span class="topbar-sep">|</span>
+    <span class="topbar-topic">Product Team POV</span>
+  </div>
+</div>
+<div class="divider-bg">
+  <svg class="geo" style="left:-20px;top:80px" width="120" height="120" viewBox="0 0 120 120"><polygon points="60,0 120,120 0,120"/></svg>
+  <svg class="geo" style="left:-10px;top:320px" width="100" height="100" viewBox="0 0 100 100"><rect x="10" y="10" width="80" height="80"/></svg>
+  <svg class="geo" style="left:-5px;top:540px" width="100" height="100" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45"/></svg>
+</div>
+<div class="divider-title">Summary and<br>Next Steps</div>
+<div class="footer-text">Design Accessibility Certified Expert (DACE)<br>Cohort 1: 2025 – 2026</div>
+`},
+
+// ===== FRAME 5.2: KEY TAKEAWAYS =====
+{type:'content', html:`
+<div class="topbar">
+  <div class="topbar-left">
+    <div class="topbar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M6 8l3 3-3 3"/></svg></div>
+    <span class="topbar-lesson">Lesson 21</span>
+    <span class="topbar-sep">|</span>
+    <span class="topbar-topic">Product Team POV</span>
+  </div>
+  <div class="badge-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg> Deliver Badge</div>
+</div>
+<div class="content">
+  <h1 class="slide-headline">Product Team POV</h1>
+  <div class="principles">
+    <div class="principle-row">
+      <div class="principle-icon">👥</div>
+      <div class="principle-text"><strong>Know your partners:</strong> Map roles, incentives, and decision patterns. Show up at planning, not just review. Accessibility is everyone's job; your job is making sure they know how.</div>
+    </div>
+    <div class="principle-row">
+      <div class="principle-icon">🔄</div>
+      <div class="principle-text"><strong>Speak their language:</strong> Use risk, cost, quality, evidence, and policy frames. Translate, don't dilute. Lead with impact, save policy for backstop.</div>
+    </div>
+    <div class="principle-row">
+      <div class="principle-icon">🤝</div>
+      <div class="principle-text"><strong>Influence through action:</strong> Make the invisible visible, reduce the cost of doing the right thing, and build allies who carry the work forward without you.</div>
+    </div>
+  </div>
+  <div class="practice-callout">
+    <strong>Practice tracks:</strong>
+    <ol>
+      <li><strong>Team integration:</strong> Identify one upcoming planning or review moment and prepare your accessibility input using the framing patterns from this lesson</li>
+      <li><strong>Cumulative Capstone:</strong> If your capstone involves a product team recommendation, use stakeholder mapping and framing strategies here</li>
+    </ol>
+  </div>
+</div>
+<div class="footer-text">Design Accessibility Certified Expert (DACE)<br>Cohort 1: 2025 – 2026</div>
+`},
+
+// ===== FRAME 5.3: UP NEXT =====
+{type:'content', html:`
+<div class="topbar">
+  <div class="topbar-left">
+    <div class="topbar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M6 8l3 3-3 3"/></svg></div>
+    <span class="topbar-lesson">Lesson 21</span>
+    <span class="topbar-sep">|</span>
+    <span class="topbar-topic">Product Team POV</span>
+  </div>
+  <div class="badge-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg> Deliver Badge</div>
+</div>
+<div class="content" style="display:flex;flex-direction:column;justify-content:center;height:calc(100% - 64px);padding-top:0;padding-bottom:0">
+  <h1 class="slide-headline">Up next: L22</h1>
+  <ul class="bullet-list" style="margin-bottom:32px">
+    <li>Continuing the Deliver Badge collaborative toolkit</li>
+    <li>Building on stakeholder mapping and influence strategies</li>
+    <li>Applying product team POV to broader organizational contexts</li>
+    <li>Scaling accessibility advocacy beyond your immediate team</li>
+  </ul>
+  <div class="connection-callout">
+    <p>L21 gave you the strategy for how to operate within your immediate product team. Subsequent lessons extend this to broader organizational contexts and more complex stakeholder landscapes.</p>
+  </div>
+</div>
+<div class="footer-text">Design Accessibility Certified Expert (DACE)<br>Cohort 1: 2025 – 2026</div>
+`}
+
+];
+
+let current = 0;
+const container = document.getElementById('slideContainer');
+const counter = document.getElementById('counter');
+
+function render() {
+  container.innerHTML = `<div class="slide ${slides[current].type === 'divider' ? 'divider' : ''} active">${slides[current].html}</div>`;
+  counter.textContent = `${current + 1} / ${slides.length}`;
+}
+
+function nextSlide() { if (current < slides.length - 1) { current++; render(); } }
+function prevSlide() { if (current > 0) { current--; render(); } }
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); nextSlide(); }
+  if (e.key === 'ArrowLeft') { e.preventDefault(); prevSlide(); }
+});
+
+render();
+
+// Scale slide to fit viewport
+function scaleSlide() {
+  const maxW = Math.min(window.innerWidth - 40, 1440);
+  const scale = maxW / 1440;
+  const slide = document.querySelector('.slide');
+  if (slide && scale < 1) {
+    slide.style.transform = `scale(${scale})`;
+    container.style.height = `${900 * scale}px`;
+  } else if (slide) {
+    slide.style.transform = 'none';
+    container.style.height = '900px';
+  }
+}
+window.addEventListener('resize', scaleSlide);
+setTimeout(scaleSlide, 10);
+</script>
+
+</body>
+</html>

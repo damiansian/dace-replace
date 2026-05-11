@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lesson 16: Perceptual and Cognitive Design Considerations - Canvas Preview</title>
+</head>
+<body style="margin: 0; padding: 20px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif; background-color: #ffffff; color: #333333; line-height: 1.6;">
+  <!-- Note: This is a preview file. When copying to Canvas, copy only the content below this line -->
+  
+  <div style="max-width: 900px; margin: 0; padding: 24px 0 48px 0;">
+
+    <!-- Header Section -->
+    <div style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); border-radius: 8px; padding: 24px 28px; margin-bottom: 28px; border-left: 5px solid #FF6B6B;">
+      <h2 style="margin: 0 0 12px 0; font-size: 28px; font-weight: 600; color: #212529;">Lesson 16: Perceptual and Cognitive Design Considerations</h2>
+      <div style="display: flex; flex-wrap: wrap; gap: 14px; margin-top: 18px;">
+        <span style="display: inline-flex; align-items: center; gap: 8px; background-color: #ffe3e3; color: #c92a2a; padding: 10px 18px; border-radius: 24px; font-size: 15px; font-weight: 500;">
+          <span style="font-size: 18px;">🎯</span> Define Badge
+        </span>
+        <span style="display: inline-flex; align-items: center; gap: 8px; background-color: #e7f5ff; color: #1864ab; padding: 10px 18px; border-radius: 24px; font-size: 15px; font-weight: 500;">
+          <span style="font-size: 18px;">🏷️</span> Module 2H
+        </span>
+      </div>
+    </div>
+
+    <!-- Introduction -->
+    <p style="font-size: 17px; color: #495057; margin-bottom: 16px; padding: 0 4px;">
+      Many real-world accessibility barriers are perceptual and cognitive: layouts too dense to scan, hierarchies that confuse rather than guide, components whose appearance contradicts their behavior. These issues affect the largest disability population (cognitive disabilities, estimated at 1 in 8 people) and are among the hardest to detect with automated tools.
+    </p>
+    <p style="font-size: 17px; color: #495057; margin-bottom: 32px; padding: 0 4px;">
+      In this lesson, you will learn how spatial hierarchy, visual density, whitespace, and component semantics affect comprehension for users with cognitive and visual disabilities. This is the final topic-specific lesson in the Define Badge, synthesizing principles from across both Discover and Define levels into a holistic view of how design decisions affect cognitive accessibility.
+    </p>
+
+    <!-- Lesson Activities Section -->
+    <div style="background-color: #fff; border: 1px solid #dee2e6; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #FF6B6B;">
+      <h3 style="margin: 0 0 8px 0; font-size: 20px; font-weight: 600; color: #212529; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">🎯</span> Lesson Activities
+      </h3>
+      <p style="margin: 0 0 20px 0; color: #495057; font-size: 15px;">Complete these activities for this lesson.</p>
+      
+      <!-- Activity Links -->
+      <table role="presentation" style="width: 100%; border-collapse: separate; border-spacing: 0 12px;">
+        <tr>
+          <td style="width: 44px; background-color: #f8f9fa; border: 1px solid #e9ecef; border-radius: 8px 0 0 8px; padding: 16px; text-align: center; vertical-align: middle;">
+            <span style="display: inline-block; width: 44px; height: 44px; background-color: #ffe3e3; border-radius: 8px; font-size: 22px; text-align: center; line-height: 44px;">🎨</span>
+          </td>
+          <td style="background-color: #f8f9fa; border-top: 1px solid #e9ecef; border-bottom: 1px solid #e9ecef; padding: 16px 12px; vertical-align: middle;">
+            <strong style="color: #212529; font-size: 15px;">Lesson in Figma</strong><br>
+            <span style="color: #495057; font-size: 13px;">View the lesson walkthrough (link to be added)</span>
+          </td>
+          <td style="width: 40px; background-color: #f8f9fa; border: 1px solid #e9ecef; border-radius: 0 8px 8px 0; padding: 16px 16px 16px 0; text-align: right; vertical-align: middle;">
+            <span style="color: #495057; font-size: 18px;">&rarr;</span>
+          </td>
+        </tr>
+        <tr>
+          <td style="width: 44px; background-color: #f8f9fa; border: 1px solid #e9ecef; border-radius: 8px 0 0 8px; padding: 16px; text-align: center; vertical-align: middle;">
+            <span style="display: inline-block; width: 44px; height: 44px; background-color: #fff3bf; border-radius: 8px; font-size: 22px; text-align: center; line-height: 44px;">📋</span>
+          </td>
+          <td style="background-color: #f8f9fa; border-top: 1px solid #e9ecef; border-bottom: 1px solid #e9ecef; padding: 16px 12px; vertical-align: middle;">
+            <strong style="color: #212529; font-size: 15px;">Knowledge Check Quiz</strong><br>
+            <span style="color: #495057; font-size: 13px;">5 questions · Auto-graded · 5 points</span>
+          </td>
+          <td style="width: 40px; background-color: #f8f9fa; border: 1px solid #e9ecef; border-radius: 0 8px 8px 0; padding: 16px 16px 16px 0; text-align: right; vertical-align: middle;">
+            <span style="color: #495057; font-size: 18px;">&rarr;</span>
+          </td>
+        </tr>
+        <tr>
+          <td style="width: 44px; background-color: #f8f9fa; border: 1px solid #e9ecef; border-radius: 8px 0 0 8px; padding: 16px; text-align: center; vertical-align: middle;">
+            <span style="display: inline-block; width: 44px; height: 44px; background-color: #d0ebff; border-radius: 8px; font-size: 22px; text-align: center; line-height: 44px;">🛠️</span>
+          </td>
+          <td style="background-color: #f8f9fa; border-top: 1px solid #e9ecef; border-bottom: 1px solid #e9ecef; padding: 16px 12px; vertical-align: middle;">
+            <strong style="color: #212529; font-size: 15px;">Applied Practice</strong><br>
+            <span style="color: #495057; font-size: 13px;">Hands-on assessment (combined with L15)</span>
+          </td>
+          <td style="width: 40px; background-color: #f8f9fa; border: 1px solid #e9ecef; border-radius: 0 8px 8px 0; padding: 16px 16px 16px 0; text-align: right; vertical-align: middle;">
+            <span style="color: #495057; font-size: 18px;">&rarr;</span>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- Video Section -->
+    <div style="background-color: #f8f9fa; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #845ef7;">
+      <h3 style="margin: 0 0 8px 0; font-size: 20px; font-weight: 600; color: #212529; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">🎬</span> The Explainer
+      </h3>
+      <p style="margin: 0 0 20px 0; color: #495057; font-size: 15px;">Get an overview of perceptual and cognitive design considerations before the live session.</p>
+      
+      <div style="background-color: #e9ecef; border-radius: 6px; padding: 40px; text-align: center; color: #868e96;">
+        <p style="margin: 0; font-size: 16px; font-weight: 500;">Video placeholder</p>
+        <p style="margin: 8px 0 0 0; font-size: 14px;">Explainer video will be embedded here after production</p>
+      </div>
+    </div>
+
+    <!-- Learning Objectives Section -->
+    <div id="learning-objectives" style="background-color: #fff; border: 1px solid #dee2e6; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #1971c2;">
+      <h3 style="margin: 0 0 8px 0; font-size: 20px; font-weight: 600; color: #212529; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">📋</span> Learning Objectives
+      </h3>
+      <p style="margin: 0 0 24px 0; color: #495057; font-size: 15px;">Learn how spatial hierarchy, visual density, and component semantics affect comprehension for users with cognitive and visual disabilities.</p>
+      
+      <!-- Learning Outcomes -->
+      <h4 style="margin: 0 0 12px 0; font-size: 17px; font-weight: 600; color: #212529;">Learning Outcomes</h4>
+      <p style="margin: 0 0 16px 0; color: #495057; font-size: 14px;">By the end of this lesson, you will be able to:</p>
+      
+      <table style="width: 100%; border-collapse: collapse; font-size: 15px; margin-bottom: 28px;">
+        <thead>
+          <tr style="background-color: #f1f3f4;">
+            <th scope="col" style="padding: 12px 16px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6; width: 70px;">ID</th>
+            <th scope="col" style="padding: 12px 16px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">Outcome</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="padding: 14px 16px; border-bottom: 1px solid #e9ecef; color: #212529; font-weight: 600; font-family: monospace;">2H.01</td>
+            <td style="padding: 14px 16px; border-bottom: 1px solid #e9ecef; color: #212529;"><strong>Apply spatial hierarchy principles for accessibility:</strong> Design clear visual hierarchy that supports comprehension for users with cognitive and visual disabilities</td>
+          </tr>
+          <tr style="background-color: #f8f9fa;">
+            <td style="padding: 14px 16px; border-bottom: 1px solid #e9ecef; color: #212529; font-weight: 600; font-family: monospace;">2H.02</td>
+            <td style="padding: 14px 16px; border-bottom: 1px solid #e9ecef; color: #212529;"><strong>Design appropriate visual density and whitespace:</strong> Create layouts with sufficient spacing and density that reduce cognitive load and support focus</td>
+          </tr>
+          <tr>
+            <td style="padding: 14px 16px; color: #212529; font-weight: 600; font-family: monospace;">2H.03</td>
+            <td style="padding: 14px 16px; color: #212529;"><strong>Ensure component semantics support comprehension:</strong> Select and apply component patterns that communicate purpose and state clearly to all users</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Knowledge/Skills/Application Objectives -->
+      <h4 style="margin: 0 0 12px 0; font-size: 17px; font-weight: 600; color: #212529; padding-bottom: 8px; border-bottom: 2px solid #d0ebff;">Knowledge Objectives</h4>
+      <ul style="margin: 0 0 28px 0; padding-left: 24px; color: #212529; font-size: 14px;">
+        <li style="margin-bottom: 10px;">Explain how spatial hierarchy communicates importance, grouping, and sequence, and why it must align with programmatic structure (headings, landmarks, reading order).</li>
+        <li style="margin-bottom: 10px;">Describe the relationship between visual density, whitespace, and cognitive load for users with cognitive and visual disabilities.</li>
+        <li style="margin-bottom: 10px;">Explain how component semantics (role, name, state) must match visual communication for all users to comprehend interface purpose.</li>
+        <li style="margin-bottom: 10px;">Identify WCAG success criteria related to perceptual and cognitive design: 1.3.1 Info and Relationships, 1.4.10 Reflow, 1.4.12 Text Spacing, 3.2.4 Consistent Identification, and 4.1.2 Name, Role, Value.</li>
+        <li>Understand how Gestalt principles (proximity, similarity, continuity, closure) create implicit grouping that requires programmatic reinforcement.</li>
+      </ul>
+
+      <h4 style="margin: 0 0 12px 0; font-size: 17px; font-weight: 600; color: #212529; padding-bottom: 8px; border-bottom: 2px solid #d0ebff;">Skills Objectives</h4>
+      <ul style="margin: 0 0 28px 0; padding-left: 24px; color: #212529; font-size: 14px;">
+        <li style="margin-bottom: 10px;">Evaluate layouts for clear spatial hierarchy that aligns with heading structure and reading order.</li>
+        <li style="margin-bottom: 10px;">Test layouts with WCAG 1.4.12 text spacing overrides and at 400% zoom (WCAG 1.4.10 Reflow).</li>
+        <li style="margin-bottom: 10px;">Identify component semantic mismatches between visual presentation and accessibility tree properties.</li>
+        <li>Verify consistent component usage and identification across product views (WCAG 3.2.4).</li>
+      </ul>
+
+      <h4 style="margin: 0 0 12px 0; font-size: 17px; font-weight: 600; color: #212529; padding-bottom: 8px; border-bottom: 2px solid #d0ebff;">Application Objectives</h4>
+      <ul style="margin: 0 0 0 0; padding-left: 24px; color: #212529; font-size: 14px;">
+        <li style="margin-bottom: 10px;">Annotate designs with hierarchy, spacing, and semantic requirements for engineering handoff.</li>
+        <li style="margin-bottom: 10px;">Recommend layout and component changes that improve cognitive accessibility without sacrificing usability.</li>
+        <li>Document perceptual and cognitive design decisions with clear rationale for engineering teams.</li>
+      </ul>
+    </div>
+
+    <!-- Related WCAG Success Criteria Section -->
+    <div style="background-color: #f8f9fa; border: 1px solid #dee2e6; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #0ca678;">
+      <h3 style="margin: 0 0 16px 0; font-size: 20px; font-weight: 600; color: #212529; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">📜</span> Related WCAG Success Criteria
+      </h3>
+      <ul style="margin: 0; padding-left: 24px; color: #212529;">
+        <li style="margin-bottom: 8px;"><strong>1.3.1 Info and Relationships (Level A):</strong> Visual hierarchy and grouping must be programmatically determined, not communicated through layout alone</li>
+        <li style="margin-bottom: 8px;"><strong>1.3.2 Meaningful Sequence (Level A):</strong> Reading order must match the visual spatial hierarchy so all users encounter content in the intended sequence</li>
+        <li style="margin-bottom: 8px;"><strong>1.4.10 Reflow (Level AA):</strong> Content must reflow at 320px width (400% zoom) without horizontal scrolling; density decisions affect reflow success</li>
+        <li style="margin-bottom: 8px;"><strong>1.4.12 Text Spacing (Level AA):</strong> Layouts must accommodate increased line height (1.5x), paragraph spacing (2x), letter spacing (0.12em), and word spacing (0.16em) without content loss</li>
+        <li style="margin-bottom: 8px;"><strong>2.4.6 Headings and Labels (Level AA):</strong> Headings and labels describe topic or purpose, reinforcing spatial hierarchy for assistive technology users</li>
+        <li style="margin-bottom: 8px;"><strong>3.2.3 Consistent Navigation (Level AA):</strong> Navigation patterns remain consistent across pages, supporting cognitive predictability</li>
+        <li style="margin-bottom: 8px;"><strong>3.2.4 Consistent Identification (Level AA):</strong> Components with the same function are identified consistently across pages</li>
+        <li><strong>4.1.2 Name, Role, Value (Level A):</strong> Component roles and states must be programmatically determined, matching their visual communication</li>
+      </ul>
+    </div>
+
+    <!-- Key Concepts Section -->
+    <div style="background-color: #fff; border: 1px solid #dee2e6; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #f59f00;">
+      <h3 style="margin: 0 0 20px 0; font-size: 20px; font-weight: 600; color: #212529; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">💡</span> Key Concepts
+      </h3>
+
+      <!-- Concept 1: Spatial Hierarchy -->
+      <div style="margin-bottom: 32px;">
+        <h4 style="margin: 0 0 12px 0; font-size: 18px; font-weight: 600; color: #212529;">Spatial Hierarchy and Programmatic Structure</h4>
+        <p style="margin: 0 0 16px 0; color: #495057; font-size: 15px;">Spatial hierarchy uses size, weight, color, position, proximity, and alignment to communicate importance, grouping, and sequence. For accessibility, visual hierarchy must align with programmatic structure: heading levels should reflect visual prominence, reading order should follow the visual scan path, and grouped content should be wrapped in semantic containers.</p>
+        
+        <table style="width: 100%; border-collapse: collapse; font-size: 14px; margin-bottom: 16px;">
+          <thead>
+            <tr style="background-color: #f1f3f4;">
+              <th scope="col" style="padding: 10px 12px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">Visual Property</th>
+              <th scope="col" style="padding: 10px 12px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">What It Communicates</th>
+              <th scope="col" style="padding: 10px 12px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">Programmatic Equivalent</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; font-weight: 600;">Size and weight</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Importance</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Heading levels (H1-H6)</td>
+            </tr>
+            <tr style="background-color: #f8f9fa;">
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; font-weight: 600;">Proximity</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Grouping</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Landmarks, lists, fieldsets, ARIA group roles</td>
+            </tr>
+            <tr>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; font-weight: 600;">Position</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Reading priority</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">DOM order, reading sequence</td>
+            </tr>
+            <tr style="background-color: #f8f9fa;">
+              <td style="padding: 10px 12px; font-weight: 600;">Alignment</td>
+              <td style="padding: 10px 12px;">Relationship</td>
+              <td style="padding: 10px 12px;">Semantic containers, ARIA relationships</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div style="background-color: #e7f5ff; border-left: 4px solid #1971c2; padding: 16px;">
+          <p style="margin: 0; color: #495057; font-size: 15px;"><strong>Designer Impact:</strong> Visual grouping through proximity and alignment is invisible to screen reader users and magnification users at high zoom. Always reinforce visual hierarchy with heading levels, landmark regions, and semantic containers that assistive technology can detect.</p>
+        </div>
+      </div>
+
+      <!-- Concept 2: Visual Density and Whitespace -->
+      <div style="margin-bottom: 32px;">
+        <h4 style="margin: 0 0 12px 0; font-size: 18px; font-weight: 600; color: #212529;">Visual Density and Whitespace</h4>
+        <p style="margin: 0 0 16px 0; color: #495057; font-size: 15px;">Visual density (the amount of information per unit of screen space) directly affects cognitive load. Users with ADHD, learning disabilities, and cognitive fatigue benefit from lower density and more whitespace. Whitespace creates breathing room, separates groups, and guides the eye. It is a functional design tool, not wasted space.</p>
+        
+        <div style="background-color: #f8f9fa; border-left: 4px solid #1971c2; padding: 16px; margin-bottom: 16px;">
+          <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 15px;">WCAG 1.4.12 Text Spacing Test Values</p>
+          <p style="margin: 0; color: #495057; font-size: 14px;">Line height: 1.5x font size | Paragraph spacing: 2x font size | Letter spacing: 0.12em | Word spacing: 0.16em</p>
+          <p style="margin: 8px 0 0 0; color: #495057; font-size: 13px;">Layouts must not lose content or functionality when these text spacing overrides are applied. Layouts with generous whitespace pass more easily because they have buffer space to absorb the increased spacing.</p>
+        </div>
+
+        <div style="background-color: #fff3bf; border-left: 4px solid #fab005; padding: 16px;">
+          <p style="margin: 0; color: #495057; font-size: 15px;"><strong>Designer Impact:</strong> When asked to "make it more compact," explain that whitespace is a functional accessibility feature. Specify minimum spacing values in design annotations and use progressive disclosure to manage density: show less by default, reveal on demand.</p>
+        </div>
+      </div>
+
+      <!-- Concept 3: Component Semantics -->
+      <div style="margin-bottom: 32px;">
+        <h4 style="margin: 0 0 12px 0; font-size: 18px; font-weight: 600; color: #212529;">Component Semantics and Comprehension</h4>
+        <p style="margin: 0 0 16px 0; color: #495057; font-size: 15px;">Component semantics (the meaning conveyed by a component's role, name, state, and behavior) must match the visual communication. When sighted users see a button but assistive technology reports a link, the mismatch creates confusion. Consistent component semantics across a product create predictability that supports all users, especially those with cognitive disabilities.</p>
+        
+        <table style="width: 100%; border-collapse: collapse; font-size: 14px; margin-bottom: 16px;">
+          <thead>
+            <tr style="background-color: #f1f3f4;">
+              <th scope="col" style="padding: 10px 12px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">Visual Design</th>
+              <th scope="col" style="padding: 10px 12px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">Semantic Problem</th>
+              <th scope="col" style="padding: 10px 12px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">User Impact</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Looks like a button</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; font-family: monospace;">Role: link</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">User expects action, gets navigation</td>
+            </tr>
+            <tr style="background-color: #f8f9fa;">
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Appears disabled (gray)</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; font-family: monospace;">No disabled attribute</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">AT reports element as enabled</td>
+            </tr>
+            <tr>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Entire card clickable</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; font-family: monospace;">Link wrapping block</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Only text appears interactive; entire area navigates</td>
+            </tr>
+            <tr style="background-color: #f8f9fa;">
+              <td style="padding: 10px 12px;">Toggle switch visual</td>
+              <td style="padding: 10px 12px; font-family: monospace;">Role: checkbox</td>
+              <td style="padding: 10px 12px;">Visual says "toggle," AT says "checkbox"</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div style="background-color: #e7f5ff; border-left: 4px solid #1971c2; padding: 16px; margin-bottom: 16px;">
+          <p style="margin: 0; color: #495057; font-size: 15px;"><strong>State communication:</strong> Every visual state change (selected, expanded, disabled, required, invalid, current) must have a programmatic equivalent. If you gray out a button, add <code style="background: #e9ecef; padding: 2px 4px; border-radius: 3px;">aria-disabled</code>. If you expand an accordion, update <code style="background: #e9ecef; padding: 2px 4px; border-radius: 3px;">aria-expanded</code>. Your design annotations must specify both visual and programmatic states.</p>
+        </div>
+
+        <div style="background-color: #fff3bf; border-left: 4px solid #fab005; padding: 16px;">
+          <p style="margin: 0; color: #495057; font-size: 15px;"><strong>Designer Impact:</strong> Select components by semantic function, not visual appearance. Design systems should encode accessibility semantics (roles, states, keyboard behavior) so every team inherits correct accessibility. Consistent component usage across a product (WCAG 3.2.4) reduces cognitive load for all users.</p>
+        </div>
+      </div>
+
+      <!-- Concept 4: Three Questions Framework -->
+      <div>
+        <h4 style="margin: 0 0 12px 0; font-size: 18px; font-weight: 600; color: #212529;">The Three Questions for Every Design</h4>
+        <p style="margin: 0 0 16px 0; color: #495057; font-size: 15px;">Use these three questions as a perceptual and cognitive accessibility checklist for every design review:</p>
+        
+        <div style="background-color: #f8f9fa; border-radius: 6px; padding: 20px;">
+          <ol style="margin: 0; padding-left: 20px; color: #212529; font-size: 15px;">
+            <li style="margin-bottom: 12px;"><strong>Does the visual hierarchy match the programmatic hierarchy?</strong><br><span style="color: #495057; font-size: 14px;">Check heading levels, landmark regions, and reading order against the visual layout.</span></li>
+            <li style="margin-bottom: 12px;"><strong>Is there enough whitespace for cognitive comfort and WCAG text spacing?</strong><br><span style="color: #495057; font-size: 14px;">Evaluate density, test with 1.4.12 overrides, and verify reflow at 400% zoom.</span></li>
+            <li><strong>Do component semantics match what users see?</strong><br><span style="color: #495057; font-size: 14px;">Verify roles, states, and consistent identification across product views.</span></li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <!-- Assessment Section -->
+    <div style="background-color: #f8f9fa; border: 1px solid #dee2e6; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #845ef7;">
+      <h3 style="margin: 0 0 20px 0; font-size: 20px; font-weight: 600; color: #212529; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">📝</span> Assessment
+      </h3>
+
+      <!-- Knowledge Check -->
+      <div style="background-color: #fff; border-radius: 6px; padding: 20px; margin-bottom: 20px; border: 1px solid #e9ecef;">
+        <h4 style="margin: 0 0 8px 0; font-size: 16px; font-weight: 600; color: #212529;">Knowledge Check Quiz</h4>
+        <p style="margin: 0 0 4px 0; font-size: 13px; color: #495057;">5 questions | 5 points | Auto-graded</p>
+        <p style="margin: 12px 0 0 0; font-size: 14px; color: #212529;">
+          Test your understanding of spatial hierarchy alignment, visual density and whitespace, and component semantic consistency. Questions are scenario-based, focusing on real design decisions and their accessibility implications.
+        </p>
+      </div>
+
+      <!-- Applied Practice -->
+      <div style="background-color: #fff; border-radius: 6px; padding: 20px; border: 1px solid #e9ecef;">
+        <h4 style="margin: 0 0 8px 0; font-size: 16px; font-weight: 600; color: #212529;">Applied Practice</h4>
+        <p style="margin: 0 0 12px 0; font-size: 13px; color: #495057;">Instructor-graded | Combined with L15</p>
+        <p style="margin: 0; font-size: 14px; color: #212529;">
+          Evaluate a product interface for perceptual and cognitive accessibility. Document hierarchy alignment (visual vs. programmatic), density and whitespace assessment, component semantic audit (3-5 components), and recommendations with rationale.
+        </p>
+      </div>
+    </div>
+
+    <!-- Resources Section -->
+    <div style="background-color: #fff; border: 1px solid #dee2e6; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #20c997;">
+      <h3 style="margin: 0 0 20px 0; font-size: 20px; font-weight: 600; color: #212529; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">📚</span> Resources
+      </h3>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 20px;">
+        <!-- WCAG References -->
+        <div style="flex: 1; min-width: 260px;">
+          <h4 style="margin: 0 0 12px 0; font-size: 15px; font-weight: 600; color: #212529;">WCAG Understanding Documents</h4>
+          <ul style="margin: 0; padding-left: 20px; font-size: 14px;">
+            <li style="margin-bottom: 8px;">
+              <a href="https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships" style="color: #1864ab; text-decoration: underline;">Understanding SC 1.3.1: Info and Relationships</a>
+            </li>
+            <li style="margin-bottom: 8px;">
+              <a href="https://www.w3.org/WAI/WCAG22/Understanding/text-spacing" style="color: #1864ab; text-decoration: underline;">Understanding SC 1.4.12: Text Spacing</a>
+            </li>
+            <li style="margin-bottom: 8px;">
+              <a href="https://www.w3.org/WAI/WCAG22/Understanding/reflow" style="color: #1864ab; text-decoration: underline;">Understanding SC 1.4.10: Reflow</a>
+            </li>
+            <li>
+              <a href="https://www.w3.org/WAI/WCAG22/Understanding/consistent-identification" style="color: #1864ab; text-decoration: underline;">Understanding SC 3.2.4: Consistent Identification</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Cognitive Accessibility -->
+        <div style="flex: 1; min-width: 260px;">
+          <h4 style="margin: 0 0 12px 0; font-size: 15px; font-weight: 600; color: #212529;">Cognitive Accessibility</h4>
+          <ul style="margin: 0; padding-left: 20px; font-size: 14px;">
+            <li style="margin-bottom: 8px;">
+              <a href="https://www.w3.org/TR/coga-usable/" style="color: #1864ab; text-decoration: underline;">W3C: Making Content Usable for People with Cognitive and Learning Disabilities</a>
+            </li>
+            <li style="margin-bottom: 8px;">
+              <a href="https://www.w3.org/WAI/ARIA/apg/" style="color: #1864ab; text-decoration: underline;">ARIA Authoring Practices Guide (Component Patterns)</a>
+            </li>
+            <li style="margin-bottom: 8px;">
+              <a href="https://www.w3.org/WAI/cognitive/" style="color: #1864ab; text-decoration: underline;">WAI: Cognitive Accessibility Guidance</a>
+            </li>
+            <li>
+              <a href="https://www.w3.org/WAI/WCAG22/Understanding/" style="color: #1864ab; text-decoration: underline;">WCAG 2.2 Understanding Documents (full list)</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Up Next Section -->
+    <div style="background: linear-gradient(135deg, #ffe3e3 0%, #ffc9c9 100%); border-radius: 8px; padding: 20px 24px; border-left: 5px solid #FF6B6B;">
+      <h3 style="margin: 0 0 8px 0; font-size: 18px; font-weight: 600; color: #c92a2a; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 20px;">➡️</span> Up Next
+      </h3>
+      <p style="margin: 0; font-size: 15px; color: #212529;">
+        <strong>AT Testing Methodology</strong> brings together everything you have learned in the Define Badge. You will learn a systematic approach to assistive technology testing that combines screen reader testing (L10-L11), magnification testing (L12), voice control testing (L13), high contrast testing (L14), user preference testing (L15), and the perceptual/cognitive evaluation from this lesson into a repeatable methodology for validating designs.
+      </p>
+    </div>
+
+  </div>
+
+</body>
+</html>

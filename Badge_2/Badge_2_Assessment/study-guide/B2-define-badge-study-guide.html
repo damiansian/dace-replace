@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Define Badge Study Guide - Canvas Preview</title>
+</head>
+<body style="margin: 0; padding: 20px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif; background-color: #ffffff; color: #333333; line-height: 1.6;">
+  <!-- Note: This is a preview file. When copying to Canvas, copy only the content below this line -->
+
+  <div style="max-width: 900px; margin: 0; padding: 24px 0 48px 0;">
+
+    <!-- Header Section -->
+    <div style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); border-radius: 8px; padding: 24px 28px; margin-bottom: 28px; border-left: 5px solid #5151D3;">
+      <h2 style="margin: 0 0 12px 0; font-size: 28px; font-weight: 600; color: #212529;">Define Badge Final Assessment Study Guide</h2>
+      <p style="margin: 0 0 16px 0; font-size: 16px; color: #495057;">Prepare for your 25-question cumulative assessment covering all Define Badge outcomes (2A–2H).</p>
+      <div style="display: flex; flex-wrap: wrap; gap: 14px; margin-top: 18px;">
+        <span style="display: inline-flex; align-items: center; gap: 8px; background-color: #ede9fe; color: #5b21b6; padding: 10px 18px; border-radius: 24px; font-size: 15px; font-weight: 500;">
+          <span style="font-size: 18px;">🎯</span> Define Badge
+        </span>
+        <span style="display: inline-flex; align-items: center; gap: 8px; background-color: #fff3bf; color: #e67700; padding: 10px 18px; border-radius: 24px; font-size: 15px; font-weight: 500;">
+          <span style="font-size: 18px;">📝</span> 25 Questions
+        </span>
+        <span style="display: inline-flex; align-items: center; gap: 8px; background-color: #e7f5ff; color: #1864ab; padding: 10px 18px; border-radius: 24px; font-size: 15px; font-weight: 500;">
+          <span style="font-size: 18px;">⏱️</span> 45 Minutes
+        </span>
+        <span style="display: inline-flex; align-items: center; gap: 8px; background-color: #e6fcf5; color: #087f5b; padding: 10px 18px; border-radius: 24px; font-size: 15px; font-weight: 500;">
+          <span style="font-size: 18px;">📖</span> Open Book
+        </span>
+      </div>
+    </div>
+
+    <!-- How to Use This Guide -->
+    <div style="background-color: #e7f5ff; border: 1px solid #a5d8ff; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #1971c2;">
+      <h3 style="margin: 0 0 12px 0; font-size: 20px; font-weight: 600; color: #212529; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">📖</span> How to Use This Guide
+      </h3>
+      <p style="margin: 0 0 16px 0; color: #495057; font-size: 15px;">This guide covers the key concepts, WCAG success criteria, and AT testing approaches for all eight Define Badge outcomes. Focus on understanding the <strong>why</strong> — the reasoning behind each rule — not just memorizing facts.</p>
+      <p style="margin: 0 0 16px 0; color: #495057; font-size: 15px;"><strong>The assessment tests your ability to:</strong></p>
+      <ul style="margin: 0 0 16px 0; padding-left: 24px; color: #495057; font-size: 15px;">
+        <li style="margin-bottom: 6px;">Interpret accessibility tree data and screen reader announcements</li>
+        <li style="margin-bottom: 6px;">Identify failures across AT categories: screen readers, voice control, magnification, and WHCM</li>
+        <li style="margin-bottom: 6px;">Apply WCAG success criteria to real-world design and testing scenarios</li>
+        <li>Reason through AT validation findings and prioritize remediation</li>
+      </ul>
+      <div style="background-color: #fff; border-radius: 6px; padding: 16px; border: 1px solid #a5d8ff;">
+        <p style="margin: 0; color: #1864ab; font-size: 15px;"><strong>Tip:</strong> Have the WCAG 2.2 Quick Reference open during your assessment: <a href="https://www.w3.org/WAI/WCAG22/quickref/" style="color: #1864ab; text-decoration: underline;">w3.org/WAI/WCAG22/quickref</a></p>
+      </div>
+    </div>
+
+    <!-- Module 2A: DOM & Accessibility Tree -->
+    <div style="background-color: #fff; border: 1px solid #dee2e6; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #228be6;">
+      <h3 style="margin: 0 0 20px 0; font-size: 20px; font-weight: 600; color: #212529; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">🌳</span> Module 2A: DOM &amp; Accessibility Tree
+      </h3>
+
+      <!-- Core Concepts -->
+      <h4 style="margin: 0 0 12px 0; font-size: 17px; font-weight: 600; color: #212529;">Reading Order vs. Focus Order</h4>
+
+      <div style="background-color: #f8f9fa; border-left: 4px solid #228be6; padding: 16px; margin-bottom: 16px;">
+        <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 15px;">Two distinct traversal paths</p>
+        <ul style="margin: 0; padding-left: 20px; color: #495057; font-size: 14px;">
+          <li style="margin-bottom: 4px;"><strong>Reading order</strong> (browse mode / virtual cursor): follows every element announced by a screen reader — headings, paragraphs, images with alt text, lists, and interactive controls. Navigated with arrow keys.</li>
+          <li style="margin-bottom: 4px;"><strong>Focus order</strong> (Tab key): visits only interactive elements — links, buttons, and form inputs. Always produces fewer stops.</li>
+          <li>Tools like the Stark Blueline can visualize both paths as separate numbered sequences. More stops = reading order; fewer stops = focus order.</li>
+        </ul>
+      </div>
+
+      <h4 style="margin: 20px 0 12px 0; font-size: 17px; font-weight: 600; color: #212529;">Screen Reader Announcements: Name → State → Role</h4>
+
+      <div style="background-color: #f8f9fa; border-left: 4px solid #228be6; padding: 16px; margin-bottom: 16px;">
+        <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 15px;">What screen readers announce for interactive elements</p>
+        <ul style="margin: 0; padding-left: 20px; color: #495057; font-size: 14px;">
+          <li style="margin-bottom: 4px;">Order: <strong>Name</strong> → <strong>State</strong> → <strong>Role</strong> (e.g., "Subscribe, dimmed, button")</li>
+          <li style="margin-bottom: 4px;">The accessibility tree always shows the <em>computed</em> name — regardless of which technique provided it (visible text, <code style="background: #f1f3f4; padding: 2px 4px; border-radius: 3px;">aria-label</code>, <code style="background: #f1f3f4; padding: 2px 4px; border-radius: 3px;">aria-labelledby</code>, alt text)</li>
+          <li style="margin-bottom: 4px;">No <code style="background: #f1f3f4; padding: 2px 4px; border-radius: 3px;">aria-label</code> attribute ≠ no accessible name. The tree shows the resolved name.</li>
+          <li>VoiceOver uses "dimmed" for disabled controls. "Invalid entry" maps to <code style="background: #f1f3f4; padding: 2px 4px; border-radius: 3px;">aria-invalid</code>, not disabled.</li>
+        </ul>
+      </div>
+
+      <h4 style="margin: 20px 0 12px 0; font-size: 17px; font-weight: 600; color: #212529;">Programmatic State Must Match Visual State</h4>
+
+      <div style="background-color: #fff3bf; border-left: 4px solid #fab005; padding: 16px; margin-bottom: 16px;">
+        <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 15px;">Common state mismatches</p>
+        <ul style="margin: 0; padding-left: 20px; color: #495057; font-size: 14px;">
+          <li style="margin-bottom: 4px;">A visually selected option (<code style="background: #f1f3f4; padding: 2px 4px; border-radius: 3px;">role="option"</code>) without <code style="background: #f1f3f4; padding: 2px 4px; border-radius: 3px;">aria-selected="true"</code> is invisible to AT</li>
+          <li style="margin-bottom: 4px;"><code style="background: #f1f3f4; padding: 2px 4px; border-radius: 3px;">aria-filled</code> is not a real ARIA attribute — only recognized ARIA states are processed</li>
+          <li style="margin-bottom: 4px;"><code style="background: #f1f3f4; padding: 2px 4px; border-radius: 3px;">aria-describedby</code> adds supplementary description, not interactive state</li>
+          <li>WCAG 1.3.3 prohibits conveying state through visual characteristics (like color) alone</li>
+        </ul>
+      </div>
+
+      <h4 style="margin: 20px 0 12px 0; font-size: 17px; font-weight: 600; color: #212529;">WCAG Success Criteria</h4>
+      <table style="width: 100%; border-collapse: collapse; font-size: 14px; margin-bottom: 16px;">
+        <thead>
+          <tr style="background-color: #f1f3f4;">
+            <th scope="col" style="padding: 10px 12px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">SC</th>
+            <th scope="col" style="padding: 10px 12px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">Level</th>
+            <th scope="col" style="padding: 10px 12px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">What It Requires</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; font-family: monospace;">1.3.3</td>
+            <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">A</td>
+            <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">State not conveyed through visual characteristics alone</td>
+          </tr>
+          <tr style="background-color: #f8f9fa;">
+            <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; font-family: monospace;">4.1.2</td>
+            <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">A</td>
+            <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">All UI components have accessible names, roles, and states</td>
+          </tr>
+          <tr>
+            <td style="padding: 10px 12px; font-family: monospace;">1.3.1</td>
+            <td style="padding: 10px 12px;">A</td>
+            <td style="padding: 10px 12px;">Structure and relationships programmatically determinable</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h4 style="margin: 20px 0 12px 0; font-size: 17px; font-weight: 600; color: #212529;">Common Mistakes to Avoid</h4>
+      <ul style="margin: 0; padding-left: 20px; color: #495057; font-size: 14px;">
+        <li style="margin-bottom: 6px;">Confusing reading order (all content) with focus order (interactive only)</li>
+        <li style="margin-bottom: 6px;">Assuming an element has no accessible name because there is no <code style="background: #f1f3f4; padding: 2px 4px; border-radius: 3px;">aria-label</code> attribute</li>
+        <li style="margin-bottom: 6px;">Using <code style="background: #f1f3f4; padding: 2px 4px; border-radius: 3px;">aria-describedby</code> to communicate selection state instead of <code style="background: #f1f3f4; padding: 2px 4px; border-radius: 3px;">aria-selected</code></li>
+        <li>Leaving visual selection states without a programmatic equivalent</li>
+      </ul>
+    </div>
+
+    <!-- Module 2B: Screen Reader Navigation -->
+    <div style="background-color: #fff; border: 1px solid #dee2e6; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #0ca678;">
+      <h3 style="margin: 0 0 20px 0; font-size: 20px; font-weight: 600; color: #212529; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">🔊</span> Module 2B: Screen Reader Navigation
+      </h3>
+
+      <h4 style="margin: 0 0 12px 0; font-size: 17px; font-weight: 600; color: #212529;">Browse Mode vs. Focus Mode</h4>
+
+      <div style="background-color: #f8f9fa; border-left: 4px solid #0ca678; padding: 16px; margin-bottom: 16px;">
+        <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 15px;">Browse mode (reading / virtual cursor mode)</p>
+        <ul style="margin: 0; padding-left: 20px; color: #495057; font-size: 14px;">
+          <li style="margin-bottom: 4px;">Default mode for reading web content. Navigates all content — headings, paragraphs, images, links — with arrow keys</li>
+          <li style="margin-bottom: 4px;">Used to read static elements like headings. No mode switch required for headings.</li>
+          <li>NVDA/JAWS call this "browse mode"; VoiceOver uses VO+arrow keys</li>
+        </ul>
+      </div>
+
+      <div style="background-color: #fff3bf; border-left: 4px solid #fab005; padding: 16px; margin-bottom: 16px;">
+        <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 15px;">Focus mode (forms / application mode)</p>
+        <ul style="margin: 0; padding-left: 20px; color: #495057; font-size: 14px;">
+          <li style="margin-bottom: 4px;">Engages when a user enters a form field or interactive widget</li>
+          <li style="margin-bottom: 4px;">Keystrokes are passed directly to the element for typing. Arrow keys navigate within the widget, not the document.</li>
+          <li>Non-interactive content (headings, paragraphs) is not reachable by arrow keys in focus mode</li>
+        </ul>
+      </div>
+
+      <h4 style="margin: 20px 0 12px 0; font-size: 17px; font-weight: 600; color: #212529;">VoiceOver Rotor — Structural Navigation</h4>
+
+      <div style="background-color: #e6fcf5; border-left: 4px solid #0ca678; padding: 16px; margin-bottom: 16px;">
+        <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 15px;">Using the Rotor for AT validation</p>
+        <ul style="margin: 0; padding-left: 20px; color: #495057; font-size: 14px;">
+          <li style="margin-bottom: 4px;">Activated with <strong>VO+U</strong> on macOS. Presents a categorized navigation menu.</li>
+          <li style="margin-bottom: 4px;">Categories include: Landmarks, Headings, Links, Form Controls, Tables, and more</li>
+          <li style="margin-bottom: 4px;">Most efficient built-in tool to audit page structure without reading all content linearly</li>
+          <li>Not a reading mode — it is a jump-navigation overlay, separate from browse/focus modes</li>
+        </ul>
+      </div>
+
+      <div style="background-color: #f8f9fa; border-left: 4px solid #0ca678; padding: 16px; margin-bottom: 16px;">
+        <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 15px;">Know your macOS assistive technologies</p>
+        <table style="width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 8px;">
+          <thead>
+            <tr style="background-color: #f1f3f4;">
+              <th scope="col" style="padding: 8px 10px; text-align: left; font-weight: 600; border-bottom: 2px solid #dee2e6;">Technology</th>
+              <th scope="col" style="padding: 8px 10px; text-align: left; font-weight: 600; border-bottom: 2px solid #dee2e6;">Purpose</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding: 8px 10px; border-bottom: 1px solid #e9ecef; font-weight: 600;">VoiceOver</td>
+              <td style="padding: 8px 10px; border-bottom: 1px solid #e9ecef;">Screen reader. Has Rotor (VO+U) for structural navigation.</td>
+            </tr>
+            <tr style="background-color: #f8f9fa;">
+              <td style="padding: 8px 10px; border-bottom: 1px solid #e9ecef; font-weight: 600;">Voice Control</td>
+              <td style="padding: 8px 10px; border-bottom: 1px solid #e9ecef;">Hands-free navigation by spoken commands. "Show names" overlays accessible names on interactive elements.</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px 10px; border-bottom: 1px solid #e9ecef; font-weight: 600;">Live Speech</td>
+              <td style="padding: 8px 10px; border-bottom: 1px solid #e9ecef;">Types text and speaks it aloud — output tool, not a screen reader or navigator.</td>
+            </tr>
+            <tr style="background-color: #f8f9fa;">
+              <td style="padding: 8px 10px; font-weight: 600;">Vocal Shortcuts</td>
+              <td style="padding: 8px 10px;">Custom voice-triggered actions. Not a screen reader; has no "Elements list."</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h4 style="margin: 20px 0 12px 0; font-size: 17px; font-weight: 600; color: #212529;">Landmarks: Multiple of the Same Type</h4>
+      <div style="background-color: #fff3bf; border-left: 4px solid #fab005; padding: 16px; margin-bottom: 16px;">
+        <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 15px;">When to use unique accessible names</p>
+        <ul style="margin: 0; padding-left: 20px; color: #495057; font-size: 14px;">
+          <li style="margin-bottom: 4px;">Multiple Navigation landmarks on one page are allowed — ARIA does not restrict count</li>
+          <li style="margin-bottom: 4px;">When the same landmark role appears more than once, <strong>each instance must have a unique accessible name</strong> via <code style="background: #f1f3f4; padding: 2px 4px; border-radius: 3px;">aria-label</code> or <code style="background: #f1f3f4; padding: 2px 4px; border-radius: 3px;">aria-labelledby</code></li>
+          <li>"Nav" shorthand in design annotations is valid — label wording doesn't determine technical compliance; unique names do</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Module 2C: Screen Magnification -->
+    <div style="background-color: #fff; border: 1px solid #dee2e6; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #fd7e14;">
+      <h3 style="margin: 0 0 20px 0; font-size: 20px; font-weight: 600; color: #212529; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">🔎</span> Module 2C: Screen Magnification
+      </h3>
+
+      <h4 style="margin: 0 0 12px 0; font-size: 17px; font-weight: 600; color: #212529;">Reflow at High Zoom (SC 1.4.10)</h4>
+
+      <div style="background-color: #f8f9fa; border-left: 4px solid #fd7e14; padding: 16px; margin-bottom: 16px;">
+        <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 15px;">Sticky elements at 400% zoom</p>
+        <ul style="margin: 0; padding-left: 20px; color: #495057; font-size: 14px;">
+          <li style="margin-bottom: 4px;">At 400% zoom (= 320 CSS px viewport), stacked sticky elements consume the entire viewport, leaving no space for scrollable content</li>
+          <li style="margin-bottom: 4px;"><strong>Fix: remove unnecessary sticky chrome</strong> — e.g., a sticky header inside a nested content panel. A global sticky header and sidebar may be justified; a third sticky header is not.</li>
+          <li style="margin-bottom: 4px;">Adding internal scrollbars creates two-dimensional scrolling — a direct WCAG 1.4.10 failure</li>
+          <li>Declaring narrower support (e.g., "we only support 200% zoom") does not waive the requirement</li>
+        </ul>
+      </div>
+
+      <h4 style="margin: 20px 0 12px 0; font-size: 17px; font-weight: 600; color: #212529;">Error Message Placement for Magnified Users</h4>
+
+      <div style="background-color: #fff3bf; border-left: 4px solid #fab005; padding: 16px; margin-bottom: 16px;">
+        <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 15px;">The proximity principle</p>
+        <ul style="margin: 0; padding-left: 20px; color: #495057; font-size: 14px;">
+          <li style="margin-bottom: 4px;">At high magnification, users see only a small portion of the screen at once — their viewport is a narrow panning window</li>
+          <li style="margin-bottom: 4px;"><strong>Place error messages immediately below the relevant field</strong> so both the input and its error are visible in the same magnified view</li>
+          <li style="margin-bottom: 4px;">Grouping all errors below the Submit button forces the user to pan away from the field and back — high navigation cost</li>
+          <li>Pop-up windows may render off-screen, require extra dismissal steps, and are disruptive for multiple errors</li>
+        </ul>
+      </div>
+
+      <h4 style="margin: 20px 0 12px 0; font-size: 17px; font-weight: 600; color: #212529;">Tooltip Placement for Magnified Users</h4>
+
+      <div style="background-color: #e7f5ff; border-left: 4px solid #1971c2; padding: 16px; margin-bottom: 16px;">
+        <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 15px;">Where to place tooltips in collapsed navigation</p>
+        <ul style="margin: 0; padding-left: 20px; color: #495057; font-size: 14px;">
+          <li style="margin-bottom: 4px;">Place tooltips <strong>immediately adjacent to the icon</strong> (e.g., to the right in a vertical icon list) so both the icon and label are simultaneously visible in the magnified viewport</li>
+          <li style="margin-bottom: 4px;">Tooltips placed below an icon in a vertical list risk falling outside the user's current magnified view, requiring a downward pan</li>
+          <li style="margin-bottom: 4px;">Tooltips are valid at high magnification — the question is positioning, not whether to use them</li>
+          <li>Screen readers do NOT locate tooltip content by visual position; proximity benefits magnification users, not AT users</li>
+        </ul>
+      </div>
+
+      <h4 style="margin: 20px 0 12px 0; font-size: 17px; font-weight: 600; color: #212529;">WCAG Success Criteria</h4>
+      <table style="width: 100%; border-collapse: collapse; font-size: 14px; margin-bottom: 0;">
+        <thead>
+          <tr style="background-color: #f1f3f4;">
+            <th scope="col" style="padding: 10px 12px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">SC</th>
+            <th scope="col" style="padding: 10px 12px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">Level</th>
+            <th scope="col" style="padding: 10px 12px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">What It Requires</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; font-family: monospace;">1.4.10</td>
+            <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">AA</td>
+            <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Content reflows without loss at 320 CSS px (400% zoom) — no horizontal scrolling</td>
+          </tr>
+          <tr style="background-color: #f8f9fa;">
+            <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; font-family: monospace;">3.3.1</td>
+            <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">A</td>
+            <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Input errors identified and described in text</td>
+          </tr>
+          <tr>
+            <td style="padding: 10px 12px; font-family: monospace;">2.4.6</td>
+            <td style="padding: 10px 12px;">AA</td>
+            <td style="padding: 10px 12px;">Labels describe topic or purpose of controls</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Module 2D: Voice Control -->
+    <div style="background-color: #fff; border: 1px solid #dee2e6; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #40c057;">
+      <h3 style="margin: 0 0 20px 0; font-size: 20px; font-weight: 600; color: #212529; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">🎙️</span> Module 2D: Voice Control
+      </h3>
+
+      <h4 style="margin: 0 0 12px 0; font-size: 17px; font-weight: 600; color: #212529;">Targeting Methods and Cognitive Load</h4>
+
+      <div style="background-color: #f8f9fa; border-left: 4px solid #40c057; padding: 16px; margin-bottom: 16px;">
+        <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 15px;">Three targeting methods — ranked by cognitive load (low → high)</p>
+        <table style="width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 8px;">
+          <thead>
+            <tr style="background-color: #f1f3f4;">
+              <th scope="col" style="padding: 8px 10px; text-align: left; font-weight: 600; border-bottom: 2px solid #dee2e6;">Method</th>
+              <th scope="col" style="padding: 8px 10px; text-align: left; font-weight: 600; border-bottom: 2px solid #dee2e6;">How It Works</th>
+              <th scope="col" style="padding: 8px 10px; text-align: left; font-weight: 600; border-bottom: 2px solid #dee2e6;">Cognitive Load</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding: 8px 10px; border-bottom: 1px solid #e9ecef; font-weight: 600;">Name-based</td>
+              <td style="padding: 8px 10px; border-bottom: 1px solid #e9ecef;">Speak the visible label (e.g., "Click Submit")</td>
+              <td style="padding: 8px 10px; border-bottom: 1px solid #e9ecef; color: #087f5b; font-weight: 600;">Lowest — direct mapping, no memorization</td>
+            </tr>
+            <tr style="background-color: #f8f9fa;">
+              <td style="padding: 8px 10px; border-bottom: 1px solid #e9ecef; font-weight: 600;">Number overlay</td>
+              <td style="padding: 8px 10px; border-bottom: 1px solid #e9ecef;">Invoke overlay, identify assigned number, speak it</td>
+              <td style="padding: 8px 10px; border-bottom: 1px solid #e9ecef; color: #e67700; font-weight: 600;">Medium — requires a mapping step</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px 10px; font-weight: 600;">Grid overlay</td>
+              <td style="padding: 8px 10px;">Speak zone number, zoom in, repeat until target reached</td>
+              <td style="padding: 8px 10px; color: #c92a2a; font-weight: 600;">Highest — spatial reasoning, multiple steps</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h4 style="margin: 20px 0 12px 0; font-size: 17px; font-weight: 600; color: #212529;">Voice Control Command Grammar</h4>
+
+      <div style="background-color: #e6fcf5; border-left: 4px solid #40c057; padding: 16px; margin-bottom: 16px;">
+        <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 15px;">Key command patterns</p>
+        <ul style="margin: 0; padding-left: 20px; color: #495057; font-size: 14px;">
+          <li style="margin-bottom: 4px;"><strong>Clicking elements:</strong> "Click [visible label]" (e.g., "Click Submit")</li>
+          <li style="margin-bottom: 4px;"><strong>Pressing keys:</strong> "Press [key name]" (e.g., "Press escape key", "Press return key", "Press tab key")</li>
+          <li style="margin-bottom: 4px;"><strong>Browser navigation:</strong> "Go back" → triggers browser back navigation, NOT menu dismissal</li>
+          <li style="margin-bottom: 4px;">Speaking "Escape" alone (without "Press") is not a recognized command</li>
+          <li>"Exit menu" and "Close menu" are not built-in Voice Control commands</li>
+        </ul>
+      </div>
+
+      <h4 style="margin: 20px 0 12px 0; font-size: 17px; font-weight: 600; color: #212529;">Voice Control Barriers</h4>
+
+      <div style="background-color: #fff3bf; border-left: 4px solid #fab005; padding: 16px; margin-bottom: 16px;">
+        <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 15px;">Icon buttons without accessible names</p>
+        <ul style="margin: 0; padding-left: 20px; color: #495057; font-size: 14px;">
+          <li style="margin-bottom: 4px;">Voice Control matches spoken words to accessible names in the accessibility tree</li>
+          <li style="margin-bottom: 4px;">An icon button with no accessible name displays nothing in the Voice Control overlay — the user cannot speak a command to activate it</li>
+          <li style="margin-bottom: 4px;"><strong>Fix: provide a programmatic accessible name</strong> via <code style="background: #f1f3f4; padding: 2px 4px; border-radius: 3px;">aria-label</code> (e.g., "More options for [row item]")</li>
+          <li style="margin-bottom: 4px;">In tables with multiple rows, each icon button needs a unique name so users can distinguish between them</li>
+          <li>Tooltips on hover do not help — Voice Control users cannot trigger a hover to discover a name before speaking</li>
+        </ul>
+      </div>
+
+      <h4 style="margin: 20px 0 12px 0; font-size: 17px; font-weight: 600; color: #212529;">Label in Name (SC 2.5.3)</h4>
+
+      <div style="background-color: #f8f9fa; border-left: 4px solid #40c057; padding: 16px; margin-bottom: 16px;">
+        <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 15px;">Placeholder text is not a persistent label</p>
+        <ul style="margin: 0; padding-left: 20px; color: #495057; font-size: 14px;">
+          <li style="margin-bottom: 4px;">Placeholder text disappears the moment the user starts typing — leaving the field with no visible label</li>
+          <li style="margin-bottom: 4px;">A persistent label: stays visible at all times, gives Voice Control users a stable name to speak, provides screen readers a reliable accessible name</li>
+          <li style="margin-bottom: 4px;">WCAG 2.5.3 Label in Name: the accessible name must contain the visible label text — this requires a label that is <em>actually visible</em></li>
+          <li>Tooltips on hover also fail — keyboard-only users cannot trigger hover, and tooltip content is not consistently exposed as an accessible name</li>
+        </ul>
+      </div>
+
+      <h4 style="margin: 20px 0 12px 0; font-size: 17px; font-weight: 600; color: #212529;">WCAG Success Criteria</h4>
+      <table style="width: 100%; border-collapse: collapse; font-size: 14px; margin-bottom: 0;">
+        <thead>
+          <tr style="background-color: #f1f3f4;">
+            <th scope="col" style="padding: 10px 12px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">SC</th>
+            <th scope="col" style="padding: 10px 12px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">Level</th>
+            <th scope="col" style="padding: 10px 12px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">What It Requires</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; font-family: monospace;">2.5.3</td>
+            <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">A</td>
+            <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Accessible name contains the visible label text</td>
+          </tr>
+          <tr style="background-color: #f8f9fa;">
+            <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; font-family: monospace;">2.4.6</td>
+            <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">AA</td>
+            <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Labels describe topic or purpose</td>
+          </tr>
+          <tr>
+            <td style="padding: 10px 12px; font-family: monospace;">1.3.1</td>
+            <td style="padding: 10px 12px;">A</td>
+            <td style="padding: 10px 12px;">Field purpose programmatically determinable</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Module 2E: Windows High Contrast Mode -->
+    <div style="background-color: #fff; border: 1px solid #dee2e6; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #5c7cfa;">
+      <h3 style="margin: 0 0 20px 0; font-size: 20px; font-weight: 600; color: #212529; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">🖥️</span> Module 2E: Windows High Contrast Mode
+      </h3>
+
+      <h4 style="margin: 0 0 12px 0; font-size: 17px; font-weight: 600; color: #212529;">How WHCM Works</h4>
+
+      <div style="background-color: #f8f9fa; border-left: 4px solid #5c7cfa; padding: 16px; margin-bottom: 16px;">
+        <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 15px;">Forced colors environment</p>
+        <ul style="margin: 0; padding-left: 20px; color: #495057; font-size: 14px;">
+          <li style="margin-bottom: 4px;">Windows High Contrast Mode is an OS-level forced color environment — the system overrides the page's entire color palette with a limited set of system colors</li>
+          <li style="margin-bottom: 4px;">Background fills and box-shadows are stripped. Only explicitly set <code style="background: #f1f3f4; padding: 2px 4px; border-radius: 3px;">border</code> values are preserved.</li>
+          <li style="margin-bottom: 4px;">An input field relying on background color or box-shadow for its boundary becomes invisible in WHCM dark theme — a functional failure</li>
+          <li><strong>Fix: explicitly set a CSS <code style="background: #f1f3f4; padding: 2px 4px; border-radius: 3px;">border</code></strong> on input elements so forced colors maps it to a visible system color</li>
+        </ul>
+      </div>
+
+      <h4 style="margin: 20px 0 12px 0; font-size: 17px; font-weight: 600; color: #212529;">CSS Properties That Cause WHCM Failures</h4>
+
+      <div style="background-color: #fff3bf; border-left: 4px solid #fab005; padding: 16px; margin-bottom: 16px;">
+        <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 15px;">Properties overridden vs. preserved by forced colors</p>
+        <table style="width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 8px;">
+          <thead>
+            <tr style="background-color: #f1f3f4;">
+              <th scope="col" style="padding: 8px 10px; text-align: left; font-weight: 600; border-bottom: 2px solid #dee2e6;">Overridden (can cause failures)</th>
+              <th scope="col" style="padding: 8px 10px; text-align: left; font-weight: 600; border-bottom: 2px solid #dee2e6;">Preserved / Mapped to system colors</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding: 8px 10px; border-bottom: 1px solid #e9ecef;"><code style="background: #f1f3f4; padding: 2px 4px; border-radius: 3px;">color</code>, <code style="background: #f1f3f4; padding: 2px 4px; border-radius: 3px;">background-color</code></td>
+              <td style="padding: 8px 10px; border-bottom: 1px solid #e9ecef;"><code style="background: #f1f3f4; padding: 2px 4px; border-radius: 3px;">border-color</code>, <code style="background: #f1f3f4; padding: 2px 4px; border-radius: 3px;">outline-color</code></td>
+            </tr>
+            <tr style="background-color: #f8f9fa;">
+              <td style="padding: 8px 10px;"><code style="background: #f1f3f4; padding: 2px 4px; border-radius: 3px;">box-shadow</code>, <code style="background: #f1f3f4; padding: 2px 4px; border-radius: 3px;">text-shadow</code>, <code style="background: #f1f3f4; padding: 2px 4px; border-radius: 3px;">background-image</code></td>
+              <td style="padding: 8px 10px;">Explicit <code style="background: #f1f3f4; padding: 2px 4px; border-radius: 3px;">border</code> values</td>
+            </tr>
+          </tbody>
+        </table>
+        <p style="margin: 12px 0 0 0; color: #495057; font-size: 13px;">A selected tab that uses only <code style="background: #f1f3f4; padding: 2px 4px; border-radius: 3px;">background-color</code> to indicate its state will <strong>lose that indicator entirely</strong> in WHCM — <code style="background: #f1f3f4; padding: 2px 4px; border-radius: 3px;">color</code> and <code style="background: #f1f3f4; padding: 2px 4px; border-radius: 3px;">background-color</code> are overridden.</p>
+      </div>
+
+      <h4 style="margin: 20px 0 12px 0; font-size: 17px; font-weight: 600; color: #212529;">WHCM System Color Semantics</h4>
+
+      <div style="background-color: #ede9fe; border-left: 4px solid #5c7cfa; padding: 16px; margin-bottom: 16px;">
+        <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 15px;">WindowText vs. GrayText — the value/placeholder distinction</p>
+        <ul style="margin: 0; padding-left: 20px; color: #495057; font-size: 14px;">
+          <li style="margin-bottom: 4px;"><strong>WindowText</strong> system color: applied to user-entered input values (white in dark WHCM theme)</li>
+          <li style="margin-bottom: 4px;"><strong>GrayText</strong> system color: applied to placeholder text (appears dimmer — e.g., green in some themes)</li>
+          <li style="margin-bottom: 4px;">The color difference between a field with a value and a field with only placeholder text is WHCM <em>correctly communicating a semantic distinction</em> — not an error</li>
+          <li>This is why it matters: WHCM applies semantic colors based on what the text <em>is</em>, not how you've styled it</li>
+        </ul>
+      </div>
+
+      <h4 style="margin: 20px 0 12px 0; font-size: 17px; font-weight: 600; color: #212529;">What is and isn't a WHCM defect</h4>
+      <ul style="margin: 0; padding-left: 20px; color: #495057; font-size: 14px;">
+        <li style="margin-bottom: 6px;"><strong>Is a defect:</strong> Input field with no visible border in WHCM (must add explicit CSS <code style="background: #f1f3f4; padding: 2px 4px; border-radius: 3px;">border</code>)</li>
+        <li style="margin-bottom: 6px;"><strong>Not a defect:</strong> App frame borders appearing white (expected — system color mapping)</li>
+        <li style="margin-bottom: 6px;"><strong>Not a defect:</strong> Divider lines remaining visible (structural separators should persist)</li>
+        <li><strong>Not a defect:</strong> Logo rendering changing in WHCM (expected outcome of forced colors)</li>
+      </ul>
+    </div>
+
+    <!-- Module 2F: User Preferences -->
+    <div style="background-color: #fff; border: 1px solid #dee2e6; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #7950f2;">
+      <h3 style="margin: 0 0 20px 0; font-size: 20px; font-weight: 600; color: #212529; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">⚙️</span> Module 2F: User Preferences &amp; Signal Chain
+      </h3>
+
+      <h4 style="margin: 0 0 12px 0; font-size: 17px; font-weight: 600; color: #212529;">CSS Media Queries for OS Preferences</h4>
+
+      <div style="background-color: #f8f9fa; border-left: 4px solid #7950f2; padding: 16px; margin-bottom: 16px;">
+        <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 15px;">Know which query does what</p>
+        <table style="width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 8px;">
+          <thead>
+            <tr style="background-color: #f1f3f4;">
+              <th scope="col" style="padding: 8px 10px; text-align: left; font-weight: 600; border-bottom: 2px solid #dee2e6;">Media Query</th>
+              <th scope="col" style="padding: 8px 10px; text-align: left; font-weight: 600; border-bottom: 2px solid #dee2e6;">What It Detects</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding: 8px 10px; border-bottom: 1px solid #e9ecef; font-family: monospace; font-weight: 600;">forced-colors: active</td>
+              <td style="padding: 8px 10px; border-bottom: 1px solid #e9ecef;">Windows High Contrast Mode — forced color environment. Use this to adapt WHCM.</td>
+            </tr>
+            <tr style="background-color: #f8f9fa;">
+              <td style="padding: 8px 10px; border-bottom: 1px solid #e9ecef; font-family: monospace; font-weight: 600;">prefers-reduced-motion</td>
+              <td style="padding: 8px 10px; border-bottom: 1px solid #e9ecef;">User has enabled "Reduce Motion" in OS settings. Use to substitute or disable animations.</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px 10px; border-bottom: 1px solid #e9ecef; font-family: monospace; font-weight: 600;">prefers-color-scheme</td>
+              <td style="padding: 8px 10px; border-bottom: 1px solid #e9ecef;">OS light/dark theme preference. Used for dark mode — NOT for WHCM.</td>
+            </tr>
+            <tr style="background-color: #f8f9fa;">
+              <td style="padding: 8px 10px; font-family: monospace; font-weight: 600;">prefers-contrast</td>
+              <td style="padding: 8px 10px;">macOS "Increase Contrast" accessibility setting. Related but NOT the WHCM query.</td>
+            </tr>
+          </tbody>
+        </table>
+        <p style="margin: 10px 0 0 0; color: #e64980; font-size: 13px; font-weight: 600;">⚠️ <code style="background: #f1f3f4; padding: 2px 4px; border-radius: 3px;">prefers-reduced-color</code> does not exist — it is not a real CSS media query.</p>
+      </div>
+
+      <h4 style="margin: 20px 0 12px 0; font-size: 17px; font-weight: 600; color: #212529;">Real User Agency: The Signal Chain</h4>
+
+      <div style="background-color: #ede9fe; border-left: 4px solid #7950f2; padding: 16px; margin-bottom: 16px;">
+        <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 15px;">What distinguishes real agency from the appearance of it</p>
+        <ul style="margin: 0; padding-left: 20px; color: #495057; font-size: 14px;">
+          <li style="margin-bottom: 4px;"><strong>Proximate:</strong> The control is reachable before the harm occurs. Auto-activating <code style="background: #f1f3f4; padding: 2px 4px; border-radius: 3px;">prefers-reduced-motion</code> on page load is proximate — the user is never exposed to the triggering animation.</li>
+          <li style="margin-bottom: 4px;"><strong>Session persistence:</strong> Preserves user data when sessions are interrupted (unrelated to motion control)</li>
+          <li style="margin-bottom: 4px;"><strong>Pace control:</strong> Lets users slow down or pause content — different from preventing motion entirely</li>
+          <li><strong>Recoverable:</strong> User can undo and return to a safe state after harm — a weaker form than prevention</li>
+        </ul>
+      </div>
+
+      <h4 style="margin: 20px 0 12px 0; font-size: 17px; font-weight: 600; color: #212529;">Honoring prefers-reduced-motion</h4>
+
+      <div style="background-color: #fff3bf; border-left: 4px solid #fab005; padding: 16px; margin-bottom: 16px;">
+        <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 15px;">Correct approach when the OS preference is set</p>
+        <ul style="margin: 0; padding-left: 20px; color: #495057; font-size: 14px;">
+          <li style="margin-bottom: 4px;"><strong>Replace the animation</strong> with a low-motion alternative (instant state change, subtle fade) — don't remove feedback entirely</li>
+          <li style="margin-bottom: 4px;">Do not disable animation for all users — respect individual preference, don't impose a universal restriction</li>
+          <li style="margin-bottom: 4px;">Do not require users to configure an inline slider at the point of interaction — the OS preference already expresses their need</li>
+          <li>Do not route users to a "static version" — separate-but-equal experiences violate the principle of equal access</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Module 2G: AT Validation Testing -->
+    <div style="background-color: #fff; border: 1px solid #dee2e6; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #fa5252;">
+      <h3 style="margin: 0 0 20px 0; font-size: 20px; font-weight: 600; color: #212529; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">🧪</span> Module 2G: AT Validation Testing
+      </h3>
+
+      <h4 style="margin: 0 0 12px 0; font-size: 17px; font-weight: 600; color: #212529;">Systematic AT Validation: Programmatic AND Visual</h4>
+
+      <div style="background-color: #f8f9fa; border-left: 4px solid #fa5252; padding: 16px; margin-bottom: 16px;">
+        <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 15px;">A test can pass on one dimension and fail on the other</p>
+        <ul style="margin: 0; padding-left: 20px; color: #495057; font-size: 14px;">
+          <li style="margin-bottom: 4px;">You must verify <strong>both</strong> the programmatic state (accessibility tree) <strong>and</strong> the visual presentation independently — then compare them</li>
+          <li style="margin-bottom: 4px;">Example: A tab's <code style="background: #f1f3f4; padding: 2px 4px; border-radius: 3px;">aria-selected="true"</code> may be correct in the tree, but the visual selected indicator (color fill) may fail WCAG 1.4.11 Non-text Contrast at 3:1 — the visual side fails even though the AT side passes</li>
+          <li>The visual affordance for a state must meet contrast requirements — not just exist — to be a valid indicator</li>
+        </ul>
+      </div>
+
+      <h4 style="margin: 20px 0 12px 0; font-size: 17px; font-weight: 600; color: #212529;">Jira Labeling: WCAG vs. Platform Standards</h4>
+
+      <div style="background-color: #ffe3e3; border-left: 4px solid #fa5252; padding: 16px; margin-bottom: 16px;">
+        <p style="margin: 0 0 8px 0; font-weight: 600; color: #c92a2a; font-size: 15px;">Critical distinction: WHCM issues are NOT WCAG issues</p>
+        <ul style="margin: 0; padding-left: 20px; color: #495057; font-size: 14px;">
+          <li style="margin-bottom: 4px;">Issues that appear <strong>specifically within Windows High Contrast Mode</strong> (e.g., missing focus states in WHCM) fall under <strong>platform/OS accessibility standards</strong> (Section 508, EN 301 549)</li>
+          <li style="margin-bottom: 4px;">Label: <strong><code style="background: #f1f3f4; padding: 2px 4px; border-radius: 3px;">Accessibility_Other_Standard</code></strong> — not a WCAG SC label</li>
+          <li style="margin-bottom: 4px;"><code style="background: #f1f3f4; padding: 2px 4px; border-radius: 3px;">WCAG_2.4.7-Focus_Visible</code>: focus visibility in <em>authored</em> styles — not the same as focus disappearing because WHCM overrides CSS</li>
+          <li><code style="background: #f1f3f4; padding: 2px 4px; border-radius: 3px;">WCAG_1.4.11-Non-text_Contrast</code>: contrast of UI component indicators in <em>normal rendering</em> — not forced-color environments</li>
+        </ul>
+      </div>
+
+      <h4 style="margin: 20px 0 12px 0; font-size: 17px; font-weight: 600; color: #212529;">The Five Non-Interference Success Criteria</h4>
+
+      <div style="background-color: #fff3bf; border-left: 4px solid #fab005; padding: 16px; margin-bottom: 16px;">
+        <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 15px;">Must pass even on non-conformant pages</p>
+        <table style="width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 8px;">
+          <thead>
+            <tr style="background-color: #f1f3f4;">
+              <th scope="col" style="padding: 8px 10px; text-align: left; font-weight: 600; border-bottom: 2px solid #dee2e6;">SC</th>
+              <th scope="col" style="padding: 8px 10px; text-align: left; font-weight: 600; border-bottom: 2px solid #dee2e6;">Name</th>
+              <th scope="col" style="padding: 8px 10px; text-align: left; font-weight: 600; border-bottom: 2px solid #dee2e6;">Severity</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="background-color: #ffe3e3;">
+              <td style="padding: 8px 10px; border-bottom: 1px solid #e9ecef; font-family: monospace; font-weight: 600;">2.3.1</td>
+              <td style="padding: 8px 10px; border-bottom: 1px solid #e9ecef; font-weight: 600;">Three Flashes or Below Threshold</td>
+              <td style="padding: 8px 10px; border-bottom: 1px solid #e9ecef; color: #c92a2a; font-weight: 600;">⚠️ MOST SEVERE — can cause epileptic seizures (direct physical harm)</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px 10px; border-bottom: 1px solid #e9ecef; font-family: monospace;">2.1.2</td>
+              <td style="padding: 8px 10px; border-bottom: 1px solid #e9ecef;">No Keyboard Trap</td>
+              <td style="padding: 8px 10px; border-bottom: 1px solid #e9ecef;">Blocks keyboard-only users from the rest of the page</td>
+            </tr>
+            <tr style="background-color: #f8f9fa;">
+              <td style="padding: 8px 10px; border-bottom: 1px solid #e9ecef; font-family: monospace;">2.2.2</td>
+              <td style="padding: 8px 10px; border-bottom: 1px solid #e9ecef;">Pause, Stop, Hide</td>
+              <td style="padding: 8px 10px; border-bottom: 1px solid #e9ecef;">Auto-moving content blocks access to page content</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px 10px; border-bottom: 1px solid #e9ecef; font-family: monospace;">1.4.2</td>
+              <td style="padding: 8px 10px; border-bottom: 1px solid #e9ecef;">Audio Control</td>
+              <td style="padding: 8px 10px; border-bottom: 1px solid #e9ecef;">Auto-playing audio masks screen reader output</td>
+            </tr>
+            <tr style="background-color: #f8f9fa;">
+              <td style="padding: 8px 10px; font-family: monospace;">3.2.5</td>
+              <td style="padding: 8px 10px;">Change on Request</td>
+              <td style="padding: 8px 10px;">Unexpected context changes without user initiation</td>
+            </tr>
+          </tbody>
+        </table>
+        <p style="margin: 10px 0 0 0; color: #495057; font-size: 13px;"><strong>2.3.1 is the most severe</strong> because flashing content can trigger photosensitive epileptic seizures — irreversible physical harm that no other SC can cause.</p>
+      </div>
+    </div>
+
+    <!-- Module 2H: Perceptual & Cognitive Design -->
+    <div style="background-color: #fff; border: 1px solid #dee2e6; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #e64980;">
+      <h3 style="margin: 0 0 20px 0; font-size: 20px; font-weight: 600; color: #212529; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">🧠</span> Module 2H: Perceptual &amp; Cognitive Design
+      </h3>
+
+      <h4 style="margin: 0 0 12px 0; font-size: 17px; font-weight: 600; color: #212529;">Progressive Disclosure</h4>
+
+      <div style="background-color: #f8f9fa; border-left: 4px solid #e64980; padding: 16px; margin-bottom: 16px;">
+        <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 15px;">Adapting density and hierarchy to context</p>
+        <ul style="margin: 0; padding-left: 20px; color: #495057; font-size: 14px;">
+          <li style="margin-bottom: 4px;"><strong>Progressive disclosure</strong>: present only what the user needs for their current context; reveal more complexity as needed</li>
+          <li style="margin-bottom: 4px;">Example: desktop = full TabGroup with labeled tab bar and card grid; mobile = compact Picker + horizontal scrolling list (same content, adapted density)</li>
+          <li style="margin-bottom: 4px;">Adjusting spatial hierarchy and information density to match viewport constraints is a core application of progressive disclosure</li>
+          <li>Not to be confused with focus mode (screen reader concept) or reading level (text complexity measure)</li>
+        </ul>
+      </div>
+
+      <h4 style="margin: 20px 0 12px 0; font-size: 17px; font-weight: 600; color: #212529;">Preference Control Layers for Density</h4>
+
+      <div style="background-color: #fce7f3; border-left: 4px solid #e64980; padding: 16px; margin-bottom: 16px;">
+        <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 15px;">Safari Reader Mode as a model</p>
+        <ul style="margin: 0; padding-left: 20px; color: #495057; font-size: 14px;">
+          <li style="margin-bottom: 4px;">Reader Mode strips navigation, ads, sidebars — re-presents only core content with clean typography and generous whitespace</li>
+          <li style="margin-bottom: 4px;">This is a <strong>preference control layer for density and whitespace</strong> — user-controlled, runtime, adjusts visual density without changing content</li>
+          <li style="margin-bottom: 4px;">Not a pre-ship quality gate, AI preference store, or spec annotation standard</li>
+          <li>The design principle: give users direct control over how much visual complexity they experience</li>
+        </ul>
+      </div>
+
+      <h4 style="margin: 20px 0 12px 0; font-size: 17px; font-weight: 600; color: #212529;">Links Styled as Buttons — Voice Control Harm</h4>
+
+      <div style="background-color: #fff3bf; border-left: 4px solid #fab005; padding: 16px; margin-bottom: 16px;">
+        <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 15px;">Semantic mismatch harms Voice Control users</p>
+        <ul style="margin: 0; padding-left: 20px; color: #495057; font-size: 14px;">
+          <li style="margin-bottom: 4px;">An <code style="background: #f1f3f4; padding: 2px 4px; border-radius: 3px;">&lt;a&gt;</code> element styled visually as a button looks like a button — a Voice Control user will speak "Click [label] button"</li>
+          <li style="margin-bottom: 4px;">The programmatic role in the accessibility tree is <code style="background: #f1f3f4; padding: 2px 4px; border-radius: 3px;">link</code>, not <code style="background: #f1f3f4; padding: 2px 4px; border-radius: 3px;">button</code> — so the command fails</li>
+          <li style="margin-bottom: 4px;"><strong>Screen readers are NOT affected</strong> — they derive role from the accessibility tree, not visual appearance. Screen reader users correctly hear "link."</li>
+          <li>CSS classes affect visual presentation only. <code style="background: #f1f3f4; padding: 2px 4px; border-radius: 3px;">class="btn"</code> does not change the semantic role exposed to AT.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Quick Reference: Key Concepts -->
+    <div style="background-color: #f8f9fa; border: 1px solid #dee2e6; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #495057;">
+      <h3 style="margin: 0 0 20px 0; font-size: 20px; font-weight: 600; color: #212529; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">📊</span> Quick Reference: Key Facts
+      </h3>
+
+      <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+        <thead>
+          <tr style="background-color: #e9ecef;">
+            <th scope="col" style="padding: 12px 16px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">Concept</th>
+            <th scope="col" style="padding: 12px 16px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">Key Fact</th>
+            <th scope="col" style="padding: 12px 16px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">Source</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="padding: 12px 16px; border-bottom: 1px solid #e9ecef;">Screen reader announcement order</td>
+            <td style="padding: 12px 16px; border-bottom: 1px solid #e9ecef; font-weight: 600;">Name → State → Role</td>
+            <td style="padding: 12px 16px; border-bottom: 1px solid #e9ecef; font-family: monospace;">Accessibility tree</td>
+          </tr>
+          <tr style="background-color: #fff;">
+            <td style="padding: 12px 16px; border-bottom: 1px solid #e9ecef;">VoiceOver word for "disabled"</td>
+            <td style="padding: 12px 16px; border-bottom: 1px solid #e9ecef; font-weight: 600;">dimmed</td>
+            <td style="padding: 12px 16px; border-bottom: 1px solid #e9ecef; font-family: monospace;">VoiceOver (macOS)</td>
+          </tr>
+          <tr>
+            <td style="padding: 12px 16px; border-bottom: 1px solid #e9ecef;">VoiceOver Rotor shortcut</td>
+            <td style="padding: 12px 16px; border-bottom: 1px solid #e9ecef; font-weight: 600;">VO+U</td>
+            <td style="padding: 12px 16px; border-bottom: 1px solid #e9ecef; font-family: monospace;">VoiceOver (macOS)</td>
+          </tr>
+          <tr style="background-color: #fff;">
+            <td style="padding: 12px 16px; border-bottom: 1px solid #e9ecef;">Voice Control key press command</td>
+            <td style="padding: 12px 16px; border-bottom: 1px solid #e9ecef; font-weight: 600;">"Press [key name]" (e.g., "Press escape key")</td>
+            <td style="padding: 12px 16px; border-bottom: 1px solid #e9ecef; font-family: monospace;">Voice Control grammar</td>
+          </tr>
+          <tr>
+            <td style="padding: 12px 16px; border-bottom: 1px solid #e9ecef;">Lowest cognitive load targeting method</td>
+            <td style="padding: 12px 16px; border-bottom: 1px solid #e9ecef; font-weight: 600;">Name-based targeting</td>
+            <td style="padding: 12px 16px; border-bottom: 1px solid #e9ecef; font-family: monospace;">Voice Control</td>
+          </tr>
+          <tr style="background-color: #fff;">
+            <td style="padding: 12px 16px; border-bottom: 1px solid #e9ecef;">Reflow viewport equivalent at 400%</td>
+            <td style="padding: 12px 16px; border-bottom: 1px solid #e9ecef; font-weight: 600;">320 CSS px</td>
+            <td style="padding: 12px 16px; border-bottom: 1px solid #e9ecef; font-family: monospace;">SC 1.4.10</td>
+          </tr>
+          <tr>
+            <td style="padding: 12px 16px; border-bottom: 1px solid #e9ecef;">WHCM detection media query</td>
+            <td style="padding: 12px 16px; border-bottom: 1px solid #e9ecef; font-weight: 600;">forced-colors: active</td>
+            <td style="padding: 12px 16px; border-bottom: 1px solid #e9ecef; font-family: monospace;">CSS / Section 508</td>
+          </tr>
+          <tr style="background-color: #fff;">
+            <td style="padding: 12px 16px; border-bottom: 1px solid #e9ecef;">WHCM Jira label (not a WCAG SC)</td>
+            <td style="padding: 12px 16px; border-bottom: 1px solid #e9ecef; font-weight: 600;">Accessibility_Other_Standard</td>
+            <td style="padding: 12px 16px; border-bottom: 1px solid #e9ecef; font-family: monospace;">Platform standard</td>
+          </tr>
+          <tr>
+            <td style="padding: 12px 16px; border-bottom: 1px solid #e9ecef;">Most severe non-interference SC</td>
+            <td style="padding: 12px 16px; border-bottom: 1px solid #e9ecef; font-weight: 600;">2.3.1 Three Flashes — can cause seizures</td>
+            <td style="padding: 12px 16px; border-bottom: 1px solid #e9ecef; font-family: monospace;">SC 2.3.1 (A)</td>
+          </tr>
+          <tr style="background-color: #fff;">
+            <td style="padding: 12px 16px;">Non-text contrast minimum (state indicators)</td>
+            <td style="padding: 12px 16px; font-weight: 600;">3:1</td>
+            <td style="padding: 12px 16px; font-family: monospace;">SC 1.4.11</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Test-Taking Strategies -->
+    <div style="background-color: #fff; border: 1px solid #dee2e6; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #845ef7;">
+      <h3 style="margin: 0 0 20px 0; font-size: 20px; font-weight: 600; color: #212529; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">💡</span> Test-Taking Strategies
+      </h3>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 16px;">
+        <div style="flex: 1; min-width: 260px; background-color: #f8f9fa; border-radius: 6px; padding: 16px;">
+          <h4 style="margin: 0 0 8px 0; font-size: 15px; font-weight: 600; color: #212529;">Identify the AT Category First</h4>
+          <ul style="margin: 0; padding-left: 18px; color: #495057; font-size: 14px;">
+            <li style="margin-bottom: 4px;">Is the question about a screen reader, voice control, magnification, or WHCM user?</li>
+            <li style="margin-bottom: 4px;">Each AT has different failure modes — don't apply screen reader logic to voice control questions</li>
+            <li>WHCM failures are platform issues, not WCAG SC failures</li>
+          </ul>
+        </div>
+
+        <div style="flex: 1; min-width: 260px; background-color: #f8f9fa; border-radius: 6px; padding: 16px;">
+          <h4 style="margin: 0 0 8px 0; font-size: 15px; font-weight: 600; color: #212529;">Watch for Plausible-but-Wrong Options</h4>
+          <ul style="margin: 0; padding-left: 18px; color: #495057; font-size: 14px;">
+            <li style="margin-bottom: 4px;">Options that cite real WCAG criteria but apply them to the wrong scenario</li>
+            <li style="margin-bottom: 4px;">Options with correct conclusions but wrong reasoning (e.g., tooltip placement "because screen readers need it")</li>
+            <li>Non-existent ARIA attributes or CSS media queries offered as correct answers</li>
+          </ul>
+        </div>
+
+        <div style="flex: 1; min-width: 260px; background-color: #f8f9fa; border-radius: 6px; padding: 16px;">
+          <h4 style="margin: 0 0 8px 0; font-size: 15px; font-weight: 600; color: #212529;">Programmatic vs. Visual — Always Check Both</h4>
+          <ul style="margin: 0; padding-left: 18px; color: #495057; font-size: 14px;">
+            <li style="margin-bottom: 4px;">A correct accessibility tree does not guarantee a passing test — the visual presentation may still fail contrast</li>
+            <li style="margin-bottom: 4px;">A visually identifiable element is not accessible if it lacks a programmatic accessible name</li>
+            <li>State conveyed only through color (no <code style="background: #f1f3f4; padding: 2px 4px; border-radius: 3px;">aria-selected</code>) is an SC 1.3.3 failure regardless of visual clarity</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Final Preparation Checklist -->
+    <div style="background-color: #e6fcf5; border: 1px solid #96f2d7; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #0ca678;">
+      <h3 style="margin: 0 0 16px 0; font-size: 20px; font-weight: 600; color: #212529; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">✅</span> Final Preparation Checklist
+      </h3>
+      <p style="margin: 0 0 16px 0; color: #495057; font-size: 15px;">Before taking the assessment, ensure you can:</p>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 12px;">
+        <div style="flex: 1; min-width: 280px;">
+          <ul style="margin: 0; padding-left: 20px; color: #212529; font-size: 14px;">
+            <li style="margin-bottom: 8px;">Explain the difference between reading order and focus order — and name a tool that visualizes each</li>
+            <li style="margin-bottom: 8px;">Interpret an accessibility tree entry and predict the screen reader announcement</li>
+            <li style="margin-bottom: 8px;">Identify the correct ARIA property for selection state vs. description</li>
+            <li style="margin-bottom: 8px;">Distinguish browse mode from focus mode and know which is used to read headings</li>
+            <li style="margin-bottom: 8px;">Describe what the VoiceOver Rotor is and how to use it for structural audits</li>
+          </ul>
+        </div>
+        <div style="flex: 1; min-width: 280px;">
+          <ul style="margin: 0; padding-left: 20px; color: #212529; font-size: 14px;">
+            <li style="margin-bottom: 8px;">Rank the three Voice Control targeting methods by cognitive load</li>
+            <li style="margin-bottom: 8px;">State the correct grammar for Voice Control key press commands</li>
+            <li style="margin-bottom: 8px;">Explain why placeholder text alone fails WCAG 2.5.3 Label in Name</li>
+            <li style="margin-bottom: 8px;">Describe the correct fix for a WHCM input boundary failure</li>
+            <li style="margin-bottom: 8px;">Identify which CSS media query detects WHCM — and which queries are commonly confused with it</li>
+            <li style="margin-bottom: 8px;">Know which non-interference SC is the most severe and why (2.3.1)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L20: Legal Frameworks — DACE Deliver Badge</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap');
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{--slide-w:1440px;--slide-h:900px;--badge-green:#51CF66;--badge-green-light:#EBFBEE;--badge-green-dark:#2B8A3E;--black:#1A1A1A;--dark:#333;--mid:#666;--light-gray:#F5F5F5;--border-gray:#E0E0E0;--white:#FFFFFF;--insight-bg:#F5F7FA;--font:'DM Sans',system-ui,sans-serif}
+  body{font-family:var(--font);background:#1a1a2e;display:flex;flex-direction:column;align-items:center;min-height:100vh;padding:20px;color:var(--black)}
+  .nav{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:12px;background:rgba(0,0,0,0.85);padding:10px 20px;border-radius:40px;z-index:100;backdrop-filter:blur(10px)}
+  .nav button{background:none;border:1px solid rgba(255,255,255,0.3);color:white;width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;transition:all 0.2s}
+  .nav button:hover{background:rgba(255,255,255,0.15);border-color:rgba(255,255,255,0.6)}
+  .nav .counter{color:rgba(255,255,255,0.7);font-size:13px;font-variant-numeric:tabular-nums;min-width:60px;text-align:center}
+  .slide-container{width:var(--slide-w);max-width:100%;aspect-ratio:1440/900}
+  .slide{display:none;width:var(--slide-w);height:var(--slide-h);background:var(--white);position:relative;overflow:hidden;border-radius:4px;box-shadow:0 20px 60px rgba(0,0,0,0.4)}
+  .slide.active{display:block}
+  .topbar{position:absolute;top:0;left:0;right:0;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 40px;border-bottom:1px solid var(--border-gray);z-index:10}
+  .topbar-left{display:flex;align-items:center;gap:12px;font-size:14px;color:var(--dark)}
+  .topbar-icon{width:32px;height:32px;border:1.5px solid var(--dark);border-radius:6px;display:flex;align-items:center;justify-content:center}
+  .topbar-icon svg{width:16px;height:16px}
+  .topbar-lesson{font-weight:600}
+  .topbar-sep{color:#ccc}
+  .topbar-topic{font-weight:400}
+  .badge-pill{display:flex;align-items:center;gap:6px;padding:6px 16px;border-radius:20px;background:var(--badge-green-light);border:1.5px solid var(--badge-green);font-size:13px;font-weight:600;color:var(--badge-green-dark)}
+  .badge-pill svg{width:14px;height:14px}
+  .footer-text{position:absolute;bottom:40px;left:18px;writing-mode:vertical-rl;transform:rotate(180deg);font-size:10px;color:#999;letter-spacing:0.02em;line-height:1.4}
+  .content{position:absolute;top:64px;left:70px;right:40px;bottom:20px;padding:40px 0}
+  .slide.divider .topbar{border-bottom-color:transparent}
+  .divider-bg{position:absolute;top:0;left:0;right:0;bottom:0;overflow:hidden}
+  .divider-bg .geo{position:absolute;stroke:#ddd;stroke-width:1.5;fill:none}
+  .divider-title{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:64px;font-weight:700;color:var(--black);text-align:center;line-height:1.15;max-width:900px}
+  h1.slide-headline{font-size:48px;font-weight:700;color:var(--black);line-height:1.15;margin-bottom:24px;letter-spacing:-0.02em}
+  h2.slide-subhead{font-size:20px;font-weight:600;color:var(--dark);margin-bottom:16px}
+  .slide-body{font-size:18px;color:var(--dark);line-height:1.5;margin-bottom:16px}
+  .slide-intro{font-size:20px;font-weight:600;color:var(--dark);line-height:1.5;margin-bottom:24px}
+  .bullet-list{list-style:none;padding:0}
+  .bullet-list li{font-size:18px;color:var(--dark);line-height:1.55;padding:6px 0 6px 20px;position:relative}
+  .bullet-list li::before{content:'•';position:absolute;left:0;color:#999}
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-bottom:24px}
+  .col-card{background:var(--white);border:1px solid var(--border-gray);border-radius:12px;padding:28px}
+  .col-card h3{font-size:18px;font-weight:700;margin-bottom:16px;color:var(--black)}
+  .col-card.green-accent{border-top:3px solid var(--badge-green)}
+  .col-card.gray-accent{border-top:3px solid #ccc}
+  .col-card.blue-accent{border-top:3px solid #3478F6}
+  .col-card.amber-accent{border-top:3px solid #F59F00}
+  .three-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:24px}
+  .card{background:var(--light-gray);border-radius:12px;padding:20px}
+  .card h4{font-size:15px;font-weight:700;color:var(--black);margin-bottom:8px}
+  .card p{font-size:14px;color:var(--mid);line-height:1.45}
+  .key-insight{background:var(--insight-bg);border-radius:12px;padding:20px 24px 20px 64px;position:relative;margin-top:16px}
+  .key-insight::before{content:'';position:absolute;left:20px;top:50%;transform:translateY(-50%);width:32px;height:32px;background:#3478F6;border-radius:50%}
+  .key-insight::after{content:'💡';position:absolute;left:25px;top:50%;transform:translateY(-50%);font-size:16px}
+  .key-insight strong{display:block;font-size:15px;font-weight:700;color:var(--black);margin-bottom:4px}
+  .key-insight p,.key-insight span{font-size:15px;color:var(--dark);line-height:1.5}
+  .checklist{list-style:none;padding:0}
+  .checklist li{font-size:17px;color:var(--dark);line-height:1.5;padding:8px 0 8px 36px;position:relative}
+  .checklist li::before{content:'';position:absolute;left:0;top:10px;width:20px;height:20px;border:2px solid #ccc;border-radius:4px}
+  .outcome-card{background:var(--insight-bg);border-radius:16px;padding:28px;text-align:center}
+  .outcome-card .outcome-icon{width:56px;height:56px;background:#3478F6;border-radius:50%;margin:0 auto 16px;display:flex;align-items:center;justify-content:center;font-size:24px}
+  .outcome-card .outcome-label{font-size:16px;font-weight:700;color:var(--black);margin-bottom:12px}
+  .outcome-card .outcome-text{font-size:14px;color:var(--mid);line-height:1.5}
+  .lo-pill{display:inline-flex;align-items:center;padding:3px 10px;border-radius:12px;background:var(--badge-green-light);font-size:12px;font-weight:600;color:var(--badge-green-dark);margin-top:8px}
+  .objectives-list{list-style:none;padding:0}
+  .objectives-list li{padding:16px 0;border-bottom:1px solid var(--border-gray);display:flex;gap:16px;align-items:flex-start}
+  .objectives-list li:last-child{border-bottom:none}
+  .obj-code{font-size:14px;font-weight:700;color:var(--badge-green-dark);background:var(--badge-green-light);padding:4px 10px;border-radius:6px;white-space:nowrap;flex-shrink:0}
+  .obj-text{font-size:17px;color:var(--dark);line-height:1.5}
+  .obj-text strong{color:var(--black)}
+  .connection-callout{background:var(--badge-green-light);border-left:3px solid var(--badge-green);padding:16px 20px;border-radius:0 8px 8px 0;margin-top:16px}
+  .connection-callout p{font-size:14px;color:var(--dark);line-height:1.5}
+  .principles{display:flex;flex-direction:column;gap:16px}
+  .principle-row{display:flex;gap:16px;align-items:flex-start;padding:16px;background:var(--light-gray);border-radius:12px}
+  .principle-icon{width:44px;height:44px;background:#3478F6;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:20px}
+  .principle-text{font-size:15px;color:var(--dark);line-height:1.5}
+  .principle-text strong{color:var(--black)}
+  .title-content{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center}
+  .title-lesson-num{font-size:16px;font-weight:600;color:var(--mid);letter-spacing:0.05em;text-transform:uppercase;margin-bottom:12px}
+  .title-main{font-size:56px;font-weight:700;color:var(--black);line-height:1.1;margin-bottom:12px;letter-spacing:-0.02em}
+  .title-subtitle{font-size:20px;color:var(--mid);font-weight:400;margin-bottom:32px;font-style:italic;max-width:700px;line-height:1.4}
+  .title-meta{display:flex;gap:24px;font-size:13px;color:#999}
+  .title-meta span{padding:4px 12px;background:var(--light-gray);border-radius:16px}
+  .stat-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:24px}
+  .stat-card{background:var(--light-gray);border-radius:12px;padding:28px;text-align:center;border-top:3px solid var(--badge-green)}
+  .stat-card .stat-icon{font-size:32px;margin-bottom:12px}
+  .stat-card h4{font-size:17px;font-weight:700;color:var(--black);margin-bottom:8px}
+  .stat-card p{font-size:14px;color:var(--mid);line-height:1.5}
+  .warning-callout{background:#FFF9DB;border-left:3px solid #FCC419;padding:16px 20px;border-radius:0 8px 8px 0;margin-top:16px}
+  .warning-callout strong{display:block;font-size:14px;color:var(--black);margin-bottom:4px}
+  .warning-callout p{font-size:14px;color:var(--dark);line-height:1.5}
+</style>
+</head>
+<body>
+<div class="slide-container" id="slideContainer"></div>
+<div class="nav">
+  <button onclick="prevSlide()">←</button>
+  <span class="counter" id="counter">1 / 15</span>
+  <button onclick="nextSlide()">→</button>
+</div>
+<script>
+const TB = `<div class="topbar"><div class="topbar-left"><div class="topbar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M6 8l3 3-3 3"/></svg></div><span class="topbar-lesson">Lesson 20</span><span class="topbar-sep">|</span><span class="topbar-topic">Legal Frameworks</span></div><div class="badge-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg> Deliver Badge</div></div>`;
+const TB_PLAIN = `<div class="topbar"><div class="topbar-left"><div class="topbar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M6 8l3 3-3 3"/></svg></div><span class="topbar-lesson">Lesson 20</span><span class="topbar-sep">|</span><span class="topbar-topic">Legal Frameworks</span></div></div>`;
+const FT = `<div class="footer-text">Design Accessibility Certified Expert (DACE)<br>Cohort 1: 2025 – 2026</div>`;
+const GEO = `<div class="divider-bg"><svg class="geo" style="left:-20px;top:80px" width="120" height="120" viewBox="0 0 120 120"><polygon points="60,0 120,120 0,120"/></svg><svg class="geo" style="left:-10px;top:320px" width="100" height="100" viewBox="0 0 100 100"><rect x="10" y="10" width="80" height="80"/></svg><svg class="geo" style="left:-5px;top:540px" width="100" height="100" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45"/></svg></div>`;
+
+const slides = [
+
+// ===== 0.1 TITLE =====
+{type:'title', html:`${TB}
+<div class="content"><div class="title-content">
+  <div class="title-lesson-num">Lesson 20</div>
+  <div class="title-main">Legal Frameworks</div>
+  <div class="title-subtitle">Compliance context without compliance theater</div>
+  <div class="title-meta"><span>Deliver Badge</span><span>~30 minutes</span><span>In-Person Lesson</span><span>Week 12</span></div>
+</div></div>${FT}`},
+
+// ===== 0.2 OBJECTIVES =====
+{type:'content', html:`${TB}
+<div class="content">
+  <h1 class="slide-headline">What you'll be able to do</h1>
+  <p class="slide-body" style="margin-bottom:24px">By the end of this lesson, you'll be able to:</p>
+  <ul class="objectives-list">
+    <li><span class="obj-code">3E.01</span><span class="obj-text"><strong>Apply Section 508 requirements:</strong> Understand US federal procurement accessibility obligations and how they affect product decisions</span></li>
+    <li><span class="obj-code">3E.02</span><span class="obj-text"><strong>Apply EN 301 549 requirements:</strong> Understand the European harmonized ICT accessibility standard and its relationship to WCAG</span></li>
+    <li><span class="obj-code">3E.03</span><span class="obj-text"><strong>Understand EAA implications:</strong> Recognize how the European Accessibility Act affects product planning and remediation urgency</span></li>
+    <li><span class="obj-code">3E.04</span><span class="obj-text"><strong>Distinguish legal risk vs. best practice:</strong> Separate what is legally required from what improves the experience beyond compliance</span></li>
+  </ul>
+</div>${FT}`},
+
+// ===== 1.1 DIVIDER =====
+{type:'divider', html:`${TB_PLAIN}${GEO}<div class="divider-title">Section 508 and<br>EN 301 549</div>${FT}`},
+
+// ===== 1.2 TWO CORE FRAMEWORKS =====
+{type:'content', html:`${TB}
+<div class="content">
+  <h1 class="slide-headline" style="font-size:40px">US federal context and European harmonized context</h1>
+  <div class="two-col">
+    <div class="col-card blue-accent">
+      <h3>Section 508</h3>
+      <ul class="bullet-list">
+        <li>US federal procurement standard</li>
+        <li>Applies to products sold to federal agencies</li>
+        <li>Refreshed in 2017 to incorporate WCAG 2.0 AA</li>
+        <li>Key driver for VPAT/ACR documentation</li>
+      </ul>
+      <p style="font-size:13px;color:var(--mid);margin-top:16px;font-style:italic">Primary context: US government and government-adjacent sales</p>
+    </div>
+    <div class="col-card amber-accent">
+      <h3>EN 301 549</h3>
+      <ul class="bullet-list">
+        <li>European harmonized ICT accessibility standard</li>
+        <li>Broader scope than 508: covers web, software, hardware, documents</li>
+        <li>Frequently discussed alongside WCAG conformance</li>
+        <li>Referenced by the European Accessibility Act</li>
+      </ul>
+      <p style="font-size:13px;color:var(--mid);margin-top:16px;font-style:italic">Primary context: European market obligations and procurement</p>
+    </div>
+  </div>
+  <div class="lo-pill">LO 3E.01</div>
+  <div class="lo-pill" style="margin-left:8px">LO 3E.02</div>
+</div>${FT}`},
+
+// ===== 1.3 WHY JURISDICTION MATTERS =====
+{type:'content', html:`${TB}
+<div class="content">
+  <h1 class="slide-headline" style="font-size:42px">The same product can face different obligations</h1>
+  <div class="stat-cards">
+    <div class="stat-card">
+      <div class="stat-icon">🌍</div>
+      <h4>Market presence affects risk</h4>
+      <p>Where your product is available determines which legal frameworks apply. A product sold only in the US has different obligations than one sold globally.</p>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon">📋</div>
+      <h4>Procurement context affects requirements</h4>
+      <p>Government buyers require VPAT documentation. European buyers may require EN 301 549 conformance. Enterprise buyers increasingly ask for both.</p>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon">🧭</div>
+      <h4>Product strategy needs jurisdiction awareness</h4>
+      <p>Decisions about which markets to enter, which segments to target, and which features to prioritize all have accessibility compliance implications.</p>
+    </div>
+  </div>
+  <div class="key-insight"><strong>Key insight</strong><span>Your role is not to be a legal expert. Your role is to know enough to ask the right questions and connect your product team to the right resources.</span></div>
+</div>${FT}`},
+
+// ===== 1.4 CHECKPOINT =====
+{type:'content', html:`${TB}
+<div class="content">
+  <h1 class="slide-headline">Checkpoint: Framework Basics</h1>
+  <p class="slide-intro">Verify you understand the two core frameworks and why context matters:</p>
+  <div style="display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:start">
+    <div>
+      <h2 class="slide-subhead">Checklist:</h2>
+      <ul class="checklist">
+        <li>I can distinguish Section 508 from EN 301 549</li>
+        <li>I understand why procurement and market context matter</li>
+        <li>I can connect framework discussion back to product decisions</li>
+      </ul>
+    </div>
+    <div class="outcome-card">
+      <div class="outcome-icon">💡</div>
+      <div class="outcome-label">Learning Outcomes 3E.01, 3E.02</div>
+      <div class="outcome-text">Apply Section 508 and EN 301 549 requirements in the appropriate procurement and market contexts.</div>
+    </div>
+  </div>
+</div>${FT}`},
+
+// ===== 2.1 DIVIDER =====
+{type:'divider', html:`${TB_PLAIN}${GEO}<div class="divider-title">European<br>Accessibility Act</div>${FT}`},
+
+// ===== 2.2 EAA IMPLICATIONS =====
+{type:'content', html:`${TB}
+<div class="content">
+  <h1 class="slide-headline">Why the EAA matters</h1>
+  <div class="two-col">
+    <div class="col-card amber-accent">
+      <h3>What the EAA changes</h3>
+      <ul class="bullet-list">
+        <li>Enforcement began June 2025 for new products</li>
+        <li>Applies to products and services sold in the EU</li>
+        <li>Covers a broad range: e-commerce, banking, transport, and computing</li>
+        <li>References EN 301 549 as the presumed conformance path</li>
+      </ul>
+    </div>
+    <div class="col-card blue-accent">
+      <h3>What this means for your team</h3>
+      <ul class="bullet-list">
+        <li>Accessibility needs visibility early in product planning</li>
+        <li>Remediation urgency increases for EU-facing products</li>
+        <li>Legal risk framing becomes more concrete for PMs</li>
+        <li>Timeline pressure means "later" may not be an option</li>
+      </ul>
+    </div>
+  </div>
+  <div class="key-insight"><strong>Key insight</strong><span>The EAA is not a future concern. Enforcement is active. Products shipping to EU markets today need to meet these requirements or have a documented remediation path.</span></div>
+  <div class="lo-pill" style="margin-top:12px">LO 3E.03</div>
+</div>${FT}`},
+
+// ===== 2.3 CHECKPOINT =====
+{type:'content', html:`${TB}
+<div class="content">
+  <h1 class="slide-headline">Checkpoint: EAA Implications</h1>
+  <p class="slide-intro">Verify you understand why the EAA affects product planning:</p>
+  <div style="display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:start">
+    <div>
+      <h2 class="slide-subhead">Checklist:</h2>
+      <ul class="checklist">
+        <li>I understand why the EAA affects Adobe product planning</li>
+        <li>I can explain why timing and scope matter</li>
+        <li>I know this is more than a documentation detail</li>
+      </ul>
+    </div>
+    <div class="outcome-card">
+      <div class="outcome-icon">💡</div>
+      <div class="outcome-label">Learning Outcome 3E.03</div>
+      <div class="outcome-text">Understand European Accessibility Act implications: Recognize how the EAA affects product planning and remediation urgency.</div>
+    </div>
+  </div>
+</div>${FT}`},
+
+// ===== 3.1 DIVIDER =====
+{type:'divider', html:`${TB_PLAIN}${GEO}<div class="divider-title">Legal Risk vs<br>Best Practice</div>${FT}`},
+
+// ===== 3.2 FLOOR VS CEILING =====
+{type:'content', html:`${TB}
+<div class="content">
+  <h1 class="slide-headline" style="font-size:42px">Compliance is the floor, not the ceiling</h1>
+  <div class="two-col">
+    <div class="col-card" style="border-top:3px solid #FA5252">
+      <h3>Legal risk</h3>
+      <ul class="bullet-list">
+        <li>What is legally required in your market</li>
+        <li>What creates exposure if unaddressed</li>
+        <li>What may demand earlier remediation timelines</li>
+        <li>What procurement buyers will evaluate</li>
+      </ul>
+      <p style="font-size:13px;color:var(--mid);margin-top:16px;font-style:italic">This is the floor. Meeting it keeps you out of trouble.</p>
+    </div>
+    <div class="col-card green-accent">
+      <h3>Best practice</h3>
+      <ul class="bullet-list">
+        <li>What improves usability and quality for all users</li>
+        <li>What may exceed the legal minimum</li>
+        <li>What strengthens the product experience</li>
+        <li>What builds user trust and loyalty</li>
+      </ul>
+      <p style="font-size:13px;color:var(--mid);margin-top:16px;font-style:italic">This is the ceiling. Reaching for it makes the product better.</p>
+    </div>
+  </div>
+  <div class="key-insight"><strong>Key insight</strong><span>When you prioritize findings, both dimensions matter. A best practice on a high-traffic flow may have more user impact than a compliance gap on a rarely-used feature.</span></div>
+  <div class="lo-pill" style="margin-top:12px">LO 3E.04</div>
+</div>${FT}`},
+
+// ===== 3.3 AVOID COMPLIANCE THEATER =====
+{type:'content', html:`${TB}
+<div class="content">
+  <h1 class="slide-headline">Avoid compliance theater</h1>
+  <div class="principles" style="margin-bottom:24px">
+    <div class="principle-row">
+      <div class="principle-icon">🎯</div>
+      <div class="principle-text"><strong>Be precise about what is legally required.</strong> Name the framework, the specific requirement, and the market context. "We have to" without specifics is not helpful.</div>
+    </div>
+    <div class="principle-row">
+      <div class="principle-icon">📈</div>
+      <div class="principle-text"><strong>Be clear about what is recommended beyond compliance.</strong> Best practices improve quality but aren't legally mandated. Make the distinction explicit so teams can prioritize wisely.</div>
+    </div>
+    <div class="principle-row">
+      <div class="principle-icon">👤</div>
+      <div class="principle-text"><strong>Keep user impact visible alongside legal risk.</strong> Compliance framing motivates action, but user impact framing sustains it. Use both, but lead with users when you can.</div>
+    </div>
+  </div>
+  <div class="warning-callout">
+    <strong>Watch out for compliance theater</strong>
+    <p>Compliance theater is when teams treat accessibility as a checkbox exercise that satisfies legal requirements on paper without meaningfully improving the user experience. Your job is to prevent this by keeping real users and real barriers at the center of every conversation.</p>
+  </div>
+  <div class="lo-pill" style="margin-top:12px">LO 3E.04</div>
+</div>${FT}`},
+
+// ===== 3.4 CHECKPOINT =====
+{type:'content', html:`${TB}
+<div class="content">
+  <h1 class="slide-headline" style="font-size:42px">Checkpoint: Risk and Best Practice</h1>
+  <p class="slide-intro">Verify you can navigate the compliance/quality distinction:</p>
+  <div style="display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:start">
+    <div>
+      <h2 class="slide-subhead">Checklist:</h2>
+      <ul class="checklist">
+        <li>I can distinguish legal exposure from broader accessibility improvement</li>
+        <li>I can prioritize with both user impact and compliance context in view</li>
+        <li>I can communicate this without reducing accessibility to fear</li>
+      </ul>
+    </div>
+    <div class="outcome-card">
+      <div class="outcome-icon">💡</div>
+      <div class="outcome-label">Learning Outcome 3E.04</div>
+      <div class="outcome-text">Distinguish legal risk vs. best practice: Separate what is legally required from what improves the experience beyond compliance.</div>
+    </div>
+  </div>
+</div>${FT}`},
+
+// ===== 4.1 SUMMARY =====
+{type:'content', html:`${TB}
+<div class="content">
+  <h1 class="slide-headline">Key takeaways</h1>
+  <div class="principles">
+    <div class="principle-row">
+      <div class="principle-icon">⚖️</div>
+      <div class="principle-text"><strong>Know which framework applies in which context.</strong> Section 508 for US federal procurement. EN 301 549 for European obligations. The EAA for products sold in the EU. Market presence determines which rules apply.</div>
+    </div>
+    <div class="principle-row">
+      <div class="principle-icon">🔗</div>
+      <div class="principle-text"><strong>Connect legal obligations to product decisions.</strong> Your role is to help the team understand the compliance landscape so they can make informed trade-offs, not to be the team's lawyer.</div>
+    </div>
+    <div class="principle-row">
+      <div class="principle-icon">📊</div>
+      <div class="principle-text"><strong>Separate legal risk from best-practice advocacy.</strong> Both matter. Compliance is the floor. Best practice is the ceiling. Use the risk frame when needed, but keep user impact at the center.</div>
+    </div>
+  </div>
+</div>${FT}`},
+
+// ===== 4.2 UP NEXT =====
+{type:'content', html:`${TB}
+<div class="content" style="display:flex;flex-direction:column;justify-content:center;height:calc(100% - 64px);padding-top:0;padding-bottom:0">
+  <h1 class="slide-headline">Up next: Product Team POV (L21)</h1>
+  <p class="slide-body" style="font-size:20px;max-width:800px;margin-bottom:32px">L21 asks a different question: once you understand legal context, how do you represent the accessibility point of view within your cross-functional product team?</p>
+  <div class="connection-callout"><p>L20 gave you the legal and compliance landscape. L21 teaches you how to operate as the accessibility voice on a product team, framing findings in the language your partners already use and influencing decisions you don't directly control.</p></div>
+</div>${FT}`}
+
+];
+
+let current = 0;
+const container = document.getElementById('slideContainer');
+const counter = document.getElementById('counter');
+function render() {
+  container.innerHTML = `<div class="slide ${slides[current].type === 'divider' ? 'divider' : ''} active">${slides[current].html}</div>`;
+  counter.textContent = `${current + 1} / ${slides.length}`;
+  scaleSlide();
+}
+function nextSlide() { if (current < slides.length - 1) { current++; render(); } }
+function prevSlide() { if (current > 0) { current--; render(); } }
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); nextSlide(); }
+  if (e.key === 'ArrowLeft') { e.preventDefault(); prevSlide(); }
+});
+function scaleSlide() {
+  const maxW = Math.min(window.innerWidth - 40, 1440);
+  const scale = maxW / 1440;
+  const slide = document.querySelector('.slide');
+  if (slide && scale < 1) { slide.style.transform = `scale(${scale})`; container.style.height = `${900 * scale}px`; }
+  else if (slide) { slide.style.transform = 'none'; container.style.height = '900px'; }
+}
+window.addEventListener('resize', scaleSlide);
+render();
+</script>
+</body>
+</html>

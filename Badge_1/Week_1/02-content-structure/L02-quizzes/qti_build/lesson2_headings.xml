@@ -1,0 +1,533 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<questestinterop xmlns="http://www.imsglobal.org/xsd/ims_qtiasiv1p2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.imsglobal.org/xsd/ims_qtiasiv1p2 http://www.imsglobal.org/xsd/ims_qtiasiv1p2p1.xsd">
+  <assessment ident="lesson2_headings" title="Lesson 2: Headings Assessment">
+    <qtimetadata>
+      <qtimetadatafield>
+        <fieldlabel>cc_maxattempts</fieldlabel>
+        <fieldentry>1</fieldentry>
+      </qtimetadatafield>
+    </qtimetadata>
+    <section ident="root_section">
+      
+      <!-- QUESTION 1: 1B.01 - Heading Hierarchy Structure -->
+      <item ident="q1_heading_hierarchy" title="Heading Hierarchy Structure">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield>
+              <fieldlabel>question_type</fieldlabel>
+              <fieldentry>multiple_choice_question</fieldentry>
+            </qtimetadatafield>
+            <qtimetadatafield>
+              <fieldlabel>points_possible</fieldlabel>
+              <fieldentry>1</fieldentry>
+            </qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material>
+            <mattext texttype="text/html"><![CDATA[<p>A screen reader user visits a webpage and opens the headings list. They see:</p><pre>H1: Welcome to Adobe Fonts
+H3: Featured Collections
+H3: Popular Fonts
+H3: Recent Additions</pre><p>What is the problem with this heading structure?</p>]]></mattext>
+          </material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice shuffle="Yes">
+              <response_label ident="q1_a">
+                <material>
+                  <mattext texttype="text/html"><![CDATA[The H3 headings skip level H2, breaking the outline hierarchy]]></mattext>
+                </material>
+              </response_label>
+              <response_label ident="q1_b">
+                <material>
+                  <mattext texttype="text/html"><![CDATA[There are too many H3 elements for a single page]]></mattext>
+                </material>
+              </response_label>
+              <response_label ident="q1_c">
+                <material>
+                  <mattext texttype="text/html"><![CDATA[Web browsers do not support heading rank, only the generic heading designation]]></mattext>
+                </material>
+              </response_label>
+              <response_label ident="q1_d">
+                <material>
+                  <mattext texttype="text/html"><![CDATA[The headings use title case which is not Adobe's style]]></mattext>
+                </material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes>
+            <decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/>
+          </outcomes>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q1_a</varequal>
+            </conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q1_a_fb"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q1_b</varequal>
+            </conditionvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q1_b_fb"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q1_c</varequal>
+            </conditionvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q1_c_fb"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q1_d</varequal>
+            </conditionvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q1_d_fb"/>
+          </respcondition>
+        </resprocessing>
+        <itemfeedback ident="q1_a_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Correct!</strong> Skipping from H1 to H3 breaks the heading hierarchy. Screen reader users expect H2 to mark major sections under H1. The jump to H3 suggests subsections exist under an H2 that isn't there, creating a confusing outline. Always use heading levels in order without skipping going down.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="q1_b_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Incorrect.</strong> There is no limit on how many headings of a particular level can exist on a page. Having multiple H3 elements is perfectly valid when content has multiple sections at the same level. The actual issue is that there is no H2 between H1 and H3, which breaks the hierarchy.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="q1_c_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Incorrect.</strong> Web browsers and screen readers fully support heading ranks (H1 through H6). HTML provides six heading levels specifically to create document structure. Screen readers announce both the heading text and its level, allowing users to understand the page outline.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="q1_d_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Incorrect.</strong> Capitalization style is a brand guideline, not an accessibility requirement. Title case does not affect how screen readers interpret headings or create any accessibility barriers. The accessibility issue here is the skipped heading level.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+      </item>
+
+      <!-- QUESTION 2: 1B.01 - Modal Heading Level -->
+      <item ident="q2_modal_heading" title="Heading Hierarchy Structure - Modal">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield>
+              <fieldlabel>question_type</fieldlabel>
+              <fieldentry>multiple_choice_question</fieldentry>
+            </qtimetadatafield>
+            <qtimetadatafield>
+              <fieldlabel>points_possible</fieldlabel>
+              <fieldentry>1</fieldentry>
+            </qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material>
+            <mattext texttype="text/html"><![CDATA[<p><img src="l2-q2-stimulus.png" alt="A modal dialog." /></p><p>What heading level should the text "Share Hilton Sales Strategy" be set at?</p>]]></mattext>
+          </material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice shuffle="Yes">
+              <response_label ident="q2_a">
+                <material>
+                  <mattext texttype="text/html"><![CDATA[H2. Because modals are child of the main content.]]></mattext>
+                </material>
+              </response_label>
+              <response_label ident="q2_b">
+                <material>
+                  <mattext texttype="text/html"><![CDATA[H1. Because modals are considered a new page/screen.]]></mattext>
+                </material>
+              </response_label>
+              <response_label ident="q2_c">
+                <material>
+                  <mattext texttype="text/html"><![CDATA[It's not a heading at all. Not all bold text is a heading.]]></mattext>
+                </material>
+              </response_label>
+              <response_label ident="q2_d">
+                <material>
+                  <mattext texttype="text/html"><![CDATA[H6. Because modals are the least important aspect of the screen content.]]></mattext>
+                </material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes>
+            <decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/>
+          </outcomes>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q2_a</varequal>
+            </conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q2_a_fb"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q2_b</varequal>
+            </conditionvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q2_b_fb"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q2_c</varequal>
+            </conditionvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q2_c_fb"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q2_d</varequal>
+            </conditionvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q2_d_fb"/>
+          </respcondition>
+        </resprocessing>
+        <itemfeedback ident="q2_a_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Correct!</strong> Modal dialogs exist within the context of the page that launched them, making them children of the main content in the document hierarchy. Since the page already has an H1, the modal title should be H2 to maintain a logical heading structure. When a screen reader user opens the headings list, they will see the modal title nested appropriately under the page H1, making the relationship between the modal and page clear.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="q2_b_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Incorrect.</strong> Modal dialogs are not separate pages. They are overlays that appear within the context of the existing page. The underlying page still has the H1, and the modal content exists as a subsection of that page. Using H1 in a modal would create a confusing document outline with multiple H1 elements.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="q2_c_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Incorrect.</strong> Modal dialog titles should be marked as headings. The title "Share Hilton Sales Strategy" describes the purpose of the modal and provides structure for screen reader users. Without a heading, users navigating by headings would not be able to identify or jump to the modal content.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="q2_d_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Incorrect.</strong> Heading levels indicate document hierarchy and structure, not importance or priority. H6 is for deeply nested subsections, not for content that is somehow "less important." A modal dialog title at H2 correctly positions it as a major section under the page's H1.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+      </item>
+
+      <!-- QUESTION 3: 1B.02 - Multi-Platform Heading Annotations -->
+      <item ident="q3_multiplatform" title="Multi-Platform Heading Annotations">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield>
+              <fieldlabel>question_type</fieldlabel>
+              <fieldentry>multiple_choice_question</fieldentry>
+            </qtimetadatafield>
+            <qtimetadatafield>
+              <fieldlabel>points_possible</fieldlabel>
+              <fieldentry>1</fieldentry>
+            </qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material>
+            <mattext texttype="text/html"><![CDATA[<p>A designer is annotating heading structure for a multi-platform app (iOS and Android). How should they handle heading levels in their annotations?</p>]]></mattext>
+          </material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice shuffle="Yes">
+              <response_label ident="q3_a">
+                <material>
+                  <mattext texttype="text/html"><![CDATA[Specify heading levels for all platforms; one annotation serves iOS and Android]]></mattext>
+                </material>
+              </response_label>
+              <response_label ident="q3_b">
+                <material>
+                  <mattext texttype="text/html"><![CDATA[Only specify "heading" vs "not heading" since Android ignores heading levels]]></mattext>
+                </material>
+              </response_label>
+              <response_label ident="q3_c">
+                <material>
+                  <mattext texttype="text/html"><![CDATA[Create separate annotations with levels for iOS and without levels for Android]]></mattext>
+                </material>
+              </response_label>
+              <response_label ident="q3_d">
+                <material>
+                  <mattext texttype="text/html"><![CDATA[Omit heading annotations entirely since screen readers detect them automatically]]></mattext>
+                </material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes>
+            <decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/>
+          </outcomes>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q3_a</varequal>
+            </conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q3_a_fb"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q3_b</varequal>
+            </conditionvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q3_b_fb"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q3_c</varequal>
+            </conditionvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q3_c_fb"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q3_d</varequal>
+            </conditionvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q3_d_fb"/>
+          </respcondition>
+        </resprocessing>
+        <itemfeedback ident="q3_a_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Correct!</strong> Always specify heading levels in annotations. iOS VoiceOver announces "heading level 2" and supports filtering by level. Android TalkBack announces just "heading" (no level), but marking headings still enables navigation by swiping between headings. One annotation with levels serves both platforms.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="q3_b_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Incorrect.</strong> iOS users need heading levels for full navigation capability. VoiceOver announces the specific level and allows users to navigate by heading level. Omitting levels would create an incomplete experience for iOS users.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="q3_c_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Incorrect.</strong> Maintaining separate annotations for different platforms creates unnecessary complexity and increases the chance of errors. One annotation with full heading levels works for both platforms.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="q3_d_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Incorrect.</strong> Headings must be explicitly specified in design for engineering to implement. TalkBack does not automatically identify headings. If headings are not annotated and implemented, users cannot navigate by headings at all.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+      </item>
+
+      <!-- QUESTION 4: 1B.01 - Identifying What Should Be a Heading (Carousel) -->
+      <item ident="q4_identify_heading_carousel" title="Identifying What Should Be a Heading">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield>
+              <fieldlabel>question_type</fieldlabel>
+              <fieldentry>multiple_choice_question</fieldentry>
+            </qtimetadatafield>
+            <qtimetadatafield>
+              <fieldlabel>points_possible</fieldlabel>
+              <fieldentry>1</fieldentry>
+            </qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material>
+            <mattext texttype="text/html"><![CDATA[<p><img src="l2-q3-stimulus.png" alt="Text reads: Get inspired by the community. Large, bold, decorative font. Text reads: Discover prompts to remix and make your own. medium, bold. All text set over some images in a carousel." /></p><p>A marketing page has the following text styled prominently at the top:</p><pre>Line 1: "Get inspired by the community" (large, bold, decorative font)
+Line 2: "Discover prompts to remix and make your own." (medium, bold)</pre><p>Which text should be marked as a heading?</p>]]></mattext>
+          </material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice shuffle="Yes">
+              <response_label ident="q4_a">
+                <material>
+                  <mattext texttype="text/html"><![CDATA[Line 1]]></mattext>
+                </material>
+              </response_label>
+              <response_label ident="q4_b">
+                <material>
+                  <mattext texttype="text/html"><![CDATA[Line 2]]></mattext>
+                </material>
+              </response_label>
+              <response_label ident="q4_c">
+                <material>
+                  <mattext texttype="text/html"><![CDATA[Line 1 and 2]]></mattext>
+                </material>
+              </response_label>
+              <response_label ident="q4_d">
+                <material>
+                  <mattext texttype="text/html"><![CDATA[Neither Line 1 or 2]]></mattext>
+                </material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes>
+            <decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/>
+          </outcomes>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q4_a</varequal>
+            </conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q4_a_fb"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q4_b</varequal>
+            </conditionvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q4_b_fb"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q4_c</varequal>
+            </conditionvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q4_c_fb"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q4_d</varequal>
+            </conditionvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q4_d_fb"/>
+          </respcondition>
+        </resprocessing>
+        <itemfeedback ident="q4_a_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Correct!</strong> "Get inspired by the community" introduces a distinct content section (the carousel of community work) and helps users understand page structure. It functions as a heading because it labels what follows. Line 2 is supporting descriptive text that elaborates on Line 1, not a separate structural element.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="q4_b_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Incorrect.</strong> Line 2 is supporting text that describes the carousel content, not a structural heading. It elaborates on Line 1 rather than introducing a new section. Headings should label sections of content, not describe features within those sections.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="q4_c_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Incorrect.</strong> Only Line 1 functions as a heading. Line 2 provides context about what users can do but does not introduce a separate navigable section. Marking both as headings would create a confusing hierarchy where the supporting description appears as a peer to the section title.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="q4_d_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Incorrect.</strong> Line 1 clearly introduces a content section and should be marked as a heading. Without it, screen reader users navigating by headings would miss this entire carousel section. The prominent visual styling reinforces its structural role as a section label.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+      </item>
+
+      <!-- QUESTION 5: 1B.01 - Identifying What Should Be a Heading (Cards) -->
+      <item ident="q5_identify_heading_cards" title="Identifying What Should Be a Heading - Cards">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield>
+              <fieldlabel>question_type</fieldlabel>
+              <fieldentry>multiple_choice_question</fieldentry>
+            </qtimetadatafield>
+            <qtimetadatafield>
+              <fieldlabel>points_possible</fieldlabel>
+              <fieldentry>1</fieldentry>
+            </qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material>
+            <mattext texttype="text/html"><![CDATA[<p><img src="l2-q5-stimulus.png" alt="Adobe product landing page on a red background. Four white cards display starting options, each with an icon: a cloud upload icon for Start from your content, a toggle with sparkles for AI Assistant marked as beta, a rocket for Explore quick actions, and a magnifying glass with lightning bolt for Browse templates." /></p><p>What heading level should the text in the cards be set at?</p>]]></mattext>
+          </material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice shuffle="Yes">
+              <response_label ident="q5_a">
+                <material>
+                  <mattext texttype="text/html"><![CDATA[The text should be at H2 as each card represents a new section of the page. That text is not a heading, it's the visible text label and therefore the accessible name of the link.]]></mattext>
+                </material>
+              </response_label>
+              <response_label ident="q5_b">
+                <material>
+                  <mattext texttype="text/html"><![CDATA[The text should be at H3 as each card relates to the H2 of "Adobe" written above.]]></mattext>
+                </material>
+              </response_label>
+              <response_label ident="q5_c">
+                <material>
+                  <mattext texttype="text/html"><![CDATA[These should be list items, not headings, because they are a group of related options.]]></mattext>
+                </material>
+              </response_label>
+              <response_label ident="q5_d">
+                <material>
+                  <mattext texttype="text/html"><![CDATA[The text should be at H2 as each card represents a new section of the page.]]></mattext>
+                </material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes>
+            <decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/>
+          </outcomes>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q5_a</varequal>
+            </conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q5_a_fb"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q5_b</varequal>
+            </conditionvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q5_b_fb"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q5_c</varequal>
+            </conditionvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q5_c_fb"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">q5_d</varequal>
+            </conditionvar>
+            <displayfeedback feedbacktype="Response" linkrefid="q5_d_fb"/>
+          </respcondition>
+        </resprocessing>
+        <itemfeedback ident="q5_a_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Correct!</strong> These cards are interactive elements (links or buttons) that take users to different starting points. The text on each card ("Start from your content," "AI Assistant," etc.) serves as the accessible name of that interactive element, not a document heading. Headings create navigable page structure, while accessible names describe what an interactive element does. When a screen reader user tabs to one of these cards, they hear the text as the link name. Marking these as headings would create a misleading document outline where navigation options appear as content sections.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="q5_b_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Incorrect.</strong> "Adobe" is a logo, not a heading in the document structure. Logos identify the brand but do not create document hierarchy. There is no H2 above these cards, so H3 would skip a level and break the heading hierarchy. The card titles function as the first major content sections on this page.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="q5_c_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Incorrect.</strong> While the cards are visually grouped, list markup alone would not provide the same navigation benefits. Headings allow screen reader users to jump directly to each option using heading navigation. A list would require users to arrow through each item sequentially. Headings better serve the navigational purpose here.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="q5_d_fb">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p><strong>Incorrect.</strong> While H2 would be appropriate if these were section headings, that is not their function here. These cards are interactive elements (links) that users click to start different workflows. The text describes the action each card performs, making it the accessible name of the link. Headings structure document content for navigation; accessible names describe what interactive controls do. These serve different purposes and should not be conflated.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+      </item>
+
+    </section>
+  </assessment>
+</questestinterop>

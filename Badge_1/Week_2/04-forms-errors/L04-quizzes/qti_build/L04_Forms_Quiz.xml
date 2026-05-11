@@ -1,0 +1,559 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<questestinterop xmlns="http://www.imsglobal.org/xsd/ims_qtiasiv1p2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.imsglobal.org/xsd/ims_qtiasiv1p2 http://www.imsglobal.org/xsd/ims_qtiasiv1p2p1.xsd">
+  <assessment ident="L04_Forms_Quiz" title="L04: Forms and Errors - Knowledge Check Quiz">
+    <qtimetadata>
+      <qtimetadatafield>
+        <fieldlabel>qmd_timelimit</fieldlabel>
+        <fieldentry></fieldentry>
+      </qtimetadatafield>
+      <qtimetadatafield>
+        <fieldlabel>cc_maxattempts</fieldlabel>
+        <fieldentry>1</fieldentry>
+      </qtimetadatafield>
+    </qtimetadata>
+    <section ident="root_section">
+      
+      <!-- Question 1: Placeholder Labels (1D.01) -->
+      <item ident="Q1_placeholder_labels" title="Question 1: Placeholder Labels">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield>
+              <fieldlabel>question_type</fieldlabel>
+              <fieldentry>multiple_choice_question</fieldentry>
+            </qtimetadatafield>
+            <qtimetadatafield>
+              <fieldlabel>points_possible</fieldlabel>
+              <fieldentry>1</fieldentry>
+            </qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material>
+            <mattext texttype="text/html"><![CDATA[
+<p>A form uses placeholder text inside input fields instead of visible labels. What is the primary accessibility problem?</p>
+            ]]></mattext>
+          </material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice shuffle="Yes">
+              <response_label ident="A">
+                <material>
+                  <mattext texttype="text/plain">Placeholder text disappears when users start typing, leaving them without context</mattext>
+                </material>
+              </response_label>
+              <response_label ident="B">
+                <material>
+                  <mattext texttype="text/plain">Placeholder text is too small to read</mattext>
+                </material>
+              </response_label>
+              <response_label ident="C">
+                <material>
+                  <mattext texttype="text/plain">Placeholder text cannot be translated which negatively impacts localization</mattext>
+                </material>
+              </response_label>
+              <response_label ident="D">
+                <material>
+                  <mattext texttype="text/plain">Placeholder text uses the wrong color</mattext>
+                </material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes>
+            <decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/>
+          </outcomes>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">A</varequal>
+            </conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+            <displayfeedback feedbacktype="Response" linkrefid="A_feedback"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">B</varequal>
+            </conditionvar>
+            <setvar action="Set" varname="SCORE">0</setvar>
+            <displayfeedback feedbacktype="Response" linkrefid="B_feedback"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">C</varequal>
+            </conditionvar>
+            <setvar action="Set" varname="SCORE">0</setvar>
+            <displayfeedback feedbacktype="Response" linkrefid="C_feedback"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">D</varequal>
+            </conditionvar>
+            <setvar action="Set" varname="SCORE">0</setvar>
+            <displayfeedback feedbacktype="Response" linkrefid="D_feedback"/>
+          </respcondition>
+        </resprocessing>
+        <itemfeedback ident="A_feedback">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p>Correct! When placeholder text disappears, users lose the context of what information the field requires. This is especially problematic for users with cognitive disabilities or anyone who gets interrupted while filling out a form. SC 3.3.2 requires labels to be visible and persistent.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="B_feedback">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p>Incorrect. While placeholder text contrast can be an issue, this is not the primary accessibility problem with placeholder-only labels. The main issue is that placeholders disappear when users start typing.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="C_feedback">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p>Incorrect. Placeholder text can be translated just like any other text. The accessibility issue is that placeholder text disappears when users begin typing, leaving them without context about what the field requires.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="D_feedback">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p>Incorrect. While placeholder text often has low contrast, the primary accessibility problem is that it disappears when users start typing. Users need persistent labels that remain visible throughout the form completion process.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+      </item>
+
+      <!-- Question 2: Icon-Only Labels (1D.01) -->
+      <item ident="Q2_icon_only_labels" title="Question 2: Icon-Only Labels">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield>
+              <fieldlabel>question_type</fieldlabel>
+              <fieldentry>multiple_choice_question</fieldentry>
+            </qtimetadatafield>
+            <qtimetadatafield>
+              <fieldlabel>points_possible</fieldlabel>
+              <fieldentry>1</fieldentry>
+            </qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material>
+            <mattext texttype="text/html"><![CDATA[
+<p><img src="$IMS-CC-FILEBASE$/q2-stimulus.png" alt="A text field component with the email icon serving as the label and value asking for an email address." /></p>
+<p>A designer creates an email input field that uses an envelope icon instead of a visible text label. What must the designer annotate for this field to be accessible?</p>
+            ]]></mattext>
+          </material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice shuffle="Yes">
+              <response_label ident="A">
+                <material>
+                  <mattext texttype="text/plain">An accessible name for the icon (e.g., "Email address")</mattext>
+                </material>
+              </response_label>
+              <response_label ident="B">
+                <material>
+                  <mattext texttype="text/plain">The icon must be 24 by 24 pixels</mattext>
+                </material>
+              </response_label>
+              <response_label ident="C">
+                <material>
+                  <mattext texttype="text/plain">The icon color must have 4.5:1 contrast</mattext>
+                </material>
+              </response_label>
+              <response_label ident="D">
+                <material>
+                  <mattext texttype="text/plain">No annotation is needed since the icon is universally understood</mattext>
+                </material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes>
+            <decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/>
+          </outcomes>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">A</varequal>
+            </conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+            <displayfeedback feedbacktype="Response" linkrefid="A_feedback"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">B</varequal>
+            </conditionvar>
+            <setvar action="Set" varname="SCORE">0</setvar>
+            <displayfeedback feedbacktype="Response" linkrefid="B_feedback"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">C</varequal>
+            </conditionvar>
+            <setvar action="Set" varname="SCORE">0</setvar>
+            <displayfeedback feedbacktype="Response" linkrefid="C_feedback"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">D</varequal>
+            </conditionvar>
+            <setvar action="Set" varname="SCORE">0</setvar>
+            <displayfeedback feedbacktype="Response" linkrefid="D_feedback"/>
+          </respcondition>
+        </resprocessing>
+        <itemfeedback ident="A_feedback">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p>Correct! When an icon replaces a text label, the designer must annotate an accessible name. Screen readers cannot interpret icons visually, so without an accessible name annotation like "Email address," users would hear only "text input" with no indication of what information to enter.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="B_feedback">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p>Incorrect. The 24x24 pixel requirement applies to interactive touch targets, not icons serving as labels. The icon is not the hit area for this input, the text field is. The critical accessibility requirement is providing an accessible name so screen reader users know what information to enter.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="C_feedback">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p>Incorrect. While the icon does need sufficient contrast under SC 1.4.11, this doesn't solve the labeling problem. Screen readers cannot see the icon at all, so contrast is irrelevant for them. The field needs an accessible name annotation.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="D_feedback">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p>Incorrect. No icon is universally understood, and even if it were, screen readers cannot interpret visual symbols. An envelope icon provides zero information to someone using a screen reader. An accessible name annotation is required.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+      </item>
+
+      <!-- Question 3: Error Message Content (1D.02) -->
+      <item ident="Q3_error_message_content" title="Question 3: Error Message Content">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield>
+              <fieldlabel>question_type</fieldlabel>
+              <fieldentry>multiple_choice_question</fieldentry>
+            </qtimetadatafield>
+            <qtimetadatafield>
+              <fieldlabel>points_possible</fieldlabel>
+              <fieldentry>1</fieldentry>
+            </qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material>
+            <mattext texttype="text/html"><![CDATA[
+<p>A user enters "john.smith@" in an email field and submits the form. Which error message best meets WCAG requirements?</p>
+            ]]></mattext>
+          </material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice shuffle="Yes">
+              <response_label ident="A">
+                <material>
+                  <mattext texttype="text/plain">"Please enter a valid email address, for example: name@company.com"</mattext>
+                </material>
+              </response_label>
+              <response_label ident="B">
+                <material>
+                  <mattext texttype="text/plain">"The email field contains an error that must be corrected"</mattext>
+                </material>
+              </response_label>
+              <response_label ident="C">
+                <material>
+                  <mattext texttype="text/plain">"Email format is incorrect, please review your entry carefully"</mattext>
+                </material>
+              </response_label>
+              <response_label ident="D">
+                <material>
+                  <mattext texttype="text/plain">"There was a problem with the information you entered"</mattext>
+                </material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes>
+            <decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/>
+          </outcomes>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">A</varequal>
+            </conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+            <displayfeedback feedbacktype="Response" linkrefid="A_feedback"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">B</varequal>
+            </conditionvar>
+            <setvar action="Set" varname="SCORE">0</setvar>
+            <displayfeedback feedbacktype="Response" linkrefid="B_feedback"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">C</varequal>
+            </conditionvar>
+            <setvar action="Set" varname="SCORE">0</setvar>
+            <displayfeedback feedbacktype="Response" linkrefid="C_feedback"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">D</varequal>
+            </conditionvar>
+            <setvar action="Set" varname="SCORE">0</setvar>
+            <displayfeedback feedbacktype="Response" linkrefid="D_feedback"/>
+          </respcondition>
+        </resprocessing>
+        <itemfeedback ident="A_feedback">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p>Correct! This message identifies the problem (invalid email format) and suggests how to fix it (shows an example of correct format). SC 3.3.1 requires errors be identified, and SC 3.3.3 requires suggestions for correction.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="B_feedback">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p>Incorrect. This identifies there's an error but doesn't explain what's wrong or how to fix it. Users need to know specifically what the problem is and what format is expected.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="C_feedback">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p>Incorrect. This identifies the problem (incorrect format) but "review your entry carefully" isn't a helpful suggestion. Users need specific guidance on the correct format.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="D_feedback">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p>Incorrect. This is too vague. It doesn't identify which field has the error, what's wrong, or how to fix it. Users would have to guess what went wrong.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+      </item>
+
+      <!-- Question 4: Error Indication (1D.02) -->
+      <item ident="Q4_error_indication" title="Question 4: Error Indication">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield>
+              <fieldlabel>question_type</fieldlabel>
+              <fieldentry>multiple_choice_question</fieldentry>
+            </qtimetadatafield>
+            <qtimetadatafield>
+              <fieldlabel>points_possible</fieldlabel>
+              <fieldentry>1</fieldentry>
+            </qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material>
+            <mattext texttype="text/html"><![CDATA[
+<p>A form field's border turns red when there's an error, but no error text is displayed. What WCAG failure does this represent?</p>
+            ]]></mattext>
+          </material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice shuffle="Yes">
+              <response_label ident="A">
+                <material>
+                  <mattext texttype="text/plain">Both SC 1.4.1 Use of Color and SC 3.3.1 Error Identification</mattext>
+                </material>
+              </response_label>
+              <response_label ident="B">
+                <material>
+                  <mattext texttype="text/plain">Both SC 1.4.11 UI Contrast and SC 3.3.2 Labels and Instructions</mattext>
+                </material>
+              </response_label>
+              <response_label ident="C">
+                <material>
+                  <mattext texttype="text/plain">Both SC 1.4.3 Text Contrast and SC 3.3.4 Error Prevention</mattext>
+                </material>
+              </response_label>
+              <response_label ident="D">
+                <material>
+                  <mattext texttype="text/plain">Both SC 1.4.6 Contrast Enhanced and SC 3.3.3 Error Suggestion</mattext>
+                </material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes>
+            <decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/>
+          </outcomes>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">A</varequal>
+            </conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+            <displayfeedback feedbacktype="Response" linkrefid="A_feedback"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">B</varequal>
+            </conditionvar>
+            <setvar action="Set" varname="SCORE">0</setvar>
+            <displayfeedback feedbacktype="Response" linkrefid="B_feedback"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">C</varequal>
+            </conditionvar>
+            <setvar action="Set" varname="SCORE">0</setvar>
+            <displayfeedback feedbacktype="Response" linkrefid="C_feedback"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">D</varequal>
+            </conditionvar>
+            <setvar action="Set" varname="SCORE">0</setvar>
+            <displayfeedback feedbacktype="Response" linkrefid="D_feedback"/>
+          </respcondition>
+        </resprocessing>
+        <itemfeedback ident="A_feedback">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p>Correct! This fails SC 1.4.1 because color is the only indicator of the error (users with color vision deficiencies may not perceive the red). It also fails SC 3.3.1 because the error is not described in text. Accessible error states require text descriptions plus non-color visual indicators like icons.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="B_feedback">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p>Incorrect. SC 1.4.11 (Non-text Contrast) addresses whether UI components have sufficient contrast ratio (3:1), not whether color is used alone to convey information. SC 3.3.2 (Labels or Instructions) is about providing labels for inputs, not about error states. The correct criteria are SC 1.4.1 (color as sole indicator) and SC 3.3.1 (errors must be described in text).</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="C_feedback">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p>Incorrect. SC 1.4.3 (Contrast Minimum) addresses text contrast ratios (4.5:1), not whether color alone conveys information. SC 3.3.4 (Error Prevention) applies to legal, financial, or data submissions requiring user confirmation, not to how errors are displayed. The correct criteria are SC 1.4.1 and SC 3.3.1.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="D_feedback">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p>Incorrect. SC 1.4.6 (Contrast Enhanced) is a AAA-level criterion for 7:1 text contrast, not about color as information. SC 3.3.3 (Error Suggestion) requires providing suggestions for fixing errors, but this scenario fails before that: there's no error text at all. The correct criteria are SC 1.4.1 (color alone) and SC 3.3.1 (error identification in text).</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+      </item>
+
+      <!-- Question 5: Input Purpose Understanding (1D.03) -->
+      <item ident="Q5_input_purpose_understanding" title="Question 5: Input Purpose Understanding">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield>
+              <fieldlabel>question_type</fieldlabel>
+              <fieldentry>multiple_choice_question</fieldentry>
+            </qtimetadatafield>
+            <qtimetadatafield>
+              <fieldlabel>points_possible</fieldlabel>
+              <fieldentry>1</fieldentry>
+            </qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material>
+            <mattext texttype="text/html"><![CDATA[
+<p>Why does SC 1.3.5 (Identify Input Purpose) require autocomplete support for fields collecting personal information?</p>
+            ]]></mattext>
+          </material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice shuffle="Yes">
+              <response_label ident="A">
+                <material>
+                  <mattext texttype="text/plain">It helps users with motor and cognitive disabilities complete forms faster with fewer errors</mattext>
+                </material>
+              </response_label>
+              <response_label ident="B">
+                <material>
+                  <mattext texttype="text/plain">It ensures form field borders have sufficient contrast against the background</mattext>
+                </material>
+              </response_label>
+              <response_label ident="C">
+                <material>
+                  <mattext texttype="text/plain">It requires all form fields to display inline validation messages</mattext>
+                </material>
+              </response_label>
+              <response_label ident="D">
+                <material>
+                  <mattext texttype="text/plain">It prevents users from submitting forms with empty required fields</mattext>
+                </material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes>
+            <decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/>
+          </outcomes>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">A</varequal>
+            </conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+            <displayfeedback feedbacktype="Response" linkrefid="A_feedback"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">B</varequal>
+            </conditionvar>
+            <setvar action="Set" varname="SCORE">0</setvar>
+            <displayfeedback feedbacktype="Response" linkrefid="B_feedback"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">C</varequal>
+            </conditionvar>
+            <setvar action="Set" varname="SCORE">0</setvar>
+            <displayfeedback feedbacktype="Response" linkrefid="C_feedback"/>
+          </respcondition>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">D</varequal>
+            </conditionvar>
+            <setvar action="Set" varname="SCORE">0</setvar>
+            <displayfeedback feedbacktype="Response" linkrefid="D_feedback"/>
+          </respcondition>
+        </resprocessing>
+        <itemfeedback ident="A_feedback">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p>Correct! Autocomplete reduces keystrokes for users with motor disabilities and reduces memory demands for users with cognitive disabilities. When browsers and assistive technologies can identify input purpose, they can help users fill forms automatically.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="B_feedback">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p>Incorrect. Form field contrast is covered by SC 1.4.11 (Non-text Contrast), not SC 1.3.5. Input purpose is about enabling autocomplete so browsers and assistive technologies can help users fill in personal information automatically.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="C_feedback">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p>Incorrect. Validation messages relate to SC 3.3.1 (Error Identification), not SC 1.3.5. Input purpose is about enabling autocomplete for fields collecting user information like names, addresses, and payment details.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+        <itemfeedback ident="D_feedback">
+          <flow_mat>
+            <material>
+              <mattext texttype="text/html"><![CDATA[<p>Incorrect. Required field validation relates to SC 3.3.1 and 3.3.2, not SC 1.3.5. Input purpose is about enabling autocomplete so browsers and assistive technologies can help users complete forms with less effort.</p>]]></mattext>
+            </material>
+          </flow_mat>
+        </itemfeedback>
+      </item>
+
+    </section>
+  </assessment>
+</questestinterop>

@@ -1,0 +1,653 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:02.360
+Alright, let's talk about a piece of assistive technology
+
+2
+00:00:02.360 --> 00:00:05.045
+that is a huge blind spot for so many designers,
+
+3
+00:00:05.305 --> 00:00:06.405
+screen magnification.
+
+4
+00:00:06.735 --> 00:00:08.925
+We're gonna get into why it's so often overlooked
+
+5
+00:00:08.945 --> 00:00:10.645
+and why that's a really big deal.
+
+6
+00:00:11.505 --> 00:00:13.235
+Okay, let's just start right here
+
+7
+00:00:13.235 --> 00:00:14.755
+because this quote says it all.
+
+8
+00:00:15.095 --> 00:00:17.835
+Low vision is the most common visual disability.
+
+9
+00:00:18.225 --> 00:00:21.355
+That means way more people are using magnification tools
+
+10
+00:00:21.385 --> 00:00:22.755
+than say, screen readers.
+
+11
+00:00:23.055 --> 00:00:24.995
+But for some reason we tend to think, oh,
+
+12
+00:00:25.155 --> 00:00:26.195
+I checked browser zoom.
+
+13
+00:00:26.415 --> 00:00:27.595
+I'm good. Today.
+
+14
+00:00:27.685 --> 00:00:30.475
+We're gonna see why that assumption is fundamentally broken.
+
+15
+00:00:31.335 --> 00:00:32.555
+So here's our game plan.
+
+16
+00:00:32.605 --> 00:00:34.235
+We'll start with the zoom you're already used to
+
+17
+00:00:34.455 --> 00:00:36.555
+and then we'll dive into the two very different
+
+18
+00:00:36.555 --> 00:00:37.715
+worlds of magnification.
+
+19
+00:00:38.305 --> 00:00:40.155
+From there, we'll see what it's actually like
+
+20
+00:00:40.155 --> 00:00:41.835
+to browse the web through a keyhole.
+
+21
+00:00:42.095 --> 00:00:44.395
+See how perfectly good designs can fall apart.
+
+22
+00:00:44.645 --> 00:00:46.515
+Learn how to really test for this stuff
+
+23
+00:00:46.815 --> 00:00:48.155
+and then boil it all down
+
+24
+00:00:48.175 --> 00:00:51.475
+to two super simple design principles, right?
+
+25
+00:00:51.575 --> 00:00:52.875
+So let's start on familiar ground.
+
+26
+00:00:53.135 --> 00:00:55.835
+You know about WCAG, you test for zoom
+
+27
+00:00:55.835 --> 00:00:57.875
+and reflow as part of your accessibility checklist,
+
+28
+00:00:58.095 --> 00:01:00.755
+and honestly, that is a great and necessary first step.
+
+29
+00:01:01.535 --> 00:01:02.595
+So you do the thing, right?
+
+30
+00:01:02.775 --> 00:01:04.035
+You crank up the browser, zoom
+
+31
+00:01:04.035 --> 00:01:07.075
+to 400% the content reflows into a single column,
+
+32
+00:01:07.455 --> 00:01:09.075
+no horizontal scroll bar appears
+
+33
+00:01:09.215 --> 00:01:11.355
+and you check the box, you are compliant.
+
+34
+00:01:11.695 --> 00:01:13.195
+But here's the million dollar question.
+
+35
+00:01:13.585 --> 00:01:16.635
+Does that check box actually mean a real person using
+
+36
+00:01:16.635 --> 00:01:18.235
+magnification can use your site?
+
+37
+00:01:18.655 --> 00:01:20.195
+The answer, as you're about to find out,
+
+38
+00:01:20.215 --> 00:01:21.835
+is often a resounding no.
+
+39
+00:01:22.535 --> 00:01:26.395
+And to get why that is, we first have to understand
+
+40
+00:01:26.395 --> 00:01:29.195
+that magnification isn't just one thing,
+
+41
+00:01:29.545 --> 00:01:31.155
+it's a whole category of tools
+
+42
+00:01:31.375 --> 00:01:32.835
+and they work in completely different ways.
+
+43
+00:01:33.955 --> 00:01:36.325
+This right here, this is the core concept.
+
+44
+00:01:36.505 --> 00:01:39.405
+You need to get browser zoom the thing you test for.
+
+45
+00:01:39.405 --> 00:01:41.605
+Compliance, literally rebuilds the page layout,
+
+46
+00:01:41.745 --> 00:01:44.685
+it reflows everything but system magnification.
+
+47
+00:01:44.985 --> 00:01:46.485
+It does something totally different.
+
+48
+00:01:46.655 --> 00:01:47.645
+Think of it like a literal
+
+49
+00:01:47.645 --> 00:01:49.125
+magnifying glass held up to your screen.
+
+50
+00:01:49.345 --> 00:01:50.925
+It just makes the pixels bigger.
+
+51
+00:01:51.225 --> 00:01:52.645
+The layout doesn't change at all.
+
+52
+00:01:53.065 --> 00:01:54.325
+And that difference, well,
+
+53
+00:01:54.385 --> 00:01:55.965
+it changes everything for the user.
+
+54
+00:01:56.885 --> 00:01:59.425
+And these tools really fall into four main buckets.
+
+55
+00:01:59.605 --> 00:02:01.905
+You've got the heavy duty software like Zoom text,
+
+56
+00:02:02.035 --> 00:02:04.625
+which often bundles, magnification with a screen reader.
+
+57
+00:02:04.935 --> 00:02:07.265
+Then you've got the tools built right into the operating
+
+58
+00:02:07.265 --> 00:02:10.745
+system like Windows Magnifier or the Zoom on Mac Os.
+
+59
+00:02:10.895 --> 00:02:12.705
+They're free and on every machine.
+
+60
+00:02:13.255 --> 00:02:15.345
+Then there's the browser zoom, you already know.
+
+61
+00:02:15.645 --> 00:02:18.665
+And of course, pinch to zoom on your phone. See a pattern.
+
+62
+00:02:19.175 --> 00:02:22.705
+Most of these are pixel magnifiers, not layout reflows.
+
+63
+00:02:23.665 --> 00:02:25.045
+And this brings us to the real
+
+64
+00:02:25.345 --> 00:02:26.485
+aha moment of this whole thing.
+
+65
+00:02:26.905 --> 00:02:30.125
+To truly understand what designing for magnification means
+
+66
+00:02:30.665 --> 00:02:32.685
+you have to stop thinking about your design on
+
+67
+00:02:32.725 --> 00:02:33.805
+a big beautiful monitor.
+
+68
+00:02:34.315 --> 00:02:37.045
+Instead, I want you to imagine you're trying to see it
+
+69
+00:02:37.045 --> 00:02:38.605
+through a tiny keyhole.
+
+70
+00:02:39.525 --> 00:02:42.515
+Let's make this real. What is the lived experience?
+
+71
+00:02:42.945 --> 00:02:45.515
+What does somebody using system level magnification
+
+72
+00:02:46.075 --> 00:02:47.515
+actually see when they land on your page?
+
+73
+00:02:48.735 --> 00:02:51.265
+Okay, let's start with a pretty common setting.
+
+74
+00:02:51.615 --> 00:02:53.025
+Four times magnification.
+
+75
+00:02:53.975 --> 00:02:56.875
+At this level, the user is seeing just one 16th
+
+76
+00:02:56.935 --> 00:02:58.035
+of your beautiful design.
+
+77
+00:02:58.215 --> 00:03:01.645
+At any given moment, the rest of the screen is just gone.
+
+78
+00:03:02.065 --> 00:03:04.525
+To see anything else, they have to physically pan
+
+79
+00:03:04.525 --> 00:03:05.565
+that little window around.
+
+80
+00:03:06.625 --> 00:03:08.325
+Now what if they need more clarity?
+
+81
+00:03:08.695 --> 00:03:10.725
+Let's push it to eight times magnification,
+
+82
+00:03:10.855 --> 00:03:12.405
+which is not uncommon at all.
+
+83
+00:03:13.155 --> 00:03:17.135
+At eight x their views shrinks to a staggering one 64th
+
+84
+00:03:17.195 --> 00:03:18.935
+of the total screen area.
+
+85
+00:03:19.605 --> 00:03:21.335
+Just pause and think about that for a second.
+
+86
+00:03:21.835 --> 00:03:23.695
+How would you navigate a complex header
+
+87
+00:03:23.695 --> 00:03:25.935
+or fill out a form if you could only see
+
+88
+00:03:25.935 --> 00:03:27.015
+that tiny piece of it?
+
+89
+00:03:27.555 --> 00:03:30.615
+So how on earth do people manage this? It's not chaos.
+
+90
+00:03:31.005 --> 00:03:32.455
+They are actively Building a
+
+91
+00:03:32.455 --> 00:03:33.735
+mental map of your interface.
+
+92
+00:03:34.045 --> 00:03:36.895
+They're using their spatial memory, relying on things
+
+93
+00:03:36.895 --> 00:03:39.055
+that are always in the same place, like your logo
+
+94
+00:03:39.195 --> 00:03:41.495
+or main navigation to orient themselves.
+
+95
+00:03:42.025 --> 00:03:43.295
+Their software helps By
+
+96
+00:03:43.295 --> 00:03:44.455
+following the mouse or the keyboard
+
+97
+00:03:44.505 --> 00:03:46.615
+Focus, but It all hinges on a layout
+
+98
+00:03:46.615 --> 00:03:48.095
+that is predictable and makes sense.
+
+99
+00:03:48.875 --> 00:03:50.735
+So this is where it gets painful.
+
+100
+00:03:51.745 --> 00:03:53.035
+What happens when a design
+
+101
+00:03:53.035 --> 00:03:54.915
+that looks amazing at a hundred percent
+
+102
+00:03:55.015 --> 00:03:58.635
+and even passes that WCAG reflow test gets viewed
+
+103
+00:03:58.635 --> 00:04:00.075
+through this tiny keyhole?
+
+104
+00:04:00.895 --> 00:04:03.615
+Well, it breaks a lot.
+
+105
+00:04:04.645 --> 00:04:07.025
+And these are the classic culprits.
+
+106
+00:04:07.205 --> 00:04:09.145
+You've gotta label way over on the left
+
+107
+00:04:09.285 --> 00:04:12.745
+and its input field is way on the right through a keyhole.
+
+108
+00:04:12.765 --> 00:04:14.105
+The user has to pan back
+
+109
+00:04:14.225 --> 00:04:16.185
+and forth trying to remember what they're supposed
+
+110
+00:04:16.185 --> 00:04:18.545
+to be typing or a tool tip pops up,
+
+111
+00:04:18.605 --> 00:04:21.545
+but it's outside their tiny view so they never even see it.
+
+112
+00:04:21.845 --> 00:04:25.225
+And that giant trendy, sticky header at eight x zoom,
+
+113
+00:04:25.285 --> 00:04:27.465
+it can eat up half of their usable screen space.
+
+114
+00:04:27.755 --> 00:04:30.665
+These aren't just little annoyances, they're deal breakers.
+
+115
+00:04:31.725 --> 00:04:33.575
+Okay? So that's the problem.
+
+116
+00:04:34.035 --> 00:04:37.015
+It feels big, but the solution is actually pretty clear.
+
+117
+00:04:37.475 --> 00:04:40.295
+You just need to stop thinking of testing as one step
+
+118
+00:04:40.595 --> 00:04:42.815
+and start thinking of it as a two track approach.
+
+119
+00:04:43.845 --> 00:04:45.655
+It's really this simple track.
+
+120
+00:04:45.715 --> 00:04:48.255
+One is what you're already doing testing for compliance
+
+121
+00:04:48.255 --> 00:04:51.775
+with browser zoom, but you need to add track two testing
+
+122
+00:04:51.995 --> 00:04:54.815
+for the actual experience with system magnification.
+
+123
+00:04:55.475 --> 00:04:58.055
+One is about the code, the other is about the human.
+
+124
+00:04:58.985 --> 00:05:02.725
+Put it this way, browser zoom at 400% answers the question,
+
+125
+00:05:03.145 --> 00:05:06.405
+can my layout technically reflow system magnification at
+
+126
+00:05:06.405 --> 00:05:07.885
+four x answers the question.
+
+127
+00:05:08.425 --> 00:05:10.085
+Can a person actually understand
+
+128
+00:05:10.105 --> 00:05:12.085
+and navigate my layout when they can only
+
+129
+00:05:12.105 --> 00:05:13.405
+see a tiny fraction of it?
+
+130
+00:05:13.795 --> 00:05:15.525
+They are completely different questions
+
+131
+00:05:15.525 --> 00:05:17.365
+that find completely different problems.
+
+132
+00:05:18.315 --> 00:05:21.695
+So how do we design our sites to pass both of these tests?
+
+133
+00:05:22.735 --> 00:05:23.975
+Honestly, it all comes down
+
+134
+00:05:23.975 --> 00:05:26.295
+to two simple, powerful principles.
+
+135
+00:05:26.595 --> 00:05:28.575
+If you just keep these two words in your head while you
+
+136
+00:05:28.575 --> 00:05:30.415
+design, you're gonna be most of the way there.
+
+137
+00:05:31.305 --> 00:05:34.565
+The first one is proximity. It's just what it sounds like.
+
+138
+00:05:34.745 --> 00:05:37.085
+Things that belong together should be together visually.
+
+139
+00:05:37.585 --> 00:05:41.045
+Put your labels right on top of your inputs, not miles away.
+
+140
+00:05:41.545 --> 00:05:43.765
+Put error messages right next to the field with the air.
+
+141
+00:05:44.115 --> 00:05:45.565
+Make sure tool tips appear right next
+
+142
+00:05:45.565 --> 00:05:46.725
+to the thing you're hovering over.
+
+143
+00:05:47.385 --> 00:05:49.925
+The goal is simple. Can a user see the cause
+
+144
+00:05:50.025 --> 00:05:52.525
+and the effect in one single magnified view?
+
+145
+00:05:53.135 --> 00:05:55.315
+And the second principle is predictability.
+
+146
+00:05:56.275 --> 00:05:58.045
+Remember that mental map your user is building.
+
+147
+00:05:58.695 --> 00:06:01.525
+Don't mess with it. Use consistent layouts.
+
+148
+00:06:01.675 --> 00:06:04.805
+Keep your navigation in the same spot on every single page.
+
+149
+00:06:05.145 --> 00:06:07.805
+And when something new appears, like a success message
+
+150
+00:06:07.905 --> 00:06:10.445
+or a modal window, make sure it appears right
+
+151
+00:06:10.445 --> 00:06:13.405
+where the user is already looking, not in some random corner
+
+152
+00:06:13.405 --> 00:06:16.495
+of the screen they can't see. So if
+
+153
+00:06:16.495 --> 00:06:18.175
+You walk away with just one thing today,
+
+154
+00:06:18.395 --> 00:06:21.375
+please let it be This compliance is not experience.
+
+155
+00:06:21.755 --> 00:06:23.815
+You have to start testing with the actual tools
+
+156
+00:06:23.815 --> 00:06:24.855
+your users are using.
+
+157
+00:06:25.205 --> 00:06:27.935
+Fire up windows, magnifier, turn on, zoom on your Mac
+
+158
+00:06:28.115 --> 00:06:30.015
+and stop relying only on browser Zoom.
+
+159
+00:06:30.565 --> 00:06:32.415
+I'll just leave you with this one question to take back
+
+160
+00:06:32.415 --> 00:06:33.895
+to your next design review.
+
+161
+00:06:34.545 --> 00:06:36.135
+Don't just ask if it's compliant.
+
+162
+00:06:36.515 --> 00:06:39.375
+Ask yourself and ask your team, is it usable
+
+163
+00:06:39.375 --> 00:06:40.255
+through a keyhole.

@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lesson 11: Screen Reader Navigation Patterns - Canvas Preview</title>
+</head>
+<body style="margin: 0; padding: 20px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif; background-color: #ffffff; color: #333333; line-height: 1.6;">
+  <!-- Note: This is a preview file. When copying to Canvas, copy only the content below this line -->
+  
+  <div style="max-width: 900px; margin: 0; padding: 24px 0 48px 0;">
+
+    <!-- Header Section -->
+    <div style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); border-radius: 8px; padding: 24px 28px; margin-bottom: 28px; border-left: 5px solid #FF6B6B;">
+      <h2 style="margin: 0 0 12px 0; font-size: 28px; font-weight: 600; color: #212529;">Lesson 11: Screen Reader Navigation Patterns</h2>
+      <div style="display: flex; flex-wrap: wrap; gap: 14px; margin-top: 18px;">
+        <span style="display: inline-flex; align-items: center; gap: 8px; background-color: #ffe3e3; color: #c92a2a; padding: 10px 18px; border-radius: 24px; font-size: 15px; font-weight: 500;">
+          <span style="font-size: 18px;">🎯</span> Define Badge
+        </span>
+        <span style="display: inline-flex; align-items: center; gap: 8px; background-color: #e7f5ff; color: #1864ab; padding: 10px 18px; border-radius: 24px; font-size: 15px; font-weight: 500;">
+          <span style="font-size: 18px;">🏷️</span> Module 2B
+        </span>
+      </div>
+    </div>
+
+    <!-- Introduction -->
+    <p style="font-size: 17px; color: #495057; margin-bottom: 16px; padding: 0 4px;">
+      Real product interfaces are made of complex components: data tables, multi-section forms, modal dialogs, tab panels, and dynamic content updates. Each of these patterns requires specific screen reader navigation techniques and specific design annotations to be accessible.
+    </p>
+    <p style="font-size: 17px; color: #495057; margin-bottom: 32px; padding: 0 4px;">
+      In this lesson, you'll extend your L10 screen reader fundamentals to navigate complex UI components. You'll learn how screen readers handle table cell navigation with header announcements, form groups with fieldset/legend, modal dialog focus management, tab panel keyboard interaction, and live regions for dynamic updates. These are the patterns where most accessibility failures happen, and where your design annotations make the biggest difference.
+    </p>
+
+    <!-- Lesson Activities Section -->
+    <div style="background-color: #fff; border: 1px solid #dee2e6; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #FF6B6B;">
+      <h3 style="margin: 0 0 8px 0; font-size: 20px; font-weight: 600; color: #212529; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">🎯</span> Lesson Activities
+      </h3>
+      <p style="margin: 0 0 20px 0; color: #495057; font-size: 15px;">Complete these activities for this lesson.</p>
+      
+      <!-- Activity Links -->
+      <table role="presentation" style="width: 100%; border-collapse: separate; border-spacing: 0 12px;">
+        <tr>
+          <td style="width: 44px; background-color: #f8f9fa; border: 1px solid #e9ecef; border-radius: 8px 0 0 8px; padding: 16px; text-align: center; vertical-align: middle;">
+            <span style="display: inline-block; width: 44px; height: 44px; background-color: #ffe3e3; border-radius: 8px; font-size: 22px; text-align: center; line-height: 44px;">🎨</span>
+          </td>
+          <td style="background-color: #f8f9fa; border-top: 1px solid #e9ecef; border-bottom: 1px solid #e9ecef; padding: 16px 12px; vertical-align: middle;">
+            <a href="https://www.figma.com/design/qqZXLIs7sA9HQVIUqHUoGt/DACE---Cohort-1?node-id=2468-3" target="_blank" rel="noopener noreferrer" style="color: #1864ab; text-decoration: underline;">
+              <strong style="color: #1864ab; font-size: 15px;">Lesson in Figma</strong><br>
+              <span style="color: #495057; font-size: 13px;">View the lesson walkthrough</span>
+            </a>
+          </td>
+          <td style="width: 40px; background-color: #f8f9fa; border: 1px solid #e9ecef; border-radius: 0 8px 8px 0; padding: 16px 16px 16px 0; text-align: right; vertical-align: middle;">
+            <a href="https://www.figma.com/design/qqZXLIs7sA9HQVIUqHUoGt/DACE---Cohort-1?node-id=2468-3" target="_blank" rel="noopener noreferrer" style="color: #495057; text-decoration: none;"><span style="color: #495057; font-size: 18px;">→</span></a>
+          </td>
+        </tr>
+        <tr>
+          <td style="width: 44px; background-color: #f8f9fa; border: 1px solid #e9ecef; border-radius: 8px 0 0 8px; padding: 16px; text-align: center; vertical-align: middle;">
+            <span style="display: inline-block; width: 44px; height: 44px; background-color: #d0ebff; border-radius: 8px; font-size: 22px; text-align: center; line-height: 44px;">🛠️</span>
+          </td>
+          <td style="background-color: #f8f9fa; border-top: 1px solid #e9ecef; border-bottom: 1px solid #e9ecef; padding: 16px 12px; vertical-align: middle;">
+            <a href="https://canvas.instructure.com/courses/13608566/assignments/62501779" target="_blank" rel="noopener noreferrer" style="color: #1864ab; text-decoration: underline;">
+              <strong style="color: #1864ab; font-size: 15px;">Applied Practice</strong><br>
+              <span style="color: #495057; font-size: 13px;">Hands-on assessment</span>
+            </a>
+          </td>
+          <td style="width: 40px; background-color: #f8f9fa; border: 1px solid #e9ecef; border-radius: 0 8px 8px 0; padding: 16px 16px 16px 0; text-align: right; vertical-align: middle;">
+            <a href="https://canvas.instructure.com/courses/13608566/assignments/62501779" target="_blank" rel="noopener noreferrer" style="color: #495057; text-decoration: none;"><span style="color: #495057; font-size: 18px;">→</span></a>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- Video Section -->
+    <div style="background-color: #f8f9fa; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #845ef7;">
+      <h3 style="margin: 0 0 8px 0; font-size: 20px; font-weight: 600; color: #212529; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">🎬</span> The Explainer
+      </h3>
+      <p style="margin: 0 0 20px 0; color: #495057; font-size: 15px;">Get an overview of screen reader navigation patterns before the live session.</p>
+      
+      <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; border-radius: 6px; background-color: #000;">
+        <iframe src="https://player.vimeo.com/video/1167456847" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" title="Lesson 11 Explainer: Screen Reader Navigation Patterns" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
+
+    <!-- Learning Objectives Section -->
+    <div id="learning-objectives" style="background-color: #fff; border: 1px solid #dee2e6; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #1971c2;">
+      <h3 style="margin: 0 0 8px 0; font-size: 20px; font-weight: 600; color: #212529; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">📋</span> Learning Objectives
+      </h3>
+      <p style="margin: 0 0 24px 0; color: #495057; font-size: 15px;">Learn how to navigate complex UI components with screen readers and understand the design annotation requirements for each pattern.</p>
+      
+      <!-- Learning Outcomes -->
+      <h4 style="margin: 0 0 12px 0; font-size: 17px; font-weight: 600; color: #212529;">Learning Outcomes</h4>
+      <p style="margin: 0 0 16px 0; color: #495057; font-size: 14px;">By the end of this lesson, you will be able to:</p>
+      
+      <table style="width: 100%; border-collapse: collapse; font-size: 15px; margin-bottom: 28px;">
+        <thead>
+          <tr style="background-color: #f1f3f4;">
+            <th scope="col" style="padding: 12px 16px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6; width: 70px;">ID</th>
+            <th scope="col" style="padding: 12px 16px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">Outcome</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="padding: 14px 16px; border-bottom: 1px solid #e9ecef; color: #212529; font-weight: 600; font-family: monospace;">2B.01</td>
+            <td style="padding: 14px 16px; border-bottom: 1px solid #e9ecef; color: #212529;"><strong>Navigate complex UI components</strong> including tables, forms, dialogs, and tab panels using screen reader commands</td>
+          </tr>
+          <tr style="background-color: #f8f9fa;">
+            <td style="padding: 14px 16px; border-bottom: 1px solid #e9ecef; color: #212529; font-weight: 600; font-family: monospace;">2B.02</td>
+            <td style="padding: 14px 16px; border-bottom: 1px solid #e9ecef; color: #212529;"><strong>Understand how browse mode and focus mode interact with complex components</strong> including dialogs with aria-modal, tab panels, and form field groups</td>
+          </tr>
+          <tr>
+            <td style="padding: 14px 16px; color: #212529; font-weight: 600; font-family: monospace;">2B.03</td>
+            <td style="padding: 14px 16px; color: #212529;"><strong>Use element lists and component-specific navigation</strong> to test complex page layouts, tables, and dynamic content with live regions</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Knowledge/Skills/Application Objectives -->
+      <h4 style="margin: 0 0 12px 0; font-size: 17px; font-weight: 600; color: #212529; padding-bottom: 8px; border-bottom: 2px solid #d0ebff;">Knowledge Objectives</h4>
+      <ul style="margin: 0 0 28px 0; padding-left: 24px; color: #212529; font-size: 14px;">
+        <li style="margin-bottom: 10px;">Explain how screen readers enter table navigation mode and announce row/column headers during cell-by-cell navigation.</li>
+        <li style="margin-bottom: 10px;">Describe how fieldset/legend groups create contextual announcements for form fields with the same name.</li>
+        <li style="margin-bottom: 10px;">Explain the dialog focus management lifecycle: focus movement on open, focus trapping, browse mode scoping (aria-modal), and focus return on close.</li>
+        <li style="margin-bottom: 10px;">Describe tab panel keyboard interaction: arrow keys move between tabs, Tab key moves into panel content, and ARIA roles provide position context.</li>
+        <li>Explain live region types (polite, assertive, off) and their appropriate use cases for dynamic content updates.</li>
+      </ul>
+
+      <h4 style="margin: 0 0 12px 0; font-size: 17px; font-weight: 600; color: #212529; padding-bottom: 8px; border-bottom: 2px solid #d0ebff;">Skills Objectives</h4>
+      <ul style="margin: 0 0 28px 0; padding-left: 24px; color: #212529; font-size: 14px;">
+        <li style="margin-bottom: 10px;">Navigate data tables cell by cell using screen reader table commands, hearing header context.</li>
+        <li style="margin-bottom: 10px;">Test form groups to verify group labels are announced and error messages are associated with fields.</li>
+        <li style="margin-bottom: 10px;">Verify modal dialog focus management: focus on open, focus trapping (Tab and browse mode), and focus return on close.</li>
+        <li>Navigate tab panels using arrow keys and verify tab/panel association with screen reader announcements.</li>
+      </ul>
+
+      <h4 style="margin: 0 0 12px 0; font-size: 17px; font-weight: 600; color: #212529; padding-bottom: 8px; border-bottom: 2px solid #d0ebff;">Application Objectives</h4>
+      <ul style="margin: 0 0 0 0; padding-left: 24px; color: #212529; font-size: 14px;">
+        <li style="margin-bottom: 10px;">Evaluate design specifications for complex component accessibility requirements (ARIA roles, focus management, announcement behavior).</li>
+        <li style="margin-bottom: 10px;">Recommend ARIA patterns for common design components (dialog, tablist, live regions).</li>
+        <li>Document complex component screen reader behavior for engineering teams.</li>
+      </ul>
+    </div>
+
+    <!-- Related WCAG Success Criteria Section -->
+    <div style="background-color: #f8f9fa; border: 1px solid #dee2e6; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #0ca678;">
+      <h3 style="margin: 0 0 16px 0; font-size: 20px; font-weight: 600; color: #212529; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">📜</span> Related WCAG Success Criteria
+      </h3>
+      <ul style="margin: 0; padding-left: 24px; color: #212529;">
+        <li style="margin-bottom: 8px;"><strong>1.3.1 Info and Relationships (Level A):</strong> Information, structure, and relationships conveyed through presentation can be programmatically determined (tables, form groups, landmarks)</li>
+        <li style="margin-bottom: 8px;"><strong>4.1.2 Name, Role, Value (Level A):</strong> For all user interface components, the name and role can be programmatically determined (dialogs, tabs, live regions)</li>
+        <li style="margin-bottom: 8px;"><strong>2.4.3 Focus Order (Level A):</strong> Components receive focus in an order that preserves meaning and operability (dialog focus trapping, tab panel interaction)</li>
+        <li style="margin-bottom: 8px;"><strong>4.1.3 Status Messages (Level AA):</strong> Status messages can be programmatically determined through role or properties so they can be presented to the user without receiving focus (live regions)</li>
+        <li><strong>1.3.2 Meaningful Sequence (Level A):</strong> When the sequence in which content is presented affects its meaning, a correct reading sequence can be programmatically determined (tab panels, table reading order)</li>
+      </ul>
+    </div>
+
+    <!-- Key Concepts Section -->
+    <div style="background-color: #fff; border: 1px solid #dee2e6; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #f59f00;">
+      <h3 style="margin: 0 0 20px 0; font-size: 20px; font-weight: 600; color: #212529; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">💡</span> Key Concepts
+      </h3>
+
+      <!-- Concept 1: Data Table Navigation -->
+      <div style="margin-bottom: 32px;">
+        <h4 style="margin: 0 0 12px 0; font-size: 18px; font-weight: 600; color: #212529;">Data Table Navigation</h4>
+        <p style="margin: 0 0 16px 0; color: #495057; font-size: 15px;">Screen readers have a dedicated table navigation mode. When entering a properly-marked table, the screen reader announces the table dimensions ("Table with 5 rows, 4 columns") and activates cell-by-cell navigation. As you move between cells, column and row headers are announced automatically to provide context for each data value.</p>
+        
+        <table style="width: 100%; border-collapse: collapse; font-size: 14px; margin-bottom: 16px;">
+          <thead>
+            <tr style="background-color: #f1f3f4;">
+              <th scope="col" style="padding: 10px 12px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">Action</th>
+              <th scope="col" style="padding: 10px 12px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">NVDA</th>
+              <th scope="col" style="padding: 10px 12px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">VoiceOver (Mac)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; font-weight: 600;">Jump to table</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; font-family: monospace;">T</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">VO+U → Tables</td>
+            </tr>
+            <tr style="background-color: #f8f9fa;">
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; font-weight: 600;">Move right/left</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; font-family: monospace;">Ctrl+Alt+Right/Left</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">VO+Right/Left</td>
+            </tr>
+            <tr>
+              <td style="padding: 10px 12px; font-weight: 600;">Move down/up</td>
+              <td style="padding: 10px 12px; font-family: monospace;">Ctrl+Alt+Down/Up</td>
+              <td style="padding: 10px 12px;">VO+Down/Up</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div style="background-color: #e7f5ff; border-left: 4px solid #1971c2; padding: 16px;">
+          <p style="margin: 0; color: #495057; font-size: 15px;"><strong>Designer Impact:</strong> Designers must specify which cells are column headers and which are row headers. Without this, table data is just a list of values with no context. A cell reading "$29.99" without a "Price" header is meaningless.</p>
+        </div>
+      </div>
+
+      <!-- Concept 2: Form Groups -->
+      <div style="margin-bottom: 32px;">
+        <h4 style="margin: 0 0 12px 0; font-size: 18px; font-weight: 600; color: #212529;">Form Groups and Error Handling</h4>
+        <p style="margin: 0 0 16px 0; color: #495057; font-size: 15px;">When a form has multiple sections (like shipping and billing addresses), `fieldset` and `legend` elements group related fields. The screen reader announces the legend as a group label before each field name, preventing ambiguity when fields have the same label across sections.</p>
+        
+        <div style="background-color: #f8f9fa; border-left: 4px solid #1971c2; padding: 16px; margin-bottom: 16px;">
+          <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 15px;">What the screen reader announces</p>
+          <p style="margin: 0; color: #495057; font-size: 14px; font-family: monospace;">"Billing Address, City, edit text, required"</p>
+          <p style="margin: 8px 0 0 0; color: #495057; font-size: 13px;">The "Billing Address" group label comes from the fieldset/legend, distinguishing this "City" field from the one in "Shipping Address."</p>
+        </div>
+
+        <div style="background-color: #f8f9fa; border-left: 4px solid #1971c2; padding: 16px; margin-bottom: 16px;">
+          <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 15px;">Error handling patterns</p>
+          <p style="margin: 0; color: #495057; font-size: 14px;">Inline errors use <code style="background: #e9ecef; padding: 2px 4px; border-radius: 3px;">aria-invalid</code> and <code style="background: #e9ecef; padding: 2px 4px; border-radius: 3px;">aria-describedby</code> to associate error messages with fields. Error summaries use <code style="background: #e9ecef; padding: 2px 4px; border-radius: 3px;">role="alert"</code> to announce errors immediately. Required fields use <code style="background: #e9ecef; padding: 2px 4px; border-radius: 3px;">aria-required</code> to set expectations before users start filling in the form.</p>
+        </div>
+
+        <div style="background-color: #fff3bf; border-left: 4px solid #fab005; padding: 16px;">
+          <p style="margin: 0; color: #495057; font-size: 15px;"><strong>Designer Impact:</strong> Specify group labels for related field sets, error message text and placement, and which fields are required. These are design decisions that directly affect the screen reader experience.</p>
+        </div>
+      </div>
+
+      <!-- Concept 3: Modal Dialogs -->
+      <div style="margin-bottom: 32px;">
+        <h4 style="margin: 0 0 12px 0; font-size: 18px; font-weight: 600; color: #212529;">Modal Dialog Focus Management</h4>
+        <p style="margin: 0 0 16px 0; color: #495057; font-size: 15px;">Modal dialogs require a complete focus management lifecycle: focus must move into the dialog on open, be trapped within it during interaction, and return to the triggering element on close. This is one of the most commonly-failed accessibility patterns.</p>
+        
+        <div style="background-color: #f8f9fa; border-left: 4px solid #1971c2; padding: 16px; margin-bottom: 16px;">
+          <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 15px;">The dialog lifecycle</p>
+          <ol style="margin: 0; padding-left: 20px; color: #495057; font-size: 14px;">
+            <li style="margin-bottom: 6px;"><strong>Open:</strong> Focus moves into dialog, screen reader announces dialog title and role</li>
+            <li style="margin-bottom: 6px;"><strong>Interact:</strong> Focus stays trapped within dialog; Tab key cycles through dialog controls; browse mode is scoped to dialog content (requires <code style="background: #e9ecef; padding: 2px 4px; border-radius: 3px;">aria-modal="true"</code>)</li>
+            <li style="margin-bottom: 6px;"><strong>Close:</strong> Dialog dismissed via button or Escape key</li>
+            <li><strong>Return:</strong> Focus returns to the element that triggered the dialog</li>
+          </ol>
+        </div>
+
+        <div style="background-color: #fff3bf; border-left: 4px solid #fab005; padding: 16px;">
+          <p style="margin: 0; color: #495057; font-size: 15px;"><strong>Designer Impact:</strong> Your design annotation for every dialog should specify: (1) where focus goes on open, (2) that focus is trapped, (3) that Escape closes the dialog, (4) where focus returns on close, and (5) the dialog title for screen readers.</p>
+        </div>
+      </div>
+
+      <!-- Concept 4: Tab Panels -->
+      <div style="margin-bottom: 32px;">
+        <h4 style="margin: 0 0 12px 0; font-size: 18px; font-weight: 600; color: #212529;">Tab Panel Navigation</h4>
+        <p style="margin: 0 0 16px 0; color: #495057; font-size: 15px;">Tab panels use ARIA roles (tablist, tab, tabpanel) to create a navigable component. Screen readers announce tab names, selected state, and position ("Overview, selected, tab, 1 of 3"). Arrow keys move between tabs; the Tab key moves focus into the active panel content.</p>
+        
+        <table style="width: 100%; border-collapse: collapse; font-size: 14px; margin-bottom: 16px;">
+          <thead>
+            <tr style="background-color: #f1f3f4;">
+              <th scope="col" style="padding: 10px 12px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">Key</th>
+              <th scope="col" style="padding: 10px 12px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; font-weight: 600; font-family: monospace;">Left/Right Arrow</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Move between tabs in the tablist</td>
+            </tr>
+            <tr style="background-color: #f8f9fa;">
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; font-weight: 600; font-family: monospace;">Tab</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Move from tablist into the active tab panel content</td>
+            </tr>
+            <tr>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; font-weight: 600; font-family: monospace;">Shift+Tab</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Return from panel content to the selected tab</td>
+            </tr>
+            <tr style="background-color: #f8f9fa;">
+              <td style="padding: 10px 12px; font-weight: 600; font-family: monospace;">Enter/Space</td>
+              <td style="padding: 10px 12px;">Activate a tab (manual activation mode only)</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div style="background-color: #e7f5ff; border-left: 4px solid #1971c2; padding: 16px;">
+          <p style="margin: 0; color: #495057; font-size: 15px;"><strong>Designer Impact:</strong> Designers should specify the number of tabs, their labels, which is selected by default, and the activation model (automatic: arrow key selects, or manual: arrow moves then Enter selects).</p>
+        </div>
+      </div>
+
+      <!-- Concept 5: Live Regions -->
+      <div>
+        <h4 style="margin: 0 0 12px 0; font-size: 18px; font-weight: 600; color: #212529;">Live Regions for Dynamic Content</h4>
+        <p style="margin: 0 0 16px 0; color: #495057; font-size: 15px;">Screen reader users cannot see visual changes. Live regions solve this by announcing dynamic content updates without requiring the user to navigate to the changed area. The urgency level determines when the announcement happens.</p>
+        
+        <table style="width: 100%; border-collapse: collapse; font-size: 14px; margin-bottom: 16px;">
+          <thead>
+            <tr style="background-color: #f1f3f4;">
+              <th scope="col" style="padding: 10px 12px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">Type</th>
+              <th scope="col" style="padding: 10px 12px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">Urgency</th>
+              <th scope="col" style="padding: 10px 12px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">Behavior</th>
+              <th scope="col" style="padding: 10px 12px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">Example</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; font-weight: 600; font-family: monospace;">polite / role="status"</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Low</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Waits for pause in speech</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">"24 results found"</td>
+            </tr>
+            <tr style="background-color: #f8f9fa;">
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; font-weight: 600; font-family: monospace;">assertive / role="alert"</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">High</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Interrupts immediately</td>
+              <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">"Session expiring in 2 minutes"</td>
+            </tr>
+            <tr>
+              <td style="padding: 10px 12px; font-weight: 600; font-family: monospace;">off (default)</td>
+              <td style="padding: 10px 12px;">None</td>
+              <td style="padding: 10px 12px;">Not announced</td>
+              <td style="padding: 10px 12px;">Background updates that don't need announcing</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div style="background-color: #fff3bf; border-left: 4px solid #fab005; padding: 16px;">
+          <p style="margin: 0; color: #495057; font-size: 15px;"><strong>Designer Impact:</strong> For every dynamic update in your design, decide: Does it need announcing? How urgent is it? What text should be announced? Include these decisions in your annotations.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Assessment Section -->
+    <div style="background-color: #f8f9fa; border: 1px solid #dee2e6; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #845ef7;">
+      <h3 style="margin: 0 0 20px 0; font-size: 20px; font-weight: 600; color: #212529; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">📝</span> Assessment
+      </h3>
+
+      <!-- Applied Practice -->
+      <div style="background-color: #fff; border-radius: 6px; padding: 20px; border: 1px solid #e9ecef;">
+        <h4 style="margin: 0 0 8px 0; font-size: 16px; font-weight: 600; color: #212529;"><a href="https://canvas.instructure.com/courses/13608566/assignments/62501779" target="_blank" rel="noopener noreferrer" style="color: #1864ab; text-decoration: underline;">Applied Practice</a></h4>
+        <p style="margin: 0 0 12px 0; font-size: 13px; color: #495057;">Instructor-graded</p>
+        <p style="margin: 0; font-size: 14px; color: #212529;">
+          Test complex UI components with a screen reader. Navigate tables, forms, dialogs, and tab panels to verify correct ARIA implementation. Document your findings with specific recommendations for design annotation improvements.
+        </p>
+      </div>
+    </div>
+
+    <!-- Resources Section -->
+    <div style="background-color: #fff; border: 1px solid #dee2e6; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #20c997;">
+      <h3 style="margin: 0 0 20px 0; font-size: 20px; font-weight: 600; color: #212529; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">📚</span> Resources
+      </h3>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 20px;">
+        <!-- ARIA Authoring Practices -->
+        <div style="flex: 1; min-width: 260px;">
+          <h4 style="margin: 0 0 12px 0; font-size: 15px; font-weight: 600; color: #212529;">ARIA Authoring Practices Guide</h4>
+          <ul style="margin: 0; padding-left: 20px; font-size: 14px;">
+            <li style="margin-bottom: 8px;">
+              <a href="https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/" style="color: #1864ab; text-decoration: underline;">APG: Dialog (Modal) Pattern</a>
+            </li>
+            <li style="margin-bottom: 8px;">
+              <a href="https://www.w3.org/WAI/ARIA/apg/patterns/tabs/" style="color: #1864ab; text-decoration: underline;">APG: Tabs Pattern</a>
+            </li>
+            <li style="margin-bottom: 8px;">
+              <a href="https://www.w3.org/WAI/ARIA/apg/patterns/table/" style="color: #1864ab; text-decoration: underline;">APG: Table Pattern</a>
+            </li>
+            <li>
+              <a href="https://www.w3.org/WAI/ARIA/apg/patterns/alert/" style="color: #1864ab; text-decoration: underline;">APG: Alert Pattern</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Screen Reader Guides -->
+        <div style="flex: 1; min-width: 260px;">
+          <h4 style="margin: 0 0 12px 0; font-size: 15px; font-weight: 600; color: #212529;">Reference Materials</h4>
+          <ul style="margin: 0; padding-left: 20px; font-size: 14px;">
+            <li style="margin-bottom: 8px;">
+              <a href="https://dequeuniversity.com/screenreaders/" style="color: #1864ab; text-decoration: underline;">Deque: Screen Reader Keyboard Shortcuts</a>
+            </li>
+            <li style="margin-bottom: 8px;">
+              <a href="https://www.w3.org/WAI/WCAG22/Understanding/status-messages" style="color: #1864ab; text-decoration: underline;">Understanding SC 4.1.3: Status Messages</a>
+            </li>
+            <li style="margin-bottom: 8px;">
+              <a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/dialog_role" style="color: #1864ab; text-decoration: underline;">MDN: ARIA Dialog Role</a>
+            </li>
+            <li>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Live_Regions" style="color: #1864ab; text-decoration: underline;">MDN: ARIA Live Regions</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Up Next Section -->
+    <div style="background: linear-gradient(135deg, #ffe3e3 0%, #ffc9c9 100%); border-radius: 8px; padding: 20px 24px; border-left: 5px solid #FF6B6B;">
+      <h3 style="margin: 0 0 8px 0; font-size: 18px; font-weight: 600; color: #c92a2a; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 20px;">➡️</span> Up Next
+      </h3>
+      <p style="margin: 0; font-size: 15px; color: #212529;">
+        <strong>Lesson 12: Screen Magnification</strong> introduces a completely different assistive technology category. You'll learn how screen magnification users experience designs through tools like ZoomText, Windows Magnifier, macOS Zoom, and browser zoom. The testing mindset is the same: understand the tool, test your designs, specify correct behavior.
+      </p>
+    </div>
+
+  </div>
+
+</body>
+</html>

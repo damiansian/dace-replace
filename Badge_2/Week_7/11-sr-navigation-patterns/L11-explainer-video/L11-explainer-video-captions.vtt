@@ -1,0 +1,629 @@
+WEBVTT
+
+1
+00:00:00.140 --> 00:00:00.630
+Alright.
+
+2
+00:00:00.630 --> 00:00:03.025
+Today we're gonna level up your accessibility testing.
+
+3
+00:00:03.275 --> 00:00:04.625
+We're moving past the basics
+
+4
+00:00:04.625 --> 00:00:07.265
+and diving into some advanced screen reader patterns.
+
+5
+00:00:07.645 --> 00:00:09.145
+The whole point here is to focus on
+
+6
+00:00:09.145 --> 00:00:11.785
+what you should actually hear when you're testing the really
+
+7
+00:00:11.785 --> 00:00:13.065
+complex parts of your designs.
+
+8
+00:00:13.355 --> 00:00:15.045
+Let's get into it. Look,
+
+9
+00:00:15.225 --> 00:00:17.485
+you probably already have the fundamentals down, right?
+
+10
+00:00:17.895 --> 00:00:20.125
+Navigating headings, clicking on links,
+
+11
+00:00:20.155 --> 00:00:21.565
+that stuff is super important,
+
+12
+00:00:22.025 --> 00:00:25.005
+but it's not where the most frustrating accessibility bugs
+
+13
+00:00:25.005 --> 00:00:27.525
+tend to hide the real problems, the ones
+
+14
+00:00:27.525 --> 00:00:30.485
+that truly block users, they live inside Those complex,
+
+15
+00:00:30.595 --> 00:00:33.245
+interactive components we design and build every day.
+
+16
+00:00:33.865 --> 00:00:35.085
+So here's what we're gonna cover.
+
+17
+00:00:35.495 --> 00:00:38.645
+We'll walk through five key patterns, data tables,
+
+18
+00:00:38.665 --> 00:00:40.845
+tricky forms, modal dialogues,
+
+19
+00:00:40.945 --> 00:00:43.885
+and dynamic content like tabs and live updates.
+
+20
+00:00:44.275 --> 00:00:45.565
+Then we will wrap it all up
+
+21
+00:00:45.565 --> 00:00:48.325
+with a really simple three question test you can use on
+
+22
+00:00:48.325 --> 00:00:49.605
+basically any component.
+
+23
+00:00:50.015 --> 00:00:52.405
+Think of this as your personal audio guide
+
+24
+00:00:52.425 --> 00:00:54.045
+for spotting bugs in the wild.
+
+25
+00:00:54.735 --> 00:00:57.925
+First up, data tables, I mean, they're everywhere, right?
+
+26
+00:00:58.295 --> 00:01:00.685
+Dashboards, pricing pages, you name it.
+
+27
+00:01:01.105 --> 00:01:04.085
+For a screen reader, user, a table isn't just a visual grid,
+
+28
+00:01:04.315 --> 00:01:06.205
+it's a whole special mode of navigation,
+
+29
+00:01:06.545 --> 00:01:07.725
+and if it isn't built right,
+
+30
+00:01:07.865 --> 00:01:09.965
+it just becomes a meaningless jumble of data.
+
+31
+00:01:10.795 --> 00:01:11.975
+So I want you to picture this.
+
+32
+00:01:12.075 --> 00:01:14.255
+You're navigating a page with a screen reader
+
+33
+00:01:14.315 --> 00:01:16.655
+and you land smack in the middle of a data table.
+
+34
+00:01:17.115 --> 00:01:19.015
+What's the very first thing you need to hear
+
+35
+00:01:19.075 --> 00:01:20.895
+to even understand what's going on?
+
+36
+00:01:21.815 --> 00:01:23.635
+The right experience is all about context.
+
+37
+00:01:24.125 --> 00:01:26.075
+First, the screen reader should announce the
+
+38
+00:01:26.075 --> 00:01:27.275
+table and its dimensions.
+
+39
+00:01:27.275 --> 00:01:31.075
+Something like table with five rows, four columns, awesome.
+
+40
+00:01:31.545 --> 00:01:32.995
+Then as you move into a cell,
+
+41
+00:01:33.085 --> 00:01:35.475
+it'll pair the column header with the data itself.
+
+42
+00:01:36.005 --> 00:01:37.635
+Price 29.99.
+
+43
+00:01:37.895 --> 00:01:41.595
+But if all you hear is 29.99, well that's a huge failure.
+
+44
+00:01:42.195 --> 00:01:44.475
+A number without any context is just noise.
+
+45
+00:01:45.645 --> 00:01:48.135
+Okay, let's move on to our next pattern.
+
+46
+00:01:48.565 --> 00:01:51.895
+Complex forms, and just like with tables,
+
+47
+00:01:52.005 --> 00:01:53.815
+context is everything.
+
+48
+00:01:54.605 --> 00:01:57.095
+This is especially true in those long checkout flows
+
+49
+00:01:57.095 --> 00:01:58.735
+where you might have the same field label,
+
+50
+00:01:58.805 --> 00:02:01.615
+like street address show up in a couple of different places.
+
+51
+00:02:02.615 --> 00:02:04.395
+So here's the million dollar question.
+
+52
+00:02:05.015 --> 00:02:07.755
+If a user lands on a field that says street address,
+
+53
+00:02:08.135 --> 00:02:09.475
+how in the world do they know if it's
+
+54
+00:02:09.475 --> 00:02:11.835
+for their shipping address or their billing address?
+
+55
+00:02:12.375 --> 00:02:15.235
+The answer has everything to do with proper grouping
+
+56
+00:02:15.895 --> 00:02:16.915
+in a well-built form.
+
+57
+00:02:17.055 --> 00:02:19.035
+The screen reader gives you this beautiful,
+
+58
+00:02:19.065 --> 00:02:20.635
+logical flow of information.
+
+59
+00:02:20.935 --> 00:02:23.635
+It announces the group first shipping address.
+
+60
+00:02:23.945 --> 00:02:26.475
+Then it gives you the field details, street address, edit,
+
+61
+00:02:26.545 --> 00:02:30.355
+text required the failure, it's just confusing.
+
+62
+00:02:30.355 --> 00:02:33.955
+Silence. All you hear is edit text with absolutely no clue
+
+63
+00:02:33.955 --> 00:02:36.035
+what it's for or if you even have to fill it out.
+
+64
+00:02:36.805 --> 00:02:40.135
+Alright? Pattern number three, the modal dialogue.
+
+65
+00:02:40.515 --> 00:02:42.295
+Now you're gonna wanna lean in for this one
+
+66
+00:02:42.295 --> 00:02:44.575
+because if there is one single component
+
+67
+00:02:44.575 --> 00:02:46.455
+that consistently gives teams trouble
+
+68
+00:02:46.555 --> 00:02:49.335
+and just breaks accessibility, it's this one.
+
+69
+00:02:49.685 --> 00:02:52.055
+Getting modals right is not a nice to have.
+
+70
+00:02:52.405 --> 00:02:55.825
+It's a must have. And hey, that's not just my opinion.
+
+71
+00:02:56.215 --> 00:02:58.545
+It's a well known fact in the accessibility world
+
+72
+00:02:58.775 --> 00:03:02.205
+that managing keyboard focus when a dialogue opens is just
+
+73
+00:03:02.255 --> 00:03:03.805
+incredibly hard to get right.
+
+74
+00:03:04.185 --> 00:03:06.165
+But here's the good news. As a designer,
+
+75
+00:03:06.545 --> 00:03:07.925
+you can catch these failures.
+
+76
+00:03:08.225 --> 00:03:10.725
+You just have to know what to listen for and what to try.
+
+77
+00:03:11.625 --> 00:03:13.245
+So here is your four step test
+
+78
+00:03:13.345 --> 00:03:14.765
+for any modal you come across.
+
+79
+00:03:15.465 --> 00:03:16.725
+One, when it opens,
+
+80
+00:03:16.795 --> 00:03:19.325
+does the screen reader clearly announce the dialogues?
+
+81
+00:03:19.325 --> 00:03:22.005
+Title two, when you press the tab key,
+
+82
+00:03:22.035 --> 00:03:23.845
+does your focus stay trapped inside
+
+83
+00:03:23.865 --> 00:03:24.965
+or can you get to the page
+
+84
+00:03:24.965 --> 00:03:26.325
+behind it because that's a failure.
+
+85
+00:03:27.055 --> 00:03:30.285
+Three. Does the escape key close it? It definitely should.
+
+86
+00:03:30.705 --> 00:03:32.165
+And four, this is the big one.
+
+87
+00:03:32.295 --> 00:03:34.365
+After it closes, does your focus go right
+
+88
+00:03:34.365 --> 00:03:35.445
+back to the button that opened it?
+
+89
+00:03:35.865 --> 00:03:38.645
+If you get a no on any of these, you found a bug.
+
+90
+00:03:39.645 --> 00:03:41.775
+Okay, next up is dynamic content.
+
+91
+00:03:42.105 --> 00:03:43.855
+We're talking about parts of your interface
+
+92
+00:03:43.855 --> 00:03:46.375
+that change without the whole page reloading.
+
+93
+00:03:46.815 --> 00:03:48.415
+A perfect example is a tab panel.
+
+94
+00:03:48.635 --> 00:03:50.655
+You know, you click a tab, the content changes,
+
+95
+00:03:50.995 --> 00:03:53.455
+but the URL at the top of the browser stays the same.
+
+96
+00:03:54.125 --> 00:03:56.455
+When you land on a proper set of tabs,
+
+97
+00:03:56.595 --> 00:03:59.175
+you should hear everything you need to know its role,
+
+98
+00:03:59.595 --> 00:04:02.535
+its name, its state, and its position in the set.
+
+99
+00:04:02.685 --> 00:04:06.975
+Something like tab profile selected to a four.
+
+100
+00:04:07.485 --> 00:04:09.055
+This tells you exactly what it is,
+
+101
+00:04:09.105 --> 00:04:11.215
+which one is active and how many there are.
+
+102
+00:04:11.635 --> 00:04:13.815
+If all you hear is profile button,
+
+103
+00:04:14.155 --> 00:04:15.695
+the screen reader has no idea.
+
+104
+00:04:15.765 --> 00:04:18.055
+This is just one piece of a bigger component.
+
+105
+00:04:18.795 --> 00:04:21.335
+But dynamic content isn't just about things you click
+
+106
+00:04:21.335 --> 00:04:22.415
+on like tabs.
+
+107
+00:04:22.845 --> 00:04:24.855
+It's also about things that update on their own,
+
+108
+00:04:25.155 --> 00:04:27.255
+and that is where live regions come in.
+
+109
+00:04:27.685 --> 00:04:28.935
+This is basically the magic
+
+110
+00:04:28.935 --> 00:04:31.255
+that lets a screen reader announce changes happening
+
+111
+00:04:31.255 --> 00:04:34.295
+somewhere else on the page, like a confirmation message
+
+112
+00:04:34.355 --> 00:04:36.575
+or updated search results without the user
+
+113
+00:04:36.575 --> 00:04:37.655
+having to go hunt for them.
+
+114
+00:04:38.525 --> 00:04:41.465
+And this is a perfect example of a key design decision.
+
+115
+00:04:41.885 --> 00:04:43.385
+Should an announcement be polite
+
+116
+00:04:43.485 --> 00:04:45.585
+and maybe wait for the user to pause what they're doing?
+
+117
+00:04:46.045 --> 00:04:48.585
+Or should it be assertive interrupting immediately
+
+118
+00:04:48.585 --> 00:04:49.905
+because the info is critical?
+
+119
+00:04:50.335 --> 00:04:52.665
+Item added to cart can probably be polite,
+
+120
+00:04:53.005 --> 00:04:55.025
+but a warning that your session is about to expire.
+
+121
+00:04:55.055 --> 00:04:56.305
+Yeah, that needs to be assertive
+
+122
+00:04:56.605 --> 00:04:59.105
+and you the designer get to decide that priority.
+
+123
+00:04:59.955 --> 00:05:02.205
+Whew. Okay, we have covered a lot
+
+124
+00:05:02.205 --> 00:05:03.965
+of pretty complex ground here.
+
+125
+00:05:04.225 --> 00:05:06.525
+So how do we tie this all together into something you can
+
+126
+00:05:06.725 --> 00:05:09.525
+actually remember and you, let's boil it all down
+
+127
+00:05:09.525 --> 00:05:11.205
+to a simple, powerful framework
+
+128
+00:05:11.205 --> 00:05:13.005
+for testing any component you design.
+
+129
+00:05:13.715 --> 00:05:16.685
+It's just three questions. First, did I hear context?
+
+130
+00:05:17.115 --> 00:05:19.285
+That goes back to our data tables with their headers
+
+131
+00:05:19.345 --> 00:05:20.885
+and our forms with their group labels.
+
+132
+00:05:21.265 --> 00:05:22.925
+Second, does focus go where?
+
+133
+00:05:22.965 --> 00:05:24.725
+I expect that's our modal dialogue.
+
+134
+00:05:24.725 --> 00:05:27.005
+Test focus moves in, stays trapped,
+
+135
+00:05:27.065 --> 00:05:28.405
+and then returns properly.
+
+136
+00:05:28.945 --> 00:05:31.165
+And third, am I told when something changes
+
+137
+00:05:31.475 --> 00:05:32.925
+that covers our tab selections.
+
+138
+00:05:32.925 --> 00:05:34.885
+In all those dynamic live region updates.
+
+139
+00:05:35.625 --> 00:05:37.445
+And here's the most important point of all.
+
+140
+00:05:37.635 --> 00:05:41.125
+Your job isn't to know all the specific area attributes
+
+141
+00:05:41.125 --> 00:05:42.205
+or JavaScript functions.
+
+142
+00:05:42.515 --> 00:05:44.165
+Your job is to know what a good,
+
+143
+00:05:44.175 --> 00:05:46.005
+solid user experience sounds like.
+
+144
+00:05:46.665 --> 00:05:48.245
+You really don't need to know the code.
+
+145
+00:05:48.505 --> 00:05:50.245
+You just need to know what to listen for.
+
+146
+00:05:51.005 --> 00:05:53.925
+Recognizing these auditory patterns, that's your superpower.
+
+147
+00:05:54.835 --> 00:05:56.255
+So I'm gonna leave you with this.
+
+148
+00:05:56.755 --> 00:05:58.365
+The next time you're testing your work,
+
+149
+00:05:58.735 --> 00:06:00.965
+don't just look at it, put on some headphones
+
+150
+00:06:01.105 --> 00:06:02.405
+and actually listen to it
+
+151
+00:06:02.625 --> 00:06:04.285
+and ask yourself those three questions.
+
+152
+00:06:04.825 --> 00:06:06.085
+Am I hearing the right context?
+
+153
+00:06:06.745 --> 00:06:08.325
+Am I in control of where I am
+
+154
+00:06:08.665 --> 00:06:10.245
+and am I being told about change?
+
+155
+00:06:10.785 --> 00:06:12.405
+If you can answer yes to all three of those,
+
+156
+00:06:12.785 --> 00:06:14.925
+you are well on your way to building something
+
+157
+00:06:14.995 --> 00:06:16.685
+that truly works for everyone.

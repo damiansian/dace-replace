@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lesson 04: Forms and Errors - Canvas Preview</title>
+</head>
+<body style="margin: 0; padding: 20px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif; background-color: #ffffff; color: #333333; line-height: 1.6;">
+  <!-- Note: This is a preview file. When copying to Canvas, copy only the content below this line -->
+  
+  <div style="max-width: 900px; margin: 0; padding: 24px 0 48px 0;">
+
+    <!-- Header Section -->
+    <div style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); border-radius: 8px; padding: 24px 28px; margin-bottom: 28px; border-left: 5px solid #495057;">
+      <h2 style="margin: 0 0 12px 0; font-size: 28px; font-weight: 600; color: #212529;">Lesson 04: Forms and Errors</h2>
+      <div style="display: flex; flex-wrap: wrap; gap: 14px; margin-top: 18px;">
+        <span style="display: inline-flex; align-items: center; gap: 8px; background-color: #e6fcf5; color: #087f5b; padding: 10px 18px; border-radius: 24px; font-size: 15px; font-weight: 500;">
+          <span style="font-size: 18px;">🔍</span> Discover Badge
+        </span>
+        <span style="display: inline-flex; align-items: center; gap: 8px; background-color: #e7f5ff; color: #1864ab; padding: 10px 18px; border-radius: 24px; font-size: 15px; font-weight: 500;">
+          <span style="font-size: 18px;">🏷️</span> Module 1D
+        </span>
+        <span style="display: inline-flex; align-items: center; gap: 8px; background-color: #fff3bf; color: #946200; padding: 10px 18px; border-radius: 24px; font-size: 15px; font-weight: 500;">
+          <span style="font-size: 18px;">📖</span> Self-Paced
+        </span>
+      </div>
+    </div>
+
+    <!-- Introduction -->
+    <p style="font-size: 17px; color: #495057; margin-bottom: 16px; padding: 0 4px;">
+      Forms are where users provide information to complete tasks. When forms are inaccessible, users cannot sign up, purchase, submit requests, or accomplish their goals. Unlike many accessibility issues that create inconvenience, form failures are task-blocking barriers.
+    </p>
+    <p style="font-size: 17px; color: #495057; margin-bottom: 32px; padding: 0 4px;">
+      This self-paced lesson covers how to specify clear labels and instructions, design accessible error states, and understand how input purpose identification benefits users with disabilities.
+    </p>
+
+    <!-- Lesson Activities Section -->
+    <div style="background-color: #fff; border: 1px solid #dee2e6; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #fa5252;">
+      <h3 style="margin: 0 0 8px 0; font-size: 20px; font-weight: 600; color: #212529; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">🎯</span> Lesson Activities
+      </h3>
+      <p style="margin: 0 0 20px 0; color: #495057; font-size: 15px;">Complete these activities at your own pace.</p>
+      
+      <!-- Activity Links -->
+      <table role="presentation" style="width: 100%; border-collapse: separate; border-spacing: 0 12px;">
+        <tr>
+          <td style="width: 44px; background-color: #f8f9fa; border: 1px solid #e9ecef; border-radius: 8px 0 0 8px; padding: 16px; text-align: center; vertical-align: middle;">
+            <span style="display: inline-block; width: 44px; height: 44px; background-color: #f3d9fa; border-radius: 8px; font-size: 22px; text-align: center; line-height: 44px;">🎨</span>
+          </td>
+          <td style="background-color: #f8f9fa; border-top: 1px solid #e9ecef; border-bottom: 1px solid #e9ecef; padding: 16px 12px; vertical-align: middle;">
+            <a href="https://www.figma.com/design/qqZXLIs7sA9HQVIUqHUoGt/DACE---Cohort-1?node-id=366-1164" target="_blank" style="text-decoration: none;"><strong style="color: #212529; font-size: 15px;">Lesson in Figma</strong></a><br>
+            <span style="color: #495057; font-size: 13px;">Self-paced lesson walkthrough (30 minutes)</span>
+          </td>
+          <td style="width: 40px; background-color: #f8f9fa; border: 1px solid #e9ecef; border-radius: 0 8px 8px 0; padding: 16px 16px 16px 0; text-align: right; vertical-align: middle;">
+            <span style="color: #495057; font-size: 18px;">→</span>
+          </td>
+        </tr>
+        <tr>
+          <td style="width: 44px; background-color: #f8f9fa; border: 1px solid #e9ecef; border-radius: 8px 0 0 8px; padding: 16px; text-align: center; vertical-align: middle;">
+            <span style="display: inline-block; width: 44px; height: 44px; background-color: #fff3bf; border-radius: 8px; font-size: 22px; text-align: center; line-height: 44px;">📋</span>
+          </td>
+          <td style="background-color: #f8f9fa; border-top: 1px solid #e9ecef; border-bottom: 1px solid #e9ecef; padding: 16px 12px; vertical-align: middle;">
+            <a href="#QUIZ_PLACEHOLDER" style="text-decoration: none;"><strong style="color: #212529; font-size: 15px;">Knowledge Check Quiz</strong></a><br>
+            <span style="color: #495057; font-size: 13px;">5 questions · Auto-graded · 5 points</span>
+          </td>
+          <td style="width: 40px; background-color: #f8f9fa; border: 1px solid #e9ecef; border-radius: 0 8px 8px 0; padding: 16px 16px 16px 0; text-align: right; vertical-align: middle;">
+            <span style="color: #495057; font-size: 18px;">→</span>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- Video Section -->
+    <div style="background-color: #f8f9fa; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #845ef7;">
+      <h3 style="margin: 0 0 8px 0; font-size: 20px; font-weight: 600; color: #212529; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">🎬</span> The Explainer
+      </h3>
+      <p style="margin: 0 0 20px 0; color: #495057; font-size: 15px;">Get an overview of form accessibility before starting the lesson.</p>
+      
+      <div style="padding:56.25% 0 0 0;position:relative;border-radius: 6px; overflow: hidden;">
+        <iframe src="https://player.vimeo.com/video/1154372812?badge=0&autopause=0&player_id=0&app_id=58479" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" allowfullscreen title="Lesson 04: Forms and Errors Explainer"></iframe>
+      </div>
+    </div>
+
+    <!-- Learning Objectives Section -->
+    <div id="learning-objectives" style="background-color: #fff; border: 1px solid #dee2e6; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #1971c2;">
+      <h3 style="margin: 0 0 8px 0; font-size: 20px; font-weight: 600; color: #212529; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">📋</span> Learning Objectives
+      </h3>
+      <p style="margin: 0 0 24px 0; color: #495057; font-size: 15px;">By the end of this lesson, you will be able to:</p>
+      
+      <!-- Learning Outcomes Table -->
+      <table style="width: 100%; border-collapse: collapse; font-size: 15px; margin-bottom: 28px;">
+        <thead>
+          <tr style="background-color: #f1f3f4;">
+            <th scope="col" style="padding: 12px 16px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6; width: 70px;">ID</th>
+            <th scope="col" style="padding: 12px 16px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">Outcome</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="padding: 14px 16px; border-bottom: 1px solid #e9ecef; color: #212529; font-weight: 600; font-family: monospace;">1D.01</td>
+            <td style="padding: 14px 16px; border-bottom: 1px solid #e9ecef; color: #212529;"><strong>Specify form field labels and instructions:</strong> Design clear labels and instructional text for form inputs</td>
+          </tr>
+          <tr style="background-color: #f8f9fa;">
+            <td style="padding: 14px 16px; border-bottom: 1px solid #e9ecef; color: #212529; font-weight: 600; font-family: monospace;">1D.02</td>
+            <td style="padding: 14px 16px; border-bottom: 1px solid #e9ecef; color: #212529;"><strong>Design accessible error identification:</strong> Create error states that identify and describe errors in accessible ways</td>
+          </tr>
+          <tr>
+            <td style="padding: 14px 16px; color: #212529; font-weight: 600; font-family: monospace;">1D.03</td>
+            <td style="padding: 14px 16px; color: #212529;"><strong>Apply input purpose requirements:</strong> Understand how autocomplete benefits users with disabilities</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- L01 Connection -->
+      <div style="background-color: #d0ebff; border-radius: 6px; padding: 14px 16px; border-left: 4px solid #1971c2;">
+        <p style="margin: 0; font-size: 14px; color: #1864ab;">
+          <strong>L01 Connection:</strong> Form labels are accessible names for form controls. This lesson applies the quality criteria from L01 (clear, concise, function over form) to the specific context of forms.
+        </p>
+      </div>
+    </div>
+
+    <!-- Related WCAG Success Criteria Section -->
+    <div style="background-color: #f8f9fa; border: 1px solid #dee2e6; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #0ca678;">
+      <h3 style="margin: 0 0 16px 0; font-size: 20px; font-weight: 600; color: #212529; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">📜</span> Related WCAG Success Criteria
+      </h3>
+      <ul style="margin: 0; padding-left: 24px; color: #212529;">
+        <li style="margin-bottom: 8px;"><strong>3.3.2 Labels or Instructions (Level A):</strong> Form inputs must have labels or instructions</li>
+        <li style="margin-bottom: 8px;"><strong>3.3.1 Error Identification (Level A):</strong> Errors must be identified and described in text</li>
+        <li style="margin-bottom: 8px;"><strong>3.3.3 Error Suggestion (Level AA):</strong> Suggestions for fixing errors must be provided</li>
+        <li><strong>1.3.5 Identify Input Purpose (Level AA):</strong> Input purpose must be programmatically determinable</li>
+      </ul>
+    </div>
+
+    <!-- Key Concepts Section -->
+    <div style="background-color: #fff; border: 1px solid #dee2e6; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #f59f00;">
+      <h3 style="margin: 0 0 20px 0; font-size: 20px; font-weight: 600; color: #212529; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">💡</span> Key Concepts
+      </h3>
+
+      <!-- Section 1: Why Forms Matter -->
+      <div style="margin-bottom: 28px;">
+        <h4 style="margin: 0 0 12px 0; font-size: 17px; font-weight: 600; color: #212529; padding-bottom: 8px; border-bottom: 2px solid #fff3bf;">Why Form Accessibility Matters</h4>
+        <p style="margin: 0 0 16px 0; color: #212529;">Form failures are task-blocking barriers, not just inconveniences. If someone cannot complete your form, they cannot use your product.</p>
+        
+        <p style="margin: 0 0 8px 0; color: #212529;"><strong>Form labels are accessible names.</strong> When a screen reader user focuses a form field, they hear: "Email, text input, required" (Label + Role + State).</p>
+        
+        <!-- Checkpoint 1 -->
+        <div style="background-color: #f8f9fa; border-radius: 6px; padding: 16px; margin-top: 16px; border-left: 4px solid #5151D3;">
+          <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 14px;">✓ Checkpoint: Why forms matter</p>
+          <ul style="margin: 0; padding-left: 20px; color: #495057; font-size: 14px;">
+            <li>I can explain why form accessibility failures are task-blocking</li>
+            <li>I understand that form labels are accessible names for form controls</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Section 2: Labels and Instructions -->
+      <div style="margin-bottom: 28px;">
+        <h4 style="margin: 0 0 12px 0; font-size: 17px; font-weight: 600; color: #212529; padding-bottom: 8px; border-bottom: 2px solid #fff3bf; display: flex; align-items: center; gap: 10px;">Labels and Instructions <span style="background-color: #d0ebff; color: #1864ab; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; font-family: monospace;">1D.01</span></h4>
+        
+        <p style="margin: 0 0 12px 0; font-weight: 600; color: #212529; font-size: 15px;">The Placeholder Problem</p>
+        <p style="margin: 0 0 16px 0; color: #212529;">One of the most common form accessibility failures: using placeholder text as the only label. When users start typing, the placeholder disappears and they lose context mid-task.</p>
+        
+        <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 15px;">What WCAG requires (SC 3.3.2):</p>
+        <ul style="margin: 0 0 16px 0; padding-left: 24px; color: #212529;">
+          <li style="margin-bottom: 6px;"><strong>Visible:</strong> Not hidden or placeholder-only</li>
+          <li style="margin-bottom: 6px;"><strong>Persistent:</strong> Doesn't disappear when user types</li>
+          <li style="margin-bottom: 6px;"><strong>Associated:</strong> Programmatically connected to the input</li>
+          <li><strong>Descriptive:</strong> Explains what input is expected</li>
+        </ul>
+
+        <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 15px;">When instructions are needed:</p>
+        <ul style="margin: 0 0 16px 0; padding-left: 24px; color: #212529;">
+          <li style="margin-bottom: 6px;">Format requirements: "MM/DD/YYYY"</li>
+          <li style="margin-bottom: 6px;">Character limits: "Maximum 250 characters"</li>
+          <li>Special constraints: "Must include at least one number"</li>
+        </ul>
+
+        <div style="background-color: #fff3bf; border-left: 4px solid #fab005; padding: 16px; margin-bottom: 16px;">
+          <p style="margin: 0; color: #212529; font-size: 15px; font-weight: 600;">The Test:</p>
+          <p style="margin: 8px 0 0 0; color: #212529; font-size: 15px;">Can a user complete the field correctly without trial and error? If not, add instructions.</p>
+        </div>
+
+        <!-- Checkpoint 2 -->
+        <div style="background-color: #f8f9fa; border-radius: 6px; padding: 16px; margin-top: 16px; border-left: 4px solid #5151D3;">
+          <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 14px;">✓ Checkpoint: Labels and instructions</p>
+          <ul style="margin: 0; padding-left: 20px; color: #495057; font-size: 14px;">
+            <li>I can identify placeholder-only labels as a common failure</li>
+            <li>I can apply the four label requirements</li>
+            <li>I can determine when instructions are needed</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Section 3: Error Identification -->
+      <div style="margin-bottom: 28px;">
+        <h4 style="margin: 0 0 12px 0; font-size: 17px; font-weight: 600; color: #212529; padding-bottom: 8px; border-bottom: 2px solid #fff3bf; display: flex; align-items: center; gap: 10px;">Error Identification <span style="background-color: #d0ebff; color: #1864ab; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; font-family: monospace;">1D.02</span></h4>
+        
+        <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 15px;">Two WCAG Requirements for Errors:</p>
+        
+        <div style="background-color: #f8f9fa; border-left: 4px solid #1971c2; padding: 16px; margin-bottom: 12px;">
+          <p style="margin: 0 0 4px 0; font-weight: 600; color: #212529; font-size: 14px;">SC 3.3.1 Error Identification (Level A):</p>
+          <p style="margin: 0; color: #495057; font-size: 14px;">Errors must be identified and described in text.</p>
+        </div>
+
+        <div style="background-color: #f8f9fa; border-left: 4px solid #1971c2; padding: 16px; margin-bottom: 16px;">
+          <p style="margin: 0 0 4px 0; font-weight: 600; color: #212529; font-size: 14px;">SC 3.3.3 Error Suggestion (Level AA):</p>
+          <p style="margin: 0; color: #495057; font-size: 14px;">Suggestions for fixing errors must be provided.</p>
+        </div>
+
+        <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 15px;">Every error message must answer:</p>
+        <ol style="margin: 0 0 16px 0; padding-left: 24px; color: #212529;">
+          <li><strong>What went wrong?</strong> (the problem)</li>
+          <li><strong>How do I fix it?</strong> (the solution)</li>
+        </ol>
+
+        <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 15px;">Error Message Quality:</p>
+        <div style="margin-bottom: 16px;">
+          <p style="margin: 0 0 6px 0; color: #212529; font-size: 14px;">❌ <strong>Bad:</strong> "Error" (not specific, no fix)</p>
+          <p style="margin: 0 0 6px 0; color: #212529; font-size: 14px;">~ <strong>Okay:</strong> "Invalid password" (identifies field, no fix)</p>
+          <p style="margin: 0 0 16px 0; color: #212529; font-size: 14px;">✓ <strong>Good:</strong> "Password must be at least 8 characters and include one number"</p>
+        </div>
+
+        <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 15px;">Color-Only Errors Fail:</p>
+        <p style="margin: 0 0 8px 0; color: #212529;"><em>L03 Connection:</em> Remember SC 1.4.1 Use of Color. Color alone cannot indicate errors.</p>
+        
+        <div style="background-color: #ffe3e3; border-left: 4px solid #fa5252; padding: 16px; margin-bottom: 16px;">
+          <p style="margin: 0 0 4px 0; font-weight: 600; color: #212529; font-size: 14px;">Common Failure:</p>
+          <p style="margin: 0; color: #212529; font-size: 14px;">❌ Red border only → Fails SC 1.4.1 (color alone) AND SC 3.3.1 (no text)</p>
+        </div>
+
+        <div style="background-color: #d3f9d8; border-left: 4px solid #166534; padding: 16px; margin-bottom: 16px;">
+          <p style="margin: 0 0 4px 0; font-weight: 600; color: #212529; font-size: 14px;">Accessible Error Pattern:</p>
+          <ul style="margin: 0; padding-left: 20px; color: #212529; font-size: 14px;">
+            <li>✓ Text message (required)</li>
+            <li>✓ Visual indicator not just color (icon)</li>
+            <li>✓ Color can enhance but not replace</li>
+          </ul>
+        </div>
+
+        <!-- Checkpoint 3 -->
+        <div style="background-color: #f8f9fa; border-radius: 6px; padding: 16px; margin-top: 16px; border-left: 4px solid #5151D3;">
+          <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 14px;">✓ Checkpoint: Error identification</p>
+          <ul style="margin: 0; padding-left: 20px; color: #495057; font-size: 14px;">
+            <li>I can explain the two WCAG requirements for errors</li>
+            <li>I can write error messages that identify problem AND suggest fix</li>
+            <li>I can identify color-only error states as failures</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Section 4: Autocomplete -->
+      <div style="margin-bottom: 28px;">
+        <h4 style="margin: 0 0 12px 0; font-size: 17px; font-weight: 600; color: #212529; padding-bottom: 8px; border-bottom: 2px solid #fff3bf; display: flex; align-items: center; gap: 10px;">Input Purpose and Autocomplete <span style="background-color: #d0ebff; color: #1864ab; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; font-family: monospace;">1D.03</span></h4>
+        
+        <p style="margin: 0 0 16px 0; font-weight: 600; color: #212529; font-size: 15px;">SC 1.3.5: Identify Input Purpose (Level AA)</p>
+        <p style="margin: 0 0 16px 0; color: #212529;">Input purpose must be programmatically determinable for fields collecting user information.</p>
+        
+        <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 15px;">Why this matters:</p>
+        <ul style="margin: 0 0 16px 0; padding-left: 24px; color: #212529;">
+          <li style="margin-bottom: 6px;">✓ Browser autofill saves time</li>
+          <li style="margin-bottom: 6px;">✓ Password managers work correctly</li>
+          <li style="margin-bottom: 6px;">✓ Assistive technology can help users</li>
+          <li>✓ Reduces errors and cognitive load</li>
+        </ul>
+
+        <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 15px;">Common autocomplete values:</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 16px;">
+          <div style="flex: 1; min-width: 200px; background-color: #f8f9fa; border-radius: 6px; padding: 14px;">
+            <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 14px;">Personal:</p>
+            <p style="margin: 0; font-family: monospace; font-size: 13px; color: #495057;">name, email, tel</p>
+          </div>
+          <div style="flex: 1; min-width: 200px; background-color: #f8f9fa; border-radius: 6px; padding: 14px;">
+            <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 14px;">Address:</p>
+            <p style="margin: 0; font-family: monospace; font-size: 13px; color: #495057;">street-address, city, postal-code</p>
+          </div>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 16px;">
+          <div style="flex: 1; min-width: 200px; background-color: #f8f9fa; border-radius: 6px; padding: 14px;">
+            <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 14px;">Authentication:</p>
+            <p style="margin: 0; font-family: monospace; font-size: 13px; color: #495057;">username, current-password, new-password</p>
+          </div>
+          <div style="flex: 1; min-width: 200px; background-color: #f8f9fa; border-radius: 6px; padding: 14px;">
+            <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 14px;">Payment:</p>
+            <p style="margin: 0; font-family: monospace; font-size: 13px; color: #495057;">cc-number, cc-exp, cc-csc</p>
+          </div>
+        </div>
+
+        <div style="background-color: #fff3bf; border-left: 4px solid #fab005; padding: 16px; margin-bottom: 16px;">
+          <p style="margin: 0; color: #212529; font-size: 15px; font-weight: 600;">The Test:</p>
+          <p style="margin: 8px 0 0 0; color: #212529; font-size: 15px;">"If a browser or password manager COULD autofill this field, should it?" If yes, autocomplete support benefits users.</p>
+        </div>
+
+        <!-- Checkpoint 4 -->
+        <div style="background-color: #f8f9fa; border-radius: 6px; padding: 16px; margin-top: 16px; border-left: 4px solid #5151D3;">
+          <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 14px;">✓ Checkpoint: Input purpose</p>
+          <ul style="margin: 0; padding-left: 20px; color: #495057; font-size: 14px;">
+            <li>I can explain why autocomplete matters for accessibility</li>
+            <li>I can identify which fields would benefit from autocomplete support</li>
+            <li>I can explain how autocomplete helps users with motor and cognitive disabilities</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Section 5: Annotating Forms -->
+      <div>
+        <h4 style="margin: 0 0 12px 0; font-size: 17px; font-weight: 600; color: #212529; padding-bottom: 8px; border-bottom: 2px solid #fff3bf; display: flex; align-items: center; gap: 10px;">Annotating Forms <span style="background-color: #d0ebff; color: #1864ab; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; font-family: monospace;">ALL</span></h4>
+        
+        <p style="margin: 0 0 16px 0; color: #212529;"><strong>Primary annotation: Tab order.</strong> Most form annotation focuses on specifying the order users navigate through fields.</p>
+
+        <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 15px;">For each input, specify:</p>
+        <ul style="margin: 0 0 16px 0; padding-left: 24px; color: #212529;">
+          <li style="margin-bottom: 6px;">Tab order position</li>
+          <li style="margin-bottom: 6px;">Label text and placement</li>
+          <li>Instructions (if needed)</li>
+        </ul>
+
+        <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 15px;">For error states, specify:</p>
+        <ul style="margin: 0 0 16px 0; padding-left: 24px; color: #212529;">
+          <li style="margin-bottom: 6px;">Error message text (problem + solution)</li>
+          <li style="margin-bottom: 6px;">Error placement (inline/summary)</li>
+          <li>Visual indicators</li>
+        </ul>
+
+        <div style="background-color: #d0ebff; border-radius: 6px; padding: 14px 16px; border-left: 4px solid #1971c2; margin-bottom: 16px;">
+          <p style="margin: 0 0 8px 0; font-size: 14px; color: #212529; font-weight: 600;">When to add accessible names:</p>
+          <p style="margin: 0; font-size: 14px; color: #1864ab;">Only when an icon replaces a text label (search field with magnifying glass icon, icon-only clear buttons). If the field has a visible text label, no additional accessible name annotation is needed.</p>
+        </div>
+
+        <!-- Checkpoint 5 -->
+        <div style="background-color: #f8f9fa; border-radius: 6px; padding: 16px; margin-top: 16px; border-left: 4px solid #5151D3;">
+          <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 14px;">✓ Checkpoint: Form annotation</p>
+          <ul style="margin: 0; padding-left: 20px; color: #495057; font-size: 14px;">
+            <li>I can specify tab order for form fields</li>
+            <li>I can document labels and instructions</li>
+            <li>I can specify error states with message text and placement</li>
+            <li>I know when accessible names are needed (icon-only controls only)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Assessment Section -->
+    <div style="background-color: #f8f9fa; border: 1px solid #dee2e6; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #845ef7;">
+      <h3 style="margin: 0 0 20px 0; font-size: 20px; font-weight: 600; color: #212529; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">📝</span> Assessment
+      </h3>
+
+      <!-- Knowledge Check -->
+      <div style="background-color: #fff; border-radius: 6px; padding: 20px; border: 1px solid #e9ecef;">
+        <h4 style="margin: 0 0 8px 0; font-size: 16px; font-weight: 600; color: #212529;">Knowledge Check Quiz</h4>
+        <p style="margin: 0 0 4px 0; font-size: 13px; color: #495057;">5 questions | 5 points | Auto-graded | Open-book</p>
+        <p style="margin: 12px 0 0 0; font-size: 14px; color: #212529;">
+          Test your understanding of form accessibility requirements:
+        </p>
+        <ul style="margin: 8px 0 0 0; padding-left: 20px; font-size: 14px; color: #495057;">
+          <li>Labels and instructions (1D.01): 2 questions</li>
+          <li>Error identification (1D.02): 2 questions</li>
+          <li>Autocomplete (1D.03): 1 question</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Resources Section -->
+    <div style="background-color: #fff; border: 1px solid #dee2e6; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #20c997;">
+      <h3 style="margin: 0 0 20px 0; font-size: 20px; font-weight: 600; color: #212529; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">📚</span> Resources
+      </h3>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 20px;">
+        <!-- W3C Resources -->
+        <div style="flex: 1; min-width: 260px;">
+          <h4 style="margin: 0 0 12px 0; font-size: 15px; font-weight: 600; color: #212529;">W3C Resources</h4>
+          <ul style="margin: 0; padding-left: 20px; font-size: 14px;">
+            <li style="margin-bottom: 8px;">
+              <a href="https://www.w3.org/WAI/WCAG22/Understanding/labels-or-instructions.html" style="color: #1864ab; text-decoration: underline;">SC 3.3.2: Labels or Instructions</a>
+            </li>
+            <li style="margin-bottom: 8px;">
+              <a href="https://www.w3.org/WAI/WCAG22/Understanding/error-identification.html" style="color: #1864ab; text-decoration: underline;">SC 3.3.1: Error Identification</a>
+            </li>
+            <li style="margin-bottom: 8px;">
+              <a href="https://www.w3.org/WAI/WCAG22/Understanding/error-suggestion.html" style="color: #1864ab; text-decoration: underline;">SC 3.3.3: Error Suggestion</a>
+            </li>
+            <li style="margin-bottom: 8px;">
+              <a href="https://www.w3.org/WAI/WCAG22/Understanding/identify-input-purpose.html" style="color: #1864ab; text-decoration: underline;">SC 1.3.5: Identify Input Purpose</a>
+            </li>
+            <li>
+              <a href="https://www.w3.org/WAI/tutorials/forms/" style="color: #1864ab; text-decoration: underline;">WAI Forms Tutorial</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Adobe Resources & Tools -->
+        <div style="flex: 1; min-width: 260px;">
+          <h4 style="margin: 0 0 12px 0; font-size: 15px; font-weight: 600; color: #212529;">Adobe Resources & Tools</h4>
+          <ul style="margin: 0; padding-left: 20px; font-size: 14px; color: #212529;">
+            <li style="margin-bottom: 8px;">Design Accessibility Checklist (Forms section)</li>
+            <li style="margin-bottom: 8px;">Adobe Spectrum: Form Components</li>
+            <li style="margin-bottom: 8px;"><strong>Stark (Figma plugin)</strong>: Tab order and accessible name annotations</li>
+            <li>Digital Accessibility Guide (internal)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Up Next Section -->
+    <div style="background: linear-gradient(135deg, #d0ebff 0%, #a5d8ff 100%); border-radius: 8px; padding: 20px 24px; border-left: 5px solid #1971c2;">
+      <h3 style="margin: 0 0 8px 0; font-size: 18px; font-weight: 600; color: #1864ab; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 20px;">➡️</span> Up Next
+      </h3>
+      <p style="margin: 0; font-size: 15px; color: #212529;">
+        <strong>Lesson 05: Keyboard & Touch</strong> covers keyboard accessibility, focus management, and touch target sizing. Forms must be keyboard accessible, focus indicators must be visible, and error messages must be keyboard navigable.
+      </p>
+    </div>
+
+  </div>
+
+</body>
+</html>

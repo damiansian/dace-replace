@@ -1,0 +1,334 @@
+Key Terms
+ASCII art
+picture created by a spatial arrangement of characters or glyphs (typically from the 95 printable characters defined by ASCII)
+assistive technology
+hardware and/or software that acts as a user agent, or along with a mainstream user agent, to provide functionality to meet the requirements of users with disabilities that go beyond those offered by mainstream user agents
+Note 1
+functionality provided by assistive technology includes alternative presentations (e.g., as synthesized speech or magnified content), alternative input methods (e.g., voice), additional navigation or orientation mechanisms, and content transformations (e.g., to make tables more accessible).
+Note 2
+Assistive technologies often communicate data and messages with mainstream user agents by using and monitoring APIs.
+Note 3
+The distinction between mainstream user agents and assistive technologies is not absolute. Many mainstream user agents provide some features to assist individuals with disabilities. The basic difference is that mainstream user agents target broad and diverse audiences that usually include people with and without disabilities. Assistive technologies target narrowly defined populations of users with specific disabilities. The assistance provided by an assistive technology is more specific and appropriate to the needs of its target users. The mainstream user agent may provide important functionality to assistive technologies like retrieving web content from program objects or parsing markup into identifiable bundles.
+Example
+Assistive technologies that are important in the context of this document include the following:
+	•	screen magnifiers, and other visual reading assistants, which are used by people with visual, perceptual and physical print disabilities to change text font, size, spacing, color, synchronization with speech, etc. in order to improve the visual readability of rendered text and images;
+	•	screen readers, which are used by people who are blind to read textual information through synthesized speech or braille;
+	•	text-to-speech software, which is used by some people with cognitive, language, and learning disabilities to convert text into synthetic speech;
+	•	speech recognition software, which may be used by people who have some physical disabilities;
+	•	alternative keyboards, which are used by people with certain physical disabilities to simulate the keyboard (including alternate keyboards that use head pointers, single switches, sip/puff and other special input devices.);
+	•	alternative pointing devices, which are used by people with certain physical disabilities to simulate mouse pointing and button activations.
+content
+information and sensory experience to be communicated to the user by means of a user agent, including code or markup that defines the content's structure, presentation, and interactions
+contrast ratio
+(L1 + 0.05) / (L2 + 0.05), where
+	•	L1 is the relative luminance of the lighter of the colors, and
+	•	L2 is the relative luminance of the darker of the colors.
+Note 1
+Contrast ratios can range from 1 to 21 (commonly written 1:1 to 21:1).
+Note 2
+Because authors do not have control over user settings as to how text is rendered (for example font smoothing or anti-aliasing), the contrast ratio for text can be evaluated with anti-aliasing turned off.
+Note 3
+For the purpose of Success Criteria 1.4.3 and 1.4.6, contrast is measured with respect to the specified background over which the text is rendered in normal usage. If no background color is specified, then white is assumed.
+Note 4
+Background color is the specified color of content over which the text is to be rendered in normal usage. It is a failure if no background color is specified when the text color is specified, because the user's default background color is unknown and cannot be evaluated for sufficient contrast. For the same reason, it is a failure if no text color is specified when a background color is specified.
+Note 5
+When there is a border around the letter, the border can add contrast and would be used in calculating the contrast between the letter and its background. A narrow border around the letter would be used as the letter. A wide border around the letter that fills in the inner details of the letters acts as a halo and would be considered background.
+Note 6
+WCAG conformance should be evaluated for color pairs specified in the content that an author would expect to appear adjacent in typical presentation. Authors need not consider unusual presentations, such as color changes made by the user agent, except where caused by authors' code.
+essential
+if removed, would fundamentally change the information or functionality of the content, and information and functionality cannot be achieved in another way that would conform
+human language
+language that is spoken, written or signed (through visual or tactile means) to communicate with humans
+Note
+See also sign language.
+non-text content
+any content that is not a sequence of characters that can be programmatically determined or where the sequence is not expressing something in human language
+Note
+This includes ASCII art (which is a pattern of characters), emoticons, leetspeak (which uses character substitution), and images representing text
+presentation
+rendering of the content in a form to be perceived by users
+programmatically determined
+determined by software from author-supplied data provided in a way that different user agents, including assistive technologies, can extract and present this information to users in different modalities
+Example 1
+Determined in a markup language from elements and attributes that are accessed directly by commonly available assistive technology.
+Example 2
+Determined from technology-specific data structures in a non-markup language and exposed to assistive technology via an accessibility API that is supported by commonly available assistive technology.
+relative luminance
+the relative brightness of any point in a colorspace, normalized to 0 for darkest black and 1 for lightest white
+Note 1
+For the sRGB colorspace, the relative luminance of a color is defined as L = 0.2126 * R + 0.7152 * G + 0.0722 * B where R, G and B are defined as:
+	•	if RsRGB <= 0.04045 then R = RsRGB/12.92 else R = ((RsRGB+0.055)/1.055) ^ 2.4
+	•	if GsRGB <= 0.04045 then G = GsRGB/12.92 else G = ((GsRGB+0.055)/1.055) ^ 2.4
+	•	if BsRGB <= 0.04045 then B = BsRGB/12.92 else B = ((BsRGB+0.055)/1.055) ^ 2.4
+and RsRGB, GsRGB, and BsRGB are defined as:
+	•	RsRGB = R8bit/255
+	•	GsRGB = G8bit/255
+	•	BsRGB = B8bit/255
+The "^" character is the exponentiation operator. (Formula taken from [SRGB].)
+Note 2
+Before May 2021 the value of 0.04045 in the definition was different (0.03928). It was taken from an older version of the specification and has been updated. It has no practical effect on the calculations in the context of these guidelines.
+Note 3
+Almost all systems used today to view web content assume sRGB encoding. Unless it is known that another color space will be used to process and display the content, authors should evaluate using sRGB colorspace. If using other color spaces, see Understanding Success Criterion 1.4.3.
+Note 4
+If dithering occurs after delivery, then the source color value is used. For colors that are dithered at the source, the average values of the colors that are dithered should be used (average R, average G, and average B).
+Note 5
+Tools are available that automatically do the calculations when testing contrast and flash.
+Note 6
+A separate page giving the relative luminance definition using MathML to display the formulas is available.
+sign language
+a language using combinations of movements of the hands and arms, facial expressions, or body positions to convey meaning
+state
+dynamic property expressing characteristics of a user interface component that may change in response to user action or automated processes
+States do not affect the nature of the component, but represent data associated with the component or user interaction possibilities. Examples include focus, hover, select, press, check, visited/unvisited, and expand/collapse.
+structure
+	•	The way the parts of a web page are organized in relation to each other; and
+	•	The way a collection of web pages is organized
+user agent
+any software that retrieves and presents web content for users
+Example
+Web browsers, media players, plug-ins, and other programs — including assistive technologies — that help in retrieving, rendering, and interacting with web content.
+user interface component
+a part of the content that is perceived by users as a single control for a distinct function
+Note 1
+Multiple user interface components may be implemented as a single programmatic element. "Components" here is not tied to programming techniques, but rather to what the user perceives as separate controls.
+Note 2
+User interface components include form elements and links as well as components generated by scripts.
+Note 3
+What is meant by "component" or "user interface component" here is also sometimes called "user interface element".
+Example
+An applet has a "control" that can be used to move through content by line or page or random access. Since each of these would need to have a name and be settable independently, they would each be a "user interface component."
+web page
+a non-embedded resource obtained from a single URI using HTTP plus any other resources that are used in the rendering or intended to be rendered together with it by a user agent
+Note 1
+Although any "other resources" would be rendered together with the primary resource, they would not necessarily be rendered simultaneously with each other.
+Note 2
+For the purposes of conformance with these guidelines, a resource must be "non-embedded" within the scope of conformance to be considered a web page.
+Example 1
+A web resource including all embedded images and media.
+Example 2
+A web mail program built using Asynchronous JavaScript and XML (AJAX). The program lives entirely at http://example.com/mail, but includes an inbox, a contacts area and a calendar. Links or buttons are provided that cause the inbox, contacts, or calendar to display, but do not change the URI of the page as a whole.
+Example 3
+A customizable portal site, where users can choose content to display from a set of different content modules.
+Example 4
+When you enter "http://shopping.example.com/" in your browser, you enter a movie-like interactive shopping environment where you visually move around in a store dragging products off of the shelves around you and into a visual shopping cart in front of you. Clicking on a product causes it to be demonstrated with a specification sheet floating alongside. This might be a single-page website or just one page within a website.
+
+
+Technique G195:
+Using an author-supplied, visible focus indicator
+About this Technique
+This technique relates to:
+
+1.4.11: Non-text Contrast (Sufficient)
+2.4.7: Focus Visible (Sufficient)
+This technique applies to all technologies.
+
+Description
+The objective of this technique is enhance the focus indicator in the browser, by creating a visible one in the content. The default focus indicator in some browsers is a thin, dotted, black line. It can be difficult to see the line when it is around a form element which already has an outline, when the focused element is inside a table cell, when the focused element is very small, or when the background of the page is a dark color. Some browsers use a pale blue outline, which can be difficult to see on some backgrounds.
+
+In this technique, when the user places focus on an element using the keyboard, the application makes that focus more visible, using a combination of a highly contrasting color, a thick line, and other visual indicators such as a glow.
+
+Examples
+Example 1: Links
+A web page has a dark background color and light text and links. When focus lands on a link, the link is outlined with a bright yellow line, 3 pixels wide.
+
+Example 2: Form Elements
+A web page includes a form inside a table. The borders of both the table and the form elements are thin, black lines. When focus lands on a form element, the element is outlined with a 5 pixel red line that is partially transparent. The red is equivalent to a hex color of #FF3838, providing a 3.6:1 contrast ratio with the white background.
+
+Example 3: Menus
+A web page includes an interactive menu with sub-menus. A user can move focus in the menu using the arrow keys. As focus moves, the currently focused menu item changes its background to a different color, which has a 3:1 contrast ratio with the surrounding items and a 4.5:1 contrast ratio with its own text.
+
+Related Techniques
+G149: Using user interface components that are highlighted by the user agent when they receive focus
+G165: Using the default focus indicator for the platform so that high visibility default focus indicators will carry over
+C15: Using CSS to change the presentation of a user interface component when it receives focus
+SCR31: Using script to change the background color or border of the element with focus
+C40: Creating a two-color focus indicator to ensure sufficient contrast with all components
+C45: Using CSS :focus-visible to provide keyboard focus indication
+Tests
+Procedure
+For each user interface component on the page that should receive keyboard focus:
+
+Navigate to the component and check that it has a visible focus indicator.
+Check that the focus indicator area is at least the size of a 1 CSS px border around the component.
+If the focus indicator area is not at least equal to the area of a 1 CSS pixel border, check that it has an area of at least 4 CSS pixels along the shortest side of the component.
+Check that the change of contrast of the indicator between focused and unfocused states has a ratio of 3:1 or more for the minimum focus indicator area.
+If the focus indicator does not have 3:1 contrast ratio with its adjacent colors, check that it is at least 2px thick.
+Expected Results
+Checks #2, #4, and #5 are true.
+
+
+Technique G174:
+Providing a control with a sufficient contrast ratio that allows users to switch to a presentation that uses sufficient contrast
+About this Technique
+This technique relates to:
+
+1.4.3: Contrast (Minimum) (Sufficient)
+1.4.6: Contrast (Enhanced) (Sufficient)
+1.4.11: Non-text Contrast (Sufficient)
+This technique applies to any technology.
+
+Description
+When the contrast between the text and its background for some portion of the page has not been designed to meet the contrast level for Success Criterion 1.4.3 or 1.4.6, it is possible to meet these guidelines using the "Alternate Version" clause in the conformance requirements (Conformance Requirement 1). A link or control on the page can either change the page so that all aspects conform, or it could take the viewer to a new version of the page that does conform at the desired level. Placing the link or control prominently on the page will assist users in accessing the conforming content readily.
+
+For this technique to be used successfully, three things must be true:
+
+The link or control on the original page must itself meet the contrast requirement of the desired SC. (If the user cannot see the control they may not be able to use it to go to the new page.)
+The new page must contain all the same information and functionality as the original page.
+The new page must conform to all of the SC for the desired level of conformance. (i.e., the new page cannot just have the desired level of contrast but otherwise not conform).
+This technique can be used to meet Success Criterion 1.4.3 by having text (or images of text) on the alternate version of the page be 4.5:1 contrast and any large text (or images of large text) be 3:1 contrast with its background. If the alternate version of the page has all text (or images of text) with 7:1 contrast and large text (or images of large text) with 4.5:1 contrast then it would satisfy both Success Criterion 1.4.3 and 1.4.6.
+
+Note
+
+This technique can be used in combination with a style switching technique to present a page that is a conforming alternate version for non-conforming content. Refer to C29: Using a style switcher to provide a conforming alternate version and Understanding Conforming Alternate Versions for more information.
+
+Examples
+A page with some headlines that do not meet the 3:1 contrast requirements has a high contrast (5:1) link at the top of the page that takes the user to a new version of the page with minimum 4.5:1 contrast on all text and images of text.
+A page uses shaded backgrounds for effect but results in text to background contrast of 4:1. A control at the top of the page says "high contrast". Clicking on it causes different styles to be used and dropping the background colors to achieve 7:1 contrast.
+Related Techniques
+G17: Ensuring that a contrast ratio of at least 7:1 exists between text (and images of text) and background behind the text
+G18: Ensuring that a contrast ratio of at least 4.5:1 exists between text (and images of text) and background behind the text
+G145: Ensuring that a contrast ratio of at least 3:1 exists between text (and images of text) and background behind the text
+G148: Not specifying background color, not specifying text color, and not using technology features that change those defaults
+Tests
+Procedure
+Check that a link or control exists on the original page that provides access to the alternate version.
+Check that the link or control on the original page conforms to all success criteria for the conformance level being tested.
+Check that the alternate version meets the contrast and all other success criteria for the conformance level being tested.
+Expected Results
+All three checks are true.
+
+
+Technique G207:
+Ensuring that a contrast ratio of 3:1 is provided for icons
+About this Technique
+This technique relates to 1.4.11: Non-text Contrast (Sufficient).
+
+This technique applies to all technologies that support graphical icons.
+
+Description
+The objective of this technique is to ensure graphical icons provide enough contrast for people with vision impairments. Not all graphics are within the scope of SC 1.4.11 Non-text contrast but if the icons are required to understand the content, then the icons need to have a contrast ratio of at least 3:1.
+
+The success criteria for non-text contrast uses the term "graphical object" to cover small simple graphics, and parts of larger complex graphics. This technique focuses on solid color icons used on solid or gradient backgrounds.
+
+When choosing the colors for graphics, consider the color(s) adjacent to that graphic, and test that the contrast ratio is at least 3:1.
+
+Note
+
+A selection of tools and applications for testing contrast ratios can be found in Understanding SC 1.4.3 Contrast (minimum).
+
+Examples
+Example 1: Solid icon color against the background
+A solid icon such as a telephone symbol uses orange on a white background. The color orange (#E3660E) is tested against the white background (#FFFFFF) and it has a contrast ratio of 3.4:1.
+
+Orange icon on white background
+
+Example 2: Solid icon color against a custom background
+A solid icon such as a telephone symbol used within an orange background. The orange and white colors are the same as in example 1, in this case the contrast against the white background is not relevant, the white icon within the orange background is what provides the information in the icon and as a result needs to meet the contrast requirement.
+
+Orange icon on white background
+
+Example 3: Solid icon with a gradient background
+A solid icon such as a telephone symbol using a dark blue icon on a white-to-blue gradient background. The first test of the icon should be against the darkest (least contrasting) background that is adjacent to the icon color. If that is at least 3:1, it passes the success criterion.
+
+Dark blue icon on white-to-blue background.
+
+Example 4: Solid icon with gradient background overlapping in contrast
+A solid icon on a gradient background can overlap in contrast if the graphic is still understandable where it does not have contrast against all of the background. If you find the part of the gradient where it does not meet a 3:1 ratio with the graphic and treat that part as if it was removed, does the icon still convey the appropriate meaning?
+
+A method of visualizing this is to remove the non-contrasting area and check that you can still understand the icon. If so, it is sufficient. The images below shows an icon on a gradient background, and a second version where it removes the area of the icon that does not meet the 3:1 contrast ratio. It is still recognizable as a phone icon, so passes the success criterion.
+
+Dark blue icon on white-to-blue background that is dark at the bottom. Dark blue icon on white-to-blue background.
+
+Related Resources
+No endorsement implied.
+
+Understanding SC 1.4.3 Contrast (minimum) lists color contrast tools.
+Related Techniques
+G18: Ensuring that a contrast ratio of at least 4.5:1 exists between text (and images of text) and background behind the text
+G145: Ensuring that a contrast ratio of at least 3:1 exists between text (and images of text) and background behind the text
+Tests
+Procedure
+For each graphical object required for understanding use a color contrast tool to:
+
+Determine the foreground color of the graphical object.
+Determine the adjacent background color. If the background color is a gradient or pattern, identify the color with the least contrast to the foreground color.
+Check that the contrast ratio is equal to or greater than 3:1.
+If part of the background area does not meet 3:1 with the foreground, assume that parts of the icon adjacent to the area or areas are not visible.
+Check that the icon is still recognizable without any area of insufficient contrast.
+Expected Results
+#3 and #5 are true.
+
+
+Technique G209:
+Provide sufficient contrast at the boundaries between adjoining colors
+About this Technique
+This technique relates to 1.4.11: Non-text Contrast (Sufficient).
+
+This technique applies to for graphics which use multiple colours adjacent to each other.
+
+Description
+The objective of this technique is to ensure people with moderately low vision can distinguish boundaries between adjoining segments of color.
+
+The success criteria for non-text contrast uses the term "graphical object" to cover small simple graphics, and parts of larger complex graphics. This technique focuses on solid color segments where the boundaries between colors convey meaning.
+
+When selecting colors for graphics with multiple colors, consider adjoining colors and test that the contrast ratio is at least 3:1. If adjoining colors have less than 3:1 color contrast ratio difference add a border with at least a 3:1 color contrast with each color.
+
+Examples
+Example 1: Pie chart with alternative light/dark colors
+Pie chart of favorite candy flavours, including text labels and contrasting segments.
+The contrast between adjoining segments of the pie chart range from 5.8 to 9.4.
+Example 2: Pie chart with borders between segments
+Pie chart of favorite candy flavours, including text labels and contrasting borders between segments.
+The contrast between the segments of the pie chart range from 1.1 to 1.8. A border has been added with at least a 3:1 contrast ratio with the colors to distinguish between segments. .
+Example 3: Map with border boundaries
+Map showing simple regions with dark background colours and a light border between regions.
+The color contrast of areas within the map range between 1.3 and 1.8. A boundary line is added with a color contrast ratio of at least 3:1 with the area colors.
+Example 4: Pie chart with black and white borders
+Pie chart of favorite candy flavours, including text labels and black and white borders between segments.
+The colored areas in the chart are both dark and light. A black and white boundary line is added to ensure sufficient contrast between both light and dark colors.
+Related Resources
+No endorsement implied.
+
+Understanding SC 1.4.3 Contrast (minimum) lists color contrast tools.
+Related Techniques
+G207: Ensuring that a contrast ratio of 3:1 is provided for icons
+Tests
+Procedure
+For each graphical object required for understanding use a color contrast tool to:
+
+Measure the contrast ratio of each color compared to the adjacent color(s) or border (if present).
+Check that the contrast ratio is at least 3:1 for each adjacent color or border (if present).
+Expected Results
+#2 is true
+
+Technique F78:
+Failure of Success Criterion 1.4.11 and 2.4.7 due to styling element outlines and borders in a way that removes or renders non-visible the visual focus indicator
+About this Technique
+This technique relates to:
+
+1.4.11: Non-text Contrast (Failure)
+2.4.7: Focus Visible (Failure)
+This failure applies to any technology.
+
+Description
+This describes a failure condition that occurs when the user agent's default visual indication of keyboard focus is turned off or rendered non-visible by other styling on the page without providing an author-supplied visual focus indicator. Turning off the focus indicator instructs the user agent not to present the focus indicator. Other styling may make it difficult to see the focus indicator even though it is present, such as outlines that look the same as the focus outline, or thick borders that are the same color as the focus indicator so it cannot be seen against them.
+
+Examples
+Example 1: The focus indicator is turned off with CSS
+The following CSS example will remove the default focus indicator, which fails the requirement to provide a visible focus indicator.
+
+:focus {outline: none}
+Example 2: The outline of elements is visually similar to the focus indicator
+The following CSS example will create an outline around links that looks the same as the focus indicator. This makes it impossible for users to determine which one in fact has the focus, even though the user agent does draw the focus indicator.
+
+a {outline: thin dotted black}
+Example 3: Elements have a border that occludes the focus indicator
+The following CSS example creates a border around links that does not have enough contrast for the focus indicator to be seen when drawn on top of it. In this case the focus indicator is drawn just outside the border, but as both are black and the border is thicker than the focus indicator, it no longer meets the definition of "visible".
+
+a {border: medium solid black}
+Tests
+Procedure
+Set the focus to all focusable elements on a page using the keyboard.
+Check that the focus indicator is visible.
+Expected Results
+#2 is true.

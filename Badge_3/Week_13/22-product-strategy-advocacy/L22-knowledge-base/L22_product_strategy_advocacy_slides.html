@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L22: Product Strategy Advocacy — DACE Deliver Badge</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap');
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{--slide-w:1440px;--slide-h:900px;--badge-green:#51CF66;--badge-green-light:#EBFBEE;--badge-green-dark:#2B8A3E;--black:#1A1A1A;--dark:#333;--mid:#666;--light-gray:#F5F5F5;--border-gray:#E0E0E0;--white:#FFFFFF;--insight-bg:#F5F7FA;--font:'DM Sans',system-ui,sans-serif}
+  body{font-family:var(--font);background:#1a1a2e;display:flex;flex-direction:column;align-items:center;min-height:100vh;padding:20px;color:var(--black)}
+  .nav{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:12px;background:rgba(0,0,0,0.85);padding:10px 20px;border-radius:40px;z-index:100;backdrop-filter:blur(10px)}
+  .nav button{background:none;border:1px solid rgba(255,255,255,0.3);color:white;width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;transition:all 0.2s}
+  .nav button:hover{background:rgba(255,255,255,0.15);border-color:rgba(255,255,255,0.6)}
+  .nav .counter{color:rgba(255,255,255,0.7);font-size:13px;font-variant-numeric:tabular-nums;min-width:60px;text-align:center}
+  .slide-container{width:var(--slide-w);max-width:100%;aspect-ratio:1440/900}
+  .slide{display:none;width:var(--slide-w);height:var(--slide-h);background:var(--white);position:relative;overflow:hidden;border-radius:4px;box-shadow:0 20px 60px rgba(0,0,0,0.4)}
+  .slide.active{display:block}
+  .topbar{position:absolute;top:0;left:0;right:0;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 40px;border-bottom:1px solid var(--border-gray);z-index:10}
+  .topbar-left{display:flex;align-items:center;gap:12px;font-size:14px;color:var(--dark)}
+  .topbar-icon{width:32px;height:32px;border:1.5px solid var(--dark);border-radius:6px;display:flex;align-items:center;justify-content:center}
+  .topbar-icon svg{width:16px;height:16px}
+  .topbar-lesson{font-weight:600}
+  .topbar-sep{color:#ccc}
+  .topbar-topic{font-weight:400}
+  .badge-pill{display:flex;align-items:center;gap:6px;padding:6px 16px;border-radius:20px;background:var(--badge-green-light);border:1.5px solid var(--badge-green);font-size:13px;font-weight:600;color:var(--badge-green-dark)}
+  .badge-pill svg{width:14px;height:14px}
+  .footer-text{position:absolute;bottom:40px;left:18px;writing-mode:vertical-rl;transform:rotate(180deg);font-size:10px;color:#999;letter-spacing:0.02em;line-height:1.4}
+  .content{position:absolute;top:64px;left:70px;right:40px;bottom:20px;padding:40px 0}
+  .slide.divider .topbar{border-bottom-color:transparent}
+  .divider-bg{position:absolute;top:0;left:0;right:0;bottom:0;overflow:hidden}
+  .divider-bg .geo{position:absolute;stroke:#ddd;stroke-width:1.5;fill:none}
+  .divider-title{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:64px;font-weight:700;color:var(--black);text-align:center;line-height:1.15;max-width:900px}
+  h1.slide-headline{font-size:48px;font-weight:700;color:var(--black);line-height:1.15;margin-bottom:24px;letter-spacing:-0.02em}
+  h2.slide-subhead{font-size:20px;font-weight:600;color:var(--dark);margin-bottom:16px}
+  .slide-body{font-size:18px;color:var(--dark);line-height:1.5;margin-bottom:16px}
+  .slide-intro{font-size:20px;font-weight:600;color:var(--dark);line-height:1.5;margin-bottom:24px}
+  .bullet-list{list-style:none;padding:0}
+  .bullet-list li{font-size:18px;color:var(--dark);line-height:1.55;padding:6px 0 6px 20px;position:relative}
+  .bullet-list li::before{content:'•';position:absolute;left:0;color:#999}
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-bottom:24px}
+  .col-card{background:var(--white);border:1px solid var(--border-gray);border-radius:12px;padding:28px}
+  .col-card h3{font-size:18px;font-weight:700;margin-bottom:16px;color:var(--black)}
+  .col-card.green-accent{border-top:3px solid var(--badge-green)}
+  .col-card.gray-accent{border-top:3px solid #ccc}
+  .col-card.red-accent{border-top:3px solid #FA5252}
+  .four-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px}
+  .three-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:24px}
+  .card{background:var(--light-gray);border-radius:12px;padding:20px}
+  .card h4{font-size:15px;font-weight:700;color:var(--black);margin-bottom:8px}
+  .card p{font-size:14px;color:var(--mid);line-height:1.45}
+  .key-insight{background:var(--insight-bg);border-radius:12px;padding:20px 24px 20px 64px;position:relative;margin-top:16px}
+  .key-insight::before{content:'';position:absolute;left:20px;top:50%;transform:translateY(-50%);width:32px;height:32px;background:#3478F6;border-radius:50%}
+  .key-insight::after{content:'💡';position:absolute;left:25px;top:50%;transform:translateY(-50%);font-size:16px}
+  .key-insight strong{display:block;font-size:15px;font-weight:700;color:var(--black);margin-bottom:4px}
+  .key-insight p,.key-insight span{font-size:15px;color:var(--dark);line-height:1.5}
+  .checklist{list-style:none;padding:0}
+  .checklist li{font-size:17px;color:var(--dark);line-height:1.5;padding:8px 0 8px 36px;position:relative}
+  .checklist li::before{content:'';position:absolute;left:0;top:10px;width:20px;height:20px;border:2px solid #ccc;border-radius:4px}
+  .outcome-card{background:var(--insight-bg);border-radius:16px;padding:28px;text-align:center}
+  .outcome-card .outcome-icon{width:56px;height:56px;background:#3478F6;border-radius:50%;margin:0 auto 16px;display:flex;align-items:center;justify-content:center;font-size:24px}
+  .outcome-card .outcome-label{font-size:16px;font-weight:700;color:var(--black);margin-bottom:12px}
+  .outcome-card .outcome-text{font-size:14px;color:var(--mid);line-height:1.5}
+  .lo-pill{display:inline-flex;align-items:center;padding:3px 10px;border-radius:12px;background:var(--badge-green-light);font-size:12px;font-weight:600;color:var(--badge-green-dark);margin-top:8px}
+  .objectives-list{list-style:none;padding:0}
+  .objectives-list li{padding:16px 0;border-bottom:1px solid var(--border-gray);display:flex;gap:16px;align-items:flex-start}
+  .objectives-list li:last-child{border-bottom:none}
+  .obj-code{font-size:14px;font-weight:700;color:var(--badge-green-dark);background:var(--badge-green-light);padding:4px 10px;border-radius:6px;white-space:nowrap;flex-shrink:0}
+  .obj-text{font-size:17px;color:var(--dark);line-height:1.5}
+  .obj-text strong{color:var(--black)}
+  .connection-callout{background:var(--badge-green-light);border-left:3px solid var(--badge-green);padding:16px 20px;border-radius:0 8px 8px 0;margin-top:16px}
+  .connection-callout p{font-size:14px;color:var(--dark);line-height:1.5}
+  .principles{display:flex;flex-direction:column;gap:16px}
+  .principle-row{display:flex;gap:16px;align-items:flex-start;padding:16px;background:var(--light-gray);border-radius:12px}
+  .principle-icon{width:44px;height:44px;background:#3478F6;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:20px}
+  .principle-text{font-size:15px;color:var(--dark);line-height:1.5}
+  .principle-text strong{color:var(--black)}
+  .title-content{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center}
+  .title-lesson-num{font-size:16px;font-weight:600;color:var(--mid);letter-spacing:0.05em;text-transform:uppercase;margin-bottom:12px}
+  .title-main{font-size:52px;font-weight:700;color:var(--black);line-height:1.1;margin-bottom:12px;letter-spacing:-0.02em}
+  .title-subtitle{font-size:20px;color:var(--mid);font-weight:400;margin-bottom:32px;font-style:italic;max-width:700px;line-height:1.4}
+  .title-meta{display:flex;gap:24px;font-size:13px;color:#999}
+  .title-meta span{padding:4px 12px;background:var(--light-gray);border-radius:16px}
+  .audience-card{background:var(--light-gray);border-radius:12px;padding:24px;position:relative}
+  .audience-card .aud-tag{display:inline-block;font-size:11px;font-weight:700;padding:3px 8px;border-radius:8px;margin-bottom:10px;letter-spacing:0.03em;background:#E8F0F8;color:#1864AB}
+  .audience-card h4{font-size:17px;font-weight:700;color:var(--black);margin-bottom:8px}
+  .audience-card p{font-size:14px;color:var(--mid);line-height:1.5}
+  .metric-card{background:var(--light-gray);border-radius:12px;padding:24px;border-left:4px solid var(--badge-green)}
+  .metric-card h4{font-size:16px;font-weight:700;color:var(--black);margin-bottom:8px}
+  .metric-card p{font-size:14px;color:var(--mid);line-height:1.5}
+</style>
+</head>
+<body>
+<div class="slide-container" id="slideContainer"></div>
+<div class="nav">
+  <button onclick="prevSlide()">&#8592;</button>
+  <span class="counter" id="counter">1 / 17</span>
+  <button onclick="nextSlide()">&#8594;</button>
+</div>
+<script>
+const TB = `<div class="topbar"><div class="topbar-left"><div class="topbar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M6 8l3 3-3 3"/></svg></div><span class="topbar-lesson">Lesson 22</span><span class="topbar-sep">|</span><span class="topbar-topic">Product Strategy Advocacy</span></div><div class="badge-pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg> Deliver Badge</div></div>`;
+const TB_PLAIN = `<div class="topbar"><div class="topbar-left"><div class="topbar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M6 8l3 3-3 3"/></svg></div><span class="topbar-lesson">Lesson 22</span><span class="topbar-sep">|</span><span class="topbar-topic">Product Strategy Advocacy</span></div></div>`;
+const FT = `<div class="footer-text">Design Accessibility Certified Expert (DACE)<br>Cohort 1: 2025 – 2026</div>`;
+const GEO = `<div class="divider-bg"><svg class="geo" style="left:-20px;top:80px" width="120" height="120" viewBox="0 0 120 120"><polygon points="60,0 120,120 0,120"/></svg><svg class="geo" style="left:-10px;top:320px" width="100" height="100" viewBox="0 0 100 100"><rect x="10" y="10" width="80" height="80"/></svg><svg class="geo" style="left:-5px;top:540px" width="100" height="100" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45"/></svg></div>`;
+
+const slides = [
+
+// ===== 0.1 TITLE =====
+{type:'title', html:`${TB}
+<div class="content"><div class="title-content">
+  <div class="title-lesson-num">Lesson 22</div>
+  <div class="title-main">Product Strategy<br>Advocacy</div>
+  <div class="title-subtitle">Influence what gets built, not just what gets reviewed</div>
+  <div class="title-meta"><span>Deliver Badge</span><span>~30 minutes</span><span>In-Person Lesson</span><span>Week 13</span></div>
+</div></div>${FT}`},
+
+// ===== 0.2 OBJECTIVES =====
+{type:'content', html:`${TB}
+<div class="content">
+  <h1 class="slide-headline">What you'll be able to do</h1>
+  <p class="slide-body" style="margin-bottom:24px">By the end of this lesson, you'll be able to:</p>
+  <ul class="objectives-list">
+    <li><span class="obj-code">3G.01</span><span class="obj-text"><strong>Influence roadmap planning:</strong> Make accessibility concerns visible in product planning discussions</span></li>
+    <li><span class="obj-code">3G.02</span><span class="obj-text"><strong>Write accessibility acceptance criteria:</strong> Create specific and testable accessibility requirements for features</span></li>
+    <li><span class="obj-code">3G.03</span><span class="obj-text"><strong>Intervene early in design direction:</strong> Influence accessibility before significant design work is invested</span></li>
+  </ul>
+  <div class="connection-callout"><p>L21 built the business case. L22 deploys it — in planning meetings, in acceptance criteria, and before design direction hardens.</p></div>
+</div>${FT}`},
+
+// ===== 1.1 DIVIDER =====
+{type:'divider', html:`${TB_PLAIN}${GEO}<div class="divider-title">Roadmap<br>Influence</div>${FT}`},
+
+// ===== 1.2 PLANNING VISIBILITY =====
+{type:'content', html:`${TB}
+<div class="content">
+  <h1 class="slide-headline" style="font-size:42px">Accessibility should appear before the sprint plan</h1>
+  <div class="two-col">
+    <div class="col-card red-accent">
+      <h3>If accessibility is absent</h3>
+      <ul class="bullet-list">
+        <li>Scope ignores core barriers</li>
+        <li>Debt enters the roadmap by default</li>
+        <li>Teams discover risk too late</li>
+      </ul>
+      <p style="font-size:13px;color:var(--mid);margin-top:16px;font-style:italic">Planning without accessibility creates debt that someone inherits later</p>
+    </div>
+    <div class="col-card green-accent">
+      <h3>If accessibility is visible</h3>
+      <ul class="bullet-list">
+        <li>Risk is discussed early</li>
+        <li>Dependencies can be planned</li>
+        <li>Tradeoffs are explicit instead of accidental</li>
+      </ul>
+      <p style="font-size:13px;color:var(--mid);margin-top:16px;font-style:italic">Visibility turns accessibility from a surprise into a planning input</p>
+    </div>
+  </div>
+  <div class="lo-pill">LO 3G.01</div>
+</div>${FT}`},
+
+// ===== 1.3 SIGNALS TO RAISE =====
+{type:'content', html:`${TB}
+<div class="content">
+  <h1 class="slide-headline" style="font-size:42px">What to surface during roadmap conversations</h1>
+  <div class="four-cards">
+    <div class="card" style="padding:24px;border-top:3px solid #3478F6">
+      <h4 style="font-size:18px;margin-bottom:10px">Known barriers</h4>
+      <p style="font-size:15px">Existing patterns in the product that already create accessibility problems for users.</p>
+    </div>
+    <div class="card" style="padding:24px;border-top:3px solid #FA5252">
+      <h4 style="font-size:18px;margin-bottom:10px">Upcoming debt</h4>
+      <p style="font-size:15px">Features on the roadmap that are likely to create new accessibility challenges if not planned for.</p>
+    </div>
+    <div class="card" style="padding:24px;border-top:3px solid #BE4BDB">
+      <h4 style="font-size:18px;margin-bottom:10px">Dependencies</h4>
+      <p style="font-size:15px">Engineering or platform support needed for accessible implementation that must be sequenced early.</p>
+    </div>
+    <div class="card" style="padding:24px;border-top:3px solid var(--badge-green)">
+      <h4 style="font-size:18px;margin-bottom:10px">Compliance risk</h4>
+      <p style="font-size:15px">Market or regulatory risk that could affect release decisions or timelines if not addressed.</p>
+    </div>
+  </div>
+  <div class="key-insight"><strong>Key insight</strong><span>Influence is easier when accessibility is framed as planning input, not late-stage objection.</span></div>
+  <div class="lo-pill" style="margin-top:12px">LO 3G.01</div>
+</div>${FT}`},
+
+// ===== 1.4 AUDIENCE ADAPTATION =====
+{type:'content', html:`${TB}
+<div class="content">
+  <h1 class="slide-headline" style="font-size:42px">Same case, different emphasis</h1>
+  <div class="three-cards">
+    <div class="audience-card">
+      <span class="aud-tag">Executives</span>
+      <h4>Risk, reach, and leverage</h4>
+      <p>Market reach, brand trust, legal exposure, long-term competitive positioning. Executives think in quarters and strategic bets. Connect accessibility to the bets they've already made.</p>
+    </div>
+    <div class="audience-card">
+      <span class="aud-tag">Product Managers</span>
+      <h4>Roadmap and user value</h4>
+      <p>Roadmap impact, prioritization trade-offs, user value, delivery timeline. PMs think in sprints and user stories. Show where accessibility fits in the work they're already planning.</p>
+    </div>
+    <div class="audience-card">
+      <span class="aud-tag">Engineers</span>
+      <h4>Implementation and debt</h4>
+      <p>Implementation timing, tech debt reduction, rework avoidance. Engineers think in effort and architecture. Frame accessibility as quality engineering, not extra work.</p>
+    </div>
+  </div>
+  <div class="key-insight"><strong>Key insight</strong><span>The facts stay stable. The emphasis changes based on what each audience acts on.</span></div>
+  <div class="lo-pill" style="margin-top:12px">LO 3G.01</div>
+</div>${FT}`},
+
+// ===== 1.5 CHECKPOINT =====
+{type:'content', html:`${TB}
+<div class="content">
+  <h1 class="slide-headline">Checkpoint: Roadmap Influence</h1>
+  <p class="slide-intro">Verify you can influence planning conversations with accessibility expertise:</p>
+  <div style="display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:start">
+    <div>
+      <h2 class="slide-subhead">Checklist:</h2>
+      <ul class="checklist">
+        <li>I can explain why early planning visibility matters</li>
+        <li>I can name at least two accessibility signals to raise in roadmap discussions</li>
+        <li>I can adapt the accessibility message for executives, PMs, or engineers</li>
+      </ul>
+    </div>
+    <div class="outcome-card">
+      <div class="outcome-icon">💡</div>
+      <div class="outcome-label">Learning Outcome 3G.01</div>
+      <div class="outcome-text">Influence roadmap planning: Make accessibility concerns visible in product planning discussions.</div>
+    </div>
+  </div>
+</div>${FT}`},
+
+// ===== 2.1 DIVIDER =====
+{type:'divider', html:`${TB_PLAIN}${GEO}<div class="divider-title">Acceptance<br>Criteria</div>${FT}`},
+
+// ===== 2.2 VAGUE VS TESTABLE =====
+{type:'content', html:`${TB}
+<div class="content">
+  <h1 class="slide-headline" style="font-size:42px">Vague intent vs testable acceptance criteria</h1>
+  <div class="two-col">
+    <div class="col-card red-accent">
+      <h3>Weak</h3>
+      <ul class="bullet-list">
+        <li style="font-style:italic">"Must be accessible"</li>
+        <li style="font-style:italic">"Should support screen readers"</li>
+        <li style="font-style:italic">"Needs keyboard support"</li>
+      </ul>
+      <p style="font-size:13px;color:var(--mid);margin-top:16px">Sounds right but cannot be tested. Will not reliably survive delivery.</p>
+    </div>
+    <div class="col-card green-accent">
+      <h3>Strong</h3>
+      <ul class="bullet-list">
+        <li>Names the feature state or flow</li>
+        <li>States expected behavior</li>
+        <li>Can be validated in design or QA</li>
+      </ul>
+      <p style="font-size:13px;color:var(--mid);margin-top:16px">Specific enough to guide implementation and verify completion.</p>
+    </div>
+  </div>
+  <div class="lo-pill">LO 3G.02</div>
+</div>${FT}`},
+
+// ===== 2.3 CRITERIA EXAMPLES =====
+{type:'content', html:`${TB}
+<div class="content">
+  <h1 class="slide-headline" style="font-size:42px">Examples of specific and testable criteria</h1>
+  <div class="three-cards">
+    <div class="metric-card">
+      <h4>Keyboard</h4>
+      <p>All interactive controls in the filter panel are reachable in logical order without a mouse.</p>
+    </div>
+    <div class="metric-card">
+      <h4>Screen reader</h4>
+      <p>Error state announces the problem and recovery guidance when the field receives focus.</p>
+    </div>
+    <div class="metric-card">
+      <h4>Visual</h4>
+      <p>Focus indicator remains visible at 200 percent zoom and in high-contrast conditions.</p>
+    </div>
+  </div>
+  <div class="key-insight"><strong>Key insight</strong><span>Criteria tied to user behavior become part of definition of done. Vague intention does not.</span></div>
+  <div class="lo-pill" style="margin-top:12px">LO 3G.02</div>
+</div>${FT}`},
+
+// ===== 2.4 CHECKPOINT =====
+{type:'content', html:`${TB}
+<div class="content">
+  <h1 class="slide-headline">Checkpoint: Acceptance Criteria</h1>
+  <p class="slide-intro">Verify you can write criteria that hold up in implementation:</p>
+  <div style="display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:start">
+    <div>
+      <h2 class="slide-subhead">Checklist:</h2>
+      <ul class="checklist">
+        <li>I can distinguish vague accessibility language from testable criteria</li>
+        <li>I can write at least one feature-level accessibility acceptance criterion</li>
+        <li>I understand how criteria connect accessibility to definition of done</li>
+      </ul>
+    </div>
+    <div class="outcome-card">
+      <div class="outcome-icon">💡</div>
+      <div class="outcome-label">Learning Outcome 3G.02</div>
+      <div class="outcome-text">Write accessibility acceptance criteria: Create specific and testable accessibility requirements for features.</div>
+    </div>
+  </div>
+</div>${FT}`},
+
+// ===== 3.1 DIVIDER =====
+{type:'divider', html:`${TB_PLAIN}${GEO}<div class="divider-title">Early<br>Intervention</div>${FT}`},
+
+// ===== 3.2 EARLY VS LATE =====
+{type:'content', html:`${TB}
+<div class="content">
+  <h1 class="slide-headline">The same issue costs more later</h1>
+  <div class="two-col">
+    <div class="col-card green-accent">
+      <h3>Intervene early</h3>
+      <ul class="bullet-list">
+        <li>Concept stage</li>
+        <li>Pattern choice still open</li>
+        <li>Lower rework cost</li>
+        <li>Better team learning</li>
+      </ul>
+      <p style="font-size:13px;color:var(--mid);margin-top:16px;font-style:italic">Early input shapes the direction before investment locks it in</p>
+    </div>
+    <div class="col-card red-accent">
+      <h3>Correct late</h3>
+      <ul class="bullet-list">
+        <li>Detailed design or implementation</li>
+        <li>More sunk cost</li>
+        <li>Higher resistance</li>
+        <li>More compromise pressure</li>
+      </ul>
+      <p style="font-size:13px;color:var(--mid);margin-top:16px;font-style:italic">Late correction fights momentum, budget, and team fatigue</p>
+    </div>
+  </div>
+  <div class="lo-pill">LO 3G.03</div>
+</div>${FT}`},
+
+// ===== 3.3 HANDLING PUSHBACK =====
+{type:'content', html:`${TB}
+<div class="content">
+  <h1 class="slide-headline" style="font-size:42px">When accessibility conflicts with other priorities</h1>
+  <div class="principles" style="margin-bottom:24px">
+    <div class="principle-row">
+      <div class="principle-icon">🎯</div>
+      <div class="principle-text"><strong>Re-anchor on user impact and known risk.</strong> Bring the conversation back to who is affected and what the consequence is. Keep it concrete, not abstract.</div>
+    </div>
+    <div class="principle-row">
+      <div class="principle-icon">📋</div>
+      <div class="principle-text"><strong>Make the debt explicit, not invisible.</strong> If the team decides to defer, name what is being deferred and what it will cost later. Invisible debt compounds silently.</div>
+    </div>
+    <div class="principle-row">
+      <div class="principle-icon">🔄</div>
+      <div class="principle-text"><strong>Offer a concrete alternative when possible.</strong> If the ideal approach is blocked, propose a smaller step that still reduces risk or preserves a path forward.</div>
+    </div>
+    <div class="principle-row">
+      <div class="principle-icon">⏱️</div>
+      <div class="principle-text"><strong>Clarify what will become more expensive if deferred.</strong> Time-cost framing helps teams see deferral as a decision with consequences, not just a scheduling choice.</div>
+    </div>
+  </div>
+  <div class="key-insight"><strong>Key insight</strong><span>Pushback is easier to navigate when the tradeoff is named clearly instead of treated as a personal disagreement.</span></div>
+  <div class="lo-pill" style="margin-top:12px">LO 3G.03</div>
+</div>${FT}`},
+
+// ===== 3.4 CHECKPOINT =====
+{type:'content', html:`${TB}
+<div class="content">
+  <h1 class="slide-headline">Checkpoint: Early Intervention</h1>
+  <p class="slide-intro">Verify you can anticipate risk and respond with strategy:</p>
+  <div style="display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:start">
+    <div>
+      <h2 class="slide-subhead">Checklist:</h2>
+      <ul class="checklist">
+        <li>I can identify one sign that a feature needs accessibility intervention before detailed design begins</li>
+        <li>I can describe one way to make accessibility debt visible in a planning conversation</li>
+        <li>I know how to respond to pushback without losing the core issue</li>
+      </ul>
+    </div>
+    <div class="outcome-card">
+      <div class="outcome-icon">💡</div>
+      <div class="outcome-label">Learning Outcome 3G.03</div>
+      <div class="outcome-text">Intervene early in design direction: Influence accessibility before significant design work is invested.</div>
+    </div>
+  </div>
+</div>${FT}`},
+
+// ===== 4.1 SUMMARY =====
+{type:'content', html:`${TB}
+<div class="content">
+  <h1 class="slide-headline">Key takeaways</h1>
+  <div class="principles">
+    <div class="principle-row">
+      <div class="principle-icon">🗺️</div>
+      <div class="principle-text"><strong>Roadmap influence prevents debt from becoming normal.</strong> Make accessibility visible during planning, not after. Adapt your message for the audience in the room.</div>
+    </div>
+    <div class="principle-row">
+      <div class="principle-icon">✅</div>
+      <div class="principle-text"><strong>Acceptance criteria make accessibility testable and accountable.</strong> If a criterion cannot be validated in design or QA, it will not reliably survive delivery.</div>
+    </div>
+    <div class="principle-row">
+      <div class="principle-icon">⚡</div>
+      <div class="principle-text"><strong>Early intervention is cheaper and more effective than late correction.</strong> Name the tradeoff clearly. Offer alternatives. Make deferral a visible decision, not an invisible default.</div>
+    </div>
+  </div>
+</div>${FT}`},
+
+// ===== 4.2 UP NEXT =====
+{type:'content', html:`${TB}
+<div class="content" style="display:flex;flex-direction:column;justify-content:center;height:calc(100% - 64px);padding-top:0;padding-bottom:0">
+  <h1 class="slide-headline">Up next: L23</h1>
+  <p class="slide-body" style="font-size:20px;max-width:800px;margin-bottom:32px">L23 moves into harder judgment calls: ambiguous scenarios, edge-case research, and documenting defensible reasoning when the answer is not obvious.</p>
+  <div class="connection-callout"><p>L21 gave you the business case. L22 showed you where and when to deploy it. L23 prepares you for the moments when the right answer is not clear and you have to build the reasoning yourself.</p></div>
+</div>${FT}`}
+
+];
+
+let current = 0;
+const container = document.getElementById('slideContainer');
+const counter = document.getElementById('counter');
+function render() {
+  container.innerHTML = `<div class="slide ${slides[current].type === 'divider' ? 'divider' : ''} active">${slides[current].html}</div>`;
+  counter.textContent = `${current + 1} / ${slides.length}`;
+  scaleSlide();
+}
+function nextSlide() { if (current < slides.length - 1) { current++; render(); } }
+function prevSlide() { if (current > 0) { current--; render(); } }
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); nextSlide(); }
+  if (e.key === 'ArrowLeft') { e.preventDefault(); prevSlide(); }
+});
+function scaleSlide() {
+  const maxW = Math.min(window.innerWidth - 40, 1440);
+  const scale = maxW / 1440;
+  const slide = document.querySelector('.slide');
+  if (slide && scale < 1) { slide.style.transform = `scale(${scale})`; container.style.height = `${900 * scale}px`; }
+  else if (slide) { slide.style.transform = 'none'; container.style.height = '900px'; }
+}
+window.addEventListener('resize', scaleSlide);
+render();
+</script>
+</body>
+</html>
