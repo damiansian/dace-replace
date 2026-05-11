@@ -1,0 +1,64 @@
+import type { Metadata } from "next";
+import { Geist, Geist_Mono } from "next/font/google";
+import Link from "next/link";
+import "./globals.css";
+
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
+export const metadata: Metadata = {
+  title: "DACE Cohort 2 | Emergency Course Site",
+  description:
+    "Temporary course site for the DACE (Design Accessibility Certified Expert) Training Program, Cohort 2. Access lessons, quizzes, and applied practice materials for Weeks 2 and 3.",
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html
+      lang="en"
+      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+    >
+      <body className="min-h-full flex flex-col font-sans">
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:bg-primary focus:text-white focus:px-4 focus:py-2 focus:rounded focus:text-sm focus:font-medium"
+        >
+          Skip to main content
+        </a>
+
+        <header className="border-b border-border bg-white">
+          <div className="mx-auto max-w-5xl px-4 py-3 sm:px-6">
+            <Link
+              href="/"
+              className="text-lg font-bold text-primary-dark hover:text-primary-text"
+            >
+              DACE Cohort 2
+            </Link>
+          </div>
+        </header>
+
+        <main id="main-content" className="flex-1">
+          {children}
+        </main>
+
+        <footer className="border-t border-border bg-surface py-6 mt-auto">
+          <p className="mx-auto max-w-5xl px-4 text-sm text-text-secondary text-center sm:px-6">
+            DACE Training Program | Cohort 2 | Temporary site while Canvas is
+            unavailable
+          </p>
+        </footer>
+      </body>
+    </html>
+  );
+}

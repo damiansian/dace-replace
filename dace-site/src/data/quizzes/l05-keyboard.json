@@ -1,0 +1,92 @@
+{
+  "id": "l05-keyboard",
+  "title": "L05: Keyboard",
+  "lessonPath": "/week-3/l05-keyboard",
+  "questions": [
+    {
+      "id": "l05-q1",
+      "question": "Based on these annotations, how would a keyboard user get to the more actions button on the card with a dog on it? The annotations show a content grid where the content area is a single tab stop with arrow key operations. Assuming tab stop one is the back button next to recent uploads.",
+      "options": [
+        { "id": "a", "text": "Tab 8 times" },
+        { "id": "b", "text": "Tab 5 times, right arrow 3 times" },
+        { "id": "c", "text": "Tab 6 times" },
+        { "id": "d", "text": "Tab 5 times, right arrow once, tab 1 more time" }
+      ],
+      "correctAnswer": "d",
+      "feedback": {
+        "a": "Incorrect. This assumes each element receives its own tab stop, ignoring the arrow key navigation pattern.",
+        "b": "Incorrect. Only one right arrow press is needed to move from the first card to the second.",
+        "c": "Incorrect. Tab 6 would move past the content area entirely.",
+        "d": "Correct. The annotation specifies that the content area is a single tab stop (tab stop 5) with arrow key operations."
+      }
+    },
+    {
+      "id": "l05-q2",
+      "question": "A dropdown menu shows two options: \"Duplicate\" and \"Delete.\" Focus order annotations show four separate tab stops on each text and icon. What feedback would you give?",
+      "options": [
+        { "id": "a", "text": "The menu items are operated by arrow keys, so this is one tab stop" },
+        { "id": "b", "text": "The Delete item uses color alone to indicate it's a negative action" },
+        { "id": "c", "text": "The menu items receive one tab stop each, so there are only two tab stops, not four" },
+        { "id": "d", "text": "The Blueline has been specified perfectly, no notes" }
+      ],
+      "correctAnswer": "a",
+      "feedback": {
+        "a": "Correct. Menu components follow the ARIA menu pattern where the entire menu receives a single tab stop with arrow key navigation.",
+        "b": "Incorrect. The Delete item also has a distinct trash icon, so color is not the only indicator.",
+        "c": "Incorrect. A menu should have ONE tab stop total for all items, not one per menu item.",
+        "d": "Incorrect. The annotation shows four separate tab stops for two menu items, which violates standard menu keyboard patterns."
+      }
+    },
+    {
+      "id": "l05-q3",
+      "question": "What are three ways to close a modal dialog without creating any invitations?",
+      "options": [
+        { "id": "a", "text": "Control + Alt + Delete" },
+        { "id": "b", "text": "The X button, the Cancel button, and the Escape key" },
+        { "id": "c", "text": "The X button, the Cancel button, and the End key" },
+        { "id": "d", "text": "Command + Alt + Delete" }
+      ],
+      "correctAnswer": "b",
+      "feedback": {
+        "a": "Incorrect. This is a system-level keyboard shortcut, not related to closing modal dialogs.",
+        "b": "Correct. These are the three standard methods for dismissing a modal without taking action.",
+        "c": "Incorrect. The End key is not a standard method for closing modals. The Escape key is.",
+        "d": "Incorrect. This is a system-level function, not a web application interaction."
+      }
+    },
+    {
+      "id": "l05-q4",
+      "question": "A checkbox measures 12x12 pixels. Stark displays errors for AA and AAA conformance. How should you address this?",
+      "options": [
+        { "id": "a", "text": "We have to make the box at least 24 by 24 pixels" },
+        { "id": "b", "text": "We can defer the results as they mention AAA conformance" },
+        { "id": "c", "text": "This is a false positive as the hit area is sufficient" },
+        { "id": "d", "text": "We can make the box reach 24x24 when a user hovers over it" }
+      ],
+      "correctAnswer": "c",
+      "feedback": {
+        "a": "Incorrect. WCAG SC 2.5.8 requires the touch TARGET (interactive area) to be 24x24, not the visible graphic.",
+        "b": "Incorrect. The tool shows failures for both AA AND AAA. SC 2.5.8 is a Level AA requirement.",
+        "c": "Correct. Automated tools measure the visible element size, not the actual interactive hit area. The visual checkbox may be 12x12 but the clickable region extends beyond.",
+        "d": "Incorrect. Touch targets must meet size requirements in their default state, not only on hover."
+      }
+    },
+    {
+      "id": "l05-q5",
+      "question": "A Tab Group component has three tabs annotated with three separate tab stops. What error has the designer made?",
+      "options": [
+        { "id": "a", "text": "A Tab Group component gets a single tab stop with arrow key operation" },
+        { "id": "b", "text": "The icons should have their own focus order annotation" },
+        { "id": "c", "text": "A Tab Group component gets a single tab stop with Shift + Tab operation" },
+        { "id": "d", "text": "They used the reading order annotation marker instead of the focus marker" }
+      ],
+      "correctAnswer": "a",
+      "feedback": {
+        "a": "Correct. Following the ARIA tabs pattern, a Tab Group receives a single tab stop with left/right arrow keys to move between tabs.",
+        "b": "Incorrect. Icons within tabs are decorative and should not receive separate focus.",
+        "c": "Incorrect. Arrow keys, not Shift+Tab, are used to navigate between tabs within a Tab Group.",
+        "d": "Incorrect. The error is in the number of tab stops, not the type of annotation marker."
+      }
+    }
+  ]
+}

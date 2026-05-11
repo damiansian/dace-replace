@@ -1,0 +1,92 @@
+{
+  "id": "l06-reflow",
+  "title": "L06: Reflow",
+  "lessonPath": "/week-3/l06-reflow",
+  "questions": [
+    {
+      "id": "l06-q1",
+      "question": "When you set your browser window to 1280px wide and zoom to 200%, what is the effective viewport width? What about at 400% zoom?",
+      "options": [
+        { "id": "a", "text": "2560px at 200%, 5120px at 400%" },
+        { "id": "b", "text": "1280px at both zoom levels" },
+        { "id": "c", "text": "640px at 200% zoom, 320px at 400% zoom" },
+        { "id": "d", "text": "1080px at 200%, 720px at 400%" }
+      ],
+      "correctAnswer": "c",
+      "feedback": {
+        "a": "Incorrect. This multiplies instead of divides. Zooming in means less content fits.",
+        "b": "Incorrect. The physical viewport stays 1280px but the effective viewport decreases with zoom.",
+        "c": "Correct. The effective viewport width is calculated by dividing the actual viewport by the zoom percentage. At 200%: 1280/2 = 640px. At 400%: 1280/4 = 320px.",
+        "d": "Incorrect. These numbers don't follow the correct calculation."
+      }
+    },
+    {
+      "id": "l06-q2",
+      "question": "A web app has: (1) product comparison table, (2) testimonial cards side by side, (3) sidebar navigation, (4) blog article. Which is a valid exception to SC 1.4.10?",
+      "options": [
+        { "id": "a", "text": "The product comparison table" },
+        { "id": "b", "text": "The testimonial cards" },
+        { "id": "c", "text": "The blog article" },
+        { "id": "d", "text": "The sidebar navigation" }
+      ],
+      "correctAnswer": "a",
+      "feedback": {
+        "a": "Correct. Data tables are an explicit exception because they require two-dimensional spatial relationships to convey meaning.",
+        "b": "Incorrect. Testimonial cards are independent content blocks that can stack vertically.",
+        "c": "Incorrect. Body text and paragraphs must reflow. Text content should never require horizontal scrolling.",
+        "d": "Incorrect. Navigation menus must reflow. Sidebars should collapse to hamburger menus."
+      }
+    },
+    {
+      "id": "l06-q3",
+      "question": "A \"Subscribe to Newsletter\" button has height: 40px and overflow: hidden. When text spacing is adjusted, the text gets clipped. What would fix this?",
+      "options": [
+        { "id": "a", "text": "Reduce the font size" },
+        { "id": "b", "text": "Add a tooltip that displays the full text on hover" },
+        { "id": "c", "text": "Shorten the button label to \"Subscribe\"" },
+        { "id": "d", "text": "Use min-height: 40px instead of height: 40px" }
+      ],
+      "correctAnswer": "d",
+      "feedback": {
+        "a": "Incorrect. Reducing font size works against users who need text spacing adjustments.",
+        "b": "Incorrect. Tooltips don't solve the core problem of clipped visible text.",
+        "c": "Incorrect. SC 1.4.12 requires no loss of content. Users need to understand what they are subscribing to.",
+        "d": "Correct. Using min-height allows the button to grow when line height increases while maintaining its minimum size."
+      }
+    },
+    {
+      "id": "l06-q4",
+      "question": "According to SC 1.4.12, which text spacing values must designs support?",
+      "options": [
+        { "id": "a", "text": "Only line height adjustments up to 1.5x" },
+        { "id": "b", "text": "Line height 1.5x font size, letter spacing 0.12x, word spacing 0.16x, paragraph spacing 2x" },
+        { "id": "c", "text": "Line height 2.5x, letter spacing 0.5x, word spacing 0.5x, paragraph spacing 4x" },
+        { "id": "d", "text": "Only letter spacing and word spacing adjustments" }
+      ],
+      "correctAnswer": "b",
+      "feedback": {
+        "a": "Incorrect. SC 1.4.12 requires all four properties: line height, letter spacing, word spacing, AND paragraph spacing.",
+        "b": "Correct. SC 1.4.12 specifies these exact minimum values.",
+        "c": "Incorrect. These values exceed the requirements. Only the values in option B are required.",
+        "d": "Incorrect. All four spacing properties must be supported."
+      }
+    },
+    {
+      "id": "l06-q5",
+      "question": "A recipe app locks to portrait orientation because \"it looks better.\" Does this meet SC 1.3.4?",
+      "options": [
+        { "id": "a", "text": "No, \"looks better\" is preference, not essential function" },
+        { "id": "b", "text": "Yes, because the designer can determine the optimal experience" },
+        { "id": "c", "text": "No, all apps must default to landscape orientation first" },
+        { "id": "d", "text": "Yes, because cooking apps are typically used in portrait mode" }
+      ],
+      "correctAnswer": "a",
+      "feedback": {
+        "a": "Correct. SC 1.3.4 requires content to work in both orientations unless a specific orientation is essential for function.",
+        "b": "Incorrect. Designer preference does not override accessibility requirements.",
+        "c": "Incorrect. The requirement is not to prefer one orientation. Apps must work in BOTH orientations.",
+        "d": "Incorrect. Typical usage does not create essential requirements. Users with mounted devices may have fixed orientations."
+      }
+    }
+  ]
+}

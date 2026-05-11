@@ -1,0 +1,92 @@
+{
+  "id": "l03-color",
+  "title": "L03: Color",
+  "lessonPath": "/week-2/l03-color",
+  "questions": [
+    {
+      "id": "l03-q1",
+      "question": "You're testing a button with the following specifications:\n- Button text: \"Submit\" (16px, white #FFFFFF)\n- Button fill: Blue (#0078D4)\n- Page background: Light gray (#F5F5F5)\n- Hover state: Darker blue (#005A9E)\n\nWhich contrast tests are required for SC 1.4.11 (Non-text Contrast)?",
+      "options": [
+        { "id": "a", "text": "The blue button fill must be 3:1 to the light gray background" },
+        { "id": "b", "text": "The hover state must be 3:1 to the light gray background" },
+        { "id": "c", "text": "Submit must be 4.5:1 to the blue button fill" },
+        { "id": "d", "text": "Both the text and button fill must be 3:1 to the light gray background" }
+      ],
+      "correctAnswer": "c",
+      "feedback": {
+        "a": "Incorrect. The button fill does not need to meet 3:1 with the page background under SC 1.4.11. Why? Because the text 'Submit' is what identifies the button, not the fill color.",
+        "b": "Incorrect. The hover state fill (#005A9E) does not need to meet 3:1 contrast with the page background under SC 1.4.11.",
+        "c": "Correct! The button text 'Submit' is what identifies the button's purpose and function. Text contrast falls under SC 1.4.3, which requires 4.5:1 for normal text against its background (the button fill). The button fill itself does not need to meet SC 1.4.11 requirements because the text provides sufficient visual information to identify the component.",
+        "d": "Incorrect. Text contrast is governed by SC 1.4.3, not SC 1.4.11. The text does need 4.5:1 contrast, but against the button fill (its immediate background), not the page background."
+      }
+    },
+    {
+      "id": "l03-q2",
+      "question": "A design includes the following text elements on a white background (#FFFFFF):\n- Page title: \"Dashboard\" (32px, dark gray #595959)\n- Body text: \"Welcome back\" (14px, dark gray #595959)\n\nWhich statement correctly describes the AA contrast requirements for these text elements?",
+      "options": [
+        { "id": "a", "text": "The title needs 3:1 contrast and the body text needs 4.5:1 contrast" },
+        { "id": "b", "text": "Both need 4.5:1" },
+        { "id": "c", "text": "The title needs 4.5:1 and the body text needs 3:1" },
+        { "id": "d", "text": "Both need 3:1" }
+      ],
+      "correctAnswer": "a",
+      "feedback": {
+        "a": "Correct! Under SC 1.4.3, large text requires 3:1 contrast and normal text requires 4.5:1 contrast for AA conformance. Large text is defined as 18pt (24px) or larger. The 32px title qualifies as large text (3:1 required), while the 14px body text is normal text (4.5:1 required).",
+        "b": "Incorrect. While 4.5:1 would certainly pass for both, it's not what's required. Large text only needs 3:1 contrast.",
+        "c": "Incorrect. You have the requirements reversed. Large text needs the lower 3:1 ratio, while normal text needs the higher 4.5:1 ratio.",
+        "d": "Incorrect. Only large text qualifies for the reduced 3:1 contrast requirement. Normal text requires 4.5:1 contrast."
+      }
+    },
+    {
+      "id": "l03-q3",
+      "question": "A data visualization shows three trend lines on a graph:\n- Red line (#E53935) representing Q1 sales\n- Blue line (#1E88E5) representing Q2 sales\n- Green line (#43A047) representing Q3 sales\n- Graph background: White (#FFFFFF)\n- Each line has a text label identifying it\n\nUnder SC 1.4.11 (Non-text Contrast), which contrast requirements apply to the lines?",
+      "options": [
+        { "id": "a", "text": "No contrast requirements apply because the lines have text labels" },
+        { "id": "b", "text": "Lines only need 3:1 contrast to each other, not to the background" },
+        { "id": "c", "text": "Each line must be 3:1 to both the background and to adjacent lines" },
+        { "id": "d", "text": "Each line must be 3:1 to the white background, but lines do not need 3:1 to each other" }
+      ],
+      "correctAnswer": "d",
+      "feedback": {
+        "a": "Incorrect. Text labels help with SC 1.4.1 but do not exempt the lines from SC 1.4.11 requirements.",
+        "b": "Incorrect. SC 1.4.11 requires graphical objects to contrast with adjacent colors, which means the background for lines on a graph.",
+        "c": "Incorrect. Lines do not need to meet contrast requirements with each other under SC 1.4.11.",
+        "d": "Correct! Under SC 1.4.11, graphical objects that convey information must have 3:1 contrast against adjacent colors. For data visualization lines, 'adjacent' means the background they sit on, not the other lines."
+      }
+    },
+    {
+      "id": "l03-q4",
+      "question": "A designer creates a form with the following pattern:\n- Required field labels are displayed in red (#CC0000)\n- Optional field labels are displayed in black (#000000)\n- All labels include asterisks (*) next to required fields\n- Field borders remain the same for all fields\n\nWhen tested with grayscale simulation, the required fields are still clearly identifiable due to the asterisks. Does this design meet SC 1.4.1 (Use of Color)?",
+      "options": [
+        { "id": "a", "text": "No, because color is used to indicate required status" },
+        { "id": "b", "text": "Yes, because the asterisks provide a non-color indicator" },
+        { "id": "c", "text": "Yes, because the contrast between red and black is sufficient" },
+        { "id": "d", "text": "No, because the labels are shown in red" }
+      ],
+      "correctAnswer": "b",
+      "feedback": {
+        "a": "Incorrect. While color is used to indicate required status, it's not the only indicator. The asterisks serve as the non-color indicator.",
+        "b": "Correct! The asterisks (*) serve as the non-color indicator for required status. The red color enhances this indicator but is not the sole means of conveying the information.",
+        "c": "Incorrect. Contrast between colors does not address SC 1.4.1's requirement for non-color indicators.",
+        "d": "Incorrect. Using red color is not a problem. SC 1.4.1 prohibits using color alone, not using color at all."
+      }
+    },
+    {
+      "id": "l03-q5",
+      "question": "A designer is testing a design with multiple color-coded status badges: green for \"Active,\" yellow for \"Pending,\" and red for \"Inactive.\" To verify the design works for users with color vision deficiencies, what is the most efficient testing method?",
+      "options": [
+        { "id": "a", "text": "Test separately with protanopia, deuteranopia, and tritanopia simulations" },
+        { "id": "b", "text": "No simulation is needed if the colors have sufficient contrast ratios" },
+        { "id": "c", "text": "Test the design with grayscale (achromatopsia) simulation" },
+        { "id": "d", "text": "Test with protanopia and deuteranopia (skip tritanopia because it's rare)" }
+      ],
+      "correctAnswer": "c",
+      "feedback": {
+        "a": "Incorrect. While testing all three types would be thorough, it's unnecessary. Grayscale simulation is the most stringent test.",
+        "b": "Incorrect. Contrast ratios and color as information are separate requirements.",
+        "c": "Correct! Grayscale simulation removes all hue information. If your design works in grayscale, it will work for all types of color vision deficiency.",
+        "d": "Incorrect. Skipping tritanopia doesn't make this method more efficient than simply using grayscale."
+      }
+    }
+  ]
+}
