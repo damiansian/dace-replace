@@ -67,12 +67,14 @@ export default function Week3Practice() {
           <div>
             <h3 className="text-base font-semibold text-foreground">What You Receive</h3>
             <p className="mt-1 text-sm text-text-secondary">A design mockup in Figma containing a responsive interface with multiple interactive elements.</p>
-            <span
-              className="mt-3 inline-flex items-center rounded-lg bg-surface px-5 py-2.5 text-sm font-medium text-text-secondary cursor-not-allowed"
-              aria-disabled="true"
+            <a
+              href="https://www.figma.com/design/mNFDFtVojYP1yvNO20bhfb/DACE---Cohort-2?node-id=775-359"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-3 inline-flex items-center rounded-lg bg-primary px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-dark transition-colors"
             >
-              Figma File Coming Soon
-            </span>
+              Duplicate Figma File to Begin
+            </a>
           </div>
           <div>
             <h3 className="text-base font-semibold text-foreground mt-4">What You Deliver</h3>

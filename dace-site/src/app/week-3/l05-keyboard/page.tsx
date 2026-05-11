@@ -55,6 +55,14 @@ export default function L05KeyboardPage() {
               <p className="text-sm text-text-secondary">
                 Interactive lesson in Figma
               </p>
+              <a
+                href="https://www.figma.com/design/mNFDFtVojYP1yvNO20bhfb/DACE---Cohort-2?node-id=775-357"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm text-primary-text underline hover:text-primary-dark"
+              >
+                Open in Figma
+              </a>
             </div>
           </div>
           <div className="p-4 flex items-start gap-3">
