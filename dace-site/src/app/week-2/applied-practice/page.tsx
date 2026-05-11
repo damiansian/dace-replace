@@ -24,6 +24,17 @@ export default function Week2Practice() {
         <p className="text-base text-text-secondary">Written Response Assessment: Analyzing a Modal Dialog Design</p>
       </header>
 
+      <section aria-labelledby="submit-heading" className="space-y-3">
+        <h2 id="submit-heading" className="text-2xl font-semibold text-foreground">Submission</h2>
+        <div className="rounded-lg border-2 border-primary bg-primary/5 p-6 space-y-4">
+          <p className="text-sm text-text-secondary">Due before the Week 3 session. Late submissions accepted with communication to instructor.</p>
+          <SubmissionForm
+            assignmentId="week-2-practice"
+            assignmentLabel="Week 2 Applied Practice"
+          />
+        </div>
+      </section>
+
       <div className="rounded-lg border-l-4 border-l-primary bg-surface p-5 space-y-2">
         <p className="text-base text-foreground">
           This applied practice assessment brings together the two skills you learned in Week 2: evaluating color contrast requirements and specifying form field labels. You will analyze a single design stimulus for multiple accessibility concerns.
@@ -77,16 +88,6 @@ export default function Week2Practice() {
         </div>
       </section>
 
-      <section aria-labelledby="submit-heading" className="space-y-3">
-        <h2 id="submit-heading" className="text-2xl font-semibold text-foreground">Submission</h2>
-        <div className="rounded-lg border-2 border-primary bg-primary/5 p-6 space-y-4">
-          <p className="text-sm text-text-secondary">Due before the Week 3 session. Late submissions accepted with communication to instructor.</p>
-          <SubmissionForm
-            assignmentId="week-2-practice"
-            assignmentLabel="Week 2 Applied Practice"
-          />
-        </div>
-      </section>
     </div>
   );
 }
