@@ -24,6 +24,33 @@ export default function Week3Practice() {
         <p className="text-base text-text-secondary">Keyboard, Touch &amp; Responsive Design Combined Project</p>
       </header>
 
+      <div className="rounded-lg border-2 border-primary bg-primary/5 p-6 flex flex-col sm:flex-row sm:items-center gap-4">
+        <div className="space-y-1 flex-1">
+          <p className="text-base font-semibold text-foreground">Start here: open the design file</p>
+          <p className="text-sm text-text-secondary">Duplicate this Figma file, then create your Blueline accessibility annotations.</p>
+        </div>
+        <a
+          href="https://www.figma.com/design/mNFDFtVojYP1yvNO20bhfb/DACE---Cohort-2?node-id=775-359"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-6 py-3 text-sm font-medium text-white hover:bg-primary-dark transition-colors whitespace-nowrap"
+        >
+          <svg className="h-4 w-4 shrink-0" viewBox="0 0 38 57" fill="currentColor" aria-hidden="true"><path d="M19 28.5a9.5 9.5 0 1 1 19 0 9.5 9.5 0 0 1-19 0z"/><path d="M0 47.5A9.5 9.5 0 0 1 9.5 38H19v9.5a9.5 9.5 0 1 1-19 0z"/><path d="M19 0v19h9.5a9.5 9.5 0 1 0 0-19H19z"/><path d="M0 9.5A9.5 9.5 0 0 0 9.5 19H19V0H9.5A9.5 9.5 0 0 0 0 9.5z"/><path d="M0 28.5A9.5 9.5 0 0 0 9.5 38H19V19H9.5A9.5 9.5 0 0 0 0 28.5z"/></svg>
+          Open in Figma
+        </a>
+      </div>
+
+      <section aria-labelledby="submit-heading" className="space-y-3">
+        <h2 id="submit-heading" className="text-2xl font-semibold text-foreground">Submission</h2>
+        <div className="rounded-lg border-2 border-primary bg-primary/5 p-6 space-y-4">
+          <p className="text-sm text-text-secondary">Due before the Week 4 session (L07: Landmarks &amp; Navigation). Late submissions accepted with communication to instructor.</p>
+          <SubmissionForm
+            assignmentId="week-3-practice"
+            assignmentLabel="Week 3 Applied Practice"
+          />
+        </div>
+      </section>
+
       <div className="rounded-lg border-l-4 border-l-primary bg-surface p-5 space-y-2">
         <p className="text-base text-foreground">
           This applied practice project brings together the skills you learned in Week 3: keyboard accessibility, focus indicators, touch target sizing, and responsive design requirements. You will receive a design mockup and create a complete set of accessibility annotations.
@@ -61,30 +88,15 @@ export default function Week3Practice() {
         </div>
       </section>
 
-      <section aria-labelledby="instructions-heading" className="space-y-4">
-        <h2 id="instructions-heading" className="text-2xl font-semibold text-foreground">Assignment Instructions</h2>
-        <div className="rounded-lg border border-border bg-white p-6 space-y-4">
-          <div>
-            <h3 className="text-base font-semibold text-foreground">What You Receive</h3>
-            <p className="mt-1 text-sm text-text-secondary">A design mockup in Figma containing a responsive interface with multiple interactive elements.</p>
-            <a
-              href="https://www.figma.com/design/mNFDFtVojYP1yvNO20bhfb/DACE---Cohort-2?node-id=775-359"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-3 inline-flex items-center rounded-lg bg-primary px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-dark transition-colors"
-            >
-              Duplicate Figma File to Begin
-            </a>
-          </div>
-          <div>
-            <h3 className="text-base font-semibold text-foreground mt-4">What You Deliver</h3>
-            <p className="mt-1 text-sm text-text-secondary">An annotated Figma file with Stark Blueline annotations covering:</p>
-            <ol className="list-decimal list-inside text-sm text-foreground mt-2 space-y-2">
-              <li><strong>Focus Indicator Annotations:</strong> All interactive elements with focus state specs (color, thickness, contrast ratio)</li>
-              <li><strong>Touch Target Annotations:</strong> All targets measured, sub-24px targets flagged with recommended fixes</li>
-              <li><strong>Responsive &amp; Flexibility Notes:</strong> min-height recommendations, reflow behavior, text spacing risks</li>
-            </ol>
-          </div>
+      <section aria-labelledby="deliverables-heading" className="space-y-4">
+        <h2 id="deliverables-heading" className="text-2xl font-semibold text-foreground">What You Deliver</h2>
+        <div className="rounded-lg border border-border bg-white p-6">
+          <p className="text-sm text-text-secondary">An annotated Figma file with Stark Blueline annotations covering:</p>
+          <ol className="list-decimal list-inside text-sm text-foreground mt-2 space-y-2">
+            <li><strong>Focus Indicator Annotations:</strong> All interactive elements with focus state specs (color, thickness, contrast ratio)</li>
+            <li><strong>Touch Target Annotations:</strong> All targets measured, sub-24px targets flagged with recommended fixes</li>
+            <li><strong>Responsive &amp; Flexibility Notes:</strong> min-height recommendations, reflow behavior, text spacing risks</li>
+          </ol>
         </div>
       </section>
 
@@ -116,16 +128,6 @@ export default function Week3Practice() {
         </div>
       </section>
 
-      <section aria-labelledby="submit-heading" className="space-y-3">
-        <h2 id="submit-heading" className="text-2xl font-semibold text-foreground">Submission</h2>
-        <div className="rounded-lg border-2 border-primary bg-primary/5 p-6 space-y-4">
-          <p className="text-sm text-text-secondary">Due before the Week 4 session (L07: Landmarks &amp; Navigation). Late submissions accepted with communication to instructor.</p>
-          <SubmissionForm
-            assignmentId="week-3-practice"
-            assignmentLabel="Week 3 Applied Practice"
-          />
-        </div>
-      </section>
     </div>
   );
 }
