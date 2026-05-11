@@ -40,7 +40,7 @@ export default function Week2Practice() {
         </a>
       </div>
 
-      <section aria-labelledby="submit-heading" className="space-y-3">
+      <div className="space-y-3">
         <h2 id="submit-heading" className="text-2xl font-semibold text-foreground">Submission</h2>
         <div className="rounded-lg border-2 border-primary bg-primary/5 p-6 space-y-4">
           <p className="text-sm text-text-secondary">Due before the Week 3 session. Late submissions accepted with communication to instructor.</p>
@@ -49,7 +49,7 @@ export default function Week2Practice() {
             assignmentLabel="Week 2 Applied Practice"
           />
         </div>
-      </section>
+      </div>
 
       <div className="rounded-lg border-l-4 border-l-primary bg-surface p-5 space-y-2">
         <p className="text-base text-foreground">
@@ -60,7 +60,7 @@ export default function Week2Practice() {
         </p>
       </div>
 
-      <section aria-labelledby="demonstrate-heading" className="space-y-4">
+      <div className="space-y-4">
         <h2 id="demonstrate-heading" className="text-2xl font-semibold text-foreground">What You&apos;ll Demonstrate</h2>
         <div className="grid gap-4 sm:grid-cols-2">
           <div className="rounded-lg border border-border bg-white p-5 space-y-2">
@@ -81,9 +81,9 @@ export default function Week2Practice() {
             </ul>
           </div>
         </div>
-      </section>
+      </div>
 
-      <section aria-labelledby="outcomes-heading" className="space-y-4">
+      <div className="space-y-4">
         <h2 id="outcomes-heading" className="text-2xl font-semibold text-foreground">Learning Outcomes Covered</h2>
         <div className="overflow-x-auto">
           <table className="w-full text-sm border-collapse">
@@ -102,7 +102,7 @@ export default function Week2Practice() {
             </tbody>
           </table>
         </div>
-      </section>
+      </div>
 
     </div>
   );

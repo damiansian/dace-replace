@@ -21,7 +21,7 @@ export default function Week2Hub() {
         </p>
       </div>
 
-      <section aria-labelledby="lessons-heading" className="space-y-6">
+      <div className="space-y-6">
         <h2 id="lessons-heading" className="text-2xl font-semibold text-foreground">
           Lessons
         </h2>
@@ -98,9 +98,9 @@ export default function Week2Hub() {
             </div>
           </div>
         </div>
-      </section>
+      </div>
 
-      <section aria-labelledby="practice-heading" className="space-y-4">
+      <div className="space-y-4">
         <h2 id="practice-heading" className="text-2xl font-semibold text-foreground">
           Applied Practice
         </h2>
@@ -128,7 +128,7 @@ export default function Week2Hub() {
             </Link>
           </div>
         </div>
-      </section>
+      </div>
     </div>
   );
 }

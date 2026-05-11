@@ -36,7 +36,7 @@ export default function L05KeyboardPage() {
       </div>
 
       {/* Lesson Activities */}
-      <section aria-labelledby="activities-heading" className="space-y-4">
+      <div className="space-y-4">
         <h2
           id="activities-heading"
           className="text-xl font-semibold text-foreground"
@@ -95,10 +95,10 @@ export default function L05KeyboardPage() {
             </div>
           </div>
         </div>
-      </section>
+      </div>
 
       {/* Learning Objectives */}
-      <section aria-labelledby="objectives-heading" className="space-y-4">
+      <div className="space-y-4">
         <h2
           id="objectives-heading"
           className="text-xl font-semibold text-foreground"
@@ -199,10 +199,10 @@ export default function L05KeyboardPage() {
             </ul>
           </div>
         </div>
-      </section>
+      </div>
 
       {/* WCAG Success Criteria */}
-      <section aria-labelledby="wcag-heading" className="space-y-4">
+      <div className="space-y-4">
         <h2
           id="wcag-heading"
           className="text-xl font-semibold text-foreground"
@@ -267,10 +267,10 @@ export default function L05KeyboardPage() {
             </p>
           </div>
         </div>
-      </section>
+      </div>
 
       {/* Key Concepts */}
-      <section aria-labelledby="concepts-heading" className="space-y-6">
+      <div className="space-y-6">
         <h2
           id="concepts-heading"
           className="text-xl font-semibold text-foreground"
@@ -561,10 +561,10 @@ export default function L05KeyboardPage() {
             </div>
           </div>
         </div>
-      </section>
+      </div>
 
       {/* Assessment */}
-      <section aria-labelledby="assessment-heading" className="space-y-4">
+      <div className="space-y-4">
         <h2
           id="assessment-heading"
           className="text-xl font-semibold text-foreground"
@@ -583,7 +583,7 @@ export default function L05KeyboardPage() {
             Take the L05 Keyboard Quiz
           </Link>
         </div>
-      </section>
+      </div>
 
       {/* Up Next */}
       <div className="rounded-lg bg-surface p-4 border-l-4 border-l-primary">

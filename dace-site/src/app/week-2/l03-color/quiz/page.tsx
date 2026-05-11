@@ -12,14 +12,14 @@ export const metadata: Metadata = {
 export default function L03ColorQuiz() {
   return (
     <div className="mx-auto max-w-3xl px-4 py-10 sm:px-6 space-y-8">
-      <nav>
+      <div>
         <Link
           href="/week-2/l03-color"
           className="text-sm text-primary-text underline hover:text-primary-dark"
         >
           &larr; Back to L03: Color
         </Link>
-      </nav>
+      </div>
       <Quiz data={quizData} />
     </div>
   );

@@ -36,7 +36,7 @@ export default function L06ReflowPage() {
       </div>
 
       {/* Lesson Activities */}
-      <section aria-labelledby="activities-heading" className="space-y-4">
+      <div className="space-y-4">
         <h2
           id="activities-heading"
           className="text-xl font-semibold text-foreground"
@@ -82,10 +82,10 @@ export default function L06ReflowPage() {
             </div>
           </div>
         </div>
-      </section>
+      </div>
 
       {/* Video */}
-      <section aria-labelledby="video-heading" className="space-y-3">
+      <div className="space-y-3">
         <h2
           id="video-heading"
           className="text-xl font-semibold text-foreground"
@@ -101,10 +101,10 @@ export default function L06ReflowPage() {
             title="Lesson 06: Reflow & Zoom Explainer"
           />
         </div>
-      </section>
+      </div>
 
       {/* Learning Objectives */}
-      <section aria-labelledby="objectives-heading" className="space-y-4">
+      <div className="space-y-4">
         <h2
           id="objectives-heading"
           className="text-xl font-semibold text-foreground"
@@ -197,10 +197,10 @@ export default function L06ReflowPage() {
             </ul>
           </div>
         </div>
-      </section>
+      </div>
 
       {/* WCAG Success Criteria */}
-      <section aria-labelledby="wcag-heading" className="space-y-4">
+      <div className="space-y-4">
         <h2
           id="wcag-heading"
           className="text-xl font-semibold text-foreground"
@@ -247,10 +247,10 @@ export default function L06ReflowPage() {
             </p>
           </div>
         </div>
-      </section>
+      </div>
 
       {/* Key Concepts */}
-      <section aria-labelledby="concepts-heading" className="space-y-6">
+      <div className="space-y-6">
         <h2
           id="concepts-heading"
           className="text-xl font-semibold text-foreground"
@@ -514,10 +514,10 @@ export default function L06ReflowPage() {
             </ol>
           </div>
         </div>
-      </section>
+      </div>
 
       {/* Assessment */}
-      <section aria-labelledby="assessment-heading" className="space-y-4">
+      <div className="space-y-4">
         <h2
           id="assessment-heading"
           className="text-xl font-semibold text-foreground"
@@ -536,7 +536,7 @@ export default function L06ReflowPage() {
             Take the L06 Reflow Quiz
           </Link>
         </div>
-      </section>
+      </div>
 
       {/* Up Next */}
       <div className="rounded-lg bg-surface p-4 border-l-4 border-l-primary">

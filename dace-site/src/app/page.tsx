@@ -15,8 +15,8 @@ export default function Home() {
         </div>
       </div>
 
-      <section aria-labelledby="weeks-heading" className="space-y-6">
-        <h2 id="weeks-heading" className="text-2xl font-semibold text-foreground">
+      <div className="space-y-6">
+        <h2 className="text-2xl font-semibold text-foreground">
           Course Weeks
         </h2>
 
@@ -70,10 +70,10 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
+      </div>
 
-      <section aria-labelledby="quizzes-heading" className="space-y-4">
-        <h2 id="quizzes-heading" className="text-2xl font-semibold text-foreground">
+      <div className="space-y-4">
+        <h2 className="text-2xl font-semibold text-foreground">
           Knowledge Check Quizzes
         </h2>
         <p className="text-base text-text-secondary">
@@ -117,10 +117,10 @@ export default function Home() {
             </span>
           </div>
         </div>
-      </section>
+      </div>
 
-      <section aria-labelledby="projects-heading" className="space-y-4">
-        <h2 id="projects-heading" className="text-2xl font-semibold text-foreground">
+      <div className="space-y-4">
+        <h2 className="text-2xl font-semibold text-foreground">
           Applied Skill Projects
         </h2>
         <p className="text-base text-text-secondary">
@@ -154,7 +154,10 @@ export default function Home() {
             </div>
           </Link>
 
-          <div className="rounded-lg border border-border/60 bg-surface p-6 shadow-sm">
+          <div
+            className="rounded-lg border border-border bg-white p-6 shadow-sm opacity-60"
+            aria-label="Week 3 Blueline Annotations - Coming Soon"
+          >
             <div className="space-y-3">
               <div className="flex flex-wrap gap-2">
                 <span className="inline-flex items-center rounded-full bg-primary/10 px-3 py-1 text-sm font-medium text-primary-dark">
@@ -177,10 +180,10 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
+      </div>
 
-      <section aria-labelledby="submissions-heading" className="space-y-3">
-        <h2 id="submissions-heading" className="text-2xl font-semibold text-foreground">
+      <div className="space-y-3">
+        <h2 className="text-2xl font-semibold text-foreground">
           Submitting Your Work
         </h2>
         <div className="rounded-lg border border-border bg-surface p-5 space-y-2">
@@ -201,7 +204,7 @@ export default function Home() {
             </li>
           </ul>
         </div>
-      </section>
+      </div>
     </div>
   );
 }

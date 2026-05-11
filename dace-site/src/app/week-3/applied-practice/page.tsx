@@ -40,7 +40,7 @@ export default function Week3Practice() {
         </a>
       </div>
 
-      <section aria-labelledby="submit-heading" className="space-y-3">
+      <div className="space-y-3">
         <h2 id="submit-heading" className="text-2xl font-semibold text-foreground">Submission</h2>
         <div className="rounded-lg border-2 border-primary bg-primary/5 p-6 space-y-4">
           <p className="text-sm text-text-secondary">Due before the Week 4 session (L07: Landmarks &amp; Navigation). Late submissions accepted with communication to instructor.</p>
@@ -49,7 +49,7 @@ export default function Week3Practice() {
             assignmentLabel="Week 3 Applied Practice"
           />
         </div>
-      </section>
+      </div>
 
       <div className="rounded-lg border-l-4 border-l-primary bg-surface p-5 space-y-2">
         <p className="text-base text-foreground">
@@ -57,7 +57,7 @@ export default function Week3Practice() {
         </p>
       </div>
 
-      <section aria-labelledby="demonstrate-heading" className="space-y-4">
+      <div className="space-y-4">
         <h2 id="demonstrate-heading" className="text-2xl font-semibold text-foreground">What You&apos;ll Demonstrate</h2>
         <div className="space-y-4">
           <div className="rounded-lg border border-border bg-white p-5 space-y-2">
@@ -86,9 +86,9 @@ export default function Week3Practice() {
             </ul>
           </div>
         </div>
-      </section>
+      </div>
 
-      <section aria-labelledby="deliverables-heading" className="space-y-4">
+      <div className="space-y-4">
         <h2 id="deliverables-heading" className="text-2xl font-semibold text-foreground">What You Deliver</h2>
         <div className="rounded-lg border border-border bg-white p-6">
           <p className="text-sm text-text-secondary">An annotated Figma file with Stark Blueline annotations covering:</p>
@@ -98,9 +98,9 @@ export default function Week3Practice() {
             <li><strong>Responsive &amp; Flexibility Notes:</strong> min-height recommendations, reflow behavior, text spacing risks</li>
           </ol>
         </div>
-      </section>
+      </div>
 
-      <section aria-labelledby="rubric-heading" className="space-y-4">
+      <div className="space-y-4">
         <h2 id="rubric-heading" className="text-2xl font-semibold text-foreground">Rubric</h2>
         <p className="text-sm text-text-secondary">28 points total | 7 criteria at 4 points each | Rubric-graded by instructor</p>
         <div className="overflow-x-auto">
@@ -126,7 +126,7 @@ export default function Week3Practice() {
         <div className="rounded-lg bg-accent-green/5 border border-accent-green/20 p-4 text-sm">
           <p className="text-foreground"><strong>Passing:</strong> 15+ points (average of Meets Mastery across criteria). Scores below 15 require revision and resubmission.</p>
         </div>
-      </section>
+      </div>
 
     </div>
   );

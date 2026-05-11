@@ -36,7 +36,7 @@ export default function L03ColorPage() {
       </div>
 
       {/* Lesson Activities */}
-      <section aria-labelledby="activities-heading" className="space-y-4">
+      <div className="space-y-4">
         <h2
           id="activities-heading"
           className="text-xl font-semibold text-foreground"
@@ -101,10 +101,10 @@ export default function L03ColorPage() {
             </div>
           </div>
         </div>
-      </section>
+      </div>
 
       {/* Video */}
-      <section aria-labelledby="video-heading" className="space-y-3">
+      <div className="space-y-3">
         <h2
           id="video-heading"
           className="text-xl font-semibold text-foreground"
@@ -120,10 +120,10 @@ export default function L03ColorPage() {
             title="Lesson 03: Color Explainer"
           />
         </div>
-      </section>
+      </div>
 
       {/* Learning Objectives */}
-      <section aria-labelledby="objectives-heading" className="space-y-4">
+      <div className="space-y-4">
         <h2
           id="objectives-heading"
           className="text-xl font-semibold text-foreground"
@@ -182,10 +182,10 @@ export default function L03ColorPage() {
             </tbody>
           </table>
         </div>
-      </section>
+      </div>
 
       {/* WCAG Success Criteria */}
-      <section aria-labelledby="wcag-heading" className="space-y-4">
+      <div className="space-y-4">
         <h2
           id="wcag-heading"
           className="text-xl font-semibold text-foreground"
@@ -222,10 +222,10 @@ export default function L03ColorPage() {
             </p>
           </div>
         </div>
-      </section>
+      </div>
 
       {/* Key Concepts */}
-      <section aria-labelledby="concepts-heading" className="space-y-6">
+      <div className="space-y-6">
         <h2
           id="concepts-heading"
           className="text-xl font-semibold text-foreground"
@@ -469,10 +469,10 @@ export default function L03ColorPage() {
             </ol>
           </div>
         </div>
-      </section>
+      </div>
 
       {/* Assessment */}
-      <section aria-labelledby="assessment-heading" className="space-y-4">
+      <div className="space-y-4">
         <h2
           id="assessment-heading"
           className="text-xl font-semibold text-foreground"
@@ -511,10 +511,10 @@ export default function L03ColorPage() {
             </Link>
           </div>
         </div>
-      </section>
+      </div>
 
       {/* Resources */}
-      <section aria-labelledby="resources-heading" className="space-y-4">
+      <div className="space-y-4">
         <h2
           id="resources-heading"
           className="text-xl font-semibold text-foreground"
@@ -576,7 +576,7 @@ export default function L03ColorPage() {
             </li>
           </ul>
         </div>
-      </section>
+      </div>
 
       {/* Up Next */}
       <div className="rounded-lg bg-surface p-4 border-l-4 border-l-primary">

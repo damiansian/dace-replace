@@ -88,7 +88,7 @@ export default async function SubmissionDetailPage({
         </p>
       </header>
 
-      <section aria-labelledby="grade-heading" className="space-y-4">
+      <div className="space-y-4">
         <h2
           id="grade-heading"
           className="text-xl font-semibold text-foreground"
@@ -113,9 +113,9 @@ export default async function SubmissionDetailPage({
             defaultTotal={config?.totalPoints ?? 0}
           />
         )}
-      </section>
+      </div>
 
-      <section aria-labelledby="comments-heading" className="space-y-4">
+      <div className="space-y-4">
         <h2
           id="comments-heading"
           className="text-xl font-semibold text-foreground"
@@ -153,7 +153,7 @@ export default async function SubmissionDetailPage({
         )}
 
         <CommentForm submissionId={sub.id} />
-      </section>
+      </div>
     </div>
   );
 }

@@ -12,14 +12,14 @@ export const metadata: Metadata = {
 export default function L06ReflowQuiz() {
   return (
     <div className="mx-auto max-w-3xl px-4 py-10 sm:px-6 space-y-8">
-      <nav>
+      <div>
         <Link
           href="/week-3/l06-reflow"
           className="text-sm text-primary-text underline hover:text-primary-dark"
         >
           &larr; Back to L06: Reflow
         </Link>
-      </nav>
+      </div>
       <Quiz data={quizData} />
     </div>
   );

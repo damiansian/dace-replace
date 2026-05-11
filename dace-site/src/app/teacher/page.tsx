@@ -76,7 +76,7 @@ export default async function TeacherPage({ searchParams }: TeacherPageProps) {
         </p>
       </header>
 
-      <section aria-labelledby="quiz-heading" className="space-y-6">
+      <div className="space-y-6">
         <h2
           id="quiz-heading"
           className="text-2xl font-semibold text-foreground"
@@ -139,9 +139,9 @@ export default async function TeacherPage({ searchParams }: TeacherPageProps) {
             );
           })
         )}
-      </section>
+      </div>
 
-      <section aria-labelledby="submissions-heading" className="space-y-6">
+      <div className="space-y-6">
         <h2
           id="submissions-heading"
           className="text-2xl font-semibold text-foreground"
@@ -264,7 +264,7 @@ export default async function TeacherPage({ searchParams }: TeacherPageProps) {
             }
           )
         )}
-      </section>
+      </div>
     </div>
   );
 }
