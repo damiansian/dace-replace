@@ -181,30 +181,6 @@ export default function Home() {
           </div>
         </div>
       </div>
-
-      <div className="space-y-3">
-        <h2 className="text-2xl font-semibold text-foreground">
-          Submitting Your Work
-        </h2>
-        <div className="rounded-lg border border-border bg-surface p-5 space-y-2">
-          <p className="text-base text-foreground">
-            Since Canvas is unavailable, submit your applied practice
-            assignments via one of these methods:
-          </p>
-          <ul className="list-disc list-inside text-base text-foreground space-y-1" role="list">
-            <li>Slack DM to your instructor</li>
-            <li>
-              Email to{" "}
-              <a
-                href="mailto:dsian@adobe.com"
-                className="text-primary-text underline"
-              >
-                dsian@adobe.com
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
     </div>
   );
 }
