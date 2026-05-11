@@ -109,6 +109,69 @@ export default function Home() {
         </div>
       </section>
 
+      <section aria-labelledby="projects-heading" className="space-y-4">
+        <h2 id="projects-heading" className="text-2xl font-semibold text-foreground">
+          Applied Skill Projects
+        </h2>
+        <p className="text-base text-text-secondary">
+          Each week includes a hands-on project where you apply the skills from
+          that week&apos;s lessons to a real design scenario.
+        </p>
+        <div className="grid gap-6 sm:grid-cols-2">
+          <Link
+            href="/week-2/applied-practice"
+            className="group rounded-lg border border-border bg-white p-6 shadow-sm hover:shadow-md hover:border-primary transition-all"
+          >
+            <div className="space-y-3">
+              <div className="flex flex-wrap gap-2">
+                <span className="inline-flex items-center rounded-full bg-primary/10 px-3 py-1 text-sm font-medium text-primary-dark">
+                  Week 2
+                </span>
+                <span className="inline-flex items-center rounded-full bg-accent-green/10 px-3 py-1 text-sm font-medium text-accent-green">
+                  24 Points
+                </span>
+              </div>
+              <h3 className="text-lg font-semibold text-foreground group-hover:text-primary-text">
+                Color and Forms Analysis
+              </h3>
+              <p className="text-sm text-text-secondary">
+                Written response assessment analyzing a modal dialog design for
+                color contrast and form labeling.
+              </p>
+              <p className="text-sm font-medium text-primary-text underline">
+                View project &rarr;
+              </p>
+            </div>
+          </Link>
+
+          <Link
+            href="/week-3/applied-practice"
+            className="group rounded-lg border border-border bg-white p-6 shadow-sm hover:shadow-md hover:border-primary transition-all"
+          >
+            <div className="space-y-3">
+              <div className="flex flex-wrap gap-2">
+                <span className="inline-flex items-center rounded-full bg-primary/10 px-3 py-1 text-sm font-medium text-primary-dark">
+                  Week 3
+                </span>
+                <span className="inline-flex items-center rounded-full bg-accent-green/10 px-3 py-1 text-sm font-medium text-accent-green">
+                  28 Points
+                </span>
+              </div>
+              <h3 className="text-lg font-semibold text-foreground group-hover:text-primary-text">
+                Blueline Annotations
+              </h3>
+              <p className="text-sm text-text-secondary">
+                Create accessibility annotations for keyboard, touch targets,
+                and responsive design on a Figma mockup.
+              </p>
+              <p className="text-sm font-medium text-primary-text underline">
+                View project &rarr;
+              </p>
+            </div>
+          </Link>
+        </div>
+      </section>
+
       <section aria-labelledby="submissions-heading" className="space-y-3">
         <h2 id="submissions-heading" className="text-2xl font-semibold text-foreground">
           Submitting Your Work
