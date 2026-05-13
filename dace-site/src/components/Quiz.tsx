@@ -37,9 +37,17 @@ function seededShuffle<T>(array: T[], seed: string): T[] {
   return shuffled;
 }
 
-export default function Quiz({ data }: { data: QuizData }) {
-  const [name, setName] = useState("");
-  const [started, setStarted] = useState(false);
+export default function Quiz({
+  data,
+  accessToken,
+  studentDisplayName,
+}: {
+  data: QuizData;
+  accessToken?: string;
+  studentDisplayName?: string;
+}) {
+  const [name, setName] = useState(studentDisplayName ?? "");
+  const [started, setStarted] = useState(Boolean(studentDisplayName));
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [submitted, setSubmitted] = useState(false);
   const [score, setScore] = useState(0);
@@ -133,12 +141,13 @@ export default function Quiz({ data }: { data: QuizData }) {
           score: correct,
           total: data.questions.length,
           timestamp,
+          ...(accessToken ? { accessToken } : {}),
         }),
       }).catch(() => {
         // fire-and-forget
       });
     },
-    [submitted, answers, data, name, bestScore]
+    [submitted, answers, data, name, bestScore, accessToken]
   );
 
   const handleRetake = useCallback(() => {

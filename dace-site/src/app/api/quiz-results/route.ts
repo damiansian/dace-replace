@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/db";
 import { quizResults } from "@/db/schema";
 import { eq, desc } from "drizzle-orm";
+import { findStudentByToken, isWellFormedToken } from "@/db/students";
 
 export async function POST(request: NextRequest) {
   let body: {
@@ -10,6 +11,7 @@ export async function POST(request: NextRequest) {
     score: number;
     total: number;
     timestamp: string;
+    accessToken?: string;
   };
 
   try {
@@ -21,7 +23,7 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  const { name, quizId, score, total, timestamp } = body;
+  const { name, quizId, score, total, timestamp, accessToken } = body;
 
   if (!name || !quizId || score == null || total == null || !timestamp) {
     return NextResponse.json(
@@ -30,13 +32,35 @@ export async function POST(request: NextRequest) {
     );
   }
 
+  let resolvedName = name;
+  let resolvedStudentId: number | null = null;
+
+  if (typeof accessToken === "string" && accessToken.length > 0) {
+    if (!isWellFormedToken(accessToken)) {
+      return NextResponse.json(
+        { error: "Invalid access token" },
+        { status: 400 }
+      );
+    }
+    const student = await findStudentByToken(accessToken);
+    if (!student) {
+      return NextResponse.json(
+        { error: "Unknown access token" },
+        { status: 403 }
+      );
+    }
+    resolvedName = student.displayName;
+    resolvedStudentId = student.id;
+  }
+
   try {
     await db.insert(quizResults).values({
-      name,
+      name: resolvedName,
       quizId,
       score,
       total,
       submittedAt: new Date(timestamp),
+      studentId: resolvedStudentId,
     });
 
     return NextResponse.json({ saved: true });

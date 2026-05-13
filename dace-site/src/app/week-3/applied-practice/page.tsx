@@ -1,15 +1,27 @@
 import Link from "next/link";
 import SubmissionForm from "@/components/SubmissionForm";
+import { findStudentByToken } from "@/db/students";
+import { withToken } from "@/data/progress-catalog";
 
 export const metadata = {
   title: "Week 3 Applied Practice | DACE Cohort 2",
 };
 
-export default function Week3Practice() {
+interface PageProps {
+  searchParams: Promise<{ t?: string }>;
+}
+
+export default async function Week3Practice({ searchParams }: PageProps) {
+  const { t: token } = await searchParams;
+  const student = token ? await findStudentByToken(token) : null;
+
   return (
     <div className="mx-auto max-w-3xl px-4 py-10 sm:px-6 space-y-10">
       <div className="space-y-2">
-        <Link href="/week-3" className="text-sm text-primary-text underline hover:text-primary-dark">
+        <Link
+          href={withToken("/week-3", student?.accessToken)}
+          className="text-sm text-primary-text underline hover:text-primary-dark"
+        >
           &larr; Back to Week 3
         </Link>
       </div>
@@ -47,6 +59,8 @@ export default function Week3Practice() {
           <SubmissionForm
             assignmentId="week-3-practice"
             assignmentLabel="Week 3 Applied Practice"
+            accessToken={student?.accessToken}
+            studentDisplayName={student?.displayName}
           />
         </div>
       </div>

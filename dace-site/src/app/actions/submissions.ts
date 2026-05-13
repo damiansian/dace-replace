@@ -2,6 +2,7 @@
 
 import { db } from "@/db";
 import { submissions } from "@/db/schema";
+import { findStudentByToken, isWellFormedToken } from "@/db/students";
 
 export type SubmissionState = {
   success: boolean;
@@ -12,15 +13,14 @@ export async function submitAssignment(
   _prev: SubmissionState,
   formData: FormData
 ): Promise<SubmissionState> {
-  const name = formData.get("name");
+  const rawName = formData.get("name");
   const linkUrl = formData.get("linkUrl");
   const assignmentId = formData.get("assignmentId");
+  const rawToken = formData.get("accessToken");
 
   if (
-    typeof name !== "string" ||
     typeof linkUrl !== "string" ||
     typeof assignmentId !== "string" ||
-    !name.trim() ||
     !linkUrl.trim() ||
     !assignmentId.trim()
   ) {
@@ -44,11 +44,42 @@ export async function submitAssignment(
     };
   }
 
+  let resolvedName: string | null = null;
+  let resolvedStudentId: number | null = null;
+
+  if (typeof rawToken === "string" && rawToken.trim().length > 0) {
+    if (!isWellFormedToken(rawToken)) {
+      return {
+        success: false,
+        message:
+          "Your private link looks invalid. Open this page from your personal progress URL and try again.",
+      };
+    }
+
+    const student = await findStudentByToken(rawToken);
+    if (!student) {
+      return {
+        success: false,
+        message:
+          "Your private link did not match a student. Open this page from your personal progress URL and try again.",
+      };
+    }
+
+    resolvedName = student.displayName;
+    resolvedStudentId = student.id;
+  } else {
+    if (typeof rawName !== "string" || !rawName.trim()) {
+      return { success: false, message: "All fields are required." };
+    }
+    resolvedName = rawName.trim();
+  }
+
   try {
     await db.insert(submissions).values({
-      name: name.trim(),
+      name: resolvedName!,
       assignmentId: assignmentId.trim(),
       linkUrl: linkUrl.trim(),
+      studentId: resolvedStudentId,
     });
 
     return { success: true, message: "Submission received." };

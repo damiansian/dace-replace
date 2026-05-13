@@ -9,11 +9,15 @@ import {
 interface SubmissionFormProps {
   assignmentId: string;
   assignmentLabel: string;
+  accessToken?: string;
+  studentDisplayName?: string;
 }
 
 export default function SubmissionForm({
   assignmentId,
   assignmentLabel,
+  accessToken,
+  studentDisplayName,
 }: SubmissionFormProps) {
   const [state, formAction, isPending] = useActionState<
     SubmissionState,
@@ -47,9 +51,14 @@ export default function SubmissionForm({
     );
   }
 
+  const usingToken = Boolean(accessToken);
+
   return (
     <form action={formAction} className="space-y-4">
       <input type="hidden" name="assignmentId" value={assignmentId} />
+      {usingToken && (
+        <input type="hidden" name="accessToken" value={accessToken} />
+      )}
 
       {state && !state.success && (
         <div
@@ -62,23 +71,30 @@ export default function SubmissionForm({
         </div>
       )}
 
-      <div className="space-y-2">
-        <label
-          htmlFor={`name-${assignmentId}`}
-          className="block text-sm font-medium text-foreground"
-        >
-          Your name
-        </label>
-        <input
-          type="text"
-          id={`name-${assignmentId}`}
-          name="name"
-          required
-          autoComplete="name"
-          className="w-full rounded-lg border border-border bg-white px-4 py-2.5 text-sm text-foreground placeholder:text-text-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
-          placeholder="First Last"
-        />
-      </div>
+      {usingToken ? (
+        <p className="rounded-lg border border-border bg-surface px-4 py-3 text-sm text-foreground">
+          Submitting as <strong>{studentDisplayName}</strong> from your private
+          progress link.
+        </p>
+      ) : (
+        <div className="space-y-2">
+          <label
+            htmlFor={`name-${assignmentId}`}
+            className="block text-sm font-medium text-foreground"
+          >
+            Your name
+          </label>
+          <input
+            type="text"
+            id={`name-${assignmentId}`}
+            name="name"
+            required
+            autoComplete="name"
+            className="w-full rounded-lg border border-border bg-white px-4 py-2.5 text-sm text-foreground placeholder:text-text-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+            placeholder="First Last"
+          />
+        </div>
+      )}
 
       <div className="space-y-2">
         <label
