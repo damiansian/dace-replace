@@ -1,0 +1,2 @@
+full_name,access_token_or_url,notes
+Example Student,https://example.com/my-progress?token=REPLACE_WITH_LONG_RANDOM_VALUE,Rotate if leaked

@@ -17,6 +17,10 @@ node_modules/
 .env.local
 .env*.local
 
+# Local-only cohort data (see cohort-private/README.md)
+/cohort-private/student-access-tokens.csv
+/cohort-private/*.local.csv
+
 # Build output
 dist/
 build/

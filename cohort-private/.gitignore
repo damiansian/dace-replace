@@ -1,0 +1,5 @@
+# Ignore everything in this directory except tracked templates and docs.
+*
+!.gitignore
+!README.md
+!student-access-tokens.example.csv
