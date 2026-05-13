@@ -2,7 +2,11 @@
 
 import { db } from "@/db";
 import { submissions } from "@/db/schema";
-import { findStudentByToken, isWellFormedToken } from "@/db/students";
+import {
+  findStudentById,
+  findStudentByToken,
+  isWellFormedToken,
+} from "@/db/students";
 
 export type SubmissionState = {
   success: boolean;
@@ -13,10 +17,10 @@ export async function submitAssignment(
   _prev: SubmissionState,
   formData: FormData
 ): Promise<SubmissionState> {
-  const rawName = formData.get("name");
   const linkUrl = formData.get("linkUrl");
   const assignmentId = formData.get("assignmentId");
   const rawToken = formData.get("accessToken");
+  const rawStudentId = formData.get("studentId");
 
   if (
     typeof linkUrl !== "string" ||
@@ -68,10 +72,24 @@ export async function submitAssignment(
     resolvedName = student.displayName;
     resolvedStudentId = student.id;
   } else {
-    if (typeof rawName !== "string" || !rawName.trim()) {
-      return { success: false, message: "All fields are required." };
+    if (typeof rawStudentId !== "string" || !/^\d+$/.test(rawStudentId.trim())) {
+      return {
+        success: false,
+        message: "Choose your name from the list.",
+      };
     }
-    resolvedName = rawName.trim();
+
+    const studentId = Number.parseInt(rawStudentId, 10);
+    const picked = await findStudentById(studentId);
+    if (!picked) {
+      return {
+        success: false,
+        message: "That name is not on the roster. Refresh the page and try again.",
+      };
+    }
+
+    resolvedName = picked.displayName;
+    resolvedStudentId = picked.id;
   }
 
   try {

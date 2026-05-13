@@ -1,6 +1,6 @@
 import Link from "next/link";
 import SubmissionForm from "@/components/SubmissionForm";
-import { findStudentByToken } from "@/db/students";
+import { findStudentByToken, listRosterSelectOptions } from "@/db/students";
 import { withToken } from "@/data/progress-catalog";
 
 export const metadata = {
@@ -13,7 +13,10 @@ interface PageProps {
 
 export default async function Week2Practice({ searchParams }: PageProps) {
   const { t: token } = await searchParams;
-  const student = token ? await findStudentByToken(token) : null;
+  const [student, rosterOptions] = await Promise.all([
+    token ? findStudentByToken(token) : Promise.resolve(null),
+    listRosterSelectOptions(),
+  ]);
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-10 sm:px-6 space-y-10">
@@ -61,6 +64,7 @@ export default async function Week2Practice({ searchParams }: PageProps) {
             assignmentLabel="Week 2 Applied Practice"
             accessToken={student?.accessToken}
             studentDisplayName={student?.displayName}
+            rosterOptions={rosterOptions}
           />
         </div>
       </div>

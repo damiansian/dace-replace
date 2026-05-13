@@ -5,12 +5,15 @@ import {
   submitAssignment,
   type SubmissionState,
 } from "@/app/actions/submissions";
+import type { RosterSelectOption } from "@/db/students";
 
 interface SubmissionFormProps {
   assignmentId: string;
   assignmentLabel: string;
   accessToken?: string;
   studentDisplayName?: string;
+  /** Cohort roster (same names as the teacher gradebook). Used when not submitting via private link. */
+  rosterOptions?: RosterSelectOption[];
 }
 
 export default function SubmissionForm({
@@ -18,6 +21,7 @@ export default function SubmissionForm({
   assignmentLabel,
   accessToken,
   studentDisplayName,
+  rosterOptions = [],
 }: SubmissionFormProps) {
   const [state, formAction, isPending] = useActionState<
     SubmissionState,
@@ -76,24 +80,43 @@ export default function SubmissionForm({
           Submitting as <strong>{studentDisplayName}</strong> from your private
           progress link.
         </p>
-      ) : (
+      ) : rosterOptions.length > 0 ? (
         <div className="space-y-2">
           <label
-            htmlFor={`name-${assignmentId}`}
+            htmlFor={`student-${assignmentId}`}
             className="block text-sm font-medium text-foreground"
           >
             Your name
           </label>
-          <input
-            type="text"
-            id={`name-${assignmentId}`}
-            name="name"
+          <select
+            id={`student-${assignmentId}`}
+            name="studentId"
             required
-            autoComplete="name"
-            className="w-full rounded-lg border border-border bg-white px-4 py-2.5 text-sm text-foreground placeholder:text-text-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
-            placeholder="First Last"
-          />
+            defaultValue=""
+            className="w-full min-h-[2.75rem] rounded-lg border border-border bg-white px-4 py-2.5 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+          >
+            <option value="" disabled>
+              Select your name
+            </option>
+            {rosterOptions.map((s) => (
+              <option key={s.id} value={String(s.id)}>
+                {s.displayName}
+              </option>
+            ))}
+          </select>
+          <p className="text-xs text-text-secondary">
+            Use the same name as in the cohort roster so your submission matches
+            the gradebook.
+          </p>
         </div>
+      ) : (
+        <p
+          className="rounded-lg border border-border bg-surface px-4 py-3 text-sm text-foreground"
+          role="status"
+        >
+          The class roster is not available yet. Ask your instructor, then refresh
+          this page.
+        </p>
       )}
 
       <div className="space-y-2">
@@ -118,7 +141,7 @@ export default function SubmissionForm({
 
       <button
         type="submit"
-        disabled={isPending}
+        disabled={isPending || (!usingToken && rosterOptions.length === 0)}
         className="inline-flex items-center rounded-lg bg-primary px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-dark transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
       >
         {isPending ? "Submitting..." : "Submit"}
