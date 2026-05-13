@@ -36,16 +36,19 @@ export default async function RootLayout({
   const onTeacherSite = pathname.startsWith("/teacher");
 
   let progressStrip: ReactNode = null;
+  let headerAccessToken: string | undefined;
   if (!onTeacherSite) {
     const accessToken = await getResolvedStudentAccessToken(undefined);
     const student = await findStudentByToken(accessToken);
     if (student) {
+      headerAccessToken = student.accessToken;
       const snapshot = await loadStudentProgressSnapshot(student.id);
       progressStrip = (
         <StudentProgressStrip
           displayName={student.displayName}
           completeItems={snapshot.completeItems}
           totalItems={snapshot.totalItems}
+          accessToken={student.accessToken}
         />
       );
     }
@@ -64,7 +67,7 @@ export default async function RootLayout({
           Skip to main content
         </a>
 
-        <SiteHeader />
+        <SiteHeader accessToken={headerAccessToken} />
         {progressStrip}
 
         <main id="main-content" className="flex-1">
