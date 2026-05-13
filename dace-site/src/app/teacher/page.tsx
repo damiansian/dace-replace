@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import { db } from "@/db";
 import { quizResults, submissions, grades, students } from "@/db/schema";
-import { asc, desc } from "drizzle-orm";
+import { desc } from "drizzle-orm";
 import {
   buildGradebookRows,
   getGradebookColumns,
@@ -75,7 +75,7 @@ export default async function TeacherPage({ searchParams }: TeacherPageProps) {
 
   const [roster, allQuizResults, allSubmissions, allGrades] =
     await Promise.all([
-      db.select().from(students).orderBy(asc(students.displayName)),
+      db.select().from(students),
       db.select().from(quizResults).orderBy(desc(quizResults.submittedAt)),
       db.select().from(submissions).orderBy(desc(submissions.submittedAt)),
       db.select().from(grades),

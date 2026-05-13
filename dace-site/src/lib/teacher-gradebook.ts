@@ -33,6 +33,22 @@ export function normalizeName(name: string): string {
   return name.trim().toLowerCase().replace(/\s+/g, " ");
 }
 
+/** First word (given name) for roster ordering; falls back to full trimmed string. */
+export function firstNameSortKey(displayName: string): string {
+  const t = displayName.trim();
+  if (!t) return "";
+  const i = t.indexOf(" ");
+  return (i === -1 ? t : t.slice(0, i)).toLowerCase();
+}
+
+/** Sort primarily by first name, then full display name (case-insensitive). */
+export function compareDisplayNamesByFirstName(a: string, b: string): number {
+  const fa = firstNameSortKey(a);
+  const fb = firstNameSortKey(b);
+  if (fa !== fb) return fa.localeCompare(fb);
+  return a.trim().toLocaleLowerCase().localeCompare(b.trim().toLowerCase());
+}
+
 function orphanKeyFromName(name: string): RosterKey {
   return `o:${normalizeName(name)}` as RosterKey;
 }
@@ -194,7 +210,9 @@ export function buildGradebookRows(params: {
 
   const rosterIdentities: RosterIdentity[] = roster
     .slice()
-    .sort((a, b) => a.displayName.localeCompare(b.displayName))
+    .sort((a, b) =>
+      compareDisplayNamesByFirstName(a.displayName, b.displayName)
+    )
     .map((s) => ({
       key: `s:${s.id}` as RosterKey,
       kind: "student" as const,
@@ -208,7 +226,9 @@ export function buildGradebookRows(params: {
       kind: "orphan" as const,
       displayName,
     }))
-    .sort((a, b) => a.displayName.localeCompare(b.displayName));
+    .sort((a, b) =>
+      compareDisplayNamesByFirstName(a.displayName, b.displayName)
+    );
 
   let identities: RosterIdentity[] = [...rosterIdentities, ...orphanIdentities];
 
@@ -223,7 +243,7 @@ export function buildGradebookRows(params: {
       if (!fallback.has(n)) fallback.set(n, s.name.trim());
     }
     identities = Array.from(fallback.entries())
-      .sort((a, b) => a[1].localeCompare(b[1]))
+      .sort((a, b) => compareDisplayNamesByFirstName(a[1], b[1]))
       .map(([norm, displayName]) => ({
         key: `o:${norm}` as RosterKey,
         kind: "orphan" as const,
