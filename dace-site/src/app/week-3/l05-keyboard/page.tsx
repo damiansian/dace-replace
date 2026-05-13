@@ -1,16 +1,28 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { findStudentByToken } from "@/db/students";
+import { withToken } from "@/data/progress-catalog";
+import { getResolvedStudentAccessToken } from "@/lib/resolve-student-access-token";
 
 export const metadata: Metadata = {
   title: "L05: Keyboard, Touch & Reading Order | DACE Cohort 2",
 };
 
-export default function L05KeyboardPage() {
+interface PageProps {
+  searchParams: Promise<{ t?: string }>;
+}
+
+export default async function L05KeyboardPage({ searchParams }: PageProps) {
+  const { t: queryToken } = await searchParams;
+  const access = await getResolvedStudentAccessToken(queryToken);
+  const student = await findStudentByToken(access);
+  const t = student?.accessToken;
+
   return (
     <div className="mx-auto max-w-3xl px-4 py-10 sm:px-6 space-y-10">
       <div className="space-y-2">
         <Link
-          href="/week-3"
+          href={withToken("/week-3", t)}
           className="text-sm text-primary-text underline hover:text-primary-dark"
         >
           &larr; Back to Week 3
@@ -87,7 +99,7 @@ export default function L05KeyboardPage() {
                 Knowledge Check Quiz
               </p>
               <Link
-                href="/week-3/l05-keyboard/quiz"
+                href={withToken("/week-3/l05-keyboard/quiz", t)}
                 className="text-sm text-primary-text underline hover:text-primary-dark"
               >
                 Take the quiz
@@ -577,7 +589,7 @@ export default function L05KeyboardPage() {
             touch targets, and reading order.
           </p>
           <Link
-            href="/week-3/l05-keyboard/quiz"
+            href={withToken("/week-3/l05-keyboard/quiz", t)}
             className="inline-flex items-center rounded-lg bg-primary px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-dark transition-colors"
           >
             Take the L05 Keyboard Quiz
@@ -590,7 +602,7 @@ export default function L05KeyboardPage() {
         <p className="text-sm text-foreground">
           <strong>Up next:</strong>{" "}
           <Link
-            href="/week-3/l06-reflow"
+            href={withToken("/week-3/l06-reflow", t)}
             className="text-primary-text underline hover:text-primary-dark"
           >
             L06: Reflow &amp; Zoom

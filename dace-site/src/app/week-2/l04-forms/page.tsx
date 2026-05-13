@@ -1,16 +1,28 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { findStudentByToken } from "@/db/students";
+import { withToken } from "@/data/progress-catalog";
+import { getResolvedStudentAccessToken } from "@/lib/resolve-student-access-token";
 
 export const metadata: Metadata = {
   title: "L04: Forms and Errors | DACE Cohort 2",
 };
 
-export default function L04FormsPage() {
+interface PageProps {
+  searchParams: Promise<{ t?: string }>;
+}
+
+export default async function L04FormsPage({ searchParams }: PageProps) {
+  const { t: queryToken } = await searchParams;
+  const access = await getResolvedStudentAccessToken(queryToken);
+  const student = await findStudentByToken(access);
+  const t = student?.accessToken;
+
   return (
     <div className="mx-auto max-w-3xl px-4 py-10 sm:px-6 space-y-10">
       <div className="space-y-2">
         <Link
-          href="/week-2"
+          href={withToken("/week-2", t)}
           className="text-sm text-primary-text underline hover:text-primary-dark"
         >
           &larr; Back to Week 2
@@ -80,7 +92,7 @@ export default function L04FormsPage() {
                 5 questions &middot; Auto-graded &middot; 5 points
               </p>
               <Link
-                href="/week-2/l04-forms/quiz"
+                href={withToken("/week-2/l04-forms/quiz", t)}
                 className="text-sm text-primary-text underline hover:text-primary-dark"
               >
                 Take the quiz
@@ -467,7 +479,7 @@ export default function L04FormsPage() {
             handling, and input purpose. Auto-graded, worth 5 points.
           </p>
           <Link
-            href="/week-2/l04-forms/quiz"
+            href={withToken("/week-2/l04-forms/quiz", t)}
             className="inline-flex items-center rounded-lg bg-primary px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-dark transition-colors"
           >
             Take the L04 Forms Quiz
@@ -544,7 +556,7 @@ export default function L04FormsPage() {
         <p className="text-sm text-foreground">
           <strong>Up next:</strong>{" "}
           <Link
-            href="/week-3/l05-keyboard"
+            href={withToken("/week-3/l05-keyboard", t)}
             className="text-primary-text underline hover:text-primary-dark"
           >
             L05: Keyboard, Touch &amp; Reading Order

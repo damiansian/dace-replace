@@ -1,16 +1,28 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { findStudentByToken } from "@/db/students";
+import { withToken } from "@/data/progress-catalog";
+import { getResolvedStudentAccessToken } from "@/lib/resolve-student-access-token";
 
 export const metadata: Metadata = {
   title: "L06: Reflow & Zoom | DACE Cohort 2",
 };
 
-export default function L06ReflowPage() {
+interface PageProps {
+  searchParams: Promise<{ t?: string }>;
+}
+
+export default async function L06ReflowPage({ searchParams }: PageProps) {
+  const { t: queryToken } = await searchParams;
+  const access = await getResolvedStudentAccessToken(queryToken);
+  const student = await findStudentByToken(access);
+  const t = student?.accessToken;
+
   return (
     <div className="mx-auto max-w-3xl px-4 py-10 sm:px-6 space-y-10">
       <div className="space-y-2">
         <Link
-          href="/week-3"
+          href={withToken("/week-3", t)}
           className="text-sm text-primary-text underline hover:text-primary-dark"
         >
           &larr; Back to Week 3
@@ -74,7 +86,7 @@ export default function L06ReflowPage() {
                 Knowledge Check Quiz
               </p>
               <Link
-                href="/week-3/l06-reflow/quiz"
+                href={withToken("/week-3/l06-reflow/quiz", t)}
                 className="text-sm text-primary-text underline hover:text-primary-dark"
               >
                 Take the quiz
@@ -530,7 +542,7 @@ export default function L06ReflowPage() {
             requirements.
           </p>
           <Link
-            href="/week-3/l06-reflow/quiz"
+            href={withToken("/week-3/l06-reflow/quiz", t)}
             className="inline-flex items-center rounded-lg bg-primary px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-dark transition-colors"
           >
             Take the L06 Reflow Quiz
@@ -543,7 +555,7 @@ export default function L06ReflowPage() {
         <p className="text-sm text-foreground">
           <strong>You have completed Week 3 lessons.</strong> Head to the{" "}
           <Link
-            href="/week-3/applied-practice"
+            href={withToken("/week-3/applied-practice", t)}
             className="text-primary-text underline hover:text-primary-dark"
           >
             Week 3 Applied Practice

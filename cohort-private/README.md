@@ -19,6 +19,10 @@ https://YOUR-HOST/progress?t=<long-random-token>
 
 Anyone with the link sees that learner's quiz scores and submitted assignments. Treat each URL like a password and share it directly with that one learner.
 
+### Same-browser session (for instructors)
+
+After a learner opens **any** course URL that includes `?t=<their-token>`, the site may set a short-lived **HttpOnly cookie** so they stay identified while navigating (site header, home, lessons, quizzes) without `t` on every link. They still need their tokenized URL again on a **new device** or if they clear cookies. This does **not** replace the private progress URL for support or bookmarks.
+
 ### Generating tokens
 
 From `dace-site/`:
