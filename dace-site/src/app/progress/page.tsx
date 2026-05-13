@@ -3,6 +3,7 @@ import Link from "next/link";
 import { db } from "@/db";
 import { quizResults, submissions, grades } from "@/db/schema";
 import { desc, eq, inArray } from "drizzle-orm";
+import ProgressAccordionsShell from "@/components/ProgressAccordionsShell";
 import { findStudentByToken } from "@/db/students";
 import { progressCatalog, withToken, type CatalogItem } from "@/data/progress-catalog";
 
@@ -113,7 +114,7 @@ export default async function ProgressPage({ searchParams }: ProgressPageProps) 
         </p>
       </header>
 
-      <div className="space-y-4">
+      <ProgressAccordionsShell>
         {progressCatalog.map((week) => {
           const weekComplete = week.items.filter((item) => {
             if (item.kind === "quiz") {
@@ -161,7 +162,7 @@ export default async function ProgressPage({ searchParams }: ProgressPageProps) 
             </details>
           );
         })}
-      </div>
+      </ProgressAccordionsShell>
 
       <p className="text-xs text-text-secondary">
         Trouble with this page? Email your instructor and include the date and
