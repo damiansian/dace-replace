@@ -1,16 +1,13 @@
 import { timingSafeEqual } from "node:crypto";
 import { db } from "@/db";
 import { students } from "@/db/schema";
+import { isWellFormedToken } from "@/lib/access-token-format";
 import { compareDisplayNamesByFirstName } from "@/lib/teacher-gradebook";
 import { eq } from "drizzle-orm";
 
 export type Student = typeof students.$inferSelect;
 
-const TOKEN_PATTERN = /^[A-Za-z0-9_-]{20,128}$/;
-
-export function isWellFormedToken(value: unknown): value is string {
-  return typeof value === "string" && TOKEN_PATTERN.test(value);
-}
+export { isWellFormedToken } from "@/lib/access-token-format";
 
 function constantTimeEquals(a: string, b: string): boolean {
   const ab = Buffer.from(a, "utf8");

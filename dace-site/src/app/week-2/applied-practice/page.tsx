@@ -2,6 +2,7 @@ import Link from "next/link";
 import SubmissionForm from "@/components/SubmissionForm";
 import { findStudentByToken, listRosterSelectOptions } from "@/db/students";
 import { withToken } from "@/data/progress-catalog";
+import { getResolvedStudentAccessToken } from "@/lib/resolve-student-access-token";
 
 export const metadata = {
   title: "Week 2 Applied Practice | DACE Cohort 2",
@@ -12,9 +13,10 @@ interface PageProps {
 }
 
 export default async function Week2Practice({ searchParams }: PageProps) {
-  const { t: token } = await searchParams;
+  const { t: queryToken } = await searchParams;
+  const token = await getResolvedStudentAccessToken(queryToken);
   const [student, rosterOptions] = await Promise.all([
-    token ? findStudentByToken(token) : Promise.resolve(null),
+    findStudentByToken(token),
     listRosterSelectOptions(),
   ]);
 

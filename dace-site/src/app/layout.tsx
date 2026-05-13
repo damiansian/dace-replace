@@ -1,6 +1,13 @@
 import type { Metadata } from "next";
+import type { ReactNode } from "react";
 import { Geist, Geist_Mono } from "next/font/google";
-import Link from "next/link";
+import { headers } from "next/headers";
+import SiteHeader from "@/components/SiteHeader";
+import StudentProgressStrip from "@/components/StudentProgressStrip";
+import { findStudentByToken } from "@/db/students";
+import { DACE_PATHNAME_HEADER } from "@/lib/student-session";
+import { getResolvedStudentAccessToken } from "@/lib/resolve-student-access-token";
+import { loadStudentProgressSnapshot } from "@/lib/student-progress";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -19,11 +26,31 @@ export const metadata: Metadata = {
     "Temporary course site for the DACE (Design Accessibility Certified Expert) Training Program, Cohort 2. Access lessons, quizzes, and applied practice materials for Weeks 2 and 3.",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: ReactNode;
 }>) {
+  const headersList = await headers();
+  const pathname = headersList.get(DACE_PATHNAME_HEADER) ?? "/";
+  const onTeacherSite = pathname.startsWith("/teacher");
+
+  let progressStrip: ReactNode = null;
+  if (!onTeacherSite) {
+    const accessToken = await getResolvedStudentAccessToken(undefined);
+    const student = await findStudentByToken(accessToken);
+    if (student) {
+      const snapshot = await loadStudentProgressSnapshot(student.id);
+      progressStrip = (
+        <StudentProgressStrip
+          displayName={student.displayName}
+          completeItems={snapshot.completeItems}
+          totalItems={snapshot.totalItems}
+        />
+      );
+    }
+  }
+
   return (
     <html
       lang="en"
@@ -37,16 +64,8 @@ export default function RootLayout({
           Skip to main content
         </a>
 
-        <header className="border-b border-border bg-white">
-          <div className="mx-auto max-w-5xl px-4 py-3 sm:px-6">
-            <Link
-              href="/"
-              className="text-lg font-bold text-primary-dark hover:text-primary-text"
-            >
-              DACE Cohort 2
-            </Link>
-          </div>
-        </header>
+        <SiteHeader />
+        {progressStrip}
 
         <main id="main-content" className="flex-1">
           {children}

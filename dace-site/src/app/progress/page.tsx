@@ -1,11 +1,18 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { db } from "@/db";
-import { quizResults, submissions, grades } from "@/db/schema";
-import { desc, eq, inArray } from "drizzle-orm";
 import ProgressAccordionsShell from "@/components/ProgressAccordionsShell";
 import { findStudentByToken } from "@/db/students";
 import { progressCatalog, withToken, type CatalogItem } from "@/data/progress-catalog";
+import { getResolvedStudentAccessToken } from "@/lib/resolve-student-access-token";
+import {
+  bestQuiz,
+  latestSubmission,
+  loadStudentProgressSnapshot,
+  type GradeRow,
+  type QuizRow,
+  type StudentProgressSnapshot,
+  type SubmissionRow,
+} from "@/lib/student-progress";
 
 export const metadata = {
   title: "My Progress | DACE Cohort 2",
@@ -14,22 +21,6 @@ export const metadata = {
 
 interface ProgressPageProps {
   searchParams: Promise<{ t?: string }>;
-}
-
-type QuizRow = typeof quizResults.$inferSelect;
-type SubmissionRow = typeof submissions.$inferSelect;
-type GradeRow = typeof grades.$inferSelect;
-
-function bestQuiz(rows: QuizRow[]): QuizRow | null {
-  if (rows.length === 0) return null;
-  return rows.reduce((best, r) => (r.score > best.score ? r : best), rows[0]);
-}
-
-function latestSubmission(rows: SubmissionRow[]): SubmissionRow | null {
-  if (rows.length === 0) return null;
-  return rows.reduce((latest, r) =>
-    r.submittedAt > latest.submittedAt ? r : latest
-  );
 }
 
 function formatDate(d: Date): string {
@@ -41,59 +32,13 @@ function formatDate(d: Date): string {
 }
 
 export default async function ProgressPage({ searchParams }: ProgressPageProps) {
-  const { t: token } = await searchParams;
+  const { t: queryToken } = await searchParams;
+  const token = await getResolvedStudentAccessToken(queryToken);
   const student = await findStudentByToken(token);
 
   if (!student) notFound();
 
-  const [studentQuizzes, studentSubmissions] = await Promise.all([
-    db
-      .select()
-      .from(quizResults)
-      .where(eq(quizResults.studentId, student.id))
-      .orderBy(desc(quizResults.submittedAt)),
-    db
-      .select()
-      .from(submissions)
-      .where(eq(submissions.studentId, student.id))
-      .orderBy(desc(submissions.submittedAt)),
-  ]);
-
-  const submissionIds = studentSubmissions.map((s) => s.id);
-  const studentGrades: GradeRow[] =
-    submissionIds.length === 0
-      ? []
-      : await db
-          .select()
-          .from(grades)
-          .where(inArray(grades.submissionId, submissionIds));
-
-  const gradeBySubmission = new Map(studentGrades.map((g) => [g.submissionId, g]));
-  const quizzesById = new Map<string, QuizRow[]>();
-  for (const q of studentQuizzes) {
-    const arr = quizzesById.get(q.quizId) ?? [];
-    arr.push(q);
-    quizzesById.set(q.quizId, arr);
-  }
-  const submissionsById = new Map<string, SubmissionRow[]>();
-  for (const s of studentSubmissions) {
-    const arr = submissionsById.get(s.assignmentId) ?? [];
-    arr.push(s);
-    submissionsById.set(s.assignmentId, arr);
-  }
-
-  let totalItems = 0;
-  let completeItems = 0;
-  for (const week of progressCatalog) {
-    for (const item of week.items) {
-      totalItems++;
-      if (item.kind === "quiz") {
-        if (bestQuiz(quizzesById.get(item.id) ?? [])) completeItems++;
-      } else if (latestSubmission(submissionsById.get(item.id) ?? [])) {
-        completeItems++;
-      }
-    }
-  }
+  const snapshot = await loadStudentProgressSnapshot(student.id);
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-10 sm:px-6 space-y-10">
@@ -105,8 +50,8 @@ export default async function ProgressPage({ searchParams }: ProgressPageProps) 
           Hi, {student.displayName}
         </h1>
         <p className="text-base text-text-secondary">
-          {completeItems} of {totalItems} items complete. Open any week below to
-          see what is left.
+          {snapshot.completeItems} of {snapshot.totalItems} items complete. Open
+          any week below to see what is left.
         </p>
         <p className="text-sm text-text-secondary">
           This page is yours. Bookmark it. The link is private, so do not share
@@ -118,9 +63,11 @@ export default async function ProgressPage({ searchParams }: ProgressPageProps) 
         {progressCatalog.map((week) => {
           const weekComplete = week.items.filter((item) => {
             if (item.kind === "quiz") {
-              return Boolean(bestQuiz(quizzesById.get(item.id) ?? []));
+              return Boolean(bestQuiz(snapshot.quizzesById.get(item.id) ?? []));
             }
-            return Boolean(latestSubmission(submissionsById.get(item.id) ?? []));
+            return Boolean(
+              latestSubmission(snapshot.submissionsById.get(item.id) ?? [])
+            );
           }).length;
 
           return (
@@ -152,9 +99,7 @@ export default async function ProgressPage({ searchParams }: ProgressPageProps) 
                     <ItemRow
                       item={item}
                       token={student.accessToken}
-                      quizRows={quizzesById.get(item.id) ?? []}
-                      submissionRows={submissionsById.get(item.id) ?? []}
-                      gradeBySubmission={gradeBySubmission}
+                      snapshot={snapshot}
                     />
                   </li>
                 ))}
@@ -175,17 +120,17 @@ export default async function ProgressPage({ searchParams }: ProgressPageProps) 
 function ItemRow({
   item,
   token,
-  quizRows,
-  submissionRows,
-  gradeBySubmission,
+  snapshot,
 }: {
   item: CatalogItem;
   token: string;
-  quizRows: QuizRow[];
-  submissionRows: SubmissionRow[];
-  gradeBySubmission: Map<number, GradeRow>;
+  snapshot: StudentProgressSnapshot;
 }) {
   const href = withToken(item.href, token);
+  const gradeBySubmission = snapshot.gradeBySubmission;
+  const quizRows: QuizRow[] = snapshot.quizzesById.get(item.id) ?? [];
+  const submissionRows: SubmissionRow[] =
+    snapshot.submissionsById.get(item.id) ?? [];
 
   if (item.kind === "quiz") {
     const best = bestQuiz(quizRows);
@@ -198,9 +143,7 @@ function ItemRow({
           >
             {item.label}
           </Link>
-          <p className="text-sm text-text-secondary">
-            Knowledge check quiz
-          </p>
+          <p className="text-sm text-text-secondary">Knowledge check quiz</p>
         </div>
         <div className="text-sm">
           {best ? (
@@ -221,7 +164,9 @@ function ItemRow({
   }
 
   const latest = latestSubmission(submissionRows);
-  const grade = latest ? gradeBySubmission.get(latest.id) : null;
+  const grade: GradeRow | null = latest
+    ? gradeBySubmission.get(latest.id) ?? null
+    : null;
 
   return (
     <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
