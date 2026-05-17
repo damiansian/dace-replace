@@ -8,7 +8,7 @@ import {
   STUDENT_ACCESS_TOKEN_HEADER,
 } from "@/lib/student-session";
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
   const requestHeaders = new Headers(request.headers);
   requestHeaders.set(DACE_PATHNAME_HEADER, pathname);

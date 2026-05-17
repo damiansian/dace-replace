@@ -5,7 +5,7 @@ export const STUDENT_ACCESS_TOKEN_COOKIE = "dace_student_access";
 export const STUDENT_ACCESS_COOKIE_MAX_AGE = 60 * 60 * 24 * 120;
 
 /**
- * Request header set by middleware when the URL contains a well-formed `t`
+ * Request header set by proxy when the URL contains a well-formed `t`
  * so Server Components in the same request can resolve the student before the
  * Set-Cookie response is applied everywhere.
  */

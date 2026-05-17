@@ -7,7 +7,7 @@ import {
 
 /**
  * Resolves the personal access token for this request.
- * Precedence: explicit query token (from page searchParams), then middleware
+ * Precedence: explicit query token (from page searchParams), then proxy
  * header (when `?t=` was on the URL this request), then HttpOnly cookie.
  */
 export async function getResolvedStudentAccessToken(
