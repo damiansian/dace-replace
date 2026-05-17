@@ -23,7 +23,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "DACE Cohort 2 | Emergency Course Site",
   description:
-    "Temporary course site for the DACE (Design Accessibility Certified Expert) Training Program, Cohort 2. Access lessons, quizzes, and applied practice materials for Weeks 2 and 3.",
+    "Temporary course site for the DACE (Design Accessibility Certified Expert) Training Program, Cohort 2. Access lessons, quizzes, and applied practice materials for Weeks 2, 3, and 4.",
 };
 
 export default async function RootLayout({

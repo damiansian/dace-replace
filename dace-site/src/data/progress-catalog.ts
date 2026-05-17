@@ -70,6 +70,31 @@ export const progressCatalog: WeekGroup[] = [
       },
     ],
   },
+  {
+    id: "week-4",
+    label: "Week 4: Landmarks, Navigation & Motion",
+    items: [
+      {
+        kind: "quiz",
+        id: "l07-landmarks",
+        label: "L07 Landmarks Quiz",
+        href: "/week-4/l07-landmarks/quiz",
+      },
+      {
+        kind: "quiz",
+        id: "l08-motion",
+        label: "L08 Motion Quiz",
+        href: "/week-4/l08-motion/quiz",
+      },
+      {
+        kind: "assignment",
+        id: "week-4-practice",
+        label: "Applied Practice: Navigation Accessibility Audit",
+        href: "/week-4/applied-practice",
+        totalPoints: 16,
+      },
+    ],
+  },
 ];
 
 export function withToken(href: string, token: string | undefined): string {

@@ -5,14 +5,14 @@ import { withToken } from "@/data/progress-catalog";
 import { getResolvedStudentAccessToken } from "@/lib/resolve-student-access-token";
 
 export const metadata: Metadata = {
-  title: "L05: Keyboard, Touch & Reading Order | DACE Cohort 2",
+  title: "L07: Landmarks & Navigation | DACE Cohort 2",
 };
 
 interface PageProps {
   searchParams: Promise<{ t?: string }>;
 }
 
-export default async function L05KeyboardPage({ searchParams }: PageProps) {
+export default async function L07LandmarksPage({ searchParams }: PageProps) {
   const { t: queryToken } = await searchParams;
   const access = await getResolvedStudentAccessToken(queryToken);
   const student = await findStudentByToken(access);
@@ -22,18 +22,20 @@ export default async function L05KeyboardPage({ searchParams }: PageProps) {
     <div className="mx-auto max-w-3xl px-4 py-10 sm:px-6 space-y-10">
       <div className="space-y-2">
         <Link
-          href={withToken("/week-3", t)}
+          href={withToken("/week-4", t)}
           className="text-sm text-primary-text underline hover:text-primary-dark"
         >
-          &larr; Back to Week 3
+          &larr; Back to Week 4
         </Link>
         <h1 className="text-3xl font-bold tracking-tight text-foreground">
-          Lesson 05: Keyboard, Touch &amp; Reading Order
+          Lesson 07: Landmarks &amp; Navigation
         </h1>
         <p className="text-base text-text-secondary">
-          Keyboard accessibility is essential for millions of users who rely on
-          keyboard navigation, including screen reader users, voice control
-          users, people with motor disabilities, and power users.
+          Landmarks, skip links, and consistent navigation give users multiple
+          ways to move through your designs efficiently. Screen reader users
+          rely on landmarks to jump to major sections. Keyboard users depend on
+          skip links to bypass repeated content. Everyone benefits from
+          predictable navigation patterns.
         </p>
       </div>
 
@@ -43,7 +45,7 @@ export default async function L05KeyboardPage({ searchParams }: PageProps) {
           Discover Badge
         </span>
         <span className="inline-flex items-center rounded-full bg-surface px-3 py-1 text-sm font-medium text-text-secondary">
-          Module 1E
+          Module 1G
         </span>
       </div>
 
@@ -68,7 +70,7 @@ export default async function L05KeyboardPage({ searchParams }: PageProps) {
                 Interactive lesson in Figma
               </p>
               <a
-                href="https://www.figma.com/design/mNFDFtVojYP1yvNO20bhfb/DACE---Cohort-2?node-id=775-357"
+                href="https://www.figma.com/design/mNFDFtVojYP1yvNO20bhfb/DACE---Cohort-2?node-id=2332-634"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-sm text-primary-text underline hover:text-primary-dark"
@@ -86,8 +88,14 @@ export default async function L05KeyboardPage({ searchParams }: PageProps) {
                 Applied Skill Project
               </p>
               <p className="text-sm text-text-secondary">
-                Keyboard &amp; Touch Accessibility Audit
+                Navigation Accessibility Audit
               </p>
+              <Link
+                href={withToken("/week-4/applied-practice", t)}
+                className="text-sm text-primary-text underline hover:text-primary-dark"
+              >
+                View assignment
+              </Link>
             </div>
           </div>
           <div className="p-4 flex items-start gap-3">
@@ -99,7 +107,7 @@ export default async function L05KeyboardPage({ searchParams }: PageProps) {
                 Knowledge Check Quiz
               </p>
               <Link
-                href={withToken("/week-3/l05-keyboard/quiz", t)}
+                href={withToken("/week-4/l07-landmarks/quiz", t)}
                 className="text-sm text-primary-text underline hover:text-primary-dark"
               >
                 Take the quiz
@@ -119,11 +127,11 @@ export default async function L05KeyboardPage({ searchParams }: PageProps) {
         </h2>
         <div className="aspect-video rounded-lg overflow-hidden border border-border">
           <iframe
-            src="https://player.vimeo.com/video/1157035958"
+            src="https://player.vimeo.com/video/1160540883"
             className="h-full w-full"
             allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
             allowFullScreen
-            title="Lesson 05: Keyboard, Touch and Reading Order Explainer"
+            title="Lesson 07: Landmarks & Navigation Explainer"
           />
         </div>
       </div>
@@ -157,65 +165,65 @@ export default async function L05KeyboardPage({ searchParams }: PageProps) {
             <tbody>
               <tr>
                 <td className="border border-border px-4 py-3 font-mono text-sm text-text-secondary">
-                  1E.01
+                  1G.01
                 </td>
                 <td className="border border-border px-4 py-3 text-foreground">
-                  Ensure all functionality is keyboard accessible, verifying
-                  that every interactive element is reachable and operable
-                  without a mouse.
+                  Specify landmark regions appropriately, identifying page
+                  sections that should be marked as banner, navigation, main,
+                  and complementary landmarks.
                 </td>
               </tr>
               <tr className="bg-surface/50">
                 <td className="border border-border px-4 py-3 font-mono text-sm text-text-secondary">
-                  1E.02
+                  1G.02
                 </td>
                 <td className="border border-border px-4 py-3 text-foreground">
-                  Design visible focus indicators meeting WCAG 2.2 requirements
-                  for minimum area, contrast, and visibility.
+                  Design consistent navigation patterns that appear in the
+                  same relative order across pages and states.
                 </td>
               </tr>
               <tr>
                 <td className="border border-border px-4 py-3 font-mono text-sm text-text-secondary">
-                  1E.03
+                  1G.03
                 </td>
                 <td className="border border-border px-4 py-3 text-foreground">
-                  Apply touch target size requirements, ensuring interactive
-                  targets meet the 24&times;24px minimum.
+                  Specify skip links and bypass blocks that allow users to
+                  bypass repeated content.
                 </td>
               </tr>
               <tr className="bg-surface/50">
                 <td className="border border-border px-4 py-3 font-mono text-sm text-text-secondary">
-                  1E.04
+                  1G.04
                 </td>
                 <td className="border border-border px-4 py-3 text-foreground">
-                  Understand reading order fundamentals and the relationship
-                  between DOM order, visual layout, and focus sequence.
+                  Apply focus order requirements so focus follows logical
+                  reading and interaction sequences.
                 </td>
               </tr>
             </tbody>
           </table>
         </div>
 
-        {/* Knowledge / Skills / Application breakdown */}
+        {/* Knowledge / Skills / Application */}
         <div className="grid gap-4 sm:grid-cols-3">
           <div className="rounded-lg bg-surface p-4 space-y-2">
             <h3 className="text-sm font-semibold text-foreground">
               Knowledge
             </h3>
             <ul className="list-disc list-inside text-sm text-text-secondary space-y-1">
-              <li>Standard keyboard commands</li>
-              <li>SC 2.4.11 focus appearance rules</li>
-              <li>SC 2.5.8 target size minimum</li>
-              <li>Reading order vs. tab order</li>
+              <li>Six ARIA landmark roles</li>
+              <li>HTML5 semantic equivalents</li>
+              <li>SC 3.2.3 Consistent Navigation</li>
+              <li>SC 2.4.1 Bypass Blocks methods</li>
             </ul>
           </div>
           <div className="rounded-lg bg-surface p-4 space-y-2">
             <h3 className="text-sm font-semibold text-foreground">Skills</h3>
             <ul className="list-disc list-inside text-sm text-text-secondary space-y-1">
-              <li>Keyboard-test interactive components</li>
-              <li>Evaluate focus indicator compliance</li>
-              <li>Measure touch target dimensions</li>
-              <li>Verify reading order matches intent</li>
+              <li>Identify all landmark regions</li>
+              <li>Name duplicate landmarks uniquely</li>
+              <li>Audit navigation across pages</li>
+              <li>Specify skip link behavior</li>
             </ul>
           </div>
           <div className="rounded-lg bg-surface p-4 space-y-2">
@@ -223,10 +231,10 @@ export default async function L05KeyboardPage({ searchParams }: PageProps) {
               Application
             </h3>
             <ul className="list-disc list-inside text-sm text-text-secondary space-y-1">
-              <li>Audit a page for keyboard traps</li>
-              <li>Spec compliant focus indicators</li>
-              <li>Annotate touch targets in design</li>
-              <li>Document reading order issues</li>
+              <li>Annotate landmarks in Figma</li>
+              <li>Flag consistency issues in reviews</li>
+              <li>Document skip link specs for engineering</li>
+              <li>Verify focus order matches design</li>
             </ul>
           </div>
         </div>
@@ -243,20 +251,22 @@ export default async function L05KeyboardPage({ searchParams }: PageProps) {
         <div className="grid gap-3 sm:grid-cols-2">
           <div className="rounded-lg border border-border bg-white p-4">
             <p className="font-mono text-sm font-semibold text-primary-dark">
-              1.3.2 Meaningful Sequence
+              1.3.1 Info and Relationships
             </p>
             <p className="mt-1 text-sm text-text-secondary">
-              A correct reading sequence can be programmatically determined when
-              sequence affects meaning. Level&nbsp;A.
+              Information, structure, and relationships conveyed through
+              presentation can be programmatically determined. Landmarks
+              communicate page structure to assistive technology. Level&nbsp;A.
             </p>
           </div>
           <div className="rounded-lg border border-border bg-white p-4">
             <p className="font-mono text-sm font-semibold text-primary-dark">
-              2.1.1 Keyboard
+              2.4.1 Bypass Blocks
             </p>
             <p className="mt-1 text-sm text-text-secondary">
-              All functionality is operable through a keyboard interface without
-              requiring specific timings. Level&nbsp;A.
+              A mechanism is available to bypass blocks of content that are
+              repeated on multiple pages. Skip links, landmarks, and headings
+              all satisfy this criterion. Level&nbsp;A.
             </p>
           </div>
           <div className="rounded-lg border border-border bg-white p-4">
@@ -270,31 +280,21 @@ export default async function L05KeyboardPage({ searchParams }: PageProps) {
           </div>
           <div className="rounded-lg border border-border bg-white p-4">
             <p className="font-mono text-sm font-semibold text-primary-dark">
-              2.4.7 Focus Visible
+              3.2.3 Consistent Navigation
             </p>
             <p className="mt-1 text-sm text-text-secondary">
-              The keyboard focus indicator is visible on all operable elements.
+              Navigation mechanisms repeated on multiple pages occur in the
+              same relative order each time they appear. Level&nbsp;AA.
+            </p>
+          </div>
+          <div className="rounded-lg border border-border bg-white p-4 sm:col-span-2">
+            <p className="font-mono text-sm font-semibold text-primary-dark">
+              3.2.4 Consistent Identification
+            </p>
+            <p className="mt-1 text-sm text-text-secondary">
+              Components with the same functionality are identified
+              consistently across pages (same label, same icon, same name).
               Level&nbsp;AA.
-            </p>
-          </div>
-          <div className="rounded-lg border border-border bg-white p-4">
-            <p className="font-mono text-sm font-semibold text-primary-dark">
-              2.4.11 Focus Appearance
-            </p>
-            <p className="mt-1 text-sm text-text-secondary">
-              Focus indicators meet minimum area (2px perimeter) and 3:1
-              contrast between focused and unfocused states. Level&nbsp;AA
-              (WCAG&nbsp;2.2).
-            </p>
-          </div>
-          <div className="rounded-lg border border-border bg-white p-4">
-            <p className="font-mono text-sm font-semibold text-primary-dark">
-              2.5.8 Target Size (Minimum)
-            </p>
-            <p className="mt-1 text-sm text-text-secondary">
-              Pointer input targets are at least 24&times;24 CSS pixels, with
-              exceptions for inline targets and user agent controls.
-              Level&nbsp;AA (WCAG&nbsp;2.2).
             </p>
           </div>
         </div>
@@ -310,14 +310,15 @@ export default async function L05KeyboardPage({ searchParams }: PageProps) {
         </h2>
 
         <div className="space-y-6">
-          {/* Keyboard Accessibility Fundamentals */}
+          {/* Landmark Regions */}
           <div className="rounded-lg border-l-4 border-l-primary bg-white border border-border p-6 space-y-3">
             <h3 className="text-lg font-semibold text-foreground">
-              Keyboard Accessibility Fundamentals (1E.01)
+              Landmark Regions (1G.01)
             </h3>
             <p className="text-sm text-text-secondary">
-              Standard keyboard interactions that all interactive web content
-              must support:
+              Landmarks are structural markers that identify major page
+              sections. Screen readers let users jump directly to these
+              regions, similar to how chapters work in a book.
             </p>
             <div className="overflow-x-auto">
               <table className="w-full text-sm border-collapse">
@@ -327,67 +328,173 @@ export default async function L05KeyboardPage({ searchParams }: PageProps) {
                       scope="col"
                       className="border border-border px-4 py-2 text-left font-semibold text-foreground"
                     >
-                      Key
+                      ARIA Role
                     </th>
                     <th
                       scope="col"
                       className="border border-border px-4 py-2 text-left font-semibold text-foreground"
                     >
-                      Action
+                      HTML5 Element
+                    </th>
+                    <th
+                      scope="col"
+                      className="border border-border px-4 py-2 text-left font-semibold text-foreground"
+                    >
+                      Purpose
                     </th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
                     <td className="border border-border px-4 py-2 font-mono">
-                      Tab
+                      banner
+                    </td>
+                    <td className="border border-border px-4 py-2 font-mono">
+                      &lt;header&gt;
                     </td>
                     <td className="border border-border px-4 py-2">
-                      Move focus to the next interactive element
+                      Site header, logo, site-wide info
                     </td>
                   </tr>
                   <tr className="bg-surface/50">
                     <td className="border border-border px-4 py-2 font-mono">
-                      Shift + Tab
+                      navigation
+                    </td>
+                    <td className="border border-border px-4 py-2 font-mono">
+                      &lt;nav&gt;
                     </td>
                     <td className="border border-border px-4 py-2">
-                      Move focus to the previous interactive element
+                      Navigation links
                     </td>
                   </tr>
                   <tr>
                     <td className="border border-border px-4 py-2 font-mono">
-                      Enter / Space
+                      main
+                    </td>
+                    <td className="border border-border px-4 py-2 font-mono">
+                      &lt;main&gt;
                     </td>
                     <td className="border border-border px-4 py-2">
-                      Activate buttons and links (Enter also submits forms)
+                      Primary page content
                     </td>
                   </tr>
                   <tr className="bg-surface/50">
                     <td className="border border-border px-4 py-2 font-mono">
-                      Arrow keys
+                      complementary
+                    </td>
+                    <td className="border border-border px-4 py-2 font-mono">
+                      &lt;aside&gt;
                     </td>
                     <td className="border border-border px-4 py-2">
-                      Navigate within composite widgets (tabs, menus, radio
-                      groups, listboxes)
+                      Supporting content, sidebars
                     </td>
                   </tr>
                   <tr>
                     <td className="border border-border px-4 py-2 font-mono">
-                      Escape
+                      contentinfo
+                    </td>
+                    <td className="border border-border px-4 py-2 font-mono">
+                      &lt;footer&gt;
                     </td>
                     <td className="border border-border px-4 py-2">
-                      Close modals, menus, popups; return focus to trigger
+                      Site footer, copyright
+                    </td>
+                  </tr>
+                  <tr className="bg-surface/50">
+                    <td className="border border-border px-4 py-2 font-mono">
+                      search
+                    </td>
+                    <td className="border border-border px-4 py-2 font-mono">
+                      &lt;search&gt;
+                    </td>
+                    <td className="border border-border px-4 py-2">
+                      Search functionality
                     </td>
                   </tr>
                 </tbody>
               </table>
             </div>
+            <div className="rounded-lg bg-surface p-4 border-l-4 border-l-primary">
+              <p className="text-sm text-foreground">
+                <strong>Multiple landmarks of the same type:</strong> Each
+                must have a unique accessible name. Two nav elements need
+                labels like &ldquo;Primary navigation&rdquo; and &ldquo;Footer
+                navigation&rdquo;.
+              </p>
+            </div>
+          </div>
+
+          {/* Consistent Navigation */}
+          <div className="rounded-lg border-l-4 border-l-primary bg-white border border-border p-6 space-y-3">
+            <h3 className="text-lg font-semibold text-foreground">
+              Consistent Navigation (1G.02)
+            </h3>
+            <p className="text-sm text-text-secondary">
+              Navigation components that appear on multiple pages must
+              maintain the same relative order. Users build mental models of
+              site structure, and inconsistency forces them to relearn
+              navigation on each page.
+            </p>
+            <div className="grid gap-4 sm:grid-cols-2">
+              <div className="rounded-lg bg-surface p-4 border-l-4 border-l-accent-green">
+                <p className="text-sm font-semibold text-accent-green">
+                  Consistent (correct)
+                </p>
+                <p className="text-sm text-foreground mt-2">
+                  Page 1: Home | Products | About | Contact
+                  <br />
+                  Page 2: Home | Products | About | Contact
+                </p>
+              </div>
+              <div className="rounded-lg bg-surface p-4 border-l-4 border-l-accent-red">
+                <p className="text-sm font-semibold text-accent-red">
+                  Inconsistent (failure)
+                </p>
+                <p className="text-sm text-foreground mt-2">
+                  Page 1: Home | Products | About | Contact
+                  <br />
+                  Page 2: Home | About | Products | Contact
+                </p>
+              </div>
+            </div>
+            <p className="text-sm text-text-secondary">
+              SC 3.2.4 also requires consistent identification: components
+              with the same function should use the same label, icon, and
+              name across pages.
+            </p>
+          </div>
+
+          {/* Skip Links */}
+          <div className="rounded-lg border-l-4 border-l-primary bg-white border border-border p-6 space-y-3">
+            <h3 className="text-lg font-semibold text-foreground">
+              Skip Links &amp; Bypass Blocks (1G.03)
+            </h3>
+            <p className="text-sm text-text-secondary">
+              SC 2.4.1 requires mechanisms to bypass repeated content.
+              Keyboard users should not have to Tab through 50 navigation
+              links on every page. Three methods satisfy this requirement:
+            </p>
+            <ol
+              className="list-decimal list-inside text-sm text-foreground space-y-2"
+            >
+              <li>
+                <strong>Skip links:</strong> &ldquo;Skip to main content&rdquo;
+                links at page start
+              </li>
+              <li>
+                <strong>Landmarks:</strong> Enable jumping to page regions
+              </li>
+              <li>
+                <strong>Headings:</strong> Allow navigation via heading
+                hierarchy
+              </li>
+            </ol>
             <div className="rounded-lg bg-amber-50 p-4 border-l-4 border-l-amber-500">
               <p className="text-sm text-foreground">
-                <strong>Common failures:</strong> click-only handlers without
-                keyboard equivalents, custom controls missing keyboard support,
-                hover-only interactions with no keyboard alternative, and drag
-                operations without a keyboard path.
+                <strong>Skip link placement:</strong> Must be the first
+                focusable element on the page. When activated, focus moves to
+                the target region (often main content). Specify whether it is
+                hidden until focus or always visible.
               </p>
             </div>
           </div>
@@ -395,199 +502,39 @@ export default async function L05KeyboardPage({ searchParams }: PageProps) {
           {/* Focus Order */}
           <div className="rounded-lg border-l-4 border-l-primary bg-white border border-border p-6 space-y-3">
             <h3 className="text-lg font-semibold text-foreground">
-              Focus Order Must Be Logical (1E.01)
+              Focus Order (1G.04)
             </h3>
             <p className="text-sm text-text-secondary">
-              SC 2.4.3 requires focus order to follow a meaningful sequence.
-              Focus should generally move left-to-right, top-to-bottom in LTR
-              languages, matching the visual reading order.
+              SC 2.4.3 requires focus order to preserve meaning and
+              operability. For left-to-right languages, focus typically
+              follows left-to-right, top-to-bottom visual order.
             </p>
-            <p className="text-sm text-text-secondary">
-              <strong>Intentional focus traps vs. keyboard traps:</strong>{" "}
-              Modal dialogs <em>should</em> trap focus within them while open
-              (an intentional focus trap). A keyboard trap is when a user{" "}
-              <em>cannot</em> leave a component at all, which is always a
-              failure of SC 2.1.2. The key distinction: intentional traps have
-              a clear exit mechanism (Escape key, close button).
-            </p>
-            <ul
-              className="list-disc list-inside text-sm text-foreground space-y-2"
-              role="list"
-            >
-              <li>
-                Avoid{" "}
-                <code className="rounded bg-surface px-1.5 py-0.5 text-sm font-mono">
-                  tabindex
-                </code>{" "}
-                values greater than 0
-              </li>
-              <li>
-                CSS{" "}
-                <code className="rounded bg-surface px-1.5 py-0.5 text-sm font-mono">
-                  order
-                </code>
-                ,{" "}
-                <code className="rounded bg-surface px-1.5 py-0.5 text-sm font-mono">
-                  grid-area
-                </code>
-                , and{" "}
-                <code className="rounded bg-surface px-1.5 py-0.5 text-sm font-mono">
-                  position
-                </code>{" "}
-                can cause visual order to diverge from DOM order
-              </li>
-              <li>
-                Return focus to the triggering element when closing modals,
-                menus, or popovers
-              </li>
-            </ul>
-          </div>
-
-          {/* Focus Indicators */}
-          <div className="rounded-lg border-l-4 border-l-primary bg-white border border-border p-6 space-y-3">
-            <h3 className="text-lg font-semibold text-foreground">
-              Focus Indicators Must Be Visible (1E.02)
-            </h3>
-            <p className="text-sm text-text-secondary">
-              WCAG 2.2 introduced SC 2.4.11 (Focus Appearance) with specific
-              measurable requirements:
-            </p>
-            <ul
-              className="list-disc list-inside text-sm text-foreground space-y-2"
-              role="list"
-            >
-              <li>
-                Focus indicator must be at least <strong>2px</strong> thick on
-                the perimeter (or equivalent area)
-              </li>
-              <li>
-                Must have at least <strong>3:1 contrast</strong> between the
-                focused and unfocused states
-              </li>
-              <li>
-                The indicator must not be entirely obscured by other content
-                (sticky headers, cookie banners, etc.)
-              </li>
-            </ul>
-
-            <div className="grid gap-4 sm:grid-cols-2 pt-2">
-              <div className="rounded-lg bg-surface p-4 border-l-4 border-l-accent-green">
-                <p className="text-sm font-semibold text-accent-green">
-                  Best practices
-                </p>
-                <ul className="list-disc list-inside text-sm text-foreground space-y-1 mt-2">
-                  <li>3px solid outline with offset</li>
-                  <li>High-contrast color (e.g., #5151D3)</li>
-                  <li>Visible on all backgrounds</li>
-                  <li>Consistent across all elements</li>
-                </ul>
-              </div>
-              <div className="rounded-lg bg-surface p-4 border-l-4 border-l-accent-red">
-                <p className="text-sm font-semibold text-accent-red">
-                  Common failures
-                </p>
-                <ul className="list-disc list-inside text-sm text-foreground space-y-1 mt-2">
-                  <li>
-                    <code className="rounded bg-white px-1 py-0.5 text-sm font-mono">
-                      outline: none
-                    </code>{" "}
-                    without replacement
-                  </li>
-                  <li>Low-contrast dotted outlines</li>
-                  <li>Focus hidden by overlapping content</li>
-                  <li>Only visible on some elements</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          {/* Touch Targets */}
-          <div className="rounded-lg border-l-4 border-l-primary bg-white border border-border p-6 space-y-3">
-            <h3 className="text-lg font-semibold text-foreground">
-              Touch Targets Must Be Large Enough (1E.03)
-            </h3>
-            <p className="text-sm text-text-secondary">
-              SC 2.5.8 (WCAG 2.2) requires pointer input targets to be at least{" "}
-              <strong>24&times;24 CSS pixels</strong>:
-            </p>
-            <ul
-              className="list-disc list-inside text-sm text-foreground space-y-2"
-              role="list"
-            >
-              <li>
-                Applies to buttons, links, form controls, and other tappable
-                elements
-              </li>
-              <li>
-                Spacing around a smaller target can contribute: if there is
-                24px of clear space around the target, it may still pass
-              </li>
-              <li>
-                Best practice is 44&times;44px (the AAA-level SC 2.5.5 Target
-                Size requirement)
-              </li>
-            </ul>
             <p className="text-sm text-text-secondary font-medium">
-              Exceptions:
-            </p>
-            <ul
-              className="list-disc list-inside text-sm text-foreground space-y-1"
-              role="list"
-            >
-              <li>Inline links within a sentence or paragraph</li>
-              <li>User agent default controls (browser-rendered checkboxes)</li>
-              <li>
-                Targets where specific size is essential (map pins, piano keys)
-              </li>
-              <li>
-                Targets with an equivalent control elsewhere on the page that
-                meets the size requirement
-              </li>
-            </ul>
-          </div>
-
-          {/* Reading Order */}
-          <div className="rounded-lg border-l-4 border-l-primary bg-white border border-border p-6 space-y-3">
-            <h3 className="text-lg font-semibold text-foreground">
-              Reading Order Fundamentals (1E.04)
-            </h3>
-            <p className="text-sm text-text-secondary">
-              <strong>Reading order</strong> is the sequence in which a screen
-              reader or other assistive technology traverses all content on a
-              page. <strong>Tab order</strong> is the subset that includes only
-              interactive (focusable) elements.
+              Dynamic content requires focus management:
             </p>
             <ul
               className="list-disc list-inside text-sm text-foreground space-y-2"
               role="list"
             >
               <li>
-                The DOM source order determines reading order; CSS can
-                reposition elements visually without changing the DOM
+                <strong>Modal dialogs:</strong> Focus moves in, traps within,
+                returns to trigger on close
               </li>
               <li>
-                Flexbox{" "}
-                <code className="rounded bg-surface px-1.5 py-0.5 text-sm font-mono">
-                  order
-                </code>
-                , CSS Grid placement, and absolute positioning are common
-                sources of order mismatches
+                <strong>Accordions:</strong> Focus stays on trigger, expanded
+                content becomes available
               </li>
               <li>
-                Disabled controls remain in reading order (screen readers
-                announce them) but are removed from tab order
-              </li>
-              <li>
-                Test by using Tab to navigate and comparing with a screen
-                reader&apos;s content traversal
+                <strong>Tab panels:</strong> Arrow keys navigate within, Tab
+                moves out
               </li>
             </ul>
             <div className="rounded-lg bg-amber-50 p-4 border-l-4 border-l-amber-500">
               <p className="text-sm text-foreground">
-                <strong>Common failures:</strong> sidebar content reads before
-                main content due to source order, visually reordered grid items
-                that confuse linear navigation, and dynamically inserted content
-                placed at the end of the DOM regardless of visual position.
+                <strong>Common failures:</strong> CSS reordering that breaks
+                DOM sequence, dynamically inserted content placed at the end
+                of the DOM regardless of visual position, and modals that do
+                not return focus to the triggering element.
               </p>
             </div>
           </div>
@@ -604,14 +551,14 @@ export default async function L05KeyboardPage({ searchParams }: PageProps) {
         </h2>
         <div className="rounded-lg border border-border bg-surface p-6 space-y-3">
           <p className="text-sm text-text-secondary">
-            Test your knowledge of keyboard accessibility, focus indicators,
-            touch targets, and reading order.
+            Test your knowledge of landmark regions, consistent navigation,
+            skip links, and focus order.
           </p>
           <Link
-            href={withToken("/week-3/l05-keyboard/quiz", t)}
+            href={withToken("/week-4/l07-landmarks/quiz", t)}
             className="inline-flex items-center rounded-lg bg-primary px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-dark transition-colors"
           >
-            Take the L05 Keyboard Quiz
+            Take the L07 Landmarks Quiz
           </Link>
         </div>
       </div>
@@ -621,13 +568,13 @@ export default async function L05KeyboardPage({ searchParams }: PageProps) {
         <p className="text-sm text-foreground">
           <strong>Up next:</strong>{" "}
           <Link
-            href={withToken("/week-3/l06-reflow", t)}
+            href={withToken("/week-4/l08-motion", t)}
             className="text-primary-text underline hover:text-primary-dark"
           >
-            L06: Reflow &amp; Zoom
+            L08: Motion &amp; Animation
           </Link>{" "}
-          &mdash; Designing for 400% zoom, text spacing, and orientation
-          requirements.
+          &mdash; Reduced motion preferences, pause controls, flash
+          thresholds, and motion alternatives.
         </p>
       </div>
     </div>

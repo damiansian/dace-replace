@@ -10,4 +10,8 @@ export const assignments: Record<
     label: "Week 3: Blueline Annotations",
     totalPoints: 28,
   },
+  "week-4-practice": {
+    label: "Week 4: Navigation Accessibility Audit",
+    totalPoints: 16,
+  },
 };
