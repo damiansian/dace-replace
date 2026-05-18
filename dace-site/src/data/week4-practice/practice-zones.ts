@@ -79,14 +79,8 @@ export const PRACTICE_ZONES: PracticeZone[] = [
     nameRequired: false,
   },
   {
-    id: "footer-nav",
-    description: "Row of footer links above the copyright line",
-    pages: ["products", "about"],
-    nameRequired: true,
-  },
-  {
     id: "site-footer",
-    description: "Bottom strip with copyright (and footer links on Home)",
+    description: "Footer links and copyright in one bottom strip",
     pages: ["home", "products", "about"],
     nameRequired: false,
   },

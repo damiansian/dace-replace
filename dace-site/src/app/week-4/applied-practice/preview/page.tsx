@@ -75,7 +75,7 @@ export default async function Week4PracticePreviewPage({
           What to review before approving
         </h2>
         <ul className="list-disc list-inside space-y-1 m-0">
-          <li>Are the six Home zones (no separate footer nav) clear on all three pages?</li>
+          <li>Is one footer landmark (links + copyright) clear on all three pages?</li>
           <li>Is primary navigation order clearly consistent across all three pages?</li>
           <li>Are four motion items the right level of difficulty?</li>
           <li>Do coach checks and self-assessment feel fair for your cohort?</li>

@@ -87,40 +87,20 @@ export function PracticeSiteShell({
         ) : null}
       </div>
 
-      {pageId !== "home" ? (
-        <ZoneOutline zoneId="footer-nav" pageId={pageId} className={`m-2 p-2 ${zonePad}`}>
-          <nav aria-label="Footer links — name in workbook">
-            <ul className="flex flex-wrap gap-4 list-none m-0 p-0 text-text-secondary">
-              <li>
-                <Link href="#">Privacy</Link>
-              </li>
-              <li>
-                <Link href="#">Terms</Link>
-              </li>
-              <li>
-                <Link href="#">Support</Link>
-              </li>
-            </ul>
-          </nav>
-        </ZoneOutline>
-      ) : null}
-
       <ZoneOutline zoneId="site-footer" pageId={pageId} className={`m-2 p-3 ${zonePad}`}>
-        {pageId === "home" ? (
-          <nav aria-label="Footer links — no separate zone on Home">
-            <ul className="flex flex-wrap gap-4 list-none m-0 p-0 mb-2 text-text-secondary">
-              <li>
-                <Link href="#">Privacy</Link>
-              </li>
-              <li>
-                <Link href="#">Terms</Link>
-              </li>
-              <li>
-                <Link href="#">Support</Link>
-              </li>
-            </ul>
-          </nav>
-        ) : null}
+        <nav aria-label="Footer links">
+          <ul className="flex flex-wrap gap-4 list-none m-0 p-0 mb-2 text-text-secondary">
+            <li>
+              <Link href="#">Privacy</Link>
+            </li>
+            <li>
+              <Link href="#">Terms</Link>
+            </li>
+            <li>
+              <Link href="#">Support</Link>
+            </li>
+          </ul>
+        </nav>
         <p className="text-text-secondary text-xs m-0">
           © 2026 Northstar Shop. Practice mockup for DACE Week 4.
         </p>
