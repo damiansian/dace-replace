@@ -4,8 +4,8 @@ import { useState } from "react";
 import {
   MOTION_SEEDS,
   PRACTICE_PAGES,
-  PRACTICE_ZONES,
-  ZONE_NUMBERS,
+  getZoneNumber,
+  zonesForPage,
   type PracticePageId,
 } from "@/data/week4-practice/practice-zones";
 import { PracticeSitePage } from "./PracticeSitePages";
@@ -52,10 +52,15 @@ export default function PracticeSite({
         <div className="rounded-lg bg-surface border border-border p-3 text-xs text-text-secondary">
           <p className="font-semibold text-foreground m-0 mb-2">Zone legend</p>
           <ul className="grid sm:grid-cols-2 gap-1 list-none m-0 p-0">
-            {PRACTICE_ZONES.filter((z) => z.pages.includes(pageId)).map((z) => (
+            {zonesForPage(pageId).map((z) => (
               <li key={z.id}>
-                <span className="font-mono text-foreground">{ZONE_NUMBERS[z.id]}.</span>{" "}
+                <span className="font-mono text-foreground">{getZoneNumber(z.id, pageId)}.</span>{" "}
                 {z.label}
+                {z.nameRequired ? (
+                  <span className="text-text-secondary"> (name required)</span>
+                ) : (
+                  <span className="text-text-secondary"> (no name required)</span>
+                )}
               </li>
             ))}
           </ul>

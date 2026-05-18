@@ -1,5 +1,6 @@
 import {
-  ZONE_NUMBERS,
+  getZoneNumber,
+  type PracticePageId,
   type PracticeZoneId,
 } from "@/data/week4-practice/practice-zones";
 
@@ -15,11 +16,13 @@ const ZONE_COLORS: Record<PracticeZoneId, string> = {
 
 export function ZoneOutline({
   zoneId,
+  pageId,
   showLegend,
   children,
   className = "",
 }: {
   zoneId: PracticeZoneId;
+  pageId: PracticePageId;
   showLegend: boolean;
   children: React.ReactNode;
   className?: string;
@@ -34,7 +37,7 @@ export function ZoneOutline({
           className="absolute -top-3 left-2 z-10 inline-flex h-6 min-w-6 items-center justify-center rounded-full bg-foreground px-1.5 text-xs font-bold text-white"
           aria-hidden="true"
         >
-          {ZONE_NUMBERS[zoneId]}
+          {getZoneNumber(zoneId, pageId)}
         </span>
       )}
       {children}

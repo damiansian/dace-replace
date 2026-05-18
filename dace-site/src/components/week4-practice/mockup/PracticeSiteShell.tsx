@@ -27,11 +27,17 @@ export function PracticeSiteShell({
 
   return (
     <div className="rounded-lg border border-border bg-white shadow-sm overflow-hidden text-sm">
-      <ZoneOutline zoneId="site-header" showLegend={showZoneLegend} className="m-2 p-3">
+      <ZoneOutline
+        zoneId="site-header"
+        pageId={pageId}
+        showLegend={showZoneLegend}
+        className="m-2 p-3"
+      >
         <div className="flex flex-wrap items-center gap-4 justify-between">
           <p className="font-bold text-foreground">Northstar Shop</p>
           <ZoneOutline
             zoneId="primary-nav"
+            pageId={pageId}
             showLegend={showZoneLegend}
             className="flex-1 min-w-0 p-1"
           >
@@ -53,7 +59,12 @@ export function PracticeSiteShell({
               </ul>
             </nav>
           </ZoneOutline>
-          <ZoneOutline zoneId="site-search" showLegend={showZoneLegend} className="p-1">
+          <ZoneOutline
+            zoneId="site-search"
+            pageId={pageId}
+            showLegend={showZoneLegend}
+            className="p-1"
+          >
             <label className="flex items-center gap-2 text-text-secondary">
               <span className="sr-only">Search</span>
               <input
@@ -71,6 +82,7 @@ export function PracticeSiteShell({
       <div className="flex gap-2 m-2">
         <ZoneOutline
           zoneId="main-content"
+          pageId={pageId}
           showLegend={showZoneLegend}
           className="flex-1 min-w-0 p-4"
         >
@@ -79,6 +91,7 @@ export function PracticeSiteShell({
         {sidebar ? (
           <ZoneOutline
             zoneId="sidebar"
+            pageId={pageId}
             showLegend={showZoneLegend}
             className="w-48 shrink-0 p-3 hidden sm:block"
           >
@@ -87,23 +100,45 @@ export function PracticeSiteShell({
         ) : null}
       </div>
 
-      <ZoneOutline zoneId="footer-nav" showLegend={showZoneLegend} className="m-2 p-2">
-        <nav aria-label="Footer links — name in workbook">
-          <ul className="flex flex-wrap gap-4 list-none m-0 p-0 text-text-secondary">
-            <li>
-              <Link href="#">Privacy</Link>
-            </li>
-            <li>
-              <Link href="#">Terms</Link>
-            </li>
-            <li>
-              <Link href="#">Support</Link>
-            </li>
-          </ul>
-        </nav>
-      </ZoneOutline>
+      {pageId !== "home" ? (
+        <ZoneOutline
+          zoneId="footer-nav"
+          pageId={pageId}
+          showLegend={showZoneLegend}
+          className="m-2 p-2"
+        >
+          <nav aria-label="Footer links — name in workbook">
+            <ul className="flex flex-wrap gap-4 list-none m-0 p-0 text-text-secondary">
+              <li>
+                <Link href="#">Privacy</Link>
+              </li>
+              <li>
+                <Link href="#">Terms</Link>
+              </li>
+              <li>
+                <Link href="#">Support</Link>
+              </li>
+            </ul>
+          </nav>
+        </ZoneOutline>
+      ) : null}
 
-      <ZoneOutline zoneId="site-footer" showLegend={showZoneLegend} className="m-2 p-3">
+      <ZoneOutline zoneId="site-footer" pageId={pageId} showLegend={showZoneLegend} className="m-2 p-3">
+        {pageId === "home" ? (
+          <nav aria-label="Footer links — no separate zone on Home">
+            <ul className="flex flex-wrap gap-4 list-none m-0 p-0 mb-2 text-text-secondary">
+              <li>
+                <Link href="#">Privacy</Link>
+              </li>
+              <li>
+                <Link href="#">Terms</Link>
+              </li>
+              <li>
+                <Link href="#">Support</Link>
+              </li>
+            </ul>
+          </nav>
+        ) : null}
         <p className="text-text-secondary text-xs m-0">
           © 2026 Northstar Shop. Practice mockup for DACE Week 4.
         </p>

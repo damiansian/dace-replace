@@ -3,8 +3,7 @@ import {
   MOTION_SEEDS,
   NAV_ORDER_BY_PAGE,
   PRACTICE_PAGES,
-  PRACTICE_ZONES,
-  type PracticePageId,
+  zonesForPage,
 } from "@/data/week4-practice/practice-zones";
 import type { WorkbookState } from "@/data/week4-practice/workbook-types";
 
@@ -12,10 +11,6 @@ export interface CoachCheck {
   id: string;
   pass: boolean;
   message: string;
-}
-
-function zonesForPage(pageId: PracticePageId) {
-  return PRACTICE_ZONES.filter((z) => z.pages.includes(pageId));
 }
 
 export function runCoachChecks(state: WorkbookState): CoachCheck[] {
@@ -53,11 +48,11 @@ export function runCoachChecks(state: WorkbookState): CoachCheck[] {
           : `${page.label} / ${zone.label}: expected role "${expected}", you chose "${row.role}".`,
       });
 
-      if (row.role === "navigation" && !row.accessibleName.trim()) {
+      if (zone.nameRequired && !row.accessibleName.trim()) {
         checks.push({
           id: `nav-name-${page.id}-${zone.id}`,
           pass: false,
-          message: `${page.label} / ${zone.label}: navigation landmarks need an accessible name.`,
+          message: `${page.label} / ${zone.label}: accessible name is required.`,
         });
       }
     }

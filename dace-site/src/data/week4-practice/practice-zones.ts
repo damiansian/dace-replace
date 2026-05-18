@@ -20,60 +20,73 @@ export interface PracticeZone {
   label: string;
   hint: string;
   pages: PracticePageId[];
+  /** When true, coach checks expect a non-empty accessible name. */
+  nameRequired: boolean;
 }
 
-export const ZONE_NUMBERS: Record<PracticeZoneId, number> = {
-  "site-header": 1,
-  "primary-nav": 2,
-  "site-search": 3,
-  "main-content": 4,
-  sidebar: 5,
-  "footer-nav": 6,
-  "site-footer": 7,
-};
+export function zonesForPage(pageId: PracticePageId): PracticeZone[] {
+  return PRACTICE_ZONES.filter((z) => z.pages.includes(pageId));
+}
+
+/** Sequential zone number (1-based) for the given page. */
+export function getZoneNumber(
+  zoneId: PracticeZoneId,
+  pageId: PracticePageId
+): number {
+  const zones = zonesForPage(pageId);
+  const index = zones.findIndex((z) => z.id === zoneId);
+  return index >= 0 ? index + 1 : 0;
+}
 
 export const PRACTICE_ZONES: PracticeZone[] = [
   {
     id: "site-header",
-    label: "Site header (top bar)",
-    hint: "Logo and site-wide header strip",
+    label: "Banner",
+    hint: "Top bar with logo; no accessible name required",
     pages: ["home", "products", "about"],
+    nameRequired: false,
   },
   {
     id: "primary-nav",
-    label: "Primary navigation",
-    hint: "Main horizontal nav in the header",
+    label: "Navigation",
+    hint: "Main horizontal nav in the header; no accessible name required on Home",
     pages: ["home", "products", "about"],
+    nameRequired: false,
   },
   {
     id: "site-search",
     label: "Search",
-    hint: "Search field in the header",
+    hint: "Search field in the header; label the control",
     pages: ["home", "products", "about"],
+    nameRequired: true,
   },
   {
     id: "main-content",
-    label: "Main content",
-    hint: "Primary page content area",
+    label: "Main",
+    hint: "Primary page content; no accessible name required",
     pages: ["home", "products", "about"],
+    nameRequired: false,
   },
   {
     id: "sidebar",
-    label: "Sidebar",
-    hint: "Supporting promos and filters",
+    label: "Aside / Complementary",
+    hint: "Filters and promos; no accessible name required",
     pages: ["home", "products"],
+    nameRequired: false,
   },
   {
     id: "footer-nav",
     label: "Footer navigation",
-    hint: "Secondary links in the footer",
-    pages: ["home", "products", "about"],
+    hint: "Secondary footer links (Products and About only)",
+    pages: ["products", "about"],
+    nameRequired: true,
   },
   {
     id: "site-footer",
-    label: "Site footer",
-    hint: "Copyright and site-wide footer",
+    label: "Footer",
+    hint: "Copyright and site-wide footer; no accessible name required",
     pages: ["home", "products", "about"],
+    nameRequired: false,
   },
 ];
 

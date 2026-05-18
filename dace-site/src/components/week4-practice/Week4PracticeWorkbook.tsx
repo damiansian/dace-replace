@@ -10,6 +10,7 @@ import {
   PRACTICE_PAGES,
   PRACTICE_ZONES,
   SELF_ASSESSMENT_CRITERIA,
+  zonesForPage,
   type PracticePageId,
 } from "@/data/week4-practice/practice-zones";
 import {
@@ -46,7 +47,7 @@ const STEPS = [
 ] as const;
 
 function ensureLandmarks(pageId: PracticePageId, rows: WorkbookState["landmarks"][PracticePageId]) {
-  const zones = PRACTICE_ZONES.filter((z) => z.pages.includes(pageId));
+  const zones = zonesForPage(pageId);
   return zones.map((z) => {
     const existing = rows.find((r) => r.zoneId === z.id);
     return existing ?? emptyLandmarkRow(z.id);
@@ -236,8 +237,10 @@ export default function Week4PracticeWorkbook({
         <section className="space-y-4">
           <h2 className="text-xl font-semibold text-foreground">Landmark identification</h2>
           <p className="text-sm text-text-secondary">
-            For each zone, choose the ARIA role, accessible name (required for
-            navigation), and HTML equivalent.
+            For each zone, choose the ARIA role, accessible name when required
+            (Search on every page; footer navigation on Products and About), and
+            HTML equivalent. Home has six zones; there is no separate footer
+            navigation landmark.
           </p>
           <div className="flex flex-wrap gap-2 items-center">
             <span className="text-sm font-medium text-foreground">Page:</span>
@@ -325,7 +328,15 @@ export default function Week4PracticeWorkbook({
                             )
                           }
                           aria-label={`Accessible name for ${zone.label}`}
+                          placeholder={
+                            zone.nameRequired ? "Required" : "Optional"
+                          }
                         />
+                        {!zone.nameRequired && (
+                          <span className="block text-xs text-text-secondary mt-1">
+                            Not required
+                          </span>
+                        )}
                       </td>
                       <td className="border border-border px-2 py-2">
                         <WorkbookSelect
