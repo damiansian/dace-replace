@@ -97,13 +97,7 @@ export default function CourseHomeTable({
                     </Link>
                   </td>
                   <td className="border border-border px-4 py-4 align-middle text-left text-foreground">
-                    <div className="flex w-full flex-col items-start gap-1.5">
-                      <Link
-                        href={withToken(lesson.quizHref, token)}
-                        className="font-medium text-primary-text underline hover:text-primary-dark"
-                      >
-                        {lesson.quizLabel}
-                      </Link>
+                    <div className="flex w-full items-center justify-start gap-2">
                       {snapshot && (
                         <TrackedItemStatus
                           kind="quiz"
@@ -112,6 +106,12 @@ export default function CourseHomeTable({
                           )}
                         />
                       )}
+                      <Link
+                        href={withToken(lesson.quizHref, token)}
+                        className="font-medium text-primary-text underline hover:text-primary-dark"
+                      >
+                        {lesson.quizLabel}
+                      </Link>
                     </div>
                   </td>
                   {isFirstRow && (
@@ -119,13 +119,7 @@ export default function CourseHomeTable({
                       rowSpan={week.lessons.length}
                       className="border border-border bg-white px-4 py-4 align-middle text-left text-foreground"
                     >
-                      <div className="flex w-full flex-col items-start gap-1.5">
-                        <Link
-                          href={withToken(week.appliedSkill.href, token)}
-                          className="font-semibold text-primary-text underline hover:text-primary-dark"
-                        >
-                          {week.appliedSkill.title}
-                        </Link>
+                      <div className="flex w-full items-center justify-start gap-2">
                         {snapshot && (
                           <TrackedItemStatus
                             kind="assignment"
@@ -136,6 +130,12 @@ export default function CourseHomeTable({
                             )}
                           />
                         )}
+                        <Link
+                          href={withToken(week.appliedSkill.href, token)}
+                          className="font-semibold text-primary-text underline hover:text-primary-dark"
+                        >
+                          {week.appliedSkill.title}
+                        </Link>
                       </div>
                     </td>
                   )}

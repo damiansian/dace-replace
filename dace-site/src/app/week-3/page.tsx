@@ -82,18 +82,20 @@ export default async function Week3Hub({ searchParams }: PageProps) {
                 >
                   View lesson
                 </Link>
-                <Link
-                  href={withToken("/week-3/l05-keyboard/quiz", t)}
-                  className="text-sm font-medium text-primary-text underline hover:text-primary-dark"
-                >
-                  Take quiz
-                </Link>
-                {snapshot && (
-                  <TrackedItemStatus
-                    kind="quiz"
-                    complete={Boolean(snapshot.itemComplete.get("l05-keyboard"))}
-                  />
-                )}
+                <span className="inline-flex items-center gap-2">
+                  {snapshot && (
+                    <TrackedItemStatus
+                      kind="quiz"
+                      complete={Boolean(snapshot.itemComplete.get("l05-keyboard"))}
+                    />
+                  )}
+                  <Link
+                    href={withToken("/week-3/l05-keyboard/quiz", t)}
+                    className="text-sm font-medium text-primary-text underline hover:text-primary-dark"
+                  >
+                    Take quiz
+                  </Link>
+                </span>
               </div>
             </div>
           </div>
@@ -122,18 +124,20 @@ export default async function Week3Hub({ searchParams }: PageProps) {
                 >
                   View lesson
                 </Link>
-                <Link
-                  href={withToken("/week-3/l06-reflow/quiz", t)}
-                  className="text-sm font-medium text-primary-text underline hover:text-primary-dark"
-                >
-                  Take quiz
-                </Link>
-                {snapshot && (
-                  <TrackedItemStatus
-                    kind="quiz"
-                    complete={Boolean(snapshot.itemComplete.get("l06-reflow"))}
-                  />
-                )}
+                <span className="inline-flex items-center gap-2">
+                  {snapshot && (
+                    <TrackedItemStatus
+                      kind="quiz"
+                      complete={Boolean(snapshot.itemComplete.get("l06-reflow"))}
+                    />
+                  )}
+                  <Link
+                    href={withToken("/week-3/l06-reflow/quiz", t)}
+                    className="text-sm font-medium text-primary-text underline hover:text-primary-dark"
+                  >
+                    Take quiz
+                  </Link>
+                </span>
               </div>
             </div>
           </div>
