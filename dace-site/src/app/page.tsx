@@ -49,6 +49,17 @@ export default async function Home({ searchParams }: HomeProps) {
           applied skill project. Use the links below to open lessons, take
           quizzes, or view assignment details.
         </p>
+        <p className="text-base text-text-secondary">
+          <a
+            href="https://www.figma.com/design/mNFDFtVojYP1yvNO20bhfb/DACE---Cohort-2?node-id=0-1"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-primary-text underline hover:text-primary-dark"
+          >
+            Open the DACE Cohort 2 Figma file
+          </a>{" "}
+          for all lesson and applied practice designs.
+        </p>
         <CourseHomeTable
           weeks={courseHomeCatalog}
           token={t}

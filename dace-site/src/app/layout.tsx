@@ -3,11 +3,9 @@ import type { ReactNode } from "react";
 import { Geist, Geist_Mono } from "next/font/google";
 import { headers } from "next/headers";
 import SiteHeader from "@/components/SiteHeader";
-import StudentProgressStrip from "@/components/StudentProgressStrip";
 import { findStudentByToken } from "@/db/students";
 import { DACE_PATHNAME_HEADER } from "@/lib/student-session";
 import { getResolvedStudentAccessToken } from "@/lib/resolve-student-access-token";
-import { loadStudentProgressSnapshot } from "@/lib/student-progress";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -35,22 +33,12 @@ export default async function RootLayout({
   const pathname = headersList.get(DACE_PATHNAME_HEADER) ?? "/";
   const onTeacherSite = pathname.startsWith("/teacher");
 
-  let progressStrip: ReactNode = null;
   let headerAccessToken: string | undefined;
   if (!onTeacherSite) {
     const accessToken = await getResolvedStudentAccessToken(undefined);
     const student = await findStudentByToken(accessToken);
     if (student) {
       headerAccessToken = student.accessToken;
-      const snapshot = await loadStudentProgressSnapshot(student.id);
-      progressStrip = (
-        <StudentProgressStrip
-          displayName={student.displayName}
-          completeItems={snapshot.completeItems}
-          totalItems={snapshot.totalItems}
-          accessToken={student.accessToken}
-        />
-      );
     }
   }
 
@@ -68,7 +56,6 @@ export default async function RootLayout({
         </a>
 
         <SiteHeader accessToken={headerAccessToken} />
-        {progressStrip}
 
         <main id="main-content" className="flex-1">
           {children}

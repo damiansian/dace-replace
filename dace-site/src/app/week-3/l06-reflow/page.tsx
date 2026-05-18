@@ -553,14 +553,15 @@ export default async function L06ReflowPage({ searchParams }: PageProps) {
       {/* Up Next */}
       <div className="rounded-lg bg-surface p-4 border-l-4 border-l-primary">
         <p className="text-sm text-foreground">
-          <strong>You have completed Week 3 lessons.</strong> Head to the{" "}
+          <strong>Up next:</strong>{" "}
           <Link
-            href={withToken("/week-3/applied-practice", t)}
+            href={withToken("/week-4/l07-landmarks", t)}
             className="text-primary-text underline hover:text-primary-dark"
           >
-            Week 3 Applied Practice
+            L07: Landmarks &amp; Navigation
           </Link>{" "}
-          to put your skills to work.
+          &mdash; Landmark regions, consistent navigation, skip links, and
+          focus order.
         </p>
       </div>
     </div>
