@@ -11,6 +11,7 @@ export type HomeWeek = {
   weekLabel: string;
   weekTitle: string;
   weekHref: string;
+  classDueDate: string;
   lessons: [HomeLesson, HomeLesson];
   appliedSkill: {
     progressId: string;
@@ -19,12 +20,24 @@ export type HomeWeek = {
   };
 };
 
+export function formatClassDueDate(iso: string): string {
+  const [year, month, day] = iso.split("-").map(Number);
+  const date = new Date(Date.UTC(year, month - 1, day));
+  return date.toLocaleDateString("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+    timeZone: "UTC",
+  });
+}
+
 export const courseHomeCatalog: HomeWeek[] = [
   {
     weekId: "week-2",
     weekLabel: "Week 2",
     weekTitle: "Color & Forms",
     weekHref: "/week-2",
+    classDueDate: "2026-05-05",
     lessons: [
       {
         progressId: "l03-color",
@@ -52,6 +65,7 @@ export const courseHomeCatalog: HomeWeek[] = [
     weekLabel: "Week 3",
     weekTitle: "Keyboard & Reflow",
     weekHref: "/week-3",
+    classDueDate: "2026-05-12",
     lessons: [
       {
         progressId: "l05-keyboard",
@@ -79,6 +93,7 @@ export const courseHomeCatalog: HomeWeek[] = [
     weekLabel: "Week 4",
     weekTitle: "Landmarks, Navigation & Motion",
     weekHref: "/week-4",
+    classDueDate: "2026-05-19",
     lessons: [
       {
         progressId: "l07-landmarks",

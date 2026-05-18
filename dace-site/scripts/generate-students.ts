@@ -8,7 +8,7 @@
  * Or pipe a CSV-like list of names from stdin:
  *   cat names.txt | npm run students:generate
  *
- * Prints CSV rows (display_name,access_token,progress_url) to stdout. Save
+ * Prints CSV rows (display_name,access_token,dashboard_url) to stdout. Save
  * those rows into cohort-private/student-access-tokens.csv (gitignored).
  */
 
@@ -95,7 +95,7 @@ async function main() {
 
   const dryRun = args["dry-run"] === "true";
 
-  process.stdout.write("display_name,access_token,progress_url\n");
+  process.stdout.write("display_name,access_token,dashboard_url\n");
 
   for (const name of names) {
     const existing = await db
@@ -117,9 +117,9 @@ async function main() {
       }
     }
 
-    const progressUrl = `${baseUrl.replace(/\/$/, "")}/progress?t=${encodeURIComponent(token)}`;
+    const dashboardUrl = `${baseUrl.replace(/\/$/, "")}/?t=${encodeURIComponent(token)}`;
     process.stdout.write(
-      `${csvEscape(name)},${csvEscape(token)},${csvEscape(progressUrl)}\n`
+      `${csvEscape(name)},${csvEscape(token)},${csvEscape(dashboardUrl)}\n`
     );
   }
 }

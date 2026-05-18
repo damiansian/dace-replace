@@ -1,7 +1,10 @@
 import Link from "next/link";
 import TrackedItemStatus from "@/components/TrackedItemStatus";
 import { withToken } from "@/data/progress-catalog";
-import type { HomeWeek } from "@/data/course-home-catalog";
+import {
+  formatClassDueDate,
+  type HomeWeek,
+} from "@/data/course-home-catalog";
 import {
   bestQuiz,
   latestSubmission,
@@ -36,7 +39,9 @@ export default function CourseHomeTable({
       <table className="w-full border-collapse text-sm">
         <caption className="sr-only">
           Course materials by week: lessons, knowledge check quizzes, and
-          applied skill projects for Weeks 2 through 4.
+          applied skill projects for Weeks 2 through 4. The due date for each
+          week appears in the Week column and applies to every item in that
+          row group.
         </caption>
         <thead>
           <tr className="bg-surface">
@@ -111,6 +116,12 @@ export default function CourseHomeTable({
                             {counts.complete} of {counts.total} complete
                           </p>
                         )}
+                        <p className="text-xs font-normal text-text-secondary">
+                          Due{" "}
+                          <time dateTime={week.classDueDate}>
+                            {formatClassDueDate(week.classDueDate)}
+                          </time>
+                        </p>
                       </div>
                     </th>
                   )}
@@ -195,6 +206,16 @@ export default function CourseHomeTable({
             });
           })}
         </tbody>
+        <tfoot>
+          <tr>
+            <td
+              colSpan={4}
+              className="border border-border bg-surface px-4 py-3 text-xs text-text-secondary"
+            >
+              Due dates are end of day (11:59 PM) on the listed date.
+            </td>
+          </tr>
+        </tfoot>
       </table>
     </div>
   );
