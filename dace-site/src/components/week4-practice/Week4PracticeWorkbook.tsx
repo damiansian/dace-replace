@@ -5,7 +5,6 @@ import {
   HTML_EQUIVALENTS,
   LANDMARK_ROLES,
   MOTION_SEEDS,
-  MOTION_TYPES,
   MASTERY_SCALE,
   PRACTICE_PAGES,
   SELF_ASSESSMENT_CRITERIA,
@@ -16,7 +15,6 @@ import {
 import {
   emptyLandmarkRow,
   type MotionInventoryRow,
-  type MotionPlanRow,
   type WorkbookState,
 } from "@/data/week4-practice/workbook-types";
 import {
@@ -40,8 +38,7 @@ const STEPS = [
   "Explore practice site",
   "Landmark identification",
   "Skip links",
-  "Motion inventory",
-  "Motion planning",
+  "Motion",
   "Review and self-assess",
 ] as const;
 
@@ -57,22 +54,37 @@ function seedMotionInventory(): MotionInventoryRow[] {
   return MOTION_SEEDS.map((s) => ({
     id: s.id,
     element: s.label,
-    motionType: "",
-    durationTrigger: s.defaultDescription,
+    intendedMotion: s.defaultDescription,
     pauseRequired: s.pauseRequired ? "yes" : "no",
     pauseControl: s.pauseRequired ? "" : "N/A",
-    flashNotes: "",
+    reducedMotionAlt: "",
   }));
 }
 
-function seedMotionPlans(inventory: MotionInventoryRow[]): MotionPlanRow[] {
-  return inventory.map((inv) => ({
-    inventoryId: inv.id,
-    essentiality: "",
-    defaultBehavior: "",
-    reducedMotionAlt: "",
-    annotationNote: "",
-  }));
+/** Merge saved motion rows with current schema (drops legacy motionPlans). */
+function normalizeMotionInventory(merged: WorkbookState): MotionInventoryRow[] {
+  const legacyPlans = (merged as WorkbookState & { motionPlans?: { inventoryId: string; reducedMotionAlt: string }[] }).motionPlans ?? [];
+  return MOTION_SEEDS.map((s) => {
+    const inv = merged.motionInventory.find((m) => m.id === s.id);
+    const plan = legacyPlans.find((p) => p.inventoryId === s.id);
+    const legacy = inv as MotionInventoryRow & {
+      durationTrigger?: string;
+      reducedMotionAlt?: string;
+    };
+    return {
+      id: s.id,
+      element: s.label,
+      intendedMotion: legacy?.intendedMotion ?? legacy?.durationTrigger ?? s.defaultDescription,
+      pauseRequired:
+        legacy?.pauseRequired === "yes" || legacy?.pauseRequired === "no"
+          ? legacy.pauseRequired
+          : s.pauseRequired
+            ? "yes"
+            : "no",
+      pauseControl: legacy?.pauseControl ?? (s.pauseRequired ? "" : "N/A"),
+      reducedMotionAlt: legacy?.reducedMotionAlt ?? plan?.reducedMotionAlt ?? "",
+    };
+  });
 }
 
 export default function Week4PracticeWorkbook({
@@ -90,19 +102,14 @@ export default function Week4PracticeWorkbook({
     for (const p of PRACTICE_PAGES) {
       landmarks[p.id] = ensureLandmarks(p.id, landmarks[p.id] ?? []);
     }
-    let motionInventory =
+    const motionInventory =
       merged.motionInventory.length > 0
-        ? merged.motionInventory
+        ? normalizeMotionInventory(merged)
         : seedMotionInventory();
-    let motionPlans =
-      merged.motionPlans.length > 0
-        ? merged.motionPlans
-        : seedMotionPlans(motionInventory);
     return {
       ...merged,
       landmarks,
       motionInventory,
-      motionPlans,
     };
   });
 
@@ -535,81 +542,76 @@ export default function Week4PracticeWorkbook({
 
       {step === 3 && (
         <section className="space-y-4">
-          <h2 className="text-xl font-semibold text-foreground">Motion inventory</h2>
-          {state.motionInventory.map((row, i) => (
-            <div
-              key={row.id}
-              className="rounded-lg border border-border p-4 space-y-3"
-            >
-              <p className="font-medium text-foreground m-0">{row.element}</p>
-              <div className="grid gap-3 sm:grid-cols-2">
+          <h2 className="text-xl font-semibold text-foreground">Motion</h2>
+          <p className="text-sm text-text-secondary">
+            The mockup is static (no animation plays). Each card quotes the written
+            spec for intended motion. Describe how the live site respects{" "}
+            <code className="text-xs">prefers-reduced-motion</code> with a static
+            alternative.
+          </p>
+          {state.motionInventory.map((row, i) => {
+            const seed = MOTION_SEEDS.find((s) => s.id === row.id);
+            return (
+              <div
+                key={row.id}
+                className="rounded-lg border border-border p-4 space-y-3"
+              >
                 <div>
-                  <WorkbookLabel htmlFor={`mt-${i}`}>Motion type</WorkbookLabel>
-                  <WorkbookSelect
-                    id={`mt-${i}`}
-                    value={row.motionType}
-                    onChange={(e) => {
-                      const motionInventory = [...state.motionInventory];
-                      motionInventory[i] = { ...row, motionType: e.target.value };
-                      persist({ ...state, motionInventory });
-                    }}
-                  >
-                    <option value="">Select…</option>
-                    {MOTION_TYPES.map((t) => (
-                      <option key={t} value={t}>
-                        {t}
-                      </option>
-                    ))}
-                  </WorkbookSelect>
+                  <p className="font-medium text-foreground m-0">{row.element}</p>
+                  {seed ? (
+                    <p className="text-xs text-text-secondary m-0 mt-1">{seed.location}</p>
+                  ) : null}
                 </div>
                 <div>
-                  <WorkbookLabel htmlFor={`pause-${i}`}>Pause/stop/hide required?</WorkbookLabel>
-                  <WorkbookSelect
-                    id={`pause-${i}`}
-                    value={row.pauseRequired}
-                    onChange={(e) => {
-                      const motionInventory = [...state.motionInventory];
-                      motionInventory[i] = {
-                        ...row,
-                        pauseRequired: e.target.value as "yes" | "no" | "",
-                      };
-                      persist({ ...state, motionInventory });
-                    }}
-                  >
-                    <option value="">Select…</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                  </WorkbookSelect>
+                  <p className="text-sm font-medium text-foreground m-0 mb-1">
+                    Intended motion (from spec)
+                  </p>
+                  <p className="text-sm text-text-secondary m-0 rounded-md bg-surface border border-border px-3 py-2">
+                    {row.intendedMotion}
+                  </p>
                 </div>
-              </div>
-              <div>
-                <WorkbookLabel htmlFor={`dur-${i}`}>Duration / trigger</WorkbookLabel>
-                <WorkbookTextarea
-                  id={`dur-${i}`}
-                  value={row.durationTrigger}
-                  onChange={(e) => {
-                    const motionInventory = [...state.motionInventory];
-                    motionInventory[i] = { ...row, durationTrigger: e.target.value };
-                    persist({ ...state, motionInventory });
-                  }}
-                />
-              </div>
-              {row.motionType === "flash-risk" && (
+                {seed?.pauseRequired ? (
+                  <div>
+                    <WorkbookLabel htmlFor={`pause-${i}`} required>
+                      Pause, stop, or hide control
+                    </WorkbookLabel>
+                    <p className="text-xs text-text-secondary m-0 mb-2">
+                      Auto-playing content must provide a user control (WCAG 2.2.2).
+                    </p>
+                    <WorkbookTextarea
+                      id={`pause-${i}`}
+                      value={row.pauseControl}
+                      onChange={(e) => {
+                        const motionInventory = [...state.motionInventory];
+                        motionInventory[i] = { ...row, pauseControl: e.target.value };
+                        persist({ ...state, motionInventory });
+                      }}
+                      placeholder="e.g. Visible Pause button that stops auto-advance"
+                    />
+                  </div>
+                ) : null}
                 <div>
-                  <WorkbookLabel htmlFor={`flash-${i}`}>Flash / seizure notes</WorkbookLabel>
+                  <WorkbookLabel htmlFor={`rm-${i}`} required>
+                    Respects prefers-reduced-motion
+                  </WorkbookLabel>
+                  <p className="text-xs text-text-secondary m-0 mb-2">
+                    Describe the static version supplied when the user prefers reduced
+                    motion (no animation).
+                  </p>
                   <WorkbookTextarea
-                    id={`flash-${i}`}
-                    value={row.flashNotes}
+                    id={`rm-${i}`}
+                    value={row.reducedMotionAlt}
                     onChange={(e) => {
                       const motionInventory = [...state.motionInventory];
-                      motionInventory[i] = { ...row, flashNotes: e.target.value };
+                      motionInventory[i] = { ...row, reducedMotionAlt: e.target.value };
                       persist({ ...state, motionInventory });
                     }}
+                    placeholder="e.g. Show slide 1 only; no auto-advance or cross-fade"
                   />
                 </div>
-              )}
-            </div>
-          ))}
+              </div>
+            );
+          })}
           <div className="flex gap-3">
             <button type="button" onClick={() => goStep(2)} className="text-sm underline text-primary-text">
               Back
@@ -619,91 +621,13 @@ export default function Week4PracticeWorkbook({
               onClick={() => goStep(4)}
               className="rounded-lg bg-primary px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-dark"
             >
-              Continue
-            </button>
-          </div>
-        </section>
-      )}
-
-      {step === 4 && (
-        <section className="space-y-4">
-          <h2 className="text-xl font-semibold text-foreground">Motion planning</h2>
-          {state.motionPlans.map((plan, i) => {
-            const inv = state.motionInventory.find((m) => m.id === plan.inventoryId);
-            return (
-              <div
-                key={plan.inventoryId}
-                className="rounded-lg border border-border p-4 space-y-3"
-              >
-                <p className="font-medium text-foreground m-0">{inv?.element}</p>
-                <fieldset>
-                  <legend className="text-sm font-medium text-foreground mb-2">
-                    Essential or decorative?
-                  </legend>
-                  <div className="flex gap-4">
-                    {(["essential", "decorative"] as const).map((v) => (
-                      <label key={v} className="flex items-center gap-2 text-sm">
-                        <input
-                          type="radio"
-                          name={`ess-${plan.inventoryId}`}
-                          checked={plan.essentiality === v}
-                          onChange={() => {
-                            const motionPlans = [...state.motionPlans];
-                            motionPlans[i] = { ...plan, essentiality: v };
-                            persist({ ...state, motionPlans });
-                          }}
-                        />
-                        {v}
-                      </label>
-                    ))}
-                  </div>
-                </fieldset>
-                <div>
-                  <WorkbookLabel htmlFor={`def-${i}`}>Default behavior</WorkbookLabel>
-                  <WorkbookTextarea
-                    id={`def-${i}`}
-                    value={plan.defaultBehavior}
-                    onChange={(e) => {
-                      const motionPlans = [...state.motionPlans];
-                      motionPlans[i] = { ...plan, defaultBehavior: e.target.value };
-                      persist({ ...state, motionPlans });
-                    }}
-                  />
-                </div>
-                <div>
-                  <WorkbookLabel htmlFor={`rm-${i}`} required>
-                    prefers-reduced-motion alternative
-                  </WorkbookLabel>
-                  <WorkbookTextarea
-                    id={`rm-${i}`}
-                    placeholder="When reduced motion is enabled, …"
-                    value={plan.reducedMotionAlt}
-                    onChange={(e) => {
-                      const motionPlans = [...state.motionPlans];
-                      motionPlans[i] = { ...plan, reducedMotionAlt: e.target.value };
-                      persist({ ...state, motionPlans });
-                    }}
-                  />
-                </div>
-              </div>
-            );
-          })}
-          <div className="flex gap-3">
-            <button type="button" onClick={() => goStep(3)} className="text-sm underline text-primary-text">
-              Back
-            </button>
-            <button
-              type="button"
-              onClick={() => goStep(5)}
-              className="rounded-lg bg-primary px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-dark"
-            >
               Review
             </button>
           </div>
         </section>
       )}
 
-      {step === 5 && (
+      {step === 4 && (
         <section className="space-y-6">
           <h2 className="text-xl font-semibold text-foreground">Review and self-assess</h2>
 
@@ -815,7 +739,7 @@ export default function Week4PracticeWorkbook({
             >
               Export audit JSON
             </button>
-            <button type="button" onClick={() => goStep(4)} className="text-sm underline text-primary-text py-2.5">
+            <button type="button" onClick={() => goStep(3)} className="text-sm underline text-primary-text py-2.5">
               Back
             </button>
           </div>

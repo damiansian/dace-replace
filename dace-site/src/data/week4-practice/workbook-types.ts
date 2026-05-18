@@ -32,19 +32,12 @@ export interface SkipLinkSpec {
 export interface MotionInventoryRow {
   id: string;
   element: string;
-  motionType: string;
-  durationTrigger: string;
+  /** Intended motion from the written spec (mockup is static). */
+  intendedMotion: string;
   pauseRequired: "yes" | "no" | "";
   pauseControl: string;
-  flashNotes: string;
-}
-
-export interface MotionPlanRow {
-  inventoryId: string;
-  essentiality: "essential" | "decorative" | "";
-  defaultBehavior: string;
+  /** Static alternative when prefers-reduced-motion is enabled. */
   reducedMotionAlt: string;
-  annotationNote: string;
 }
 
 export interface SelfAssessmentScores {
@@ -65,7 +58,6 @@ export interface WorkbookState {
   /** First focusable in main after skip link, then one Tab press. */
   skipLinkFirstTab: SkipLinkFirstTabByPage;
   motionInventory: MotionInventoryRow[];
-  motionPlans: MotionPlanRow[];
   selfAssessment: SelfAssessmentScores;
   currentStep: number;
 }
@@ -112,7 +104,6 @@ export function initialWorkbookState(): WorkbookState {
     skipLink: emptySkipLink(),
     skipLinkFirstTab: emptySkipLinkFirstTab(),
     motionInventory: [],
-    motionPlans: [],
     selfAssessment: {
       landmarks: 0,
       navConsistency: 0,

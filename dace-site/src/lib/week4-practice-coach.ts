@@ -86,25 +86,26 @@ export function runCoachChecks(state: WorkbookState): CoachCheck[] {
   }
 
   for (const seed of MOTION_SEEDS) {
-    const inv = state.motionInventory.find(
-      (m) => m.id === seed.id || m.element.includes(seed.label)
-    );
+    const inv = state.motionInventory.find((m) => m.id === seed.id);
     checks.push({
-      id: `motion-inv-${seed.id}`,
-      pass: Boolean(inv?.motionType && inv.durationTrigger.trim()),
-      message: inv?.motionType
-        ? `Motion inventory includes ${seed.label}.`
-        : `Add inventory details for ${seed.label}.`,
+      id: `motion-reduced-${seed.id}`,
+      pass: Boolean(inv?.reducedMotionAlt.trim()),
+      message: inv?.reducedMotionAlt.trim()
+        ? `${seed.label}: prefers-reduced-motion static alternative documented.`
+        : `${seed.label}: describe the static version when prefers-reduced-motion is enabled.`,
     });
 
-    const plan = state.motionPlans.find((p) => p.inventoryId === seed.id);
-    checks.push({
-      id: `motion-plan-${seed.id}`,
-      pass: Boolean(plan?.reducedMotionAlt.trim()),
-      message: plan?.reducedMotionAlt.trim()
-        ? `Reduced-motion alternative documented for ${seed.label}.`
-        : `Document a prefers-reduced-motion alternative for ${seed.label}.`,
-    });
+    if (seed.pauseRequired) {
+      const pauseControl = inv?.pauseControl.trim() ?? "";
+      const pauseOk = Boolean(pauseControl) && pauseControl !== "N/A";
+      checks.push({
+        id: `motion-pause-${seed.id}`,
+        pass: pauseOk,
+        message: pauseOk
+          ? `${seed.label}: pause/stop/hide control specified.`
+          : `${seed.label}: specify how users pause or stop auto-play.`,
+      });
+    }
   }
 
   return checks;
@@ -138,7 +139,6 @@ export function buildExportPayload(
         firstTabAfterSkip: state.skipLinkFirstTab,
       },
       motionInventory: state.motionInventory,
-      motionPlans: state.motionPlans,
     },
     coachChecks,
     selfAssessment: {
