@@ -5,7 +5,9 @@
   "questions": [
     {
       "id": "l05-q1",
-      "question": "Based on these annotations, how would a keyboard user get to the more actions button on the card with a dog on it? The annotations show a content grid where the content area is a single tab stop with arrow key operations. Assuming tab stop one is the back button next to recent uploads.",
+      "imageSrc": "/quizzes/l05-keyboard/keyboard-q1-stimulus.png",
+      "imageAlt": "Adobe Express interface showing a Recent uploads section with two image cards (a beach scene and a dog photo). Each card has a more actions button (three dots icon). The Stark Annotations sidebar displays Focus Order annotation with tab stop 5 labeled recent uploads and a note stating: User's uploaded content area is a single tab stop with arrow key operations. Focus order markers show: (1) back button next to Recent uploads header, (2) resize tool, (3) crop tool, (4) list view button, and (5) the content area containing the image cards.",
+      "question": "Based on these annotations, how would a keyboard user get to the more actions button on the card with a dog on it? Assume tab stop one is the back button next to recent uploads.",
       "options": [
         { "id": "a", "text": "Tab 8 times" },
         { "id": "b", "text": "Tab 5 times, right arrow 3 times" },
@@ -22,6 +24,8 @@
     },
     {
       "id": "l05-q2",
+      "imageSrc": "/quizzes/l05-keyboard/keyboard-q2-stimulus.png",
+      "imageAlt": "A dropdown menu showing two options: Duplicate with a duplicate icon, and Delete (in red text) with a red trash icon. Focus order annotations incorrectly show four separate tab stops: (1) on Duplicate text, (2) on the duplicate icon, (3) on Delete text, and (4) on the trash icon. An X button appears to close the menu. Below the menu are layer properties including Drop shadow, Stroke, and Color overlay options.",
       "question": "A dropdown menu shows two options: \"Duplicate\" and \"Delete.\" Focus order annotations show four separate tab stops on each text and icon. What feedback would you give?",
       "options": [
         { "id": "a", "text": "The menu items are operated by arrow keys, so this is one tab stop" },
@@ -39,6 +43,8 @@
     },
     {
       "id": "l05-q3",
+      "imageSrc": "/quizzes/l05-keyboard/keyboard-q3-stimulus.png",
+      "imageAlt": "A modal dialog titled Invite people to access, contribute, or review for sharing Hilton Sales Strategy. The modal contains an email input field with three email addresses added, a Reviewer dropdown, a Message text area with placeholder text, and two buttons at the bottom: Cancel and Send (blue). An X button appears in the top-right corner to close the modal. Below the modal, the background shows Share Hilton Sales Strategy with sharing details.",
       "question": "What are three ways to close a modal dialog without creating any invitations?",
       "options": [
         { "id": "a", "text": "Control + Alt + Delete" },
@@ -56,6 +62,8 @@
     },
     {
       "id": "l05-q4",
+      "imageSrc": "/quizzes/l05-keyboard/keyboard-q4-stimulus.png",
+      "imageAlt": "The Stark Contrast and Accessibility Checker panel showing Touch Targets results. The panel displays 12 x 12 as the target size in pixels for pointer inputs. Under AA requirements, both Width (24px) and Height (24px) show red X error icons. Under AAA requirements, both Width (44px) and Height (44px) also show red X error icons. The Recommendations section shows iOS: 44 x 44 pt and Material design: 48 x 48 dp. In the background, two checkbox options are visible: Reverse clip playback (checked, with purple highlight) and Maintain pitch (unchecked).",
       "question": "A checkbox measures 12x12 pixels. Stark displays errors for AA and AAA conformance. How should you address this?",
       "options": [
         { "id": "a", "text": "We have to make the box at least 24 by 24 pixels" },
@@ -73,6 +81,8 @@
     },
     {
       "id": "l05-q5",
+      "imageSrc": "/quizzes/l05-keyboard/keyboard-q5-stimulus.png",
+      "imageAlt": "A horizontal Tab Group component with three tabs: Usage (with a settings/sliders icon), User intent (with a target icon), and Credits (with a chart icon). The Usage tab appears selected with an underline indicator. Focus order annotations incorrectly show three separate tab stops: (1) on Usage, (2) on User intent, and (3) on Credits.",
       "question": "A Tab Group component has three tabs annotated with three separate tab stops. What error has the designer made?",
       "options": [
         { "id": "a", "text": "A Tab Group component gets a single tab stop with arrow key operation" },

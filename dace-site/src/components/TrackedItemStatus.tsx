@@ -18,7 +18,7 @@ export default function TrackedItemStatus({
       <span
         role="img"
         aria-label={label}
-        className="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-accent-green/10 text-accent-green"
+        className="inline-flex h-5 w-5 shrink-0 self-start items-center justify-center rounded-full bg-accent-green/10 text-accent-green"
       >
         <svg
           viewBox="0 0 20 20"
@@ -44,7 +44,7 @@ export default function TrackedItemStatus({
     <span
       role="img"
       aria-label={label}
-      className="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-surface text-text-secondary"
+      className="inline-flex h-5 w-5 shrink-0 self-start items-center justify-center rounded-full bg-surface text-text-secondary"
     >
       <svg
         viewBox="0 0 20 20"
