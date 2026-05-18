@@ -39,7 +39,7 @@ export interface MotionInventoryRow {
   pauseControl: "yes" | "no" | "N/A" | "";
   /** Whether the live site respects prefers-reduced-motion for this element. */
   respectsReducedMotion: "yes" | "no" | "";
-  /** Static alternative when prefers-reduced-motion is enabled (required for some motion types when yes). */
+  /** Legacy export field; UI uses yes/no only. */
   reducedMotionAlt: string;
 }
 

@@ -11,7 +11,6 @@ import {
   HTML_EQUIVALENTS,
   LANDMARK_ROLES,
   MOTION_SEEDS,
-  motionRequiresReducedMotionStatic,
   AUTO_GRADE_SCALE,
   PRACTICE_PAGES,
   zoneDisplayName,
@@ -27,7 +26,8 @@ import {
   autoSelfAssessmentTotal,
   computeAutoSelfAssessment,
 } from "@/lib/week4-practice-auto-grade";
-import { buildExportPayload, runCoachChecks } from "@/lib/week4-practice-coach";
+import { runCoachChecks } from "@/lib/week4-practice-coach";
+import { withToken } from "@/data/progress-catalog";
 import {
   WEEK4_WORKBOOK_TOTAL_POINTS,
   loadWorkbookScoreMeta,
@@ -169,7 +169,6 @@ export default function Week4PracticeWorkbook({
   const [landmarkPage, setLandmarkPage] = useState<PracticePageId>("home");
   const [skipTabPage, setSkipTabPage] = useState<PracticePageId>("home");
   const [motionPage, setMotionPage] = useState<PracticePageId>("home");
-  const [exportStatus, setExportStatus] = useState<string | null>(null);
   const [attemptNumber, setAttemptNumber] = useState(
     () => loadWorkbookScoreMeta(accessToken).attemptNumber
   );
@@ -219,7 +218,6 @@ export default function Week4PracticeWorkbook({
     const fresh = prepareWorkbookState(mergeWorkbookDraft(accessToken));
     setAttemptNumber((n) => n + 1);
     setState({ ...fresh, currentStep: 0 });
-    setExportStatus(null);
     setScoreSyncStatus(null);
     setLandmarkPage("home");
     setSkipTabPage("home");
@@ -257,23 +255,6 @@ export default function Week4PracticeWorkbook({
       ...state,
       landmarks: { ...state.landmarks, [target]: rows },
     });
-  };
-
-  const handleExport = () => {
-    const payload = buildExportPayload(state, studentDisplayName);
-    const json = JSON.stringify(payload, null, 2);
-    const blob = new Blob([json], { type: "application/json" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "week-4-practice-audit.json";
-    a.click();
-    URL.revokeObjectURL(url);
-    setExportStatus("Downloaded week-4-practice-audit.json");
-    if (navigator.clipboard?.writeText) {
-      void navigator.clipboard.writeText(json);
-      setExportStatus("Downloaded JSON and copied to clipboard.");
-    }
   };
 
   return (
@@ -342,8 +323,9 @@ export default function Week4PracticeWorkbook({
             </h1>
             <p className="text-base text-text-secondary max-w-3xl m-0">
               Landmarks, navigation consistency, skip links, and motion planning on a
-              built-in practice site. Export JSON when finished
-              {previewMode ? "; live submission wiring comes after approval." : "."}
+              built-in practice site. Your score updates on the course home table as you
+              work, like a quiz.
+              {previewMode ? " (instructor preview of the student workbook.)" : ""}
             </p>
           </header>
 
@@ -677,52 +659,10 @@ export default function Week4PracticeWorkbook({
                   value={row.respectsReducedMotion}
                   onChange={(respectsReducedMotion) => {
                     const motionInventory = [...state.motionInventory];
-                    motionInventory[i] = {
-                      ...row,
-                      respectsReducedMotion,
-                      reducedMotionAlt:
-                        respectsReducedMotion === "yes" &&
-                        motionRequiresReducedMotionStatic(seed)
-                          ? row.reducedMotionAlt
-                          : "",
-                    };
+                    motionInventory[i] = { ...row, respectsReducedMotion };
                     persist({ ...state, motionInventory });
                   }}
                 />
-                {row.respectsReducedMotion === "yes" &&
-                motionRequiresReducedMotionStatic(seed) ? (
-                  <div>
-                    <WorkbookLabel htmlFor={`rm-${i}`} required>
-                      Static version when reduced motion is on
-                    </WorkbookLabel>
-                    <p className="text-xs text-text-secondary m-0 mb-2">
-                      Describe what users see instead of the animated version (no
-                      auto-advance, cross-fade, or entrance motion).
-                    </p>
-                    <WorkbookTextarea
-                      id={`rm-${i}`}
-                      value={row.reducedMotionAlt}
-                      onChange={(e) => {
-                        const motionInventory = [...state.motionInventory];
-                        motionInventory[i] = { ...row, reducedMotionAlt: e.target.value };
-                        persist({ ...state, motionInventory });
-                      }}
-                      placeholder={
-                        seed.id === "hero-carousel"
-                          ? "e.g. Show slide 1 only; no auto-advance or cross-fade"
-                          : seed.id === "add-to-cart-transition"
-                            ? "e.g. Show checkmark instantly with no slide animation"
-                            : "e.g. Team photos visible immediately with no fade or slide"
-                      }
-                    />
-                  </div>
-                ) : row.respectsReducedMotion === "yes" &&
-                  !motionRequiresReducedMotionStatic(seed) ? (
-                  <p className="text-xs text-text-secondary m-0">
-                    Hover motion is turned off under prefers-reduced-motion; no separate
-                    static version is required.
-                  </p>
-                ) : null}
               </div>
             );
           })}
@@ -844,27 +784,38 @@ export default function Week4PracticeWorkbook({
               </p>
             )}
             <p className="text-sm text-text-secondary m-0">
-              Attempt {attemptNumber}. Retake as often as you like; your best score
-              appears on the course home table.
+              Attempt {attemptNumber}. Retake as often as you like; your best score is
+              kept on the course home table, like a quiz.
             </p>
             {studentDisplayName ? (
-              <p className="text-xs text-text-secondary m-0" role="status">
-                {scoreSyncStatus ?? "Syncing score to course home…"}
+              <p className="text-sm text-foreground m-0" role="status">
+                {scoreSyncStatus ?? "Saving score to course home…"}
+              </p>
+            ) : (
+              <p className="text-sm text-text-secondary m-0">
+                Open this workbook from your personal course home link so your score can
+                be saved.
+              </p>
+            )}
+            {studentDisplayName ? (
+              <p className="text-sm m-0">
+                <Link
+                  href={withToken("/", accessToken)}
+                  className="text-primary-text underline hover:text-primary-dark"
+                >
+                  View course home
+                </Link>
               </p>
             ) : null}
           </div>
 
-          <div className="rounded-lg bg-amber-50 border border-amber-200 p-4 text-sm text-foreground">
-            {previewMode ? (
-              <>
-                <strong>Preview mode:</strong> Export works for testing. Server submit
-                will be enabled on the live assignment page after you approve this
-                sample.
-              </>
-            ) : (
-              <>Submit your export on the applied practice page.</>
-            )}
-          </div>
+          {previewMode ? (
+            <p className="text-sm text-text-secondary m-0 rounded-lg border border-border bg-surface px-4 py-3">
+              <strong className="text-foreground">Instructor preview.</strong> Scores
+              still post to the course home table when you use a student access token,
+              same as the live workbook.
+            </p>
+          ) : null}
 
           <div className="flex flex-wrap gap-3">
             <button
@@ -874,22 +825,10 @@ export default function Week4PracticeWorkbook({
             >
               Retake workbook
             </button>
-            <button
-              type="button"
-              onClick={handleExport}
-              className="rounded-lg bg-primary px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-dark"
-            >
-              Export audit JSON
-            </button>
             <button type="button" onClick={() => goStep(3)} className="text-sm underline text-primary-text py-2.5">
               {backToStepLabel(3)}
             </button>
           </div>
-          {exportStatus && (
-            <p role="status" className="text-sm text-accent-green">
-              {exportStatus}
-            </p>
-          )}
         </section>
       )}
     </div>

@@ -6,6 +6,7 @@ import {
 import {
   MockupNonInteractiveNotice,
   MockupStaticLink,
+  mockupControlProps,
 } from "./MockupNonInteractiveNotice";
 import { SkipTargetOutline } from "./SkipTargetOutline";
 import { ZoneOutline } from "./ZoneOutline";
@@ -191,6 +192,22 @@ function SkipNavShell({
         <SkipTargetOutline targetId="site-title" pageId={pageId} className="inline-flex p-2">
           <p className="font-bold text-foreground m-0">Northstar Shop</p>
         </SkipTargetOutline>
+        {pageId === "products" ? (
+          <SkipTargetOutline
+            targetId="trail-pack-cart"
+            pageId={pageId}
+            className="inline-flex p-1"
+          >
+            <button
+              type="button"
+              {...mockupControlProps}
+              className="rounded bg-primary px-3 py-1.5 text-xs font-medium text-white whitespace-nowrap"
+              aria-label="Add to cart, Trail pack"
+            >
+              Add to cart — Trail pack
+            </button>
+          </SkipTargetOutline>
+        ) : null}
         <nav aria-label="Unlabeled in mockup — you specify in workbook" className="flex flex-wrap gap-2">
           <ul className="flex flex-wrap gap-2 list-none m-0 p-0">
             {navOrder.map((item, index) => {

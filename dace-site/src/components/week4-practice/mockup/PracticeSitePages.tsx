@@ -174,11 +174,7 @@ function ProductsMain({
         ) : overlayMode === "landmark" ? (
           <p className="text-xs text-text-secondary m-0 mb-2">$49.00</p>
         ) : null}
-        {overlayMode === "skipNav" && name === "Trail pack" ? (
-          <SkipTargetOutline targetId="trail-pack-cart" pageId={pageId} className="inline-flex">
-            {cartButton}
-          </SkipTargetOutline>
-        ) : overlayMode === "motion" && name === "Trail pack" ? (
+        {overlayMode === "motion" && name === "Trail pack" ? (
           <MotionTargetOutline
             motionId="add-to-cart-transition"
             pageId={pageId}
@@ -283,6 +279,17 @@ function AboutMain({
                 {name}
               </button>
             )
+          ) : name === "Jordan" && overlayMode === "skipNav" ? (
+            <SkipTargetOutline targetId="jordan-profile" pageId={pageId} className="inline-flex">
+              <button
+                type="button"
+                {...mockupControlProps}
+                className="rounded-full bg-surface border border-border w-16 h-16 flex items-center justify-center text-xs text-text-secondary"
+                aria-label={`${name} profile photo`}
+              >
+                {name}
+              </button>
+            </SkipTargetOutline>
           ) : (
             <span
               className="rounded-full bg-surface border border-border w-16 h-16 flex items-center justify-center text-xs text-text-secondary"
