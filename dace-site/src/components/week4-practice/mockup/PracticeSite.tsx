@@ -51,8 +51,10 @@ export default function PracticeSite({
       {showZoneLegend && (
         <div className="rounded-lg bg-surface border border-border p-3 text-xs text-text-secondary">
           <p className="font-semibold text-foreground m-0 mb-2">Zone legend</p>
-          <ul className="grid sm:grid-cols-2 gap-1 list-none m-0 p-0">
-            {zonesForPage(pageId).map((z) => (
+          {(() => {
+            const zones = zonesForPage(pageId);
+            const splitAt = Math.ceil(zones.length / 2);
+            const renderZone = (z: (typeof zones)[number]) => (
               <li key={z.id}>
                 <span className="font-mono text-foreground">{getZoneNumber(z.id, pageId)}.</span>{" "}
                 {z.label}
@@ -62,8 +64,18 @@ export default function PracticeSite({
                   <span className="text-text-secondary"> (no name required)</span>
                 )}
               </li>
-            ))}
-          </ul>
+            );
+            return (
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-8">
+                <ul className="flex-1 list-none m-0 p-0 space-y-1">
+                  {zones.slice(0, splitAt).map(renderZone)}
+                </ul>
+                <ul className="flex-1 list-none m-0 p-0 space-y-1">
+                  {zones.slice(splitAt).map(renderZone)}
+                </ul>
+              </div>
+            );
+          })()}
         </div>
       )}
 
