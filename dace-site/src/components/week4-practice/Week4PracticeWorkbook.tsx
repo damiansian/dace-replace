@@ -54,7 +54,7 @@ const STEPS = [
   "Landmark identification",
   "Skip links",
   "Motion",
-  "Review and self-assess",
+  "Review",
 ] as const;
 
 const STEP_TITLE_CLASS = "text-xl font-semibold text-foreground m-0";
@@ -73,6 +73,59 @@ function backToStepLabel(targetStepIndex: number): string {
 
 function continueToStepLabel(targetStepIndex: number): string {
   return `Continue to Step ${stepNumber(targetStepIndex)}`;
+}
+
+/** Reminds students to complete Home, Products, and About on mockup-driven steps. */
+function AllPagesRequiredCallout({ compact = false }: { compact?: boolean }) {
+  const pageNames = PRACTICE_PAGES.map((p) => p.label).join(", ");
+
+  if (compact) {
+    return (
+      <div
+        role="note"
+        className="rounded-lg border-2 border-primary/50 bg-primary/5 px-4 py-3 text-sm"
+      >
+        <p className="font-semibold text-foreground m-0 mb-1">Complete all three pages</p>
+        <p className="text-text-secondary m-0">
+          Switch the mockup to <strong className="text-foreground">Home</strong>,{" "}
+          <strong className="text-foreground">Products</strong>, and{" "}
+          <strong className="text-foreground">About</strong> and answer every required
+          field on each page before you continue.
+        </p>
+      </div>
+    );
+  }
+
+  return (
+    <div
+      role="note"
+      className="rounded-lg border-2 border-primary bg-primary/5 px-4 py-4 text-sm"
+    >
+      <p className="text-base font-semibold text-foreground m-0 mb-2">
+        Required: answer for every page ({pageNames})
+      </p>
+      <p className="text-text-secondary m-0 mb-3">
+        Several steps use the Northstar Shop mockup with page tabs. Your auto-graded
+        score includes items on <strong className="text-foreground">all three pages</strong>.
+        Do not continue until you have finished the current step for Home, Products, and
+        About.
+      </p>
+      <ul className="list-disc list-inside space-y-1 m-0 text-text-secondary">
+        <li>
+          <strong className="text-foreground">Landmark identification</strong>: every zone
+          on each page
+        </li>
+        <li>
+          <strong className="text-foreground">Skip links</strong>: first Tab stop after skip
+          on each page
+        </li>
+        <li>
+          <strong className="text-foreground">Motion</strong>: every motion target shown on
+          each page (use the page tabs; numbering restarts per page)
+        </li>
+      </ul>
+    </div>
+  );
 }
 
 function ensureLandmarks(pageId: PracticePageId, rows: WorkbookState["landmarks"][PracticePageId]) {
@@ -109,21 +162,15 @@ function normalizeMotionInventory(merged: WorkbookState): MotionInventoryRow[] {
       id: s.id,
       element: s.label,
       intendedMotion: legacy?.intendedMotion ?? legacy?.durationTrigger ?? s.defaultDescription,
-      pauseRequired: (() => {
-        if (legacy?.pauseRequired === "yes" || legacy?.pauseRequired === "no") {
-          return legacy.pauseRequired;
-        }
-        const pauseControl = legacy?.pauseControl ?? "";
-        if (pauseControl === "yes" || pauseControl === "no") return pauseControl;
-        return "";
-      })(),
+      pauseRequired:
+        legacy?.pauseRequired === "yes" || legacy?.pauseRequired === "no"
+          ? legacy.pauseRequired
+          : "",
       pauseControl: "N/A",
       respectsReducedMotion:
         legacy?.respectsReducedMotion === "yes" || legacy?.respectsReducedMotion === "no"
           ? legacy.respectsReducedMotion
-          : legacy?.reducedMotionAlt?.trim() || plan?.reducedMotionAlt?.trim()
-            ? "yes"
-            : "",
+          : "",
       reducedMotionAlt: legacy?.reducedMotionAlt ?? plan?.reducedMotionAlt ?? "",
     };
   });
@@ -325,6 +372,8 @@ export default function Week4PracticeWorkbook({
             </p>
           </header>
 
+          <AllPagesRequiredCallout />
+
           {previewMode ? (
             <section
               className="rounded-lg border border-border bg-surface p-4 text-sm text-text-secondary"
@@ -362,6 +411,7 @@ export default function Week4PracticeWorkbook({
             ARIA role and HTML equivalent (required for auto-grading). Add an accessible
             name only when the pattern requires one. Zone numbers match the dashed borders.
           </p>
+          <AllPagesRequiredCallout compact />
           <PracticeSite
             overlayMode="landmark"
             showLegend
@@ -529,54 +579,63 @@ export default function Week4PracticeWorkbook({
             first element that receives focus when you press Tab once from there? Choose
             the matching numbered target from the mockup (amber outlines).
           </p>
+          <AllPagesRequiredCallout compact />
           <PracticeSite
             overlayMode="skipNav"
             showLegend
             pageId={skipTabPage}
             onPageChange={setSkipTabPage}
           />
-          <table className="w-full text-sm border-collapse">
-            <thead>
-              <tr className="bg-surface">
-                <th scope="col" className="border border-border px-3 py-2 text-left">
-                  Page
-                </th>
-                <th scope="col" className="border border-border px-3 py-2 text-left w-px whitespace-nowrap">
-                  First element after one Tab <span className="text-accent-green">*</span>
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {PRACTICE_PAGES.map((p) => (
-                <tr key={p.id}>
-                  <td className="border border-border px-3 py-2 font-medium">{p.label}</td>
-                  <td className="border border-border px-3 py-2 w-px">
-                    <WorkbookSelect
-                      id={`skip-first-tab-${p.id}`}
-                      value={state.skipLinkFirstTab[p.id]}
-                      onChange={(e) =>
-                        persist({
-                          ...state,
-                          skipLinkFirstTab: {
-                            ...state.skipLinkFirstTab,
-                            [p.id]: e.target.value,
-                          },
-                        })
-                      }
-                      aria-label={`First Tab stop on ${p.label} after skip link`}
-                    >
-                      <option value="">Select target…</option>
-                      {skipTargetSelectOptions(p.id).map((opt) => (
-                        <option key={opt.value} value={opt.value}>
-                          {opt.label}
-                        </option>
-                      ))}
-                    </WorkbookSelect>
-                  </td>
-                </tr>
+          <p className="text-sm text-text-secondary m-0">
+            The dropdown below matches the page shown in the mockup. Check the progress
+            line for Home, Products, and About before you continue.
+          </p>
+          <div className="rounded-lg border border-border bg-surface p-4 space-y-3">
+            <WorkbookLabel htmlFor={`skip-first-tab-${skipTabPage}`} required>
+              {PRACTICE_PAGES.find((p) => p.id === skipTabPage)?.label}: first element
+              after one Tab
+            </WorkbookLabel>
+            <WorkbookSelect
+              id={`skip-first-tab-${skipTabPage}`}
+              value={state.skipLinkFirstTab[skipTabPage]}
+              onChange={(e) =>
+                persist({
+                  ...state,
+                  skipLinkFirstTab: {
+                    ...state.skipLinkFirstTab,
+                    [skipTabPage]: e.target.value,
+                  },
+                })
+              }
+              className="w-full max-w-none"
+              aria-label={`First Tab stop on ${PRACTICE_PAGES.find((p) => p.id === skipTabPage)?.label} after skip link`}
+            >
+              <option value="">Select numbered target…</option>
+              {skipTargetSelectOptions(skipTabPage).map((opt) => (
+                <option key={opt.value} value={opt.value}>
+                  {opt.label}
+                </option>
               ))}
-            </tbody>
-          </table>
+            </WorkbookSelect>
+            <ul className="flex flex-wrap gap-x-4 gap-y-1 list-none m-0 p-0 text-xs text-text-secondary">
+              {PRACTICE_PAGES.map((p) => {
+                const answered = Boolean(state.skipLinkFirstTab[p.id]?.trim());
+                return (
+                  <li key={p.id}>
+                    <span
+                      className={
+                        p.id === skipTabPage ? "font-semibold text-foreground" : undefined
+                      }
+                    >
+                      {p.label}
+                    </span>
+                    {": "}
+                    {answered ? "answered" : "not yet answered"}
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
           <div className="flex gap-3">
             <button type="button" onClick={() => goStep(1)} className="text-sm underline text-primary-text">
               {backToStepLabel(1)}
@@ -603,6 +662,7 @@ export default function Week4PracticeWorkbook({
             whether it needs a pause control and whether it should respect{" "}
             <code className="text-xs">prefers-reduced-motion</code>.
           </p>
+          <AllPagesRequiredCallout compact />
           <PracticeSite
             overlayMode="motion"
             showLegend
@@ -680,6 +740,25 @@ export default function Week4PracticeWorkbook({
             {stepHeading(4)}
           </h1>
 
+          <div className="space-y-3">
+            <h2 className="text-base font-semibold text-foreground m-0">Auto-graded score</h2>
+            <p className="text-sm text-text-secondary m-0">
+              20 points total (5 categories × 4 points). Passing is 10+. Scores update
+              automatically from your answers.
+            </p>
+            <div className="rounded-lg border border-border bg-surface p-3 text-xs text-text-secondary">
+              <p className="font-semibold text-foreground m-0 mb-2">Scoring scale</p>
+              <ul className="list-none m-0 p-0 space-y-1">
+                {AUTO_GRADE_SCALE.map((level) => (
+                  <li key={level.score}>
+                    <span className="font-mono text-foreground">{level.score}</span> —{" "}
+                    {level.label}: {level.description}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
           <div className="rounded-lg border border-border p-4 space-y-2">
             <h2 className="text-base font-semibold text-foreground m-0">Coach checks</h2>
             <p className="text-sm text-text-secondary m-0">
@@ -699,24 +778,7 @@ export default function Week4PracticeWorkbook({
               ))}
             </ul>
           </div>
-
           <div className="space-y-6">
-            <h2 className="text-base font-semibold text-foreground">Auto-graded score</h2>
-            <p className="text-sm text-text-secondary m-0">
-              20 points total (5 categories × 4 points). Passing is 10+. Scores update
-              automatically from your answers.
-            </p>
-            <div className="rounded-lg border border-border bg-surface p-3 text-xs text-text-secondary">
-              <p className="font-semibold text-foreground m-0 mb-2">Scoring scale</p>
-              <ul className="list-none m-0 p-0 space-y-1">
-                {AUTO_GRADE_SCALE.map((level) => (
-                  <li key={level.score}>
-                    <span className="font-mono text-foreground">{level.score}</span> —{" "}
-                    {level.label}: {level.description}
-                  </li>
-                ))}
-              </ul>
-            </div>
             {autoGrades.map((grade) => (
               <div
                 key={grade.criterionId}

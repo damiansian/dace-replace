@@ -253,53 +253,38 @@ function AboutMain({
       <h2 className="text-lg font-semibold text-foreground mt-0">About Northstar</h2>
     );
 
+  const teamProfiles: { name: string; targetId: string }[] = [
+    { name: "Alex", targetId: "alex-profile" },
+    { name: "Jordan", targetId: "jordan-profile" },
+    { name: "Sam", targetId: "sam-profile" },
+  ];
+
   const teamList = (
     <ul className="flex gap-3 list-none m-0 p-0 mt-2">
-      {["Alex", "Jordan", "Sam"].map((name) => (
-        <li key={name}>
-          {name === "Alex" ? (
-            overlayMode === "skipNav" ? (
-              <SkipTargetOutline targetId="alex-profile" pageId={pageId} className="inline-flex">
-                <button
-                  type="button"
-                  {...mockupControlProps}
-                  className="rounded-full bg-surface border border-border w-16 h-16 flex items-center justify-center text-xs text-text-secondary"
-                  aria-label={`${name} profile photo`}
-                >
-                  {name}
-                </button>
+      {teamProfiles.map(({ name, targetId }) => {
+        const profileControl = (
+          <button
+            type="button"
+            {...mockupControlProps}
+            className="rounded-full bg-surface border border-border w-16 h-16 flex items-center justify-center text-xs text-text-secondary"
+            aria-label={`${name} profile photo`}
+          >
+            {name}
+          </button>
+        );
+
+        return (
+          <li key={name}>
+            {overlayMode === "skipNav" ? (
+              <SkipTargetOutline targetId={targetId} pageId={pageId} className="inline-flex">
+                {profileControl}
               </SkipTargetOutline>
             ) : (
-              <button
-                type="button"
-                {...mockupControlProps}
-                className="rounded-full bg-surface border border-border w-16 h-16 flex items-center justify-center text-xs text-text-secondary"
-                aria-label={`${name} profile photo`}
-              >
-                {name}
-              </button>
-            )
-          ) : name === "Jordan" && overlayMode === "skipNav" ? (
-            <SkipTargetOutline targetId="jordan-profile" pageId={pageId} className="inline-flex">
-              <button
-                type="button"
-                {...mockupControlProps}
-                className="rounded-full bg-surface border border-border w-16 h-16 flex items-center justify-center text-xs text-text-secondary"
-                aria-label={`${name} profile photo`}
-              >
-                {name}
-              </button>
-            </SkipTargetOutline>
-          ) : (
-            <span
-              className="rounded-full bg-surface border border-border w-16 h-16 flex items-center justify-center text-xs text-text-secondary"
-              aria-hidden={overlayMode === "skipNav" ? undefined : "true"}
-            >
-              {name}
-            </span>
-          )}
-        </li>
-      ))}
+              profileControl
+            )}
+          </li>
+        );
+      })}
     </ul>
   );
 

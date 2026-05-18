@@ -20,7 +20,7 @@ export function loadWorkbookDraft(accessToken?: string): WorkbookState | null {
     const raw = localStorage.getItem(workbookStorageKey(accessToken));
     if (!raw) return null;
     const parsed = JSON.parse(raw) as WorkbookState;
-    if (parsed.version !== 1) return null;
+    if (parsed.version !== 1 && parsed.version !== 2) return null;
     return parsed;
   } catch {
     return null;
@@ -47,20 +47,38 @@ export function clearWorkbookDraft(accessToken?: string): void {
   localStorage.removeItem(workbookStorageKey(accessToken));
 }
 
+/** v2: motion yes/no radios start empty (no legacy pauseControl / alt-text prefill). */
+function migrateWorkbookVersion(saved: WorkbookState): WorkbookState {
+  if (saved.version === 2) return saved;
+  return {
+    ...saved,
+    version: 2,
+    motionInventory: saved.motionInventory.map((row) => ({
+      ...row,
+      pauseRequired: "",
+      respectsReducedMotion: "",
+    })),
+  };
+}
+
 export function mergeWorkbookDraft(
   accessToken?: string
 ): WorkbookState {
   const base = initialWorkbookState();
   const saved = loadWorkbookDraft(accessToken);
   if (!saved) return base;
-  return {
+  const merged = migrateWorkbookVersion({
     ...base,
     ...saved,
     landmarks: { ...base.landmarks, ...saved.landmarks },
     skipLink: { ...base.skipLink, ...saved.skipLink },
     skipLinkFirstTab: { ...base.skipLinkFirstTab, ...saved.skipLinkFirstTab },
     selfAssessment: { ...base.selfAssessment, ...saved.selfAssessment },
-  };
+  });
+  if (merged.version !== saved.version) {
+    saveWorkbookDraft(merged, accessToken);
+  }
+  return merged;
 }
 
 /** Clears saved draft so the next load starts empty. */

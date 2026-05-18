@@ -189,9 +189,13 @@ function SkipNavShell({
   return (
     <>
       <div className="m-2 p-3 flex flex-wrap items-center gap-3">
-        <SkipTargetOutline targetId="site-title" pageId={pageId} className="inline-flex p-2">
-          <p className="font-bold text-foreground m-0">Northstar Shop</p>
-        </SkipTargetOutline>
+        {pageId === "about" ? (
+          <p className="font-bold text-foreground m-0 p-2">Northstar Shop</p>
+        ) : (
+          <SkipTargetOutline targetId="site-title" pageId={pageId} className="inline-flex p-2">
+            <p className="font-bold text-foreground m-0">Northstar Shop</p>
+          </SkipTargetOutline>
+        )}
         {pageId === "products" ? (
           <SkipTargetOutline
             targetId="trail-pack-cart"

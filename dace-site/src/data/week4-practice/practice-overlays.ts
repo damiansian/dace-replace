@@ -29,7 +29,7 @@ export const SKIP_TARGETS_BY_PAGE: Record<PracticePageId, SkipTarget[]> = {
     { id: "site-title", description: "Site title (Northstar Shop)" },
     {
       id: "trail-pack-cart",
-      description: "Add to cart — Trail pack (header shortcut)",
+      description: "Add to cart — Trail pack",
       isCorrectFirstTab: true,
     },
     { id: "nav-home", description: "Primary navigation (first link)" },
@@ -38,16 +38,16 @@ export const SKIP_TARGETS_BY_PAGE: Record<PracticePageId, SkipTarget[]> = {
     { id: "footer-privacy", description: "Footer links (first link)" },
   ],
   about: [
-    { id: "site-title", description: "Site title (Northstar Shop)" },
     { id: "nav-home", description: "Primary navigation (first link)" },
     { id: "search", description: "Search field" },
     { id: "about-heading", description: "About Northstar heading" },
-    { id: "jordan-profile", description: "Team section (second profile control)" },
     {
       id: "alex-profile",
-      description: "Team section (third profile control)",
+      description: "Alex (team profile)",
       isCorrectFirstTab: true,
     },
+    { id: "jordan-profile", description: "Jordan (team profile)" },
+    { id: "sam-profile", description: "Sam (team profile)" },
     { id: "footer-privacy", description: "Footer links (first link)" },
   ],
 };

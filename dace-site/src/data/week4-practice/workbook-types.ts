@@ -53,7 +53,7 @@ export interface SelfAssessmentScores {
 }
 
 export interface WorkbookState {
-  version: 1;
+  version: 1 | 2;
   landmarks: LandmarksByPage;
   navMatrix: NavMatrixRow[];
   navInconsistent: boolean;
@@ -100,7 +100,7 @@ export function initialNavMatrix(): NavMatrixRow[] {
 
 export function initialWorkbookState(): WorkbookState {
   return {
-    version: 1,
+    version: 2,
     landmarks: { home: [], products: [], about: [] },
     navMatrix: initialNavMatrix(),
     navInconsistent: false,
