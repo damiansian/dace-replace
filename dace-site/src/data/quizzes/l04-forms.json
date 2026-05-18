@@ -22,6 +22,8 @@
     },
     {
       "id": "l04-q2",
+      "imageSrc": "/quizzes/l04-forms/q2-stimulus.png",
+      "imageAlt": "A text field component with the email icon serving as the label and value asking for an email address.",
       "question": "A designer creates an email input field that uses an envelope icon instead of a visible text label. What must the designer annotate for this field to be accessible?",
       "options": [
         { "id": "a", "text": "The icon must be 24 by 24 pixels" },
