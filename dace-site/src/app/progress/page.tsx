@@ -135,7 +135,7 @@ function ItemRow({
   if (item.kind === "quiz") {
     const best = bestQuiz(quizRows);
     return (
-      <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+      <div className="flex flex-col items-start gap-2">
         <div className="flex flex-col gap-1">
           <Link
             href={href}
@@ -169,7 +169,7 @@ function ItemRow({
     : null;
 
   return (
-    <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
+    <div className="flex flex-col items-start gap-2">
       <div className="flex flex-col gap-1">
         <Link
           href={href}
@@ -193,7 +193,7 @@ function ItemRow({
           </p>
         )}
       </div>
-      <div className="text-sm space-y-1 sm:text-right">
+      <div className="text-sm space-y-1 text-left">
         {latest ? (
           <span className="inline-flex items-center gap-2 rounded-full bg-accent-green/10 px-3 py-1 font-medium text-accent-green">
             <span aria-hidden="true">&#10003;</span>

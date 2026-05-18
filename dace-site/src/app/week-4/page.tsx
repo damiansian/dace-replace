@@ -151,7 +151,7 @@ export default async function Week4Hub({ searchParams }: PageProps) {
         </h2>
         <div className="bg-white border border-border rounded-lg p-6 shadow-sm border-l-4 border-l-accent-green">
           <div className="space-y-3">
-            <div className="flex flex-wrap items-start justify-between gap-2">
+            <div className="flex flex-wrap items-center gap-2">
               <span className="inline-flex items-center rounded-full bg-accent-green/10 px-3 py-1 text-sm font-medium text-accent-green">
                 Rubric-graded
               </span>

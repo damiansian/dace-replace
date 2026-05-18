@@ -96,8 +96,8 @@ export default function CourseHomeTable({
                       {lesson.lessonLabel}
                     </Link>
                   </td>
-                  <td className="border border-border px-4 py-4 align-middle text-foreground">
-                    <div className="flex flex-wrap items-center gap-2">
+                  <td className="border border-border px-4 py-4 align-middle text-left text-foreground">
+                    <div className="flex w-full flex-col items-start gap-1.5">
                       <Link
                         href={withToken(lesson.quizHref, token)}
                         className="font-medium text-primary-text underline hover:text-primary-dark"
@@ -117,12 +117,12 @@ export default function CourseHomeTable({
                   {isFirstRow && (
                     <td
                       rowSpan={week.lessons.length}
-                      className="border border-border bg-white px-4 py-4 align-middle text-foreground"
+                      className="border border-border bg-white px-4 py-4 align-middle text-left text-foreground"
                     >
-                      <div className="space-y-1.5">
+                      <div className="flex w-full flex-col items-start gap-1.5">
                         <Link
                           href={withToken(week.appliedSkill.href, token)}
-                          className="block font-semibold text-primary-text underline hover:text-primary-dark"
+                          className="font-semibold text-primary-text underline hover:text-primary-dark"
                         >
                           {week.appliedSkill.title}
                         </Link>
