@@ -5,6 +5,8 @@
   "questions": [
     {
       "id": "l03-q1",
+      "imageSrc": "/quizzes/l03-color/button_contrast.png",
+      "imageAlt": "Clean UI design mockup showing a rectangular button with rounded corners. Button has solid blue fill (#0078D4) with white text Submit centered inside. Light gray background (#F5F5F5). Modern minimal interface style. Flat design, no shadows or gradients. Desktop web interface.",
       "question": "You're testing a button with the following specifications:\n- Button text: \"Submit\" (16px, white #FFFFFF)\n- Button fill: Blue (#0078D4)\n- Page background: Light gray (#F5F5F5)\n- Hover state: Darker blue (#005A9E)\n\nWhich contrast tests are required for SC 1.4.11 (Non-text Contrast)?",
       "options": [
         { "id": "a", "text": "The blue button fill must be 3:1 to the light gray background" },
@@ -22,6 +24,8 @@
     },
     {
       "id": "l03-q2",
+      "imageSrc": "/quizzes/l03-color/text_contrast.png",
+      "imageAlt": "Simple web dashboard header mockup on white background. Large bold title text Dashboard at top in dark gray. Smaller body text below reading Welcome back in same dark gray color. Clean minimal design, left-aligned text. Modern sans-serif font. No other UI elements, just the two text sizes on white.",
       "question": "A design includes the following text elements on a white background (#FFFFFF):\n- Page title: \"Dashboard\" (32px, dark gray #595959)\n- Body text: \"Welcome back\" (14px, dark gray #595959)\n\nWhich statement correctly describes the AA contrast requirements for these text elements?",
       "options": [
         { "id": "a", "text": "The title needs 3:1 contrast and the body text needs 4.5:1 contrast" },
@@ -39,6 +43,8 @@
     },
     {
       "id": "l03-q3",
+      "imageSrc": "/quizzes/l03-color/graph_lines_contrast.png",
+      "imageAlt": "Simple line chart data visualization with three trend lines on white background. One red line, one blue line, one green line showing different sales trends over time. X-axis shows months, Y-axis shows values. Clean minimal style. Each line has a small text label. No grid lines, just the colored lines on white canvas. Business analytics chart style.",
       "question": "A data visualization shows three trend lines on a graph:\n- Red line (#E53935) representing Q1 sales\n- Blue line (#1E88E5) representing Q2 sales\n- Green line (#43A047) representing Q3 sales\n- Graph background: White (#FFFFFF)\n- Each line has a text label identifying it\n\nUnder SC 1.4.11 (Non-text Contrast), which contrast requirements apply to the lines?",
       "options": [
         { "id": "a", "text": "No contrast requirements apply because the lines have text labels" },
@@ -56,6 +62,8 @@
     },
     {
       "id": "l03-q4",
+      "imageSrc": "/quizzes/l03-color/required_fields.png",
+      "imageAlt": "Web form design with three input fields stacked vertically. Two field labels shown in red text with asterisk symbols next to them indicating required. One field label in black text without asterisk for optional field. Simple rectangular input boxes with gray borders. White background. Clean form UI mockup.",
       "question": "A designer creates a form with the following pattern:\n- Required field labels are displayed in red (#CC0000)\n- Optional field labels are displayed in black (#000000)\n- All labels include asterisks (*) next to required fields\n- Field borders remain the same for all fields\n\nWhen tested with grayscale simulation, the required fields are still clearly identifiable due to the asterisks. Does this design meet SC 1.4.1 (Use of Color)?",
       "options": [
         { "id": "a", "text": "No, because color is used to indicate required status" },
@@ -73,6 +81,8 @@
     },
     {
       "id": "l03-q5",
+      "imageSrc": "/quizzes/l03-color/status_badges.png",
+      "imageAlt": "Three horizontal status badge pills in a row. First badge is green with white text Active. Second badge is yellow/amber with dark text Pending. Third badge is red with white text Inactive. Solid colored rounded rectangle badges. White background. Simple flat design UI components. No icons, text only.",
       "question": "A designer is testing a design with multiple color-coded status badges: green for \"Active,\" yellow for \"Pending,\" and red for \"Inactive.\" To verify the design works for users with color vision deficiencies, what is the most efficient testing method?",
       "options": [
         { "id": "a", "text": "Test separately with protanopia, deuteranopia, and tritanopia simulations" },

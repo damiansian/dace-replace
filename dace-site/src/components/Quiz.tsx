@@ -10,6 +10,8 @@ interface QuizOption {
 interface QuizQuestion {
   id: string;
   question: string;
+  imageSrc?: string;
+  imageAlt?: string;
   options: QuizOption[];
   correctAnswer: string;
   feedback: Record<string, string>;
@@ -20,6 +22,27 @@ export interface QuizData {
   title: string;
   lessonPath: string;
   questions: QuizQuestion[];
+}
+
+function QuizStimulusImage({ src, alt }: { src: string; alt: string }) {
+  const [failed, setFailed] = useState(false);
+  if (failed) {
+    return (
+      <p className="mb-4 rounded-md border border-border bg-white p-3 text-sm text-text-secondary">
+        Image description: {alt}
+      </p>
+    );
+  }
+  return (
+    <figure className="mb-5">
+      <img
+        src={src}
+        alt={alt}
+        onError={() => setFailed(true)}
+        className="block max-w-full h-auto rounded-md border border-border bg-white"
+      />
+    </figure>
+  );
 }
 
 function seededShuffle<T>(array: T[], seed: string): T[] {
@@ -272,6 +295,9 @@ export default function Quiz({
                   <p className="text-base font-semibold text-foreground mb-1">
                     Question {qIndex + 1} of {data.questions.length}
                   </p>
+                  {q.imageSrc && q.imageAlt && (
+                    <QuizStimulusImage src={q.imageSrc} alt={q.imageAlt} />
+                  )}
                   <p className="text-base text-foreground whitespace-pre-line mb-5">
                     {q.question}
                   </p>
