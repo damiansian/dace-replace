@@ -58,7 +58,14 @@ export function runCoachChecks(state: WorkbookState): CoachCheck[] {
     }
   }
 
-  const navOrdersMatchTrap = PRACTICE_PAGES.every((page) => {
+  const navMatrixComplete = state.navMatrix.every(
+    (row) =>
+      row.homeOrder.trim() &&
+      row.productsOrder.trim() &&
+      row.aboutOrder.trim()
+  );
+
+  const navOrdersDocumented = PRACTICE_PAGES.every((page) => {
     const expected = NAV_ORDER_BY_PAGE[page.id];
     return state.navMatrix.every((row) => {
       const col =
@@ -73,18 +80,21 @@ export function runCoachChecks(state: WorkbookState): CoachCheck[] {
     });
   });
 
-  const caughtInconsistency =
-    state.navInconsistent ||
-    (navOrdersMatchTrap &&
-      JSON.stringify(NAV_ORDER_BY_PAGE.home) !==
-        JSON.stringify(NAV_ORDER_BY_PAGE.products));
+  checks.push({
+    id: "nav-matrix",
+    pass: navMatrixComplete && navOrdersDocumented,
+    message:
+      navMatrixComplete && navOrdersDocumented
+        ? "Navigation order documented consistently (Home, Products, About on every page)."
+        : "Enter position 1–3 for each nav item on Home, Products, and About.",
+  });
 
   checks.push({
     id: "nav-inconsistency",
-    pass: state.navInconsistent,
+    pass: !state.navInconsistent,
     message: state.navInconsistent
-      ? "You flagged a navigation order inconsistency."
-      : "Compare nav order across pages. Products uses a different order than Home.",
+      ? "The practice site keeps the same nav order on every page; uncheck unless you found another issue."
+      : "Navigation order is consistent across pages (matches the mockup).",
   });
 
   const skip = state.skipLink;

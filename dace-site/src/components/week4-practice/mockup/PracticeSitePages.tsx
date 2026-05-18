@@ -58,7 +58,7 @@ function ProductsMain() {
     <>
       <h2 className="text-lg font-semibold text-foreground mt-0">Products</h2>
       <p className="text-sm text-text-secondary mb-4">
-        Notice primary navigation order on this page differs from Home.
+        Primary navigation matches Home and About (Home, Products, About).
       </p>
       <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 list-none m-0 p-0">
         {["Trail pack", "Desk lamp", "Water bottle"].map((name) => (

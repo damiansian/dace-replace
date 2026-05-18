@@ -103,11 +103,11 @@ export const EXPECTED_LANDMARK_ROLES: Record<PracticeZoneId, string> = {
 
 export const NAV_ITEMS = ["Home", "Products", "About"] as const;
 
-/** Intentional trap: Products page reorders primary nav. */
+/** Same relative order on every page (SC 3.2.3). */
 export const NAV_ORDER_BY_PAGE: Record<PracticePageId, readonly string[]> = {
-  home: ["Home", "Products", "About"],
-  products: ["Products", "Home", "About"],
-  about: ["Home", "Products", "About"],
+  home: NAV_ITEMS,
+  products: NAV_ITEMS,
+  about: NAV_ITEMS,
 };
 
 export interface MotionSeed {
