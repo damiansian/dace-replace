@@ -57,12 +57,7 @@ export default function PracticeSite({
             const renderZone = (z: (typeof zones)[number]) => (
               <li key={z.id}>
                 <span className="font-mono text-foreground">{getZoneNumber(z.id, pageId)}.</span>{" "}
-                {z.label}
-                {z.nameRequired ? (
-                  <span className="text-text-secondary"> (name required)</span>
-                ) : (
-                  <span className="text-text-secondary"> (no name required)</span>
-                )}
+                {z.description}
               </li>
             );
             return (

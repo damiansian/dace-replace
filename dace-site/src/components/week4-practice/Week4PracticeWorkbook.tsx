@@ -8,8 +8,8 @@ import {
   MOTION_TYPES,
   MASTERY_SCALE,
   PRACTICE_PAGES,
-  PRACTICE_ZONES,
   SELF_ASSESSMENT_CRITERIA,
+  zoneDisplayName,
   zonesForPage,
   type PracticePageId,
 } from "@/data/week4-practice/practice-zones";
@@ -215,8 +215,8 @@ export default function Week4PracticeWorkbook({
           <h2 className="text-xl font-semibold text-foreground">Explore the practice site</h2>
           <p className="text-sm text-text-secondary">
             Northstar Shop is a simplified three-page mockup. Numbered dashed borders
-            show regions you will specify as landmarks. Motion is described in text
-            only (nothing auto-plays).
+            mark regions you will identify in the next step (roles are not labeled).
+            Motion is described in text only (nothing auto-plays).
           </p>
           <PracticeSite
             showZoneLegend
@@ -237,10 +237,15 @@ export default function Week4PracticeWorkbook({
         <section className="space-y-4">
           <h2 className="text-xl font-semibold text-foreground">Landmark identification</h2>
           <p className="text-sm text-text-secondary">
-            For each zone, choose the ARIA role, accessible name when required
-            (footer navigation on Products and About only), and HTML equivalent.
-            Home has six zones; there is no separate footer navigation landmark.
+            Use the numbered regions on the mockup below. For each zone, choose the
+            ARIA role, accessible name (only when the pattern requires one), and
+            HTML equivalent. Zone numbers match the dashed borders on the site.
           </p>
+          <PracticeSite
+            showZoneLegend={false}
+            pageId={landmarkPage}
+            onPageChange={setLandmarkPage}
+          />
           <div className="flex flex-wrap gap-2 items-center">
             <span className="text-sm font-medium text-foreground">Page:</span>
             {PRACTICE_PAGES.map((p) => (
@@ -290,12 +295,13 @@ export default function Week4PracticeWorkbook({
               </thead>
               <tbody>
                 {state.landmarks[landmarkPage].map((row) => {
-                  const zone = PRACTICE_ZONES.find((z) => z.id === row.zoneId)!;
+                  const zone = zonesForPage(landmarkPage).find((z) => z.id === row.zoneId)!;
+                  const zoneName = zoneDisplayName(row.zoneId, landmarkPage);
                   return (
                     <tr key={row.zoneId}>
                       <td className="border border-border px-2 py-2">
-                        <span className="font-medium text-foreground">{zone.label}</span>
-                        <span className="block text-xs text-text-secondary">{zone.hint}</span>
+                        <span className="font-medium text-foreground">{zoneName}</span>
+                        <span className="block text-xs text-text-secondary">{zone.description}</span>
                       </td>
                       <td className="border border-border px-2 py-2">
                         <WorkbookSelect
@@ -304,7 +310,7 @@ export default function Week4PracticeWorkbook({
                           onChange={(e) =>
                             updateLandmark(landmarkPage, row.zoneId, "role", e.target.value)
                           }
-                          aria-label={`Role for ${zone.label}`}
+                          aria-label={`ARIA role for ${zoneName}`}
                         >
                           <option value="">Select…</option>
                           {LANDMARK_ROLES.map((r) => (
@@ -326,16 +332,9 @@ export default function Week4PracticeWorkbook({
                               e.target.value
                             )
                           }
-                          aria-label={`Accessible name for ${zone.label}`}
-                          placeholder={
-                            zone.nameRequired ? "Required" : "Optional"
-                          }
+                          aria-label={`Accessible name for ${zoneName}`}
+                          placeholder="If needed"
                         />
-                        {!zone.nameRequired && (
-                          <span className="block text-xs text-text-secondary mt-1">
-                            Not required
-                          </span>
-                        )}
                       </td>
                       <td className="border border-border px-2 py-2">
                         <WorkbookSelect
@@ -349,7 +348,7 @@ export default function Week4PracticeWorkbook({
                               e.target.value
                             )
                           }
-                          aria-label={`HTML for ${zone.label}`}
+                          aria-label={`HTML equivalent for ${zoneName}`}
                         >
                           <option value="">Select…</option>
                           {HTML_EQUIVALENTS.map((h) => (
@@ -366,7 +365,7 @@ export default function Week4PracticeWorkbook({
                           onChange={(e) =>
                             updateLandmark(landmarkPage, row.zoneId, "notes", e.target.value)
                           }
-                          aria-label={`Notes for ${zone.label}`}
+                          aria-label={`Notes for ${zoneName}`}
                         />
                       </td>
                     </tr>

@@ -3,6 +3,7 @@ import {
   MOTION_SEEDS,
   NAV_ORDER_BY_PAGE,
   PRACTICE_PAGES,
+  zoneDisplayName,
   zonesForPage,
 } from "@/data/week4-practice/practice-zones";
 import type { WorkbookState } from "@/data/week4-practice/workbook-types";
@@ -35,7 +36,7 @@ export function runCoachChecks(state: WorkbookState): CoachCheck[] {
         checks.push({
           id: `zone-${page.id}-${zone.id}`,
           pass: false,
-          message: `${page.label}: assign a role for "${zone.label}".`,
+          message: `${page.label}: assign a role for ${zoneDisplayName(zone.id, page.id)}.`,
         });
         continue;
       }
@@ -44,15 +45,15 @@ export function runCoachChecks(state: WorkbookState): CoachCheck[] {
         id: `zone-role-${page.id}-${zone.id}`,
         pass: roleOk,
         message: roleOk
-          ? `${page.label} / ${zone.label}: role "${row.role}" looks correct.`
-          : `${page.label} / ${zone.label}: expected role "${expected}", you chose "${row.role}".`,
+          ? `${page.label} / ${zoneDisplayName(zone.id, page.id)}: role "${row.role}" looks correct.`
+          : `${page.label} / ${zoneDisplayName(zone.id, page.id)}: expected role "${expected}", you chose "${row.role}".`,
       });
 
       if (zone.nameRequired && !row.accessibleName.trim()) {
         checks.push({
           id: `nav-name-${page.id}-${zone.id}`,
           pass: false,
-          message: `${page.label} / ${zone.label}: accessible name is required.`,
+          message: `${page.label} / ${zoneDisplayName(zone.id, page.id)}: accessible name is required.`,
         });
       }
     }

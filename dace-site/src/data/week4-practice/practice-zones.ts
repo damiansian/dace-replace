@@ -17,11 +17,20 @@ export type PracticeZoneId =
 
 export interface PracticeZone {
   id: PracticeZoneId;
-  label: string;
-  hint: string;
+  /** Neutral location copy — does not name the landmark role. */
+  description: string;
   pages: PracticePageId[];
   /** When true, coach checks expect a non-empty accessible name. */
   nameRequired: boolean;
+}
+
+/** Instructor-facing label for coach feedback (no answer leakage). */
+export function zoneDisplayName(
+  zoneId: PracticeZoneId,
+  pageId: PracticePageId
+): string {
+  const n = getZoneNumber(zoneId, pageId);
+  return n > 0 ? `Zone ${n}` : zoneId;
 }
 
 export function zonesForPage(pageId: PracticePageId): PracticeZone[] {
@@ -41,50 +50,43 @@ export function getZoneNumber(
 export const PRACTICE_ZONES: PracticeZone[] = [
   {
     id: "site-header",
-    label: "Banner",
-    hint: "Top bar with logo; no accessible name required",
+    description: "Top bar spanning the page (site title area)",
     pages: ["home", "products", "about"],
     nameRequired: false,
   },
   {
     id: "primary-nav",
-    label: "Navigation",
-    hint: "Main horizontal nav in the header; no accessible name required on Home",
+    description: "Horizontal list of page links in the header",
     pages: ["home", "products", "about"],
     nameRequired: false,
   },
   {
     id: "site-search",
-    label: "Search",
-    hint: "Search field in the header; no accessible name required",
+    description: "Search field in the header",
     pages: ["home", "products", "about"],
     nameRequired: false,
   },
   {
     id: "main-content",
-    label: "Main",
-    hint: "Primary page content; no accessible name required",
+    description: "Central column with this page’s primary content",
     pages: ["home", "products", "about"],
     nameRequired: false,
   },
   {
     id: "sidebar",
-    label: "Aside / Complementary",
-    hint: "Filters and promos; no accessible name required",
+    description: "Right column with filters and promos",
     pages: ["home", "products"],
     nameRequired: false,
   },
   {
     id: "footer-nav",
-    label: "Footer navigation",
-    hint: "Secondary footer links (Products and About only)",
+    description: "Row of footer links above the copyright line",
     pages: ["products", "about"],
     nameRequired: true,
   },
   {
     id: "site-footer",
-    label: "Footer",
-    hint: "Copyright and site-wide footer; no accessible name required",
+    description: "Bottom strip with copyright (and footer links on Home)",
     pages: ["home", "products", "about"],
     nameRequired: false,
   },
