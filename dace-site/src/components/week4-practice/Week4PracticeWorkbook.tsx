@@ -238,9 +238,8 @@ export default function Week4PracticeWorkbook({
           <h2 className="text-xl font-semibold text-foreground">Landmark identification</h2>
           <p className="text-sm text-text-secondary">
             For each zone, choose the ARIA role, accessible name when required
-            (Search on every page; footer navigation on Products and About), and
-            HTML equivalent. Home has six zones; there is no separate footer
-            navigation landmark.
+            (footer navigation on Products and About only), and HTML equivalent.
+            Home has six zones; there is no separate footer navigation landmark.
           </p>
           <div className="flex flex-wrap gap-2 items-center">
             <span className="text-sm font-medium text-foreground">Page:</span>

@@ -56,9 +56,9 @@ export const PRACTICE_ZONES: PracticeZone[] = [
   {
     id: "site-search",
     label: "Search",
-    hint: "Search field in the header; label the control",
+    hint: "Search field in the header; no accessible name required",
     pages: ["home", "products", "about"],
-    nameRequired: true,
+    nameRequired: false,
   },
   {
     id: "main-content",
