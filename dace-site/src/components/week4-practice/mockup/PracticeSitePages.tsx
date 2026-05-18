@@ -29,7 +29,12 @@ function HomeMain() {
           Spec: auto-advances every 5 seconds. Requires pause control.
         </p>
         <div className="flex gap-2">
-          <span className="rounded bg-primary/20 px-3 py-2 text-xs">Slide 1</span>
+          <button
+            type="button"
+            className="rounded bg-primary/20 px-3 py-2 text-xs font-medium text-foreground"
+          >
+            Slide 1
+          </button>
           <span className="rounded border border-dashed border-border px-3 py-2 text-xs text-text-secondary">
             Slide 2
           </span>
@@ -74,6 +79,7 @@ function ProductsMain() {
             <button
               type="button"
               className="rounded bg-primary px-3 py-1.5 text-xs font-medium text-white"
+              aria-label={`Add to cart, ${name}`}
             >
               Add to cart
             </button>
@@ -104,11 +110,23 @@ function AboutMain() {
         </p>
         <ul className="flex gap-3 list-none m-0 p-0 mt-2">
           {["Alex", "Jordan", "Sam"].map((name) => (
-            <li
-              key={name}
-              className="rounded-full bg-surface border border-border w-16 h-16 flex items-center justify-center text-xs text-text-secondary"
-            >
-              {name}
+            <li key={name}>
+              {name === "Alex" ? (
+                <button
+                  type="button"
+                  className="rounded-full bg-surface border border-border w-16 h-16 flex items-center justify-center text-xs text-text-secondary hover:bg-primary/5"
+                  aria-label={`${name} profile photo`}
+                >
+                  {name}
+                </button>
+              ) : (
+                <span
+                  className="rounded-full bg-surface border border-border w-16 h-16 flex items-center justify-center text-xs text-text-secondary"
+                  aria-hidden="true"
+                >
+                  {name}
+                </span>
+              )}
             </li>
           ))}
         </ul>

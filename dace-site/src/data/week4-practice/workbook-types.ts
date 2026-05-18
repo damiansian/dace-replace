@@ -1,4 +1,8 @@
-import type { PracticePageId, PracticeZoneId } from "./practice-zones";
+import type {
+  PracticePageId,
+  PracticeZoneId,
+  SkipLinkFirstTabByPage,
+} from "./practice-zones";
 
 export interface LandmarkRow {
   zoneId: PracticeZoneId;
@@ -58,6 +62,8 @@ export interface WorkbookState {
   navInconsistent: boolean;
   navRecommendation: string;
   skipLink: SkipLinkSpec;
+  /** First focusable in main after skip link, then one Tab press. */
+  skipLinkFirstTab: SkipLinkFirstTabByPage;
   motionInventory: MotionInventoryRow[];
   motionPlans: MotionPlanRow[];
   selfAssessment: SelfAssessmentScores;
@@ -72,6 +78,10 @@ export function emptyLandmarkRow(zoneId: PracticeZoneId): LandmarkRow {
     htmlEquivalent: "",
     notes: "",
   };
+}
+
+export function emptySkipLinkFirstTab(): SkipLinkFirstTabByPage {
+  return { home: "", products: "", about: "" };
 }
 
 export function emptySkipLink(): SkipLinkSpec {
@@ -100,6 +110,7 @@ export function initialWorkbookState(): WorkbookState {
     navInconsistent: false,
     navRecommendation: "",
     skipLink: emptySkipLink(),
+    skipLinkFirstTab: emptySkipLinkFirstTab(),
     motionInventory: [],
     motionPlans: [],
     selfAssessment: {

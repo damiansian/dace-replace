@@ -2,6 +2,7 @@ import {
   EXPECTED_LANDMARK_ROLES,
   MOTION_SEEDS,
   NAV_ORDER_BY_PAGE,
+  matchesSkipLinkFirstTab,
   PRACTICE_PAGES,
   zoneDisplayName,
   zonesForPage,
@@ -112,6 +113,18 @@ export function runCoachChecks(state: WorkbookState): CoachCheck[] {
       : "Fill in skip link placement, target, visibility, and rationale.",
   });
 
+  for (const page of PRACTICE_PAGES) {
+    const answer = state.skipLinkFirstTab[page.id] ?? "";
+    const pass = matchesSkipLinkFirstTab(page.id, answer);
+    checks.push({
+      id: `skip-first-tab-${page.id}`,
+      pass,
+      message: pass
+        ? `${page.label}: first Tab after skip link matches the mockup.`
+        : `${page.label}: name the first control in main after skip link + one Tab (check the mockup).`,
+    });
+  }
+
   for (const seed of MOTION_SEEDS) {
     const inv = state.motionInventory.find(
       (m) => m.id === seed.id || m.element.includes(seed.label)
@@ -165,7 +178,10 @@ export function buildExportPayload(
         inconsistent: state.navInconsistent,
         recommendation: state.navRecommendation,
       },
-      skipLinks: state.skipLink,
+      skipLinks: {
+        spec: state.skipLink,
+        firstTabAfterSkip: state.skipLinkFirstTab,
+      },
       motionInventory: state.motionInventory,
       motionPlans: state.motionPlans,
     },

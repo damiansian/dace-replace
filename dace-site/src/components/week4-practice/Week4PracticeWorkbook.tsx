@@ -113,6 +113,7 @@ export default function Week4PracticeWorkbook({
 
   const [previewPage, setPreviewPage] = useState<PracticePageId>("home");
   const [landmarkPage, setLandmarkPage] = useState<PracticePageId>("home");
+  const [skipTabPage, setSkipTabPage] = useState<PracticePageId>("home");
   const [exportStatus, setExportStatus] = useState<string | null>(null);
 
   const persist = useCallback(
@@ -537,6 +538,57 @@ export default function Week4PracticeWorkbook({
               />
             </div>
           </div>
+
+          <h3 className="text-lg font-semibold text-foreground mt-6">
+            First Tab stop after skip link
+          </h3>
+          <p className="text-sm text-text-secondary">
+            Assume your skip link moves focus to the main content region (
+            <code className="text-xs">#main-content</code>). On each page, what is the
+            first element that receives focus when you press Tab once from there? Use the
+            mockup to trace focus order.
+          </p>
+          <PracticeSite
+            showZoneLegend={false}
+            pageId={skipTabPage}
+            onPageChange={setSkipTabPage}
+          />
+          <table className="w-full text-sm border-collapse">
+            <thead>
+              <tr className="bg-surface">
+                <th scope="col" className="border border-border px-3 py-2 text-left">
+                  Page
+                </th>
+                <th scope="col" className="border border-border px-3 py-2 text-left">
+                  First element after one Tab
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {PRACTICE_PAGES.map((p) => (
+                <tr key={p.id}>
+                  <td className="border border-border px-3 py-2 font-medium">{p.label}</td>
+                  <td className="border border-border px-3 py-2">
+                    <WorkbookInput
+                      id={`skip-first-tab-${p.id}`}
+                      value={state.skipLinkFirstTab[p.id]}
+                      onChange={(e) =>
+                        persist({
+                          ...state,
+                          skipLinkFirstTab: {
+                            ...state.skipLinkFirstTab,
+                            [p.id]: e.target.value,
+                          },
+                        })
+                      }
+                      aria-label={`First Tab stop on ${p.label} after skip link`}
+                      placeholder="Name or describe the control"
+                    />
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
           <div className="flex gap-3">
             <button type="button" onClick={() => goStep(1)} className="text-sm underline text-primary-text">
               Back

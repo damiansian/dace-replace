@@ -50,6 +50,7 @@ export function mergeWorkbookDraft(
     ...saved,
     landmarks: { ...base.landmarks, ...saved.landmarks },
     skipLink: { ...base.skipLink, ...saved.skipLink },
+    skipLinkFirstTab: { ...base.skipLinkFirstTab, ...saved.skipLinkFirstTab },
     selfAssessment: { ...base.selfAssessment, ...saved.selfAssessment },
   };
 }

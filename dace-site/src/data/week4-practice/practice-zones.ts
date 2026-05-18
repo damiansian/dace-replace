@@ -112,6 +112,27 @@ export const NAV_ORDER_BY_PAGE: Record<PracticePageId, readonly string[]> = {
   about: NAV_ITEMS,
 };
 
+export type SkipLinkFirstTabByPage = Record<PracticePageId, string>;
+
+/** Coach check: first Tab stop in main after skip link (per page). */
+export function matchesSkipLinkFirstTab(
+  pageId: PracticePageId,
+  answer: string
+): boolean {
+  const normalized = answer.trim().toLowerCase();
+  if (!normalized) return false;
+  switch (pageId) {
+    case "home":
+      return /slide\s*1/.test(normalized);
+    case "products":
+      return /add\s*to\s*cart/.test(normalized) && /trail\s*pack/.test(normalized);
+    case "about":
+      return /alex/.test(normalized);
+    default:
+      return false;
+  }
+}
+
 export interface MotionSeed {
   id: string;
   label: string;
