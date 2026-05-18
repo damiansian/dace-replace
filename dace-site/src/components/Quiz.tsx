@@ -296,7 +296,11 @@ export default function Quiz({
                     Question {qIndex + 1} of {data.questions.length}
                   </p>
                   {q.imageSrc && q.imageAlt && (
-                    <QuizStimulusImage src={q.imageSrc} alt={q.imageAlt} />
+                    <QuizStimulusImage
+                      key={`${q.id}-${attemptNumber}`}
+                      src={q.imageSrc}
+                      alt={q.imageAlt}
+                    />
                   )}
                   <p className="text-base text-foreground whitespace-pre-line mb-5">
                     {q.question}
