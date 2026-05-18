@@ -11,6 +11,7 @@ import {
   HTML_EQUIVALENTS,
   LANDMARK_ROLES,
   MOTION_SEEDS,
+  motionRequiresReducedMotionStatic,
   AUTO_GRADE_SCALE,
   PRACTICE_PAGES,
   zoneDisplayName,
@@ -44,7 +45,9 @@ import {
   WorkbookLabel,
   WorkbookSelect,
   WorkbookTextarea,
+  WorkbookYesNoRadio,
 } from "./WorkbookField";
+import { WorkbookStepper } from "./WorkbookStepper";
 
 const STEPS = [
   "Start",
@@ -87,6 +90,7 @@ function seedMotionInventory(): MotionInventoryRow[] {
     intendedMotion: s.defaultDescription,
     pauseRequired: s.pauseRequired ? "yes" : "no",
     pauseControl: s.pauseRequired ? "" : "N/A",
+    respectsReducedMotion: "",
     reducedMotionAlt: "",
   }));
 }
@@ -111,7 +115,19 @@ function normalizeMotionInventory(merged: WorkbookState): MotionInventoryRow[] {
           : s.pauseRequired
             ? "yes"
             : "no",
-      pauseControl: legacy?.pauseControl ?? (s.pauseRequired ? "" : "N/A"),
+      pauseControl: (() => {
+        const raw = legacy?.pauseControl ?? "";
+        if (raw === "yes" || raw === "no" || raw === "N/A") return raw;
+        if (!s.pauseRequired) return "N/A";
+        if (typeof raw === "string" && raw.trim()) return "yes";
+        return "";
+      })(),
+      respectsReducedMotion:
+        legacy?.respectsReducedMotion === "yes" || legacy?.respectsReducedMotion === "no"
+          ? legacy.respectsReducedMotion
+          : legacy?.reducedMotionAlt?.trim() || plan?.reducedMotionAlt?.trim()
+            ? "yes"
+            : "",
       reducedMotionAlt: legacy?.reducedMotionAlt ?? plan?.reducedMotionAlt ?? "",
     };
   });
@@ -262,28 +278,21 @@ export default function Week4PracticeWorkbook({
 
   return (
     <div className="space-y-8">
-      <nav aria-label="Workbook progress">
-        <ol className="flex flex-wrap gap-2 list-none m-0 p-0">
-          {STEPS.map((label, i) => (
-            <li key={label}>
-              <button
-                type="button"
-                onClick={() => goStep(i)}
-                aria-current={step === i ? "step" : undefined}
-                className={`rounded-full px-3 py-1.5 text-xs font-medium border ${
-                  step === i
-                    ? "bg-primary text-white border-primary"
-                    : i < step
-                      ? "bg-accent-green/10 text-accent-green border-accent-green/30"
-                      : "bg-white text-text-secondary border-border"
-                }`}
-              >
-                {stepHeading(i)}
-              </button>
-            </li>
-          ))}
-        </ol>
-      </nav>
+      <WorkbookStepper
+        steps={STEPS}
+        currentStep={step}
+        stepHeading={stepHeading}
+        onStepChange={goStep}
+        stepTabClassName={(i) =>
+          `rounded-full px-3 py-1.5 text-xs font-medium border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ${
+            step === i
+              ? "bg-primary text-white border-primary"
+              : i < step
+                ? "bg-accent-green/10 text-accent-green border-accent-green/30"
+                : "bg-white text-text-secondary border-border"
+          }`
+        }
+      />
 
       <div aria-live="polite" className="sr-only">
         {stepHeading(step)} ({stepNumber(step)} of {STEPS.length})
@@ -554,7 +563,7 @@ export default function Week4PracticeWorkbook({
                 <th scope="col" className="border border-border px-3 py-2 text-left">
                   Page
                 </th>
-                <th scope="col" className="border border-border px-3 py-2 text-left">
+                <th scope="col" className="border border-border px-3 py-2 text-left w-px whitespace-nowrap">
                   First element after one Tab <span className="text-accent-green">*</span>
                 </th>
               </tr>
@@ -563,7 +572,7 @@ export default function Week4PracticeWorkbook({
               {PRACTICE_PAGES.map((p) => (
                 <tr key={p.id}>
                   <td className="border border-border px-3 py-2 font-medium">{p.label}</td>
-                  <td className="border border-border px-3 py-2">
+                  <td className="border border-border px-3 py-2 w-px">
                     <WorkbookSelect
                       id={`skip-first-tab-${p.id}`}
                       value={state.skipLinkFirstTab[p.id]}
@@ -647,44 +656,73 @@ export default function Week4PracticeWorkbook({
                   </p>
                 </div>
                 {seed?.pauseRequired ? (
-                  <div>
-                    <WorkbookLabel htmlFor={`pause-${i}`} required>
-                      Pause, stop, or hide control
-                    </WorkbookLabel>
-                    <p className="text-xs text-text-secondary m-0 mb-2">
-                      Auto-playing content must provide a user control (WCAG 2.2.2).
-                    </p>
-                    <WorkbookTextarea
-                      id={`pause-${i}`}
-                      value={row.pauseControl}
-                      onChange={(e) => {
-                        const motionInventory = [...state.motionInventory];
-                        motionInventory[i] = { ...row, pauseControl: e.target.value };
-                        persist({ ...state, motionInventory });
-                      }}
-                      placeholder="e.g. Visible Pause button that stops auto-advance"
-                    />
-                  </div>
-                ) : null}
-                <div>
-                  <WorkbookLabel htmlFor={`rm-${i}`} required>
-                    Respects prefers-reduced-motion
-                  </WorkbookLabel>
-                  <p className="text-xs text-text-secondary m-0 mb-2">
-                    Describe the static version supplied when the user prefers reduced
-                    motion (no animation).
-                  </p>
-                  <WorkbookTextarea
-                    id={`rm-${i}`}
-                    value={row.reducedMotionAlt}
-                    onChange={(e) => {
+                  <WorkbookYesNoRadio
+                    name={`pause-choice-${row.id}`}
+                    legend="Pause, stop, or hide control"
+                    required
+                    hint="Auto-playing content must provide a user control (WCAG 2.2.2)."
+                    value={row.pauseControl === "yes" || row.pauseControl === "no" ? row.pauseControl : ""}
+                    onChange={(pauseControl) => {
                       const motionInventory = [...state.motionInventory];
-                      motionInventory[i] = { ...row, reducedMotionAlt: e.target.value };
+                      motionInventory[i] = { ...row, pauseControl };
                       persist({ ...state, motionInventory });
                     }}
-                    placeholder="e.g. Show slide 1 only; no auto-advance or cross-fade"
                   />
-                </div>
+                ) : null}
+                <WorkbookYesNoRadio
+                  name={`rm-choice-${row.id}`}
+                  legend="Respects prefers-reduced-motion"
+                  required
+                  hint="Does the live site disable or replace this motion when the user has reduced motion enabled?"
+                  value={row.respectsReducedMotion}
+                  onChange={(respectsReducedMotion) => {
+                    const motionInventory = [...state.motionInventory];
+                    motionInventory[i] = {
+                      ...row,
+                      respectsReducedMotion,
+                      reducedMotionAlt:
+                        respectsReducedMotion === "yes" &&
+                        motionRequiresReducedMotionStatic(seed)
+                          ? row.reducedMotionAlt
+                          : "",
+                    };
+                    persist({ ...state, motionInventory });
+                  }}
+                />
+                {row.respectsReducedMotion === "yes" &&
+                motionRequiresReducedMotionStatic(seed) ? (
+                  <div>
+                    <WorkbookLabel htmlFor={`rm-${i}`} required>
+                      Static version when reduced motion is on
+                    </WorkbookLabel>
+                    <p className="text-xs text-text-secondary m-0 mb-2">
+                      Describe what users see instead of the animated version (no
+                      auto-advance, cross-fade, or entrance motion).
+                    </p>
+                    <WorkbookTextarea
+                      id={`rm-${i}`}
+                      value={row.reducedMotionAlt}
+                      onChange={(e) => {
+                        const motionInventory = [...state.motionInventory];
+                        motionInventory[i] = { ...row, reducedMotionAlt: e.target.value };
+                        persist({ ...state, motionInventory });
+                      }}
+                      placeholder={
+                        seed.id === "hero-carousel"
+                          ? "e.g. Show slide 1 only; no auto-advance or cross-fade"
+                          : seed.id === "add-to-cart-transition"
+                            ? "e.g. Show checkmark instantly with no slide animation"
+                            : "e.g. Team photos visible immediately with no fade or slide"
+                      }
+                    />
+                  </div>
+                ) : row.respectsReducedMotion === "yes" &&
+                  !motionRequiresReducedMotionStatic(seed) ? (
+                  <p className="text-xs text-text-secondary m-0">
+                    Hover motion is turned off under prefers-reduced-motion; no separate
+                    static version is required.
+                  </p>
+                ) : null}
               </div>
             );
           })}

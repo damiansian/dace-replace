@@ -1,5 +1,9 @@
 import { matchesSkipLinkFirstTab } from "@/data/week4-practice/practice-overlays";
 import {
+  reducedMotionAnswered,
+  reducedMotionPasses,
+} from "@/lib/week4-practice-reduced-motion";
+import {
   EXPECTED_HTML_EQUIVALENTS,
   EXPECTED_LANDMARK_ROLES,
   MOTION_SEEDS,
@@ -147,13 +151,13 @@ function skipLinkItems(state: WorkbookState): GradeItem[] {
 function motionPauseItems(state: WorkbookState): GradeItem[] {
   return MOTION_SEEDS.filter((s) => s.pauseRequired).map((seed) => {
     const row = state.motionInventory.find((m) => m.id === seed.id);
-    const pause = row?.pauseControl.trim() ?? "";
-    const answered = Boolean(pause) && pause !== "N/A";
+    const pause = row?.pauseControl ?? "";
+    const answered = pause === "yes" || pause === "no";
     return {
       id: `pause-${seed.id}`,
       label: `${seed.label}: pause/stop/hide control`,
       answered,
-      pass: answered,
+      pass: pause === "yes",
     };
   });
 }
@@ -161,12 +165,11 @@ function motionPauseItems(state: WorkbookState): GradeItem[] {
 function reducedMotionItems(state: WorkbookState): GradeItem[] {
   return MOTION_SEEDS.map((seed) => {
     const row = state.motionInventory.find((m) => m.id === seed.id);
-    const alt = row?.reducedMotionAlt.trim() ?? "";
     return {
       id: `reduced-${seed.id}`,
-      label: `${seed.label}: prefers-reduced-motion alternative`,
-      answered: Boolean(alt),
-      pass: Boolean(alt),
+      label: `${seed.label}: prefers-reduced-motion`,
+      answered: reducedMotionAnswered(row),
+      pass: reducedMotionPasses(seed, row),
     };
   });
 }

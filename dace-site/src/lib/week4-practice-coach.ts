@@ -3,6 +3,10 @@ import {
   autoSelfAssessmentTotal,
   computeAutoSelfAssessment,
 } from "@/lib/week4-practice-auto-grade";
+import {
+  reducedMotionCoachMessage,
+  reducedMotionPasses,
+} from "@/lib/week4-practice-reduced-motion";
 import { matchesSkipLinkFirstTab } from "@/data/week4-practice/practice-overlays";
 import {
   EXPECTED_HTML_EQUIVALENTS,
@@ -108,21 +112,22 @@ export function runCoachChecks(state: WorkbookState): CoachCheck[] {
     const inv = state.motionInventory.find((m) => m.id === seed.id);
     checks.push({
       id: `motion-reduced-${seed.id}`,
-      pass: Boolean(inv?.reducedMotionAlt.trim()),
-      message: inv?.reducedMotionAlt.trim()
-        ? `${seed.label}: prefers-reduced-motion static alternative documented.`
-        : `${seed.label}: describe the static version when prefers-reduced-motion is enabled.`,
+      pass: reducedMotionPasses(seed, inv),
+      message: reducedMotionCoachMessage(seed, inv),
     });
 
     if (seed.pauseRequired) {
-      const pauseControl = inv?.pauseControl.trim() ?? "";
-      const pauseOk = Boolean(pauseControl) && pauseControl !== "N/A";
+      const pauseControl = inv?.pauseControl ?? "";
+      const pauseOk = pauseControl === "yes";
       checks.push({
         id: `motion-pause-${seed.id}`,
         pass: pauseOk,
-        message: pauseOk
-          ? `${seed.label}: pause/stop/hide control specified.`
-          : `${seed.label}: specify how users pause or stop auto-play.`,
+        message:
+          pauseControl === "yes"
+            ? `${seed.label}: pause/stop/hide control specified.`
+            : pauseControl === "no"
+              ? `${seed.label}: auto-play needs a pause, stop, or hide control (answer Yes).`
+              : `${seed.label}: choose Yes or No for pause/stop/hide control.`,
       });
     }
   }

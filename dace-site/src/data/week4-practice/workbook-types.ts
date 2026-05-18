@@ -35,8 +35,11 @@ export interface MotionInventoryRow {
   /** Intended motion from the written spec (mockup is static). */
   intendedMotion: string;
   pauseRequired: "yes" | "no" | "";
-  pauseControl: string;
-  /** Static alternative when prefers-reduced-motion is enabled. */
+  /** yes/no when pause is required; N/A otherwise (WCAG 2.2.2). */
+  pauseControl: "yes" | "no" | "N/A" | "";
+  /** Whether the live site respects prefers-reduced-motion for this element. */
+  respectsReducedMotion: "yes" | "no" | "";
+  /** Static alternative when prefers-reduced-motion is enabled (required for some motion types when yes). */
   reducedMotionAlt: string;
 }
 

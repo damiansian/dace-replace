@@ -133,6 +133,11 @@ export interface MotionSeed {
   pauseRequired: boolean;
 }
 
+/** When the student answers Yes, whether they must describe the static alternative. */
+export function motionRequiresReducedMotionStatic(seed: MotionSeed): boolean {
+  return seed.suggestedType !== "hover";
+}
+
 export const MOTION_SEEDS: MotionSeed[] = [
   {
     id: "hero-carousel",

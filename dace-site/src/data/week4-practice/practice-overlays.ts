@@ -12,29 +12,30 @@ export interface SkipTarget {
 }
 
 /** Numbered focus targets only — first control per group (nav, slides, footer, etc.). */
+/** Order sets dropdown/legend numbers; correct first-Tab target varies by page (not always 5). */
 export const SKIP_TARGETS_BY_PAGE: Record<PracticePageId, SkipTarget[]> = {
   home: [
     { id: "site-title", description: "Site title (Northstar Shop)" },
     { id: "nav-home", description: "Primary navigation (first link)" },
-    { id: "search", description: "Search field" },
-    { id: "welcome-heading", description: "Welcome back heading" },
     {
       id: "slide-1",
       description: "Featured promotions (first slide control)",
       isCorrectFirstTab: true,
     },
+    { id: "search", description: "Search field" },
+    { id: "welcome-heading", description: "Welcome back heading" },
     { id: "footer-privacy", description: "Footer links (first link)" },
   ],
   products: [
     { id: "site-title", description: "Site title (Northstar Shop)" },
-    { id: "nav-home", description: "Primary navigation (first link)" },
-    { id: "search", description: "Search field" },
-    { id: "products-heading", description: "Products heading" },
     {
       id: "trail-pack-cart",
       description: "Add to cart — Trail pack (first product action)",
       isCorrectFirstTab: true,
     },
+    { id: "nav-home", description: "Primary navigation (first link)" },
+    { id: "search", description: "Search field" },
+    { id: "products-heading", description: "Products heading" },
     { id: "footer-privacy", description: "Footer links (first link)" },
   ],
   about: [
@@ -42,12 +43,12 @@ export const SKIP_TARGETS_BY_PAGE: Record<PracticePageId, SkipTarget[]> = {
     { id: "nav-home", description: "Primary navigation (first link)" },
     { id: "search", description: "Search field" },
     { id: "about-heading", description: "About Northstar heading" },
+    { id: "footer-privacy", description: "Footer links (first link)" },
     {
       id: "alex-profile",
       description: "Team section (first profile control)",
       isCorrectFirstTab: true,
     },
-    { id: "footer-privacy", description: "Footer links (first link)" },
   ],
 };
 
