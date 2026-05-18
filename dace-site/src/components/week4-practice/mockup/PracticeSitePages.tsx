@@ -1,5 +1,14 @@
-import { PracticeSiteShell } from "./PracticeSiteShell";
+import type { PracticeOverlayMode } from "@/data/week4-practice/practice-overlays";
+import { MOTION_SEEDS } from "@/data/week4-practice/practice-zones";
 import type { PracticePageId } from "@/data/week4-practice/practice-zones";
+import { MotionTargetOutline } from "./MotionTargetOutline";
+import { PracticeSiteShell } from "./PracticeSiteShell";
+import { mockupControlProps } from "./MockupNonInteractiveNotice";
+import { SkipTargetOutline } from "./SkipTargetOutline";
+
+function motionSeed(id: string) {
+  return MOTION_SEEDS.find((s) => s.id === id);
+}
 
 function SidebarPromo() {
   return (
@@ -14,23 +23,72 @@ function SidebarPromo() {
   );
 }
 
-function HomeMain() {
-  return (
-    <>
+function HomeMain({
+  pageId,
+  overlayMode,
+}: {
+  pageId: PracticePageId;
+  overlayMode: PracticeOverlayMode;
+}) {
+  const heading =
+    overlayMode === "skipNav" ? (
+      <SkipTargetOutline targetId="welcome-heading" pageId={pageId} className="inline-block p-2 mb-2">
+        <h2 className="text-lg font-semibold text-foreground mt-0 m-0">Welcome back</h2>
+      </SkipTargetOutline>
+    ) : (
       <h2 className="text-lg font-semibold text-foreground mt-0">Welcome back</h2>
-      <section
-        className="rounded-md border border-border bg-surface p-4 mb-4"
-        aria-label="Hero carousel — motion item 1"
-      >
+    );
+
+  let promoBlock: React.ReactNode;
+
+  if (overlayMode === "landmark") {
+    promoBlock = (
+      <section className="rounded-md border border-border bg-surface p-4 mb-4">
+        <p className="text-sm font-medium text-foreground m-0 mb-2">Featured promotions</p>
+        <p className="text-sm text-text-secondary m-0">
+          Summer sale — up to 30% off trail gear through June.
+        </p>
+      </section>
+    );
+  } else if (overlayMode === "skipNav") {
+    promoBlock = (
+      <section className="rounded-md border border-border bg-surface p-4 mb-4">
+        <p className="text-sm font-medium text-foreground m-0 mb-3">Featured promotions</p>
+        <div className="flex gap-2 flex-wrap">
+          <SkipTargetOutline targetId="slide-1" pageId={pageId} className="inline-flex">
+            <button
+              type="button"
+              {...mockupControlProps}
+              className="rounded bg-primary/20 px-3 py-2 text-xs font-medium text-foreground"
+            >
+              Slide 1
+            </button>
+          </SkipTargetOutline>
+          <SkipTargetOutline targetId="slide-2" pageId={pageId} className="inline-flex">
+            <span className="rounded border border-dashed border-border px-3 py-2 text-xs text-text-secondary">
+              Slide 2
+            </span>
+          </SkipTargetOutline>
+          <SkipTargetOutline targetId="slide-3" pageId={pageId} className="inline-flex">
+            <span className="rounded border border-dashed border-border px-3 py-2 text-xs text-text-secondary">
+              Slide 3
+            </span>
+          </SkipTargetOutline>
+        </div>
+      </section>
+    );
+  } else {
+    const seed = motionSeed("hero-carousel");
+    const inner = (
+      <>
         <p className="text-sm text-foreground font-medium m-0 mb-1">
           Hero carousel (static preview)
         </p>
-        <p className="text-xs text-text-secondary m-0 mb-3">
-          Spec: auto-advances every 5 seconds. Requires pause control.
-        </p>
-        <div className="flex gap-2">
+        <p className="text-xs text-text-secondary m-0 mb-3">{seed?.defaultDescription}</p>
+        <div className="flex gap-2 flex-wrap">
           <button
             type="button"
+            {...mockupControlProps}
             className="rounded bg-primary/20 px-3 py-2 text-xs font-medium text-foreground"
           >
             Slide 1
@@ -44,109 +102,257 @@ function HomeMain() {
         </div>
         <button
           type="button"
+          {...mockupControlProps}
           className="mt-3 text-xs text-primary-text underline"
-          disabled
         >
-          Pause (shown in spec, not functional in preview)
+          Pause (static preview)
         </button>
+      </>
+    );
+    promoBlock = (
+      <section className="rounded-md border border-border bg-surface p-4 mb-4">
+        <MotionTargetOutline motionId="hero-carousel">{inner}</MotionTargetOutline>
       </section>
-      <p className="text-sm text-text-secondary">
-        Browse featured products below. Use the workbook to document landmarks and
-        motion for this page.
-      </p>
+    );
+  }
+
+  return (
+    <>
+      {heading}
+      {promoBlock}
+      {overlayMode === "landmark" ? (
+        <p className="text-sm text-text-secondary m-0">
+          Browse featured products in the catalog.
+        </p>
+      ) : null}
     </>
   );
 }
 
-function ProductsMain() {
+function ProductsMain({
+  pageId,
+  overlayMode,
+}: {
+  pageId: PracticePageId;
+  overlayMode: PracticeOverlayMode;
+}) {
+  const heading =
+    overlayMode === "skipNav" ? (
+      <SkipTargetOutline targetId="products-heading" pageId={pageId} className="inline-block p-2 mb-2">
+        <h2 className="text-lg font-semibold text-foreground mt-0 m-0">Products</h2>
+      </SkipTargetOutline>
+    ) : (
+      <h2 className="text-lg font-semibold text-foreground mt-0">Products</h2>
+    );
+
+  const cartTargetId = (name: string) => {
+    if (name === "Trail pack") return "trail-pack-cart";
+    if (name === "Desk lamp") return "desk-lamp-cart";
+    return "water-bottle-cart";
+  };
+
+  const renderProductCard = (name: string) => {
+    const cartButton = (
+      <button
+        type="button"
+        {...mockupControlProps}
+        className="rounded bg-primary px-3 py-1.5 text-xs font-medium text-white"
+        aria-label={`Add to cart, ${name}`}
+      >
+        Add to cart
+      </button>
+    );
+
+    const body = (
+      <>
+        <p className="font-medium text-foreground m-0 mb-2">{name}</p>
+        {overlayMode === "motion" ? (
+          <>
+            {name === "Trail pack" ? (
+              <p className="text-xs text-text-secondary m-0 mb-2">
+                {motionSeed("product-card-hover")?.defaultDescription}
+              </p>
+            ) : null}
+            <p className="text-xs text-text-secondary m-0 mb-2">
+              {name === "Trail pack"
+                ? motionSeed("add-to-cart-transition")?.defaultDescription
+                : null}
+            </p>
+          </>
+        ) : overlayMode === "landmark" ? (
+          <p className="text-xs text-text-secondary m-0 mb-2">$49.00</p>
+        ) : null}
+        {overlayMode === "skipNav" ? (
+          <SkipTargetOutline
+            targetId={cartTargetId(name)}
+            pageId={pageId}
+            className="inline-flex"
+          >
+            {cartButton}
+          </SkipTargetOutline>
+        ) : overlayMode === "motion" && name === "Trail pack" ? (
+          <MotionTargetOutline motionId="add-to-cart-transition" className="inline-flex">
+            {cartButton}
+          </MotionTargetOutline>
+        ) : (
+          cartButton
+        )}
+      </>
+    );
+
+    const card = (
+      <li key={name} className="rounded-md border border-border p-3">
+        {body}
+      </li>
+    );
+
+    if (overlayMode === "skipNav" && name === "Trail pack") {
+      return (
+        <SkipTargetOutline
+          key={name}
+          targetId="trail-pack-card"
+          pageId={pageId}
+          className="list-none"
+        >
+          {card}
+        </SkipTargetOutline>
+      );
+    }
+
+    if (overlayMode === "motion" && name === "Trail pack") {
+      return (
+        <MotionTargetOutline key={name} motionId="product-card-hover" className="list-none">
+          {card}
+        </MotionTargetOutline>
+      );
+    }
+
+    if (overlayMode === "motion") {
+      return (
+        <li
+          key={name}
+          className="rounded-md border border-border p-3 opacity-50 list-none"
+          aria-hidden="true"
+        >
+          <p className="font-medium text-foreground m-0 mb-2">{name}</p>
+        </li>
+      );
+    }
+
+    return card;
+  };
+
   return (
     <>
-      <h2 className="text-lg font-semibold text-foreground mt-0">Products</h2>
-      <p className="text-sm text-text-secondary mb-4">
-        Primary navigation matches Home and About (Home, Products, About).
-      </p>
+      {heading}
+      {overlayMode === "landmark" ? (
+        <p className="text-sm text-text-secondary mb-4 m-0">
+          Product grid in the main content region.
+        </p>
+      ) : null}
       <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 list-none m-0 p-0">
-        {["Trail pack", "Desk lamp", "Water bottle"].map((name) => (
-          <li
-            key={name}
-            className="rounded-md border border-border p-3"
-            aria-label={`${name} — hover scale motion item`}
-          >
-            <p className="font-medium text-foreground m-0 mb-2">{name}</p>
-            <p className="text-xs text-text-secondary m-0 mb-2">
-              Spec: card scales 4% on hover, 200ms.
-            </p>
-            <button
-              type="button"
-              className="rounded bg-primary px-3 py-1.5 text-xs font-medium text-white"
-              aria-label={`Add to cart, ${name}`}
-            >
-              Add to cart
-            </button>
-            <p className="text-xs text-text-secondary mt-2 m-0">
-              Spec: success uses sliding checkmark transition.
-            </p>
-          </li>
-        ))}
+        {["Trail pack", "Desk lamp", "Water bottle"].map(renderProductCard)}
       </ul>
     </>
   );
 }
 
-function AboutMain() {
-  return (
-    <>
+function AboutMain({
+  pageId,
+  overlayMode,
+}: {
+  pageId: PracticePageId;
+  overlayMode: PracticeOverlayMode;
+}) {
+  const heading =
+    overlayMode === "skipNav" ? (
+      <SkipTargetOutline targetId="about-heading" pageId={pageId} className="inline-block p-2 mb-2">
+        <h2 className="text-lg font-semibold text-foreground mt-0 m-0">About Northstar</h2>
+      </SkipTargetOutline>
+    ) : (
       <h2 className="text-lg font-semibold text-foreground mt-0">About Northstar</h2>
-      <p className="text-sm text-text-secondary">
-        We design outdoor gear for everyday adventures.
-      </p>
-      <section
-        className="mt-4"
-        aria-label="Team section — scroll-driven motion item"
-      >
-        <h3 className="text-base font-semibold text-foreground">Our team</h3>
-        <p className="text-xs text-text-secondary">
-          Spec: photos fade and slide up when scrolled into view.
-        </p>
-        <ul className="flex gap-3 list-none m-0 p-0 mt-2">
-          {["Alex", "Jordan", "Sam"].map((name) => (
-            <li key={name}>
-              {name === "Alex" ? (
+    );
+
+  const teamList = (
+    <ul className="flex gap-3 list-none m-0 p-0 mt-2">
+      {["Alex", "Jordan", "Sam"].map((name) => (
+        <li key={name}>
+          {name === "Alex" ? (
+            overlayMode === "skipNav" ? (
+              <SkipTargetOutline targetId="alex-profile" pageId={pageId} className="inline-flex">
                 <button
                   type="button"
-                  className="rounded-full bg-surface border border-border w-16 h-16 flex items-center justify-center text-xs text-text-secondary hover:bg-primary/5"
+                  {...mockupControlProps}
+                  className="rounded-full bg-surface border border-border w-16 h-16 flex items-center justify-center text-xs text-text-secondary"
                   aria-label={`${name} profile photo`}
                 >
                   {name}
                 </button>
-              ) : (
-                <span
-                  className="rounded-full bg-surface border border-border w-16 h-16 flex items-center justify-center text-xs text-text-secondary"
-                  aria-hidden="true"
-                >
-                  {name}
-                </span>
-              )}
-            </li>
-          ))}
-        </ul>
+              </SkipTargetOutline>
+            ) : (
+              <button
+                type="button"
+                {...mockupControlProps}
+                className="rounded-full bg-surface border border-border w-16 h-16 flex items-center justify-center text-xs text-text-secondary"
+                aria-label={`${name} profile photo`}
+              >
+                {name}
+              </button>
+            )
+          ) : (
+            <span
+              className="rounded-full bg-surface border border-border w-16 h-16 flex items-center justify-center text-xs text-text-secondary"
+              aria-hidden={overlayMode === "skipNav" ? undefined : "true"}
+            >
+              {name}
+            </span>
+          )}
+        </li>
+      ))}
+    </ul>
+  );
+
+  const teamSection =
+    overlayMode === "motion" ? (
+      <section className="mt-4">
+        <h3 className="text-base font-semibold text-foreground">Our team</h3>
+        <p className="text-xs text-text-secondary m-0 mb-2">
+          {motionSeed("about-team-fade")?.defaultDescription}
+        </p>
+        <MotionTargetOutline motionId="about-team-fade">{teamList}</MotionTargetOutline>
       </section>
+    ) : (
+      <section className="mt-4">
+        <h3 className="text-base font-semibold text-foreground">Our team</h3>
+        {teamList}
+      </section>
+    );
+
+  return (
+    <>
+      {heading}
+      <p className="text-sm text-text-secondary m-0">
+        We design outdoor gear for everyday adventures.
+      </p>
+      {teamSection}
     </>
   );
 }
 
 export function PracticeSitePage({
   pageId,
+  overlayMode = "landmark",
 }: {
   pageId: PracticePageId;
+  overlayMode?: PracticeOverlayMode;
 }) {
   const sidebar = pageId !== "about" ? <SidebarPromo /> : undefined;
 
   return (
-    <PracticeSiteShell pageId={pageId} sidebar={sidebar}>
-      {pageId === "home" && <HomeMain />}
-      {pageId === "products" && <ProductsMain />}
-      {pageId === "about" && <AboutMain />}
+    <PracticeSiteShell pageId={pageId} sidebar={sidebar} overlayMode={overlayMode}>
+      {pageId === "home" && <HomeMain pageId={pageId} overlayMode={overlayMode} />}
+      {pageId === "products" && <ProductsMain pageId={pageId} overlayMode={overlayMode} />}
+      {pageId === "about" && <AboutMain pageId={pageId} overlayMode={overlayMode} />}
     </PracticeSiteShell>
   );
 }

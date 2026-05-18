@@ -1,7 +1,13 @@
 import {
+  autoSelfAssessmentScores,
+  autoSelfAssessmentTotal,
+  computeAutoSelfAssessment,
+} from "@/lib/week4-practice-auto-grade";
+import { matchesSkipLinkFirstTab } from "@/data/week4-practice/practice-overlays";
+import {
+  EXPECTED_HTML_EQUIVALENTS,
   EXPECTED_LANDMARK_ROLES,
   MOTION_SEEDS,
-  matchesSkipLinkFirstTab,
   PRACTICE_PAGES,
   zoneDisplayName,
   zonesForPage,
@@ -49,6 +55,19 @@ export function runCoachChecks(state: WorkbookState): CoachCheck[] {
           : `${page.label} / ${zoneDisplayName(zone.id, page.id)}: expected role "${expected}", you chose "${row.role}".`,
       });
 
+      const expectedHtml = EXPECTED_HTML_EQUIVALENTS[zone.id];
+      const html = row.htmlEquivalent.trim();
+      const htmlOk = html === expectedHtml;
+      checks.push({
+        id: `zone-html-${page.id}-${zone.id}`,
+        pass: htmlOk,
+        message: htmlOk
+          ? `${page.label} / ${zoneDisplayName(zone.id, page.id)}: HTML "${html}" looks correct.`
+          : html
+            ? `${page.label} / ${zoneDisplayName(zone.id, page.id)}: expected HTML "${expectedHtml}", you chose "${html}".`
+            : `${page.label} / ${zoneDisplayName(zone.id, page.id)}: select an HTML equivalent.`,
+      });
+
       if (zone.nameRequired && !row.accessibleName.trim()) {
         checks.push({
           id: `nav-name-${page.id}-${zone.id}`,
@@ -72,6 +91,20 @@ export function runCoachChecks(state: WorkbookState): CoachCheck[] {
       ? "Skip link specification looks complete."
       : "Fill in skip link placement, target, visibility, and rationale.",
   });
+
+  for (const page of PRACTICE_PAGES) {
+    const navRow = state.landmarks[page.id]?.find((r) => r.zoneId === "primary-nav");
+    const navRole = navRow?.role?.trim() ?? "";
+    const navHtml = navRow?.htmlEquivalent?.trim() ?? "";
+    const navOk = navRole === "navigation" && navHtml === "nav";
+    checks.push({
+      id: `nav-consistency-${page.id}`,
+      pass: navOk,
+      message: navOk
+        ? `${page.label}: primary nav uses navigation + nav (consistent with other pages).`
+        : `${page.label}: set primary nav to role navigation and HTML nav on every page.`,
+    });
+  }
 
   for (const page of PRACTICE_PAGES) {
     const answer = state.skipLinkFirstTab[page.id] ?? "";
@@ -126,7 +159,9 @@ export function buildExportPayload(
   studentDisplayName?: string
 ) {
   const coachChecks = runCoachChecks(state);
-  const total = selfAssessmentTotal(state.selfAssessment);
+  const autoGrades = computeAutoSelfAssessment(state);
+  const scores = autoSelfAssessmentScores(autoGrades);
+  const total = autoSelfAssessmentTotal(autoGrades);
   return {
     assignmentId: "week-4-practice",
     submittedAt: new Date().toISOString(),
@@ -142,9 +177,18 @@ export function buildExportPayload(
     },
     coachChecks,
     selfAssessment: {
-      ...state.selfAssessment,
+      ...scores,
       total,
       passing: total >= 10,
+      autoGraded: true,
+      criteria: autoGrades.map((g) => ({
+        id: g.criterionId,
+        score: g.score,
+        explanation: g.explanation,
+        passedCount: g.passedCount,
+        totalCount: g.totalCount,
+        omittedCount: g.omittedCount,
+      })),
     },
   };
 }

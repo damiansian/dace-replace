@@ -56,7 +56,8 @@ export const PRACTICE_ZONES: PracticeZone[] = [
   },
   {
     id: "primary-nav",
-    description: "Horizontal list of page links in the header",
+    description:
+      "Horizontal list of page links in the header (use the same role and HTML on every page)",
     pages: ["home", "products", "about"],
     nameRequired: false,
   },
@@ -97,6 +98,16 @@ export const EXPECTED_LANDMARK_ROLES: Record<PracticeZoneId, string> = {
   "site-footer": "contentinfo",
 };
 
+export const EXPECTED_HTML_EQUIVALENTS: Record<PracticeZoneId, string> = {
+  "site-header": "header",
+  "primary-nav": "nav",
+  "site-search": "form[role=search]",
+  "main-content": "main",
+  sidebar: "aside",
+  "footer-nav": "nav",
+  "site-footer": "footer",
+};
+
 export const NAV_ITEMS = ["Home", "Products", "About"] as const;
 
 /** Same relative order on every page (SC 3.2.3). */
@@ -107,25 +118,6 @@ export const NAV_ORDER_BY_PAGE: Record<PracticePageId, readonly string[]> = {
 };
 
 export type SkipLinkFirstTabByPage = Record<PracticePageId, string>;
-
-/** Coach check: first Tab stop in main after skip link (per page). */
-export function matchesSkipLinkFirstTab(
-  pageId: PracticePageId,
-  answer: string
-): boolean {
-  const normalized = answer.trim().toLowerCase();
-  if (!normalized) return false;
-  switch (pageId) {
-    case "home":
-      return /slide\s*1/.test(normalized);
-    case "products":
-      return /add\s*to\s*cart/.test(normalized) && /trail\s*pack/.test(normalized);
-    case "about":
-      return /alex/.test(normalized);
-    default:
-      return false;
-  }
-}
 
 export interface MotionSeed {
   id: string;
@@ -208,27 +200,29 @@ export const MOTION_TYPES = [
   "flash-risk",
 ] as const;
 
-export const MASTERY_SCALE = [
+/** Auto-grade rubric (1–4 per category, 20 points total). */
+export const AUTO_GRADE_SCALE = [
   {
     score: 4,
-    label: "Exceeds Mastery",
-    description:
-      "Thorough, precise specs. Edge cases handled. Engineering could implement without follow-up.",
+    label: "Totally correct",
+    description: "Every required item in this category is answered and correct.",
   },
   {
     score: 3,
-    label: "Meets Mastery",
-    description: "All requirements met. Minor gaps on edge cases only.",
+    label: "Missed some",
+    description:
+      "Every required item is answered; most are correct but one or more need fixes.",
   },
   {
     score: 2,
-    label: "Near Mastery",
-    description: "Concepts understood but execution has gaps (about 70–89%).",
+    label: "Missed most",
+    description:
+      "Every required item is answered; most are incorrect or incomplete.",
   },
   {
     score: 1,
-    label: "Below Mastery",
-    description: "Significant gaps in understanding or execution.",
+    label: "Omitted",
+    description: "One or more required responses in this category were left blank.",
   },
 ] as const;
 

@@ -3,6 +3,7 @@ import {
   type PracticePageId,
   type PracticeZoneId,
 } from "@/data/week4-practice/practice-zones";
+import { NumberedOutline } from "./NumberedOutline";
 
 const ZONE_COLORS: Record<PracticeZoneId, string> = {
   "site-header": "border-primary bg-primary/5",
@@ -25,18 +26,15 @@ export function ZoneOutline({
   children: React.ReactNode;
   className?: string;
 }) {
+  const number = getZoneNumber(zoneId, pageId);
   return (
-    <div
-      data-practice-zone={zoneId}
-      className={`relative border-2 border-dashed rounded-md ${ZONE_COLORS[zoneId]} ${className}`}
+    <NumberedOutline
+      number={number}
+      mode="landmark"
+      dataAttr={{ name: "data-practice-zone", value: zoneId }}
+      className={`${ZONE_COLORS[zoneId]} ${className}`}
     >
-      <span
-        className="absolute top-2 left-2 z-10 inline-flex h-6 min-w-6 items-center justify-center rounded-full bg-foreground px-1.5 text-xs font-bold text-white shadow-sm"
-        aria-hidden="true"
-      >
-        {getZoneNumber(zoneId, pageId)}
-      </span>
       {children}
-    </div>
+    </NumberedOutline>
   );
 }

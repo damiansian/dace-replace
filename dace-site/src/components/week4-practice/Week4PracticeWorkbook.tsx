@@ -1,13 +1,14 @@
 "use client";
 
+import Link from "next/link";
 import { useCallback, useEffect, useMemo, useState } from "react";
+import { getMotionNumber } from "@/data/week4-practice/practice-overlays";
 import {
   HTML_EQUIVALENTS,
   LANDMARK_ROLES,
   MOTION_SEEDS,
-  MASTERY_SCALE,
+  AUTO_GRADE_SCALE,
   PRACTICE_PAGES,
-  SELF_ASSESSMENT_CRITERIA,
   zoneDisplayName,
   zonesForPage,
   type PracticePageId,
@@ -18,10 +19,10 @@ import {
   type WorkbookState,
 } from "@/data/week4-practice/workbook-types";
 import {
-  buildExportPayload,
-  runCoachChecks,
-  selfAssessmentTotal,
-} from "@/lib/week4-practice-coach";
+  autoSelfAssessmentTotal,
+  computeAutoSelfAssessment,
+} from "@/lib/week4-practice-auto-grade";
+import { buildExportPayload, runCoachChecks } from "@/lib/week4-practice-coach";
 import {
   mergeWorkbookDraft,
   saveWorkbookDraft,
@@ -35,12 +36,31 @@ import {
 } from "./WorkbookField";
 
 const STEPS = [
+  "Start",
   "Explore practice site",
   "Landmark identification",
   "Skip links",
   "Motion",
   "Review and self-assess",
 ] as const;
+
+const STEP_TITLE_CLASS = "text-xl font-semibold text-foreground m-0";
+
+function stepNumber(stepIndex: number): number {
+  return stepIndex + 1;
+}
+
+function stepHeading(stepIndex: number): string {
+  return `Step ${stepNumber(stepIndex)}. ${STEPS[stepIndex]}`;
+}
+
+function backToStepLabel(targetStepIndex: number): string {
+  return `Back to Step ${stepNumber(targetStepIndex)}`;
+}
+
+function continueToStepLabel(targetStepIndex: number): string {
+  return `Continue to Step ${stepNumber(targetStepIndex)}`;
+}
 
 function ensureLandmarks(pageId: PracticePageId, rows: WorkbookState["landmarks"][PracticePageId]) {
   const zones = zonesForPage(pageId);
@@ -91,10 +111,13 @@ export default function Week4PracticeWorkbook({
   accessToken,
   studentDisplayName,
   previewMode = true,
+  livePracticeHref,
 }: {
   accessToken?: string;
   studentDisplayName?: string;
   previewMode?: boolean;
+  /** Instructor preview: link to unchanged live applied practice page. */
+  livePracticeHref?: string;
 }) {
   const [state, setState] = useState<WorkbookState>(() => {
     const merged = mergeWorkbookDraft(accessToken);
@@ -116,6 +139,7 @@ export default function Week4PracticeWorkbook({
   const [previewPage, setPreviewPage] = useState<PracticePageId>("home");
   const [landmarkPage, setLandmarkPage] = useState<PracticePageId>("home");
   const [skipTabPage, setSkipTabPage] = useState<PracticePageId>("home");
+  const [motionPage, setMotionPage] = useState<PracticePageId>("home");
   const [exportStatus, setExportStatus] = useState<string | null>(null);
 
   const persist = useCallback(
@@ -132,7 +156,8 @@ export default function Week4PracticeWorkbook({
 
   const coachChecks = useMemo(() => runCoachChecks(state), [state]);
   const coachPassCount = coachChecks.filter((c) => c.pass).length;
-  const selfTotal = selfAssessmentTotal(state.selfAssessment);
+  const autoGrades = useMemo(() => computeAutoSelfAssessment(state), [state]);
+  const selfTotal = autoSelfAssessmentTotal(autoGrades);
 
   const step = state.currentStep;
 
@@ -202,7 +227,7 @@ export default function Week4PracticeWorkbook({
                       : "bg-white text-text-secondary border-border"
                 }`}
               >
-                {i + 1}. {label}
+                {stepHeading(i)}
               </button>
             </li>
           ))}
@@ -210,42 +235,133 @@ export default function Week4PracticeWorkbook({
       </nav>
 
       <div aria-live="polite" className="sr-only">
-        Step {step + 1} of {STEPS.length}: {STEPS[step]}
+        {stepHeading(step)} ({stepNumber(step)} of {STEPS.length})
       </div>
 
       {step === 0 && (
-        <section className="space-y-4">
-          <h2 className="text-xl font-semibold text-foreground">Explore the practice site</h2>
-          <p className="text-sm text-text-secondary">
-            Northstar Shop is a simplified three-page mockup. Numbered dashed borders
-            mark regions you will identify in the next step (roles are not labeled).
-            Motion is described in text only (nothing auto-plays).
-          </p>
-          <PracticeSite
-            showZoneLegend
-            pageId={previewPage}
-            onPageChange={setPreviewPage}
-          />
+        <section className="space-y-6" aria-labelledby="workbook-title">
+          {previewMode ? (
+            <div
+              role="status"
+              className="rounded-lg border-2 border-amber-500 bg-amber-50 px-4 py-3 text-sm text-foreground"
+            >
+              <p className="font-semibold m-0 mb-1">
+                Instructor preview — not the student assignment yet
+              </p>
+              <p className="m-0 text-text-secondary">
+                Review the Northstar Shop mockup and workbook here. The public{" "}
+                {livePracticeHref ? (
+                  <Link href={livePracticeHref} className="text-primary-text underline">
+                    applied practice page
+                  </Link>
+                ) : (
+                  "applied practice page"
+                )}{" "}
+                still uses the Figma workflow until you approve this sample.
+              </p>
+            </div>
+          ) : null}
+
+          <header className="space-y-3">
+            <div className="flex flex-wrap gap-2">
+              {previewMode ? (
+                <span className="inline-flex items-center rounded-full bg-amber-100 px-3 py-1 text-sm font-medium text-amber-900">
+                  Preview
+                </span>
+              ) : null}
+              <span className="inline-flex items-center rounded-full bg-primary/10 px-3 py-1 text-sm font-medium text-primary-dark">
+                Discover Badge
+              </span>
+              <span className="inline-flex items-center rounded-full bg-accent-green/10 px-3 py-1 text-sm font-medium text-accent-green">
+                20 Points (auto-graded)
+              </span>
+            </div>
+            <h1 id="workbook-title" className="text-3xl font-bold tracking-tight text-foreground m-0">
+              Week 4: Structure &amp; Motion Workbook
+              {previewMode ? " (sample)" : ""}
+            </h1>
+            <p className="text-base text-text-secondary max-w-3xl m-0">
+              Landmarks, navigation consistency, skip links, and motion planning on a
+              built-in practice site. Export JSON when finished
+              {previewMode ? "; live submission wiring comes after approval." : "."}
+            </p>
+          </header>
+
+          {previewMode ? (
+            <section
+              className="rounded-lg border border-border bg-surface p-4 text-sm text-text-secondary"
+              aria-labelledby="review-heading"
+            >
+              <h2 id="review-heading" className="text-base font-semibold text-foreground mt-0 mb-2">
+                What to review before approving
+              </h2>
+              <ul className="list-disc list-inside space-y-1 m-0">
+                <li>Is one footer landmark (links + copyright) clear on all three pages?</li>
+                <li>Do skip-link spec and first-Tab focus answers feel like real assessment?</li>
+                <li>Does the single Motion step (spec + prefers-reduced-motion) assess enough?</li>
+                <li>Does auto-grading match the rubric (4 / 3 / 2 / 1) fairly for your cohort?</li>
+              </ul>
+            </section>
+          ) : null}
+
           <button
             type="button"
             onClick={() => goStep(1)}
             className="rounded-lg bg-primary px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-dark"
           >
-            Continue to landmarks
+            {continueToStepLabel(1)}
           </button>
         </section>
       )}
 
       {step === 1 && (
-        <section className="space-y-4">
-          <h2 className="text-xl font-semibold text-foreground">Landmark identification</h2>
+        <section className="space-y-4" aria-labelledby="step-page-heading">
+          <h1 id="step-page-heading" className={STEP_TITLE_CLASS}>
+            {stepHeading(1)}
+          </h1>
           <p className="text-sm text-text-secondary">
-            Use the numbered regions on the mockup below. For each zone, choose the
-            ARIA role, accessible name (only when the pattern requires one), and
-            HTML equivalent. Zone numbers match the dashed borders on the site.
+            Northstar Shop is a simplified three-page mockup. The next step uses
+            numbered zones for landmark identification. Each later step shows only
+            the overlay relevant to that task.
           </p>
           <PracticeSite
-            showZoneLegend={false}
+            overlayMode="landmark"
+            showLegend
+            pageId={previewPage}
+            onPageChange={setPreviewPage}
+          />
+          <div className="flex gap-3">
+            <button
+              type="button"
+              onClick={() => goStep(0)}
+              className="text-sm underline text-primary-text"
+            >
+              {backToStepLabel(0)}
+            </button>
+            <button
+              type="button"
+              onClick={() => goStep(2)}
+              className="rounded-lg bg-primary px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-dark"
+            >
+              {continueToStepLabel(2)}
+            </button>
+          </div>
+        </section>
+      )}
+
+      {step === 2 && (
+        <section className="space-y-4" aria-labelledby="step-page-heading">
+          <h1 id="step-page-heading" className={STEP_TITLE_CLASS}>
+            {stepHeading(2)}
+          </h1>
+          <p className="text-sm text-text-secondary">
+            Use the numbered regions on the mockup below. For each zone, choose the
+            ARIA role and HTML equivalent (required for auto-grading). Add an accessible
+            name only when the pattern requires one. Zone numbers match the dashed borders.
+          </p>
+          <PracticeSite
+            overlayMode="landmark"
+            showLegend
             pageId={landmarkPage}
             onPageChange={setLandmarkPage}
           />
@@ -283,13 +399,13 @@ export default function Week4PracticeWorkbook({
                     Zone
                   </th>
                   <th scope="col" className="border border-border px-2 py-2 text-left">
-                    ARIA role
+                    ARIA role <span className="text-accent-green">*</span>
                   </th>
                   <th scope="col" className="border border-border px-2 py-2 text-left">
                     Accessible name
                   </th>
                   <th scope="col" className="border border-border px-2 py-2 text-left">
-                    HTML
+                    HTML <span className="text-accent-green">*</span>
                   </th>
                   <th scope="col" className="border border-border px-2 py-2 text-left">
                     Notes
@@ -378,31 +494,35 @@ export default function Week4PracticeWorkbook({
             </table>
           </div>
           <div className="flex gap-3">
-            <button type="button" onClick={() => goStep(0)} className="text-sm underline text-primary-text">
-              Back
+            <button type="button" onClick={() => goStep(1)} className="text-sm underline text-primary-text">
+              {backToStepLabel(1)}
             </button>
             <button
               type="button"
-              onClick={() => goStep(2)}
+              onClick={() => goStep(3)}
               className="rounded-lg bg-primary px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-dark"
             >
-              Continue
+              {continueToStepLabel(3)}
             </button>
           </div>
         </section>
       )}
 
-      {step === 2 && (
-        <section className="space-y-4">
-          <h2 className="text-xl font-semibold text-foreground">Skip links</h2>
+      {step === 3 && (
+        <section className="space-y-4" aria-labelledby="step-page-heading">
+          <h1 id="step-page-heading" className={STEP_TITLE_CLASS}>
+            {stepHeading(3)}
+          </h1>
           <p className="text-sm text-text-secondary">
-            Specify how the skip link works, then trace where focus lands in the mockup
-            after skip link activation and one Tab press.
+            Complete every skip link field (required), then trace where focus lands in the
+            mockup after skip link activation and one Tab press.
           </p>
-          <h3 className="text-lg font-semibold text-foreground">Skip link specification</h3>
+          <h2 className="text-lg font-semibold text-foreground">Skip link specification</h2>
           <div className="grid gap-4 sm:grid-cols-2">
             <div>
-              <WorkbookLabel htmlFor="skip-label">Link text</WorkbookLabel>
+              <WorkbookLabel htmlFor="skip-label" required>
+                Link text
+              </WorkbookLabel>
               <WorkbookInput
                 id="skip-label"
                 value={state.skipLink.label}
@@ -415,7 +535,9 @@ export default function Week4PracticeWorkbook({
               />
             </div>
             <div>
-              <WorkbookLabel htmlFor="skip-target">Destination id</WorkbookLabel>
+              <WorkbookLabel htmlFor="skip-target" required>
+                Destination id
+              </WorkbookLabel>
               <WorkbookInput
                 id="skip-target"
                 value={state.skipLink.targetId}
@@ -428,7 +550,9 @@ export default function Week4PracticeWorkbook({
               />
             </div>
             <div className="sm:col-span-2">
-              <WorkbookLabel htmlFor="skip-placement">Placement</WorkbookLabel>
+              <WorkbookLabel htmlFor="skip-placement" required>
+                Placement
+              </WorkbookLabel>
               <WorkbookInput
                 id="skip-placement"
                 value={state.skipLink.placement}
@@ -441,7 +565,9 @@ export default function Week4PracticeWorkbook({
               />
             </div>
             <div>
-              <WorkbookLabel htmlFor="skip-vis">Visibility</WorkbookLabel>
+              <WorkbookLabel htmlFor="skip-vis" required>
+                Visibility
+              </WorkbookLabel>
               <WorkbookSelect
                 id="skip-vis"
                 value={state.skipLink.visibility}
@@ -461,7 +587,9 @@ export default function Week4PracticeWorkbook({
               </WorkbookSelect>
             </div>
             <div className="sm:col-span-2">
-              <WorkbookLabel htmlFor="skip-rationale">Rationale</WorkbookLabel>
+              <WorkbookLabel htmlFor="skip-rationale" required>
+                Rationale
+              </WorkbookLabel>
               <WorkbookTextarea
                 id="skip-rationale"
                 value={state.skipLink.rationale}
@@ -475,17 +603,18 @@ export default function Week4PracticeWorkbook({
             </div>
           </div>
 
-          <h3 className="text-lg font-semibold text-foreground mt-6">
+          <h2 className="text-lg font-semibold text-foreground mt-6">
             First Tab stop after skip link
-          </h3>
+          </h2>
           <p className="text-sm text-text-secondary">
             Assume your skip link moves focus to the main content region (
             <code className="text-xs">#main-content</code>). On each page, what is the
             first element that receives focus when you press Tab once from there? Use the
-            mockup to trace focus order.
+            numbered targets on the mockup (amber outlines) or name the control.
           </p>
           <PracticeSite
-            showZoneLegend={false}
+            overlayMode="skipNav"
+            showLegend
             pageId={skipTabPage}
             onPageChange={setSkipTabPage}
           />
@@ -496,7 +625,7 @@ export default function Week4PracticeWorkbook({
                   Page
                 </th>
                 <th scope="col" className="border border-border px-3 py-2 text-left">
-                  First element after one Tab
+                  First element after one Tab <span className="text-accent-green">*</span>
                 </th>
               </tr>
             </thead>
@@ -518,7 +647,7 @@ export default function Week4PracticeWorkbook({
                         })
                       }
                       aria-label={`First Tab stop on ${p.label} after skip link`}
-                      placeholder="Name or describe the control"
+                      placeholder="Target number or control name (e.g. 7 or Slide 1)"
                     />
                   </td>
                 </tr>
@@ -526,29 +655,38 @@ export default function Week4PracticeWorkbook({
             </tbody>
           </table>
           <div className="flex gap-3">
-            <button type="button" onClick={() => goStep(1)} className="text-sm underline text-primary-text">
-              Back
+            <button type="button" onClick={() => goStep(2)} className="text-sm underline text-primary-text">
+              {backToStepLabel(2)}
             </button>
             <button
               type="button"
-              onClick={() => goStep(3)}
+              onClick={() => goStep(4)}
               className="rounded-lg bg-primary px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-dark"
             >
-              Continue
+              {continueToStepLabel(4)}
             </button>
           </div>
         </section>
       )}
 
-      {step === 3 && (
-        <section className="space-y-4">
-          <h2 className="text-xl font-semibold text-foreground">Motion</h2>
+      {step === 4 && (
+        <section className="space-y-4" aria-labelledby="step-page-heading">
+          <h1 id="step-page-heading" className={STEP_TITLE_CLASS}>
+            {stepHeading(4)}
+          </h1>
           <p className="text-sm text-text-secondary">
-            The mockup is static (no animation plays). Each card quotes the written
-            spec for intended motion. Describe how the live site respects{" "}
+            The mockup is static (no animation plays). Numbered regions match the
+            motion list (1–4). Each card below quotes the written spec. Describe how
+            the live site respects{" "}
             <code className="text-xs">prefers-reduced-motion</code> with a static
             alternative.
           </p>
+          <PracticeSite
+            overlayMode="motion"
+            showLegend
+            pageId={motionPage}
+            onPageChange={setMotionPage}
+          />
           {state.motionInventory.map((row, i) => {
             const seed = MOTION_SEEDS.find((s) => s.id === row.id);
             return (
@@ -557,7 +695,7 @@ export default function Week4PracticeWorkbook({
                 className="rounded-lg border border-border p-4 space-y-3"
               >
                 <div>
-                  <p className="font-medium text-foreground m-0">{row.element}</p>
+                  <p className="font-medium text-foreground m-0">{getMotionNumber(row.id)}. {row.element}</p>
                   {seed ? (
                     <p className="text-xs text-text-secondary m-0 mt-1">{seed.location}</p>
                   ) : null}
@@ -613,29 +751,31 @@ export default function Week4PracticeWorkbook({
             );
           })}
           <div className="flex gap-3">
-            <button type="button" onClick={() => goStep(2)} className="text-sm underline text-primary-text">
-              Back
+            <button type="button" onClick={() => goStep(3)} className="text-sm underline text-primary-text">
+              {backToStepLabel(3)}
             </button>
             <button
               type="button"
-              onClick={() => goStep(4)}
+              onClick={() => goStep(5)}
               className="rounded-lg bg-primary px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-dark"
             >
-              Review
+              {continueToStepLabel(5)}
             </button>
           </div>
         </section>
       )}
 
-      {step === 4 && (
-        <section className="space-y-6">
-          <h2 className="text-xl font-semibold text-foreground">Review and self-assess</h2>
+      {step === 5 && (
+        <section className="space-y-6" aria-labelledby="step-page-heading">
+          <h1 id="step-page-heading" className={STEP_TITLE_CLASS}>
+            {stepHeading(5)}
+          </h1>
 
           <div className="rounded-lg border border-border p-4 space-y-2">
-            <h3 className="text-base font-semibold text-foreground m-0">Coach checks</h3>
+            <h2 className="text-base font-semibold text-foreground m-0">Coach checks</h2>
             <p className="text-sm text-text-secondary m-0">
-              {coachPassCount} of {coachChecks.length} checks passing. These are hints
-              only; your self-score is what counts.
+              {coachPassCount} of {coachChecks.length} checks passing. Item-level feedback
+              below drives your auto-graded score.
             </p>
             <ul className="list-none m-0 p-0 space-y-2 max-h-64 overflow-y-auto">
               {coachChecks.map((c) => (
@@ -652,61 +792,66 @@ export default function Week4PracticeWorkbook({
           </div>
 
           <div className="space-y-6">
-            <h3 className="text-base font-semibold text-foreground">Self-assessment</h3>
-            <p className="text-sm text-text-secondary">
-              Score yourself honestly against the rubric (20 points total, passing 10+).
+            <h2 className="text-base font-semibold text-foreground">Auto-graded score</h2>
+            <p className="text-sm text-text-secondary m-0">
+              20 points total (5 categories × 4 points). Passing is 10+. Scores update
+              automatically from your answers.
             </p>
-            {SELF_ASSESSMENT_CRITERIA.map((crit) => {
-              const key = crit.id as keyof WorkbookState["selfAssessment"];
-              return (
-                <fieldset
-                  key={crit.id}
-                  className="rounded-lg border border-border p-4 space-y-3"
-                >
-                  <legend className="text-sm font-semibold text-foreground px-1">
-                    {crit.label} ({crit.outcome}) — up to 4 points
-                  </legend>
-                  <div className="grid gap-2 sm:grid-cols-2">
-                    {MASTERY_SCALE.map((level) => (
-                      <label
-                        key={level.score}
-                        className={`flex gap-2 rounded-md border p-3 cursor-pointer text-sm ${
-                          state.selfAssessment[key] === level.score
-                            ? "border-primary bg-primary/5"
-                            : "border-border"
-                        }`}
-                      >
-                        <input
-                          type="radio"
-                          name={`self-${crit.id}`}
-                          checked={state.selfAssessment[key] === level.score}
-                          onChange={() =>
-                            persist({
-                              ...state,
-                              selfAssessment: {
-                                ...state.selfAssessment,
-                                [key]: level.score,
-                              },
-                            })
-                          }
-                          className="mt-1"
-                        />
-                        <span>
-                          <span className="font-semibold text-foreground">
-                            {level.score} — {level.label}
-                          </span>
-                          <span className="block text-text-secondary text-xs mt-1">
-                            {level.description}
-                          </span>
-                        </span>
-                      </label>
-                    ))}
-                  </div>
-                </fieldset>
-              );
-            })}
+            <div className="rounded-lg border border-border bg-surface p-3 text-xs text-text-secondary">
+              <p className="font-semibold text-foreground m-0 mb-2">Scoring scale</p>
+              <ul className="list-none m-0 p-0 space-y-1">
+                {AUTO_GRADE_SCALE.map((level) => (
+                  <li key={level.score}>
+                    <span className="font-mono text-foreground">{level.score}</span> —{" "}
+                    {level.label}: {level.description}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            {autoGrades.map((grade) => (
+              <div
+                key={grade.criterionId}
+                className="rounded-lg border border-border p-4 space-y-3"
+              >
+                <div className="flex flex-wrap items-baseline justify-between gap-2">
+                  <p className="text-sm font-semibold text-foreground m-0">
+                    {grade.label} ({grade.outcome})
+                  </p>
+                  <p className="text-lg font-bold text-foreground m-0">
+                    {grade.score}{" "}
+                    <span className="text-sm font-normal text-text-secondary">/ 4</span>
+                  </p>
+                </div>
+                <p className="text-sm text-foreground m-0">{grade.explanation}</p>
+                <p className="text-xs text-text-secondary m-0">
+                  {grade.passedCount} of {grade.totalCount} items correct
+                  {grade.omittedCount > 0 ? ` · ${grade.omittedCount} omitted` : ""}
+                </p>
+                <ul className="list-none m-0 p-0 space-y-1 max-h-40 overflow-y-auto">
+                  {grade.items.map((item) => (
+                    <li
+                      key={item.id}
+                      className={`text-xs pl-3 border-l-4 ${
+                        !item.answered
+                          ? "border-amber-500"
+                          : item.pass
+                            ? "border-accent-green"
+                            : "border-amber-500"
+                      }`}
+                    >
+                      {item.label}
+                      {!item.answered
+                        ? " — omitted"
+                        : item.pass
+                          ? " — correct"
+                          : " — needs fix"}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
             <p className="text-lg font-semibold text-foreground">
-              Your self-reported total: {selfTotal} / 20
+              Your total: {selfTotal} / 20
               {selfTotal >= 10 ? (
                 <span className="text-accent-green text-base font-normal ml-2">
                   (meets passing threshold)
@@ -739,8 +884,8 @@ export default function Week4PracticeWorkbook({
             >
               Export audit JSON
             </button>
-            <button type="button" onClick={() => goStep(3)} className="text-sm underline text-primary-text py-2.5">
-              Back
+            <button type="button" onClick={() => goStep(4)} className="text-sm underline text-primary-text py-2.5">
+              {backToStepLabel(4)}
             </button>
           </div>
           {exportStatus && (
