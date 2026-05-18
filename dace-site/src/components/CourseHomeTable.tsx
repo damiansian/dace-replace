@@ -212,7 +212,7 @@ export default function CourseHomeTable({
               colSpan={4}
               className="border border-border bg-surface px-4 py-3 text-xs text-text-secondary"
             >
-              Due dates are end of day (11:59 PM) on the listed date.
+              Due dates are end of day (11:59 PM EST) on the listed date.
             </td>
           </tr>
         </tfoot>
