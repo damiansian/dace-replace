@@ -10,6 +10,10 @@ import {
   latestSubmission,
   type StudentProgressSnapshot,
 } from "@/lib/student-progress";
+import {
+  WEEK4_WORKBOOK_QUIZ_ID,
+  WEEK4_WORKBOOK_TOTAL_POINTS,
+} from "@/lib/week4-practice-score";
 
 type WeekCount = { complete: number; total: number };
 
@@ -81,6 +85,12 @@ export default function CourseHomeTable({
             const appliedGrade =
               snapshot && appliedLatest
                 ? snapshot.gradeBySubmission.get(appliedLatest.id) ?? null
+                : null;
+            const workbookBest =
+              snapshot && week.appliedSkill.progressId === "week-4-practice"
+                ? bestQuiz(
+                    snapshot.quizzesById.get(WEEK4_WORKBOOK_QUIZ_ID) ?? []
+                  )
                 : null;
 
             return week.lessons.map((lesson, lessonIdx) => {
@@ -176,6 +186,12 @@ export default function CourseHomeTable({
                             {week.appliedSkill.title}
                           </Link>
                         </div>
+                        {workbookBest && (
+                          <p className="pl-7 text-xs text-text-secondary">
+                            Best workbook score {workbookBest.score}/
+                            {workbookBest.total ?? WEEK4_WORKBOOK_TOTAL_POINTS}
+                          </p>
+                        )}
                         {appliedLatest && (
                           <div className="pl-7 text-xs text-text-secondary">
                             <p>Submitted {formatDate(appliedLatest.submittedAt)}</p>

@@ -8,7 +8,6 @@ import {
   type PracticeOverlayMode,
 } from "@/data/week4-practice/practice-overlays";
 import {
-  MOTION_SEEDS,
   PRACTICE_PAGES,
   getZoneNumber,
   zonesForPage,
@@ -87,27 +86,10 @@ function OverlayLegend({
       <ul className="list-none m-0 p-0 space-y-1">
         {onPage.map((m) => (
           <li key={m.id}>
-            <span className="font-mono text-foreground">{getMotionNumber(m.id)}.</span>{" "}
+            <span className="font-mono text-foreground">
+              {getMotionNumber(m.id, pageId)}.
+            </span>{" "}
             {m.label}
-          </li>
-        ))}
-      </ul>
-      {onPage.length === 0 ? (
-        <p className="m-0 mt-2">Switch tabs to find the other motion targets.</p>
-      ) : null}
-    </div>
-  );
-}
-
-function MotionInventoryList() {
-  return (
-    <div className="rounded-lg border border-border p-3">
-      <p className="text-sm font-semibold text-foreground m-0 mb-2">All motion items (1–4)</p>
-      <ul className="list-none m-0 p-0 space-y-1 text-sm text-text-secondary">
-        {MOTION_SEEDS.map((m) => (
-          <li key={m.id}>
-            <span className="font-mono text-foreground">{getMotionNumber(m.id)}.</span>{" "}
-            <strong className="text-foreground font-medium">{m.label}</strong> — {m.location}
           </li>
         ))}
       </ul>
@@ -158,8 +140,6 @@ export default function PracticeSite({
       {showLegend ? <OverlayLegend overlayMode={overlayMode} pageId={pageId} /> : null}
 
       <PracticeSitePage pageId={pageId} overlayMode={overlayMode} />
-
-      {overlayMode === "motion" ? <MotionInventoryList /> : null}
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import { db } from "@/db";
 import { quizResults, submissions, grades } from "@/db/schema";
 import { progressCatalog, type CatalogItem } from "@/data/progress-catalog";
+import { WEEK4_WORKBOOK_QUIZ_ID } from "@/lib/week4-practice-score";
 import { desc, eq, inArray } from "drizzle-orm";
 
 export type QuizRow = typeof quizResults.$inferSelect;
@@ -36,6 +37,12 @@ function catalogItemCompleteFromMaps(
 ): boolean {
   if (item.kind === "quiz") {
     return Boolean(bestQuiz(quizzesById.get(item.id) ?? []));
+  }
+  if (item.id === "week-4-practice") {
+    return (
+      Boolean(bestQuiz(quizzesById.get(WEEK4_WORKBOOK_QUIZ_ID) ?? [])) ||
+      Boolean(latestSubmission(submissionsById.get(item.id) ?? []))
+    );
   }
   return Boolean(latestSubmission(submissionsById.get(item.id) ?? []));
 }

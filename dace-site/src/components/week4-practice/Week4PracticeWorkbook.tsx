@@ -2,7 +2,11 @@
 
 import Link from "next/link";
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { getMotionNumber } from "@/data/week4-practice/practice-overlays";
+import {
+  getMotionNumber,
+  motionItemsForPage,
+  skipTargetSelectOptions,
+} from "@/data/week4-practice/practice-overlays";
 import {
   HTML_EQUIVALENTS,
   LANDMARK_ROLES,
@@ -24,7 +28,14 @@ import {
 } from "@/lib/week4-practice-auto-grade";
 import { buildExportPayload, runCoachChecks } from "@/lib/week4-practice-coach";
 import {
+  WEEK4_WORKBOOK_TOTAL_POINTS,
+  loadWorkbookScoreMeta,
+  syncWorkbookScore,
+} from "@/lib/week4-practice-score";
+import {
   mergeWorkbookDraft,
+  migrateCurrentStep,
+  resetWorkbookDraft,
   saveWorkbookDraft,
 } from "@/lib/week4-practice-storage";
 import PracticeSite from "./mockup/PracticeSite";
@@ -37,7 +48,6 @@ import {
 
 const STEPS = [
   "Start",
-  "Explore practice site",
   "Landmark identification",
   "Skip links",
   "Motion",
@@ -107,6 +117,23 @@ function normalizeMotionInventory(merged: WorkbookState): MotionInventoryRow[] {
   });
 }
 
+function prepareWorkbookState(merged: WorkbookState): WorkbookState {
+  const landmarks = { ...merged.landmarks };
+  for (const p of PRACTICE_PAGES) {
+    landmarks[p.id] = ensureLandmarks(p.id, landmarks[p.id] ?? []);
+  }
+  const motionInventory =
+    merged.motionInventory.length > 0
+      ? normalizeMotionInventory(merged)
+      : seedMotionInventory();
+  return {
+    ...merged,
+    landmarks,
+    motionInventory,
+    currentStep: migrateCurrentStep(merged.currentStep),
+  };
+}
+
 export default function Week4PracticeWorkbook({
   accessToken,
   studentDisplayName,
@@ -119,28 +146,22 @@ export default function Week4PracticeWorkbook({
   /** Instructor preview: link to unchanged live applied practice page. */
   livePracticeHref?: string;
 }) {
-  const [state, setState] = useState<WorkbookState>(() => {
-    const merged = mergeWorkbookDraft(accessToken);
-    const landmarks = { ...merged.landmarks };
-    for (const p of PRACTICE_PAGES) {
-      landmarks[p.id] = ensureLandmarks(p.id, landmarks[p.id] ?? []);
-    }
-    const motionInventory =
-      merged.motionInventory.length > 0
-        ? normalizeMotionInventory(merged)
-        : seedMotionInventory();
-    return {
-      ...merged,
-      landmarks,
-      motionInventory,
-    };
-  });
+  const [state, setState] = useState<WorkbookState>(() =>
+    prepareWorkbookState(mergeWorkbookDraft(accessToken))
+  );
 
-  const [previewPage, setPreviewPage] = useState<PracticePageId>("home");
   const [landmarkPage, setLandmarkPage] = useState<PracticePageId>("home");
   const [skipTabPage, setSkipTabPage] = useState<PracticePageId>("home");
   const [motionPage, setMotionPage] = useState<PracticePageId>("home");
   const [exportStatus, setExportStatus] = useState<string | null>(null);
+  const [attemptNumber, setAttemptNumber] = useState(
+    () => loadWorkbookScoreMeta(accessToken).attemptNumber
+  );
+  const [bestScore, setBestScore] = useState<number | null>(() => {
+    const meta = loadWorkbookScoreMeta(accessToken);
+    return meta.bestScore > 0 ? meta.bestScore : null;
+  });
+  const [scoreSyncStatus, setScoreSyncStatus] = useState<string | null>(null);
 
   const persist = useCallback(
     (next: WorkbookState) => {
@@ -158,6 +179,36 @@ export default function Week4PracticeWorkbook({
   const coachPassCount = coachChecks.filter((c) => c.pass).length;
   const autoGrades = useMemo(() => computeAutoSelfAssessment(state), [state]);
   const selfTotal = autoSelfAssessmentTotal(autoGrades);
+
+  useEffect(() => {
+    if (!studentDisplayName?.trim()) return;
+    const timer = window.setTimeout(() => {
+      void syncWorkbookScore({
+        score: selfTotal,
+        studentDisplayName,
+        accessToken,
+        attemptNumber,
+      }).then((meta) => {
+        setBestScore(meta.bestScore > 0 ? meta.bestScore : null);
+        setScoreSyncStatus(
+          `Score saved to course home (${meta.bestScore}/${WEEK4_WORKBOOK_TOTAL_POINTS} best)`
+        );
+      });
+    }, 500);
+    return () => window.clearTimeout(timer);
+  }, [selfTotal, state, studentDisplayName, accessToken, attemptNumber]);
+
+  const handleRetake = useCallback(() => {
+    resetWorkbookDraft(accessToken);
+    const fresh = prepareWorkbookState(mergeWorkbookDraft(accessToken));
+    setAttemptNumber((n) => n + 1);
+    setState({ ...fresh, currentStep: 0 });
+    setExportStatus(null);
+    setScoreSyncStatus(null);
+    setLandmarkPage("home");
+    setSkipTabPage("home");
+    setMotionPage("home");
+  }, [accessToken]);
 
   const step = state.currentStep;
 
@@ -297,7 +348,7 @@ export default function Week4PracticeWorkbook({
               </h2>
               <ul className="list-disc list-inside space-y-1 m-0">
                 <li>Is one footer landmark (links + copyright) clear on all three pages?</li>
-                <li>Do skip-link spec and first-Tab focus answers feel like real assessment?</li>
+                <li>Do first-Tab focus answers after skip link feel like real assessment?</li>
                 <li>Does the single Motion step (spec + prefers-reduced-motion) assess enough?</li>
                 <li>Does auto-grading match the rubric (4 / 3 / 2 / 1) fairly for your cohort?</li>
               </ul>
@@ -318,41 +369,6 @@ export default function Week4PracticeWorkbook({
         <section className="space-y-4" aria-labelledby="step-page-heading">
           <h1 id="step-page-heading" className={STEP_TITLE_CLASS}>
             {stepHeading(1)}
-          </h1>
-          <p className="text-sm text-text-secondary">
-            Northstar Shop is a simplified three-page mockup. The next step uses
-            numbered zones for landmark identification. Each later step shows only
-            the overlay relevant to that task.
-          </p>
-          <PracticeSite
-            overlayMode="landmark"
-            showLegend
-            pageId={previewPage}
-            onPageChange={setPreviewPage}
-          />
-          <div className="flex gap-3">
-            <button
-              type="button"
-              onClick={() => goStep(0)}
-              className="text-sm underline text-primary-text"
-            >
-              {backToStepLabel(0)}
-            </button>
-            <button
-              type="button"
-              onClick={() => goStep(2)}
-              className="rounded-lg bg-primary px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-dark"
-            >
-              {continueToStepLabel(2)}
-            </button>
-          </div>
-        </section>
-      )}
-
-      {step === 2 && (
-        <section className="space-y-4" aria-labelledby="step-page-heading">
-          <h1 id="step-page-heading" className={STEP_TITLE_CLASS}>
-            {stepHeading(2)}
           </h1>
           <p className="text-sm text-text-secondary">
             Use the numbered regions on the mockup below. For each zone, choose the
@@ -494,123 +510,37 @@ export default function Week4PracticeWorkbook({
             </table>
           </div>
           <div className="flex gap-3">
-            <button type="button" onClick={() => goStep(1)} className="text-sm underline text-primary-text">
-              {backToStepLabel(1)}
+            <button type="button" onClick={() => goStep(0)} className="text-sm underline text-primary-text">
+              {backToStepLabel(0)}
             </button>
             <button
               type="button"
-              onClick={() => goStep(3)}
+              onClick={() => goStep(2)}
               className="rounded-lg bg-primary px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-dark"
             >
-              {continueToStepLabel(3)}
+              {continueToStepLabel(2)}
             </button>
           </div>
         </section>
       )}
 
-      {step === 3 && (
+      {step === 2 && (
         <section className="space-y-4" aria-labelledby="step-page-heading">
           <h1 id="step-page-heading" className={STEP_TITLE_CLASS}>
-            {stepHeading(3)}
+            {stepHeading(2)}
           </h1>
           <p className="text-sm text-text-secondary">
-            Complete every skip link field (required), then trace where focus lands in the
-            mockup after skip link activation and one Tab press.
+            Trace where focus lands in the mockup after skip link activation and one Tab
+            press on each page.
           </p>
-          <h2 className="text-lg font-semibold text-foreground">Skip link specification</h2>
-          <div className="grid gap-4 sm:grid-cols-2">
-            <div>
-              <WorkbookLabel htmlFor="skip-label" required>
-                Link text
-              </WorkbookLabel>
-              <WorkbookInput
-                id="skip-label"
-                value={state.skipLink.label}
-                onChange={(e) =>
-                  persist({
-                    ...state,
-                    skipLink: { ...state.skipLink, label: e.target.value },
-                  })
-                }
-              />
-            </div>
-            <div>
-              <WorkbookLabel htmlFor="skip-target" required>
-                Destination id
-              </WorkbookLabel>
-              <WorkbookInput
-                id="skip-target"
-                value={state.skipLink.targetId}
-                onChange={(e) =>
-                  persist({
-                    ...state,
-                    skipLink: { ...state.skipLink, targetId: e.target.value },
-                  })
-                }
-              />
-            </div>
-            <div className="sm:col-span-2">
-              <WorkbookLabel htmlFor="skip-placement" required>
-                Placement
-              </WorkbookLabel>
-              <WorkbookInput
-                id="skip-placement"
-                value={state.skipLink.placement}
-                onChange={(e) =>
-                  persist({
-                    ...state,
-                    skipLink: { ...state.skipLink, placement: e.target.value },
-                  })
-                }
-              />
-            </div>
-            <div>
-              <WorkbookLabel htmlFor="skip-vis" required>
-                Visibility
-              </WorkbookLabel>
-              <WorkbookSelect
-                id="skip-vis"
-                value={state.skipLink.visibility}
-                onChange={(e) =>
-                  persist({
-                    ...state,
-                    skipLink: {
-                      ...state.skipLink,
-                      visibility: e.target.value as typeof state.skipLink.visibility,
-                    },
-                  })
-                }
-              >
-                <option value="">Select…</option>
-                <option value="hidden-until-focus">Hidden until focus</option>
-                <option value="always-visible">Always visible</option>
-              </WorkbookSelect>
-            </div>
-            <div className="sm:col-span-2">
-              <WorkbookLabel htmlFor="skip-rationale" required>
-                Rationale
-              </WorkbookLabel>
-              <WorkbookTextarea
-                id="skip-rationale"
-                value={state.skipLink.rationale}
-                onChange={(e) =>
-                  persist({
-                    ...state,
-                    skipLink: { ...state.skipLink, rationale: e.target.value },
-                  })
-                }
-              />
-            </div>
-          </div>
-
-          <h2 className="text-lg font-semibold text-foreground mt-6">
+          <h2 className="text-lg font-semibold text-foreground">
             First Tab stop after skip link
           </h2>
           <p className="text-sm text-text-secondary">
             Assume your skip link moves focus to the main content region (
             <code className="text-xs">#main-content</code>). On each page, what is the
-            first element that receives focus when you press Tab once from there? Use the
-            numbered targets on the mockup (amber outlines) or name the control.
+            first element that receives focus when you press Tab once from there? Choose
+            the matching numbered target from the mockup (amber outlines).
           </p>
           <PracticeSite
             overlayMode="skipNav"
@@ -634,7 +564,7 @@ export default function Week4PracticeWorkbook({
                 <tr key={p.id}>
                   <td className="border border-border px-3 py-2 font-medium">{p.label}</td>
                   <td className="border border-border px-3 py-2">
-                    <WorkbookInput
+                    <WorkbookSelect
                       id={`skip-first-tab-${p.id}`}
                       value={state.skipLinkFirstTab[p.id]}
                       onChange={(e) =>
@@ -647,37 +577,43 @@ export default function Week4PracticeWorkbook({
                         })
                       }
                       aria-label={`First Tab stop on ${p.label} after skip link`}
-                      placeholder="Target number or control name (e.g. 7 or Slide 1)"
-                    />
+                    >
+                      <option value="">Select target…</option>
+                      {skipTargetSelectOptions(p.id).map((opt) => (
+                        <option key={opt.value} value={opt.value}>
+                          {opt.label}
+                        </option>
+                      ))}
+                    </WorkbookSelect>
                   </td>
                 </tr>
               ))}
             </tbody>
           </table>
           <div className="flex gap-3">
-            <button type="button" onClick={() => goStep(2)} className="text-sm underline text-primary-text">
-              {backToStepLabel(2)}
+            <button type="button" onClick={() => goStep(1)} className="text-sm underline text-primary-text">
+              {backToStepLabel(1)}
             </button>
             <button
               type="button"
-              onClick={() => goStep(4)}
+              onClick={() => goStep(3)}
               className="rounded-lg bg-primary px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-dark"
             >
-              {continueToStepLabel(4)}
+              {continueToStepLabel(3)}
             </button>
           </div>
         </section>
       )}
 
-      {step === 4 && (
+      {step === 3 && (
         <section className="space-y-4" aria-labelledby="step-page-heading">
           <h1 id="step-page-heading" className={STEP_TITLE_CLASS}>
-            {stepHeading(4)}
+            {stepHeading(3)}
           </h1>
           <p className="text-sm text-text-secondary">
-            The mockup is static (no animation plays). Numbered regions match the
-            motion list (1–4). Each card below quotes the written spec. Describe how
-            the live site respects{" "}
+            The mockup is static (no animation plays). Switch pages to answer each
+            motion target; numbering starts at 1 on every page. Describe how the live
+            site respects{" "}
             <code className="text-xs">prefers-reduced-motion</code> with a static
             alternative.
           </p>
@@ -687,18 +623,20 @@ export default function Week4PracticeWorkbook({
             pageId={motionPage}
             onPageChange={setMotionPage}
           />
-          {state.motionInventory.map((row, i) => {
-            const seed = MOTION_SEEDS.find((s) => s.id === row.id);
+          {motionItemsForPage(motionPage).map((seed) => {
+            const row = state.motionInventory.find((m) => m.id === seed.id);
+            if (!row) return null;
+            const i = state.motionInventory.findIndex((m) => m.id === seed.id);
             return (
               <div
                 key={row.id}
                 className="rounded-lg border border-border p-4 space-y-3"
               >
                 <div>
-                  <p className="font-medium text-foreground m-0">{getMotionNumber(row.id)}. {row.element}</p>
-                  {seed ? (
-                    <p className="text-xs text-text-secondary m-0 mt-1">{seed.location}</p>
-                  ) : null}
+                  <p className="font-medium text-foreground m-0">
+                    {getMotionNumber(row.id, motionPage)}. {row.element}
+                  </p>
+                  <p className="text-xs text-text-secondary m-0 mt-1">{seed.location}</p>
                 </div>
                 <div>
                   <p className="text-sm font-medium text-foreground m-0 mb-1">
@@ -751,24 +689,24 @@ export default function Week4PracticeWorkbook({
             );
           })}
           <div className="flex gap-3">
-            <button type="button" onClick={() => goStep(3)} className="text-sm underline text-primary-text">
-              {backToStepLabel(3)}
+            <button type="button" onClick={() => goStep(2)} className="text-sm underline text-primary-text">
+              {backToStepLabel(2)}
             </button>
             <button
               type="button"
-              onClick={() => goStep(5)}
+              onClick={() => goStep(4)}
               className="rounded-lg bg-primary px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-dark"
             >
-              {continueToStepLabel(5)}
+              {continueToStepLabel(4)}
             </button>
           </div>
         </section>
       )}
 
-      {step === 5 && (
+      {step === 4 && (
         <section className="space-y-6" aria-labelledby="step-page-heading">
           <h1 id="step-page-heading" className={STEP_TITLE_CLASS}>
-            {stepHeading(5)}
+            {stepHeading(4)}
           </h1>
 
           <div className="rounded-lg border border-border p-4 space-y-2">
@@ -851,7 +789,7 @@ export default function Week4PracticeWorkbook({
               </div>
             ))}
             <p className="text-lg font-semibold text-foreground">
-              Your total: {selfTotal} / 20
+              Your total: {selfTotal} / {WEEK4_WORKBOOK_TOTAL_POINTS}
               {selfTotal >= 10 ? (
                 <span className="text-accent-green text-base font-normal ml-2">
                   (meets passing threshold)
@@ -862,6 +800,20 @@ export default function Week4PracticeWorkbook({
                 </span>
               )}
             </p>
+            {bestScore !== null && bestScore !== selfTotal && (
+              <p className="text-sm text-text-secondary m-0">
+                Best score: {bestScore}/{WEEK4_WORKBOOK_TOTAL_POINTS}
+              </p>
+            )}
+            <p className="text-sm text-text-secondary m-0">
+              Attempt {attemptNumber}. Retake as often as you like; your best score
+              appears on the course home table.
+            </p>
+            {studentDisplayName ? (
+              <p className="text-xs text-text-secondary m-0" role="status">
+                {scoreSyncStatus ?? "Syncing score to course home…"}
+              </p>
+            ) : null}
           </div>
 
           <div className="rounded-lg bg-amber-50 border border-amber-200 p-4 text-sm text-foreground">
@@ -879,13 +831,20 @@ export default function Week4PracticeWorkbook({
           <div className="flex flex-wrap gap-3">
             <button
               type="button"
+              onClick={handleRetake}
+              className="rounded-lg border-2 border-primary bg-white px-5 py-2.5 text-sm font-medium text-primary hover:bg-primary/10"
+            >
+              Retake workbook
+            </button>
+            <button
+              type="button"
               onClick={handleExport}
               className="rounded-lg bg-primary px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-dark"
             >
               Export audit JSON
             </button>
-            <button type="button" onClick={() => goStep(4)} className="text-sm underline text-primary-text py-2.5">
-              {backToStepLabel(4)}
+            <button type="button" onClick={() => goStep(3)} className="text-sm underline text-primary-text py-2.5">
+              {backToStepLabel(3)}
             </button>
           </div>
           {exportStatus && (

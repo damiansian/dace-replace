@@ -193,25 +193,34 @@ function SkipNavShell({
         </SkipTargetOutline>
         <nav aria-label="Unlabeled in mockup — you specify in workbook" className="flex flex-wrap gap-2">
           <ul className="flex flex-wrap gap-2 list-none m-0 p-0">
-            {navOrder.map((item) => (
-              <li key={item}>
-                <SkipTargetOutline
-                  targetId={navTargetId[item]}
-                  pageId={pageId}
-                  className="inline-flex p-1"
+            {navOrder.map((item, index) => {
+              const link = (
+                <span
+                  className={
+                    item === currentLabel
+                      ? "font-semibold text-primary-text underline"
+                      : "text-text-secondary"
+                  }
                 >
-                  <span
-                    className={
-                      item === currentLabel
-                        ? "font-semibold text-primary-text underline"
-                        : "text-text-secondary"
-                    }
-                  >
-                    {item}
-                  </span>
-                </SkipTargetOutline>
-              </li>
-            ))}
+                  {item}
+                </span>
+              );
+              return (
+                <li key={item}>
+                  {index === 0 ? (
+                    <SkipTargetOutline
+                      targetId={navTargetId[item]}
+                      pageId={pageId}
+                      className="inline-flex p-1"
+                    >
+                      {link}
+                    </SkipTargetOutline>
+                  ) : (
+                    <span className="inline-flex p-1">{link}</span>
+                  )}
+                </li>
+              );
+            })}
           </ul>
         </nav>
         <SiteSearch pageId={pageId} overlayMode="skipNav" />
@@ -233,11 +242,17 @@ function SkipNavShell({
                 ["footer-terms", "Terms"],
                 ["footer-support", "Support"],
               ] as const
-            ).map(([targetId, label]) => (
+            ).map(([targetId, label], index) => (
               <li key={targetId}>
-                <SkipTargetOutline targetId={targetId} pageId={pageId} className="inline-flex p-1">
-                  <MockupStaticLink>{label}</MockupStaticLink>
-                </SkipTargetOutline>
+                {index === 0 ? (
+                  <SkipTargetOutline targetId={targetId} pageId={pageId} className="inline-flex p-1">
+                    <MockupStaticLink>{label}</MockupStaticLink>
+                  </SkipTargetOutline>
+                ) : (
+                  <span className="inline-flex p-1">
+                    <MockupStaticLink>{label}</MockupStaticLink>
+                  </span>
+                )}
               </li>
             ))}
           </ul>

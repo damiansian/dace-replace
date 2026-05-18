@@ -239,7 +239,7 @@ export const SELF_ASSESSMENT_CRITERIA = [
   },
   {
     id: "skipLinks",
-    label: "Skip link specifications",
+    label: "First Tab after skip link",
     outcome: "1G.03",
   },
   {

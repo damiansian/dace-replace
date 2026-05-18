@@ -78,20 +78,6 @@ export function runCoachChecks(state: WorkbookState): CoachCheck[] {
     }
   }
 
-  const skip = state.skipLink;
-  const skipOk =
-    skip.placement.trim() &&
-    skip.targetId.trim() &&
-    skip.visibility &&
-    skip.rationale.trim();
-  checks.push({
-    id: "skip-link",
-    pass: Boolean(skipOk),
-    message: skipOk
-      ? "Skip link specification looks complete."
-      : "Fill in skip link placement, target, visibility, and rationale.",
-  });
-
   for (const page of PRACTICE_PAGES) {
     const navRow = state.landmarks[page.id]?.find((r) => r.zoneId === "primary-nav");
     const navRole = navRow?.role?.trim() ?? "";

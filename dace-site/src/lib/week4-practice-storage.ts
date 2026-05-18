@@ -2,6 +2,14 @@ import { initialWorkbookState, type WorkbookState } from "@/data/week4-practice/
 
 const STORAGE_KEY = "dace-week4-practice-workbook";
 
+/** Map saved step index from the 6-step workbook (Explore at 1) to the 5-step flow. */
+export function migrateCurrentStep(saved: number): number {
+  const max = 4;
+  if (saved <= 0) return 0;
+  if (saved === 1) return 1;
+  return Math.min(saved - 1, max);
+}
+
 export function workbookStorageKey(accessToken?: string): string {
   return accessToken ? `${STORAGE_KEY}:${accessToken}` : STORAGE_KEY;
 }
@@ -53,4 +61,9 @@ export function mergeWorkbookDraft(
     skipLinkFirstTab: { ...base.skipLinkFirstTab, ...saved.skipLinkFirstTab },
     selfAssessment: { ...base.selfAssessment, ...saved.selfAssessment },
   };
+}
+
+/** Clears saved draft so the next load starts empty. */
+export function resetWorkbookDraft(accessToken?: string): void {
+  clearWorkbookDraft(accessToken);
 }

@@ -64,16 +64,12 @@ function HomeMain({
               Slide 1
             </button>
           </SkipTargetOutline>
-          <SkipTargetOutline targetId="slide-2" pageId={pageId} className="inline-flex">
-            <span className="rounded border border-dashed border-border px-3 py-2 text-xs text-text-secondary">
-              Slide 2
-            </span>
-          </SkipTargetOutline>
-          <SkipTargetOutline targetId="slide-3" pageId={pageId} className="inline-flex">
-            <span className="rounded border border-dashed border-border px-3 py-2 text-xs text-text-secondary">
-              Slide 3
-            </span>
-          </SkipTargetOutline>
+          <span className="rounded border border-dashed border-border px-3 py-2 text-xs text-text-secondary">
+            Slide 2
+          </span>
+          <span className="rounded border border-dashed border-border px-3 py-2 text-xs text-text-secondary">
+            Slide 3
+          </span>
         </div>
       </section>
     );
@@ -111,7 +107,9 @@ function HomeMain({
     );
     promoBlock = (
       <section className="rounded-md border border-border bg-surface p-4 mb-4">
-        <MotionTargetOutline motionId="hero-carousel">{inner}</MotionTargetOutline>
+        <MotionTargetOutline motionId="hero-carousel" pageId={pageId}>
+          {inner}
+        </MotionTargetOutline>
       </section>
     );
   }
@@ -145,12 +143,6 @@ function ProductsMain({
       <h2 className="text-lg font-semibold text-foreground mt-0">Products</h2>
     );
 
-  const cartTargetId = (name: string) => {
-    if (name === "Trail pack") return "trail-pack-cart";
-    if (name === "Desk lamp") return "desk-lamp-cart";
-    return "water-bottle-cart";
-  };
-
   const renderProductCard = (name: string) => {
     const cartButton = (
       <button
@@ -182,16 +174,16 @@ function ProductsMain({
         ) : overlayMode === "landmark" ? (
           <p className="text-xs text-text-secondary m-0 mb-2">$49.00</p>
         ) : null}
-        {overlayMode === "skipNav" ? (
-          <SkipTargetOutline
-            targetId={cartTargetId(name)}
-            pageId={pageId}
-            className="inline-flex"
-          >
+        {overlayMode === "skipNav" && name === "Trail pack" ? (
+          <SkipTargetOutline targetId="trail-pack-cart" pageId={pageId} className="inline-flex">
             {cartButton}
           </SkipTargetOutline>
         ) : overlayMode === "motion" && name === "Trail pack" ? (
-          <MotionTargetOutline motionId="add-to-cart-transition" className="inline-flex">
+          <MotionTargetOutline
+            motionId="add-to-cart-transition"
+            pageId={pageId}
+            className="inline-flex"
+          >
             {cartButton}
           </MotionTargetOutline>
         ) : (
@@ -206,22 +198,14 @@ function ProductsMain({
       </li>
     );
 
-    if (overlayMode === "skipNav" && name === "Trail pack") {
+    if (overlayMode === "motion" && name === "Trail pack") {
       return (
-        <SkipTargetOutline
+        <MotionTargetOutline
           key={name}
-          targetId="trail-pack-card"
+          motionId="product-card-hover"
           pageId={pageId}
           className="list-none"
         >
-          {card}
-        </SkipTargetOutline>
-      );
-    }
-
-    if (overlayMode === "motion" && name === "Trail pack") {
-      return (
-        <MotionTargetOutline key={name} motionId="product-card-hover" className="list-none">
           {card}
         </MotionTargetOutline>
       );
@@ -319,7 +303,9 @@ function AboutMain({
         <p className="text-xs text-text-secondary m-0 mb-2">
           {motionSeed("about-team-fade")?.defaultDescription}
         </p>
-        <MotionTargetOutline motionId="about-team-fade">{teamList}</MotionTargetOutline>
+        <MotionTargetOutline motionId="about-team-fade" pageId={pageId}>
+          {teamList}
+        </MotionTargetOutline>
       </section>
     ) : (
       <section className="mt-4">

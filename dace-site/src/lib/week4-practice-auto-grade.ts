@@ -133,34 +133,15 @@ function navConsistencyItems(state: WorkbookState): GradeItem[] {
 }
 
 function skipLinkItems(state: WorkbookState): GradeItem[] {
-  const skip = state.skipLink;
-  const specAnswered =
-    isAnsweredText(skip.label) &&
-    isAnsweredText(skip.placement) &&
-    isAnsweredText(skip.targetId) &&
-    Boolean(skip.visibility) &&
-    isAnsweredText(skip.rationale);
-  const specPass = specAnswered;
-
-  const items: GradeItem[] = [
-    {
-      id: "skip-spec",
-      label: "Skip link specification (all fields)",
-      answered: specAnswered,
-      pass: specPass,
-    },
-  ];
-
-  for (const page of PRACTICE_PAGES) {
+  return PRACTICE_PAGES.map((page) => {
     const answer = state.skipLinkFirstTab[page.id] ?? "";
-    items.push({
+    return {
       id: `skip-tab-${page.id}`,
       label: `${page.label}: first Tab after skip link`,
       answered: isAnsweredText(answer),
       pass: isAnsweredText(answer) && matchesSkipLinkFirstTab(page.id, answer),
-    });
-  }
-  return items;
+    };
+  });
 }
 
 function motionPauseItems(state: WorkbookState): GradeItem[] {
