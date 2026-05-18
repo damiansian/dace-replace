@@ -11,14 +11,14 @@ const PAGE_LABEL: Record<PracticePageId, string> = {
   about: "About",
 };
 
+const zonePad = "pt-8 pl-2";
+
 export function PracticeSiteShell({
   pageId,
-  showZoneLegend,
   children,
   sidebar,
 }: {
   pageId: PracticePageId;
-  showZoneLegend: boolean;
   children: React.ReactNode;
   sidebar?: React.ReactNode;
 }) {
@@ -26,20 +26,14 @@ export function PracticeSiteShell({
   const currentLabel = PAGE_LABEL[pageId];
 
   return (
-    <div className="rounded-lg border border-border bg-white shadow-sm overflow-hidden text-sm">
-      <ZoneOutline
-        zoneId="site-header"
-        pageId={pageId}
-        showLegend={showZoneLegend}
-        className="m-2 p-3"
-      >
+    <div className="rounded-lg border border-border bg-white shadow-sm text-sm">
+      <ZoneOutline zoneId="site-header" pageId={pageId} className={`m-2 p-3 ${zonePad}`}>
         <div className="flex flex-wrap items-center gap-4 justify-between">
           <p className="font-bold text-foreground">Northstar Shop</p>
           <ZoneOutline
             zoneId="primary-nav"
             pageId={pageId}
-            showLegend={showZoneLegend}
-            className="flex-1 min-w-0 p-1"
+            className={`flex-1 min-w-0 p-1 ${zonePad}`}
           >
             <nav aria-label="Unlabeled in mockup — you specify in workbook">
               <ul className="flex flex-wrap gap-3 list-none m-0 p-0">
@@ -59,12 +53,7 @@ export function PracticeSiteShell({
               </ul>
             </nav>
           </ZoneOutline>
-          <ZoneOutline
-            zoneId="site-search"
-            pageId={pageId}
-            showLegend={showZoneLegend}
-            className="p-1"
-          >
+          <ZoneOutline zoneId="site-search" pageId={pageId} className={`p-1 ${zonePad}`}>
             <label className="flex items-center gap-2 text-text-secondary">
               <span className="sr-only">Search</span>
               <input
@@ -83,8 +72,7 @@ export function PracticeSiteShell({
         <ZoneOutline
           zoneId="main-content"
           pageId={pageId}
-          showLegend={showZoneLegend}
-          className="flex-1 min-w-0 p-4"
+          className={`flex-1 min-w-0 p-4 ${zonePad}`}
         >
           <div id="main-content">{children}</div>
         </ZoneOutline>
@@ -92,8 +80,7 @@ export function PracticeSiteShell({
           <ZoneOutline
             zoneId="sidebar"
             pageId={pageId}
-            showLegend={showZoneLegend}
-            className="w-48 shrink-0 p-3 hidden sm:block"
+            className={`w-48 shrink-0 p-3 hidden sm:block ${zonePad}`}
           >
             {sidebar}
           </ZoneOutline>
@@ -101,12 +88,7 @@ export function PracticeSiteShell({
       </div>
 
       {pageId !== "home" ? (
-        <ZoneOutline
-          zoneId="footer-nav"
-          pageId={pageId}
-          showLegend={showZoneLegend}
-          className="m-2 p-2"
-        >
+        <ZoneOutline zoneId="footer-nav" pageId={pageId} className={`m-2 p-2 ${zonePad}`}>
           <nav aria-label="Footer links — name in workbook">
             <ul className="flex flex-wrap gap-4 list-none m-0 p-0 text-text-secondary">
               <li>
@@ -123,7 +105,7 @@ export function PracticeSiteShell({
         </ZoneOutline>
       ) : null}
 
-      <ZoneOutline zoneId="site-footer" pageId={pageId} showLegend={showZoneLegend} className="m-2 p-3">
+      <ZoneOutline zoneId="site-footer" pageId={pageId} className={`m-2 p-3 ${zonePad}`}>
         {pageId === "home" ? (
           <nav aria-label="Footer links — no separate zone on Home">
             <ul className="flex flex-wrap gap-4 list-none m-0 p-0 mb-2 text-text-secondary">

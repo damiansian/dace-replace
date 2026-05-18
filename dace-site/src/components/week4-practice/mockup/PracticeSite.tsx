@@ -74,7 +74,7 @@ export default function PracticeSite({
         </div>
       )}
 
-      <PracticeSitePage pageId={pageId} showZoneLegend={showZoneLegend} />
+      <PracticeSitePage pageId={pageId} />
 
       <div className="rounded-lg border border-border p-3">
         <p className="text-sm font-semibold text-foreground m-0 mb-2">

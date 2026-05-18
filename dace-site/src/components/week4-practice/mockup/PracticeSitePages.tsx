@@ -137,15 +137,13 @@ function AboutMain() {
 
 export function PracticeSitePage({
   pageId,
-  showZoneLegend,
 }: {
   pageId: PracticePageId;
-  showZoneLegend: boolean;
 }) {
   const sidebar = pageId !== "about" ? <SidebarPromo /> : undefined;
 
   return (
-    <PracticeSiteShell pageId={pageId} showZoneLegend={showZoneLegend} sidebar={sidebar}>
+    <PracticeSiteShell pageId={pageId} sidebar={sidebar}>
       {pageId === "home" && <HomeMain />}
       {pageId === "products" && <ProductsMain />}
       {pageId === "about" && <AboutMain />}

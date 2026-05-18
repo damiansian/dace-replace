@@ -17,13 +17,11 @@ const ZONE_COLORS: Record<PracticeZoneId, string> = {
 export function ZoneOutline({
   zoneId,
   pageId,
-  showLegend,
   children,
   className = "",
 }: {
   zoneId: PracticeZoneId;
   pageId: PracticePageId;
-  showLegend: boolean;
   children: React.ReactNode;
   className?: string;
 }) {
@@ -32,14 +30,12 @@ export function ZoneOutline({
       data-practice-zone={zoneId}
       className={`relative border-2 border-dashed rounded-md ${ZONE_COLORS[zoneId]} ${className}`}
     >
-      {showLegend && (
-        <span
-          className="absolute -top-3 left-2 z-10 inline-flex h-6 min-w-6 items-center justify-center rounded-full bg-foreground px-1.5 text-xs font-bold text-white"
-          aria-hidden="true"
-        >
-          {getZoneNumber(zoneId, pageId)}
-        </span>
-      )}
+      <span
+        className="absolute top-2 left-2 z-10 inline-flex h-6 min-w-6 items-center justify-center rounded-full bg-foreground px-1.5 text-xs font-bold text-white shadow-sm"
+        aria-hidden="true"
+      >
+        {getZoneNumber(zoneId, pageId)}
+      </span>
       {children}
     </div>
   );
