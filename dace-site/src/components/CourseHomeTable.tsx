@@ -2,7 +2,11 @@ import Link from "next/link";
 import TrackedItemStatus from "@/components/TrackedItemStatus";
 import { withToken } from "@/data/progress-catalog";
 import type { HomeWeek } from "@/data/course-home-catalog";
-import type { StudentProgressSnapshot } from "@/lib/student-progress";
+import {
+  bestQuiz,
+  latestSubmission,
+  type StudentProgressSnapshot,
+} from "@/lib/student-progress";
 
 type WeekCount = { complete: number; total: number };
 
@@ -11,6 +15,14 @@ interface CourseHomeTableProps {
   token: string | undefined;
   snapshot: StudentProgressSnapshot | null;
   weekCounts: Record<string, WeekCount | null>;
+}
+
+function formatDate(d: Date): string {
+  return d.toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+  });
 }
 
 export default function CourseHomeTable({
@@ -57,8 +69,22 @@ export default function CourseHomeTable({
         <tbody>
           {weeks.map((week) => {
             const counts = weekCounts[week.weekId];
+            const appliedSubmissionRows = snapshot
+              ? snapshot.submissionsById.get(week.appliedSkill.progressId) ?? []
+              : [];
+            const appliedLatest = latestSubmission(appliedSubmissionRows);
+            const appliedGrade =
+              snapshot && appliedLatest
+                ? snapshot.gradeBySubmission.get(appliedLatest.id) ?? null
+                : null;
+
             return week.lessons.map((lesson, lessonIdx) => {
               const isFirstRow = lessonIdx === 0;
+              const quizRows = snapshot
+                ? snapshot.quizzesById.get(lesson.progressId) ?? []
+                : [];
+              const best = bestQuiz(quizRows);
+
               return (
                 <tr
                   key={`${week.weekId}-${lesson.progressId}`}
@@ -97,21 +123,26 @@ export default function CourseHomeTable({
                     </Link>
                   </td>
                   <td className="border border-border px-4 py-4 align-middle text-left text-foreground">
-                    <div className="flex w-full items-center justify-start gap-2">
-                      {snapshot && (
-                        <TrackedItemStatus
-                          kind="quiz"
-                          complete={Boolean(
-                            snapshot.itemComplete.get(lesson.progressId)
-                          )}
-                        />
+                    <div className="flex flex-col gap-1">
+                      <div className="flex items-center gap-2">
+                        {snapshot && (
+                          <TrackedItemStatus
+                            kind="quiz"
+                            complete={Boolean(best)}
+                          />
+                        )}
+                        <Link
+                          href={withToken(lesson.quizHref, token)}
+                          className="font-medium text-primary-text underline hover:text-primary-dark"
+                        >
+                          {lesson.quizLabel}
+                        </Link>
+                      </div>
+                      {best && (
+                        <p className="pl-7 text-xs text-text-secondary">
+                          Best score {best.score}/{best.total}
+                        </p>
                       )}
-                      <Link
-                        href={withToken(lesson.quizHref, token)}
-                        className="font-medium text-primary-text underline hover:text-primary-dark"
-                      >
-                        {lesson.quizLabel}
-                      </Link>
                     </div>
                   </td>
                   {isFirstRow && (
@@ -119,23 +150,43 @@ export default function CourseHomeTable({
                       rowSpan={week.lessons.length}
                       className="border border-border bg-white px-4 py-4 align-middle text-left text-foreground"
                     >
-                      <div className="flex w-full items-center justify-start gap-2">
-                        {snapshot && (
-                          <TrackedItemStatus
-                            kind="assignment"
-                            complete={Boolean(
-                              snapshot.itemComplete.get(
-                                week.appliedSkill.progressId
-                              )
+                      <div className="flex flex-col gap-1">
+                        <div className="flex items-center gap-2">
+                          {snapshot && (
+                            <TrackedItemStatus
+                              kind="assignment"
+                              complete={Boolean(appliedLatest)}
+                            />
+                          )}
+                          <Link
+                            href={withToken(week.appliedSkill.href, token)}
+                            className="font-semibold text-primary-text underline hover:text-primary-dark"
+                          >
+                            {week.appliedSkill.title}
+                          </Link>
+                        </div>
+                        {appliedLatest && (
+                          <div className="pl-7 text-xs text-text-secondary">
+                            <p>Submitted {formatDate(appliedLatest.submittedAt)}</p>
+                            {appliedGrade && (
+                              <p className="font-medium text-foreground">
+                                Graded {appliedGrade.score}/{appliedGrade.total}
+                              </p>
                             )}
-                          />
+                            {appliedLatest.linkUrl && (
+                              <p>
+                                <a
+                                  href={appliedLatest.linkUrl}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="underline text-primary-text hover:text-primary-dark"
+                                >
+                                  View your submitted file
+                                </a>
+                              </p>
+                            )}
+                          </div>
                         )}
-                        <Link
-                          href={withToken(week.appliedSkill.href, token)}
-                          className="font-semibold text-primary-text underline hover:text-primary-dark"
-                        >
-                          {week.appliedSkill.title}
-                        </Link>
                       </div>
                     </td>
                   )}

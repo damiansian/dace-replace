@@ -23,10 +23,10 @@ export default function StudentProgressStrip({
           </span>
         </p>
         <Link
-          href={withToken("/progress", accessToken)}
+          href={withToken("/", accessToken)}
           className="font-medium text-primary-text underline hover:text-primary-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
         >
-          Open My Progress
+          Open my dashboard
         </Link>
       </div>
     </div>
