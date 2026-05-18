@@ -1,7 +1,6 @@
 import {
   EXPECTED_LANDMARK_ROLES,
   MOTION_SEEDS,
-  NAV_ORDER_BY_PAGE,
   matchesSkipLinkFirstTab,
   PRACTICE_PAGES,
   zoneDisplayName,
@@ -59,45 +58,6 @@ export function runCoachChecks(state: WorkbookState): CoachCheck[] {
       }
     }
   }
-
-  const navMatrixComplete = state.navMatrix.every(
-    (row) =>
-      row.homeOrder.trim() &&
-      row.productsOrder.trim() &&
-      row.aboutOrder.trim()
-  );
-
-  const navOrdersDocumented = PRACTICE_PAGES.every((page) => {
-    const expected = NAV_ORDER_BY_PAGE[page.id];
-    return state.navMatrix.every((row) => {
-      const col =
-        page.id === "home"
-          ? row.homeOrder
-          : page.id === "products"
-            ? row.productsOrder
-            : row.aboutOrder;
-      const idx = parseInt(col, 10);
-      if (Number.isNaN(idx)) return false;
-      return expected[idx - 1] === row.item;
-    });
-  });
-
-  checks.push({
-    id: "nav-matrix",
-    pass: navMatrixComplete && navOrdersDocumented,
-    message:
-      navMatrixComplete && navOrdersDocumented
-        ? "Navigation order documented consistently (Home, Products, About on every page)."
-        : "Enter position 1–3 for each nav item on Home, Products, and About.",
-  });
-
-  checks.push({
-    id: "nav-inconsistency",
-    pass: !state.navInconsistent,
-    message: state.navInconsistent
-      ? "The practice site keeps the same nav order on every page; uncheck unless you found another issue."
-      : "Navigation order is consistent across pages (matches the mockup).",
-  });
 
   const skip = state.skipLink;
   const skipOk =
@@ -173,11 +133,6 @@ export function buildExportPayload(
     student: { displayName: studentDisplayName ?? "Unknown" },
     audit: {
       landmarks: state.landmarks,
-      nav: {
-        matrix: state.navMatrix,
-        inconsistent: state.navInconsistent,
-        recommendation: state.navRecommendation,
-      },
       skipLinks: {
         spec: state.skipLink,
         firstTabAfterSkip: state.skipLinkFirstTab,

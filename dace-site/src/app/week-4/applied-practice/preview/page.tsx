@@ -76,7 +76,7 @@ export default async function Week4PracticePreviewPage({
         </h2>
         <ul className="list-disc list-inside space-y-1 m-0">
           <li>Is one footer landmark (links + copyright) clear on all three pages?</li>
-          <li>Is primary navigation order clearly consistent across all three pages?</li>
+          <li>Do skip-link spec and first-Tab focus answers feel like real assessment?</li>
           <li>Are four motion items the right level of difficulty?</li>
           <li>Do coach checks and self-assessment feel fair for your cohort?</li>
         </ul>

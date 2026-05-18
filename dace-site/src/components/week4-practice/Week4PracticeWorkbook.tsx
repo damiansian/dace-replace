@@ -15,7 +15,6 @@ import {
 } from "@/data/week4-practice/practice-zones";
 import {
   emptyLandmarkRow,
-  initialNavMatrix,
   type MotionInventoryRow,
   type MotionPlanRow,
   type WorkbookState,
@@ -40,7 +39,7 @@ import {
 const STEPS = [
   "Explore practice site",
   "Landmark identification",
-  "Navigation and skip links",
+  "Skip links",
   "Motion inventory",
   "Motion planning",
   "Review and self-assess",
@@ -104,10 +103,6 @@ export default function Week4PracticeWorkbook({
       landmarks,
       motionInventory,
       motionPlans,
-      navMatrix:
-        merged.navMatrix[0]?.homeOrder === ""
-          ? initialNavMatrix()
-          : merged.navMatrix,
     };
   });
 
@@ -392,78 +387,12 @@ export default function Week4PracticeWorkbook({
 
       {step === 2 && (
         <section className="space-y-4">
-          <h2 className="text-xl font-semibold text-foreground">Navigation and skip links</h2>
+          <h2 className="text-xl font-semibold text-foreground">Skip links</h2>
           <p className="text-sm text-text-secondary">
-            Enter the position (1, 2, 3) of each nav item on each page. Compare across
-            pages for consistency (SC 3.2.3).
+            Specify how the skip link works, then trace where focus lands in the mockup
+            after skip link activation and one Tab press.
           </p>
-          <table className="w-full text-sm border-collapse">
-            <thead>
-              <tr className="bg-surface">
-                <th scope="col" className="border border-border px-3 py-2 text-left">
-                  Nav item
-                </th>
-                <th scope="col" className="border border-border px-3 py-2 text-left">
-                  Home order
-                </th>
-                <th scope="col" className="border border-border px-3 py-2 text-left">
-                  Products order
-                </th>
-                <th scope="col" className="border border-border px-3 py-2 text-left">
-                  About order
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {state.navMatrix.map((row, ri) => (
-                <tr key={row.item}>
-                  <td className="border border-border px-3 py-2 font-medium">{row.item}</td>
-                  {(["homeOrder", "productsOrder", "aboutOrder"] as const).map((col) => (
-                    <td key={col} className="border border-border px-3 py-2">
-                      <WorkbookInput
-                        id={`nav-${ri}-${col}`}
-                        type="number"
-                        min={1}
-                        max={3}
-                        value={row[col]}
-                        onChange={(e) => {
-                          const navMatrix = [...state.navMatrix];
-                          navMatrix[ri] = { ...navMatrix[ri], [col]: e.target.value };
-                          persist({ ...state, navMatrix });
-                        }}
-                        aria-label={`${row.item} order on ${col}`}
-                        className="max-w-[4rem]"
-                      />
-                    </td>
-                  ))}
-                </tr>
-              ))}
-            </tbody>
-          </table>
-          <label className="flex items-center gap-2 text-sm text-foreground">
-            <input
-              type="checkbox"
-              checked={state.navInconsistent}
-              onChange={(e) =>
-                persist({ ...state, navInconsistent: e.target.checked })
-              }
-              className="h-4 w-4"
-            />
-            Navigation order is inconsistent across pages
-          </label>
-          <div>
-            <WorkbookLabel htmlFor="nav-rec" required={state.navInconsistent}>
-              Recommendation to fix inconsistencies
-            </WorkbookLabel>
-            <WorkbookTextarea
-              id="nav-rec"
-              value={state.navRecommendation}
-              onChange={(e) =>
-                persist({ ...state, navRecommendation: e.target.value })
-              }
-            />
-          </div>
-          <h3 className="text-lg font-semibold text-foreground">Skip link</h3>
+          <h3 className="text-lg font-semibold text-foreground">Skip link specification</h3>
           <div className="grid gap-4 sm:grid-cols-2">
             <div>
               <WorkbookLabel htmlFor="skip-label">Link text</WorkbookLabel>
