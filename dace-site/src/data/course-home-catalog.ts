@@ -37,7 +37,7 @@ export const courseHomeCatalog: HomeWeek[] = [
     weekLabel: "Week 2",
     weekTitle: "Color & Forms",
     weekHref: "/week-2",
-    classDueDate: "2026-05-05",
+    classDueDate: "2026-05-12",
     lessons: [
       {
         progressId: "l03-color",
@@ -65,7 +65,7 @@ export const courseHomeCatalog: HomeWeek[] = [
     weekLabel: "Week 3",
     weekTitle: "Keyboard & Reflow",
     weekHref: "/week-3",
-    classDueDate: "2026-05-12",
+    classDueDate: "2026-05-19",
     lessons: [
       {
         progressId: "l05-keyboard",
@@ -93,7 +93,7 @@ export const courseHomeCatalog: HomeWeek[] = [
     weekLabel: "Week 4",
     weekTitle: "Landmarks, Navigation & Motion",
     weekHref: "/week-4",
-    classDueDate: "2026-05-19",
+    classDueDate: "2026-05-26",
     lessons: [
       {
         progressId: "l07-landmarks",
