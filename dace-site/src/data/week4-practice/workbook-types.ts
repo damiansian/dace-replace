@@ -34,10 +34,11 @@ export interface MotionInventoryRow {
   element: string;
   /** Intended motion from the written spec (mockup is static). */
   intendedMotion: string;
+  /** Student: does this motion need a pause, stop, or hide control? */
   pauseRequired: "yes" | "no" | "";
-  /** yes/no when pause is required; N/A otherwise (WCAG 2.2.2). */
+  /** Legacy field kept for saved drafts / export. */
   pauseControl: "yes" | "no" | "N/A" | "";
-  /** Whether the live site respects prefers-reduced-motion for this element. */
+  /** Student: should this motion respect prefers-reduced-motion? */
   respectsReducedMotion: "yes" | "no" | "";
   /** Legacy export field; UI uses yes/no only. */
   reducedMotionAlt: string;

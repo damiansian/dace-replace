@@ -1,8 +1,10 @@
 import { matchesSkipLinkFirstTab } from "@/data/week4-practice/practice-overlays";
 import {
-  reducedMotionAnswered,
-  reducedMotionPasses,
-} from "@/lib/week4-practice-reduced-motion";
+  needsPauseButtonAnswered,
+  needsPauseButtonPasses,
+  shouldRespectPreferenceAnswered,
+  shouldRespectPreferencePasses,
+} from "@/lib/week4-practice-motion-grade";
 import {
   EXPECTED_HTML_EQUIVALENTS,
   EXPECTED_LANDMARK_ROLES,
@@ -149,15 +151,13 @@ function skipLinkItems(state: WorkbookState): GradeItem[] {
 }
 
 function motionPauseItems(state: WorkbookState): GradeItem[] {
-  return MOTION_SEEDS.filter((s) => s.pauseRequired).map((seed) => {
+  return MOTION_SEEDS.map((seed) => {
     const row = state.motionInventory.find((m) => m.id === seed.id);
-    const pause = row?.pauseControl ?? "";
-    const answered = pause === "yes" || pause === "no";
     return {
-      id: `pause-${seed.id}`,
-      label: `${seed.label}: pause/stop/hide control`,
-      answered,
-      pass: pause === "yes",
+      id: `pause-needs-${seed.id}`,
+      label: `${seed.label}: needs a pause button`,
+      answered: needsPauseButtonAnswered(row),
+      pass: needsPauseButtonPasses(seed, row),
     };
   });
 }
@@ -167,9 +167,9 @@ function reducedMotionItems(state: WorkbookState): GradeItem[] {
     const row = state.motionInventory.find((m) => m.id === seed.id);
     return {
       id: `reduced-${seed.id}`,
-      label: `${seed.label}: prefers-reduced-motion`,
-      answered: reducedMotionAnswered(row),
-      pass: reducedMotionPasses(seed, row),
+      label: `${seed.label}: should respect prefers-reduced-motion`,
+      answered: shouldRespectPreferenceAnswered(row),
+      pass: shouldRespectPreferencePasses(seed, row),
     };
   });
 }

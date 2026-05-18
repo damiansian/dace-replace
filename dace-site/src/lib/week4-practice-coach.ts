@@ -4,9 +4,11 @@ import {
   computeAutoSelfAssessment,
 } from "@/lib/week4-practice-auto-grade";
 import {
-  reducedMotionCoachMessage,
-  reducedMotionPasses,
-} from "@/lib/week4-practice-reduced-motion";
+  needsPauseButtonCoachMessage,
+  needsPauseButtonPasses,
+  shouldRespectPreferenceCoachMessage,
+  shouldRespectPreferencePasses,
+} from "@/lib/week4-practice-motion-grade";
 import { matchesSkipLinkFirstTab } from "@/data/week4-practice/practice-overlays";
 import {
   EXPECTED_HTML_EQUIVALENTS,
@@ -111,25 +113,15 @@ export function runCoachChecks(state: WorkbookState): CoachCheck[] {
   for (const seed of MOTION_SEEDS) {
     const inv = state.motionInventory.find((m) => m.id === seed.id);
     checks.push({
-      id: `motion-reduced-${seed.id}`,
-      pass: reducedMotionPasses(seed, inv),
-      message: reducedMotionCoachMessage(seed, inv),
+      id: `motion-pause-needs-${seed.id}`,
+      pass: needsPauseButtonPasses(seed, inv),
+      message: needsPauseButtonCoachMessage(seed, inv),
     });
-
-    if (seed.pauseRequired) {
-      const pauseControl = inv?.pauseControl ?? "";
-      const pauseOk = pauseControl === "yes";
-      checks.push({
-        id: `motion-pause-${seed.id}`,
-        pass: pauseOk,
-        message:
-          pauseControl === "yes"
-            ? `${seed.label}: pause/stop/hide control specified.`
-            : pauseControl === "no"
-              ? `${seed.label}: auto-play needs a pause, stop, or hide control (answer Yes).`
-              : `${seed.label}: choose Yes or No for pause/stop/hide control.`,
-      });
-    }
+    checks.push({
+      id: `motion-reduced-${seed.id}`,
+      pass: shouldRespectPreferencePasses(seed, inv),
+      message: shouldRespectPreferenceCoachMessage(seed, inv),
+    });
   }
 
   return checks;

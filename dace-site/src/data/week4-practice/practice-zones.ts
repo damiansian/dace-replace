@@ -244,12 +244,12 @@ export const SELF_ASSESSMENT_CRITERIA = [
   },
   {
     id: "motionInventory",
-    label: "Motion specs and pause/stop/hide (carousel)",
+    label: "Pause control needed (per motion)",
     outcome: "1H.02",
   },
   {
     id: "reducedMotion",
-    label: "prefers-reduced-motion static alternatives",
+    label: "Should respect prefers-reduced-motion",
     outcome: "1H.01, 1H.03",
   },
 ] as const;

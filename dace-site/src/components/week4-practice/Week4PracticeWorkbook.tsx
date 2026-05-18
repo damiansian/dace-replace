@@ -88,8 +88,8 @@ function seedMotionInventory(): MotionInventoryRow[] {
     id: s.id,
     element: s.label,
     intendedMotion: s.defaultDescription,
-    pauseRequired: s.pauseRequired ? "yes" : "no",
-    pauseControl: s.pauseRequired ? "" : "N/A",
+    pauseRequired: "",
+    pauseControl: "N/A",
     respectsReducedMotion: "",
     reducedMotionAlt: "",
   }));
@@ -109,19 +109,15 @@ function normalizeMotionInventory(merged: WorkbookState): MotionInventoryRow[] {
       id: s.id,
       element: s.label,
       intendedMotion: legacy?.intendedMotion ?? legacy?.durationTrigger ?? s.defaultDescription,
-      pauseRequired:
-        legacy?.pauseRequired === "yes" || legacy?.pauseRequired === "no"
-          ? legacy.pauseRequired
-          : s.pauseRequired
-            ? "yes"
-            : "no",
-      pauseControl: (() => {
-        const raw = legacy?.pauseControl ?? "";
-        if (raw === "yes" || raw === "no" || raw === "N/A") return raw;
-        if (!s.pauseRequired) return "N/A";
-        if (typeof raw === "string" && raw.trim()) return "yes";
+      pauseRequired: (() => {
+        if (legacy?.pauseRequired === "yes" || legacy?.pauseRequired === "no") {
+          return legacy.pauseRequired;
+        }
+        const pauseControl = legacy?.pauseControl ?? "";
+        if (pauseControl === "yes" || pauseControl === "no") return pauseControl;
         return "";
       })(),
+      pauseControl: "N/A",
       respectsReducedMotion:
         legacy?.respectsReducedMotion === "yes" || legacy?.respectsReducedMotion === "no"
           ? legacy.respectsReducedMotion
@@ -603,10 +599,9 @@ export default function Week4PracticeWorkbook({
           </h1>
           <p className="text-sm text-text-secondary">
             The mockup is static (no animation plays). Switch pages to answer each
-            motion target; numbering starts at 1 on every page. Describe how the live
-            site respects{" "}
-            <code className="text-xs">prefers-reduced-motion</code> with a static
-            alternative.
+            motion target; numbering starts at 1 on every page. For each item, decide
+            whether it needs a pause control and whether it should respect{" "}
+            <code className="text-xs">prefers-reduced-motion</code>.
           </p>
           <PracticeSite
             overlayMode="motion"
@@ -637,25 +632,23 @@ export default function Week4PracticeWorkbook({
                     {row.intendedMotion}
                   </p>
                 </div>
-                {seed?.pauseRequired ? (
-                  <WorkbookYesNoRadio
-                    name={`pause-choice-${row.id}`}
-                    legend="Pause, stop, or hide control"
-                    required
-                    hint="Auto-playing content must provide a user control (WCAG 2.2.2)."
-                    value={row.pauseControl === "yes" || row.pauseControl === "no" ? row.pauseControl : ""}
-                    onChange={(pauseControl) => {
-                      const motionInventory = [...state.motionInventory];
-                      motionInventory[i] = { ...row, pauseControl };
-                      persist({ ...state, motionInventory });
-                    }}
-                  />
-                ) : null}
+                <WorkbookYesNoRadio
+                  name={`pause-needs-${row.id}`}
+                  legend="Needs a pause button?"
+                  required
+                  hint="WCAG 2.2.2: auto-playing content longer than 5 seconds needs a pause, stop, or hide control."
+                  value={row.pauseRequired}
+                  onChange={(pauseRequired) => {
+                    const motionInventory = [...state.motionInventory];
+                    motionInventory[i] = { ...row, pauseRequired };
+                    persist({ ...state, motionInventory });
+                  }}
+                />
                 <WorkbookYesNoRadio
                   name={`rm-choice-${row.id}`}
-                  legend="Respects prefers-reduced-motion"
+                  legend="Should respect preference?"
                   required
-                  hint="Does the live site disable or replace this motion when the user has reduced motion enabled?"
+                  hint="Should this motion honor prefers-reduced-motion (reduce or remove animation)?"
                   value={row.respectsReducedMotion}
                   onChange={(respectsReducedMotion) => {
                     const motionInventory = [...state.motionInventory];
