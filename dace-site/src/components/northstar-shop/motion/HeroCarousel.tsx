@@ -25,6 +25,35 @@ const SLIDES = [
 
 const ADVANCE_MS = 5000;
 
+function PauseIcon() {
+  return (
+    <svg
+      viewBox="0 0 16 16"
+      aria-hidden="true"
+      focusable="false"
+      className="h-3.5 w-3.5"
+      fill="currentColor"
+    >
+      <rect x="3" y="2" width="3" height="12" rx="0.5" />
+      <rect x="10" y="2" width="3" height="12" rx="0.5" />
+    </svg>
+  );
+}
+
+function PlayIcon() {
+  return (
+    <svg
+      viewBox="0 0 16 16"
+      aria-hidden="true"
+      focusable="false"
+      className="h-3.5 w-3.5"
+      fill="currentColor"
+    >
+      <path d="M4 2.5v11l9-5.5L4 2.5z" />
+    </svg>
+  );
+}
+
 export default function HeroCarousel() {
   const [index, setIndex] = useState(0);
   const [playing, setPlaying] = useState(true);
@@ -86,7 +115,7 @@ export default function HeroCarousel() {
           onClick={() => setPlaying((p) => !p)}
           aria-pressed={isAutoActive}
           disabled={reducedMotion}
-          className="rounded-md border border-border bg-white px-2.5 py-1 text-xs font-medium text-foreground hover:bg-surface disabled:opacity-60 disabled:cursor-not-allowed"
+          className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-md border border-border bg-white text-foreground hover:bg-surface disabled:opacity-60 disabled:cursor-not-allowed"
           aria-label={
             reducedMotion
               ? "Autoplay off while reduced motion is enabled"
@@ -102,11 +131,7 @@ export default function HeroCarousel() {
                 : "Play auto-advance"
           }
         >
-          {reducedMotion
-            ? "Autoplay off"
-            : isAutoActive
-              ? "Pause"
-              : "Play"}
+          {isAutoActive || reducedMotion ? <PauseIcon /> : <PlayIcon />}
         </button>
         <ul className="list-none m-0 p-0 flex gap-1" aria-hidden="true">
           {SLIDES.map((s, i) => (
