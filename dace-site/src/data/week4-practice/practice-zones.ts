@@ -82,9 +82,10 @@ export const PRACTICE_ZONES: PracticeZone[] = [
   },
   {
     id: "sidebar",
-    description: "Right column with filters and promos",
+    description:
+      "Right column with filters (region — name it “Filters” with aria-labelledby on the heading)",
     pages: ["home", "products"],
-    nameRequired: false,
+    nameRequired: true,
   },
   {
     id: "site-footer",
@@ -101,7 +102,7 @@ export const EXPECTED_LANDMARK_ROLES: Record<PracticeZoneId, string> = {
   "site-search": "search",
   "main-content": "main",
   "contact-form": "form",
-  sidebar: "complementary",
+  sidebar: "region",
   "footer-nav": "navigation",
   "site-footer": "contentinfo",
 };
@@ -112,7 +113,7 @@ export const EXPECTED_HTML_EQUIVALENTS: Record<PracticeZoneId, string> = {
   "site-search": "form[role=search]",
   "main-content": "main",
   "contact-form": "form",
-  sidebar: "aside",
+  sidebar: "section",
   "footer-nav": "nav",
   "site-footer": "footer",
 };
@@ -185,6 +186,7 @@ export const LANDMARK_ROLES = [
   "navigation",
   "main",
   "form",
+  "region",
   "complementary",
   "contentinfo",
   "search",
@@ -196,6 +198,7 @@ export const HTML_EQUIVALENTS = [
   "nav",
   "main",
   "form",
+  "section",
   "aside",
   "footer",
   "form[role=search]",

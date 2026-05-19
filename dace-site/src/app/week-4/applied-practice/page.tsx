@@ -86,7 +86,7 @@ export default async function Week4Practice({ searchParams }: PageProps) {
           <div className="rounded-lg border border-border bg-white p-5 space-y-2">
             <h3 className="text-base font-semibold text-foreground">Landmarks &amp; Structure (L07)</h3>
             <ul className="list-disc list-inside text-sm text-text-secondary space-y-1">
-              <li>Identify all landmark regions (banner, navigation, main, complementary, contentinfo, search)</li>
+              <li>Identify all landmark regions (banner, navigation, main, region, contentinfo, search)</li>
               <li>Assign unique accessible names when multiple landmarks of the same type exist</li>
               <li>Document landmark structure using Stark Blueline annotations</li>
               <li>Note HTML5 semantic equivalents for each landmark</li>

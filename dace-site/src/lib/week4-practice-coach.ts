@@ -9,6 +9,10 @@ import {
   shouldRespectPreferenceCoachMessage,
   shouldRespectPreferencePasses,
 } from "@/lib/week4-practice-motion-grade";
+import {
+  genericLandmarkNameCoachMessage,
+  hasGenericLandmarkName,
+} from "@/lib/week4-practice-landmark-name";
 import { matchesSkipLinkFirstTab } from "@/data/week4-practice/practice-overlays";
 import {
   EXPECTED_HTML_EQUIVALENTS,
@@ -74,11 +78,27 @@ export function runCoachChecks(state: WorkbookState): CoachCheck[] {
             : `${page.label} / ${zoneDisplayName(zone.id, page.id)}: select an HTML equivalent.`,
       });
 
-      if (zone.nameRequired && !row.accessibleName.trim()) {
+      const accessibleName = row.accessibleName.trim();
+      if (zone.nameRequired && !accessibleName) {
         checks.push({
-          id: `nav-name-${page.id}-${zone.id}`,
+          id: `zone-name-required-${page.id}-${zone.id}`,
           pass: false,
           message: `${page.label} / ${zoneDisplayName(zone.id, page.id)}: accessible name is required.`,
+        });
+      } else if (zone.nameRequired && hasGenericLandmarkName(accessibleName)) {
+        checks.push({
+          id: `zone-name-generic-${page.id}-${zone.id}`,
+          pass: false,
+          message: genericLandmarkNameCoachMessage(
+            page.label,
+            zoneDisplayName(zone.id, page.id)
+          ),
+        });
+      } else if (zone.nameRequired && accessibleName) {
+        checks.push({
+          id: `zone-name-generic-${page.id}-${zone.id}`,
+          pass: true,
+          message: `${page.label} / ${zoneDisplayName(zone.id, page.id)}: accessible name looks descriptive.`,
         });
       }
     }

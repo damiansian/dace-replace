@@ -4,6 +4,7 @@ import {
   zonesForPage,
   type PracticePageId,
 } from "@/data/week4-practice/practice-zones";
+import { hasGenericLandmarkName } from "@/lib/week4-practice-landmark-name";
 import type { WorkbookState } from "@/data/week4-practice/workbook-types";
 import {
   needsPauseButtonAnswered,
@@ -26,7 +27,9 @@ export function isLandmarkPageComplete(
     const role = row?.role?.trim() ?? "";
     if (!role || role === "none") return false;
     if (!isAnsweredText(row?.htmlEquivalent)) return false;
-    if (zone.nameRequired && !isAnsweredText(row?.accessibleName)) return false;
+    const accessibleName = row?.accessibleName?.trim() ?? "";
+    if (zone.nameRequired && !isAnsweredText(accessibleName)) return false;
+    if (zone.nameRequired && hasGenericLandmarkName(accessibleName)) return false;
     return true;
   });
 }

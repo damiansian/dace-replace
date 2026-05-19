@@ -61,13 +61,9 @@ export default function NorthstarShopShell({
 
           <form
             role="search"
-            aria-label="Search products"
             className="flex items-center gap-2 rounded border border-border bg-surface px-2 py-1 min-w-[180px]"
             onSubmit={(e) => e.preventDefault()}
           >
-            <label htmlFor="northstar-search" className="sr-only">
-              Search products
-            </label>
             <svg
               viewBox="0 0 20 20"
               aria-hidden="true"
@@ -115,37 +111,35 @@ export default function NorthstarShopShell({
 
       <footer className="border-t border-border bg-surface mt-8">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 py-6 space-y-3">
-          <nav aria-label="Footer">
-            <ul className="flex flex-wrap gap-4 list-none m-0 p-0 text-sm text-text-secondary">
-              <li>
-                <Link
-                  href="#"
-                  onClick={(e) => e.preventDefault()}
-                  className="text-primary-text underline hover:text-primary-dark"
-                >
-                  Privacy
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="#"
-                  onClick={(e) => e.preventDefault()}
-                  className="text-primary-text underline hover:text-primary-dark"
-                >
-                  Terms
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="#"
-                  onClick={(e) => e.preventDefault()}
-                  className="text-primary-text underline hover:text-primary-dark"
-                >
-                  Support
-                </Link>
-              </li>
-            </ul>
-          </nav>
+          <ul className="flex flex-wrap gap-4 list-none m-0 p-0 text-sm text-text-secondary">
+            <li>
+              <Link
+                href="#"
+                onClick={(e) => e.preventDefault()}
+                className="text-primary-text underline hover:text-primary-dark"
+              >
+                Privacy
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="#"
+                onClick={(e) => e.preventDefault()}
+                className="text-primary-text underline hover:text-primary-dark"
+              >
+                Terms
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="#"
+                onClick={(e) => e.preventDefault()}
+                className="text-primary-text underline hover:text-primary-dark"
+              >
+                Support
+              </Link>
+            </li>
+          </ul>
           <p className="text-xs text-text-secondary m-0">
             &copy; 2026 Northstar Shop. Live practice site for the DACE Week 4
             workbook.

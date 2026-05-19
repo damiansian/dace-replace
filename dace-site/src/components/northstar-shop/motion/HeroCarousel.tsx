@@ -48,9 +48,8 @@ export default function HeroCarousel() {
   const slide = SLIDES[index];
 
   return (
-    <section
+    <div
       aria-roledescription="carousel"
-      aria-label="Featured promotions"
       className="rounded-md border border-border bg-surface p-4"
     >
       <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
@@ -142,6 +141,6 @@ export default function HeroCarousel() {
         hasPauseControl
         tone="warn"
       />
-    </section>
+    </div>
   );
 }

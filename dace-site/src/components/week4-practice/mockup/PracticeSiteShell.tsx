@@ -27,8 +27,9 @@ function SiteSearch({
   overlayMode: PracticeOverlayMode;
 }) {
   const field = (
-    <label
-      htmlFor={`practice-site-search-${pageId}`}
+    <form
+      role="search"
+      onSubmit={(e) => e.preventDefault()}
       className="flex items-center gap-2 rounded border border-border bg-surface px-2 py-1 min-w-[140px] has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-primary"
     >
       <svg
@@ -53,7 +54,6 @@ function SiteSearch({
           strokeLinecap="round"
         />
       </svg>
-      <span className="sr-only">Search products</span>
       <input
         id={`practice-site-search-${pageId}`}
         type="search"
@@ -61,8 +61,9 @@ function SiteSearch({
         readOnly
         aria-readonly="true"
         title="Static preview — search is not functional"
+        placeholder="Search products"
       />
-    </label>
+    </form>
   );
 
   if (overlayMode === "skipNav") {
@@ -148,19 +149,17 @@ function LandmarkShell({
       </div>
 
       <ZoneOutline zoneId="site-footer" pageId={pageId} className={`m-2 p-3 ${zonePad}`}>
-        <nav aria-label="Footer links">
-          <ul className="flex flex-wrap gap-4 list-none m-0 p-0 mb-2 text-text-secondary">
-            <li>
-              <MockupStaticLink>Privacy</MockupStaticLink>
-            </li>
-            <li>
-              <MockupStaticLink>Terms</MockupStaticLink>
-            </li>
-            <li>
-              <MockupStaticLink>Support</MockupStaticLink>
-            </li>
-          </ul>
-        </nav>
+        <ul className="flex flex-wrap gap-4 list-none m-0 p-0 mb-2 text-text-secondary">
+          <li>
+            <MockupStaticLink>Privacy</MockupStaticLink>
+          </li>
+          <li>
+            <MockupStaticLink>Terms</MockupStaticLink>
+          </li>
+          <li>
+            <MockupStaticLink>Support</MockupStaticLink>
+          </li>
+        </ul>
         <p className="text-text-secondary text-xs m-0">
           © 2026 Northstar Shop. Static practice mockup for DACE Week 4.
         </p>
@@ -255,29 +254,27 @@ function SkipNavShell({
       </div>
 
       <div className="m-2 p-3">
-        <nav aria-label="Footer links">
-          <ul className="flex flex-wrap gap-3 list-none m-0 p-0 mb-2 text-text-secondary">
-            {(
-              [
-                ["footer-privacy", "Privacy"],
-                ["footer-terms", "Terms"],
-                ["footer-support", "Support"],
-              ] as const
-            ).map(([targetId, label], index) => (
-              <li key={targetId}>
-                {index === 0 ? (
-                  <SkipTargetOutline targetId={targetId} pageId={pageId} className="inline-flex p-1">
-                    <MockupStaticLink>{label}</MockupStaticLink>
-                  </SkipTargetOutline>
-                ) : (
-                  <span className="inline-flex p-1">
-                    <MockupStaticLink>{label}</MockupStaticLink>
-                  </span>
-                )}
-              </li>
-            ))}
-          </ul>
-        </nav>
+        <ul className="flex flex-wrap gap-3 list-none m-0 p-0 mb-2 text-text-secondary">
+          {(
+            [
+              ["footer-privacy", "Privacy"],
+              ["footer-terms", "Terms"],
+              ["footer-support", "Support"],
+            ] as const
+          ).map(([targetId, label], index) => (
+            <li key={targetId}>
+              {index === 0 ? (
+                <SkipTargetOutline targetId={targetId} pageId={pageId} className="inline-flex p-1">
+                  <MockupStaticLink>{label}</MockupStaticLink>
+                </SkipTargetOutline>
+              ) : (
+                <span className="inline-flex p-1">
+                  <MockupStaticLink>{label}</MockupStaticLink>
+                </span>
+              )}
+            </li>
+          ))}
+        </ul>
         <p className="text-text-secondary text-xs m-0">
           © 2026 Northstar Shop. Static practice mockup for DACE Week 4.
         </p>

@@ -13,9 +13,9 @@ type WorkbookStepperProps = {
 };
 
 const STATUS_LABEL: Record<WorkbookStepStatus, string> = {
-  current: "current step",
-  completed: "completed",
-  upcoming: "not started",
+  completed: "Completed",
+  current: "Current step",
+  upcoming: "Not yet reached",
 };
 
 function stepStatus(index: number, currentStep: number): WorkbookStepStatus {
@@ -168,7 +168,7 @@ export function WorkbookStepper({
               strokeLinejoin="round"
             />
           </svg>
-          Completed
+          {STATUS_LABEL.completed}
         </span>
         <span className="inline-flex items-center gap-1.5 mr-3">
           <svg
@@ -179,7 +179,7 @@ export function WorkbookStepper({
           >
             <circle cx="10" cy="10" r="4" fill="currentColor" />
           </svg>
-          Current step
+          {STATUS_LABEL.current}
         </span>
         <span className="inline-flex items-center gap-1.5">
           <svg
@@ -197,7 +197,7 @@ export function WorkbookStepper({
               strokeWidth="1.75"
             />
           </svg>
-          Not yet reached
+          {STATUS_LABEL.upcoming}
         </span>
       </p>
     </div>

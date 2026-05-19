@@ -1,10 +1,15 @@
 export default function SidebarPromo() {
   return (
-    <aside
-      aria-label="Filters and promotions"
+    <section
+      aria-labelledby="filters-heading"
       className="rounded-md border border-border bg-surface p-4 text-sm"
     >
-      <p className="font-semibold text-foreground m-0 mb-2">Filters</p>
+      <h2
+        id="filters-heading"
+        className="text-base font-semibold text-foreground m-0 mb-2"
+      >
+        Filters
+      </h2>
       <ul className="list-none m-0 p-0 space-y-1 text-text-secondary text-xs">
         <li>
           <label className="inline-flex items-center gap-2">
@@ -25,6 +30,6 @@ export default function SidebarPromo() {
       <p className="text-xs text-text-secondary m-0 mt-3">
         Free shipping on orders over $75.
       </p>
-    </aside>
+    </section>
   );
 }

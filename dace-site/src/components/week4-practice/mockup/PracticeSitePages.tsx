@@ -13,14 +13,16 @@ function motionSeed(id: string) {
 
 function SidebarPromo() {
   return (
-    <aside>
-      <p className="font-semibold text-foreground text-sm m-0 mb-2">Filters</p>
+    <section aria-labelledby="filters-heading">
+      <h2 id="filters-heading" className="font-semibold text-foreground text-sm m-0 mb-2">
+        Filters
+      </h2>
       <ul className="list-none m-0 p-0 space-y-1 text-text-secondary text-xs">
         <li>In stock</li>
         <li>On sale</li>
         <li>New arrivals</li>
       </ul>
-    </aside>
+    </section>
   );
 }
 
@@ -44,16 +46,16 @@ function HomeMain({
 
   if (overlayMode === "landmark") {
     promoBlock = (
-      <section className="rounded-md border border-border bg-surface p-4 mb-4">
+      <div className="rounded-md border border-border bg-surface p-4 mb-4">
         <p className="text-sm font-medium text-foreground m-0 mb-2">Featured promotions</p>
         <p className="text-sm text-text-secondary m-0">
           Summer sale — up to 30% off trail gear through June.
         </p>
-      </section>
+      </div>
     );
   } else if (overlayMode === "skipNav") {
     promoBlock = (
-      <section className="rounded-md border border-border bg-surface p-4 mb-4">
+      <div className="rounded-md border border-border bg-surface p-4 mb-4">
         <p className="text-sm font-medium text-foreground m-0 mb-3">Featured promotions</p>
         <div className="flex gap-2 flex-wrap">
           <SkipTargetOutline targetId="slide-1" pageId={pageId} className="inline-flex">
@@ -72,7 +74,7 @@ function HomeMain({
             Slide 3
           </span>
         </div>
-      </section>
+      </div>
     );
   } else {
     const seed = motionSeed("hero-carousel");
@@ -107,11 +109,11 @@ function HomeMain({
       </>
     );
     promoBlock = (
-      <section className="rounded-md border border-border bg-surface p-4 mb-4">
+      <div className="rounded-md border border-border bg-surface p-4 mb-4">
         <MotionTargetOutline motionId="hero-carousel" pageId={pageId}>
           {inner}
         </MotionTargetOutline>
-      </section>
+      </div>
     );
   }
 

@@ -1,3 +1,4 @@
+import { hasGenericLandmarkName } from "@/lib/week4-practice-landmark-name";
 import { matchesSkipLinkFirstTab } from "@/data/week4-practice/practice-overlays";
 import {
   needsPauseButtonAnswered,
@@ -108,8 +109,10 @@ function landmarkItems(state: WorkbookState): GradeItem[] {
       const role = row?.role?.trim() ?? "";
       const answered = Boolean(role && role !== "none");
       const rolePass = answered && role === EXPECTED_LANDMARK_ROLES[zone.id];
+      const accessibleName = row?.accessibleName?.trim() ?? "";
       const namePass =
-        !zone.nameRequired || isAnsweredText(row?.accessibleName);
+        !zone.nameRequired ||
+        (isAnsweredText(accessibleName) && !hasGenericLandmarkName(accessibleName));
       const htmlPass =
         isAnsweredText(row?.htmlEquivalent) &&
         row?.htmlEquivalent === EXPECTED_HTML_EQUIVALENTS[zone.id];

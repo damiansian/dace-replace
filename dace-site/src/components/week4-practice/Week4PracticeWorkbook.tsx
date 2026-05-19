@@ -580,8 +580,16 @@ export default function Week4PracticeWorkbook({
                             )
                           }
                           aria-label={`Accessible name for ${zoneName}`}
-                          placeholder="If needed"
+                          placeholder={zone.nameRequired ? "Required" : "If needed"}
+                          required={zone.nameRequired}
+                          aria-required={zone.nameRequired}
                         />
+                        {zone.nameRequired ? (
+                          <span className="mt-1 block text-xs text-text-secondary">
+                            Required. Do not use &quot;Region&quot; or &quot;Section&quot; in
+                            the name.
+                          </span>
+                        ) : null}
                       </td>
                       <td className="border border-border px-2 py-2">
                         <WorkbookSelect
