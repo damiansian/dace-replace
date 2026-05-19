@@ -21,7 +21,7 @@ export default function NorthstarShopNav({
   const navOrder = NAV_ORDER_BY_PAGE[pageId];
 
   return (
-    <nav>
+    <nav aria-label="Primary">
       <ul className="flex flex-wrap gap-4 list-none m-0 p-0">
         {navOrder.map((item) => {
           const targetId = PAGE_PATH[item];
