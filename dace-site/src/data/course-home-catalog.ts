@@ -11,6 +11,8 @@ export type HomeWeek = {
   weekLabel: string;
   weekTitle: string;
   weekHref: string;
+  /** Class week date from the course syllabus (Discover Badge schedule). */
+  syllabusClassDate: string;
   classDueDate: string;
   lessons: [HomeLesson, HomeLesson];
   appliedSkill: {
@@ -37,6 +39,7 @@ export const courseHomeCatalog: HomeWeek[] = [
     weekLabel: "Week 2",
     weekTitle: "Color & Forms",
     weekHref: "/week-2",
+    syllabusClassDate: "2026-05-05",
     classDueDate: "2026-05-12",
     lessons: [
       {
@@ -65,6 +68,7 @@ export const courseHomeCatalog: HomeWeek[] = [
     weekLabel: "Week 3",
     weekTitle: "Keyboard & Reflow",
     weekHref: "/week-3",
+    syllabusClassDate: "2026-05-12",
     classDueDate: "2026-05-19",
     lessons: [
       {
@@ -93,6 +97,7 @@ export const courseHomeCatalog: HomeWeek[] = [
     weekLabel: "Week 4",
     weekTitle: "Landmarks, Navigation & Motion",
     weekHref: "/week-4",
+    syllabusClassDate: "2026-05-19",
     classDueDate: "2026-05-26",
     lessons: [
       {
