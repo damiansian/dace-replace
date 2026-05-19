@@ -4,7 +4,10 @@ import {
   zonesForPage,
   type PracticePageId,
 } from "@/data/week4-practice/practice-zones";
-import { hasGenericLandmarkName } from "@/lib/week4-practice-landmark-name";
+import {
+  hasGenericLandmarkName,
+  isAccessibleNameRequired,
+} from "@/lib/week4-practice-landmark-name";
 import type { WorkbookState } from "@/data/week4-practice/workbook-types";
 import {
   needsPauseButtonAnswered,
@@ -28,8 +31,10 @@ export function isLandmarkPageComplete(
     if (!role || role === "none") return false;
     if (!isAnsweredText(row?.htmlEquivalent)) return false;
     const accessibleName = row?.accessibleName?.trim() ?? "";
-    if (zone.nameRequired && !isAnsweredText(accessibleName)) return false;
-    if (zone.nameRequired && hasGenericLandmarkName(accessibleName)) return false;
+    const htmlEquivalent = row?.htmlEquivalent?.trim() ?? "";
+    const nameRequired = isAccessibleNameRequired(role, htmlEquivalent);
+    if (nameRequired && !isAnsweredText(accessibleName)) return false;
+    if (nameRequired && hasGenericLandmarkName(accessibleName)) return false;
     return true;
   });
 }

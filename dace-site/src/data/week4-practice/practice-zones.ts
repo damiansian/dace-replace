@@ -21,8 +21,6 @@ export interface PracticeZone {
   /** Neutral location copy — does not name the landmark role. */
   description: string;
   pages: PracticePageId[];
-  /** When true, coach checks expect a non-empty accessible name. */
-  nameRequired: boolean;
 }
 
 /** Instructor-facing label for coach feedback (no answer leakage). */
@@ -53,45 +51,38 @@ export const PRACTICE_ZONES: PracticeZone[] = [
     id: "site-header",
     description: "Top bar spanning the page (site title area)",
     pages: ["home", "products", "about"],
-    nameRequired: false,
   },
   {
     id: "primary-nav",
     description:
       "Horizontal list of page links in the header (use the same role and HTML on every page)",
     pages: ["home", "products", "about"],
-    nameRequired: false,
   },
   {
     id: "site-search",
     description: "Search field in the header",
     pages: ["home", "products", "about"],
-    nameRequired: false,
   },
   {
     id: "main-content",
     description: "Central column with this page’s primary content",
     pages: ["home", "products", "about"],
-    nameRequired: false,
   },
   {
     id: "contact-form",
     description: "Contact form with name, email, message, and submit (About page only)",
     pages: ["about"],
-    nameRequired: true,
   },
   {
     id: "sidebar",
     description:
       "Right column with filters (region — name it “Filters” with aria-labelledby on the heading)",
     pages: ["home", "products"],
-    nameRequired: true,
   },
   {
     id: "site-footer",
     description: "Footer links and copyright in one bottom strip",
     pages: ["home", "products", "about"],
-    nameRequired: false,
   },
 ];
 

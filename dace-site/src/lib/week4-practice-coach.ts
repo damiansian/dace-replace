@@ -12,6 +12,7 @@ import {
 import {
   genericLandmarkNameCoachMessage,
   hasGenericLandmarkName,
+  isAccessibleNameRequired,
 } from "@/lib/week4-practice-landmark-name";
 import { matchesSkipLinkFirstTab } from "@/data/week4-practice/practice-overlays";
 import {
@@ -79,13 +80,14 @@ export function runCoachChecks(state: WorkbookState): CoachCheck[] {
       });
 
       const accessibleName = row.accessibleName.trim();
-      if (zone.nameRequired && !accessibleName) {
+      const nameRequired = isAccessibleNameRequired(row.role, html);
+      if (nameRequired && !accessibleName) {
         checks.push({
           id: `zone-name-required-${page.id}-${zone.id}`,
           pass: false,
           message: `${page.label} / ${zoneDisplayName(zone.id, page.id)}: accessible name is required.`,
         });
-      } else if (zone.nameRequired && hasGenericLandmarkName(accessibleName)) {
+      } else if (nameRequired && hasGenericLandmarkName(accessibleName)) {
         checks.push({
           id: `zone-name-generic-${page.id}-${zone.id}`,
           pass: false,
@@ -94,7 +96,7 @@ export function runCoachChecks(state: WorkbookState): CoachCheck[] {
             zoneDisplayName(zone.id, page.id)
           ),
         });
-      } else if (zone.nameRequired && accessibleName) {
+      } else if (nameRequired && accessibleName) {
         checks.push({
           id: `zone-name-generic-${page.id}-${zone.id}`,
           pass: true,

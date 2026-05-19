@@ -27,6 +27,7 @@ import {
   computeAutoSelfAssessment,
 } from "@/lib/week4-practice-auto-grade";
 import { runCoachChecks } from "@/lib/week4-practice-coach";
+import { isAccessibleNameRequired } from "@/lib/week4-practice-landmark-name";
 import { withToken } from "@/data/progress-catalog";
 import {
   WEEK4_WORKBOOK_TOTAL_POINTS,
@@ -544,6 +545,10 @@ export default function Week4PracticeWorkbook({
                 {state.landmarks[landmarkPage].map((row) => {
                   const zone = zonesForPage(landmarkPage).find((z) => z.id === row.zoneId)!;
                   const zoneName = zoneDisplayName(row.zoneId, landmarkPage);
+                  const nameRequired = isAccessibleNameRequired(
+                    row.role,
+                    row.htmlEquivalent
+                  );
                   return (
                     <tr key={row.zoneId}>
                       <td className="border border-border px-2 py-2">
@@ -580,14 +585,14 @@ export default function Week4PracticeWorkbook({
                             )
                           }
                           aria-label={`Accessible name for ${zoneName}`}
-                          placeholder={zone.nameRequired ? "Required" : "If needed"}
-                          required={zone.nameRequired}
-                          aria-required={zone.nameRequired}
+                          placeholder={nameRequired ? "Required" : "If needed"}
+                          required={nameRequired}
+                          aria-required={nameRequired}
                         />
-                        {zone.nameRequired ? (
+                        {nameRequired ? (
                           <span className="mt-1 block text-xs text-text-secondary">
-                            Required. Do not use &quot;Region&quot; or &quot;Section&quot; in
-                            the name.
+                            Required when role is region or section. Do not use
+                            &quot;Region&quot; or &quot;Section&quot; in the name.
                           </span>
                         ) : null}
                       </td>

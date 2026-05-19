@@ -29,7 +29,7 @@ export default async function Home({ searchParams }: HomeProps) {
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6">
-      <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(220px,280px)] lg:items-start">
+      <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(260px,300px)] lg:items-start">
         <div className="min-w-0 space-y-10">
           <div className="space-y-4">
             <h1 className="text-3xl font-bold tracking-tight text-foreground">
@@ -72,10 +72,7 @@ export default async function Home({ searchParams }: HomeProps) {
           </div>
         </div>
 
-        <CourseScheduleSidebar
-          weeks={courseHomeCatalog}
-          weekCounts={weekCounts}
-        />
+        <CourseScheduleSidebar weekCounts={weekCounts} />
       </div>
     </div>
   );
