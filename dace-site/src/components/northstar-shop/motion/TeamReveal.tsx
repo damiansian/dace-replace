@@ -5,9 +5,24 @@ import { useReducedMotion } from "../useReducedMotion";
 import styles from "./motion.module.css";
 
 const TEAM = [
-  { id: "alex-profile", name: "Alex", role: "Founder" },
-  { id: "jordan-profile", name: "Jordan", role: "Designer" },
-  { id: "sam-profile", name: "Sam", role: "Engineering" },
+  {
+    id: "alex-profile",
+    name: "Alex",
+    role: "Founder",
+    imageSrc: "/northstar-shop/team-alex.png",
+  },
+  {
+    id: "jordan-profile",
+    name: "Jordan",
+    role: "Designer",
+    imageSrc: "/northstar-shop/team-jordan.png",
+  },
+  {
+    id: "sam-profile",
+    name: "Sam",
+    role: "Engineering",
+    imageSrc: "/northstar-shop/team-sam.png",
+  },
 ];
 
 export default function TeamReveal() {
@@ -60,15 +75,16 @@ export default function TeamReveal() {
             className="flex flex-col items-center gap-1 rounded-md border border-border bg-white p-3 w-24 text-center no-underline text-foreground hover:bg-surface"
             aria-label={`${member.name}, ${member.role}, team profile`}
           >
-            <span
-              aria-hidden="true"
-              className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-surface border border-border text-sm font-semibold text-foreground"
-            >
-              {member.name[0]}
-            </span>
-            <span className="text-sm font-medium text-foreground">
+            <img
+              src={member.imageSrc}
+              alt=""
+              width={48}
+              height={48}
+              className="h-12 w-12 rounded-full border border-border object-cover bg-surface"
+            />
+            <h4 className="text-sm font-medium text-foreground m-0">
               {member.name}
-            </span>
+            </h4>
             <span className="text-[11px] text-text-secondary">
               {member.role}
             </span>
