@@ -133,7 +133,7 @@ export default function HeroCarousel() {
         >
           Next
         </button>
-        <span className="ml-auto text-[11px] text-text-secondary">
+        <span className="text-[11px] text-text-secondary" aria-live="polite">
           Slide {index + 1} of {SLIDES.length}
         </span>
       </div>
