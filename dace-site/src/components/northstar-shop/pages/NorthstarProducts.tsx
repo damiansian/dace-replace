@@ -1,5 +1,4 @@
 import AddToCartButton from "../motion/AddToCartButton";
-import MotionLearningCallout from "../MotionLearningCallout";
 import ProductCard from "../motion/ProductCard";
 import SidebarPromo from "./SidebarPromo";
 
@@ -37,19 +36,6 @@ export default function NorthstarProducts() {
             </ProductCard>
           ))}
         </ul>
-
-        <MotionLearningCallout
-          motionId="product-card-hover"
-          label="Hover scale"
-          fullMotion="Product cards scale up 4% on hover over 200ms."
-          reducedMotion="No transform is applied. Cards stay at their natural size."
-        />
-        <MotionLearningCallout
-          motionId="add-to-cart-transition"
-          label="Add to cart feedback"
-          fullMotion="A checkmark slides in for ~450ms after the click before the button resets."
-          reducedMotion="The success state appears instantly with no slide animation."
-        />
       </div>
       <div className="w-full sm:w-56 shrink-0">
         <SidebarPromo />
