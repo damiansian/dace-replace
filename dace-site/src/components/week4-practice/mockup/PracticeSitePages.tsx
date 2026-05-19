@@ -5,6 +5,7 @@ import { MotionTargetOutline } from "./MotionTargetOutline";
 import { PracticeSiteShell } from "./PracticeSiteShell";
 import { mockupControlProps } from "./MockupNonInteractiveNotice";
 import { SkipTargetOutline } from "./SkipTargetOutline";
+import { ZoneOutline } from "./ZoneOutline";
 
 function motionSeed(id: string) {
   return MOTION_SEEDS.find((s) => s.id === id);
@@ -306,6 +307,66 @@ function AboutMain({
       </section>
     );
 
+  const contactFormBody = (
+    <form className="mt-6 space-y-3 max-w-md" noValidate>
+      <h3 className="text-base font-semibold text-foreground mt-0 m-0">Contact us</h3>
+      <div>
+        <label htmlFor={`contact-name-${pageId}`} className="block text-sm font-medium text-foreground mb-1">
+          Name
+        </label>
+        <input
+          id={`contact-name-${pageId}`}
+          type="text"
+          autoComplete="name"
+          className="w-full rounded-lg border border-border bg-white px-3 py-2 text-sm text-foreground"
+          {...mockupControlProps}
+          title="Static preview — form does not submit"
+        />
+      </div>
+      <div>
+        <label htmlFor={`contact-email-${pageId}`} className="block text-sm font-medium text-foreground mb-1">
+          Email
+        </label>
+        <input
+          id={`contact-email-${pageId}`}
+          type="email"
+          autoComplete="email"
+          className="w-full rounded-lg border border-border bg-white px-3 py-2 text-sm text-foreground"
+          {...mockupControlProps}
+          title="Static preview — form does not submit"
+        />
+      </div>
+      <div>
+        <label htmlFor={`contact-message-${pageId}`} className="block text-sm font-medium text-foreground mb-1">
+          Message
+        </label>
+        <textarea
+          id={`contact-message-${pageId}`}
+          rows={3}
+          className="w-full rounded-lg border border-border bg-white px-3 py-2 text-sm text-foreground min-h-[80px]"
+          {...mockupControlProps}
+          title="Static preview — form does not submit"
+        />
+      </div>
+      <button
+        type="submit"
+        {...mockupControlProps}
+        className="rounded-lg bg-primary px-4 py-2 text-sm font-medium text-white"
+      >
+        Submit
+      </button>
+    </form>
+  );
+
+  const contactFormSection =
+    overlayMode === "landmark" ? (
+      <ZoneOutline zoneId="contact-form" pageId={pageId} className="p-2 mt-2">
+        {contactFormBody}
+      </ZoneOutline>
+    ) : (
+      contactFormBody
+    );
+
   return (
     <>
       {heading}
@@ -313,6 +374,7 @@ function AboutMain({
         We design outdoor gear for everyday adventures.
       </p>
       {teamSection}
+      {contactFormSection}
     </>
   );
 }

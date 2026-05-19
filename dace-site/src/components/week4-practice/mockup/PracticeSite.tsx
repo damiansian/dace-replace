@@ -8,11 +8,11 @@ import {
   type PracticeOverlayMode,
 } from "@/data/week4-practice/practice-overlays";
 import {
-  PRACTICE_PAGES,
   getZoneNumber,
   zonesForPage,
   type PracticePageId,
 } from "@/data/week4-practice/practice-zones";
+import { PracticePageTabs } from "./PracticePageTabs";
 import { PracticeSitePage } from "./PracticeSitePages";
 
 function OverlayLegend({
@@ -102,11 +102,14 @@ export default function PracticeSite({
   showLegend = true,
   pageId: controlledPage,
   onPageChange,
+  pageCompletion,
 }: {
   overlayMode?: PracticeOverlayMode;
   showLegend?: boolean;
   pageId?: PracticePageId;
   onPageChange?: (id: PracticePageId) => void;
+  /** Per-page completion for this workbook step (answered, not correct). */
+  pageCompletion?: Partial<Record<PracticePageId, boolean>>;
 }) {
   const [internalPage, setInternalPage] = useState<PracticePageId>("home");
   const pageId = controlledPage ?? internalPage;
@@ -118,24 +121,12 @@ export default function PracticeSite({
 
   return (
     <div className="space-y-4">
-      <div className="flex flex-wrap gap-2" role="tablist" aria-label="Practice pages">
-        {PRACTICE_PAGES.map((p) => (
-          <button
-            key={p.id}
-            type="button"
-            role="tab"
-            aria-selected={pageId === p.id}
-            onClick={() => setPage(p.id)}
-            className={`rounded-lg px-4 py-2 text-sm font-medium border transition-colors ${
-              pageId === p.id
-                ? "bg-primary text-white border-primary"
-                : "bg-white text-foreground border-border hover:bg-surface"
-            }`}
-          >
-            {p.label}
-          </button>
-        ))}
-      </div>
+      <PracticePageTabs
+        pageId={pageId}
+        pageCompletion={pageCompletion}
+        onSelect={setPage}
+        showLegend={Boolean(pageCompletion)}
+      />
 
       {showLegend ? <OverlayLegend overlayMode={overlayMode} pageId={pageId} /> : null}
 

@@ -11,6 +11,7 @@ export type PracticeZoneId =
   | "primary-nav"
   | "site-search"
   | "main-content"
+  | "contact-form"
   | "sidebar"
   | "footer-nav"
   | "site-footer";
@@ -74,6 +75,12 @@ export const PRACTICE_ZONES: PracticeZone[] = [
     nameRequired: false,
   },
   {
+    id: "contact-form",
+    description: "Contact form with name, email, message, and submit (About page only)",
+    pages: ["about"],
+    nameRequired: true,
+  },
+  {
     id: "sidebar",
     description: "Right column with filters and promos",
     pages: ["home", "products"],
@@ -93,6 +100,7 @@ export const EXPECTED_LANDMARK_ROLES: Record<PracticeZoneId, string> = {
   "primary-nav": "navigation",
   "site-search": "search",
   "main-content": "main",
+  "contact-form": "form",
   sidebar: "complementary",
   "footer-nav": "navigation",
   "site-footer": "contentinfo",
@@ -103,6 +111,7 @@ export const EXPECTED_HTML_EQUIVALENTS: Record<PracticeZoneId, string> = {
   "primary-nav": "nav",
   "site-search": "form[role=search]",
   "main-content": "main",
+  "contact-form": "form",
   sidebar: "aside",
   "footer-nav": "nav",
   "site-footer": "footer",
@@ -175,6 +184,7 @@ export const LANDMARK_ROLES = [
   "banner",
   "navigation",
   "main",
+  "form",
   "complementary",
   "contentinfo",
   "search",
@@ -185,6 +195,7 @@ export const HTML_EQUIVALENTS = [
   "header",
   "nav",
   "main",
+  "form",
   "aside",
   "footer",
   "form[role=search]",

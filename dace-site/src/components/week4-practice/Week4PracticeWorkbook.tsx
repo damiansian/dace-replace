@@ -39,7 +39,13 @@ import {
   resetWorkbookDraft,
   saveWorkbookDraft,
 } from "@/lib/week4-practice-storage";
+import {
+  landmarkPageCompletion,
+  motionPageCompletion,
+  skipLinkPageCompletion,
+} from "@/lib/week4-practice-page-completion";
 import PracticeSite from "./mockup/PracticeSite";
+import { PracticePageTabs } from "./mockup/PracticePageTabs";
 import {
   WorkbookInput,
   WorkbookLabel,
@@ -237,6 +243,9 @@ export default function Week4PracticeWorkbook({
   const coachPassCount = coachChecks.filter((c) => c.pass).length;
   const autoGrades = useMemo(() => computeAutoSelfAssessment(state), [state]);
   const selfTotal = autoSelfAssessmentTotal(autoGrades);
+  const landmarkCompletion = useMemo(() => landmarkPageCompletion(state), [state]);
+  const skipCompletion = useMemo(() => skipLinkPageCompletion(state), [state]);
+  const motionCompletion = useMemo(() => motionPageCompletion(state), [state]);
 
   useEffect(() => {
     if (!studentDisplayName?.trim()) return;
@@ -417,32 +426,24 @@ export default function Week4PracticeWorkbook({
             showLegend
             pageId={landmarkPage}
             onPageChange={setLandmarkPage}
+            pageCompletion={landmarkCompletion}
           />
-          <div className="flex flex-wrap gap-2 items-center">
-            <span className="text-sm font-medium text-foreground">Page:</span>
-            {PRACTICE_PAGES.map((p) => (
-              <button
-                key={p.id}
-                type="button"
-                onClick={() => setLandmarkPage(p.id)}
-                className={`rounded-lg px-3 py-1.5 text-sm border ${
-                  landmarkPage === p.id
-                    ? "bg-primary text-white border-primary"
-                    : "border-border bg-white"
-                }`}
-              >
-                {p.label}
-              </button>
-            ))}
-            {landmarkPage !== "home" && (
+          <div className="flex flex-wrap gap-3 items-end justify-between">
+            <PracticePageTabs
+              pageId={landmarkPage}
+              pageCompletion={landmarkCompletion}
+              onSelect={setLandmarkPage}
+              showLegend={false}
+            />
+            {landmarkPage !== "home" ? (
               <button
                 type="button"
                 onClick={() => copyLandmarksFromHome(landmarkPage)}
-                className="text-sm text-primary-text underline"
+                className="text-sm text-primary-text underline shrink-0"
               >
                 Copy landmark roles from Home
               </button>
-            )}
+            ) : null}
           </div>
           <div className="overflow-x-auto">
             <table className="w-full text-sm border-collapse min-w-[640px]">
@@ -585,10 +586,11 @@ export default function Week4PracticeWorkbook({
             showLegend
             pageId={skipTabPage}
             onPageChange={setSkipTabPage}
+            pageCompletion={skipCompletion}
           />
           <p className="text-sm text-text-secondary m-0">
-            The dropdown below matches the page shown in the mockup. Check the progress
-            line for Home, Products, and About before you continue.
+            The dropdown below matches the page shown in the mockup. Use the tab dots to
+            see which pages still need an answer.
           </p>
           <div className="rounded-lg border border-border bg-surface p-4 space-y-3">
             <WorkbookLabel htmlFor={`skip-first-tab-${skipTabPage}`} required>
@@ -617,24 +619,6 @@ export default function Week4PracticeWorkbook({
                 </option>
               ))}
             </WorkbookSelect>
-            <ul className="flex flex-wrap gap-x-4 gap-y-1 list-none m-0 p-0 text-xs text-text-secondary">
-              {PRACTICE_PAGES.map((p) => {
-                const answered = Boolean(state.skipLinkFirstTab[p.id]?.trim());
-                return (
-                  <li key={p.id}>
-                    <span
-                      className={
-                        p.id === skipTabPage ? "font-semibold text-foreground" : undefined
-                      }
-                    >
-                      {p.label}
-                    </span>
-                    {": "}
-                    {answered ? "answered" : "not yet answered"}
-                  </li>
-                );
-              })}
-            </ul>
           </div>
           <div className="flex gap-3">
             <button type="button" onClick={() => goStep(1)} className="text-sm underline text-primary-text">
@@ -668,6 +652,7 @@ export default function Week4PracticeWorkbook({
             showLegend
             pageId={motionPage}
             onPageChange={setMotionPage}
+            pageCompletion={motionCompletion}
           />
           {motionItemsForPage(motionPage).map((seed) => {
             const row = state.motionInventory.find((m) => m.id === seed.id);

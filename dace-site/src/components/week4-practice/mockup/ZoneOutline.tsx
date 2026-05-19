@@ -10,6 +10,7 @@ const ZONE_COLORS: Record<PracticeZoneId, string> = {
   "primary-nav": "border-accent-green bg-accent-green/5",
   "site-search": "border-amber-600 bg-amber-50",
   "main-content": "border-primary-dark bg-primary/10",
+  "contact-form": "border-amber-600 bg-amber-50",
   sidebar: "border-text-secondary bg-surface",
   "footer-nav": "border-accent-green bg-accent-green/5",
   "site-footer": "border-border bg-surface",

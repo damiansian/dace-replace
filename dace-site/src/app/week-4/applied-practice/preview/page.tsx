@@ -22,7 +22,7 @@ export default async function Week4PracticePreviewPage({
   const livePracticeHref = withToken("/week-4/applied-practice", student?.accessToken);
 
   return (
-    <div className="mx-auto max-w-5xl px-4 py-10 sm:px-6 space-y-6">
+    <div className="mx-auto max-w-5xl px-4 py-10 sm:px-6 space-y-10">
       <Link
         href={livePracticeHref}
         className="text-sm text-primary-text underline hover:text-primary-dark"
