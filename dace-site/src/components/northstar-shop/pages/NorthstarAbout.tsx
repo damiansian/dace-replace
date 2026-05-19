@@ -26,7 +26,6 @@ export default function NorthstarAbout() {
             motionId="about-team-fade"
             label="Team entrance"
             fullMotion="Team cards fade in and slide up 12px when scrolled into view (600ms, staggered by 120ms per card)."
-            reducedMotion="Team cards are visible immediately with no fade or slide."
           />
         </section>
       </div>
