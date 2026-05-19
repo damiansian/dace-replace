@@ -31,15 +31,14 @@ export default function NorthstarAbout() {
       </div>
 
       <div className="w-full sm:w-56 shrink-0">
-        <section aria-labelledby="contact-heading">
-          <form
-            aria-labelledby="contact-heading"
-            className="rounded-md border border-border bg-white p-4 space-y-3 w-full"
-            onSubmit={(e) => {
-              e.preventDefault();
-            }}
-          >
-            <h3
+        <form
+          aria-labelledby="contact-heading"
+          className="rounded-md border border-border bg-white p-4 space-y-3 w-full"
+          onSubmit={(e) => {
+            e.preventDefault();
+          }}
+        >
+          <h3
               id="contact-heading"
               className="text-base font-semibold text-foreground mt-0 m-0"
             >
@@ -95,8 +94,7 @@ export default function NorthstarAbout() {
             >
               Send message
             </button>
-          </form>
-        </section>
+        </form>
       </div>
     </div>
   );
