@@ -11,7 +11,9 @@
     "db:migrate": "drizzle-kit migrate",
     "students:generate": "tsx scripts/generate-students.ts",
     "students:backfill": "tsx scripts/backfill-student-ids.ts",
-    "students:merge": "tsx scripts/merge-students.ts"
+    "students:merge": "tsx scripts/merge-students.ts",
+    "b1:generate": "tsx scripts/generate-b1-exam.ts",
+    "b1:qa": "tsx scripts/qa-b1-exam.ts"
   },
   "dependencies": {
     "@neondatabase/serverless": "^1.1.0",

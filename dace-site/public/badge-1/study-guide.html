@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Discover Badge Study Guide - Canvas Preview</title>
+</head>
+<body style="margin: 0; padding: 20px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif; background-color: #ffffff; color: #333333; line-height: 1.6;">
+  <!-- Note: This is a preview file. When copying to Canvas, copy only the content below this line -->
+  
+  <div style="max-width: 900px; margin: 0; padding: 24px 0 48px 0;">
+
+    <!-- Header Section -->
+    <div style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); border-radius: 8px; padding: 24px 28px; margin-bottom: 28px; border-left: 5px solid #5151D3;">
+      <h2 style="margin: 0 0 12px 0; font-size: 28px; font-weight: 600; color: #212529;">Discover Badge Final Assessment Study Guide</h2>
+      <p style="margin: 0 0 16px 0; font-size: 16px; color: #495057;">Prepare for your 25-question cumulative assessment covering all Discover Badge outcomes.</p>
+      <div style="display: flex; flex-wrap: wrap; gap: 14px; margin-top: 18px;">
+        <span style="display: inline-flex; align-items: center; gap: 8px; background-color: #e6fcf5; color: #087f5b; padding: 10px 18px; border-radius: 24px; font-size: 15px; font-weight: 500;">
+          <span style="font-size: 18px;">🔍</span> Discover Badge
+        </span>
+        <span style="display: inline-flex; align-items: center; gap: 8px; background-color: #fff3bf; color: #e67700; padding: 10px 18px; border-radius: 24px; font-size: 15px; font-weight: 500;">
+          <span style="font-size: 18px;">📝</span> 25 Questions
+        </span>
+        <span style="display: inline-flex; align-items: center; gap: 8px; background-color: #e7f5ff; color: #1864ab; padding: 10px 18px; border-radius: 24px; font-size: 15px; font-weight: 500;">
+          <span style="font-size: 18px;">⏱️</span> 45 Minutes
+        </span>
+        <span style="display: inline-flex; align-items: center; gap: 8px; background-color: #f3d9fa; color: #862e9c; padding: 10px 18px; border-radius: 24px; font-size: 15px; font-weight: 500;">
+          <span style="font-size: 18px;">🎯</span> 85% to Pass
+        </span>
+      </div>
+    </div>
+
+    <!-- How to Use This Guide -->
+    <div style="background-color: #e7f5ff; border: 1px solid #a5d8ff; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #1971c2;">
+      <h3 style="margin: 0 0 12px 0; font-size: 20px; font-weight: 600; color: #212529; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">📖</span> How to Use This Guide
+      </h3>
+      <p style="margin: 0 0 16px 0; color: #495057; font-size: 15px;">This study guide covers the key concepts, WCAG success criteria, and testing approaches you need to know. Focus on understanding the <strong>why</strong> behind accessibility requirements, not just memorizing rules.</p>
+      <p style="margin: 0 0 16px 0; color: #495057; font-size: 15px;"><strong>The assessment tests your ability to:</strong></p>
+      <ul style="margin: 0 0 16px 0; padding-left: 24px; color: #495057; font-size: 15px;">
+        <li style="margin-bottom: 6px;">Evaluate design annotations for accessibility compliance</li>
+        <li style="margin-bottom: 6px;">Identify common accessibility failures</li>
+        <li style="margin-bottom: 6px;">Apply WCAG success criteria to real-world scenarios</li>
+        <li>Make informed decisions about ambiguous situations</li>
+      </ul>
+      <div style="background-color: #fff; border-radius: 6px; padding: 16px; border: 1px solid #a5d8ff;">
+        <p style="margin: 0; color: #1864ab; font-size: 15px;"><strong>Tip:</strong> Have the WCAG 2.2 Quick Reference open during your assessment: <a href="https://www.w3.org/WAI/WCAG22/quickref/" style="color: #1864ab; text-decoration: underline;">w3.org/WAI/WCAG22/quickref</a></p>
+      </div>
+    </div>
+
+    <!-- Module 1A: Accessible Names -->
+    <div style="background-color: #fff; border: 1px solid #dee2e6; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #fa5252;">
+      <h3 style="margin: 0 0 20px 0; font-size: 20px; font-weight: 600; color: #212529; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">🏷️</span> Module 1A: Accessible Names
+      </h3>
+
+      <!-- Core Concepts -->
+      <h4 style="margin: 0 0 12px 0; font-size: 17px; font-weight: 600; color: #212529;">Core Concepts</h4>
+      
+      <div style="background-color: #f8f9fa; border-left: 4px solid #fa5252; padding: 16px; margin-bottom: 16px;">
+        <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 15px;">What is an accessible name?</p>
+        <ul style="margin: 0; padding-left: 20px; color: #495057; font-size: 14px;">
+          <li>The text that assistive technology announces for an element</li>
+          <li>Connects humans to digital interfaces through screen readers, voice control, etc.</li>
+          <li>Every interactive element needs one (or must be explicitly marked decorative)</li>
+        </ul>
+      </div>
+
+      <div style="background-color: #f8f9fa; border-left: 4px solid #fa5252; padding: 16px; margin-bottom: 16px;">
+        <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 15px;">Quality criteria for accessible names</p>
+        <ul style="margin: 0; padding-left: 20px; color: #495057; font-size: 14px;">
+          <li><strong>Clear:</strong> Understandable without context</li>
+          <li><strong>Concise:</strong> Brief but complete</li>
+          <li><strong>Descriptive:</strong> Describes function, not appearance</li>
+          <li><strong>Unique:</strong> Distinguishes element from similar elements on the page</li>
+        </ul>
+      </div>
+
+      <!-- Critical Knowledge -->
+      <h4 style="margin: 20px 0 12px 0; font-size: 17px; font-weight: 600; color: #212529;">Critical Knowledge</h4>
+
+      <div style="background-color: #fff3bf; border-left: 4px solid #fab005; padding: 16px; margin-bottom: 16px;">
+        <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 15px;">Role vs. Name Distinction</p>
+        <ul style="margin: 0; padding-left: 20px; color: #495057; font-size: 14px;">
+          <li>The accessible <strong>name</strong> is what the element is called</li>
+          <li>The <strong>role</strong> is what type of element it is (button, menu, link)</li>
+          <li>Never include role information in the name field (screen readers announce roles automatically)</li>
+          <li>Example: A menu button's name should be "More" or "Options," not "More menu"</li>
+        </ul>
+      </div>
+
+      <div style="background-color: #fff3bf; border-left: 4px solid #fab005; padding: 16px; margin-bottom: 16px;">
+        <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 15px;">Decorative Element Considerations</p>
+        <ul style="margin: 0; padding-left: 20px; color: #495057; font-size: 14px;">
+          <li>If an image's information is already conveyed by adjacent text, mark it decorative</li>
+          <li>Avoid creating redundancy where users hear the same information twice</li>
+          <li>Common decorative elements: avatars next to names, icons next to labels</li>
+        </ul>
+      </div>
+
+      <!-- WCAG Table -->
+      <h4 style="margin: 20px 0 12px 0; font-size: 17px; font-weight: 600; color: #212529;">WCAG Success Criteria</h4>
+      <table style="width: 100%; border-collapse: collapse; font-size: 14px; margin-bottom: 16px;">
+        <thead>
+          <tr style="background-color: #f1f3f4;">
+            <th scope="col" style="padding: 10px 12px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">SC</th>
+            <th scope="col" style="padding: 10px 12px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">Level</th>
+            <th scope="col" style="padding: 10px 12px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">What It Requires</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; font-family: monospace;">1.1.1</td>
+            <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">A</td>
+            <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">All non-text content has text alternatives</td>
+          </tr>
+          <tr style="background-color: #f8f9fa;">
+            <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; font-family: monospace;">2.4.4</td>
+            <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">A</td>
+            <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Link purpose determinable from link text or context</td>
+          </tr>
+          <tr>
+            <td style="padding: 10px 12px; font-family: monospace;">4.1.2</td>
+            <td style="padding: 10px 12px;">A</td>
+            <td style="padding: 10px 12px;">All UI components have accessible names and roles</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Common Mistakes -->
+      <h4 style="margin: 20px 0 12px 0; font-size: 17px; font-weight: 600; color: #212529;">Common Mistakes to Avoid</h4>
+      <ul style="margin: 0; padding-left: 20px; color: #495057; font-size: 14px;">
+        <li style="margin-bottom: 6px;">Including role information ("menu," "button") in accessible names</li>
+        <li style="margin-bottom: 6px;">Describing icon appearance ("three dots") instead of function ("More options")</li>
+        <li style="margin-bottom: 6px;">Creating redundant accessible names that repeat adjacent text</li>
+        <li style="margin-bottom: 6px;">Using positional context instead of meaningful differentiation</li>
+        <li>Providing detailed image descriptions for functional UI elements</li>
+      </ul>
+    </div>
+
+    <!-- Module 1B: Headings -->
+    <div style="background-color: #fff; border: 1px solid #dee2e6; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #fd7e14;">
+      <h3 style="margin: 0 0 20px 0; font-size: 20px; font-weight: 600; color: #212529; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">📑</span> Module 1B: Headings and Content Structure
+      </h3>
+
+      <div style="background-color: #f8f9fa; border-left: 4px solid #fd7e14; padding: 16px; margin-bottom: 16px;">
+        <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 15px;">Heading Hierarchy Rules</p>
+        <ul style="margin: 0; padding-left: 20px; color: #495057; font-size: 14px;">
+          <li>H1-H6 creates a hierarchical outline of the page</li>
+          <li><strong>Cardinal rule:</strong> Do not skip levels going down (H1 to H3 is invalid)</li>
+          <li>Skipping up is allowed (H3 back to H2 is fine)</li>
+          <li>Visual size and semantic level are independent</li>
+        </ul>
+      </div>
+
+      <div style="background-color: #fff3bf; border-left: 4px solid #fab005; padding: 16px; margin-bottom: 16px;">
+        <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 15px;">Platform Differences</p>
+        <ul style="margin: 0; padding-left: 20px; color: #495057; font-size: 14px;">
+          <li><strong>Web/iOS:</strong> VoiceOver announces specific heading levels (H1, H2, H3...)</li>
+          <li><strong>Android:</strong> TalkBack only distinguishes "heading" vs "not heading" (binary)</li>
+          <li>Annotate with levels for iOS/web users; note platform differences for engineering</li>
+        </ul>
+      </div>
+
+      <h4 style="margin: 20px 0 12px 0; font-size: 17px; font-weight: 600; color: #212529;">WCAG Success Criteria</h4>
+      <table style="width: 100%; border-collapse: collapse; font-size: 14px; margin-bottom: 16px;">
+        <thead>
+          <tr style="background-color: #f1f3f4;">
+            <th scope="col" style="padding: 10px 12px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">SC</th>
+            <th scope="col" style="padding: 10px 12px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">Level</th>
+            <th scope="col" style="padding: 10px 12px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">What It Requires</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; font-family: monospace;">1.3.1</td>
+            <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">A</td>
+            <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Structure is programmatically determinable</td>
+          </tr>
+          <tr style="background-color: #f8f9fa;">
+            <td style="padding: 10px 12px; font-family: monospace;">2.4.6</td>
+            <td style="padding: 10px 12px;">AA</td>
+            <td style="padding: 10px 12px;">Headings describe topic or purpose</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h4 style="margin: 20px 0 12px 0; font-size: 17px; font-weight: 600; color: #212529;">Common Mistakes to Avoid</h4>
+      <ul style="margin: 0; padding-left: 20px; color: #495057; font-size: 14px;">
+        <li style="margin-bottom: 6px;">Skipping heading levels (H1 to H3 with no H2)</li>
+        <li style="margin-bottom: 6px;">Choosing heading levels based on visual appearance instead of hierarchy</li>
+        <li style="margin-bottom: 6px;">Confusing labels, taglines, or decorative text with headings</li>
+        <li>Assuming all platforms support heading levels equally</li>
+      </ul>
+    </div>
+
+    <!-- Module 1C: Color -->
+    <div style="background-color: #fff; border: 1px solid #dee2e6; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #fab005;">
+      <h3 style="margin: 0 0 20px 0; font-size: 20px; font-weight: 600; color: #212529; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">🎨</span> Module 1C: Color and Contrast
+      </h3>
+
+      <h4 style="margin: 0 0 12px 0; font-size: 17px; font-weight: 600; color: #212529;">Contrast Ratio Requirements</h4>
+      <table style="width: 100%; border-collapse: collapse; font-size: 14px; margin-bottom: 16px;">
+        <thead>
+          <tr style="background-color: #f1f3f4;">
+            <th scope="col" style="padding: 10px 12px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">Element Type</th>
+            <th scope="col" style="padding: 10px 12px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">Minimum Ratio</th>
+            <th scope="col" style="padding: 10px 12px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Regular text (&lt; 24px or &lt; 18.5px bold)</td>
+            <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; font-weight: 600;">4.5:1</td>
+            <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Most body text</td>
+          </tr>
+          <tr style="background-color: #f8f9fa;">
+            <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Large text (≥ 24px or ≥ 18.5px bold)</td>
+            <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; font-weight: 600;">3:1</td>
+            <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Headlines, large UI text</td>
+          </tr>
+          <tr>
+            <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">UI components and graphical objects</td>
+            <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; font-weight: 600;">3:1</td>
+            <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Borders, focus indicators, icons</td>
+          </tr>
+          <tr style="background-color: #f8f9fa;">
+            <td style="padding: 10px 12px;">Disabled/inactive controls</td>
+            <td style="padding: 10px 12px; font-weight: 600;">Exempt</td>
+            <td style="padding: 10px 12px;">No contrast requirement</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div style="background-color: #f8f9fa; border-left: 4px solid #fab005; padding: 16px; margin-bottom: 16px;">
+        <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 15px;">Color as Sole Indicator (SC 1.4.1)</p>
+        <ul style="margin: 0; padding-left: 20px; color: #495057; font-size: 14px;">
+          <li>Color alone cannot convey information</li>
+          <li>Examples of failures: Red-only required fields, color-only status indicators, links without underlines</li>
+          <li>Solution: Add non-color indicators (icons, text, patterns, underlines)</li>
+        </ul>
+      </div>
+
+      <div style="background-color: #e7f5ff; border-left: 4px solid #1971c2; padding: 16px; margin-bottom: 16px;">
+        <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 15px;">Component State Contrast</p>
+        <ul style="margin: 0; padding-left: 20px; color: #495057; font-size: 14px;">
+          <li><strong>Selected states:</strong> Must meet 3:1 contrast (the visual indicator of selection must be perceivable)</li>
+          <li><strong>Hover states:</strong> No contrast requirement (the pointer provides visual feedback)</li>
+          <li><strong>Focus states:</strong> Must meet 3:1 contrast for the focus indicator</li>
+        </ul>
+      </div>
+
+      <h4 style="margin: 20px 0 12px 0; font-size: 17px; font-weight: 600; color: #212529;">WCAG Success Criteria</h4>
+      <table style="width: 100%; border-collapse: collapse; font-size: 14px; margin-bottom: 16px;">
+        <thead>
+          <tr style="background-color: #f1f3f4;">
+            <th scope="col" style="padding: 10px 12px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">SC</th>
+            <th scope="col" style="padding: 10px 12px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">Level</th>
+            <th scope="col" style="padding: 10px 12px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">What It Requires</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; font-family: monospace;">1.4.1</td>
+            <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">A</td>
+            <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Color not sole method of conveying information</td>
+          </tr>
+          <tr style="background-color: #f8f9fa;">
+            <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; font-family: monospace;">1.4.3</td>
+            <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">AA</td>
+            <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Text meets contrast ratios</td>
+          </tr>
+          <tr>
+            <td style="padding: 10px 12px; font-family: monospace;">1.4.11</td>
+            <td style="padding: 10px 12px;">AA</td>
+            <td style="padding: 10px 12px;">UI components and graphics meet 3:1</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h4 style="margin: 20px 0 12px 0; font-size: 17px; font-weight: 600; color: #212529;">Common Mistakes to Avoid</h4>
+      <ul style="margin: 0; padding-left: 20px; color: #495057; font-size: 14px;">
+        <li style="margin-bottom: 6px;">Testing disabled button contrast (they're exempt)</li>
+        <li style="margin-bottom: 6px;">Confusing SC 1.4.1 (Use of Color) with SC 1.4.3 (Contrast)</li>
+        <li style="margin-bottom: 6px;">Thinking high contrast alone satisfies SC 1.4.1 (you still need non-color indicators)</li>
+        <li>Misapplying the G183 technique (link contrast) to navigation states</li>
+      </ul>
+    </div>
+
+    <!-- Module 1D: Forms -->
+    <div style="background-color: #fff; border: 1px solid #dee2e6; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #40c057;">
+      <h3 style="margin: 0 0 20px 0; font-size: 20px; font-weight: 600; color: #212529; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">📝</span> Module 1D: Forms, Labels, and Errors
+      </h3>
+
+      <div style="background-color: #f8f9fa; border-left: 4px solid #40c057; padding: 16px; margin-bottom: 16px;">
+        <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 15px;">The Placeholder Problem</p>
+        <ul style="margin: 0; padding-left: 20px; color: #495057; font-size: 14px;">
+          <li>Placeholder text disappears when users click/tap into field</li>
+          <li>Users must remember what the field was for</li>
+          <li>Creates cognitive load and accessibility failures</li>
+          <li><strong>Placeholder text is NOT a substitute for labels</strong></li>
+        </ul>
+      </div>
+
+      <div style="background-color: #f8f9fa; border-left: 4px solid #40c057; padding: 16px; margin-bottom: 16px;">
+        <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 15px;">Error Message Requirements</p>
+        <ul style="margin: 0; padding-left: 20px; color: #495057; font-size: 14px;">
+          <li><strong>SC 3.3.1:</strong> Errors must be identified and described in text</li>
+          <li><strong>SC 3.3.3:</strong> Error messages should suggest how to fix the problem</li>
+          <li>Color alone cannot indicate errors (connects to SC 1.4.1)</li>
+          <li>Both problem identification AND solution should be provided</li>
+        </ul>
+      </div>
+
+      <div style="background-color: #fff3bf; border-left: 4px solid #fab005; padding: 16px; margin-bottom: 16px;">
+        <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 15px;">Label Context Issues</p>
+        <p style="margin: 0; color: #495057; font-size: 14px;">When a user selects a generic value (like "All") from a dropdown that uses its current value as its label, the context is lost. Users don't know "All" of what. Persistent visible labels prevent this problem.</p>
+      </div>
+
+      <h4 style="margin: 20px 0 12px 0; font-size: 17px; font-weight: 600; color: #212529;">WCAG Success Criteria</h4>
+      <table style="width: 100%; border-collapse: collapse; font-size: 14px; margin-bottom: 16px;">
+        <thead>
+          <tr style="background-color: #f1f3f4;">
+            <th scope="col" style="padding: 10px 12px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">SC</th>
+            <th scope="col" style="padding: 10px 12px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">Level</th>
+            <th scope="col" style="padding: 10px 12px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">What It Requires</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; font-family: monospace;">1.3.5</td>
+            <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">AA</td>
+            <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Input purpose programmatically determinable</td>
+          </tr>
+          <tr style="background-color: #f8f9fa;">
+            <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; font-family: monospace;">3.3.1</td>
+            <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">A</td>
+            <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Errors identified and described in text</td>
+          </tr>
+          <tr>
+            <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; font-family: monospace;">3.3.2</td>
+            <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">A</td>
+            <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Labels or instructions provided for user input</td>
+          </tr>
+          <tr style="background-color: #f8f9fa;">
+            <td style="padding: 10px 12px; font-family: monospace;">3.3.3</td>
+            <td style="padding: 10px 12px;">AA</td>
+            <td style="padding: 10px 12px;">Suggestions for error correction provided</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Module 1E: Keyboard -->
+    <div style="background-color: #fff; border: 1px solid #dee2e6; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #15aabf;">
+      <h3 style="margin: 0 0 20px 0; font-size: 20px; font-weight: 600; color: #212529; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">⌨️</span> Module 1E: Keyboard, Touch, and Focus
+      </h3>
+
+      <h4 style="margin: 0 0 12px 0; font-size: 17px; font-weight: 600; color: #212529;">Tab Stop Patterns</h4>
+      <table style="width: 100%; border-collapse: collapse; font-size: 14px; margin-bottom: 16px;">
+        <thead>
+          <tr style="background-color: #f1f3f4;">
+            <th scope="col" style="padding: 10px 12px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">Control Type</th>
+            <th scope="col" style="padding: 10px 12px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">Tab Stop Behavior</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Buttons, links, form fields</td>
+            <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Each is a separate tab stop</td>
+          </tr>
+          <tr style="background-color: #f8f9fa;">
+            <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Radio buttons</td>
+            <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Single tab stop, arrow keys navigate between options</td>
+          </tr>
+          <tr>
+            <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Checkboxes</td>
+            <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;"><strong>Each checkbox is a separate tab stop</strong> (independent selections)</td>
+          </tr>
+          <tr style="background-color: #f8f9fa;">
+            <td style="padding: 10px 12px;">Color pickers, similar selectors</td>
+            <td style="padding: 10px 12px;">Single tab stop with arrow key navigation</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div style="background-color: #e7f5ff; border-left: 4px solid #1971c2; padding: 16px; margin-bottom: 16px;">
+        <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 15px;">Key Distinction</p>
+        <p style="margin: 0; color: #495057; font-size: 14px;"><strong>Radio buttons</strong> are mutually exclusive (single tab stop with arrows). <strong>Checkboxes</strong> are independent (each is its own tab stop). This is a common source of annotation errors.</p>
+      </div>
+
+      <div style="background-color: #fff3bf; border-left: 4px solid #fab005; padding: 16px; margin-bottom: 16px;">
+        <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 15px;">Modal Focus Behavior</p>
+        <ul style="margin: 0; padding-left: 20px; color: #495057; font-size: 14px;">
+          <li>When a modal opens, focus should move to the <strong>first focusable element</strong> (typically close button)</li>
+          <li>Don't skip past content to auto-focus call-to-action buttons</li>
+          <li>Users need to orient themselves in the modal before navigating</li>
+        </ul>
+      </div>
+
+      <div style="background-color: #f8f9fa; border-left: 4px solid #15aabf; padding: 16px; margin-bottom: 16px;">
+        <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 15px;">Touch Target Requirements (SC 2.5.8)</p>
+        <ul style="margin: 0; padding-left: 20px; color: #495057; font-size: 14px;">
+          <li>Minimum <strong>24×24 pixels</strong> (WCAG 2.2)</li>
+          <li>Exceptions: inline text links, when a larger control serves the same function</li>
+          <li>Spacing can compensate for smaller targets</li>
+          <li>Slider tracks often provide larger hit areas than just the handle</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Module 1F: Reflow -->
+    <div style="background-color: #fff; border: 1px solid #dee2e6; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #7950f2;">
+      <h3 style="margin: 0 0 20px 0; font-size: 20px; font-weight: 600; color: #212529; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">🔍</span> Module 1F: Reflow, Zoom, and Text Spacing
+      </h3>
+
+      <div style="background-color: #f8f9fa; border-left: 4px solid #7950f2; padding: 16px; margin-bottom: 16px;">
+        <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 15px;">400% Zoom and Reflow (SC 1.4.10)</p>
+        <ul style="margin: 0; padding-left: 20px; color: #495057; font-size: 14px;">
+          <li>Content must be usable at 400% zoom without horizontal scrolling</li>
+          <li>1280px viewport at 400% = <strong>320px equivalent viewport</strong></li>
+          <li>Content should reflow to single column at narrow widths</li>
+          <li>Exceptions: Data tables, toolbars, complex diagrams</li>
+        </ul>
+      </div>
+
+      <div style="background-color: #fff3bf; border-left: 4px solid #fab005; padding: 16px; margin-bottom: 16px;">
+        <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 15px;">Sticky Elements at High Zoom</p>
+        <p style="margin: 0; color: #495057; font-size: 14px;">Sticky headers/footers that are reasonable at 100% can <strong>consume excessive viewport at 400%</strong>. Fixed-position elements (chat widgets, CTAs) can overlap interactive controls. The root cause of poor UX at 400% is often sticky elements, not content itself.</p>
+      </div>
+
+      <div style="background-color: #f8f9fa; border-left: 4px solid #7950f2; padding: 16px; margin-bottom: 16px;">
+        <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 15px;">Solving Text Clipping (SC 1.4.12)</p>
+        <p style="margin: 0 0 8px 0; color: #495057; font-size: 14px;">When text spacing increases and containers clip content, there are two valid solutions:</p>
+        <ul style="margin: 0; padding-left: 20px; color: #495057; font-size: 14px;">
+          <li><strong>Vertical growth:</strong> Container expands height, text wraps to multiple lines</li>
+          <li><strong>Horizontal growth:</strong> Container expands width, text stays on single line</li>
+        </ul>
+        <p style="margin: 8px 0 0 0; color: #495057; font-size: 14px;"><strong>Both approaches are valid for conformance.</strong></p>
+      </div>
+
+      <div style="background-color: #e7f5ff; border-left: 4px solid #1971c2; padding: 16px; margin-bottom: 16px;">
+        <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 15px;">Orientation Requirements (SC 1.3.4)</p>
+        <ul style="margin: 0; padding-left: 20px; color: #495057; font-size: 14px;">
+          <li>Content must work in both portrait and landscape orientations</li>
+          <li>Benefits users with <strong>mounted devices</strong> (wheelchairs, bedside stands)</li>
+          <li>Exceptions only when specific orientation is essential (piano app, check deposit)</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Module 1G: Landmarks -->
+    <div style="background-color: #fff; border: 1px solid #dee2e6; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #1971c2;">
+      <h3 style="margin: 0 0 20px 0; font-size: 20px; font-weight: 600; color: #212529; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">🗺️</span> Module 1G: Landmarks, Navigation, and Consistency
+      </h3>
+
+      <h4 style="margin: 0 0 12px 0; font-size: 17px; font-weight: 600; color: #212529;">The Six ARIA Landmark Roles</h4>
+      <table style="width: 100%; border-collapse: collapse; font-size: 14px; margin-bottom: 16px;">
+        <thead>
+          <tr style="background-color: #f1f3f4;">
+            <th scope="col" style="padding: 10px 12px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">Landmark</th>
+            <th scope="col" style="padding: 10px 12px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">HTML5</th>
+            <th scope="col" style="padding: 10px 12px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">Purpose</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; font-family: monospace;">banner</td>
+            <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">header</td>
+            <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Site-wide header content</td>
+          </tr>
+          <tr style="background-color: #f8f9fa;">
+            <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; font-family: monospace;">navigation</td>
+            <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">nav</td>
+            <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Navigation links</td>
+          </tr>
+          <tr>
+            <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; font-family: monospace;">main</td>
+            <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">main</td>
+            <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Primary page content</td>
+          </tr>
+          <tr style="background-color: #f8f9fa;">
+            <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; font-family: monospace;">complementary</td>
+            <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">aside</td>
+            <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Supporting content</td>
+          </tr>
+          <tr>
+            <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; font-family: monospace;">contentinfo</td>
+            <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">footer</td>
+            <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Footer/copyright info</td>
+          </tr>
+          <tr style="background-color: #f8f9fa;">
+            <td style="padding: 10px 12px; font-family: monospace;">search</td>
+            <td style="padding: 10px 12px;">(none)</td>
+            <td style="padding: 10px 12px;">Search functionality</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div style="background-color: #fff3bf; border-left: 4px solid #fab005; padding: 16px; margin-bottom: 16px;">
+        <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 15px;">Multiple Landmarks of the Same Type</p>
+        <p style="margin: 0; color: #495057; font-size: 14px;">When a page has multiple nav elements (header nav, footer nav), <strong>each needs a unique accessible name</strong>. Screen reader users navigating by landmarks would otherwise hear "navigation" with no differentiation.</p>
+      </div>
+
+      <div style="background-color: #f8f9fa; border-left: 4px solid #1971c2; padding: 16px; margin-bottom: 16px;">
+        <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 15px;">Consistent Identification (SC 3.2.4)</p>
+        <p style="margin: 0; color: #495057; font-size: 14px;">Components with the same functionality must be identified consistently. Example: A "Sort" function should have the same accessible name across all pages. <strong>Same function = same name.</strong></p>
+      </div>
+
+      <div style="background-color: #e7f5ff; border-left: 4px solid #1971c2; padding: 16px; margin-bottom: 16px;">
+        <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 15px;">Skip Link Focus Behavior</p>
+        <p style="margin: 0 0 8px 0; color: #495057; font-size: 14px;">When a skip to main link is activated:</p>
+        <ol style="margin: 0; padding-left: 20px; color: #495057; font-size: 14px;">
+          <li>Focus moves to the beginning of the main content region</li>
+          <li>On next Tab press, focus goes to the <strong>first interactive element</strong> within main</li>
+          <li>This is typically a search field, first link, or first button in the main content area</li>
+        </ol>
+      </div>
+    </div>
+
+    <!-- Module 1H: Motion -->
+    <div style="background-color: #fff; border: 1px solid #dee2e6; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #e64980;">
+      <h3 style="margin: 0 0 20px 0; font-size: 20px; font-weight: 600; color: #212529; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">🎬</span> Module 1H: Motion and Animation
+      </h3>
+
+      <div style="background-color: #f8f9fa; border-left: 4px solid #e64980; padding: 16px; margin-bottom: 16px;">
+        <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 15px;">Auto-Playing Content (SC 2.2.2)</p>
+        <ul style="margin: 0; padding-left: 20px; color: #495057; font-size: 14px;">
+          <li>Content that starts automatically, lasts over <strong>5 seconds</strong>, and appears with other content needs pause/stop/hide controls</li>
+          <li>Videos, carousels, animations that loop all fall under this requirement</li>
+          <li>Users must be able to pause, stop, or hide the moving content</li>
+        </ul>
+      </div>
+
+      <div style="background-color: #ffe3e3; border-left: 4px solid #fa5252; padding: 16px; margin-bottom: 16px;">
+        <p style="margin: 0 0 8px 0; font-weight: 600; color: #c92a2a; font-size: 15px;">Flash Threshold (SC 2.3.1) - Safety Critical</p>
+        <ul style="margin: 0; padding-left: 20px; color: #495057; font-size: 14px;">
+          <li>Content must <strong>NOT</strong> flash more than 3 times per second</li>
+          <li>Rapid flashing can trigger seizures in people with photosensitive epilepsy</li>
+          <li><strong>Saturated red flashing is particularly dangerous</strong></li>
+          <li>This is a safety requirement, not just a usability preference</li>
+        </ul>
+      </div>
+
+      <div style="background-color: #e7f5ff; border-left: 4px solid #1971c2; padding: 16px; margin-bottom: 16px;">
+        <p style="margin: 0 0 8px 0; font-weight: 600; color: #212529; font-size: 15px;">Reduced Motion Preferences</p>
+        <ul style="margin: 0; padding-left: 20px; color: #495057; font-size: 14px;">
+          <li>Operating systems provide <code style="background: #f1f3f4; padding: 2px 6px; border-radius: 3px;">prefers-reduced-motion</code> settings</li>
+          <li>Websites should honor this preference via CSS media query</li>
+          <li>When enabled, animations should be paused by default or significantly reduced</li>
+          <li>A play button appearing on page load indicates the page is honoring reduced motion preferences</li>
+        </ul>
+      </div>
+
+      <h4 style="margin: 20px 0 12px 0; font-size: 17px; font-weight: 600; color: #212529;">WCAG Success Criteria</h4>
+      <table style="width: 100%; border-collapse: collapse; font-size: 14px; margin-bottom: 16px;">
+        <thead>
+          <tr style="background-color: #f1f3f4;">
+            <th scope="col" style="padding: 10px 12px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">SC</th>
+            <th scope="col" style="padding: 10px 12px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">Level</th>
+            <th scope="col" style="padding: 10px 12px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">What It Requires</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; font-family: monospace;">2.2.2</td>
+            <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">A</td>
+            <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">Control for auto-playing content > 5 seconds</td>
+          </tr>
+          <tr style="background-color: #f8f9fa;">
+            <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef; font-family: monospace;">2.3.1</td>
+            <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">A</td>
+            <td style="padding: 10px 12px; border-bottom: 1px solid #e9ecef;">No content flashes > 3 times/second</td>
+          </tr>
+          <tr>
+            <td style="padding: 10px 12px; font-family: monospace;">2.3.3</td>
+            <td style="padding: 10px 12px;">AAA</td>
+            <td style="padding: 10px 12px;">Motion disableable unless essential</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Quick Reference: Key Numbers -->
+    <div style="background-color: #f8f9fa; border: 1px solid #dee2e6; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #495057;">
+      <h3 style="margin: 0 0 20px 0; font-size: 20px; font-weight: 600; color: #212529; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">📊</span> Quick Reference: Key Numbers
+      </h3>
+
+      <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+        <thead>
+          <tr style="background-color: #e9ecef;">
+            <th scope="col" style="padding: 12px 16px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">Requirement</th>
+            <th scope="col" style="padding: 12px 16px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">Value</th>
+            <th scope="col" style="padding: 12px 16px; text-align: left; font-weight: 600; color: #212529; border-bottom: 2px solid #dee2e6;">Source</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="padding: 12px 16px; border-bottom: 1px solid #e9ecef;">Normal text contrast</td>
+            <td style="padding: 12px 16px; border-bottom: 1px solid #e9ecef; font-weight: 600;">4.5:1</td>
+            <td style="padding: 12px 16px; border-bottom: 1px solid #e9ecef; font-family: monospace;">SC 1.4.3</td>
+          </tr>
+          <tr style="background-color: #fff;">
+            <td style="padding: 12px 16px; border-bottom: 1px solid #e9ecef;">Large text contrast</td>
+            <td style="padding: 12px 16px; border-bottom: 1px solid #e9ecef; font-weight: 600;">3:1</td>
+            <td style="padding: 12px 16px; border-bottom: 1px solid #e9ecef; font-family: monospace;">SC 1.4.3</td>
+          </tr>
+          <tr>
+            <td style="padding: 12px 16px; border-bottom: 1px solid #e9ecef;">UI component contrast</td>
+            <td style="padding: 12px 16px; border-bottom: 1px solid #e9ecef; font-weight: 600;">3:1</td>
+            <td style="padding: 12px 16px; border-bottom: 1px solid #e9ecef; font-family: monospace;">SC 1.4.11</td>
+          </tr>
+          <tr style="background-color: #fff;">
+            <td style="padding: 12px 16px; border-bottom: 1px solid #e9ecef;">Touch target minimum</td>
+            <td style="padding: 12px 16px; border-bottom: 1px solid #e9ecef; font-weight: 600;">24×24 px</td>
+            <td style="padding: 12px 16px; border-bottom: 1px solid #e9ecef; font-family: monospace;">SC 2.5.8</td>
+          </tr>
+          <tr>
+            <td style="padding: 12px 16px; border-bottom: 1px solid #e9ecef;">Zoom without horizontal scroll</td>
+            <td style="padding: 12px 16px; border-bottom: 1px solid #e9ecef; font-weight: 600;">400%</td>
+            <td style="padding: 12px 16px; border-bottom: 1px solid #e9ecef; font-family: monospace;">SC 1.4.10</td>
+          </tr>
+          <tr style="background-color: #fff;">
+            <td style="padding: 12px 16px; border-bottom: 1px solid #e9ecef;">Viewport equivalent at 400% zoom</td>
+            <td style="padding: 12px 16px; border-bottom: 1px solid #e9ecef; font-weight: 600;">320px</td>
+            <td style="padding: 12px 16px; border-bottom: 1px solid #e9ecef; font-family: monospace;">SC 1.4.10</td>
+          </tr>
+          <tr>
+            <td style="padding: 12px 16px; border-bottom: 1px solid #e9ecef;">Flash threshold</td>
+            <td style="padding: 12px 16px; border-bottom: 1px solid #e9ecef; font-weight: 600;">≤3 per second</td>
+            <td style="padding: 12px 16px; border-bottom: 1px solid #e9ecef; font-family: monospace;">SC 2.3.1</td>
+          </tr>
+          <tr style="background-color: #fff;">
+            <td style="padding: 12px 16px;">Auto-play control threshold</td>
+            <td style="padding: 12px 16px; font-weight: 600;">>5 seconds</td>
+            <td style="padding: 12px 16px; font-family: monospace;">SC 2.2.2</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Test-Taking Strategies -->
+    <div style="background-color: #fff; border: 1px solid #dee2e6; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #845ef7;">
+      <h3 style="margin: 0 0 20px 0; font-size: 20px; font-weight: 600; color: #212529; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">💡</span> Test-Taking Strategies
+      </h3>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 16px;">
+        <div style="flex: 1; min-width: 260px; background-color: #f8f9fa; border-radius: 6px; padding: 16px;">
+          <h4 style="margin: 0 0 8px 0; font-size: 15px; font-weight: 600; color: #212529;">Reading Questions Carefully</h4>
+          <ul style="margin: 0; padding-left: 18px; color: #495057; font-size: 14px;">
+            <li style="margin-bottom: 4px;">Pay attention to what specific SC is being asked about</li>
+            <li style="margin-bottom: 4px;">Note whether the question asks about a specific annotation marker or the whole design</li>
+            <li>Look for qualifiers like "MOST accurate" or "BEST approach"</li>
+          </ul>
+        </div>
+
+        <div style="flex: 1; min-width: 260px; background-color: #f8f9fa; border-radius: 6px; padding: 16px;">
+          <h4 style="margin: 0 0 8px 0; font-size: 15px; font-weight: 600; color: #212529;">Eliminating Wrong Answers</h4>
+          <ul style="margin: 0; padding-left: 18px; color: #495057; font-size: 14px;">
+            <li style="margin-bottom: 4px;">Watch for answers with requirements backwards ("flash at least 3 times")</li>
+            <li style="margin-bottom: 4px;">Be suspicious of "no action needed" when there's an obvious concern</li>
+            <li>Check if an answer applies to the correct success criterion</li>
+          </ul>
+        </div>
+
+        <div style="flex: 1; min-width: 260px; background-color: #f8f9fa; border-radius: 6px; padding: 16px;">
+          <h4 style="margin: 0 0 8px 0; font-size: 15px; font-weight: 600; color: #212529;">Platform Awareness</h4>
+          <ul style="margin: 0; padding-left: 18px; color: #495057; font-size: 14px;">
+            <li style="margin-bottom: 4px;">Remember iOS/Android differences for heading levels</li>
+            <li style="margin-bottom: 4px;">Consider how different platforms handle keyboard navigation</li>
+            <li>Note when a question specifies web, mobile, or cross-platform context</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Final Preparation Checklist -->
+    <div style="background-color: #e6fcf5; border: 1px solid #96f2d7; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #0ca678;">
+      <h3 style="margin: 0 0 16px 0; font-size: 20px; font-weight: 600; color: #212529; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">✅</span> Final Preparation Checklist
+      </h3>
+      <p style="margin: 0 0 16px 0; color: #495057; font-size: 15px;">Before taking the assessment, ensure you can:</p>
+      
+      <div style="display: flex; flex-wrap: wrap; gap: 12px;">
+        <div style="flex: 1; min-width: 280px;">
+          <ul style="margin: 0; padding-left: 20px; color: #212529; font-size: 14px;">
+            <li style="margin-bottom: 8px;">Explain when an element needs an accessible name vs. should be marked decorative</li>
+            <li style="margin-bottom: 8px;">Identify when role information doesn't belong in an accessible name</li>
+            <li style="margin-bottom: 8px;">Recognize valid and invalid heading hierarchies</li>
+            <li style="margin-bottom: 8px;">Know the contrast requirements for text, large text, and UI components</li>
+            <li style="margin-bottom: 8px;">Explain SC 1.4.1 (Use of Color) and how it differs from contrast requirements</li>
+            <li style="margin-bottom: 8px;">Describe why placeholder text fails as a label</li>
+            <li style="margin-bottom: 8px;">Identify the two components of good error messages</li>
+            <li style="margin-bottom: 8px;">Distinguish checkbox tab behavior from radio button tab behavior</li>
+            <li>Explain where focus should go when a modal opens</li>
+          </ul>
+        </div>
+        <div style="flex: 1; min-width: 280px;">
+          <ul style="margin: 0; padding-left: 20px; color: #212529; font-size: 14px;">
+            <li style="margin-bottom: 8px;">Know the touch target size exceptions</li>
+            <li style="margin-bottom: 8px;">Describe the root cause of sticky element issues at 400% zoom</li>
+            <li style="margin-bottom: 8px;">Know both solutions for text spacing clipping</li>
+            <li style="margin-bottom: 8px;">Explain why orientation support matters for users with mounted devices</li>
+            <li style="margin-bottom: 8px;">Know when multiple landmarks need unique accessible names</li>
+            <li style="margin-bottom: 8px;">Explain consistent identification (same function = same name)</li>
+            <li style="margin-bottom: 8px;">Know what happens after activating a skip link and pressing Tab</li>
+            <li style="margin-bottom: 8px;">Describe the flash threshold and why it matters</li>
+            <li>Explain how prefers-reduced-motion affects animation behavior</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Resources -->
+    <div style="background-color: #fff; border: 1px solid #dee2e6; border-radius: 8px; padding: 24px; margin-bottom: 32px; border-left: 5px solid #20c997;">
+      <h3 style="margin: 0 0 20px 0; font-size: 20px; font-weight: 600; color: #212529; display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 22px;">📚</span> Resources
+      </h3>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 20px;">
+        <div style="flex: 1; min-width: 260px;">
+          <h4 style="margin: 0 0 12px 0; font-size: 15px; font-weight: 600; color: #212529;">Essential WCAG References</h4>
+          <ul style="margin: 0; padding-left: 20px; font-size: 14px;">
+            <li style="margin-bottom: 8px;">
+              <a href="https://www.w3.org/WAI/WCAG22/quickref/" style="color: #1864ab; text-decoration: underline;">WCAG 2.2 Quick Reference</a>
+            </li>
+            <li style="margin-bottom: 8px;">
+              <a href="https://www.w3.org/WAI/WCAG22/Understanding/" style="color: #1864ab; text-decoration: underline;">Understanding WCAG 2.2</a>
+            </li>
+            <li>
+              <a href="https://www.w3.org/WAI/WCAG22/Techniques/" style="color: #1864ab; text-decoration: underline;">WCAG 2.2 Techniques</a>
+            </li>
+          </ul>
+        </div>
+
+        <div style="flex: 1; min-width: 260px;">
+          <h4 style="margin: 0 0 12px 0; font-size: 15px; font-weight: 600; color: #212529;">Lesson Reviews</h4>
+          <ul style="margin: 0; padding-left: 20px; font-size: 14px; color: #212529;">
+            <li style="margin-bottom: 8px;">L01: Accessible Names</li>
+            <li style="margin-bottom: 8px;">L02: Headings and Content Structure</li>
+            <li style="margin-bottom: 8px;">L03: Color and Contrast</li>
+            <li style="margin-bottom: 8px;">L04: Forms, Labels, and Errors</li>
+            <li style="margin-bottom: 8px;">L05: Keyboard, Touch, and Focus</li>
+            <li style="margin-bottom: 8px;">L06: Reflow, Zoom, and Text Spacing</li>
+            <li style="margin-bottom: 8px;">L07: Landmarks and Navigation</li>
+            <li>L08: Motion and Animation</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Good Luck Section -->
+    <div style="background: linear-gradient(135deg, #d0ebff 0%, #a5d8ff 100%); border-radius: 8px; padding: 24px 28px; text-align: center; border-left: 5px solid #1971c2;">
+      <h3 style="margin: 0 0 8px 0; font-size: 22px; font-weight: 600; color: #1864ab;">Good luck on your assessment!</h3>
+      <p style="margin: 0; font-size: 16px; color: #212529;">
+        Remember: This is open-book, just like real design work. Focus on understanding the principles, not memorizing answers.
+      </p>
+    </div>
+
+  </div>
+
+</body>
+</html>

@@ -12,6 +12,7 @@ export async function POST(request: NextRequest) {
     total: number;
     timestamp: string;
     accessToken?: string;
+    responses?: Record<string, string>;
   };
 
   try {
@@ -23,7 +24,8 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  const { name, quizId, score, total, timestamp, accessToken } = body;
+  const { name, quizId, score, total, timestamp, accessToken, responses } =
+    body;
 
   if (!name || !quizId || score == null || total == null || !timestamp) {
     return NextResponse.json(
@@ -53,6 +55,19 @@ export async function POST(request: NextRequest) {
     resolvedStudentId = student.id;
   }
 
+  let sanitizedResponses: Record<string, string> | null = null;
+  if (responses && typeof responses === "object" && !Array.isArray(responses)) {
+    const clean: Record<string, string> = {};
+    for (const [k, v] of Object.entries(responses)) {
+      if (typeof k === "string" && typeof v === "string" && k.length <= 64 && v.length <= 8) {
+        clean[k] = v;
+      }
+    }
+    if (Object.keys(clean).length > 0) {
+      sanitizedResponses = clean;
+    }
+  }
+
   try {
     await db.insert(quizResults).values({
       name: resolvedName,
@@ -61,6 +76,7 @@ export async function POST(request: NextRequest) {
       total,
       submittedAt: new Date(timestamp),
       studentId: resolvedStudentId,
+      responses: sanitizedResponses,
     });
 
     return NextResponse.json({ saved: true });

@@ -8,8 +8,8 @@ export type QuizResultRow = InferSelectModel<typeof quizResults>;
 export type SubmissionRow = InferSelectModel<typeof submissions>;
 export type GradeRow = InferSelectModel<typeof grades>;
 
-/** All cohort quizzes currently ship with five questions each. */
-const QUIZ_OUT_OF = 5;
+/** Lesson quizzes default to five questions; exams set their own via the catalog. */
+const DEFAULT_QUIZ_OUT_OF = 5;
 
 export type GradebookColumn =
   | {
@@ -18,6 +18,8 @@ export type GradebookColumn =
       id: string;
       label: string;
       outOf: number;
+      weighted: boolean;
+      href: string;
     }
   | {
       kind: "assignment";
@@ -70,7 +72,9 @@ export function getGradebookColumns(): {
           weekLabel: week.label,
           id: item.id,
           label: item.label,
-          outOf: QUIZ_OUT_OF,
+          outOf: item.outOf ?? DEFAULT_QUIZ_OUT_OF,
+          weighted: item.weighted ?? false,
+          href: item.href,
         });
       } else {
         const fallback = assignments[item.id];
@@ -102,6 +106,14 @@ export type QuizCell =
       bestScore: number;
       total: number;
       attempts: number;
+      /** Best attempt's id, used to link to the per-attempt teacher view. */
+      attemptId?: number;
+      /** Instructor-adjusted score for the surfaced attempt, when present. */
+      adjustedScore?: number;
+      /** Sum of active weights at the time the adjustment was computed. */
+      adjustedTotal?: number;
+      /** Optional note from an instructor override on this attempt. */
+      adjustmentNote?: string;
     };
 
 export type AssignmentCell =
@@ -154,7 +166,10 @@ export function buildGradebookRows(params: {
     params;
   const byId = new Map(roster.map((s) => [s.id, s]));
 
-  type AggQuiz = { scores: number[]; totals: number[]; attempts: number };
+  type AggQuiz = {
+    rows: QuizResultRow[];
+    attempts: number;
+  };
   const quizAgg = new Map<RosterKey, Map<string, AggQuiz>>();
 
   const subAgg = new Map<RosterKey, Map<string, SubmissionRow[]>>();
@@ -169,7 +184,7 @@ export function buildGradebookRows(params: {
     }
     let a = m.get(quizId);
     if (!a) {
-      a = { scores: [], totals: [], attempts: 0 };
+      a = { rows: [], attempts: 0 };
       m.set(quizId, a);
     }
     return a;
@@ -195,8 +210,7 @@ export function buildGradebookRows(params: {
       orphanLabels.set(key, r.name.trim());
     }
     const agg = initQuiz(key, r.quizId);
-    agg.scores.push(r.score);
-    agg.totals.push(r.total);
+    agg.rows.push(r);
     agg.attempts += 1;
   }
 
@@ -262,9 +276,37 @@ export function buildGradebookRows(params: {
         const agg = quizAgg.get(identity.key)?.get(col.id);
         if (!agg || agg.attempts === 0) {
           quizzes.set(col.id, { status: "incomplete" });
+        } else if (col.weighted) {
+          // Weighted exams: one attempt expected. Surface the most recent.
+          const latest = agg.rows
+            .slice()
+            .sort(
+              (a, b) =>
+                b.submittedAt.getTime() - a.submittedAt.getTime()
+            )[0];
+          const cell: QuizCell = {
+            status: "complete",
+            bestScore: latest.score,
+            total: Math.max(latest.total, col.outOf),
+            attempts: agg.attempts,
+            attemptId: latest.id,
+          };
+          if (
+            latest.adjustedScore !== null &&
+            latest.adjustedTotal !== null
+          ) {
+            cell.adjustedScore = Number.parseFloat(latest.adjustedScore);
+            cell.adjustedTotal = Number.parseFloat(latest.adjustedTotal);
+          }
+          if (latest.adjustmentNote) {
+            cell.adjustmentNote = latest.adjustmentNote;
+          }
+          quizzes.set(col.id, cell);
         } else {
-          const total = Math.max(...agg.totals, col.outOf);
-          const bestScore = Math.max(...agg.scores);
+          const totals = agg.rows.map((r) => r.total);
+          const scores = agg.rows.map((r) => r.score);
+          const total = Math.max(...totals, col.outOf);
+          const bestScore = Math.max(...scores);
           quizzes.set(col.id, {
             status: "complete",
             bestScore,

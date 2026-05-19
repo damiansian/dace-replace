@@ -1,0 +1,782 @@
+{
+  "id": "b1-final-assessment",
+  "title": "Discover Badge Final Assessment",
+  "lessonPath": "/badge-1/exam",
+  "questions": [
+    {
+      "id": "b1-q1",
+      "question": "There are three links with the same visible text \"Learn more.\" How should the designer annotate these links to conform to WCAG and help screen reader users differentiate them when pulling up a list of links?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Approach 1: Add positional context like \"Link one of three\""
+        },
+        {
+          "id": "b",
+          "text": "Approach 2: Associate each link with its adjacent h3 heading text"
+        },
+        {
+          "id": "c",
+          "text": "Approach 3: Associate all links with the page h2 heading"
+        },
+        {
+          "id": "d",
+          "text": "No annotation is needed because the visible text \"Learn more\" is sufficient"
+        }
+      ],
+      "correctAnswer": "b",
+      "feedback": {
+        "a": "Incorrect. While Approach 1 does differentiate the links, positional context like 'Link one of three' doesn't convey meaningful information. A screen reader user hearing 'Learn more, link one of three' still doesn't know what they'll learn more about. Accessible names should describe purpose, not position. The adjacent h3 headings already provide the context sighted users rely on.",
+        "b": "Correct! Approach 2 associates each 'Learn more' link with its adjacent h3 heading, providing the same contextual connection that sighted users get visually. Screen reader users would hear 'Learn more, From content chaos to personalized connections' which clearly indicates the link's purpose. This technique also works well for localization since it references existing live text rather than adding new strings. In Badge 2, we'll look at the usability factors of this approach and apply design thinking on how we might improve the experience rather than just make it conform to the WCAG.",
+        "c": "Incorrect. Approach 3 associates all three links with the same h2 heading 'Discover what's possible,' which doesn't differentiate them at all. Screen reader users would hear the identical accessible name for all three links, making it impossible to distinguish which section each link leads to. Each link needs a unique, descriptive accessible name.",
+        "d": "Incorrect. When multiple links share identical visible text, they must be differentiated programmatically. SC 2.4.4 Link Purpose (In Context) requires that link purpose be determinable. Screen reader users who pull up a list of links would see three identical 'Learn more' entries with no way to distinguish them. The adjacent headings provide the necessary differentiation."
+      },
+      "imageSrc": "/quizzes/b1-final/q1-stimulus.png",
+      "imageAlt": "A marketing page titled \"Discover what's possible\" with three content sections. Each section has an h3 heading: \"From search rankings to relevance,\" \"From content chaos to personalized connections,\" and \"From data to decisions.\" Each section includes a \"Learn more\" link. The annotation panel shows three approaches: Approach 1 annotates the link as \"Learn more [Link one of three]\"; Approach 2 annotates the link as \"Learn more [From content chaos to personalized connections]\" connecting to the adjacent h3 heading; Approach 3 annotates the link as \"Learn more [Discover what's possible]\" connecting to the page h2 heading."
+    },
+    {
+      "id": "b1-q2",
+      "question": "A designer has asked you what is the best accessible name to define for the avatar image in this UI. What might you advise them to do here?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Use \"[User name] avatar\" as the accessible name"
+        },
+        {
+          "id": "b",
+          "text": "Use aria-label=\"Jack Traven headshot\""
+        },
+        {
+          "id": "c",
+          "text": "Mark the avatar as decorative (no accessible name needed)"
+        },
+        {
+          "id": "d",
+          "text": "Describe the image in detail: \"Man looking away from camera in dark background with red lighting\""
+        }
+      ],
+      "correctAnswer": "c",
+      "feedback": {
+        "a": "Incorrect. While '[User name] avatar' accurately describes the function of the element, it creates redundancy. The user would hear 'Jack Traven avatar' immediately followed by 'Jack Traven' from the adjacent text. This repetition doesn't add value and clutters the screen reader experience. When an image's information is already conveyed by adjacent text, mark it as decorative.",
+        "b": "Incorrect. Using aria-label='Jack Traven headshot' provides information that's already available from the adjacent 'Jack Traven' text. Screen reader users would hear 'Jack Traven headshot' and then 'Jack Traven,' which is redundant. Additionally, 'headshot' describes the photo style rather than its function. The avatar should be marked as decorative since the name text already identifies the user.",
+        "c": "Correct! The avatar appears directly adjacent to 'Jack Traven' text, which already identifies the user. Adding an accessible name to the avatar would create redundancy: users would hear the name twice. When an image's meaning is already conveyed by adjacent text, it should be marked as decorative. This follows the principle that accessible names should add information, not repeat it.",
+        "d": "Incorrect. Detailed visual descriptions like this are inappropriate for functional UI elements. The avatar's purpose is to identify the user, not to convey the artistic qualities of the photograph. Even if a description were needed, this level of detail would be overwhelming and unhelpful. More importantly, since the adjacent text already identifies the user, the avatar should be marked as decorative."
+      },
+      "imageSrc": "/quizzes/b1-final/q2-stimulus.png",
+      "imageAlt": "A user profile dropdown menu showing \"Jack Traven\" with email \"jack.traven@gmail.com\" and a circular avatar photo. The menu includes options for \"Go to Adobe Account,\" \"Personal profile,\" \"Manage team,\" \"Generative AI credits,\" \"App settings,\" \"Support,\" and \"Sign out.\" The annotation panel on the left shows an \"Accessible Name\" section for \"Avatars\" with the Name field containing \"????\" indicating uncertainty about what accessible name to provide."
+    },
+    {
+      "id": "b1-q3",
+      "question": "What might you tell a designer about the quality of the accessible name annotation for annotation number three?",
+      "options": [
+        {
+          "id": "a",
+          "text": "It should read \"three dots\" to describe the visible attributes of the icon"
+        },
+        {
+          "id": "b",
+          "text": "\"Menu\" is the role of the control and does not belong in the name of the control"
+        },
+        {
+          "id": "c",
+          "text": "It should read \"More menu Layer Styles,\" not Drop Shadow"
+        },
+        {
+          "id": "d",
+          "text": "It should be marked decorative since the entire row is about more options making the control redundant"
+        }
+      ],
+      "correctAnswer": "b",
+      "feedback": {
+        "a": "Incorrect. Describing the visual appearance of an icon ('three dots') does not communicate its purpose to screen reader users. Accessible names should describe function, not appearance. Users need to know what the control does, not what it looks like. The actual issue with this annotation is that it includes role information that doesn't belong in the name.",
+        "b": "Correct! The word 'menu' is a role attribute, not a name attribute. A screen reader would announce 'More menu Drop shadow, menu' creating confusion: is it a menu or something else? The role information is derived from the element itself and announced automatically by assistive technology. The accessible name field should contain only the name and any state information. Put role details in the notes field, not the name.",
+        "c": "Incorrect. While context is important, 'Layer Styles' is the panel name, not the specific context for this control. 'Drop shadow' correctly identifies which layer style this more menu applies to, matching what sighted users see. The actual issue is that 'menu' is a role and shouldn't be included in the accessible name at all.",
+        "d": "Incorrect. The more menu control is not redundant: it provides access to additional options that aren't available elsewhere in the row. Each control in the row serves a distinct function (more options, edit, hide/show). The issue with this annotation is that it includes 'menu' which is a role, not part of the accessible name."
+      },
+      "imageSrc": "/quizzes/b1-final/q3-stimulus.png",
+      "imageAlt": "A mobile photo editing app showing an image of a Joshua tree with \"mimsy\" text overlay. A \"Layer styles\" panel is open with options for Drop shadow, Stroke, and Color overlay. The annotation panel shows 6 markers: Marker 1 is a close button (Name: \"Close\"); Marker 2 is an icon marked decorative with note that accessible name is derived from adjacent text; Marker 3 shows \"More menu [Drop shadow]\" with note to associate with visible text; Marker 4 shows \"Edit [Drop shadow]\"; Marker 5 shows \"Hide [Drop shadow]\" with note about state changes; Marker 6 shows \"Add [Stroke]\" associating with adjacent text."
+    },
+    {
+      "id": "b1-q4",
+      "question": "You are evaluating your team member's annotations here. Do you have any notes for them, or is it good to go?",
+      "options": [
+        {
+          "id": "a",
+          "text": "No notes, good to go to engineering as-is"
+        },
+        {
+          "id": "b",
+          "text": "If one graphic is functional, they all are: markers 2, 3, and 5 are all incorrect and need revision"
+        },
+        {
+          "id": "c",
+          "text": "Marker 6 is incidental as opening a new window is non-material to a screen reader user"
+        },
+        {
+          "id": "d",
+          "text": "Marker 5 is incorrect as the warning icon is not decorative"
+        }
+      ],
+      "correctAnswer": "d",
+      "feedback": {
+        "a": "Incorrect. While most of the annotations are correct, there is one issue that needs revision before sending to engineering. Review the annotations carefully: one icon that appears decorative actually serves a functional purpose and requires an accessible name.",
+        "b": "Incorrect. Not all icons in a set must be treated the same way. Each icon should be evaluated individually based on whether it conveys information that isn't available through other means. The Adobe Express logo (Marker 2) and app icons (Marker 3) are correctly marked as decorative since they don't convey unique information. However, the warning icon in Marker 5 does convey critical status information and should not be decorative.",
+        "c": "Incorrect. Marker 6 correctly indicates that the link 'Opens in new window.' This information is material to screen reader users who need to know when a link will open a new browser context. Announcing new window behavior helps users understand what to expect and maintain orientation. The annotation is correct as written.",
+        "d": "Correct! The warning icon in Marker 5 is functional, not decorative. This icon appears next to 'Change payment' to indicate a billing issue requiring attention. Without an accessible name, the component would rely on color alone (red text) to communicate the warning, which violates SC 1.4.1 Use of Color. Warning icons almost always convey critical status information and must have accessible names."
+      },
+      "imageSrc": "/quizzes/b1-final/q4-stimulus.png",
+      "imageAlt": "An Adobe Express billing page showing a red \"Billing issue\" banner at top with a warning icon (Marker 1, Name: \"Error\"). Below is the Adobe Express logo (Marker 2, decorative), app icons representing available services (Marker 3, decorative with note that icons are representative only), and an info icon for \"25 generative credits\" (Marker 4, Name: \"More information\"). The page shows menu items including \"View your apps and services,\" \"Access your apps and services\" with external link icon (Marker 6, Name: \"Opens in new window\"), \"Change payment\" with a warning icon and red text showing billing details (Marker 5, marked as decorative), \"View billing history,\" and \"Manage payment methods.\""
+    },
+    {
+      "id": "b1-q5",
+      "question": "What might be the best way to specify the accessible name of the button highlighted here?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Copy link [Campaign 1]"
+        },
+        {
+          "id": "b",
+          "text": "Copy link [www.tracking.link/abcdefg12345678]"
+        },
+        {
+          "id": "c",
+          "text": "Copy link"
+        },
+        {
+          "id": "d",
+          "text": "Copy"
+        }
+      ],
+      "correctAnswer": "a",
+      "feedback": {
+        "a": "Correct! There are two controls that perform the copy function on this screen, so they cannot have the same accessible name. 'Copy link [Campaign 1]' describes the function ('copy link') and differentiates it using adjacent contextual text ('Campaign 1'). This provides clear, human-readable context that matches what sighted users see. Pro tip: You could advise engineering to use aria-describedby to announce the full URL after the name, giving users both quick identification and detailed information.",
+        "b": "Partially correct. This does differentiate the buttons using the URL, which would work for accessibility conformance. However, reading aloud 'www.tracking.link/abcdefg12345678' is not a good user experience: it's long, hard to remember, and not meaningful to users. 'Campaign 1' provides the same differentiation in a more user-friendly way that matches how sighted users identify the rows.",
+        "c": "Incorrect. While 'Copy link' accurately describes the function, it doesn't differentiate this button from the other 'Copy link' button on the page. Screen reader users navigating by button or pulling up a list of controls would see two identical 'Copy link' entries with no way to know which campaign each refers to.",
+        "d": "Incorrect. 'Copy' is too vague: it doesn't indicate what is being copied. Is it copying the campaign name, the statistics, or the link? Additionally, it doesn't differentiate this button from the other copy button on the page. Accessible names should describe the specific function and provide context when multiple similar controls exist."
+      },
+      "imageSrc": "/quizzes/b1-final/q5-stimulus.png",
+      "imageAlt": "A \"Tracking links\" dashboard showing campaign statistics with Total visits: 24 and Total RSVPs: 8. Two campaign rows are displayed: \"Campaign 1\" and \"Campaign 2,\" each showing visits, RSVPs, and capacity stats. Each row has a tracking URL (www.tracking.link/abcdefg12345678) with copy, edit, and delete icon buttons. The annotation panel shows Marker 1 pointing to the copy button for Campaign 1 with Name: \"???\" indicating uncertainty about the accessible name."
+    },
+    {
+      "id": "b1-q6",
+      "question": "Considering the Design Accessibility Checklist's guidance on headings, would you pass or fail this content? Presume this platform being designed supports both headings and heading level/rank.",
+      "options": [
+        {
+          "id": "a",
+          "text": "Pass. All heading text has annotation markers."
+        },
+        {
+          "id": "b",
+          "text": "Pass. All heading levels/ranks are correctly annotated."
+        },
+        {
+          "id": "c",
+          "text": "Fail. Some text that is a heading has no annotation marker."
+        },
+        {
+          "id": "d",
+          "text": "Fail. Some heading levels/ranks are incorrectly annotated."
+        }
+      ],
+      "correctAnswer": "d",
+      "feedback": {
+        "a": "Incorrect. While all heading text does have annotation markers, that alone doesn't mean the annotations are correct. The presence of markers doesn't validate the heading levels assigned to them. Review the hierarchy: the interface jumps from H1 directly to H3 for the category sections, skipping H2 in the main content area.",
+        "b": "Incorrect. The heading levels are not correctly annotated. The main page title 'Start with a blank document' is correctly H1, but the category sections (Recents, Popular, Print, etc.) are marked as H3 while 'Document settings' in the sidebar is H2. This creates an illogical hierarchy where content in the main area skips from H1 to H3.",
+        "c": "Incorrect. All text that functions as a heading does have annotation markers in this design. The issue is not missing annotations but rather the incorrect heading levels assigned. Look at the relationship between H1, H2, and H3 in this interface.",
+        "d": "Correct! The section headings (Recents, Popular, Print, Social media, etc.) should be heading level 2, not heading level 3. Currently, the interface jumps from H1 to H3, skipping H2 for the main content sections. While this might technically conform to SC 1.3.1 Info and Relationships, skipped heading levels create navigation difficulties for screen reader users who rely on heading hierarchy. The designer likely chose H3 because the category text appears visually smaller than 'Document settings,' but visual presentation and programmatic structure should be determined independently."
+      },
+      "imageSrc": "/quizzes/b1-final/q6-stimulus.png",
+      "imageAlt": "A \"New document\" dialog showing a dark-themed interface. The left sidebar contains navigation options: Quick start, Blank document (selected), Recents, Popular, Print, Social media, Web and mobile, Digital art, Video, and Other ways to start. The main content area displays \"Start with a blank document\" as the page title with an H1 annotation marker. Below are category sections for document templates: Recents, Popular, Print, Social media, Web and mobile, Digital art, and Video, each showing thumbnail previews of document sizes (7 x 5 in). Each category heading has an H3 annotation marker. The right sidebar shows \"Document settings\" with an H2 annotation marker, containing fields for Document name, Unit, Width, Height, and collapsible sections for Resolution, Color mode, Artboards, Background, and More options."
+    },
+    {
+      "id": "b1-q7",
+      "question": "This is a mobile interface destined for both iOS and Android. What advice would you offer to the designer?",
+      "options": [
+        {
+          "id": "a",
+          "text": "All interfaces must start with an H1 element; we cannot release until you add an H1."
+        },
+        {
+          "id": "b",
+          "text": "Consider adding a note about Android's support for heading levels/rank."
+        },
+        {
+          "id": "c",
+          "text": "Android doesn't support heading rank, so do not annotate headings."
+        },
+        {
+          "id": "d",
+          "text": "The text elements annotated are labels of the groups of controls below, not headings."
+        }
+      ],
+      "correctAnswer": "b",
+      "feedback": {
+        "a": "Incorrect. While starting with an H1 is a best practice, it is not a strict WCAG requirement. Mobile home screens often have implicit page context from the app itself. The more pressing issue here is ensuring the annotations account for platform differences in how heading levels are implemented and announced.",
+        "b": "Correct! iOS VoiceOver fully supports heading levels/rank, so the H2 annotations are meaningful for iOS users. However, Android TalkBack only supports binary heading identification (on/off), not specific levels. Adding a note to engineering about this platform difference ensures proper implementation: iOS can use the specified H2 level while Android implements headings without level information. This documents the annotation intent while acknowledging platform capabilities.",
+        "c": "Incorrect. Android TalkBack does support headings, just not heading rank/level. Users can still navigate by headings on Android; TalkBack simply announces 'heading' without the level number. The correct approach is to annotate headings with levels for iOS (which supports them) and add a note explaining Android's binary heading support.",
+        "d": "Incorrect. These text elements do function as headings, not labels. 'Choose a photo to begin,' 'Start with a quick action,' and 'Open recent files' are section titles that organize the page content, which is the semantic purpose of headings. Labels are associated with specific form controls, whereas these titles introduce groups of related content."
+      },
+      "imageSrc": "/quizzes/b1-final/q7-stimulus.png",
+      "imageAlt": "A mobile app home screen showing a Photoshop-style interface on an iPhone. The header displays the Photoshop logo with cloud sync and profile avatar icons. Below are circular tutorial/feature buttons labeled \"What's new,\" \"Made with Photoshop,\" \"How-to,\" and \"Must know.\" The main content has three sections, each with an H2 annotation marker: \"Choose a photo to begin\" with photo selection thumbnails, \"Start with a quick action\" with icon buttons for Create a new canvas, Generate image, Remove background, and Apply effect, and \"Open recent files\" showing two recent project thumbnails. A floating action button appears in the bottom right. The bottom navigation bar shows Home (selected), Files, and Learn tabs."
+    },
+    {
+      "id": "b1-q8",
+      "question": "Run the Image Contrast Scanner on this design. What findings can you report to the designer on your team regarding the text elements?",
+      "options": [
+        {
+          "id": "a",
+          "text": "All text contrast passes"
+        },
+        {
+          "id": "b",
+          "text": "The headline text is partially non-conforming"
+        },
+        {
+          "id": "c",
+          "text": "The body text is below contrast minimums"
+        },
+        {
+          "id": "d",
+          "text": "The graphic \"Gathering insights\" is below contrast minimums"
+        }
+      ],
+      "correctAnswer": "c",
+      "feedback": {
+        "a": "Incorrect. Not all text passes contrast requirements. While the headline meets requirements for large-scale text under SC 1.4.3 Contrast (Minimum), the body text falls below the required 4.5:1 ratio for normal-sized text. Always test body text separately from headlines, as they have different thresholds.",
+        "b": "Incorrect. The headline text actually passes. At 36-point bold, it qualifies as large-scale text under SC 1.4.3 Contrast (Minimum), which only requires 3:1 contrast. The portions at 4.5:1 and 3:1 are both allowable for large-scale text. The issue is with the body text, not the headline.",
+        "c": "Correct! The body text (16px regular) must meet the 4.5:1 contrast ratio requirement under SC 1.4.3 Contrast (Minimum), but the white text on the red gradient background falls below this threshold. The headline passes because at 36-point bold, it qualifies as large-scale text requiring only 3:1. The 'Gathering insights' graphic is decorative content, so while it technically needs 3:1 under SC 1.4.11 Non-text Contrast, it could be argued as exempt since it's purely decorative.",
+        "d": "Incorrect. The 'Gathering insights' element is a gray area. As graphic content, it would need 3:1 under SC 1.4.11 Non-text Contrast, which it meets. Additionally, since this graphic is decorative rather than functional, it could be argued as exempt. The actual issue is the body text, which is below the 4.5:1 minimum required for normal-sized text under SC 1.4.3."
+      },
+      "imageSrc": "/quizzes/b1-final/q8-stimulus.png",
+      "imageAlt": "A red marketing hero section with headline \"From search rankings to relevance\" in large white bold text and body text \"Track and optimize your online presence to ensure your brand stands out in AI-powered search results.\" in smaller white regular text. Below is a dark \"Learn more\" button and a decorative pill-shaped element with a star icon and \"Gathering insights\" text in red on a lighter red background."
+    },
+    {
+      "id": "b1-q9",
+      "question": "This design has both SC 1.4.3 Contrast (Minimum) text contrast and SC 1.4.1 Use of Color issues. Which element is non-conforming to SC 1.4.1 and why?",
+      "options": [
+        {
+          "id": "a",
+          "text": "The Files and Learn buttons; gray means disabled"
+        },
+        {
+          "id": "b",
+          "text": "The Home button; blue means current"
+        },
+        {
+          "id": "c",
+          "text": "The Add button; blue means accent"
+        },
+        {
+          "id": "d",
+          "text": "Trick question, there are no SC 1.4.1 issues present"
+        }
+      ],
+      "correctAnswer": "b",
+      "feedback": {
+        "a": "Incorrect. The Files and Learn buttons being gray does not indicate a disabled state; these are simply the unselected navigation items. Gray for unselected tabs is a common pattern and does not convey functional information beyond 'not currently selected.' The actual SC 1.4.1 Use of Color issue is with the Home button, where blue alone indicates the current/selected state.",
+        "b": "Correct! The blue color on the Home button is the only indicator that it's currently selected, violating SC 1.4.1 Use of Color. Some might attempt to use WCAG Technique G183 (contrast between link and non-link text) as a defense, but that technique applies to inline links within body text, not navigation states. Additionally, the contrast between the blue and gray is only 1.5:1, not the required 3:1 for G183. A non-color indicator like a border, underline, or filled background shape is needed. Note: this screen also has SC 1.4.3 issues where the gray label text for Files and Learn is over 3:1 but below the required 4.5:1 for small text.",
+        "c": "Incorrect. The blue Add button (floating action button) is not a SC 1.4.1 Use of Color issue. Using blue as an accent color for a primary action button is acceptable because the color is not conveying information. Users don't need to decode the blue color to understand what the button does; it's simply a design choice for visual emphasis. The issue is with the Home button where blue indicates 'currently selected.'",
+        "d": "Incorrect. There is a clear SC 1.4.1 Use of Color violation. The Home button uses blue color alone to indicate it's the currently selected navigation item. Without seeing the color difference, a user cannot determine which tab is active. This requires a non-color indicator such as a border, underline, or different background shape."
+      },
+      "imageSrc": "/quizzes/b1-final/q9-stimulus.png",
+      "imageAlt": "A mobile Photoshop app home screen showing the Ps logo, cloud sync, and profile icons in the header. Below are circular category buttons for \"What's new,\" \"Made with Photoshop,\" \"How-to,\" and \"Must know.\" The main content includes sections for \"Choose a photo to begin\" with photo thumbnails, \"Start with a quick action\" with icon buttons, and \"Open recent files\" with project thumbnails. A blue floating action button with a plus icon appears at bottom right. The bottom navigation bar shows three tabs: \"Home\" with a blue house icon and blue label text indicating the current selection, \"Files\" with a gray folder icon and gray label, and \"Learn\" with a gray lightbulb icon and gray label."
+    },
+    {
+      "id": "b1-q10",
+      "question": "Run Stark's color vision simulation tool to determine whether there is an issue with SC 1.4.1 Use of Color. Do you observe any color-alone issues in this design?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Yes. The color orange means flashcard"
+        },
+        {
+          "id": "b",
+          "text": "Yes. The color green means quiz"
+        },
+        {
+          "id": "c",
+          "text": "No. The icon colors are over 3:1 to fill color"
+        },
+        {
+          "id": "d",
+          "text": "No. Icons are used in addition to color"
+        }
+      ],
+      "correctAnswer": "d",
+      "feedback": {
+        "a": "Incorrect. While orange is associated with flashcards, the lightning bolt icon provides a non-color way to identify flashcard content. Under SC 1.4.1 Use of Color, color is acceptable when combined with another visual indicator. Users can distinguish flashcards from quizzes by the icon shape alone, making the color incidental rather than required for understanding.",
+        "b": "Incorrect. The quiz indicators use purple (not green), and more importantly, the question mark icon provides a non-color way to identify quiz content. The icon shape allows users to distinguish quizzes from flashcards without relying on color, satisfying SC 1.4.1 Use of Color. When tested in grayscale simulation, the different icon shapes remain distinguishable.",
+        "c": "Incorrect. While contrast ratios are relevant for SC 1.4.11 Non-text Contrast, they don't address SC 1.4.1 Use of Color. Even with perfect contrast, if color were the only differentiator, it would still fail SC 1.4.1. The design passes because the icon shapes (lightning bolt vs. question mark) provide non-color differentiation. Interestingly, the lightning bolt icon is below 3:1 against its light orange fill, which is a separate SC 1.4.11 issue.",
+        "d": "Correct! The icons provide a non-color way to distinguish flashcards (lightning bolt) from quizzes (question mark), satisfying SC 1.4.1 Use of Color. This makes the color incidental rather than required for understanding. Note: while there's no SC 1.4.1 violation, the lightning bolt icon is below 3:1 contrast against its light orange background fill, which is non-conforming to SC 1.4.11 Non-text Contrast. These are separate success criteria testing different things."
+      },
+      "imageSrc": "/quizzes/b1-final/q10-stimulus.png",
+      "imageAlt": "A \"World History Study Packet Index\" interface showing 6 study sessions listed vertically. Each session row contains a checkbox, session number, title (e.g., \"Foundations of Civilization,\" \"Classical Civilizations\"), and two color-coded icons followed by a \"Start\" button. The first icon in each row is a lightning bolt representing flashcards, shown in orange/yellow color. The second icon is a question mark representing quizzes, shown in purple color. Session 2 \"Classical Civilizations\" has its checkbox checked with a blue checkmark. The icons use different shapes: lightning bolt for flashcards and question mark for quizzes."
+    },
+    {
+      "id": "b1-q11",
+      "question": "Would you flag any of these states as being non-conforming to WCAG SC 1.4.11 Non-text Contrast?",
+      "options": [
+        {
+          "id": "a",
+          "text": "The selected state only"
+        },
+        {
+          "id": "b",
+          "text": "The selected and hover state only"
+        },
+        {
+          "id": "c",
+          "text": "All three states; the background fills are all under 3:1"
+        },
+        {
+          "id": "d",
+          "text": "None of the states; they're all passing"
+        }
+      ],
+      "correctAnswer": "a",
+      "feedback": {
+        "a": "Correct! The selected state uses a blue background fill to convey that the item is selected, which is functional information. However, the blue fill is only 1.6:1 contrast against the white panel background, well below the 3:1 minimum required by SC 1.4.11 Non-text Contrast. The hover state has no contrast requirement because the pointer itself provides visual information about what's being hovered. The focus state passes because the blue focus ring provides sufficient contrast (over 3:1) to indicate keyboard focus.",
+        "b": "Incorrect. The hover state does not require contrast under SC 1.4.11 Non-text Contrast. The pointer/cursor already provides visual information indicating which element is being hovered, so any visual styling is supplementary. Only the selected state fails because its blue background fill (1.6:1 contrast) is the sole indicator of selection and falls below the 3:1 minimum.",
+        "c": "Incorrect. Not all states require contrast or fail the requirement. The hover state is exempt because the pointer provides visual feedback. The focus state passes because the blue focus ring is over 3:1 contrast. Only the selected state fails: its blue background fill at 1.6:1 contrast is below the 3:1 minimum required for conveying the selected state under SC 1.4.11 Non-text Contrast.",
+        "d": "Incorrect. The selected state fails SC 1.4.11 Non-text Contrast. The blue background fill is the visual indicator that conveys 'this item is selected,' which is functional information requiring 3:1 minimum contrast. At 1.6:1 against the white panel, it does not meet this threshold. Users with low vision may not be able to perceive which item is selected."
+      },
+      "imageSrc": "/quizzes/b1-final/q11-stimulus.png",
+      "imageAlt": "Three side-by-side \"Outliner\" panels showing different interaction states for a tree view component. Each panel has a search field, filter and settings icons, and a hierarchical list of \"Node name\" items. Left panel (Selected state): One node has a blue background fill indicating selection. Middle panel (Hover state): A cursor hovers over a node, revealing lock and visibility icons, with no colored background. Right panel (Focus state): One node has a blue outline/focus ring around it with no background fill, indicating keyboard focus."
+    },
+    {
+      "id": "b1-q12",
+      "question": "When a user places their cursor in, or gives keyboard focus to, the text field that currently reads \"Ask anything,\" what will happen?",
+      "options": [
+        {
+          "id": "a",
+          "text": "The prompt text will disappear leaving a blinking text insertion cursor"
+        },
+        {
+          "id": "b",
+          "text": "The prompt text will turn into an icon that acts as the label for the text input"
+        },
+        {
+          "id": "c",
+          "text": "The prompt text will move up programmatically and become the label to the text input"
+        },
+        {
+          "id": "d",
+          "text": "The text insertion cursor will start after the prompt text effectively becoming the label"
+        }
+      ],
+      "correctAnswer": "a",
+      "feedback": {
+        "a": "Correct! This is a classic example of using placeholder text as a label, which violates SC 3.3.2 Labels or Instructions. When the user clicks or tabs to the input, the placeholder text disappears, leaving only a blinking cursor with no visible label. This creates two problems: screen reader users may not have a programmatic label to announce, and all users face increased cognitive load because they must remember what the temporal text said to complete their task.",
+        "b": "Incorrect. Placeholder text does not transform into an icon when the field receives focus. This would be an unusual pattern and would not solve the accessibility issue of providing a persistent label. The placeholder text 'Ask anything' will simply disappear when the user focuses the field, leaving no label at all.",
+        "c": "Incorrect. You're describing a 'floating label' pattern where placeholder text animates up to become a persistent label on focus. While that pattern does exist and is more accessible than disappearing placeholders, this particular design does not implement it. The 'Ask anything' text is standard placeholder text that will simply disappear on focus, providing no persistent label.",
+        "d": "Incorrect. Placeholder text does not remain visible after the insertion cursor appears; it disappears entirely when the field receives focus or when the user begins typing. If the placeholder remained visible alongside user input, it would create confusion about what text belongs to the user versus the system. The issue here is that the placeholder disappears completely, leaving no label."
+      },
+      "imageSrc": "/quizzes/b1-final/q12-stimulus.png",
+      "imageAlt": "An AI assistant chat interface showing a conversation about studying for a world history exam. The assistant response includes a \"World History Study Packet\" card with a View button, followed by suggested prompts \"How do I use a Study Packet?\" and \"Create a quiz from all the sessions.\" At the bottom of the screen is a text input field displaying \"Ask anything\" as placeholder text, with a \"Create\" dropdown button on the left and action icons on the right. The placeholder text serves as the only indication of what the input field is for."
+    },
+    {
+      "id": "b1-q13",
+      "question": "Is there sufficient information provided in the UI to understand what the error is and how to fix it?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Yes. The error is the Title formatting doesn't work on Facebook, so turn off Facebook in the publish settings"
+        },
+        {
+          "id": "b",
+          "text": "No. The error doesn't cover the Title formatting for the Adobe products in the publish settings"
+        },
+        {
+          "id": "c",
+          "text": "No. The Toast message doesn't say what's wrong with the Title formatting for the selected platforms in the publish settings"
+        },
+        {
+          "id": "d",
+          "text": "Yes. The error is the Title formatting doesn't work on certain platforms so change the formatting or turn off those platforms in the publish settings"
+        }
+      ],
+      "correctAnswer": "d",
+      "feedback": {
+        "a": "Incorrect. The toast message specifically identifies YouTube, Twitter, and Vimeo as having format errors, not Facebook. Facebook is currently selected in the sidebar but doesn't show a warning icon. The error icons appear next to YouTube, Twitter, and Vimeo, indicating those are the platforms with Title formatting issues. Always read error messages carefully to identify which specific elements are affected.",
+        "b": "Incorrect. The error is about publishing to third-party platforms (YouTube, Twitter, Vimeo), not Adobe products. The Title formatting contains characters or formatting that won't work on those external platforms. The design appropriately identifies the error source and affected destinations, meeting SC 3.3.1 requirements for error identification.",
+        "c": "Incorrect. The toast message does provide enough information: it identifies that format errors exist on YouTube, Twitter, and Vimeo specifically. Combined with the warning icons next to those platforms in the sidebar and the error indicator on the Title field, users can understand both what's wrong (Title formatting) and where the issue exists (specific platforms). The 'Review Errors' button offers additional detail if needed.",
+        "d": "Correct! The design provides sufficient error information to meet SC 3.3.1 Error Identification. The toast message clearly states which platforms have format errors (YouTube, Twitter, Vimeo), and the warning icons in the sidebar visually connect to those specific platforms. The error icon in the Title field links the issue to the formatting. Users can either change the Title formatting to be compatible or disable those platforms in publish settings. There's also a 'Review Errors' button and likely tooltips on the warning icons providing additional detail."
+      },
+      "imageSrc": "/quizzes/b1-final/q13-stimulus.png",
+      "imageAlt": "Adobe Premiere Pro export dialog with a red toast notification banner at top reading \"There may be format errors on YouTube, Twitter and Vimeo\" with a \"Review Errors\" button. The left sidebar shows publish destinations including Frame.io, YouTube (with warning icon), Facebook (selected), Twitter (with warning icon), Vimeo (with warning icon), Stock, and Behance. The main settings panel shows Facebook publishing options with fields for File name, Location, Preset, Format, Pages, Type (set to \"Reel\"), and two Title fields. The second Title field contains \"#AdobePremierePro\" with a warning triangle icon indicating an error. Warning icons appear next to YouTube, Twitter, and Vimeo in the sidebar, connecting the toast message to the specific platforms with issues."
+    },
+    {
+      "id": "b1-q14",
+      "question": "When the user selects \"All\" from the last Picker, what accessibility challenge will occur?",
+      "options": [
+        {
+          "id": "a",
+          "text": "With no visible text label, they may forget the \"All\" option is related to Role"
+        },
+        {
+          "id": "b",
+          "text": "Because the text \"My Prompts\" is above the Picker, they may think the selection is \"All My prompts\""
+        },
+        {
+          "id": "c",
+          "text": "The Picker will attempt to display every option in the visible value and cause truncation"
+        },
+        {
+          "id": "d",
+          "text": "Nothing, the Picker will correctly read \"Role - All\" in the Picker value to preserve context and meaning"
+        }
+      ],
+      "correctAnswer": "a",
+      "feedback": {
+        "a": "Correct! These filter dropdowns violate SC 3.3.2 Labels or Instructions because they have no persistent visible labels. Currently, the dropdown values themselves ('Domain,' 'Goal,' 'Application,' 'Role') serve as implicit labels. But when a user selects 'All' from the Role picker, the visible value changes to just 'All,' and the context is lost. All what? The same problem occurs for all four pickers. Users must remember what each dropdown was originally labeled, increasing cognitive load. Proper design would include persistent labels above or beside each dropdown.",
+        "b": "Partially correct. Proximity to 'My Prompts' could create confusion, but this is a secondary issue. The primary accessibility challenge is the lack of persistent labels on the filter controls. When the user selects 'All,' they lose the context that this selection relates to 'Role' because there's no label that remains visible regardless of the selected value. The proximity confusion you identified is a valid usability concern but not the main issue.",
+        "c": "Incorrect. Selecting 'All' would simply display the word 'All' in the picker, not attempt to show all options. Truncation occurs when a single selected value's text is too long for the control width. The actual issue is that displaying 'All' removes the context of what category is being filtered. Without a persistent label, users see 'All' but don't know it means 'All Roles' versus 'All Domains.'",
+        "d": "Incorrect. The picker will not automatically display 'Role - All' because there is no persistent label programmed into this design. The current pattern shows only the selected value ('Domain,' 'Goal,' etc.), which works as an implicit label only when the default value is selected. Once changed to 'All,' the label context disappears. Proper implementation would require either persistent visible labels or a design where the category name always appears alongside the selected value."
+      },
+      "imageSrc": "/quizzes/b1-final/q14-stimulus.png",
+      "imageAlt": "A \"Prompt Library\" interface with navigation tabs (All prompts, What's new, Favorites, My prompts) and a \"Create new prompt\" button. Below the tabs are four filter dropdown controls displaying their current values: \"Domain,\" \"Goal,\" \"Application,\" and \"Role,\" each with a dropdown chevron. There is no visible text label above or beside these dropdowns indicating what category each filter represents. A search field with placeholder \"Search keywords and tags\" and view toggle buttons appear to the right. Below shows \"50 Results\" with a grid of prompt cards including \"Summarize learnings,\" \"Get started on AI Assistant,\" and others."
+    },
+    {
+      "id": "b1-q15",
+      "question": "What is the error present in this Blueline annotation for the CheckboxGroup component and the ColorSwatchPicker component?",
+      "options": [
+        {
+          "id": "a",
+          "text": "The ColorSwatchPicker is not interactive"
+        },
+        {
+          "id": "b",
+          "text": "There should be 14 tab stops specified"
+        },
+        {
+          "id": "c",
+          "text": "The CheckboxGroup is NOT a single tab stop"
+        },
+        {
+          "id": "d",
+          "text": "The ColorSwatchPicker is NOT a single tab stop"
+        }
+      ],
+      "correctAnswer": "c",
+      "feedback": {
+        "a": "Incorrect. The ColorSwatchPicker is interactive; users can select different colors. The annotation correctly identifies it as a single tab stop with arrow key operation, which is the standard keyboard pattern for selection controls like color pickers. The error is with the CheckboxGroup annotation, not the ColorSwatchPicker.",
+        "b": "Incorrect. Specifying 14 individual tab stops (4 checkboxes + 10 color swatches) would actually be poor keyboard design. The ColorSwatchPicker correctly uses a single tab stop with arrow keys to navigate between options. However, the CheckboxGroup annotation is wrong because checkboxes do not follow the single-tab-stop pattern that radio buttons do.",
+        "c": "Correct! The CheckboxGroup is incorrectly annotated as 'Single tab stop with arrow key operation.' That keyboard pattern applies to radio groups, where only one option can be selected and arrow keys move between mutually exclusive choices. Checkboxes are independent controls: each checkbox is its own tab stop because users may need to check multiple options or skip past some. When you test standard checkbox components, you'll find each checkbox receives separate keyboard focus. This is a common confusion between checkbox and radio button keyboard behaviors.",
+        "d": "Incorrect. The ColorSwatchPicker annotation is actually correct. Color swatch pickers typically function like radio groups: only one color can be selected at a time, so they use a single tab stop with arrow key navigation between swatches. This is the expected keyboard pattern for mutually exclusive selection controls. The error is with the CheckboxGroup, which should NOT be a single tab stop."
+      },
+      "imageSrc": "/quizzes/b1-final/q15-stimulus.png",
+      "imageAlt": "A Figma annotation panel showing \"Focus Order\" specifications for two components. On the left, the annotations panel lists two frames: Frame 611820 (marker 1) annotated as \"Single tab stop with arrow key operation\" and Frame 26086298 (marker 2) also annotated as \"Single tab stop with arrow key operation.\" On the right side of the design, there is a \"Filter by style\" section with a CheckboxGroup containing four checkboxes (Minimal, Bold, Elegant, Organic) with annotation marker 1, and below it a \"Preferred color\" section with a ColorSwatchPicker showing 10 color swatches (red, orange, yellow, purple, magenta, blue, green, brown, white, black) with annotation marker 2."
+    },
+    {
+      "id": "b1-q16",
+      "question": "The designer set autofocus to the positive action to improve the user experience. Where should the first tab stop be in this modal?",
+      "options": [
+        {
+          "id": "a",
+          "text": "The close button"
+        },
+        {
+          "id": "b",
+          "text": "The tab group"
+        },
+        {
+          "id": "c",
+          "text": "See all photos button"
+        },
+        {
+          "id": "d",
+          "text": "It's correctly applied to the free trial button"
+        }
+      ],
+      "correctAnswer": "a",
+      "feedback": {
+        "a": "Correct! When a modal opens, focus should move to the first focusable element in DOM order, which is typically the close button positioned at the top of the modal. This follows SC 2.4.3 Focus Order, which requires focus order to preserve meaning and operability. Moving focus to a call-to-action button deep in the modal disrupts the expected navigation flow. Users, especially screen reader users, may be disoriented if focus jumps past content they haven't had a chance to review. The close button first ensures users know they're in a modal and can dismiss it immediately if desired.",
+        "b": "Incorrect. While the tab group appears high in the visual layout, the close button should receive focus first. The close button is a critical escape mechanism for modal dialogs, and placing focus there first ensures users immediately know they can dismiss the modal. Following DOM order (close button first) maintains predictable keyboard navigation per SC 2.4.3 Focus Order.",
+        "c": "Incorrect. 'See all plans' is one of the action buttons at the bottom of the modal and should not receive initial focus. Additionally, the question mentions 'See all photos' which doesn't appear in this interface; the actual button is 'See all plans.' Focus should begin at the close button, allowing users to orient themselves before navigating through the modal content.",
+        "d": "Incorrect. While autofocusing the primary call-to-action might seem helpful, it violates expected focus order patterns. Users tabbing through the modal would find themselves at the 'Free trial' button without having encountered the close button or modal content first. This manipulation of focus order creates confusion, especially for keyboard and screen reader users who rely on predictable navigation. Per SC 2.4.3 Focus Order, focus should follow a logical sequence that preserves meaning."
+      },
+      "imageSrc": "/quizzes/b1-final/q16-stimulus.png",
+      "imageAlt": "An Adobe Acrobat Reader upgrade modal with focus order annotations. The left panel shows a red/magenta promotional section with H1 heading \"Try edit text and images free for 7 days\" and H2 subheadings describing trial steps. The right panel shows \"Why upgrade from Acrobat Reader?\" (H2) with a feature comparison table. The modal has several annotated focus points: marker 3 on the close button (X) in the top right corner, marker 4 on the tab group (Why upgrade, Reviews, Access 25+ tools, Work anywhere), marker 2 on \"See all plans\" button, and marker 1 on the \"Free trial\" button (blue, indicating autofocus). The focus order suggests the designer has set autofocus to the \"Free trial\" button rather than following DOM order."
+    },
+    {
+      "id": "b1-q17",
+      "question": "Measure the size of the color handle on the color slider components. Which of the following exceptions to the WCAG 2.5.8 Target Size success criterion can we reference to consider this UI element conforming?",
+      "options": [
+        {
+          "id": "a",
+          "text": "The handle size is determined by the user agent"
+        },
+        {
+          "id": "b",
+          "text": "The handle size must take into consideration the size of the track's hit area"
+        },
+        {
+          "id": "c",
+          "text": "The handle size is constrained by the line-height of non-target text"
+        },
+        {
+          "id": "d",
+          "text": "The handle size is \"essential\" to the presentation"
+        }
+      ],
+      "correctAnswer": "b",
+      "feedback": {
+        "a": "Incorrect. The 'user agent' exception in SC 2.5.8 applies to targets whose size is determined by the browser or operating system and cannot be modified by the author (like native scrollbars or system controls). This custom color slider is designed by Adobe, not controlled by the user agent, so this exception doesn't apply.",
+        "b": "Correct! The handle itself is only 16x16 pixels, which is below the 24x24 pixel minimum required by SC 2.5.8 Target Size (Minimum). However, the handle sits inside a track that is approximately 140x24 pixels. Clicking or touching anywhere on the track activates the slider, not just the handle. This falls under the 'spacing' exception: the target's total clickable area (the track) meets the size requirement. Additionally, there's an 'equivalent' exception at play: the adjacent numeric input field provides an alternative way to set the exact value, qualifying as an inline alternative that serves the same purpose.",
+        "c": "Incorrect. The 'inline' exception related to line-height applies to targets within sentences or blocks of text, where the target size is constrained by the text's line-height (like links within a paragraph). Slider handles are not inline text elements; they're standalone UI controls. The correct exception here relates to the track's hit area providing adequate target size.",
+        "d": "Incorrect. The 'essential' exception applies when a particular presentation of the target is legally required or fundamentally necessary for the information being conveyed (like a map pin at its actual location). The slider handle's 16x16 size is not essential; it could be made larger. The design conforms because the track provides a larger hit area and numeric inputs offer an alternative interaction method."
+      },
+      "imageSrc": "/quizzes/b1-final/q17-stimulus.png",
+      "imageAlt": "Adobe Express color contrast checker interface showing the page title \"Check your palette's color contrast\" with a contrast ratio display of 4.5:1 (passing). Below are two color picker sections: \"Foreground color\" with hex value #FFFDEB and a horizontal slider with a circular handle, and \"Background color\" with hex value #0076FF and a similar slider. Each slider has a track (approximately 140 pixels wide and 24 pixels tall) with a circular drag handle (approximately 16x16 pixels). Adjacent to each slider is a numeric input field showing the current value. Below is a results table showing \"Summary,\" \"Contrast suggestions,\" and \"Set a contrast ratio\" tabs, with a category table displaying AA and AAA pass results for Large text, Small text, and Graphics and UI."
+    },
+    {
+      "id": "b1-q18",
+      "question": "What is the root cause of the poor user experience at 400% shown here?",
+      "options": [
+        {
+          "id": "a",
+          "text": "The page resolution becomes too pixelated on non-vector graphics at high zoom levels"
+        },
+        {
+          "id": "b",
+          "text": "The accessible names on the navigation icons are no longer readable"
+        },
+        {
+          "id": "c",
+          "text": "Sticky elements consume the viewport, leaving insufficient space for content and causing overlaps"
+        },
+        {
+          "id": "d",
+          "text": "The page fails to reflow content into a single-column layout and requires horizontal scrolling"
+        }
+      ],
+      "correctAnswer": "c",
+      "feedback": {
+        "a": "Incorrect. Pixelation is not an accessibility issue addressed by WCAG, and modern browsers handle zoom without pixelation by scaling vector-based elements. The issue shown is structural: at 400% zoom, the effective viewport shrinks dramatically, and elements with fixed or sticky positioning consume disproportionate space. The problem is layout behavior, not image resolution.",
+        "b": "Incorrect. Accessible names are programmatic attributes that screen readers announce; they are not affected by visual zoom levels. Whether a page is viewed at 100% or 400%, the accessible names remain the same. The issue shown is that sticky elements and fixed-position widgets are consuming viewport space and overlapping interactive controls.",
+        "c": "Correct! At 400% zoom, the effective viewport shrinks to approximately 320 x 256 CSS pixels. Sticky elements that are proportionate at 100% now dominate the available space, and fixed-position elements overlap interactive controls (the chat widget covers the Generate button). The content is reflowing correctly; the problem is that sticky containers don't participate in reflow. Per SC 1.4.10 Reflow, content must be presentable without loss of information or functionality at 400% zoom. Designers must specify min-height thresholds at which sticky elements unstick, collapse, or relocate.",
+        "d": "Incorrect. The content is actually reflowing into a single column as required. If you look at the input area and button layout, they are stacking vertically rather than requiring horizontal scrolling. The problem is not a failure to reflow; rather, it's that sticky and fixed-position elements (the header and chat widget) consume too much of the limited viewport and overlap interactive controls."
+      },
+      "imageSrc": "/quizzes/b1-final/q18-stimulus.png",
+      "imageAlt": "An Adobe webpage viewed at 400% zoom showing significant viewport issues. The sticky header contains the Adobe logo, hamburger menu, search icon, help icon, notification bell with badge showing \"1\", app grid icon, and user avatar, consuming a large portion of the visible viewport. Below the header is a blue \"Download now\" button that appears to be part of a promotional banner. At the bottom of the viewport is a dark gray input area with placeholder text \"Describe the image you want to generate,\" an \"Image\" dropdown selector, and a partially visible blue \"Generate\" button. A circular chat widget icon overlaps and covers part of the Generate button, making it difficult to activate. The actual page content is barely visible due to sticky elements dominating the limited viewport space."
+    },
+    {
+      "id": "b1-q19",
+      "question": "When a user employs spacing preferences, some button text is getting clipped. Which option would be considered a conforming way to solve the issue?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Option A as the container height is set to hug"
+        },
+        {
+          "id": "b",
+          "text": "Option B as the container width is set to hug"
+        },
+        {
+          "id": "c",
+          "text": "Both A and B can be considered conforming options"
+        },
+        {
+          "id": "d",
+          "text": "Neither A nor B is a conforming option"
+        }
+      ],
+      "correctAnswer": "c",
+      "feedback": {
+        "a": "Partially correct. Option A does solve the clipping problem by allowing the text to wrap and the container to grow vertically, which conforms to SC 1.4.12 Text Spacing. However, Option B is equally valid. The success criterion requires no loss of content or functionality; it does not mandate a specific visual approach. Both options preserve the full button label and maintain operability.",
+        "b": "Partially correct. Option B does solve the clipping problem by allowing the container to grow horizontally, keeping the text on one line, which conforms to SC 1.4.12 Text Spacing. However, Option A is equally valid. The success criterion requires no loss of content or functionality; it does not mandate a specific visual approach. Both options preserve the full button label and maintain operability.",
+        "c": "Correct! SC 1.4.12 Text Spacing requires no loss of content or functionality when text spacing is adjusted. Both options eliminate the clipping. Option A allows the text to wrap to a second line, and the container grows vertically to fit. Option B lets the container grow horizontally, keeping the text on one line. In both cases, the full label remains visible, and the button is still operable. Conformance does not require a specific visual layout; it only requires that the content is not lost. Option B is generally the stronger design choice because it avoids introducing a taller button that could conflict with fixed-height parent containers, but that is a design quality consideration, not a conformance requirement.",
+        "d": "Incorrect. Both options actually conform to SC 1.4.12 Text Spacing. The success criterion requires that when users apply text spacing adjustments (line height, paragraph spacing, letter spacing, word spacing), content and functionality are not lost. Both Option A (vertical growth with text wrapping) and Option B (horizontal growth with single-line text) preserve the complete button label and maintain the button's operability. The 'Error' example fails because it clips content."
+      },
+      "imageSrc": "/quizzes/b1-final/q19-stimulus.png",
+      "imageAlt": "Three button examples demonstrating text spacing behavior. Top button labeled \"Error\" shows a blue rounded rectangle with white text \"Generate im\" where the text is clipped, cutting off \"age\" because the container has a fixed size that cannot accommodate increased letter spacing. Bottom left button labeled \"Option A\" shows a taller blue rounded rectangle with white text \"Generate image\" wrapped onto two lines, with \"Generate\" on the first line and \"image\" on the second line, demonstrating vertical growth to accommodate text. Bottom right button labeled \"Option B\" shows a wider blue rounded rectangle with white text \"Generate image\" on a single line with visible letter spacing between characters, demonstrating horizontal growth to accommodate the increased spacing."
+    },
+    {
+      "id": "b1-q20",
+      "question": "When a user rotates their phone from portrait to landscape, Acrobat Reader mobile switches the viewport to landscape. Which of the following statements is true about that experience?",
+      "options": [
+        {
+          "id": "a",
+          "text": "This is a problem for users with motion sensitivity as the movement is disorienting"
+        },
+        {
+          "id": "b",
+          "text": "This is a benefit for users who have mobile devices mounted to their wheelchairs in a fixed orientation"
+        },
+        {
+          "id": "c",
+          "text": "This feature is meant to support 200% and 400% zoom by reflowing based on user preference"
+        },
+        {
+          "id": "d",
+          "text": "This is a problem for low vision users, as the viewport should have restricted the orientation to portrait"
+        }
+      ],
+      "correctAnswer": "b",
+      "feedback": {
+        "a": "Incorrect. Motion sensitivity issues under SC 2.3.3 Animation from Interactions relate to animations triggered by user interaction, not orientation changes. When a user physically rotates their device, they initiate the movement themselves, and the screen adapting to that rotation is expected behavior. Motion sensitivity concerns apply to unexpected or automatic animations, not user-initiated orientation changes.",
+        "b": "Correct! SC 1.3.4 Orientation requires that content not be restricted to a single display orientation. Acrobat Reader adapting from portrait to landscape demonstrates conforming behavior. This directly benefits users whose devices are mounted in a fixed position, such as on a wheelchair armrest or bedside stand, because they cannot physically rotate the device. By supporting both orientations, the app ensures these users can access content in whatever orientation their device is mounted.",
+        "c": "Incorrect. Orientation support and zoom/reflow are separate WCAG requirements. SC 1.3.4 Orientation ensures content works in both portrait and landscape modes, while SC 1.4.10 Reflow addresses content adaptation at high zoom levels. While both relate to responsive design, supporting orientation changes is specifically about accommodating users who cannot rotate their devices, not about supporting zoom levels.",
+        "d": "Incorrect. Restricting orientation to portrait would actually violate SC 1.3.4 Orientation, which requires content to work in both orientations unless a specific orientation is essential (such as a piano app or check deposit). Low vision users benefit from orientation flexibility because landscape mode often provides a wider reading area, and some users have devices mounted in fixed positions. The app's behavior of supporting both orientations is a benefit, not a problem."
+      },
+      "imageSrc": "/quizzes/b1-final/q20-stimulus.png",
+      "imageAlt": "Adobe Acrobat Reader mobile app shown in two orientations side by side. Left side shows portrait orientation with a dark theme, displaying a PDF document about \"Contrast\" and color contrast learning objectives. The interface shows the Adobe home icon, Summary and Podcast toggle buttons, document title \"Generative AI User Guidelines,\" and page content about color contrast requirements. The bottom toolbar shows Draw, Text, Fill & Sign, Edit PDF, and More tools icons. Right side shows the same content in landscape orientation with a light theme, displaying the same \"Contrast\" heading and beginning of the text about minimum contrast ratios. A tooltip reads \"Listen to your documents on the go\" above the content area. Both orientations show the same content adapted to the different viewport dimensions, demonstrating the app's support for both portrait and landscape display modes."
+    },
+    {
+      "id": "b1-q21",
+      "question": "What could you call out to the designer's attention regarding their work in annotating bluelines for landmarks here?",
+      "options": [
+        {
+          "id": "a",
+          "text": "You cannot have the first nav landmark be a child of, or nested within, the header landmark"
+        },
+        {
+          "id": "b",
+          "text": "When you have more than one landmark type, you have to use different colored annotation markers"
+        },
+        {
+          "id": "c",
+          "text": "You cannot have the first nav landmark be a child of, or nested within, the main landmark"
+        },
+        {
+          "id": "d",
+          "text": "When you have more than one landmark type, you must provide an accessible name for both"
+        }
+      ],
+      "correctAnswer": "d",
+      "feedback": {
+        "a": "Incorrect. Nesting a navigation landmark within a header landmark is perfectly valid and common. The header landmark represents introductory content, and navigation is often part of that header. ARIA landmarks allow nav elements to be nested within header elements. The issue here is not about nesting but about differentiation when duplicate landmark types exist.",
+        "b": "Incorrect. Annotation marker colors are a visual design choice for the blueline documentation and have no impact on accessibility conformance. Screen readers don't see colors; they announce landmark roles and names programmatically. The issue is that when multiple landmarks of the same type exist on a page, they need accessible names to differentiate them, not different colored markers.",
+        "c": "Incorrect. In this interface, the navigation landmarks are not nested within the main landmark. The first nav is in the header, and the second nav is in the footer. The main landmark contains the content area (search, icons). Even if a nav were inside main, that would be valid for contextual navigation. The actual issue is that duplicate landmark types require accessible names.",
+        "d": "Correct! There are two navigation landmarks on this page: one in the header (main site navigation) and one in the footer (Back/Skip navigation). Per SC 1.3.6 Identify Purpose and ARIA best practices, when multiple landmarks of the same type exist, each must have an accessible name to differentiate them. Screen reader users navigating by landmarks would hear 'navigation' twice with no way to distinguish them. Names like 'Main navigation' and 'Page navigation' would clarify their purposes."
+      },
+      "imageSrc": "/quizzes/b1-final/q21-stimulus.png",
+      "imageAlt": "Adobe Express Logo maker interface with landmark annotations displayed in a left sidebar. The page shows a \"Header\" landmark containing the Adobe Express logo, navigation menu with Create, Quick Actions, Templates, Plans & Pricing, Learn & Support, Contact Sales links, phone number, Compare plans button, and Sign In. A \"Nav\" annotation marker appears on the main navigation within the header. Below is the \"Main\" landmark containing \"Logo maker BETA\" title, a progress indicator showing steps (Name, Icon, Layout, Edit), \"Choose an icon\" heading, a search field with placeholder \"E.g. Restaurant, Real estate, Shop,\" popular keywords as filter buttons (Healthcare, Real Estate, Finance, Music, Restaurant, Fashion, Education), and a grid of bank/finance-themed icons. At the bottom is another \"Nav\" landmark annotation on the footer navigation containing Back button, \"Powered by Adobe Stock. Learn more.\" text, and Skip button. The left panel shows \"Annotations: Icon selection\" and \"Accessibility Notes\" sections. Two navigation landmarks exist but neither has an accessible name annotation."
+    },
+    {
+      "id": "b1-q22",
+      "question": "When advising the Express team on how to provide consistency in navigation and identification, what guidance might you give them here? All sorting options were set to \"Name\" to produce this sample. Read each of the WCAG success criteria to determine which is the MOST accurate matter of non-conformance here. NOTE: We're not looking for you to have encyclopedic knowledge of WCAG, but we do want you to research the standard to help you construct your arguments.",
+      "options": [
+        {
+          "id": "a",
+          "text": "SC 3.2.4 Consistent Identification (Level AA)"
+        },
+        {
+          "id": "b",
+          "text": "SC 3.2.3 Consistent Navigation (Level AA)"
+        },
+        {
+          "id": "c",
+          "text": "SC 3.2.5 Change on Request (Level AAA)"
+        },
+        {
+          "id": "d",
+          "text": "SC 3.2.6 Consistent Help (Level A)"
+        }
+      ],
+      "correctAnswer": "a",
+      "feedback": {
+        "a": "Correct! SC 3.2.4 Consistent Identification states: 'Components that have the same functionality within a set of web pages are identified consistently.' Each of these Sort controls does the exact same thing, but they all sound different to screen reader users: 'Name, sort items by modified date...' vs. 'Sort, menu pop up collapsed' vs. 'Sort by, button.' Users who learn functionality on one screen expect to find it identified the same way on other pages. People who depend on text alternatives can have a more predictable experience and can search for components if they have consistent labels.",
+        "b": "Incorrect. SC 3.2.3 Consistent Navigation requires that navigation mechanisms repeated across pages occur in the same relative order. It addresses the position of navigation elements, not how individual components are labeled. The issue shown is about three Sort buttons having different accessible names despite performing identical functions, which is an identification issue, not a navigation order issue.",
+        "c": "Incorrect. SC 3.2.5 Change on Request is about changes of context only occurring when requested by the user, not when a component receives focus or changes value. This is a Level AAA criterion about preventing unexpected context changes, not about consistent labeling. The issue shown is that identical functions have inconsistent names.",
+        "d": "Incorrect. SC 3.2.6 Consistent Help requires that help mechanisms (like contact info, chat, or self-help options) appear in the same relative order across pages. It's specifically about help features, not about general component labeling. The Sort buttons are functional controls, not help mechanisms, so this criterion doesn't apply."
+      },
+      "imageSrc": "/quizzes/b1-final/q22-stimulus.png",
+      "imageAlt": "Three interface sections from Adobe Express showing inconsistent labeling of the same sorting functionality. Top section labeled \"Files\" shows a toolbar with Create dropdown, Yours dropdown, Type dropdown, and a Sort button with tooltip \"Sort\" visible. The annotation reads \"Screen reader reads: Name, sort items by modified date, created date, or name, group, main.\" Middle section labeled \"Projects\" shows a toolbar with New project button, All dropdown, and sort controls. The annotation reads \"Screen reader reads: Sort, menu pop up collapsed.\" Bottom section labeled \"Libraries\" shows a toolbar with Create library button, Browse shared libraries button, All dropdown, and a Sort by button with tooltip visible. The annotation reads \"Screen reader reads: Sort by, button.\" All three Sort controls perform the same function but have different accessible names."
+    },
+    {
+      "id": "b1-q23",
+      "question": "If this interface had a skip to main link, the user activated it, then hit the Tab key, which element would gain keyboard focus?",
+      "options": [
+        {
+          "id": "a",
+          "text": "The search bar"
+        },
+        {
+          "id": "b",
+          "text": "Healthcare keyword"
+        },
+        {
+          "id": "c",
+          "text": "The first icon"
+        },
+        {
+          "id": "d",
+          "text": "The Back button"
+        }
+      ],
+      "correctAnswer": "a",
+      "feedback": {
+        "a": "Correct! Per SC 2.4.1 Bypass Blocks, a skip to main link moves focus to the beginning of the main content area, bypassing repeated content like headers and navigation. When the user then presses Tab, focus moves to the first interactive element within the main landmark. In this interface, that's the search bar (marker A). The popular keywords and icons come after the search field in the DOM order, so the search bar receives focus first.",
+        "b": "Incorrect. The Healthcare keyword button (marker B) is an interactive element in the main content area, but it's not the first one. The search bar (marker A) appears before the popular keywords row in both visual and DOM order. After a skip to main link activation, pressing Tab moves to the first interactive control in main, which is the search field. Healthcare would be reached after tabbing through the search bar.",
+        "c": "Incorrect. The first icon (marker C) in the icon grid is part of the main content, but it comes after both the search bar and the popular keywords in the DOM order. After activating a skip to main link and pressing Tab, focus goes to the first interactive element in main, which is the search bar. Users would need to Tab several more times to reach the icon grid.",
+        "d": "Incorrect. The Back button (marker D) is in the footer navigation landmark, not the main landmark. A skip to main link specifically bypasses header/navigation content and moves to the main landmark. The Back button would be reached only after tabbing through all interactive elements in main, or by using a separate skip link or landmark navigation to reach the footer."
+      },
+      "imageSrc": "/quizzes/b1-final/q23-stimulus.png",
+      "imageAlt": "Adobe Express icon picker interface with landmark annotations and focus target markers. The page has \"Header\" landmark annotation on the top bar containing Adobe Express logo and main navigation (Create, Quick Actions, Templates, Plans & Pricing, Learn & Support, Contact Sales, phone number, Compare plans button, Sign In). A \"Nav\" marker indicates the navigation within the header. \"Main\" landmark annotation marks the content area containing \"Choose an icon\" heading, a search field marked with letter \"A,\" popular keywords filter buttons (Healthcare, Real Estate, Finance, Music, Restaurant, Fashion, Education) with \"Healthcare\" marked as letter \"B,\" a grid of bank/finance-themed icons with the first icon marked as letter \"C,\" and \"Nav\" landmark annotation on the footer. The footer contains a Back button marked as letter \"D,\" \"Powered by Adobe Stock. Learn more.\" text, and Skip button."
+    },
+    {
+      "id": "b1-q24",
+      "question": "When the page loads at https://business.adobe.com/products/commerce.html, the animation shows a play button. Pressing it starts an animation, and the button becomes a pause button. Why was the button paused by default?",
+      "options": [
+        {
+          "id": "a",
+          "text": "It's non-conforming to the WCAG to have an animation play on page load"
+        },
+        {
+          "id": "b",
+          "text": "The marketing team finds that people enjoy pressing the play and pause buttons"
+        },
+        {
+          "id": "c",
+          "text": "The user has reduced motion enabled, and the page honors that preference"
+        },
+        {
+          "id": "d",
+          "text": "The page is dedicated to our DVA products, and we're showcasing a product's ability to create animated content"
+        }
+      ],
+      "correctAnswer": "c",
+      "feedback": {
+        "a": "Incorrect. WCAG does not prohibit animations from playing on page load. SC 2.2.2 Pause, Stop, Hide requires that auto-playing content that lasts more than 5 seconds must have a mechanism to pause, stop, or hide it, but animations can still play automatically. The page shows a play button because it's honoring the user's reduced motion preference, not because auto-play is forbidden.",
+        "b": "Incorrect. While user engagement is a valid business consideration, it's not the accessibility reason for this behavior. The play button appears because the user has enabled the 'prefers-reduced-motion' setting in their operating system or browser. Adobe.com detects this preference via a CSS media query and respects it by pausing animations by default for those users.",
+        "c": "Correct! Adobe.com honors the 'prefers-reduced-motion' preference via a CSS media query and has the animation paused by default for users who employ that setting. This aligns with SC 2.3.3 Animation from Interactions, which recommends respecting user motion preferences. If that preference is not enabled, the page will load with the animation playing and a pause button present, which meets SC 2.2.2 Pause, Stop, Hide requirements.",
+        "d": "Incorrect. While Adobe does showcase product capabilities, that's not the reason for the paused animation state. The play button appears specifically because the user has enabled reduced motion preferences in their system settings. This is an accessibility accommodation, not a product demonstration choice. Users without reduced motion enabled would see the animation playing with a pause button available."
+      },
+      "imageSrc": "/quizzes/b1-final/q24-stimulus.png",
+      "imageAlt": "Adobe Commerce marketing page showing a \"Lightning-fast storefronts\" section. On the left is a product mockup displaying a coffee subscription website \"frescopa\" with the headline \"Fall in love with coffee. Every single month.\" Below the mockup is a \"Lighthouse score\" panel showing three circular progress indicators: 98% Performance (yellow), 100% Accessibility (yellow), and 97% SEO (yellow). A circular play button with a right-pointing triangle is visible below the mockup, indicating the animation is currently paused. On the right side is the heading \"Lightning-fast storefronts\" with descriptive text about creating commerce experiences and four bullet points about storefront features. A \"Learn about digital storefronts\" button appears at the bottom."
+    },
+    {
+      "id": "b1-q25",
+      "question": "The product team has proposed a new animation feature in Express called Flicker. When you test that feature, you see an element on the canvas flash rapidly. What advice would you offer to the design team?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Ensure the flashing content flashes at least three times per second and displays the preview in the color red"
+        },
+        {
+          "id": "b",
+          "text": "Ensure the preview is a 341 x 256 pixel block representing a 10-degree viewport at a typical viewing distance"
+        },
+        {
+          "id": "c",
+          "text": "Nothing, the standard refers to flashing and blinking, which is flickering and is therefore out of scope"
+        },
+        {
+          "id": "d",
+          "text": "At a minimum, add a warning for flashing content, do not trigger on hover, and consider not publishing this feature"
+        }
+      ],
+      "correctAnswer": "d",
+      "feedback": {
+        "a": "Incorrect. This answer has the threshold backwards and dangerously wrong. SC 2.3.1 Three Flashes or Below Threshold requires that content NOT flash more than three times per second, as rapid flashing can trigger seizures in people with photosensitive epilepsy. Red is particularly dangerous because 'saturated red' flashing is specifically called out as high-risk. This answer would create harmful content, not prevent it.",
+        "b": "Incorrect. While the 341 x 256 pixel measurement (representing 10 degrees of visual field) is referenced in WCAG's definition of 'general flash' threshold, simply ensuring content fits within this size doesn't make flashing content safe. The primary concern with a 'Flicker' effect is the flash rate and intensity. Even small areas of rapid flashing can trigger seizures, and providing tools that encourage flashing content creates risk. The better approach is to warn users and reconsider the feature entirely.",
+        "c": "Incorrect. 'Flicker' and 'flash' are not distinct concepts that escape WCAG scope. SC 2.3.1 Three Flashes or Below Threshold and SC 2.3.2 Three Flashes address any content that flashes, flickers, or rapidly alternates between states. The naming of the feature as 'Flicker' doesn't exempt it from these requirements. Rapid visual changes can cause seizures regardless of what the effect is called.",
+        "d": "Correct! Flashing content poses serious risks under SC 2.3.1 Three Flashes or Below Threshold and SC 2.3.2 Three Flashes. Content that flashes more than three times per second can trigger seizures in people with photosensitive epilepsy. At minimum, users should be warned before applying such effects, and the feature should not trigger on hover (which could surprise users). Given the potential for harm and the difficulty of ensuring safe flash rates in user-generated content, seriously reconsidering whether to publish this feature at all is responsible advice."
+      },
+      "imageSrc": "/quizzes/b1-final/q25-stimulus.png",
+      "imageAlt": "Adobe Express Image panel showing the Animation tab selected. At the top is an \"Animate all\" promotional banner with text \"Animate your entire design in one click!\" Below are three animation phase tabs: \"In,\" \"Loop\" (selected), and \"Out.\" The Dynamic section shows two options: \"None\" (a circle with a line through it) and \"Wobble\" (an icon showing movement). The Visibility section shows four animation effect options: \"Barndoor\" (arrows pointing inward), \"Circle\" (a dashed circle with an image icon), \"Fade\" (a gradient image icon), and \"Flicker\" (a lightning bolt over an image icon, indicating a rapid flashing effect)."
+    }
+  ]
+}

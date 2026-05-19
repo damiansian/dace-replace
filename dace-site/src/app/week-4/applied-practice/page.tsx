@@ -60,7 +60,7 @@ export default async function Week4Practice({ searchParams }: PageProps) {
       <div className="space-y-3">
         <h2 id="submit-heading" className="text-2xl font-semibold text-foreground">Submission</h2>
         <div className="rounded-lg border-2 border-primary bg-primary/5 p-6 space-y-4">
-          <p className="text-sm text-text-secondary">Due before the Discover Badge Assessment. Late submissions accepted with communication to instructor.</p>
+          <p className="text-sm text-text-secondary">Due before the Discover Badge Final Assessment. Late submissions accepted with communication to instructor.</p>
           <SubmissionForm
             assignmentId="week-4-practice"
             assignmentLabel="Week 4 Applied Practice"

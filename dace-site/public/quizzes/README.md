@@ -38,6 +38,22 @@ Source: `Badge_1/Week_3/05-keyboard-touch/L05-quizzes/qti_build/`
 - `keyboard-q4-stimulus.png` — Stark touch target results panel (Q4)
 - `keyboard-q5-stimulus.png` — Tab Group component (Q5)
 
+### Badge 1 final exam (`b1-final/`)
+
+Source: `Badge_1/Badge_1_Assessment/assessment/qti-export/images/`
+
+25 stimulus PNGs named `q1-stimulus.png` through `q25-stimulus.png`, one per
+question in the Discover Badge final assessment. Alt text is sourced from the
+canonical question bank
+(`Badge_1/Badge_1_Assessment/assessment/B1_Final_Assessment_Questions.md`).
+
+To regenerate the exam JSON (`src/data/quizzes/b1-final-assessment.json`) from
+the question bank, run:
+
+```
+npm run b1:generate
+```
+
 ## Adding a new image-backed question
 
 1. Export the stimulus from Figma at roughly 1200px wide (PNG, no transparency

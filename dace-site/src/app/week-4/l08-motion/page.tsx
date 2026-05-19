@@ -537,7 +537,14 @@ export default async function L08MotionPage({ searchParams }: PageProps) {
           >
             Week 4 Applied Practice
           </Link>{" "}
-          before the Discover Badge Assessment.
+          before the{" "}
+          <Link
+            href={withToken("/badge-1/exam", t)}
+            className="text-primary-text underline hover:text-primary-dark"
+          >
+            Discover Badge Final Assessment
+          </Link>
+          .
         </p>
       </div>
     </div>

@@ -177,7 +177,7 @@ export default async function Week4Hub({ searchParams }: PageProps) {
               Worth 16 points total.
             </p>
             <p className="text-sm text-text-secondary">
-              Due before the Discover Badge Assessment.
+              Due before the Discover Badge Final Assessment.
             </p>
             <Link
               href={withToken("/week-4/applied-practice", t)}
@@ -185,6 +185,59 @@ export default async function Week4Hub({ searchParams }: PageProps) {
             >
               View assignment details
             </Link>
+          </div>
+        </div>
+      </div>
+
+      <div className="space-y-4">
+        <h2
+          id="badge-assessment-heading"
+          className="text-2xl font-semibold text-foreground"
+        >
+          Discover Badge Final Assessment
+        </h2>
+        <div className="bg-white border border-border rounded-lg p-6 shadow-sm border-l-4 border-l-primary">
+          <div className="space-y-3">
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="inline-flex items-center rounded-full bg-primary/10 px-3 py-1 text-sm font-medium text-primary-dark">
+                25 questions
+              </span>
+              <span className="inline-flex items-center rounded-full bg-primary/10 px-3 py-1 text-sm font-medium text-primary-dark">
+                45 minutes
+              </span>
+              <span className="inline-flex items-center rounded-full bg-surface px-3 py-1 text-sm font-medium text-text-secondary">
+                Open book
+              </span>
+              {snapshot && (
+                <TrackedItemStatus
+                  kind="quiz"
+                  complete={Boolean(
+                    snapshot.itemComplete.get("b1-final-assessment")
+                  )}
+                />
+              )}
+            </div>
+            <p className="text-sm text-text-secondary">
+              Cumulative knowledge check covering all Discover Badge outcomes
+              (Modules 1A&ndash;1H). Take this after finishing the Week 4
+              applied practice.
+            </p>
+            <div className="flex flex-wrap items-center gap-3 pt-1">
+              <Link
+                href={withToken("/badge-1/exam", t)}
+                className="inline-block rounded-lg bg-primary px-4 py-2 text-sm font-medium text-white hover:bg-primary-dark transition-colors"
+              >
+                Take the final assessment
+              </Link>
+              <a
+                href="/badge-1/study-guide.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm font-medium text-primary-text underline hover:text-primary-dark"
+              >
+                Open the study guide
+              </a>
+            </div>
           </div>
         </div>
       </div>

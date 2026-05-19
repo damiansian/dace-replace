@@ -4,6 +4,10 @@ export type CatalogItem =
       id: string;
       label: string;
       href: string;
+      /** Defaults to 5 (the standard lesson quiz length). Override for exams. */
+      outOf?: number;
+      /** When true, the gradebook surfaces instructor-adjusted scores for this quiz. */
+      weighted?: boolean;
     }
   | {
       kind: "assignment";
@@ -92,6 +96,20 @@ export const progressCatalog: WeekGroup[] = [
         label: "Applied Practice: Navigation Accessibility Audit",
         href: "/week-4/applied-practice",
         totalPoints: 16,
+      },
+    ],
+  },
+  {
+    id: "badge-1",
+    label: "Discover Badge final exam",
+    items: [
+      {
+        kind: "quiz",
+        id: "b1-final-assessment",
+        label: "Discover Badge Final Assessment",
+        href: "/badge-1/exam",
+        outOf: 25,
+        weighted: true,
       },
     ],
   },

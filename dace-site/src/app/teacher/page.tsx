@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import Link from "next/link";
 import { db } from "@/db";
 import { quizResults, submissions, grades, students } from "@/db/schema";
 import { desc } from "drizzle-orm";
@@ -6,6 +7,7 @@ import {
   buildGradebookRows,
   getGradebookColumns,
   type AssignmentCell,
+  type GradebookColumn,
   type QuizCell,
 } from "@/lib/teacher-gradebook";
 
@@ -18,18 +20,61 @@ interface TeacherPageProps {
   searchParams: Promise<{ token?: string }>;
 }
 
-function QuizCellView({ cell }: { cell: QuizCell }) {
+function formatNum(n: number): string {
+  return Number.isInteger(n) ? n.toString() : n.toFixed(2);
+}
+
+function QuizCellView({
+  cell,
+  column,
+  tokenEnc,
+}: {
+  cell: QuizCell;
+  column: Extract<GradebookColumn, { kind: "quiz" }>;
+  tokenEnc: string;
+}) {
   if (cell.status === "incomplete") {
     return (
       <span className="font-medium text-text-secondary">Incomplete</span>
     );
   }
+
+  const hasAdjusted =
+    cell.adjustedScore !== undefined && cell.adjustedTotal !== undefined;
+
+  const displayNumerator = hasAdjusted ? cell.adjustedScore! : cell.bestScore;
+  const displayDenominator = hasAdjusted ? cell.adjustedTotal! : cell.total;
+  const title = hasAdjusted
+    ? `Adjusted score. Raw: ${cell.bestScore}/${cell.total}${
+        cell.adjustmentNote ? `\nOverride note: ${cell.adjustmentNote}` : ""
+      }`
+    : `${cell.attempts} attempt${cell.attempts === 1 ? "" : "s"}`;
+
+  const text = `${formatNum(displayNumerator)}/${formatNum(displayDenominator)}`;
+
+  if (column.weighted && cell.attemptId !== undefined) {
+    return (
+      <Link
+        href={`/teacher/exam/${column.id}/attempt/${cell.attemptId}?token=${tokenEnc}`}
+        className="tabular-nums text-primary-text underline"
+        title={title}
+      >
+        {text}
+        {hasAdjusted && (
+          <span aria-hidden="true" className="ml-1 text-xs">
+            *
+          </span>
+        )}
+        <span className="sr-only">
+          {hasAdjusted ? " (instructor-adjusted)" : ""}
+        </span>
+      </Link>
+    );
+  }
+
   return (
-    <span
-      className="tabular-nums text-foreground"
-      title={`${cell.attempts} attempt${cell.attempts === 1 ? "" : "s"}`}
-    >
-      {cell.bestScore}/{cell.total}
+    <span className="tabular-nums text-foreground" title={title}>
+      {text}
     </span>
   );
 }
@@ -131,6 +176,26 @@ export default async function TeacherPage({ searchParams }: TeacherPageProps) {
         </p>
       )}
 
+      <section aria-labelledby="exam-tools-heading" className="space-y-2">
+        <h2
+          id="exam-tools-heading"
+          className="text-2xl font-semibold text-foreground"
+        >
+          Exam item analysis
+        </h2>
+        <ul className="list-disc space-y-1 pl-5 text-sm">
+          <li>
+            <Link
+              href={`/teacher/exam/b1-final-assessment?token=${tokenEnc}`}
+              className="text-primary-text underline hover:text-primary-dark"
+            >
+              Discover Badge Final Assessment
+            </Link>{" "}
+            — review per-question stats, adjust weights, and apply overrides.
+          </li>
+        </ul>
+      </section>
+
       <section aria-labelledby="gradebook-heading" className="space-y-4">
         <h2
           id="gradebook-heading"
@@ -208,7 +273,11 @@ export default async function TeacherPage({ searchParams }: TeacherPageProps) {
                           className={`border border-border px-2 py-2.5 text-left ${rowBg}`}
                         >
                           {col.kind === "quiz" ? (
-                            <QuizCellView cell={row.quizzes.get(col.id)!} />
+                            <QuizCellView
+                              cell={row.quizzes.get(col.id)!}
+                              column={col}
+                              tokenEnc={tokenEnc}
+                            />
                           ) : (
                             <AssignmentCellView
                               cell={row.assignments.get(col.id)!}

@@ -60,27 +60,60 @@ function seededShuffle<T>(array: T[], seed: string): T[] {
   return shuffled;
 }
 
+function formatTime(seconds: number): string {
+  const m = Math.floor(seconds / 60);
+  const s = seconds % 60;
+  return `${m}:${s.toString().padStart(2, "0")}`;
+}
+
+export interface QuizProps {
+  data: QuizData;
+  accessToken?: string;
+  studentDisplayName?: string;
+  /** Enables exam behaviors: question shuffle, timer, single attempt, neutral results copy. */
+  examMode?: boolean;
+  /** Shuffle question order in addition to option order. Defaults to true in exam mode. */
+  shuffleQuestions?: boolean;
+  /** Optional countdown in minutes. When elapsed, the exam auto-submits with current answers. */
+  timeLimitMinutes?: number;
+  /** Max number of attempts. Hides retake after this many attempts. */
+  maxAttempts?: number;
+}
+
 export default function Quiz({
   data,
   accessToken,
   studentDisplayName,
-}: {
-  data: QuizData;
-  accessToken?: string;
-  studentDisplayName?: string;
-}) {
+  examMode = false,
+  shuffleQuestions,
+  timeLimitMinutes,
+  maxAttempts,
+}: QuizProps) {
+  const shouldShuffleQuestions = shuffleQuestions ?? examMode;
+
   const [name, setName] = useState(studentDisplayName ?? "");
   const [started, setStarted] = useState(Boolean(studentDisplayName));
+  const [startedAt, setStartedAt] = useState<number | null>(null);
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [submitted, setSubmitted] = useState(false);
   const [score, setScore] = useState(0);
   const [attemptNumber, setAttemptNumber] = useState(1);
   const [bestScore, setBestScore] = useState<number | null>(null);
+  const [secondsLeft, setSecondsLeft] = useState<number | null>(
+    typeof timeLimitMinutes === "number" ? timeLimitMinutes * 60 : null
+  );
+  const [autoSubmitted, setAutoSubmitted] = useState(false);
 
   const resultsRef = useRef<HTMLDivElement>(null);
   const nameInputRef = useRef<HTMLInputElement>(null);
+  const answersRef = useRef(answers);
 
   useEffect(() => {
+    answersRef.current = answers;
+  }, [answers]);
+
+  useEffect(() => {
+    if (examMode) return;
     try {
       const stored = localStorage.getItem(`dace-quiz-${data.id}`);
       if (stored) {
@@ -94,21 +127,33 @@ export default function Quiz({
     } catch {
       // localStorage unavailable
     }
-  }, [data.id]);
+  }, [data.id, examMode]);
 
-  const shuffledQuestions = useMemo(() => {
+  const renderedQuestions = useMemo(() => {
     if (!started) return data.questions;
-    return data.questions.map((q) => ({
+    const seedBase = name + data.id + attemptNumber;
+    const ordered = shouldShuffleQuestions
+      ? seededShuffle(data.questions, `${seedBase}-questions`)
+      : data.questions;
+    return ordered.map((q) => ({
       ...q,
       options: seededShuffle(q.options, name + q.id + attemptNumber),
     }));
-  }, [started, data.questions, name, attemptNumber]);
+  }, [
+    started,
+    data.questions,
+    data.id,
+    name,
+    attemptNumber,
+    shouldShuffleQuestions,
+  ]);
 
   const handleStart = useCallback(
     (e: React.FormEvent) => {
       e.preventDefault();
       if (name.trim()) {
         setStarted(true);
+        setStartedAt(Date.now());
       }
     },
     [name]
@@ -122,37 +167,40 @@ export default function Quiz({
     [submitted]
   );
 
-  const handleSubmit = useCallback(
-    (e: React.FormEvent) => {
-      e.preventDefault();
+  const submitAttempt = useCallback(
+    (opts?: { auto?: boolean }) => {
       if (submitted) return;
+      const currentAnswers = answersRef.current;
 
       let correct = 0;
       for (const q of data.questions) {
-        if (answers[q.id] === q.correctAnswer) correct++;
+        if (currentAnswers[q.id] === q.correctAnswer) correct++;
       }
 
       setScore(correct);
       setSubmitted(true);
+      if (opts?.auto) setAutoSubmitted(true);
 
       const newBest =
         bestScore !== null ? Math.max(bestScore, correct) : correct;
       setBestScore(newBest);
 
       const timestamp = new Date().toISOString();
-      try {
-        localStorage.setItem(
-          `dace-quiz-${data.id}`,
-          JSON.stringify({
-            name: name.trim(),
-            score: correct,
-            bestScore: newBest,
-            total: data.questions.length,
-            timestamp,
-          })
-        );
-      } catch {
-        // localStorage unavailable
+      if (!examMode) {
+        try {
+          localStorage.setItem(
+            `dace-quiz-${data.id}`,
+            JSON.stringify({
+              name: name.trim(),
+              score: correct,
+              bestScore: newBest,
+              total: data.questions.length,
+              timestamp,
+            })
+          );
+        } catch {
+          // localStorage unavailable
+        }
       }
 
       fetch("/api/quiz-results", {
@@ -164,13 +212,22 @@ export default function Quiz({
           score: correct,
           total: data.questions.length,
           timestamp,
+          responses: currentAnswers,
           ...(accessToken ? { accessToken } : {}),
         }),
       }).catch(() => {
         // fire-and-forget
       });
     },
-    [submitted, answers, data, name, bestScore, accessToken]
+    [submitted, data, name, bestScore, accessToken, examMode]
+  );
+
+  const handleSubmit = useCallback(
+    (e: React.FormEvent) => {
+      e.preventDefault();
+      submitAttempt();
+    },
+    [submitAttempt]
   );
 
   const handleRetake = useCallback(() => {
@@ -178,7 +235,12 @@ export default function Quiz({
     setAnswers({});
     setSubmitted(false);
     setScore(0);
-  }, []);
+    setAutoSubmitted(false);
+    if (typeof timeLimitMinutes === "number") {
+      setSecondsLeft(timeLimitMinutes * 60);
+    }
+    setStartedAt(Date.now());
+  }, [timeLimitMinutes]);
 
   useEffect(() => {
     if (submitted && resultsRef.current) {
@@ -187,13 +249,44 @@ export default function Quiz({
     }
   }, [submitted]);
 
+  // Exam countdown timer.
+  useEffect(() => {
+    if (!started || submitted || startedAt === null) return;
+    if (typeof timeLimitMinutes !== "number") return;
+
+    const total = timeLimitMinutes * 60;
+    const tick = () => {
+      const elapsed = Math.floor((Date.now() - startedAt) / 1000);
+      const remaining = Math.max(0, total - elapsed);
+      setSecondsLeft(remaining);
+      if (remaining === 0) {
+        submitAttempt({ auto: true });
+      }
+    };
+    tick();
+    const interval = setInterval(tick, 1000);
+    return () => clearInterval(interval);
+  }, [started, submitted, startedAt, timeLimitMinutes, submitAttempt]);
+
   if (!started) {
     return (
       <div className="mx-auto max-w-2xl">
         <h2 className="text-2xl font-bold text-foreground">{data.title}</h2>
         <p className="mt-2 text-base text-text-secondary">
           {data.questions.length} questions
+          {typeof timeLimitMinutes === "number"
+            ? ` · ${timeLimitMinutes}-minute time limit`
+            : ""}
         </p>
+        {examMode && (
+          <p className="mt-2 text-sm text-text-secondary">
+            Open book. You may reference the Adobe Design Accessibility Checklist,
+            WCAG documentation, and course materials.
+            {typeof maxAttempts === "number" && maxAttempts === 1
+              ? " You have one attempt."
+              : ""}
+          </p>
+        )}
         <form onSubmit={handleStart} className="mt-6 space-y-4">
           <div>
             <label
@@ -218,22 +311,49 @@ export default function Quiz({
             type="submit"
             className="rounded-lg bg-primary px-6 py-3 text-base font-medium text-white hover:bg-primary-dark transition-colors"
           >
-            Start Quiz
+            {examMode ? "Start Exam" : "Start Quiz"}
           </button>
         </form>
       </div>
     );
   }
 
-  const allAnswered = data.questions.every((q) => answers[q.id]);
+  const answeredCount = data.questions.reduce(
+    (n, q) => n + (answers[q.id] ? 1 : 0),
+    0
+  );
+  const allAnswered = answeredCount === data.questions.length;
+  const canRetake =
+    !examMode &&
+    (typeof maxAttempts !== "number" || attemptNumber < maxAttempts);
+  const timerLow =
+    typeof secondsLeft === "number" && secondsLeft <= 5 * 60 && !submitted;
 
   return (
     <div className="mx-auto max-w-2xl">
-      <div className="mb-8">
-        <h2 className="text-2xl font-bold text-foreground">{data.title}</h2>
-        <p className="mt-1 text-base text-text-secondary">
-          Taking as: <strong>{name}</strong>
-        </p>
+      <div className="mb-6 flex flex-wrap items-start justify-between gap-4">
+        <div>
+          <h2 className="text-2xl font-bold text-foreground">{data.title}</h2>
+          <p className="mt-1 text-base text-text-secondary">
+            Taking as: <strong>{name}</strong>
+          </p>
+        </div>
+        {typeof secondsLeft === "number" && (
+          <div
+            className={`rounded-lg border px-4 py-2 text-base font-semibold tabular-nums ${
+              submitted
+                ? "border-border bg-white text-text-secondary"
+                : timerLow
+                  ? "border-accent-red bg-accent-red/10 text-accent-red"
+                  : "border-primary bg-primary/5 text-primary-text"
+            }`}
+            role="timer"
+            aria-live={timerLow ? "assertive" : "off"}
+            aria-label={`Time remaining: ${formatTime(secondsLeft)}`}
+          >
+            {submitted ? "Time" : "Time left"}: {formatTime(secondsLeft)}
+          </div>
+        )}
       </div>
 
       {submitted && (
@@ -246,34 +366,50 @@ export default function Quiz({
           <h3 className="text-xl font-bold text-foreground">
             Your Score: {score} / {data.questions.length}
           </h3>
-          {bestScore !== null && bestScore !== score && (
+          {!examMode && bestScore !== null && bestScore !== score && (
             <p className="mt-1 text-sm font-medium text-text-secondary">
               Best score: {bestScore}/{data.questions.length}
             </p>
           )}
-          <p className="mt-2 text-base text-text-secondary">
-            {score === data.questions.length
-              ? "Perfect score! Great work."
-              : score >= data.questions.length * 0.8
-                ? "Well done! Review the feedback below for any you missed."
-                : "Review the feedback below to strengthen your understanding."}
-          </p>
+          {examMode ? (
+            <p className="mt-2 text-base text-text-secondary">
+              Your responses have been recorded. Review the feedback below for any
+              you missed. Your instructor may adjust the final score after item
+              analysis.
+            </p>
+          ) : (
+            <p className="mt-2 text-base text-text-secondary">
+              {score === data.questions.length
+                ? "Perfect score! Great work."
+                : score >= data.questions.length * 0.8
+                  ? "Well done! Review the feedback below for any you missed."
+                  : "Review the feedback below to strengthen your understanding."}
+            </p>
+          )}
+          {autoSubmitted && (
+            <p className="mt-2 text-sm font-medium text-accent-red">
+              Time expired. The exam was submitted automatically with your
+              current answers.
+            </p>
+          )}
           <p className="mt-1 text-xs text-text-secondary">
             Attempt {attemptNumber}
           </p>
-          <button
-            type="button"
-            onClick={handleRetake}
-            className="mt-4 rounded-lg border-2 border-primary bg-white px-6 py-2 text-base font-medium text-primary hover:bg-primary/10 transition-colors"
-          >
-            Retake Quiz
-          </button>
+          {canRetake && (
+            <button
+              type="button"
+              onClick={handleRetake}
+              className="mt-4 rounded-lg border-2 border-primary bg-white px-6 py-2 text-base font-medium text-primary hover:bg-primary/10 transition-colors"
+            >
+              Retake Quiz
+            </button>
+          )}
         </div>
       )}
 
       <form onSubmit={handleSubmit} aria-label={`${data.title} quiz`}>
         <ol className="space-y-10 list-none p-0">
-          {shuffledQuestions.map((q, qIndex) => {
+          {renderedQuestions.map((q, qIndex) => {
             const selectedAnswer = answers[q.id];
             const isCorrect = selectedAnswer === q.correctAnswer;
 
@@ -296,11 +432,7 @@ export default function Quiz({
                     Question {qIndex + 1} of {data.questions.length}
                   </p>
                   {q.imageSrc && q.imageAlt && (
-                    <QuizStimulusImage
-                      key={`${q.id}-${attemptNumber}`}
-                      src={q.imageSrc}
-                      alt={q.imageAlt}
-                    />
+                    <QuizStimulusImage src={q.imageSrc} alt={q.imageAlt} />
                   )}
                   <p className="text-base text-foreground whitespace-pre-line mb-5">
                     {q.question}
@@ -379,15 +511,21 @@ export default function Quiz({
           <div className="mt-8">
             <button
               type="submit"
-              disabled={!allAnswered}
+              disabled={!examMode && !allAnswered}
               className="rounded-lg bg-primary px-8 py-3 text-base font-medium text-white hover:bg-primary-dark transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-              aria-disabled={!allAnswered}
+              aria-disabled={!examMode && !allAnswered}
             >
-              Submit Quiz
+              {examMode ? "Submit Exam" : "Submit Quiz"}
             </button>
-            {!allAnswered && (
+            {!examMode && !allAnswered && (
               <p className="mt-3 text-sm text-text-secondary">
                 Answer all {data.questions.length} questions to submit.
+              </p>
+            )}
+            {examMode && !allAnswered && (
+              <p className="mt-3 text-sm text-text-secondary">
+                {answeredCount} of {data.questions.length} answered. You may submit
+                with unanswered questions, but they will be marked incorrect.
               </p>
             )}
           </div>
