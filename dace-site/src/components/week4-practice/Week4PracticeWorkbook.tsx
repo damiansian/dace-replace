@@ -134,6 +134,59 @@ function AllPagesRequiredCallout({ compact = false }: { compact?: boolean }) {
   );
 }
 
+function northstarShopHref(
+  pageId: PracticePageId,
+  accessToken: string | undefined
+): string {
+  return withToken(
+    `/week-4/applied-practice/northstar-shop/${pageId}`,
+    accessToken
+  );
+}
+
+function OpenNorthstarShopLink({
+  pageId,
+  accessToken,
+  variant = "primary",
+  label,
+}: {
+  pageId: PracticePageId;
+  accessToken?: string;
+  variant?: "primary" | "subtle";
+  label?: string;
+}) {
+  const className =
+    variant === "primary"
+      ? "inline-flex items-center gap-2 rounded-lg bg-primary px-4 py-2 text-sm font-medium text-white hover:bg-primary-dark"
+      : "inline-flex items-center gap-1.5 text-sm font-medium text-primary-text underline hover:text-primary-dark";
+  return (
+    <a
+      href={northstarShopHref(pageId, accessToken)}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={className}
+    >
+      {label ?? "Open live Northstar Shop"}
+      <svg
+        viewBox="0 0 16 16"
+        aria-hidden="true"
+        focusable="false"
+        className="h-3.5 w-3.5"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.75"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="M6 2H3a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-3" />
+        <path d="M10 2h4v4" />
+        <path d="M14 2 8 8" />
+      </svg>
+      <span className="sr-only"> (opens in a new tab)</span>
+    </a>
+  );
+}
+
 function ensureLandmarks(pageId: PracticePageId, rows: WorkbookState["landmarks"][PracticePageId]) {
   const zones = zonesForPage(pageId);
   return zones.map((z) => {
@@ -321,7 +374,7 @@ export default function Week4PracticeWorkbook({
             step === i
               ? "bg-primary text-white border-primary"
               : i < step
-                ? "bg-accent-green/10 text-accent-green border-accent-green/30"
+                ? "bg-surface text-foreground border-foreground/30"
                 : "bg-white text-text-secondary border-border"
           }`
         }
@@ -382,6 +435,27 @@ export default function Week4PracticeWorkbook({
           </header>
 
           <AllPagesRequiredCallout />
+
+          <section
+            aria-labelledby="northstar-intro-heading"
+            className="rounded-lg border-2 border-primary/40 bg-primary/5 p-4 text-sm space-y-2"
+          >
+            <h2
+              id="northstar-intro-heading"
+              className="text-base font-semibold text-foreground m-0"
+            >
+              Live Northstar Shop (opens in a new tab)
+            </h2>
+            <p className="text-text-secondary m-0">
+              A fully working version of the practice site with correct
+              landmarks, a real skip link, and animations that respond to{" "}
+              <code className="text-xs">prefers-reduced-motion</code>. Use it
+              with your keyboard and a screen reader to verify your workbook
+              answers. The numbered overlays here in the workbook stay neutral
+              so you can identify landmarks without seeing the answers.
+            </p>
+            <OpenNorthstarShopLink pageId="home" accessToken={accessToken} />
+          </section>
 
           {previewMode ? (
             <section
@@ -571,6 +645,17 @@ export default function Week4PracticeWorkbook({
             Trace where focus lands in the mockup after skip link activation and one Tab
             press on each page.
           </p>
+          <p className="text-sm text-text-secondary m-0">
+            Want to verify your answer? Open the live Northstar Shop, press
+            Tab from page load to activate the visible skip link, then press
+            Tab again and note where focus lands.
+          </p>
+          <OpenNorthstarShopLink
+            pageId={skipTabPage}
+            accessToken={accessToken}
+            variant="subtle"
+            label={`Open Northstar Shop — ${PRACTICE_PAGES.find((p) => p.id === skipTabPage)?.label}`}
+          />
           <h2 className="text-lg font-semibold text-foreground">
             First Tab stop after skip link
           </h2>
@@ -641,11 +726,19 @@ export default function Week4PracticeWorkbook({
             {stepHeading(3)}
           </h1>
           <p className="text-sm text-text-secondary">
-            The mockup is static (no animation plays). Switch pages to answer each
-            motion target; numbering starts at 1 on every page. For each item, decide
-            whether it needs a pause control and whether it should respect{" "}
+            The mockup below is static. Open the live Northstar Shop (new tab)
+            to see each animation play and to observe how it responds when you
+            enable reduced motion in your operating system. Then return here
+            and answer each motion target on every page; numbering starts at 1
+            on every page. For each item, decide whether it needs a pause
+            control and whether it should respect{" "}
             <code className="text-xs">prefers-reduced-motion</code>.
           </p>
+          <OpenNorthstarShopLink
+            pageId={motionPage}
+            accessToken={accessToken}
+            label={`Open live Northstar Shop — ${PRACTICE_PAGES.find((p) => p.id === motionPage)?.label}`}
+          />
           <AllPagesRequiredCallout compact />
           <PracticeSite
             overlayMode="motion"
@@ -725,6 +818,17 @@ export default function Week4PracticeWorkbook({
             {stepHeading(4)}
           </h1>
 
+          <p className="text-sm text-text-secondary m-0">
+            Want to double-check anything before submitting? Open the live
+            Northstar Shop in a new tab and walk through the keyboard, screen
+            reader, and motion behavior one more time.
+          </p>
+          <OpenNorthstarShopLink
+            pageId="home"
+            accessToken={accessToken}
+            variant="subtle"
+          />
+
           <div className="space-y-3">
             <h2 className="text-base font-semibold text-foreground m-0">Auto-graded score</h2>
             <p className="text-sm text-text-secondary m-0">
@@ -758,6 +862,9 @@ export default function Week4PracticeWorkbook({
                     c.pass ? "border-accent-green" : "border-amber-500"
                   }`}
                 >
+                  <span className="font-semibold mr-1">
+                    {c.pass ? "Pass:" : "Review:"}
+                  </span>
                   {c.message}
                 </li>
               ))}
