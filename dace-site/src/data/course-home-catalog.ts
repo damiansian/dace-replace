@@ -6,6 +6,11 @@ export type HomeLesson = {
   quizHref: string;
 };
 
+export type ClassRecordingLink = {
+  href: string;
+  label: string;
+};
+
 export type HomeWeek = {
   weekId: "week-2" | "week-3" | "week-4";
   weekLabel: string;
@@ -14,12 +19,20 @@ export type HomeWeek = {
   /** Class week date from the course syllabus (Discover Badge schedule). */
   syllabusClassDate: string;
   classDueDate: string;
+  /** Live session recording (shared OneDrive / SharePoint link). */
+  classRecording?: ClassRecordingLink;
   lessons: [HomeLesson, HomeLesson];
   appliedSkill: {
     progressId: string;
     title: string;
     href: string;
   };
+};
+
+/** Week 4 live session (May 19, 2026) — cohort-shared OneDrive folder. */
+export const week4ClassRecording: ClassRecordingLink = {
+  href: "https://adobe-my.sharepoint.com/:v:/r/personal/dsian_adobe_com/Documents/Share%20folders/DACE-Cohort-2-2026/Week%204/week-4-meeting-recording-2-of-2.mp4?csf=1&web=1&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=nbpY5w",
+  label: "Class recording",
 };
 
 export function formatClassDueDate(iso: string): string {
@@ -99,6 +112,7 @@ export const courseHomeCatalog: HomeWeek[] = [
     weekHref: "/week-4",
     syllabusClassDate: "2026-05-19",
     classDueDate: "2026-05-26",
+    classRecording: week4ClassRecording,
     lessons: [
       {
         progressId: "l07-landmarks",

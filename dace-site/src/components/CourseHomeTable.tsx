@@ -132,6 +132,22 @@ export default function CourseHomeTable({
                             {formatClassDueDate(week.classDueDate)}
                           </time>
                         </p>
+                        {week.classRecording && (
+                          <p className="text-xs font-normal">
+                            <a
+                              href={week.classRecording.href}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-primary-text underline hover:text-primary-dark"
+                            >
+                              {week.classRecording.label}
+                            </a>
+                            <span className="text-text-secondary">
+                              {" "}
+                              (Adobe sign-in)
+                            </span>
+                          </p>
+                        )}
                       </div>
                     </th>
                   )}
