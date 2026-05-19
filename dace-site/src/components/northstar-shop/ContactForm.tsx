@@ -130,12 +130,12 @@ export default function ContactForm() {
         )}
         onSubmit={handleSubmit}
       >
-        <h3
+        <h2
           id="contact-heading"
-          className="text-base font-semibold text-foreground mt-0 m-0"
+          className="text-lg font-semibold text-foreground mt-0 m-0"
         >
           Contact us
-        </h3>
+        </h2>
         <p id={requiredHintId} className="text-xs text-text-secondary m-0">
           Fields marked with an asterisk (
           <span aria-hidden="true">*</span>) are required.
