@@ -166,7 +166,7 @@ export default function HeroCarousel() {
       <MotionLearningCallout
         motionId="hero-carousel"
         label="Full motion"
-        fullMotion="Slides auto-advance every 5 seconds. A Pause button stops the rotation (WCAG 2.2.2)."
+        fullMotion="Slides auto-advance every 5 seconds."
         tone="warn"
       />
     </div>
