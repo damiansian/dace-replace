@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 240" role="img" aria-label="Trail backpack on a mountain trail">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#dbeafe"/>
+      <stop offset="100%" stop-color="#e8ecf4"/>
+    </linearGradient>
+    <linearGradient id="mountain" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#7c8ba1"/>
+      <stop offset="100%" stop-color="#4b5563"/>
+    </linearGradient>
+  </defs>
+  <rect width="320" height="240" fill="url(#sky)"/>
+  <path fill="url(#mountain)" d="M0 200 L80 120 L140 165 L200 95 L320 200 L320 240 L0 240 Z"/>
+  <path fill="#3d7c47" d="M0 200 L320 200 L320 240 L0 240 Z" opacity="0.35"/>
+  <rect x="118" y="88" width="84" height="96" rx="10" fill="#5151D3"/>
+  <rect x="128" y="98" width="64" height="52" rx="6" fill="#6b6be0"/>
+  <path fill="#3b3ba8" d="M160 88 L148 72 L172 72 Z"/>
+  <rect x="134" y="108" width="18" height="28" rx="3" fill="#e8ecf4" opacity="0.5"/>
+</svg>

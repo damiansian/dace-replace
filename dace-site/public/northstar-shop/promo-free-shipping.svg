@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 240" role="img" aria-label="Shipping box ready for delivery">
+  <rect width="320" height="240" fill="#f1f5f9"/>
+  <rect x="72" y="56" width="176" height="128" rx="8" fill="#d4a574"/>
+  <rect x="88" y="72" width="144" height="96" rx="4" fill="#e8c9a0"/>
+  <path fill="#b45309" d="M88 72 H232 L216 56 H104 Z" opacity="0.35"/>
+  <rect x="120" y="108" width="80" height="12" rx="2" fill="#5151D3" opacity="0.7"/>
+  <rect x="40" y="148" width="200" height="44" rx="6" fill="#5151D3"/>
+  <rect x="56" y="160" width="120" height="20" rx="4" fill="#6b6be0"/>
+  <circle cx="88" cy="200" r="16" fill="#374151"/>
+  <circle cx="88" cy="200" r="8" fill="#9ca3af"/>
+  <circle cx="208" cy="200" r="16" fill="#374151"/>
+  <circle cx="208" cy="200" r="8" fill="#9ca3af"/>
+</svg>

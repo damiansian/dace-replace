@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 240" role="img" aria-label="Insulated water bottles in three colors">
+  <rect width="320" height="240" fill="#f8fafc"/>
+  <ellipse cx="100" cy="200" rx="36" ry="8" fill="#cbd5e1"/>
+  <rect x="76" y="72" width="48" height="120" rx="14" fill="#0d9488"/>
+  <rect x="84" y="64" width="32" height="20" rx="6" fill="#115e59"/>
+  <ellipse cx="160" cy="200" rx="36" ry="8" fill="#cbd5e1"/>
+  <rect x="136" y="64" width="48" height="128" rx="14" fill="#5151D3"/>
+  <rect x="144" y="56" width="32" height="20" rx="6" fill="#3b3ba8"/>
+  <ellipse cx="220" cy="200" rx="36" ry="8" fill="#cbd5e1"/>
+  <rect x="196" y="80" width="48" height="112" rx="14" fill="#b45309"/>
+  <rect x="204" y="72" width="32" height="20" rx="6" fill="#92400e"/>
+</svg>

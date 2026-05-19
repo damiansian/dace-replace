@@ -10,18 +10,24 @@ const SLIDES = [
     id: "slide-1",
     title: "Summer trail sale",
     body: "Up to 30% off trail packs and hiking gear through June.",
+    imageSrc: "/northstar-shop/promo-trail-sale.svg",
+    imageAlt: "Trail backpack on a mountain path",
   },
   {
     id: "slide-2",
     title: "Free shipping on $75",
     body: "Orders ship within two business days from Portland.",
+    imageSrc: "/northstar-shop/promo-free-shipping.svg",
+    imageAlt: "Shipping box on a delivery van",
   },
   {
     id: "slide-3",
     title: "New: water-bottle line",
     body: "Insulated stainless bottles in three colors, 18 and 32 oz.",
+    imageSrc: "/northstar-shop/promo-water-bottles.svg",
+    imageAlt: "Three insulated water bottles in teal, purple, and copper",
   },
-];
+] as const;
 
 const ADVANCE_MS = 5000;
 
@@ -89,15 +95,26 @@ export default function HeroCarousel() {
         ref={liveRef}
         aria-live={isAutoActive ? "off" : "polite"}
         aria-atomic="true"
-        className="min-h-[88px] rounded border border-border bg-white p-3"
+        className="min-h-[120px] rounded border border-border bg-white p-3"
       >
-        <p
+        <div
           key={slide.id}
-          className={`text-sm font-semibold text-foreground m-0 mb-1 ${styles.slideIn}`}
+          className={`flex flex-col sm:flex-row gap-3 ${styles.slideIn}`}
         >
-          {slide.title}
-        </p>
-        <p className="text-xs text-text-secondary m-0">{slide.body}</p>
+          <img
+            src={slide.imageSrc}
+            alt={slide.imageAlt}
+            width={320}
+            height={240}
+            className="w-full sm:w-36 h-28 sm:h-28 object-cover rounded border border-border shrink-0 bg-surface"
+          />
+          <div className="min-w-0 flex flex-col justify-center">
+            <p className="text-sm font-semibold text-foreground m-0 mb-1">
+              {slide.title}
+            </p>
+            <p className="text-xs text-text-secondary m-0">{slide.body}</p>
+          </div>
+        </div>
       </div>
 
       <div className="mt-3 flex items-center gap-2 flex-wrap">
