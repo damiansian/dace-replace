@@ -2,6 +2,8 @@
 
 import { useRef, type KeyboardEvent } from "react";
 
+export type WorkbookStepStatus = "current" | "completed" | "upcoming";
+
 type WorkbookStepperProps = {
   steps: readonly string[];
   currentStep: number;
@@ -9,6 +11,71 @@ type WorkbookStepperProps = {
   onStepChange: (index: number) => void;
   stepTabClassName: (index: number) => string;
 };
+
+const STATUS_LABEL: Record<WorkbookStepStatus, string> = {
+  current: "current step",
+  completed: "completed",
+  upcoming: "not started",
+};
+
+function stepStatus(index: number, currentStep: number): WorkbookStepStatus {
+  if (index === currentStep) return "current";
+  if (index < currentStep) return "completed";
+  return "upcoming";
+}
+
+function StepStatusIcon({ status }: { status: WorkbookStepStatus }) {
+  if (status === "completed") {
+    return (
+      <svg
+        viewBox="0 0 20 20"
+        aria-hidden="true"
+        focusable="false"
+        className="h-3.5 w-3.5 shrink-0"
+      >
+        <path
+          d="M5 10.5l3 3 7-7"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    );
+  }
+
+  if (status === "current") {
+    return (
+      <svg
+        viewBox="0 0 20 20"
+        aria-hidden="true"
+        focusable="false"
+        className="h-3.5 w-3.5 shrink-0"
+      >
+        <circle cx="10" cy="10" r="4" fill="currentColor" />
+      </svg>
+    );
+  }
+
+  return (
+    <svg
+      viewBox="0 0 20 20"
+      aria-hidden="true"
+      focusable="false"
+      className="h-3.5 w-3.5 shrink-0"
+    >
+      <circle
+        cx="10"
+        cy="10"
+        r="6"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.75"
+      />
+    </svg>
+  );
+}
 
 export function WorkbookStepper({
   steps,
@@ -53,29 +120,86 @@ export function WorkbookStepper({
   };
 
   return (
-    <nav
-      role="tablist"
-      aria-label="Stepper"
-      className="flex flex-wrap gap-2"
-    >
-      {steps.map((label, i) => (
-        <button
-          key={label}
-          ref={(el) => {
-            tabRefs.current[i] = el;
-          }}
-          type="button"
-          role="tab"
-          id={`workbook-step-tab-${i}`}
-          aria-selected={currentStep === i}
-          tabIndex={currentStep === i ? 0 : -1}
-          onClick={() => onStepChange(i)}
-          onKeyDown={(e) => handleKeyDown(e, i)}
-          className={stepTabClassName(i)}
-        >
-          {stepHeading(i)}
-        </button>
-      ))}
-    </nav>
+    <div className="space-y-2">
+      <nav
+        role="tablist"
+        aria-label="Stepper"
+        className="flex flex-wrap gap-2"
+      >
+        {steps.map((label, i) => {
+          const status = stepStatus(i, currentStep);
+          const heading = stepHeading(i);
+          return (
+            <button
+              key={label}
+              ref={(el) => {
+                tabRefs.current[i] = el;
+              }}
+              type="button"
+              role="tab"
+              id={`workbook-step-tab-${i}`}
+              aria-selected={currentStep === i}
+              aria-label={`${heading}, ${STATUS_LABEL[status]}`}
+              tabIndex={currentStep === i ? 0 : -1}
+              onClick={() => onStepChange(i)}
+              onKeyDown={(e) => handleKeyDown(e, i)}
+              className={`inline-flex items-center gap-1.5 ${stepTabClassName(i)}`}
+            >
+              <StepStatusIcon status={status} />
+              <span>{heading}</span>
+            </button>
+          );
+        })}
+      </nav>
+      <p className="text-xs text-text-secondary m-0">
+        <span className="inline-flex items-center gap-1.5 mr-3">
+          <svg
+            viewBox="0 0 20 20"
+            aria-hidden="true"
+            focusable="false"
+            className="h-3 w-3 text-foreground"
+          >
+            <path
+              d="M5 10.5l3 3 7-7"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+          Completed
+        </span>
+        <span className="inline-flex items-center gap-1.5 mr-3">
+          <svg
+            viewBox="0 0 20 20"
+            aria-hidden="true"
+            focusable="false"
+            className="h-3 w-3 text-primary"
+          >
+            <circle cx="10" cy="10" r="4" fill="currentColor" />
+          </svg>
+          Current step
+        </span>
+        <span className="inline-flex items-center gap-1.5">
+          <svg
+            viewBox="0 0 20 20"
+            aria-hidden="true"
+            focusable="false"
+            className="h-3 w-3 text-text-secondary"
+          >
+            <circle
+              cx="10"
+              cy="10"
+              r="6"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.75"
+            />
+          </svg>
+          Not yet reached
+        </span>
+      </p>
+    </div>
   );
 }
