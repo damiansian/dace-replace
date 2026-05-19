@@ -24,6 +24,7 @@ export default function NorthstarAbout() {
           <TeamReveal />
           <MotionLearningCallout
             motionId="about-team-fade"
+            hint="Refresh page to see animation if you missed it."
             label="Team entrance"
             fullMotion="Team cards fade in and slide up 12px when scrolled into view (600ms, staggered by 120ms per card)."
           />

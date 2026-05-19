@@ -31,24 +31,21 @@ export default function NorthstarShopShell({
 
       <ReducedMotionStatus />
 
-      <div className="border-b border-border bg-surface/60">
-        <div className="mx-auto max-w-5xl px-4 sm:px-6 py-2 flex flex-wrap items-center gap-3 justify-between text-xs">
-          <p className="text-text-secondary m-0">
-            <strong className="text-foreground">Northstar Shop</strong>{" "}
-            <span className="text-text-secondary">
-              — live practice site for Week 4 review
-            </span>
-          </p>
-          <Link
-            href={workbookHref}
-            className="text-primary-text underline hover:text-primary-dark"
-          >
-            Back to workbook
-          </Link>
-        </div>
-      </div>
-
       <header className="border-b border-border bg-white">
+        <div className="border-b border-border bg-surface/60">
+          <div className="mx-auto max-w-5xl px-4 sm:px-6 py-2 flex flex-wrap items-center gap-3 justify-between text-xs">
+            <p className="text-text-secondary m-0">
+              <strong className="text-foreground">Northstar Shop</strong>
+              {" — live practice site for Week 4 review"}
+            </p>
+            <Link
+              href={workbookHref}
+              className="text-primary-text underline hover:text-primary-dark"
+            >
+              Back to workbook
+            </Link>
+          </div>
+        </div>
         <div className="mx-auto max-w-5xl px-4 sm:px-6 py-4 flex flex-wrap items-center gap-4 justify-between">
           <Link
             href={withToken("/week-4/applied-practice/northstar-shop/home", accessToken)}
@@ -90,7 +87,7 @@ export default function NorthstarShopShell({
               id="northstar-search"
               type="search"
               placeholder="Search products"
-              className="min-w-0 flex-1 border-0 bg-transparent p-0 text-sm text-foreground focus:outline-none"
+              className="min-w-0 flex-1 border-0 bg-transparent p-0 text-sm text-foreground placeholder:text-text-secondary focus:outline-none"
             />
           </form>
         </div>

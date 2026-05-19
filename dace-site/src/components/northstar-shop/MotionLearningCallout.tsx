@@ -8,12 +8,15 @@ export default function MotionLearningCallout({
   motionId,
   label,
   fullMotion,
+  hint,
   hasPauseControl = false,
   tone = "info",
 }: {
   motionId: string;
   label: string;
   fullMotion: string;
+  /** Shown below the Motion pill (e.g. scroll-once animations). */
+  hint?: string;
   hasPauseControl?: boolean;
   tone?: CalloutTone;
 }) {
@@ -55,6 +58,9 @@ export default function MotionLearningCallout({
           </span>
         ) : null}
       </p>
+      {hint ? (
+        <p className="text-text-secondary m-0 mb-1">{hint}</p>
+      ) : null}
       <p className="text-text-secondary m-0">
         <span className="font-medium text-foreground">{label}:</span> {fullMotion}
       </p>

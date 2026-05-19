@@ -57,7 +57,7 @@ function SiteSearch({
       <input
         id={`practice-site-search-${pageId}`}
         type="search"
-        className="min-w-0 flex-1 border-0 bg-transparent p-0 text-sm text-foreground focus:outline-none"
+        className="min-w-0 flex-1 border-0 bg-transparent p-0 text-sm text-foreground placeholder:text-text-secondary focus:outline-none"
         readOnly
         aria-readonly="true"
         title="Static preview — search is not functional"
@@ -107,7 +107,7 @@ function LandmarkShell({
             pageId={pageId}
             className={`flex-1 min-w-0 p-1 ${zonePad}`}
           >
-            <nav aria-label="Unlabeled in mockup — you specify in workbook">
+            <nav>
               <ul className="flex flex-wrap gap-3 list-none m-0 p-0">
                 {navOrder.map((item) => (
                   <li key={item}>
@@ -211,7 +211,7 @@ function SkipNavShell({
             </button>
           </SkipTargetOutline>
         ) : null}
-        <nav aria-label="Unlabeled in mockup — you specify in workbook" className="flex flex-wrap gap-2">
+        <nav className="flex flex-wrap gap-2">
           <ul className="flex flex-wrap gap-2 list-none m-0 p-0">
             {navOrder.map((item, index) => {
               const link = (
