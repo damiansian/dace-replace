@@ -8,10 +8,21 @@ const PRODUCTS = [
     name: "Trail pack",
     price: "$49.00",
     id: "trail-pack-cart",
-    isFirstFocus: true,
+    imageSrc: "/northstar-shop/product-trail-pack.svg",
+    imageAlt: "Purple hiking backpack",
   },
-  { name: "Desk lamp", price: "$32.00" },
-  { name: "Water bottle", price: "$22.00" },
+  {
+    name: "Desk lamp",
+    price: "$32.00",
+    imageSrc: "/northstar-shop/product-desk-lamp.svg",
+    imageAlt: "Adjustable desk lamp with warm light",
+  },
+  {
+    name: "Water bottle",
+    price: "$22.00",
+    imageSrc: "/northstar-shop/product-water-bottle.svg",
+    imageAlt: "Insulated stainless water bottle",
+  },
 ];
 
 export default function NorthstarProducts() {
@@ -29,6 +40,8 @@ export default function NorthstarProducts() {
               key={product.name}
               name={product.name}
               price={product.price}
+              imageSrc={product.imageSrc}
+              imageAlt={product.imageAlt}
             >
               <AddToCartButton
                 id={product.id}
