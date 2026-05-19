@@ -52,32 +52,9 @@ export default function HeroCarousel() {
       aria-roledescription="carousel"
       className="rounded-md border border-border bg-surface p-4"
     >
-      <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
-        <p className="text-sm font-semibold text-foreground m-0">
-          Featured promotions
-        </p>
-        <button
-          type="button"
-          id="slide-1"
-          onClick={() => setPlaying((p) => !p)}
-          aria-pressed={isAutoActive}
-          disabled={reducedMotion}
-          className="rounded-md border border-border bg-white px-3 py-1.5 text-xs font-medium text-foreground hover:bg-surface disabled:opacity-60 disabled:cursor-not-allowed"
-          title={
-            reducedMotion
-              ? "Autoplay is off while system reduced motion is enabled."
-              : isAutoActive
-                ? "Pause auto-advance"
-                : "Play auto-advance"
-          }
-        >
-          {reducedMotion
-            ? "Autoplay off (reduced motion)"
-            : isAutoActive
-              ? "Pause"
-              : "Play"}
-        </button>
-      </div>
+      <p className="text-sm font-semibold text-foreground m-0 mb-3">
+        Featured promotions
+      </p>
 
       <div
         ref={liveRef}
@@ -102,6 +79,34 @@ export default function HeroCarousel() {
           aria-label="Previous slide"
         >
           Prev
+        </button>
+        <button
+          type="button"
+          id="slide-1"
+          onClick={() => setPlaying((p) => !p)}
+          aria-pressed={isAutoActive}
+          disabled={reducedMotion}
+          className="rounded-md border border-border bg-white px-2.5 py-1 text-xs font-medium text-foreground hover:bg-surface disabled:opacity-60 disabled:cursor-not-allowed"
+          aria-label={
+            reducedMotion
+              ? "Autoplay off while reduced motion is enabled"
+              : isAutoActive
+                ? "Pause auto-advance"
+                : "Play auto-advance"
+          }
+          title={
+            reducedMotion
+              ? "Autoplay is off while system reduced motion is enabled."
+              : isAutoActive
+                ? "Pause auto-advance"
+                : "Play auto-advance"
+          }
+        >
+          {reducedMotion
+            ? "Autoplay off"
+            : isAutoActive
+              ? "Pause"
+              : "Play"}
         </button>
         <ul className="list-none m-0 p-0 flex gap-1" aria-hidden="true">
           {SLIDES.map((s, i) => (
