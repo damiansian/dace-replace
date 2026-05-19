@@ -142,7 +142,6 @@ export default function HeroCarousel() {
         motionId="hero-carousel"
         label="Full motion"
         fullMotion="Slides auto-advance every 5 seconds. A Pause button stops the rotation (WCAG 2.2.2)."
-        hasPauseControl
         tone="warn"
       />
     </div>

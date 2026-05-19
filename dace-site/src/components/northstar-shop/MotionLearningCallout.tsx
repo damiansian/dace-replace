@@ -9,7 +9,6 @@ export default function MotionLearningCallout({
   label,
   fullMotion,
   hint,
-  hasPauseControl = false,
   tone = "info",
 }: {
   motionId: string;
@@ -17,7 +16,6 @@ export default function MotionLearningCallout({
   fullMotion: string;
   /** Shown below the Motion pill (e.g. scroll-once animations). */
   hint?: string;
-  hasPauseControl?: boolean;
   tone?: CalloutTone;
 }) {
   const containerClass =
@@ -52,11 +50,6 @@ export default function MotionLearningCallout({
           </svg>
           Motion
         </span>
-        {hasPauseControl ? (
-          <span className="rounded-full bg-accent-green/15 text-accent-green border border-accent-green/30 px-2 py-0.5 text-[11px] font-medium">
-            Pause control provided
-          </span>
-        ) : null}
       </p>
       {hint ? (
         <p className="text-text-secondary m-0 mb-1">{hint}</p>
