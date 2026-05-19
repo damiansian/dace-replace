@@ -202,11 +202,11 @@ export default async function Week4Hub({ searchParams }: PageProps) {
               <span className="inline-flex items-center rounded-full bg-primary/10 px-3 py-1 text-sm font-medium text-primary-dark">
                 25 questions
               </span>
-              <span className="inline-flex items-center rounded-full bg-primary/10 px-3 py-1 text-sm font-medium text-primary-dark">
-                45 minutes
-              </span>
               <span className="inline-flex items-center rounded-full bg-surface px-3 py-1 text-sm font-medium text-text-secondary">
                 Open book
+              </span>
+              <span className="inline-flex items-center rounded-full bg-surface px-3 py-1 text-sm font-medium text-text-secondary">
+                Untimed
               </span>
               {snapshot && (
                 <TrackedItemStatus

@@ -38,7 +38,7 @@ export default async function Badge1ExamPage({ searchParams }: PageProps) {
             Discover Badge
           </span>
           <span className="inline-flex items-center rounded-full bg-surface px-3 py-1 text-sm font-medium text-text-secondary">
-            25 questions · 45 minutes · open book
+            25 questions · open book · untimed
           </span>
         </div>
         <h1 className="text-3xl font-bold tracking-tight text-foreground">
@@ -60,11 +60,11 @@ export default async function Badge1ExamPage({ searchParams }: PageProps) {
         </h2>
         <ul className="list-disc space-y-1 pl-5 text-sm text-foreground">
           <li>
-            Have a quiet 45 minutes. Once you start, the countdown begins and
-            the exam will auto-submit when time expires.
+            Open book and untimed. Take as long as you need; you only have one
+            attempt, so review your answers before submitting.
           </li>
           <li>
-            Open book. Keep the{" "}
+            Keep the{" "}
             <a
               href="https://www.w3.org/WAI/WCAG22/quickref/"
               target="_blank"
@@ -100,7 +100,6 @@ export default async function Badge1ExamPage({ searchParams }: PageProps) {
         accessToken={student?.accessToken}
         studentDisplayName={student?.displayName}
         examMode
-        timeLimitMinutes={45}
         maxAttempts={1}
       />
     </div>
