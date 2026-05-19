@@ -22,13 +22,15 @@ export default async function Week4PracticePreviewPage({
   const livePracticeHref = withToken("/week-4/applied-practice", student?.accessToken);
 
   return (
-    <div className="mx-auto max-w-5xl px-4 py-10 sm:px-6 space-y-10">
-      <Link
-        href={livePracticeHref}
-        className="text-sm text-primary-text underline hover:text-primary-dark"
-      >
-        &larr; Live applied practice page (unchanged)
-      </Link>
+    <div className="mx-auto max-w-5xl px-4 py-10 sm:px-6">
+      <div className="pb-8">
+        <Link
+          href={livePracticeHref}
+          className="inline-block text-sm text-primary-text underline hover:text-primary-dark"
+        >
+          &larr; Live applied practice page (unchanged)
+        </Link>
+      </div>
 
       <Week4PracticeWorkbook
         accessToken={student?.accessToken}
