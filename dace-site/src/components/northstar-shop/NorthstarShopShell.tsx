@@ -5,7 +5,6 @@ import type { ReactNode } from "react";
 import { withToken } from "@/data/progress-catalog";
 import type { PracticePageId } from "@/data/week4-practice/practice-zones";
 import NorthstarShopNav from "./NorthstarShopNav";
-import ReducedMotionStatus from "./ReducedMotionStatus";
 
 export default function NorthstarShopShell({
   pageId,
@@ -28,8 +27,6 @@ export default function NorthstarShopShell({
       >
         Skip to main content
       </a>
-
-      <ReducedMotionStatus />
 
       <header className="border-b border-border bg-white">
         <div className="border-b border-border bg-surface/60">
