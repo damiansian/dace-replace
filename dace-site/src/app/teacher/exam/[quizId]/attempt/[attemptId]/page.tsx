@@ -26,6 +26,7 @@ interface QuestionDisplay {
   question: string;
   correctAnswer: string;
   options: { id: string; text: string }[];
+  figmaUrl?: string;
 }
 
 function loadQuestionDisplay(quizId: string): QuestionDisplay[] {
@@ -35,6 +36,7 @@ function loadQuestionDisplay(quizId: string): QuestionDisplay[] {
       question: q.question,
       correctAnswer: q.correctAnswer,
       options: q.options,
+      figmaUrl: (q as { figmaUrl?: string }).figmaUrl,
     }));
   }
   return [];
@@ -195,6 +197,18 @@ export default async function ExamAttemptPage({
                     <span className="tabular-nums">{weight.toFixed(2)}</span>
                   </p>
                   <p className="mt-1 text-sm text-foreground">{q.question}</p>
+                  {q.figmaUrl && (
+                    <p className="mt-1 text-xs">
+                      <a
+                        href={q.figmaUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-primary-text underline hover:text-primary-dark"
+                      >
+                        View stimulus in Figma
+                      </a>
+                    </p>
+                  )}
                   <ul className="mt-2 space-y-1 list-none p-0">
                     {q.options.map((opt) => {
                       const isChosen = chosen === opt.id;

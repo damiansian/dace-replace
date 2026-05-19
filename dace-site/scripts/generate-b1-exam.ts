@@ -16,6 +16,10 @@ const BANK_PATH = resolve(
   REPO_ROOT,
   "Badge_1/Badge_1_Assessment/assessment/B1_Final_Assessment_Questions.md"
 );
+const QTI_PATH = resolve(
+  REPO_ROOT,
+  "Badge_1/Badge_1_Assessment/assessment/qti-export/B1_Final_Assessment.xml"
+);
 const OUT_PATH = resolve(
   __dirname,
   "..",
@@ -32,6 +36,8 @@ interface QuizQuestion {
   question: string;
   imageSrc?: string;
   imageAlt?: string;
+  /** Per-question link to the source stimulus in the Figma exam file. */
+  figmaUrl?: string;
   options: QuizOption[];
   correctAnswer: string;
   feedback: Record<string, string>;
@@ -62,6 +68,29 @@ function unquote(text: string): string {
     return trimmed.slice(1, -1);
   }
   return trimmed;
+}
+
+/**
+ * Build a map of question number → Figma stimulus URL by parsing the QTI XML.
+ * The QTI is the only source that carries the per-question `node-id`, so we
+ * always read it directly rather than re-deriving from the markdown bank.
+ */
+function loadFigmaUrlsFromQti(): Map<number, string> {
+  const xml = readFileSync(QTI_PATH, "utf-8");
+  const urls = new Map<number, string>();
+  // Each <item ident="Qxx" …> block contains a "View stimulus in Figma" link.
+  const itemRegex = /<item ident="Q(\d+)"[\s\S]*?<\/item>/g;
+  let m: RegExpExecArray | null;
+  while ((m = itemRegex.exec(xml)) !== null) {
+    const qNum = Number.parseInt(m[1], 10);
+    const linkMatch = m[0].match(
+      /href="(https:\/\/www\.figma\.com\/[^"]+)"[^>]*>View stimulus in Figma</
+    );
+    if (linkMatch) {
+      urls.set(qNum, linkMatch[1]);
+    }
+  }
+  return urls;
 }
 
 function parseQuestionBlock(qNum: number, block: string): QuizQuestion {
@@ -151,6 +180,13 @@ function main() {
   const stopIdx = content.indexOf("## Implementation Notes for Canvas");
   const body = stopIdx > 0 ? content.slice(0, stopIdx) : content;
 
+  const figmaUrls = loadFigmaUrlsFromQti();
+  if (figmaUrls.size !== 25) {
+    throw new Error(
+      `Expected 25 Figma URLs in QTI, parsed ${figmaUrls.size}`
+    );
+  }
+
   // Split on `## Question N:` headers
   const parts = body.split(/\n## Question (\d+): [^\n]+\n/);
   // parts[0] is preamble; then pairs of [number, block]
@@ -158,7 +194,10 @@ function main() {
   for (let i = 1; i < parts.length - 1; i += 2) {
     const qNum = Number.parseInt(parts[i], 10);
     const block = parts[i + 1];
-    questions.push(parseQuestionBlock(qNum, block));
+    const q = parseQuestionBlock(qNum, block);
+    const figma = figmaUrls.get(qNum);
+    if (figma) q.figmaUrl = figma;
+    questions.push(q);
   }
 
   if (questions.length !== 25) {

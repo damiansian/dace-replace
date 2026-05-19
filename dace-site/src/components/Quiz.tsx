@@ -12,6 +12,8 @@ interface QuizQuestion {
   question: string;
   imageSrc?: string;
   imageAlt?: string;
+  /** Optional link to the source stimulus (e.g. a Figma frame) for this question. */
+  figmaUrl?: string;
   options: QuizOption[];
   correctAnswer: string;
   feedback: Record<string, string>;
@@ -433,6 +435,18 @@ export default function Quiz({
                   </p>
                   {q.imageSrc && q.imageAlt && (
                     <QuizStimulusImage src={q.imageSrc} alt={q.imageAlt} />
+                  )}
+                  {q.figmaUrl && (
+                    <p className="mb-4 text-sm">
+                      <a
+                        href={q.figmaUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-primary-text underline hover:text-primary-dark"
+                      >
+                        View stimulus in Figma (opens in new tab)
+                      </a>
+                    </p>
                   )}
                   <p className="text-base text-foreground whitespace-pre-line mb-5">
                     {q.question}
