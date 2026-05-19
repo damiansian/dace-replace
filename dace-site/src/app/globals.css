@@ -38,3 +38,10 @@ a:focus-visible, button:focus-visible, input:focus-visible, [tabindex]:focus-vis
   outline-offset: 2px;
   border-radius: 2px;
 }
+
+/* F6 landmark focus — :focus so programmatic focus from F6 is always visible */
+[data-northstar-landmark]:focus {
+  outline: 3px solid var(--primary);
+  outline-offset: 2px;
+  border-radius: 2px;
+}

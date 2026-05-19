@@ -87,9 +87,9 @@ export default function HeroCarousel() {
       aria-roledescription="carousel"
       className="rounded-md border border-border bg-surface p-4"
     >
-      <p className="text-sm font-semibold text-foreground m-0 mb-3">
+      <h3 className="text-base font-semibold text-foreground m-0 mb-3">
         Featured promotions
-      </p>
+      </h3>
 
       <div
         ref={liveRef}

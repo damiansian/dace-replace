@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useId, useRef, useState } from "react";
+import { northstarLandmarkProps } from "./northstar-landmark";
 
 type FieldKey = "name" | "email" | "message";
 
@@ -123,7 +124,10 @@ export default function ContactForm() {
         noValidate
         aria-labelledby="contact-heading"
         aria-describedby={requiredHintId}
-        className="rounded-md border border-border bg-white p-4 space-y-3 w-full"
+        {...northstarLandmarkProps(
+          "contact-form",
+          "rounded-md border border-border bg-white p-4 space-y-3 w-full"
+        )}
         onSubmit={handleSubmit}
       >
         <h3

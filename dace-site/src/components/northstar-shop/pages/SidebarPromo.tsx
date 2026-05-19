@@ -1,8 +1,13 @@
+import { northstarLandmarkProps } from "../northstar-landmark";
+
 export default function SidebarPromo() {
   return (
     <section
       aria-labelledby="filters-heading"
-      className="rounded-md border border-border bg-surface p-4 text-sm"
+      {...northstarLandmarkProps(
+        "filters",
+        "rounded-md border border-border bg-surface p-4 text-sm"
+      )}
     >
       <h2
         id="filters-heading"

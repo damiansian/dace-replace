@@ -13,10 +13,6 @@ export default function NorthstarHome() {
           category from the primary navigation.
         </p>
         <HeroCarousel />
-        <p className="text-sm text-text-secondary m-0">
-          Need help? Visit the <span className="underline">About</span> page
-          for our contact form.
-        </p>
       </div>
       <div className="w-full sm:w-56 shrink-0">
         <SidebarPromo />

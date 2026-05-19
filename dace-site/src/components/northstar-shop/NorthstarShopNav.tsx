@@ -4,6 +4,7 @@ import {
   NAV_ORDER_BY_PAGE,
   type PracticePageId,
 } from "@/data/week4-practice/practice-zones";
+import { northstarLandmarkProps } from "./northstar-landmark";
 
 const PAGE_PATH: Record<string, PracticePageId> = {
   Home: "home",
@@ -21,7 +22,7 @@ export default function NorthstarShopNav({
   const navOrder = NAV_ORDER_BY_PAGE[pageId];
 
   return (
-    <nav>
+    <nav {...northstarLandmarkProps("navigation")}>
       <ul className="flex flex-wrap gap-4 list-none m-0 p-0">
         {navOrder.map((item) => {
           const targetId = PAGE_PATH[item];

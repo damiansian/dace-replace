@@ -4,7 +4,9 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import { withToken } from "@/data/progress-catalog";
 import type { PracticePageId } from "@/data/week4-practice/practice-zones";
+import NorthstarLandmarkF6Nav from "./NorthstarLandmarkF6Nav";
 import NorthstarShopNav from "./NorthstarShopNav";
+import { northstarLandmarkProps } from "./northstar-landmark";
 
 export default function NorthstarShopShell({
   pageId,
@@ -20,7 +22,11 @@ export default function NorthstarShopShell({
   children: ReactNode;
 }) {
   return (
-    <div className="min-h-full flex flex-col bg-background text-foreground">
+    <div
+      id="northstar-shop-root"
+      className="min-h-full flex flex-col bg-background text-foreground"
+    >
+      <NorthstarLandmarkF6Nav />
       <a
         href="#shop-main"
         className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:bg-primary focus:text-white focus:px-4 focus:py-2 focus:rounded focus:text-sm focus:font-medium"
@@ -28,7 +34,9 @@ export default function NorthstarShopShell({
         Skip to main content
       </a>
 
-      <header className="border-b border-border bg-white">
+      <header
+        {...northstarLandmarkProps("banner", "border-b border-border bg-white")}
+      >
         <div className="border-b border-border bg-surface/60">
           <div className="mx-auto max-w-5xl px-4 sm:px-6 py-2 flex flex-wrap items-center gap-3 justify-between text-xs">
             <p className="text-text-secondary m-0">
@@ -55,7 +63,10 @@ export default function NorthstarShopShell({
 
           <form
             role="search"
-            className="flex items-center gap-2 rounded border border-border bg-surface px-2 py-1 min-w-[180px]"
+            {...northstarLandmarkProps(
+              "search",
+              "flex items-center gap-2 rounded border border-border bg-surface px-2 py-1 min-w-[180px]"
+            )}
             onSubmit={(e) => e.preventDefault()}
           >
             <svg
@@ -92,8 +103,7 @@ export default function NorthstarShopShell({
 
       <main
         id="shop-main"
-        tabIndex={-1}
-        className="flex-1 focus-visible:outline-none"
+        {...northstarLandmarkProps("main", "flex-1")}
       >
         <div className="mx-auto max-w-5xl px-4 sm:px-6 py-6">
           <h1 className="text-2xl font-bold text-foreground m-0 mb-4">
@@ -103,7 +113,12 @@ export default function NorthstarShopShell({
         </div>
       </main>
 
-      <footer className="border-t border-border bg-surface mt-8">
+      <footer
+        {...northstarLandmarkProps(
+          "contentinfo",
+          "border-t border-border bg-surface mt-8"
+        )}
+      >
         <div className="mx-auto max-w-5xl px-4 sm:px-6 py-6 space-y-3">
           <ul className="flex flex-wrap gap-4 list-none m-0 p-0 text-sm text-text-secondary">
             <li>

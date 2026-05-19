@@ -29,7 +29,7 @@ export default function NorthstarProducts() {
   return (
     <div className="flex flex-col sm:flex-row gap-6">
       <div className="flex-1 min-w-0 space-y-4">
-        <h2 className="text-lg font-semibold text-foreground m-0">Products</h2>
+        <h2 className="text-lg font-semibold text-foreground m-0">Product catalog</h2>
         <p className="text-sm text-text-secondary m-0">
           A small catalog so you can keyboard-test the focus order after the
           skip link.
