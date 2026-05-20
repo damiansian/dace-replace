@@ -12,7 +12,7 @@ export type ClassRecordingLink = {
 };
 
 export type HomeWeek = {
-  weekId: "week-2" | "week-3" | "week-4";
+  weekId: "week-2" | "week-3" | "week-4" | "week-5";
   weekLabel: string;
   weekTitle: string;
   weekHref: string;
@@ -21,7 +21,7 @@ export type HomeWeek = {
   classDueDate: string;
   /** Live session recording (shared OneDrive / SharePoint link). */
   classRecording?: ClassRecordingLink;
-  lessons: [HomeLesson, HomeLesson];
+  lessons: HomeLesson[];
   appliedSkill: {
     progressId: string;
     title: string;
@@ -133,6 +133,28 @@ export const courseHomeCatalog: HomeWeek[] = [
       progressId: "week-4-practice",
       title: "Week 4 applied skill",
       href: "/week-4/applied-practice",
+    },
+  },
+  {
+    weekId: "week-5",
+    weekLabel: "Week 5",
+    weekTitle: "Discover Badge Exam",
+    weekHref: "/badge-1/study-guide",
+    syllabusClassDate: "2026-05-26",
+    classDueDate: "2026-06-02",
+    lessons: [
+      {
+        progressId: "badge-1-study-guide",
+        lessonLabel: "Study Guide",
+        lessonHref: "/badge-1/study-guide",
+        quizLabel: "—",
+        quizHref: "#",
+      },
+    ],
+    appliedSkill: {
+      progressId: "badge-1-exam",
+      title: "Discover Badge Exam",
+      href: "/badge-1/exam",
     },
   },
 ];
