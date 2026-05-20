@@ -27,7 +27,10 @@ import {
   computeAutoSelfAssessment,
 } from "@/lib/week4-practice-auto-grade";
 import { runCoachChecks } from "@/lib/week4-practice-coach";
-import { isAccessibleNameRequired } from "@/lib/week4-practice-landmark-name";
+import {
+  accessibleNameFieldError,
+  isAccessibleNameRequired,
+} from "@/lib/week4-practice-landmark-name";
 import { withToken } from "@/data/progress-catalog";
 import {
   WEEK4_WORKBOOK_TOTAL_POINTS,
@@ -549,6 +552,12 @@ export default function Week4PracticeWorkbook({
                     row.role,
                     row.htmlEquivalent
                   );
+                  const nameError = accessibleNameFieldError(
+                    row.accessibleName,
+                    nameRequired
+                  );
+                  const nameHintId = `name-hint-${landmarkPage}-${row.zoneId}`;
+                  const nameErrorId = `name-error-${landmarkPage}-${row.zoneId}`;
                   return (
                     <tr key={row.zoneId}>
                       <td className="border border-border px-2 py-2">
@@ -588,9 +597,28 @@ export default function Week4PracticeWorkbook({
                           placeholder={nameRequired ? "Required" : "If needed"}
                           required={nameRequired}
                           aria-required={nameRequired}
+                          invalid={Boolean(nameError)}
+                          aria-describedby={
+                            nameError
+                              ? nameErrorId
+                              : nameRequired
+                                ? nameHintId
+                                : undefined
+                          }
                         />
-                        {nameRequired ? (
-                          <span className="mt-1 block text-xs text-text-secondary">
+                        {nameError ? (
+                          <p
+                            id={nameErrorId}
+                            role="alert"
+                            className="mt-1 text-xs text-accent-red m-0"
+                          >
+                            {nameError}
+                          </p>
+                        ) : nameRequired ? (
+                          <span
+                            id={nameHintId}
+                            className="mt-1 block text-xs text-text-secondary"
+                          >
                             Required when role is region or section. Do not use
                             &quot;Region&quot; or &quot;Section&quot; in the name.
                           </span>

@@ -1,5 +1,5 @@
-const inputClass =
-  "w-full rounded-lg border border-border bg-white px-3 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2";
+const inputBaseClass =
+  "w-full rounded-lg border bg-white px-3 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2";
 
 const selectClass =
   "inline-block w-auto min-w-[12rem] max-w-md rounded-lg border border-border bg-white px-3 py-2 pr-8 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2";
@@ -26,10 +26,20 @@ export function WorkbookLabel({
   );
 }
 
-export function WorkbookInput(
-  props: React.InputHTMLAttributes<HTMLInputElement> & { id: string }
-) {
-  return <input {...props} className={`${inputClass} ${props.className ?? ""}`} />;
+export function WorkbookInput({
+  invalid,
+  className,
+  "aria-invalid": ariaInvalid,
+  ...props
+}: React.InputHTMLAttributes<HTMLInputElement> & { id: string; invalid?: boolean }) {
+  const borderClass = invalid ? "border-accent-red" : "border-border";
+  return (
+    <input
+      {...props}
+      aria-invalid={invalid ? true : ariaInvalid}
+      className={`${inputBaseClass} ${borderClass} ${className ?? ""}`}
+    />
+  );
 }
 
 export function WorkbookSelect(
@@ -46,7 +56,7 @@ export function WorkbookTextarea(
   return (
     <textarea
       {...props}
-      className={`${inputClass} min-h-[80px] ${props.className ?? ""}`}
+      className={`${inputBaseClass} border-border min-h-[80px] ${props.className ?? ""}`}
     />
   );
 }

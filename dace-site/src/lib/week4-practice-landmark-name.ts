@@ -20,6 +20,20 @@ export function hasGenericLandmarkName(name: string): boolean {
   return GENERIC_LANDMARK_NAME.test(name.trim());
 }
 
+export const GENERIC_LANDMARK_NAME_ERROR =
+  'Do not use "Region" or "Section" in the name. Describe what this area contains (for example, "Filters").';
+
+/** Inline field error when region/section naming rules are violated. */
+export function accessibleNameFieldError(
+  name: string,
+  nameRequired: boolean
+): string | null {
+  if (!nameRequired) return null;
+  const trimmed = name.trim();
+  if (!trimmed || !hasGenericLandmarkName(trimmed)) return null;
+  return GENERIC_LANDMARK_NAME_ERROR;
+}
+
 export function genericLandmarkNameCoachMessage(
   pageLabel: string,
   zoneLabel: string
