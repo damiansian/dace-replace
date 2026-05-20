@@ -147,7 +147,7 @@ export const courseHomeCatalog: HomeWeek[] = [
         progressId: "badge-1-study-guide",
         lessonLabel: "Study Guide",
         lessonHref: "/badge-1/study-guide",
-        quizLabel: "—",
+        quizLabel: "N/A",
         quizHref: "#",
       },
     ],
