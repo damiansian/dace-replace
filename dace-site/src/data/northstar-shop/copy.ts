@@ -30,6 +30,20 @@ export const NORTHSTAR_HERO_FIRST_SLIDE = {
   body: "Up to 30% off trail packs and hiking gear through June.",
 } as const;
 
+export const NORTHSTAR_HERO_SLIDES = [
+  NORTHSTAR_HERO_FIRST_SLIDE,
+  {
+    title: "Free shipping on $75",
+    body: "Orders ship within two business days from Portland.",
+  },
+  {
+    title: "New: water-bottle line",
+    body: "Insulated stainless bottles in three colors, 18 and 32 oz.",
+  },
+] as const;
+
+export const NORTHSTAR_HERO_SLIDE_COUNT = NORTHSTAR_HERO_SLIDES.length;
+
 export const NORTHSTAR_SIDEBAR_SHIPPING_NOTE =
   "Free shipping on orders over $75.";
 

@@ -14,6 +14,7 @@ import {
   NORTHSTAR_SIDEBAR_SHIPPING_NOTE,
   NORTHSTAR_TEAM,
 } from "@/data/northstar-shop/copy";
+import { HeroCarouselWireframe } from "./HeroCarouselWireframe";
 import { MotionTargetOutline } from "./MotionTargetOutline";
 import { PracticeSiteShell } from "./PracticeSiteShell";
 import { mockupControlProps } from "./MockupNonInteractiveNotice";
@@ -74,65 +75,22 @@ function HomeMain({
     );
   } else if (overlayMode === "skipNav") {
     promoBlock = (
-      <div className="rounded-md border border-border bg-surface p-4 mb-4">
-        <h3 className="text-base font-semibold text-foreground m-0 mb-3">
-          {NORTHSTAR_HERO_PROMO_HEADING}
-        </h3>
-        <div className="flex gap-2 flex-wrap">
-          <SkipTargetOutline targetId="slide-1" pageId={pageId} className="inline-flex">
-            <button
-              type="button"
-              {...mockupControlProps}
-              className="rounded bg-primary/20 px-3 py-2 text-xs font-medium text-foreground"
-            >
-              Slide 1
-            </button>
-          </SkipTargetOutline>
-          <span className="rounded border border-dashed border-border px-3 py-2 text-xs text-text-secondary">
-            Slide 2
-          </span>
-          <span className="rounded border border-dashed border-border px-3 py-2 text-xs text-text-secondary">
-            Slide 3
-          </span>
-        </div>
+      <div className="mb-4">
+        <HeroCarouselWireframe
+          pauseButtonId="slide-1"
+          wrapPauseControl={(pauseButton) => (
+            <SkipTargetOutline targetId="slide-1" pageId={pageId} className="inline-flex">
+              {pauseButton}
+            </SkipTargetOutline>
+          )}
+        />
       </div>
     );
   } else {
-    const seed = motionSeed("hero-carousel");
-    const inner = (
-      <>
-        <h3 className="text-base font-semibold text-foreground m-0 mb-1">
-          {NORTHSTAR_HERO_PROMO_HEADING}
-        </h3>
-        <p className="text-xs text-text-secondary m-0 mb-3">{seed?.defaultDescription}</p>
-        <div className="flex gap-2 flex-wrap">
-          <button
-            type="button"
-            {...mockupControlProps}
-            className="rounded bg-primary/20 px-3 py-2 text-xs font-medium text-foreground"
-          >
-            Slide 1
-          </button>
-          <span className="rounded border border-dashed border-border px-3 py-2 text-xs text-text-secondary">
-            Slide 2
-          </span>
-          <span className="rounded border border-dashed border-border px-3 py-2 text-xs text-text-secondary">
-            Slide 3
-          </span>
-        </div>
-        <button
-          type="button"
-          {...mockupControlProps}
-          className="mt-3 text-xs text-primary-text underline"
-        >
-          Pause (static preview)
-        </button>
-      </>
-    );
     promoBlock = (
-      <div className="rounded-md border border-border bg-surface p-4 mb-4">
+      <div className="mb-4">
         <MotionTargetOutline motionId="hero-carousel" pageId={pageId}>
-          {inner}
+          <HeroCarouselWireframe />
         </MotionTargetOutline>
       </div>
     );
