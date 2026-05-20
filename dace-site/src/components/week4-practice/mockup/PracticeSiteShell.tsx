@@ -88,11 +88,9 @@ function SiteSearch({
 function LandmarkShell({
   pageId,
   children,
-  sidebar,
 }: {
   pageId: PracticePageId;
   children: React.ReactNode;
-  sidebar?: React.ReactNode;
 }) {
   const navOrder = NAV_ORDER_BY_PAGE[pageId];
   const currentLabel = PAGE_LABEL[pageId];
@@ -129,24 +127,13 @@ function LandmarkShell({
         </div>
       </ZoneOutline>
 
-      <div className="flex gap-2 m-2">
-        <ZoneOutline
-          zoneId="main-content"
-          pageId={pageId}
-          className={`flex-1 min-w-0 p-4 ${zonePad}`}
-        >
-          <div id="main-content">{children}</div>
-        </ZoneOutline>
-        {sidebar ? (
-          <ZoneOutline
-            zoneId="sidebar"
-            pageId={pageId}
-            className={`w-48 shrink-0 p-3 hidden sm:block ${zonePad}`}
-          >
-            {sidebar}
-          </ZoneOutline>
-        ) : null}
-      </div>
+      <ZoneOutline
+        zoneId="main-content"
+        pageId={pageId}
+        className={`m-2 p-4 ${zonePad}`}
+      >
+        <div id="main-content">{children}</div>
+      </ZoneOutline>
 
       <ZoneOutline zoneId="site-footer" pageId={pageId} className={`m-2 p-3 ${zonePad}`}>
         <ul className="flex flex-wrap gap-4 list-none m-0 p-0 mb-2 text-text-secondary">
@@ -171,11 +158,9 @@ function LandmarkShell({
 function SkipNavShell({
   pageId,
   children,
-  sidebar,
 }: {
   pageId: PracticePageId;
   children: React.ReactNode;
-  sidebar?: React.ReactNode;
 }) {
   const navOrder = NAV_ORDER_BY_PAGE[pageId];
   const currentLabel = PAGE_LABEL[pageId];
@@ -230,11 +215,8 @@ function SkipNavShell({
         <SiteSearch pageId={pageId} overlayMode="skipNav" />
       </div>
 
-      <div className="flex gap-2 m-2">
-        <div className="flex-1 min-w-0 p-2">
-          <div id="main-content">{children}</div>
-        </div>
-        {sidebar ? <div className="w-48 shrink-0 p-3 hidden sm:block">{sidebar}</div> : null}
+      <div className="m-2 p-2">
+        <div id="main-content">{children}</div>
       </div>
 
       <div className="m-2 p-3">
@@ -267,13 +249,7 @@ function SkipNavShell({
   );
 }
 
-function MotionShell({
-  children,
-  sidebar,
-}: {
-  children: React.ReactNode;
-  sidebar?: React.ReactNode;
-}) {
+function MotionShell({ children }: { children: React.ReactNode }) {
   return (
     <>
       <div className="m-2 p-3 flex flex-wrap items-center gap-4 justify-between border-b border-border">
@@ -281,15 +257,8 @@ function MotionShell({
         <p className="text-xs text-text-secondary m-0">Header not numbered in motion view</p>
       </div>
 
-      <div className="flex gap-2 m-2">
-        <div className="flex-1 min-w-0 p-2">
-          <div id="main-content">{children}</div>
-        </div>
-        {sidebar ? (
-          <div className="w-48 shrink-0 p-3 hidden sm:block text-xs text-text-secondary">
-            {sidebar}
-          </div>
-        ) : null}
+      <div className="m-2 p-2">
+        <div id="main-content">{children}</div>
       </div>
 
       <div className="m-2 p-3 border-t border-border text-text-secondary text-xs">
@@ -302,25 +271,19 @@ function MotionShell({
 export function PracticeSiteShell({
   pageId,
   children,
-  sidebar,
   overlayMode = "landmark",
 }: {
   pageId: PracticePageId;
   children: React.ReactNode;
-  sidebar?: React.ReactNode;
   overlayMode?: PracticeOverlayMode;
 }) {
   const inner =
     overlayMode === "skipNav" ? (
-      <SkipNavShell pageId={pageId} sidebar={sidebar}>
-        {children}
-      </SkipNavShell>
+      <SkipNavShell pageId={pageId}>{children}</SkipNavShell>
     ) : overlayMode === "motion" ? (
-      <MotionShell sidebar={sidebar}>{children}</MotionShell>
+      <MotionShell>{children}</MotionShell>
     ) : (
-      <LandmarkShell pageId={pageId} sidebar={sidebar}>
-        {children}
-      </LandmarkShell>
+      <LandmarkShell pageId={pageId}>{children}</LandmarkShell>
     );
 
   return (

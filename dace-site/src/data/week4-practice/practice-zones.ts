@@ -65,7 +65,8 @@ export const PRACTICE_ZONES: PracticeZone[] = [
   },
   {
     id: "main-content",
-    description: "Central column with this page’s primary content",
+    description:
+      "Main landmark for this page’s primary content and any nested regions (Filters on Home/Products, contact form on About)",
     pages: ["home", "products", "about"],
   },
   {

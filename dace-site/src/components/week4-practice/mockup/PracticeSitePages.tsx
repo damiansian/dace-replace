@@ -41,6 +41,28 @@ function SidebarPromo() {
   );
 }
 
+/** Filters column nested inside main (landmark zone 5), same pattern as About contact form. */
+function FiltersSidebar({
+  pageId,
+  overlayMode,
+}: {
+  pageId: PracticePageId;
+  overlayMode: PracticeOverlayMode;
+}) {
+  const filters = <SidebarPromo />;
+  const columnClass = "w-full sm:w-56 shrink-0";
+
+  if (overlayMode === "landmark") {
+    return (
+      <ZoneOutline zoneId="sidebar" pageId={pageId} className={`${columnClass} p-2`}>
+        {filters}
+      </ZoneOutline>
+    );
+  }
+
+  return <div className={columnClass}>{filters}</div>;
+}
+
 function HomeMain({
   pageId,
   overlayMode,
@@ -101,11 +123,14 @@ function HomeMain({
   }
 
   return (
-    <>
-      {heading}
-      {promoBlock}
-      <p className="text-sm text-text-secondary m-0">{NORTHSTAR_HOME_INTRO}</p>
-    </>
+    <div className="flex flex-col sm:flex-row gap-6">
+      <div className="flex-1 min-w-0 space-y-4">
+        {heading}
+        {promoBlock}
+        <p className="text-sm text-text-secondary m-0">{NORTHSTAR_HOME_INTRO}</p>
+      </div>
+      <FiltersSidebar pageId={pageId} overlayMode={overlayMode} />
+    </div>
   );
 }
 
@@ -224,13 +249,16 @@ function ProductsMain({
   };
 
   return (
-    <>
-      {heading}
-      <p className="text-sm text-text-secondary mb-4 m-0">{NORTHSTAR_PRODUCTS_INTRO}</p>
-      <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 list-none m-0 p-0">
-        {NORTHSTAR_PRODUCTS.map(renderProductCard)}
-      </ul>
-    </>
+    <div className="flex flex-col sm:flex-row gap-6">
+      <div className="flex-1 min-w-0">
+        {heading}
+        <p className="text-sm text-text-secondary mb-4 m-0">{NORTHSTAR_PRODUCTS_INTRO}</p>
+        <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 list-none m-0 p-0">
+          {NORTHSTAR_PRODUCTS.map(renderProductCard)}
+        </ul>
+      </div>
+      <FiltersSidebar pageId={pageId} overlayMode={overlayMode} />
+    </div>
   );
 }
 
@@ -382,10 +410,8 @@ export function PracticeSitePage({
   pageId: PracticePageId;
   overlayMode?: PracticeOverlayMode;
 }) {
-  const sidebar = pageId !== "about" ? <SidebarPromo /> : undefined;
-
   return (
-    <PracticeSiteShell pageId={pageId} sidebar={sidebar} overlayMode={overlayMode}>
+    <PracticeSiteShell pageId={pageId} overlayMode={overlayMode}>
       {pageId === "home" && <HomeMain pageId={pageId} overlayMode={overlayMode} />}
       {pageId === "products" && <ProductsMain pageId={pageId} overlayMode={overlayMode} />}
       {pageId === "about" && <AboutMain pageId={pageId} overlayMode={overlayMode} />}
