@@ -191,50 +191,54 @@ export default function CourseHomeTable({
                       rowSpan={week.lessons.length}
                       className="border border-border bg-white px-4 py-4 align-middle text-left text-foreground"
                     >
-                      <div className="flex flex-col gap-1">
-                        <div className="flex items-center gap-2">
-                          {snapshot && (
-                            <TrackedItemStatus
-                              kind="assignment"
-                              complete={Boolean(appliedLatest)}
-                            />
-                          )}
-                          <Link
-                            href={withToken(week.appliedSkill.href, token)}
-                            className="font-semibold text-primary-text underline hover:text-primary-dark"
-                          >
-                            {week.appliedSkill.title}
-                          </Link>
-                        </div>
-                        {workbookBest && (
-                          <p className="pl-7 text-xs text-text-secondary">
-                            Best workbook score {workbookBest.score}/
-                            {workbookBest.total ?? WEEK4_WORKBOOK_TOTAL_POINTS}
-                          </p>
-                        )}
-                        {appliedLatest && (
-                          <div className="pl-7 text-xs text-text-secondary">
-                            <p>Submitted {formatDate(appliedLatest.submittedAt)}</p>
-                            {appliedGrade && (
-                              <p className="font-medium text-foreground">
-                                Graded {appliedGrade.score}/{appliedGrade.total}
-                              </p>
+                      {week.appliedSkill.href === "#" ? (
+                        <span className="text-text-secondary">{week.appliedSkill.title}</span>
+                      ) : (
+                        <div className="flex flex-col gap-1">
+                          <div className="flex items-center gap-2">
+                            {snapshot && (
+                              <TrackedItemStatus
+                                kind="assignment"
+                                complete={Boolean(appliedLatest)}
+                              />
                             )}
-                            {appliedLatest.linkUrl && (
-                              <p>
-                                <a
-                                  href={appliedLatest.linkUrl}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="underline text-primary-text hover:text-primary-dark"
-                                >
-                                  View your submitted file
-                                </a>
-                              </p>
-                            )}
+                            <Link
+                              href={withToken(week.appliedSkill.href, token)}
+                              className="font-semibold text-primary-text underline hover:text-primary-dark"
+                            >
+                              {week.appliedSkill.title}
+                            </Link>
                           </div>
-                        )}
-                      </div>
+                          {workbookBest && (
+                            <p className="pl-7 text-xs text-text-secondary">
+                              Best workbook score {workbookBest.score}/
+                              {workbookBest.total ?? WEEK4_WORKBOOK_TOTAL_POINTS}
+                            </p>
+                          )}
+                          {appliedLatest && (
+                            <div className="pl-7 text-xs text-text-secondary">
+                              <p>Submitted {formatDate(appliedLatest.submittedAt)}</p>
+                              {appliedGrade && (
+                                <p className="font-medium text-foreground">
+                                  Graded {appliedGrade.score}/{appliedGrade.total}
+                                </p>
+                              )}
+                              {appliedLatest.linkUrl && (
+                                <p>
+                                  <a
+                                    href={appliedLatest.linkUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="underline text-primary-text hover:text-primary-dark"
+                                  >
+                                    View your submitted file
+                                  </a>
+                                </p>
+                              )}
+                            </div>
+                          )}
+                        </div>
+                      )}
                     </td>
                   )}
                 </tr>
