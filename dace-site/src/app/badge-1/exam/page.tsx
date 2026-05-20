@@ -88,9 +88,9 @@ export default async function Badge1ExamPage({ searchParams }: PageProps) {
             for a recap of every module.
           </li>
           <li>
-            Your raw score appears immediately. Your instructor may adjust the
-            final score after item analysis; that adjustment is reflected in
-            the gradebook, not on this page.
+            Your raw score appears immediately. Your instructor reviews each
+            submission and posts your final score in the gradebook within 24
+            hours.
           </li>
         </ul>
       </section>
