@@ -1,3 +1,4 @@
+import { NORTHSTAR_HOME_INTRO } from "@/data/northstar-shop/copy";
 import HeroCarousel from "../motion/HeroCarousel";
 import SidebarPromo from "./SidebarPromo";
 
@@ -8,10 +9,7 @@ export default function NorthstarHome() {
         <h2 className="text-lg font-semibold text-foreground m-0">
           Welcome back
         </h2>
-        <p className="text-sm text-text-secondary m-0">
-          Browse featured products in the catalog, then jump straight to a
-          category from the primary navigation.
-        </p>
+        <p className="text-sm text-text-secondary m-0">{NORTHSTAR_HOME_INTRO}</p>
         <HeroCarousel />
       </div>
       <div className="w-full sm:w-56 shrink-0">

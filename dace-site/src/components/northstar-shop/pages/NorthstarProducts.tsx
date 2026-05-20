@@ -1,50 +1,50 @@
+import {
+  NORTHSTAR_PRODUCTS,
+  NORTHSTAR_PRODUCTS_HEADING,
+  NORTHSTAR_PRODUCTS_INTRO,
+} from "@/data/northstar-shop/copy";
 import AddToCartButton from "../motion/AddToCartButton";
 import MotionLearningCallout from "../MotionLearningCallout";
 import ProductCard from "../motion/ProductCard";
 import SidebarPromo from "./SidebarPromo";
 
-const PRODUCTS = [
-  {
-    name: "Trail pack",
-    price: "$49.00",
-    id: "trail-pack-cart",
+const PRODUCT_IMAGES: Record<
+  (typeof NORTHSTAR_PRODUCTS)[number]["name"],
+  { imageSrc: string; imageAlt: string }
+> = {
+  "Trail pack": {
     imageSrc: "/northstar-shop/product-trail-pack.svg",
     imageAlt: "Purple hiking backpack",
   },
-  {
-    name: "Desk lamp",
-    price: "$32.00",
+  "Desk lamp": {
     imageSrc: "/northstar-shop/product-desk-lamp.svg",
     imageAlt: "Adjustable desk lamp with warm light",
   },
-  {
-    name: "Water bottle",
-    price: "$22.00",
+  "Water bottle": {
     imageSrc: "/northstar-shop/product-water-bottle.svg",
     imageAlt: "Insulated stainless water bottle",
   },
-];
+};
 
 export default function NorthstarProducts() {
   return (
     <div className="flex flex-col sm:flex-row gap-6">
       <div className="flex-1 min-w-0 space-y-4">
-        <h2 className="text-lg font-semibold text-foreground m-0">Product catalog</h2>
-        <p className="text-sm text-text-secondary m-0">
-          A small catalog so you can keyboard-test the focus order after the
-          skip link.
-        </p>
+        <h2 className="text-lg font-semibold text-foreground m-0">
+          {NORTHSTAR_PRODUCTS_HEADING}
+        </h2>
+        <p className="text-sm text-text-secondary m-0">{NORTHSTAR_PRODUCTS_INTRO}</p>
         <ul className="grid grid-cols-1 sm:grid-cols-3 gap-3 list-none m-0 p-0">
-          {PRODUCTS.map((product) => (
+          {NORTHSTAR_PRODUCTS.map((product) => (
             <ProductCard
               key={product.name}
               name={product.name}
               price={product.price}
-              imageSrc={product.imageSrc}
-              imageAlt={product.imageAlt}
+              imageSrc={PRODUCT_IMAGES[product.name].imageSrc}
+              imageAlt={PRODUCT_IMAGES[product.name].imageAlt}
             >
               <AddToCartButton
-                id={product.id}
+                id={product.cartId}
                 productName={product.name}
               />
             </ProductCard>

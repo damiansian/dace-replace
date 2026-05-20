@@ -1,6 +1,10 @@
 "use client";
 
 import { useEffect, useId, useRef, useState } from "react";
+import {
+  NORTHSTAR_CONTACT_REQUIRED_HINT,
+  NORTHSTAR_CONTACT_SUBMIT_LABEL,
+} from "@/data/northstar-shop/copy";
 import { northstarLandmarkProps } from "./northstar-landmark";
 
 type FieldKey = "name" | "email" | "message";
@@ -137,8 +141,7 @@ export default function ContactForm() {
           Contact us
         </h2>
         <p id={requiredHintId} className="text-xs text-text-secondary m-0">
-          Fields marked with an asterisk (
-          <span aria-hidden="true">*</span>) are required.
+          {NORTHSTAR_CONTACT_REQUIRED_HINT}
         </p>
 
         <div>
@@ -265,7 +268,7 @@ export default function ContactForm() {
           type="submit"
           className="rounded-lg bg-primary px-4 py-2 text-sm font-medium text-white hover:bg-primary-dark"
         >
-          Send message
+          {NORTHSTAR_CONTACT_SUBMIT_LABEL}
         </button>
       </form>
 

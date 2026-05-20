@@ -1,3 +1,4 @@
+import { NORTHSTAR_SIDEBAR_SHIPPING_NOTE } from "@/data/northstar-shop/copy";
 import { northstarLandmarkProps } from "../northstar-landmark";
 
 export default function SidebarPromo() {
@@ -32,9 +33,7 @@ export default function SidebarPromo() {
           </label>
         </li>
       </ul>
-      <p className="text-xs text-text-secondary m-0 mt-3">
-        Free shipping on orders over $75.
-      </p>
+      <p className="text-xs text-text-secondary m-0 mt-3">{NORTHSTAR_SIDEBAR_SHIPPING_NOTE}</p>
     </section>
   );
 }

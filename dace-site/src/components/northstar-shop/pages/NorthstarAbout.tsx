@@ -1,5 +1,6 @@
 "use client";
 
+import { NORTHSTAR_ABOUT_INTRO } from "@/data/northstar-shop/copy";
 import ContactForm from "../ContactForm";
 import MotionLearningCallout from "../MotionLearningCallout";
 import TeamReveal from "../motion/TeamReveal";
@@ -12,10 +13,7 @@ export default function NorthstarAbout() {
           <h2 className="text-lg font-semibold text-foreground m-0">
             About Northstar
           </h2>
-          <p className="text-sm text-text-secondary m-0">
-            We design outdoor gear for everyday adventures, built around quality
-            materials and accessible product information.
-          </p>
+          <p className="text-sm text-text-secondary m-0">{NORTHSTAR_ABOUT_INTRO}</p>
         </section>
 
         <section className="space-y-2">

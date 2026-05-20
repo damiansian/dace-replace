@@ -4,26 +4,13 @@ import { useEffect, useRef, useState } from "react";
 import { useReducedMotion } from "../useReducedMotion";
 import styles from "./motion.module.css";
 
-const TEAM = [
-  {
-    id: "alex-profile",
-    name: "Alex",
-    role: "Founder",
-    imageSrc: "/northstar-shop/team-alex.png",
-  },
-  {
-    id: "jordan-profile",
-    name: "Jordan",
-    role: "Designer",
-    imageSrc: "/northstar-shop/team-jordan.png",
-  },
-  {
-    id: "sam-profile",
-    name: "Sam",
-    role: "Engineering",
-    imageSrc: "/northstar-shop/team-sam.png",
-  },
-];
+import { NORTHSTAR_TEAM } from "@/data/northstar-shop/copy";
+
+const TEAM_IMAGES: Record<(typeof NORTHSTAR_TEAM)[number]["id"], string> = {
+  "alex-profile": "/northstar-shop/team-alex.png",
+  "jordan-profile": "/northstar-shop/team-jordan.png",
+  "sam-profile": "/northstar-shop/team-sam.png",
+};
 
 export default function TeamReveal() {
   const reducedMotion = useReducedMotion();
@@ -58,7 +45,7 @@ export default function TeamReveal() {
 
   return (
     <ul ref={ref} className="flex gap-3 list-none m-0 p-0 mt-2 flex-wrap">
-      {TEAM.map((member, i) => (
+      {NORTHSTAR_TEAM.map((member, i) => (
         <li
           key={member.id}
           className={`${styles.fadeUp} ${revealed ? styles.fadeUpVisible : ""}`}
@@ -76,7 +63,7 @@ export default function TeamReveal() {
             aria-label={`${member.name}, ${member.role}, team profile`}
           >
             <img
-              src={member.imageSrc}
+              src={TEAM_IMAGES[member.id]}
               alt=""
               width={48}
               height={48}

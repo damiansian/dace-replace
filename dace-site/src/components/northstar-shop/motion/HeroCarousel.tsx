@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { NORTHSTAR_HERO_PROMO_HEADING } from "@/data/northstar-shop/copy";
 import MotionLearningCallout from "../MotionLearningCallout";
 import { useReducedMotion } from "../useReducedMotion";
 import styles from "./motion.module.css";
@@ -88,7 +89,7 @@ export default function HeroCarousel() {
       className="rounded-md border border-border bg-surface p-4"
     >
       <h3 className="text-base font-semibold text-foreground m-0 mb-3">
-        Featured promotions
+        {NORTHSTAR_HERO_PROMO_HEADING}
       </h3>
 
       <div

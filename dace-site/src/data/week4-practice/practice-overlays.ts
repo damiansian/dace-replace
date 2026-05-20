@@ -27,14 +27,14 @@ export const SKIP_TARGETS_BY_PAGE: Record<PracticePageId, SkipTarget[]> = {
   ],
   products: [
     { id: "site-title", description: "Site title (Northstar Shop)" },
-    {
-      id: "trail-pack-cart",
-      description: "Add to cart — Trail pack",
-      isCorrectFirstTab: true,
-    },
     { id: "nav-home", description: "Primary navigation (first link)" },
     { id: "search", description: "Search field" },
-    { id: "products-heading", description: "Products heading" },
+    { id: "products-heading", description: "Product catalog heading" },
+    {
+      id: "trail-pack-cart",
+      description: "Trail pack — Add to cart",
+      isCorrectFirstTab: true,
+    },
     { id: "footer-privacy", description: "Footer links (first link)" },
   ],
   about: [
@@ -133,7 +133,12 @@ export function matchesSkipLinkFirstTab(
     case "home":
       return normalizedLower === "slide-1" || /slide\s*1/.test(normalizedLower);
     case "products":
-      return normalizedLower === "trail-pack-cart" || (/add\s*to\s*cart/.test(normalizedLower) && /trail/.test(normalizedLower));
+      return (
+        normalizedLower === "trail-pack-cart" ||
+        normalizedLower === "trail-pack" ||
+        (/trail\s*pack/.test(normalizedLower) &&
+          /add\s*to\s*cart|cart/.test(normalizedLower))
+      );
     case "about":
       return normalizedLower === "alex-profile" || /alex/.test(normalizedLower);
     default:

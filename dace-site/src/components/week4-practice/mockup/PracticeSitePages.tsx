@@ -1,6 +1,19 @@
 import type { PracticeOverlayMode } from "@/data/week4-practice/practice-overlays";
 import { MOTION_SEEDS } from "@/data/week4-practice/practice-zones";
 import type { PracticePageId } from "@/data/week4-practice/practice-zones";
+import {
+  NORTHSTAR_ABOUT_INTRO,
+  NORTHSTAR_CONTACT_REQUIRED_HINT,
+  NORTHSTAR_CONTACT_SUBMIT_LABEL,
+  NORTHSTAR_HERO_FIRST_SLIDE,
+  NORTHSTAR_HERO_PROMO_HEADING,
+  NORTHSTAR_HOME_INTRO,
+  NORTHSTAR_PRODUCTS,
+  NORTHSTAR_PRODUCTS_HEADING,
+  NORTHSTAR_PRODUCTS_INTRO,
+  NORTHSTAR_SIDEBAR_SHIPPING_NOTE,
+  NORTHSTAR_TEAM,
+} from "@/data/northstar-shop/copy";
 import { MotionTargetOutline } from "./MotionTargetOutline";
 import { PracticeSiteShell } from "./PracticeSiteShell";
 import { mockupControlProps } from "./MockupNonInteractiveNotice";
@@ -22,6 +35,7 @@ function SidebarPromo() {
         <li>On sale</li>
         <li>New arrivals</li>
       </ul>
+      <p className="text-xs text-text-secondary m-0 mt-3">{NORTHSTAR_SIDEBAR_SHIPPING_NOTE}</p>
     </section>
   );
 }
@@ -47,16 +61,23 @@ function HomeMain({
   if (overlayMode === "landmark") {
     promoBlock = (
       <div className="rounded-md border border-border bg-surface p-4 mb-4">
-        <p className="text-sm font-medium text-foreground m-0 mb-2">Featured promotions</p>
-        <p className="text-sm text-text-secondary m-0">
-          Summer sale — up to 30% off trail gear through June.
-        </p>
+        <h3 className="text-base font-semibold text-foreground m-0 mb-3">
+          {NORTHSTAR_HERO_PROMO_HEADING}
+        </h3>
+        <div className="rounded border border-border bg-white p-3">
+          <p className="text-sm font-semibold text-foreground m-0 mb-1">
+            {NORTHSTAR_HERO_FIRST_SLIDE.title}
+          </p>
+          <p className="text-xs text-text-secondary m-0">{NORTHSTAR_HERO_FIRST_SLIDE.body}</p>
+        </div>
       </div>
     );
   } else if (overlayMode === "skipNav") {
     promoBlock = (
       <div className="rounded-md border border-border bg-surface p-4 mb-4">
-        <p className="text-sm font-medium text-foreground m-0 mb-3">Featured promotions</p>
+        <h3 className="text-base font-semibold text-foreground m-0 mb-3">
+          {NORTHSTAR_HERO_PROMO_HEADING}
+        </h3>
         <div className="flex gap-2 flex-wrap">
           <SkipTargetOutline targetId="slide-1" pageId={pageId} className="inline-flex">
             <button
@@ -80,9 +101,9 @@ function HomeMain({
     const seed = motionSeed("hero-carousel");
     const inner = (
       <>
-        <p className="text-sm text-foreground font-medium m-0 mb-1">
-          Hero carousel (static preview)
-        </p>
+        <h3 className="text-base font-semibold text-foreground m-0 mb-1">
+          {NORTHSTAR_HERO_PROMO_HEADING}
+        </h3>
         <p className="text-xs text-text-secondary m-0 mb-3">{seed?.defaultDescription}</p>
         <div className="flex gap-2 flex-wrap">
           <button
@@ -121,11 +142,7 @@ function HomeMain({
     <>
       {heading}
       {promoBlock}
-      {overlayMode === "landmark" ? (
-        <p className="text-sm text-text-secondary m-0">
-          Browse featured products in the catalog.
-        </p>
-      ) : null}
+      <p className="text-sm text-text-secondary m-0">{NORTHSTAR_HOME_INTRO}</p>
     </>
   );
 }
@@ -140,19 +157,25 @@ function ProductsMain({
   const heading =
     overlayMode === "skipNav" ? (
       <SkipTargetOutline targetId="products-heading" pageId={pageId} className="inline-block p-2 mb-2">
-        <h2 className="text-lg font-semibold text-foreground mt-0 m-0">Products</h2>
+        <h2 className="text-lg font-semibold text-foreground mt-0 m-0">
+          {NORTHSTAR_PRODUCTS_HEADING}
+        </h2>
       </SkipTargetOutline>
     ) : (
-      <h2 className="text-lg font-semibold text-foreground mt-0">Products</h2>
+      <h2 className="text-lg font-semibold text-foreground mt-0">
+        {NORTHSTAR_PRODUCTS_HEADING}
+      </h2>
     );
 
-  const renderProductCard = (name: string) => {
+  const renderProductCard = (product: (typeof NORTHSTAR_PRODUCTS)[number]) => {
+    const { name, price, cartId } = product;
     const cartButton = (
       <button
+        id={cartId}
         type="button"
         {...mockupControlProps}
         className="rounded bg-primary px-3 py-1.5 text-xs font-medium text-white"
-        aria-label={`Add to cart, ${name}`}
+        aria-label={`Add ${name} to cart`}
       >
         Add to cart
       </button>
@@ -174,9 +197,9 @@ function ProductsMain({
                 : null}
             </p>
           </>
-        ) : overlayMode === "landmark" ? (
-          <p className="text-xs text-text-secondary m-0 mb-2">$49.00</p>
-        ) : null}
+        ) : (
+          <p className="text-xs text-text-secondary m-0 mb-2">{price}</p>
+        )}
         {overlayMode === "motion" && name === "Trail pack" ? (
           <MotionTargetOutline
             motionId="add-to-cart-transition"
@@ -196,6 +219,19 @@ function ProductsMain({
         {body}
       </li>
     );
+
+    if (overlayMode === "skipNav" && name === "Trail pack") {
+      return (
+        <SkipTargetOutline
+          key={name}
+          targetId="trail-pack-cart"
+          pageId={pageId}
+          className="list-none"
+        >
+          {card}
+        </SkipTargetOutline>
+      );
+    }
 
     if (overlayMode === "motion" && name === "Trail pack") {
       return (
@@ -228,13 +264,9 @@ function ProductsMain({
   return (
     <>
       {heading}
-      {overlayMode === "landmark" ? (
-        <p className="text-sm text-text-secondary mb-4 m-0">
-          Product grid in the main content region.
-        </p>
-      ) : null}
+      <p className="text-sm text-text-secondary mb-4 m-0">{NORTHSTAR_PRODUCTS_INTRO}</p>
       <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 list-none m-0 p-0">
-        {["Trail pack", "Desk lamp", "Water bottle"].map(renderProductCard)}
+        {NORTHSTAR_PRODUCTS.map(renderProductCard)}
       </ul>
     </>
   );
@@ -256,30 +288,29 @@ function AboutMain({
       <h2 className="text-lg font-semibold text-foreground mt-0">About Northstar</h2>
     );
 
-  const teamProfiles: { name: string; targetId: string }[] = [
-    { name: "Alex", targetId: "alex-profile" },
-    { name: "Jordan", targetId: "jordan-profile" },
-    { name: "Sam", targetId: "sam-profile" },
-  ];
-
   const teamList = (
-    <ul className="flex gap-3 list-none m-0 p-0 mt-2">
-      {teamProfiles.map(({ name, targetId }) => {
+    <ul className="flex gap-3 list-none m-0 p-0 mt-2 flex-wrap">
+      {NORTHSTAR_TEAM.map((member) => {
         const profileControl = (
           <button
             type="button"
             {...mockupControlProps}
-            className="rounded-full bg-surface border border-border w-16 h-16 flex items-center justify-center text-xs text-text-secondary"
-            aria-label={`${name} profile photo`}
+            className="flex flex-col items-center gap-1 rounded-md border border-border bg-white p-3 w-24 text-center"
+            aria-label={`${member.name}, ${member.role}, team profile`}
           >
-            {name}
+            <span
+              aria-hidden="true"
+              className="h-12 w-12 rounded-full border border-border bg-surface block"
+            />
+            <span className="text-sm font-medium text-foreground">{member.name}</span>
+            <span className="text-[11px] text-text-secondary">{member.role}</span>
           </button>
         );
 
         return (
-          <li key={name}>
+          <li key={member.id}>
             {overlayMode === "skipNav" ? (
-              <SkipTargetOutline targetId={targetId} pageId={pageId} className="inline-flex">
+              <SkipTargetOutline targetId={member.id} pageId={pageId} className="inline-flex">
                 {profileControl}
               </SkipTargetOutline>
             ) : (
@@ -311,7 +342,8 @@ function AboutMain({
 
   const contactFormBody = (
     <form className="space-y-3 w-full" noValidate>
-      <h3 className="text-base font-semibold text-foreground mt-0 m-0">Contact us</h3>
+      <h2 className="text-lg font-semibold text-foreground mt-0 m-0">Contact us</h2>
+      <p className="text-xs text-text-secondary m-0">{NORTHSTAR_CONTACT_REQUIRED_HINT}</p>
       <div>
         <label htmlFor={`contact-name-${pageId}`} className="block text-sm font-medium text-foreground mb-1">
           Name
@@ -355,7 +387,7 @@ function AboutMain({
         {...mockupControlProps}
         className="rounded-lg bg-primary px-4 py-2 text-sm font-medium text-white"
       >
-        Submit
+        {NORTHSTAR_CONTACT_SUBMIT_LABEL}
       </button>
     </form>
   );
@@ -373,9 +405,7 @@ function AboutMain({
     <div className="flex flex-col sm:flex-row gap-6">
       <div className="flex-1 min-w-0 space-y-4">
         {heading}
-        <p className="text-sm text-text-secondary m-0">
-          We design outdoor gear for everyday adventures.
-        </p>
+        <p className="text-sm text-text-secondary m-0">{NORTHSTAR_ABOUT_INTRO}</p>
         {teamSection}
       </div>
       <div className="w-full sm:w-56 shrink-0">{contactFormSection}</div>

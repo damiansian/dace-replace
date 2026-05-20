@@ -1,0 +1,818 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<questestinterop xmlns="http://www.imsglobal.org/xsd/ims_qtiasiv1p2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.imsglobal.org/xsd/ims_qtiasiv1p2 http://www.imsglobal.org/xsd/ims_qtiasiv1p2p1.xsd">
+  <assessment ident="B1_Final_Assessment" title="Discover Badge Final Assessment">
+    <qtimetadata>
+      <qtimetadatafield>
+        <fieldlabel>qmd_timelimit</fieldlabel>
+        <fieldentry>2700</fieldentry>
+      </qtimetadatafield>
+      <qtimetadatafield>
+        <fieldlabel>cc_maxattempts</fieldlabel>
+        <fieldentry>1</fieldentry>
+      </qtimetadatafield>
+    </qtimetadata>
+    <section ident="root_section">
+
+      <!-- Q1: Differentiating Identical Link Text (1A.01) - Answer: B -->
+      <item ident="Q01" title="Q1: Differentiating Identical Link Text">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html"><![CDATA[<p><img src="images/q1-stimulus.png" alt="A marketing page with three 'Learn more' links, each in a different content section with h3 headings. Three annotation approaches are shown for differentiating the links." /></p><p><a href="https://www.figma.com/design/RcRGB4BL6fKAg04TawiIL6/Badge-one-exam-student-copy?node-id=0-1" target="_blank">View stimulus in Figma</a></p><p>There are three links with the same visible text "Learn more." How should the designer annotate these links to conform to WCAG and help screen reader users differentiate them when pulling up a list of links?</p>]]></mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice shuffle="Yes">
+              <response_label ident="A"><material><mattext>Approach 1: Add positional context like "Link one of three"</mattext></material></response_label>
+              <response_label ident="B"><material><mattext>Approach 2: Associate each link with its adjacent h3 heading text</mattext></material></response_label>
+              <response_label ident="C"><material><mattext>Approach 3: Associate all links with the page h2 heading</mattext></material></response_label>
+              <response_label ident="D"><material><mattext>No annotation is needed because the visible text "Learn more" is sufficient</mattext></material></response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">B</varequal></conditionvar><setvar action="Set" varname="SCORE">100</setvar><displayfeedback feedbacktype="Response" linkrefid="Q01_B"/></respcondition>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">A</varequal></conditionvar><setvar action="Set" varname="SCORE">0</setvar><displayfeedback feedbacktype="Response" linkrefid="Q01_A"/></respcondition>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">C</varequal></conditionvar><setvar action="Set" varname="SCORE">0</setvar><displayfeedback feedbacktype="Response" linkrefid="Q01_C"/></respcondition>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">D</varequal></conditionvar><setvar action="Set" varname="SCORE">0</setvar><displayfeedback feedbacktype="Response" linkrefid="Q01_D"/></respcondition>
+        </resprocessing>
+        <itemfeedback ident="Q01_B"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Correct! Approach 2 associates each 'Learn more' link with its adjacent h3 heading, providing the same contextual connection that sighted users get visually.</p>]]></mattext></material></flow_mat></itemfeedback>
+        <itemfeedback ident="Q01_A"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Incorrect. Positional context like 'Link one of three' doesn't convey meaningful information about the link's purpose.</p>]]></mattext></material></flow_mat></itemfeedback>
+        <itemfeedback ident="Q01_C"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Incorrect. Associating all links with the same heading doesn't differentiate them at all.</p>]]></mattext></material></flow_mat></itemfeedback>
+        <itemfeedback ident="Q01_D"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Incorrect. Multiple links with identical text must be differentiated programmatically per <a href="https://www.w3.org/WAI/WCAG22/Understanding/link-purpose-in-context.html" target="_blank">SC 2.4.4 Link Purpose (In Context)</a>.</p>]]></mattext></material></flow_mat></itemfeedback>
+      </item>
+
+      <!-- Q2: Avatar Image Annotation (1A.02) - Answer: C -->
+      <item ident="Q02" title="Q2: Avatar Image Annotation">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html"><![CDATA[<p><img src="images/q2-stimulus.png" alt="A user profile dropdown showing Jack Traven with email and avatar photo. The annotation panel shows uncertainty about the avatar's accessible name." /></p><p><a href="https://www.figma.com/design/RcRGB4BL6fKAg04TawiIL6/Badge-one-exam-student-copy?node-id=0-1" target="_blank">View stimulus in Figma</a></p><p>A designer has asked you what is the best accessible name to define for the avatar image in this UI. What might you advise them to do here?</p>]]></mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice shuffle="Yes">
+              <response_label ident="A"><material><mattext>Use "[User name] avatar" as the accessible name</mattext></material></response_label>
+              <response_label ident="B"><material><mattext>Use aria-label="Jack Traven headshot"</mattext></material></response_label>
+              <response_label ident="C"><material><mattext>Mark the avatar as decorative (no accessible name needed)</mattext></material></response_label>
+              <response_label ident="D"><material><mattext>Describe the image in detail: "Man looking away from camera in dark background with red lighting"</mattext></material></response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">C</varequal></conditionvar><setvar action="Set" varname="SCORE">100</setvar><displayfeedback feedbacktype="Response" linkrefid="Q02_C"/></respcondition>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">A</varequal></conditionvar><setvar action="Set" varname="SCORE">0</setvar><displayfeedback feedbacktype="Response" linkrefid="Q02_A"/></respcondition>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">B</varequal></conditionvar><setvar action="Set" varname="SCORE">0</setvar><displayfeedback feedbacktype="Response" linkrefid="Q02_B"/></respcondition>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">D</varequal></conditionvar><setvar action="Set" varname="SCORE">0</setvar><displayfeedback feedbacktype="Response" linkrefid="Q02_D"/></respcondition>
+        </resprocessing>
+        <itemfeedback ident="Q02_C"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Correct! The avatar appears adjacent to 'Jack Traven' text, which already identifies the user. Adding an accessible name would create redundancy.</p>]]></mattext></material></flow_mat></itemfeedback>
+        <itemfeedback ident="Q02_A"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Incorrect. This creates redundancy with the adjacent name text.</p>]]></mattext></material></flow_mat></itemfeedback>
+        <itemfeedback ident="Q02_B"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Incorrect. This provides redundant information already available from adjacent text.</p>]]></mattext></material></flow_mat></itemfeedback>
+        <itemfeedback ident="Q02_D"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Incorrect. Detailed visual descriptions are inappropriate for functional UI elements.</p>]]></mattext></material></flow_mat></itemfeedback>
+      </item>
+
+      <!-- Q3: Accessible Name Quality (1A.03) - Answer: B -->
+      <item ident="Q03" title="Q3: Accessible Name Quality">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html"><![CDATA[<p><img src="images/q3-stimulus.png" alt="A Layer styles panel with annotation marker 3 showing 'More menu [Drop shadow]' for a more options button." /></p><p><a href="https://www.figma.com/design/RcRGB4BL6fKAg04TawiIL6/Badge-one-exam-student-copy?node-id=0-1" target="_blank">View stimulus in Figma</a></p><p>What might you tell a designer about the quality of the accessible name annotation for annotation number three?</p>]]></mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice shuffle="Yes">
+              <response_label ident="A"><material><mattext>It should read "three dots" to describe the visible attributes of the icon</mattext></material></response_label>
+              <response_label ident="B"><material><mattext>"Menu" is the role of the control and does not belong in the name of the control</mattext></material></response_label>
+              <response_label ident="C"><material><mattext>It should read "More menu Layer Styles," not Drop Shadow</mattext></material></response_label>
+              <response_label ident="D"><material><mattext>It should be marked decorative since the entire row is about more options making the control redundant</mattext></material></response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">B</varequal></conditionvar><setvar action="Set" varname="SCORE">100</setvar><displayfeedback feedbacktype="Response" linkrefid="Q03_B"/></respcondition>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">A</varequal></conditionvar><setvar action="Set" varname="SCORE">0</setvar><displayfeedback feedbacktype="Response" linkrefid="Q03_A"/></respcondition>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">C</varequal></conditionvar><setvar action="Set" varname="SCORE">0</setvar><displayfeedback feedbacktype="Response" linkrefid="Q03_C"/></respcondition>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">D</varequal></conditionvar><setvar action="Set" varname="SCORE">0</setvar><displayfeedback feedbacktype="Response" linkrefid="Q03_D"/></respcondition>
+        </resprocessing>
+        <itemfeedback ident="Q03_B"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Correct! 'Menu' is a role, not a name. Screen readers announce roles automatically, so including it creates redundancy.</p>]]></mattext></material></flow_mat></itemfeedback>
+        <itemfeedback ident="Q03_A"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Incorrect. Accessible names should describe function, not appearance.</p>]]></mattext></material></flow_mat></itemfeedback>
+        <itemfeedback ident="Q03_C"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Incorrect. 'Drop shadow' correctly identifies which layer style this menu applies to.</p>]]></mattext></material></flow_mat></itemfeedback>
+        <itemfeedback ident="Q03_D"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Incorrect. The more menu control is not redundant; it provides access to additional options.</p>]]></mattext></material></flow_mat></itemfeedback>
+      </item>
+
+      <!-- Q4: Evaluating Icon Annotations (1A.04) - Answer: D -->
+      <item ident="Q04" title="Q4: Evaluating Icon Annotations">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html"><![CDATA[<p><img src="images/q4-stimulus.png" alt="Adobe Express billing page with various icon annotations including a warning icon next to Change payment marked as decorative." /></p><p><a href="https://www.figma.com/design/RcRGB4BL6fKAg04TawiIL6/Badge-one-exam-student-copy?node-id=0-1" target="_blank">View stimulus in Figma</a></p><p>You are evaluating your team member's annotations here. Do you have any notes for them, or is it good to go?</p>]]></mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice shuffle="Yes">
+              <response_label ident="A"><material><mattext>No notes, good to go to engineering as-is</mattext></material></response_label>
+              <response_label ident="B"><material><mattext>If one graphic is functional, they all are: markers 2, 3, and 5 are all incorrect and need revision</mattext></material></response_label>
+              <response_label ident="C"><material><mattext>Marker 6 is incidental as opening a new window is non-material to a screen reader user</mattext></material></response_label>
+              <response_label ident="D"><material><mattext>Marker 5 is incorrect as the warning icon is not decorative</mattext></material></response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">D</varequal></conditionvar><setvar action="Set" varname="SCORE">100</setvar><displayfeedback feedbacktype="Response" linkrefid="Q04_D"/></respcondition>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">A</varequal></conditionvar><setvar action="Set" varname="SCORE">0</setvar><displayfeedback feedbacktype="Response" linkrefid="Q04_A"/></respcondition>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">B</varequal></conditionvar><setvar action="Set" varname="SCORE">0</setvar><displayfeedback feedbacktype="Response" linkrefid="Q04_B"/></respcondition>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">C</varequal></conditionvar><setvar action="Set" varname="SCORE">0</setvar><displayfeedback feedbacktype="Response" linkrefid="Q04_C"/></respcondition>
+        </resprocessing>
+        <itemfeedback ident="Q04_D"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Correct! The warning icon conveys critical status information and must have an accessible name. Relying on color alone violates <a href="https://www.w3.org/WAI/WCAG22/Understanding/use-of-color.html" target="_blank">SC 1.4.1 Use of Color</a>.</p>]]></mattext></material></flow_mat></itemfeedback>
+        <itemfeedback ident="Q04_A"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Incorrect. There is one issue that needs revision before sending to engineering.</p>]]></mattext></material></flow_mat></itemfeedback>
+        <itemfeedback ident="Q04_B"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Incorrect. Not all icons must be treated the same way. Each should be evaluated individually.</p>]]></mattext></material></flow_mat></itemfeedback>
+        <itemfeedback ident="Q04_C"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Incorrect. Opening a new window is material information for screen reader users.</p>]]></mattext></material></flow_mat></itemfeedback>
+      </item>
+
+      <!-- Q5: Differentiating Similar Controls (1A.05) - Answer: A -->
+      <item ident="Q05" title="Q5: Differentiating Similar Controls">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html"><![CDATA[<p><img src="images/q5-stimulus.png" alt="A Tracking links dashboard with two campaigns, each having copy, edit, and delete buttons." /></p><p><a href="https://www.figma.com/design/RcRGB4BL6fKAg04TawiIL6/Badge-one-exam-student-copy?node-id=0-1" target="_blank">View stimulus in Figma</a></p><p>What might be the best way to specify the accessible name of the button highlighted here?</p>]]></mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice shuffle="Yes">
+              <response_label ident="A"><material><mattext>Copy link [Campaign 1]</mattext></material></response_label>
+              <response_label ident="B"><material><mattext>Copy link [www.tracking.link/abcdefg12345678]</mattext></material></response_label>
+              <response_label ident="C"><material><mattext>Copy link</mattext></material></response_label>
+              <response_label ident="D"><material><mattext>Copy</mattext></material></response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">A</varequal></conditionvar><setvar action="Set" varname="SCORE">100</setvar><displayfeedback feedbacktype="Response" linkrefid="Q05_A"/></respcondition>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">B</varequal></conditionvar><setvar action="Set" varname="SCORE">0</setvar><displayfeedback feedbacktype="Response" linkrefid="Q05_B"/></respcondition>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">C</varequal></conditionvar><setvar action="Set" varname="SCORE">0</setvar><displayfeedback feedbacktype="Response" linkrefid="Q05_C"/></respcondition>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">D</varequal></conditionvar><setvar action="Set" varname="SCORE">0</setvar><displayfeedback feedbacktype="Response" linkrefid="Q05_D"/></respcondition>
+        </resprocessing>
+        <itemfeedback ident="Q05_A"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Correct! 'Copy link [Campaign 1]' describes the function and differentiates it using human-readable context.</p>]]></mattext></material></flow_mat></itemfeedback>
+        <itemfeedback ident="Q05_B"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Partially correct. The URL differentiates buttons but is not user-friendly.</p>]]></mattext></material></flow_mat></itemfeedback>
+        <itemfeedback ident="Q05_C"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Incorrect. This doesn't differentiate from the other Copy link button.</p>]]></mattext></material></flow_mat></itemfeedback>
+        <itemfeedback ident="Q05_D"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Incorrect. 'Copy' is too vague and doesn't differentiate buttons.</p>]]></mattext></material></flow_mat></itemfeedback>
+      </item>
+
+      <!-- Q6: Heading Hierarchy Evaluation (1B.01) - Answer: D -->
+      <item ident="Q06" title="Q6: Heading Hierarchy Evaluation">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html"><![CDATA[<p><img src="images/q6-stimulus.png" alt="A New document dialog with H1 for page title, H3 for category sections, and H2 for Document settings sidebar." /></p><p><a href="https://www.figma.com/design/RcRGB4BL6fKAg04TawiIL6/Badge-one-exam-student-copy?node-id=17-915" target="_blank">View stimulus in Figma</a></p><p>Considering the Design Accessibility Checklist's guidance on headings, would you pass or fail this content?</p>]]></mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice shuffle="Yes">
+              <response_label ident="A"><material><mattext>Pass. All heading text has annotation markers.</mattext></material></response_label>
+              <response_label ident="B"><material><mattext>Pass. All heading levels/ranks are correctly annotated.</mattext></material></response_label>
+              <response_label ident="C"><material><mattext>Fail. Some text that is a heading has no annotation marker.</mattext></material></response_label>
+              <response_label ident="D"><material><mattext>Fail. Some heading levels/ranks are incorrectly annotated.</mattext></material></response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">D</varequal></conditionvar><setvar action="Set" varname="SCORE">100</setvar><displayfeedback feedbacktype="Response" linkrefid="Q06_D"/></respcondition>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">A</varequal></conditionvar><setvar action="Set" varname="SCORE">0</setvar><displayfeedback feedbacktype="Response" linkrefid="Q06_A"/></respcondition>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">B</varequal></conditionvar><setvar action="Set" varname="SCORE">0</setvar><displayfeedback feedbacktype="Response" linkrefid="Q06_B"/></respcondition>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">C</varequal></conditionvar><setvar action="Set" varname="SCORE">0</setvar><displayfeedback feedbacktype="Response" linkrefid="Q06_C"/></respcondition>
+        </resprocessing>
+        <itemfeedback ident="Q06_D"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Correct! The section headings should be H2, not H3. The hierarchy skips from H1 to H3, creating navigation difficulties.</p>]]></mattext></material></flow_mat></itemfeedback>
+        <itemfeedback ident="Q06_A"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Incorrect. Having markers doesn't mean the levels are correct.</p>]]></mattext></material></flow_mat></itemfeedback>
+        <itemfeedback ident="Q06_B"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Incorrect. The heading levels are not correctly annotated; they skip from H1 to H3.</p>]]></mattext></material></flow_mat></itemfeedback>
+        <itemfeedback ident="Q06_C"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Incorrect. All heading text does have annotation markers.</p>]]></mattext></material></flow_mat></itemfeedback>
+      </item>
+
+      <!-- Q7: Mobile Platform Heading Support (1B.02) - Answer: B -->
+      <item ident="Q07" title="Q7: Mobile Platform Heading Support">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html"><![CDATA[<p><img src="images/q7-stimulus.png" alt="A mobile app home screen with H2 annotations on section headings." /></p><p><a href="https://www.figma.com/design/RcRGB4BL6fKAg04TawiIL6/Badge-one-exam-student-copy?node-id=17-915" target="_blank">View stimulus in Figma</a></p><p>This is a mobile interface destined for both iOS and Android. What advice would you offer to the designer?</p>]]></mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice shuffle="Yes">
+              <response_label ident="A"><material><mattext>All interfaces must start with an H1 element; we cannot release until you add an H1.</mattext></material></response_label>
+              <response_label ident="B"><material><mattext>Consider adding a note about Android's support for heading levels/rank.</mattext></material></response_label>
+              <response_label ident="C"><material><mattext>Android doesn't support heading rank, so do not annotate headings.</mattext></material></response_label>
+              <response_label ident="D"><material><mattext>The text elements annotated are labels of the groups of controls below, not headings.</mattext></material></response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">B</varequal></conditionvar><setvar action="Set" varname="SCORE">100</setvar><displayfeedback feedbacktype="Response" linkrefid="Q07_B"/></respcondition>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">A</varequal></conditionvar><setvar action="Set" varname="SCORE">0</setvar><displayfeedback feedbacktype="Response" linkrefid="Q07_A"/></respcondition>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">C</varequal></conditionvar><setvar action="Set" varname="SCORE">0</setvar><displayfeedback feedbacktype="Response" linkrefid="Q07_C"/></respcondition>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">D</varequal></conditionvar><setvar action="Set" varname="SCORE">0</setvar><displayfeedback feedbacktype="Response" linkrefid="Q07_D"/></respcondition>
+        </resprocessing>
+        <itemfeedback ident="Q07_B"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Correct! Android TalkBack only supports binary heading identification (on/off), not specific levels. Adding a note ensures proper implementation.</p>]]></mattext></material></flow_mat></itemfeedback>
+        <itemfeedback ident="Q07_A"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Incorrect. Starting with H1 is best practice but not a strict WCAG requirement.</p>]]></mattext></material></flow_mat></itemfeedback>
+        <itemfeedback ident="Q07_C"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Incorrect. Android does support headings, just not heading levels.</p>]]></mattext></material></flow_mat></itemfeedback>
+        <itemfeedback ident="Q07_D"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Incorrect. These text elements function as headings, not labels.</p>]]></mattext></material></flow_mat></itemfeedback>
+      </item>
+
+      <!-- Q8: Text Contrast Testing (1C.01) - Answer: C -->
+      <item ident="Q08" title="Q8: Text Contrast Testing">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html"><![CDATA[<p><img src="images/q8-stimulus.png" alt="A red marketing hero section with large white headline and smaller white body text." /></p><p><a href="https://www.figma.com/design/RcRGB4BL6fKAg04TawiIL6/Badge-one-exam-student-copy?node-id=19-18022" target="_blank">View stimulus in Figma</a></p><p>Run the Image Contrast Scanner on this design. What findings can you report regarding the text elements?</p>]]></mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice shuffle="Yes">
+              <response_label ident="A"><material><mattext>All text contrast passes</mattext></material></response_label>
+              <response_label ident="B"><material><mattext>The headline text is partially non-conforming</mattext></material></response_label>
+              <response_label ident="C"><material><mattext>The body text is below contrast minimums</mattext></material></response_label>
+              <response_label ident="D"><material><mattext>The graphic "Gathering insights" is below contrast minimums</mattext></material></response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">C</varequal></conditionvar><setvar action="Set" varname="SCORE">100</setvar><displayfeedback feedbacktype="Response" linkrefid="Q08_C"/></respcondition>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">A</varequal></conditionvar><setvar action="Set" varname="SCORE">0</setvar><displayfeedback feedbacktype="Response" linkrefid="Q08_A"/></respcondition>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">B</varequal></conditionvar><setvar action="Set" varname="SCORE">0</setvar><displayfeedback feedbacktype="Response" linkrefid="Q08_B"/></respcondition>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">D</varequal></conditionvar><setvar action="Set" varname="SCORE">0</setvar><displayfeedback feedbacktype="Response" linkrefid="Q08_D"/></respcondition>
+        </resprocessing>
+        <itemfeedback ident="Q08_C"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Correct! The body text must meet 4.5:1 contrast but falls below this threshold. The headline passes as large-scale text (3:1).</p>]]></mattext></material></flow_mat></itemfeedback>
+        <itemfeedback ident="Q08_A"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Incorrect. The body text fails the 4.5:1 requirement for normal-sized text.</p>]]></mattext></material></flow_mat></itemfeedback>
+        <itemfeedback ident="Q08_B"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Incorrect. The headline passes as large-scale text requiring only 3:1 contrast.</p>]]></mattext></material></flow_mat></itemfeedback>
+        <itemfeedback ident="Q08_D"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Incorrect. The decorative graphic is not the primary issue here.</p>]]></mattext></material></flow_mat></itemfeedback>
+      </item>
+
+      <!-- Q9: Color-Only State Indication (1C.02) - Answer: B -->
+      <item ident="Q09" title="Q9: Color-Only State Indication">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html"><![CDATA[<p><img src="images/q9-stimulus.png" alt="A mobile app with bottom navigation where Home tab is blue and Files/Learn tabs are gray." /></p><p><a href="https://www.figma.com/design/RcRGB4BL6fKAg04TawiIL6/Badge-one-exam-student-copy?node-id=19-18022" target="_blank">View stimulus in Figma</a></p><p>This design has both <a href="https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html" target="_blank">SC 1.4.3 Contrast (Minimum)</a> and <a href="https://www.w3.org/WAI/WCAG22/Understanding/use-of-color.html" target="_blank">SC 1.4.1 Use of Color</a> issues. Which element is non-conforming to <a href="https://www.w3.org/WAI/WCAG22/Understanding/use-of-color.html" target="_blank">SC 1.4.1 Use of Color</a> and why?</p>]]></mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice shuffle="Yes">
+              <response_label ident="A"><material><mattext>The Files and Learn buttons; gray means disabled</mattext></material></response_label>
+              <response_label ident="B"><material><mattext>The Home button; blue means current</mattext></material></response_label>
+              <response_label ident="C"><material><mattext>The Add button; blue means accent</mattext></material></response_label>
+              <response_label ident="D"><material><mattext>Trick question, there are no <a href="https://www.w3.org/WAI/WCAG22/Understanding/use-of-color.html" target="_blank">SC 1.4.1 Use of Color</a> issues present</mattext></material></response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">B</varequal></conditionvar><setvar action="Set" varname="SCORE">100</setvar><displayfeedback feedbacktype="Response" linkrefid="Q09_B"/></respcondition>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">A</varequal></conditionvar><setvar action="Set" varname="SCORE">0</setvar><displayfeedback feedbacktype="Response" linkrefid="Q09_A"/></respcondition>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">C</varequal></conditionvar><setvar action="Set" varname="SCORE">0</setvar><displayfeedback feedbacktype="Response" linkrefid="Q09_C"/></respcondition>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">D</varequal></conditionvar><setvar action="Set" varname="SCORE">0</setvar><displayfeedback feedbacktype="Response" linkrefid="Q09_D"/></respcondition>
+        </resprocessing>
+        <itemfeedback ident="Q09_B"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Correct! Blue color alone indicates the Home button is selected, violating <a href="https://www.w3.org/WAI/WCAG22/Understanding/use-of-color.html" target="_blank">SC 1.4.1 Use of Color</a>. A non-color indicator is needed.</p>]]></mattext></material></flow_mat></itemfeedback>
+        <itemfeedback ident="Q09_A"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Incorrect. Gray for unselected tabs is common and doesn't indicate disabled state.</p>]]></mattext></material></flow_mat></itemfeedback>
+        <itemfeedback ident="Q09_C"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Incorrect. Blue as an accent color for emphasis is acceptable.</p>]]></mattext></material></flow_mat></itemfeedback>
+        <itemfeedback ident="Q09_D"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Incorrect. There is a clear <a href="https://www.w3.org/WAI/WCAG22/Understanding/use-of-color.html" target="_blank">SC 1.4.1 Use of Color</a> violation with the Home button.</p>]]></mattext></material></flow_mat></itemfeedback>
+      </item>
+
+      <!-- Q10: Color Vision Deficiency Testing (1C.03) - Answer: D -->
+      <item ident="Q10" title="Q10: Color Vision Deficiency Testing">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html"><![CDATA[<p><img src="images/q10-stimulus.png" alt="Study sessions with orange lightning bolt icons for flashcards and purple question mark icons for quizzes." /></p><p><a href="https://www.figma.com/design/RcRGB4BL6fKAg04TawiIL6/Badge-one-exam-student-copy?node-id=19-18022" target="_blank">View stimulus in Figma</a></p><p>Run Stark's color vision simulation tool. Do you observe any color-alone issues in this design?</p>]]></mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice shuffle="Yes">
+              <response_label ident="A"><material><mattext>Yes. The color orange means flashcard</mattext></material></response_label>
+              <response_label ident="B"><material><mattext>Yes. The color green means quiz</mattext></material></response_label>
+              <response_label ident="C"><material><mattext>No. The icon colors are over 3:1 to fill color</mattext></material></response_label>
+              <response_label ident="D"><material><mattext>No. Icons are used in addition to color</mattext></material></response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">D</varequal></conditionvar><setvar action="Set" varname="SCORE">100</setvar><displayfeedback feedbacktype="Response" linkrefid="Q10_D"/></respcondition>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">A</varequal></conditionvar><setvar action="Set" varname="SCORE">0</setvar><displayfeedback feedbacktype="Response" linkrefid="Q10_A"/></respcondition>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">B</varequal></conditionvar><setvar action="Set" varname="SCORE">0</setvar><displayfeedback feedbacktype="Response" linkrefid="Q10_B"/></respcondition>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">C</varequal></conditionvar><setvar action="Set" varname="SCORE">0</setvar><displayfeedback feedbacktype="Response" linkrefid="Q10_C"/></respcondition>
+        </resprocessing>
+        <itemfeedback ident="Q10_D"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Correct! The icons (lightning bolt vs question mark) provide non-color differentiation, satisfying <a href="https://www.w3.org/WAI/WCAG22/Understanding/use-of-color.html" target="_blank">SC 1.4.1 Use of Color</a>.</p>]]></mattext></material></flow_mat></itemfeedback>
+        <itemfeedback ident="Q10_A"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Incorrect. The lightning bolt icon provides non-color identification.</p>]]></mattext></material></flow_mat></itemfeedback>
+        <itemfeedback ident="Q10_B"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Incorrect. The quiz indicators use purple, not green, and have a question mark icon.</p>]]></mattext></material></flow_mat></itemfeedback>
+        <itemfeedback ident="Q10_C"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Incorrect. Contrast ratios don't address <a href="https://www.w3.org/WAI/WCAG22/Understanding/use-of-color.html" target="_blank">SC 1.4.1 Use of Color</a>; the icons provide the differentiation.</p>]]></mattext></material></flow_mat></itemfeedback>
+      </item>
+
+      <!-- Q11: Non-text Contrast for Component States (1C.01) - Answer: A -->
+      <item ident="Q11" title="Q11: Non-text Contrast for Component States">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html"><![CDATA[<p><img src="images/q11-stimulus.png" alt="Three Outliner panels showing selected, hover, and focus states for tree view items." /></p><p><a href="https://www.figma.com/design/RcRGB4BL6fKAg04TawiIL6/Badge-one-exam-student-copy?node-id=19-18022" target="_blank">View stimulus in Figma</a></p><p>Would you flag any of these states as non-conforming to <a href="https://www.w3.org/WAI/WCAG22/Understanding/use-of-color.html" target="_blank">SC 1.4.1 Use of Color</a>1 Non-text Contrast?</p>]]></mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice shuffle="Yes">
+              <response_label ident="A"><material><mattext>The selected state only</mattext></material></response_label>
+              <response_label ident="B"><material><mattext>The selected and hover state only</mattext></material></response_label>
+              <response_label ident="C"><material><mattext>All three states; the background fills are all under 3:1</mattext></material></response_label>
+              <response_label ident="D"><material><mattext>None of the states; they're all passing</mattext></material></response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">A</varequal></conditionvar><setvar action="Set" varname="SCORE">100</setvar><displayfeedback feedbacktype="Response" linkrefid="Q11_A"/></respcondition>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">B</varequal></conditionvar><setvar action="Set" varname="SCORE">0</setvar><displayfeedback feedbacktype="Response" linkrefid="Q11_B"/></respcondition>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">C</varequal></conditionvar><setvar action="Set" varname="SCORE">0</setvar><displayfeedback feedbacktype="Response" linkrefid="Q11_C"/></respcondition>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">D</varequal></conditionvar><setvar action="Set" varname="SCORE">0</setvar><displayfeedback feedbacktype="Response" linkrefid="Q11_D"/></respcondition>
+        </resprocessing>
+        <itemfeedback ident="Q11_A"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Correct! The selected state's blue fill at 1.6:1 fails the 3:1 requirement. Hover has no requirement; focus passes.</p>]]></mattext></material></flow_mat></itemfeedback>
+        <itemfeedback ident="Q11_B"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Incorrect. Hover state doesn't require contrast; the pointer provides visual feedback.</p>]]></mattext></material></flow_mat></itemfeedback>
+        <itemfeedback ident="Q11_C"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Incorrect. Hover is exempt and focus passes with its blue ring over 3:1.</p>]]></mattext></material></flow_mat></itemfeedback>
+        <itemfeedback ident="Q11_D"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Incorrect. The selected state fails at 1.6:1 contrast.</p>]]></mattext></material></flow_mat></itemfeedback>
+      </item>
+
+      <!-- Q12: Placeholder Text as Labels (1D.01) - Answer: A (REBALANCED) -->
+      <item ident="Q12" title="Q12: Placeholder Text as Labels">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html"><![CDATA[<p><img src="images/q12-stimulus.png" alt="An AI chat interface with 'Ask anything' placeholder text in the input field." /></p><p><a href="https://www.figma.com/design/RcRGB4BL6fKAg04TawiIL6/Badge-one-exam-student-copy?node-id=26-27374" target="_blank">View stimulus in Figma</a></p><p>When a user places their cursor in, or gives keyboard focus to, the text field that currently reads "Ask anything," what will happen?</p>]]></mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice shuffle="Yes">
+              <response_label ident="A"><material><mattext>The prompt text will disappear leaving a blinking text insertion cursor</mattext></material></response_label>
+              <response_label ident="B"><material><mattext>The prompt text will turn into an icon that acts as the label for the text input</mattext></material></response_label>
+              <response_label ident="C"><material><mattext>The prompt text will move up programmatically and become the label to the text input</mattext></material></response_label>
+              <response_label ident="D"><material><mattext>The text insertion cursor will start after the prompt text effectively becoming the label</mattext></material></response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">A</varequal></conditionvar><setvar action="Set" varname="SCORE">100</setvar><displayfeedback feedbacktype="Response" linkrefid="Q12_A"/></respcondition>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">B</varequal></conditionvar><setvar action="Set" varname="SCORE">0</setvar><displayfeedback feedbacktype="Response" linkrefid="Q12_B"/></respcondition>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">C</varequal></conditionvar><setvar action="Set" varname="SCORE">0</setvar><displayfeedback feedbacktype="Response" linkrefid="Q12_C"/></respcondition>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">D</varequal></conditionvar><setvar action="Set" varname="SCORE">0</setvar><displayfeedback feedbacktype="Response" linkrefid="Q12_D"/></respcondition>
+        </resprocessing>
+        <itemfeedback ident="Q12_A"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Correct! This is placeholder text as label, which violates <a href="https://www.w3.org/WAI/WCAG22/Understanding/labels-or-instructions.html" target="_blank">SC 3.3.2 Labels or Instructions</a>. The text disappears on focus, leaving no label.</p>]]></mattext></material></flow_mat></itemfeedback>
+        <itemfeedback ident="Q12_B"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Incorrect. Placeholder text doesn't transform into an icon.</p>]]></mattext></material></flow_mat></itemfeedback>
+        <itemfeedback ident="Q12_C"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Incorrect. That describes a floating label pattern, which this design doesn't implement.</p>]]></mattext></material></flow_mat></itemfeedback>
+        <itemfeedback ident="Q12_D"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Incorrect. Placeholder text disappears entirely when the field receives focus.</p>]]></mattext></material></flow_mat></itemfeedback>
+      </item>
+
+      <!-- Q13: Error Identification and Instructions (1D.02) - Answer: D (REBALANCED) -->
+      <item ident="Q13" title="Q13: Error Identification and Instructions">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html"><![CDATA[<p><img src="images/q13-stimulus.png" alt="Adobe Premiere Pro export dialog with format error toast and warning icons." /></p><p><a href="https://www.figma.com/design/RcRGB4BL6fKAg04TawiIL6/Badge-one-exam-student-copy?node-id=26-27374" target="_blank">View stimulus in Figma</a></p><p>Is there sufficient information provided in the UI to understand what the error is and how to fix it?</p>]]></mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice shuffle="Yes">
+              <response_label ident="A"><material><mattext>Yes. The error is the Title formatting doesn't work on Facebook, so turn off Facebook in the publish settings</mattext></material></response_label>
+              <response_label ident="B"><material><mattext>No. The error doesn't cover the Title formatting for the Adobe products in the publish settings</mattext></material></response_label>
+              <response_label ident="C"><material><mattext>No. The Toast message doesn't say what's wrong with the Title formatting for the selected platforms in the publish settings</mattext></material></response_label>
+              <response_label ident="D"><material><mattext>Yes. The error is the Title formatting doesn't work on certain platforms so change the formatting or turn off those platforms in the publish settings</mattext></material></response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">D</varequal></conditionvar><setvar action="Set" varname="SCORE">100</setvar><displayfeedback feedbacktype="Response" linkrefid="Q13_D"/></respcondition>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">A</varequal></conditionvar><setvar action="Set" varname="SCORE">0</setvar><displayfeedback feedbacktype="Response" linkrefid="Q13_A"/></respcondition>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">B</varequal></conditionvar><setvar action="Set" varname="SCORE">0</setvar><displayfeedback feedbacktype="Response" linkrefid="Q13_B"/></respcondition>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">C</varequal></conditionvar><setvar action="Set" varname="SCORE">0</setvar><displayfeedback feedbacktype="Response" linkrefid="Q13_C"/></respcondition>
+        </resprocessing>
+        <itemfeedback ident="Q13_D"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Correct! The design provides sufficient error information to meet <a href="https://www.w3.org/WAI/WCAG22/Understanding/error-identification.html" target="_blank">SC 3.3.1 Error Identification</a> with clear platform identification and actionable solutions.</p>]]></mattext></material></flow_mat></itemfeedback>
+        <itemfeedback ident="Q13_A"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Incorrect. The toast identifies YouTube, Twitter, and Vimeo, not Facebook.</p>]]></mattext></material></flow_mat></itemfeedback>
+        <itemfeedback ident="Q13_B"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Incorrect. The error is about third-party platforms, not Adobe products.</p>]]></mattext></material></flow_mat></itemfeedback>
+        <itemfeedback ident="Q13_C"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Incorrect. The toast and warning icons provide sufficient information.</p>]]></mattext></material></flow_mat></itemfeedback>
+      </item>
+
+      <!-- Q14: Labels for Form Controls (1D.03) - Answer: A -->
+      <item ident="Q14" title="Q14: Labels for Form Controls">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html"><![CDATA[<p><img src="images/q14-stimulus.png" alt="Prompt Library interface with filter dropdowns showing Domain, Goal, Application, and Role." /></p><p><a href="https://www.figma.com/design/RcRGB4BL6fKAg04TawiIL6/Badge-one-exam-student-copy?node-id=26-27374" target="_blank">View stimulus in Figma</a></p><p>When the user selects "All" from the last Picker, what accessibility challenge will occur?</p>]]></mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice shuffle="Yes">
+              <response_label ident="A"><material><mattext>With no visible text label, they may forget the "All" option is related to Role</mattext></material></response_label>
+              <response_label ident="B"><material><mattext>Because the text "My Prompts" is above the Picker, they may think the selection is "All My prompts"</mattext></material></response_label>
+              <response_label ident="C"><material><mattext>The Picker will attempt to display every option in the visible value and cause truncation</mattext></material></response_label>
+              <response_label ident="D"><material><mattext>Nothing, the Picker will correctly read "Role - All" in the Picker value to preserve context and meaning</mattext></material></response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">A</varequal></conditionvar><setvar action="Set" varname="SCORE">100</setvar><displayfeedback feedbacktype="Response" linkrefid="Q14_A"/></respcondition>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">B</varequal></conditionvar><setvar action="Set" varname="SCORE">0</setvar><displayfeedback feedbacktype="Response" linkrefid="Q14_B"/></respcondition>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">C</varequal></conditionvar><setvar action="Set" varname="SCORE">0</setvar><displayfeedback feedbacktype="Response" linkrefid="Q14_C"/></respcondition>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">D</varequal></conditionvar><setvar action="Set" varname="SCORE">0</setvar><displayfeedback feedbacktype="Response" linkrefid="Q14_D"/></respcondition>
+        </resprocessing>
+        <itemfeedback ident="Q14_A"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Correct! These filters violate <a href="https://www.w3.org/WAI/WCAG22/Understanding/labels-or-instructions.html" target="_blank">SC 3.3.2 Labels or Instructions</a>. When 'All' is selected, the context is lost. Users must remember what each dropdown was for.</p>]]></mattext></material></flow_mat></itemfeedback>
+        <itemfeedback ident="Q14_B"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Partially correct, but the primary issue is the lack of persistent labels.</p>]]></mattext></material></flow_mat></itemfeedback>
+        <itemfeedback ident="Q14_C"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Incorrect. 'All' would simply display as 'All' without showing all options.</p>]]></mattext></material></flow_mat></itemfeedback>
+        <itemfeedback ident="Q14_D"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Incorrect. There is no persistent label to display 'Role - All'.</p>]]></mattext></material></flow_mat></itemfeedback>
+      </item>
+
+      <!-- Q15: Keyboard Tab Stop Behavior (1E.01) - Answer: C -->
+      <item ident="Q15" title="Q15: Keyboard Tab Stop Behavior">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html"><![CDATA[<p><img src="images/q15-stimulus.png" alt="Focus order annotations showing CheckboxGroup and ColorSwatchPicker both marked as single tab stop." /></p><p><a href="https://www.figma.com/design/RcRGB4BL6fKAg04TawiIL6/Badge-one-exam-student-copy?node-id=42-2347" target="_blank">View stimulus in Figma</a></p><p>What is the error in this Blueline annotation for the CheckboxGroup and ColorSwatchPicker components?</p>]]></mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice shuffle="Yes">
+              <response_label ident="A"><material><mattext>The ColorSwatchPicker is not interactive</mattext></material></response_label>
+              <response_label ident="B"><material><mattext>There should be 14 tab stops specified</mattext></material></response_label>
+              <response_label ident="C"><material><mattext>The CheckboxGroup is NOT a single tab stop</mattext></material></response_label>
+              <response_label ident="D"><material><mattext>The ColorSwatchPicker is NOT a single tab stop</mattext></material></response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">C</varequal></conditionvar><setvar action="Set" varname="SCORE">100</setvar><displayfeedback feedbacktype="Response" linkrefid="Q15_C"/></respcondition>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">A</varequal></conditionvar><setvar action="Set" varname="SCORE">0</setvar><displayfeedback feedbacktype="Response" linkrefid="Q15_A"/></respcondition>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">B</varequal></conditionvar><setvar action="Set" varname="SCORE">0</setvar><displayfeedback feedbacktype="Response" linkrefid="Q15_B"/></respcondition>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">D</varequal></conditionvar><setvar action="Set" varname="SCORE">0</setvar><displayfeedback feedbacktype="Response" linkrefid="Q15_D"/></respcondition>
+        </resprocessing>
+        <itemfeedback ident="Q15_C"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Correct! Checkboxes are independent controls; each is its own tab stop. The single-tab-stop pattern applies to radio groups, not checkboxes.</p>]]></mattext></material></flow_mat></itemfeedback>
+        <itemfeedback ident="Q15_A"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Incorrect. The ColorSwatchPicker is interactive.</p>]]></mattext></material></flow_mat></itemfeedback>
+        <itemfeedback ident="Q15_B"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Incorrect. 14 individual tab stops would be poor keyboard design.</p>]]></mattext></material></flow_mat></itemfeedback>
+        <itemfeedback ident="Q15_D"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Incorrect. The ColorSwatchPicker correctly uses single tab stop like radio groups.</p>]]></mattext></material></flow_mat></itemfeedback>
+      </item>
+
+      <!-- Q16: Focus Order in Modals (1E.02) - Answer: A -->
+      <item ident="Q16" title="Q16: Focus Order in Modals">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html"><![CDATA[<p><img src="images/q16-stimulus.png" alt="Adobe Acrobat upgrade modal with focus order annotations showing autofocus on Free trial button." /></p><p><a href="https://www.figma.com/design/RcRGB4BL6fKAg04TawiIL6/Badge-one-exam-student-copy?node-id=42-2347" target="_blank">View stimulus in Figma</a></p><p>The designer set autofocus to the positive action. Where should the first tab stop be in this modal?</p>]]></mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice shuffle="Yes">
+              <response_label ident="A"><material><mattext>The close button</mattext></material></response_label>
+              <response_label ident="B"><material><mattext>The tab group</mattext></material></response_label>
+              <response_label ident="C"><material><mattext>See all photos button</mattext></material></response_label>
+              <response_label ident="D"><material><mattext>It's correctly applied to the free trial button</mattext></material></response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">A</varequal></conditionvar><setvar action="Set" varname="SCORE">100</setvar><displayfeedback feedbacktype="Response" linkrefid="Q16_A"/></respcondition>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">B</varequal></conditionvar><setvar action="Set" varname="SCORE">0</setvar><displayfeedback feedbacktype="Response" linkrefid="Q16_B"/></respcondition>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">C</varequal></conditionvar><setvar action="Set" varname="SCORE">0</setvar><displayfeedback feedbacktype="Response" linkrefid="Q16_C"/></respcondition>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">D</varequal></conditionvar><setvar action="Set" varname="SCORE">0</setvar><displayfeedback feedbacktype="Response" linkrefid="Q16_D"/></respcondition>
+        </resprocessing>
+        <itemfeedback ident="Q16_A"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Correct! Focus should move to the first focusable element (close button) per <a href="https://www.w3.org/WAI/WCAG22/Understanding/focus-order.html" target="_blank">SC 2.4.3 Focus Order</a> Focus Order.</p>]]></mattext></material></flow_mat></itemfeedback>
+        <itemfeedback ident="Q16_B"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Incorrect. The close button should receive focus first as the escape mechanism.</p>]]></mattext></material></flow_mat></itemfeedback>
+        <itemfeedback ident="Q16_C"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Incorrect. Focus should begin at the close button, not deep in the modal.</p>]]></mattext></material></flow_mat></itemfeedback>
+        <itemfeedback ident="Q16_D"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Incorrect. Autofocusing the CTA violates expected focus order patterns.</p>]]></mattext></material></flow_mat></itemfeedback>
+      </item>
+
+      <!-- Q17: Target Size Exceptions (1E.03) - Answer: B -->
+      <item ident="Q17" title="Q17: Target Size Exceptions">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html"><![CDATA[<p><img src="images/q17-stimulus.png" alt="Color contrast checker with slider handles approximately 16x16 pixels." /></p><p><a href="https://www.figma.com/design/RcRGB4BL6fKAg04TawiIL6/Badge-one-exam-student-copy?node-id=42-2347" target="_blank">View stimulus in Figma</a></p><p>Measure the color handle size. Which <a href="https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html" target="_blank">SC 2.5.8 Target Size (Minimum)</a> Target Size exception applies to consider this conforming?</p>]]></mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice shuffle="Yes">
+              <response_label ident="A"><material><mattext>The handle size is determined by the user agent</mattext></material></response_label>
+              <response_label ident="B"><material><mattext>The handle size must take into consideration the size of the track's hit area</mattext></material></response_label>
+              <response_label ident="C"><material><mattext>The handle size is constrained by the line-height of non-target text</mattext></material></response_label>
+              <response_label ident="D"><material><mattext>The handle size is "essential" to the presentation</mattext></material></response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">B</varequal></conditionvar><setvar action="Set" varname="SCORE">100</setvar><displayfeedback feedbacktype="Response" linkrefid="Q17_B"/></respcondition>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">A</varequal></conditionvar><setvar action="Set" varname="SCORE">0</setvar><displayfeedback feedbacktype="Response" linkrefid="Q17_A"/></respcondition>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">C</varequal></conditionvar><setvar action="Set" varname="SCORE">0</setvar><displayfeedback feedbacktype="Response" linkrefid="Q17_C"/></respcondition>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">D</varequal></conditionvar><setvar action="Set" varname="SCORE">0</setvar><displayfeedback feedbacktype="Response" linkrefid="Q17_D"/></respcondition>
+        </resprocessing>
+        <itemfeedback ident="Q17_B"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Correct! The track provides a larger hit area, and the numeric input offers an alternative interaction method.</p>]]></mattext></material></flow_mat></itemfeedback>
+        <itemfeedback ident="Q17_A"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Incorrect. This is a custom slider, not a user agent control.</p>]]></mattext></material></flow_mat></itemfeedback>
+        <itemfeedback ident="Q17_C"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Incorrect. Slider handles are not inline text elements.</p>]]></mattext></material></flow_mat></itemfeedback>
+        <itemfeedback ident="Q17_D"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Incorrect. The handle size is not essential; it could be larger.</p>]]></mattext></material></flow_mat></itemfeedback>
+      </item>
+
+      <!-- Q18: Sticky Elements at High Zoom (1F.01) - Answer: C -->
+      <item ident="Q18" title="Q18: Sticky Elements at High Zoom">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html"><![CDATA[<p><img src="images/q18-stimulus.png" alt="Adobe webpage at 400% zoom with sticky header consuming most of the viewport." /></p><p><a href="https://www.figma.com/design/RcRGB4BL6fKAg04TawiIL6/Badge-one-exam-student-copy?node-id=42-2348" target="_blank">View stimulus in Figma</a></p><p>What is the root cause of the poor user experience at 400% shown here?</p>]]></mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice shuffle="Yes">
+              <response_label ident="A"><material><mattext>The page resolution becomes too pixelated on non-vector graphics at high zoom levels</mattext></material></response_label>
+              <response_label ident="B"><material><mattext>The accessible names on the navigation icons are no longer readable</mattext></material></response_label>
+              <response_label ident="C"><material><mattext>Sticky elements consume the viewport, leaving insufficient space for content and causing overlaps</mattext></material></response_label>
+              <response_label ident="D"><material><mattext>The page fails to reflow content into a single-column layout and requires horizontal scrolling</mattext></material></response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">C</varequal></conditionvar><setvar action="Set" varname="SCORE">100</setvar><displayfeedback feedbacktype="Response" linkrefid="Q18_C"/></respcondition>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">A</varequal></conditionvar><setvar action="Set" varname="SCORE">0</setvar><displayfeedback feedbacktype="Response" linkrefid="Q18_A"/></respcondition>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">B</varequal></conditionvar><setvar action="Set" varname="SCORE">0</setvar><displayfeedback feedbacktype="Response" linkrefid="Q18_B"/></respcondition>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">D</varequal></conditionvar><setvar action="Set" varname="SCORE">0</setvar><displayfeedback feedbacktype="Response" linkrefid="Q18_D"/></respcondition>
+        </resprocessing>
+        <itemfeedback ident="Q18_C"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Correct! Sticky elements dominate the reduced viewport at 400% zoom and fixed widgets overlap controls.</p>]]></mattext></material></flow_mat></itemfeedback>
+        <itemfeedback ident="Q18_A"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Incorrect. Pixelation is not an accessibility issue addressed by WCAG.</p>]]></mattext></material></flow_mat></itemfeedback>
+        <itemfeedback ident="Q18_B"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Incorrect. Accessible names are programmatic and unaffected by zoom.</p>]]></mattext></material></flow_mat></itemfeedback>
+        <itemfeedback ident="Q18_D"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Incorrect. The content is reflowing correctly; sticky elements are the problem.</p>]]></mattext></material></flow_mat></itemfeedback>
+      </item>
+
+      <!-- Q19: Text Spacing and Container Sizing (1F.02) - Answer: C -->
+      <item ident="Q19" title="Q19: Text Spacing and Container Sizing">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html"><![CDATA[<p><img src="images/q19-stimulus.png" alt="Three buttons: Error (clipped), Option A (text wraps vertically), Option B (expands horizontally)." /></p><p><a href="https://www.figma.com/design/RcRGB4BL6fKAg04TawiIL6/Badge-one-exam-student-copy?node-id=42-2348" target="_blank">View stimulus in Figma</a></p><p>When a user employs spacing preferences, button text is getting clipped. Which option conforms?</p>]]></mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice shuffle="Yes">
+              <response_label ident="A"><material><mattext>Option A as the container height is set to hug</mattext></material></response_label>
+              <response_label ident="B"><material><mattext>Option B as the container width is set to hug</mattext></material></response_label>
+              <response_label ident="C"><material><mattext>Both A and B can be considered conforming options</mattext></material></response_label>
+              <response_label ident="D"><material><mattext>Neither A nor B is a conforming option</mattext></material></response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">C</varequal></conditionvar><setvar action="Set" varname="SCORE">100</setvar><displayfeedback feedbacktype="Response" linkrefid="Q19_C"/></respcondition>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">A</varequal></conditionvar><setvar action="Set" varname="SCORE">0</setvar><displayfeedback feedbacktype="Response" linkrefid="Q19_A"/></respcondition>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">B</varequal></conditionvar><setvar action="Set" varname="SCORE">0</setvar><displayfeedback feedbacktype="Response" linkrefid="Q19_B"/></respcondition>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">D</varequal></conditionvar><setvar action="Set" varname="SCORE">0</setvar><displayfeedback feedbacktype="Response" linkrefid="Q19_D"/></respcondition>
+        </resprocessing>
+        <itemfeedback ident="Q19_C"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Correct! <a href="https://www.w3.org/WAI/WCAG22/Understanding/use-of-color.html" target="_blank">SC 1.4.1 Use of Color</a>2 requires no loss of content. Both options preserve the full label and maintain operability.</p>]]></mattext></material></flow_mat></itemfeedback>
+        <itemfeedback ident="Q19_A"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Partially correct. Option A works, but Option B is equally valid.</p>]]></mattext></material></flow_mat></itemfeedback>
+        <itemfeedback ident="Q19_B"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Partially correct. Option B works, but Option A is equally valid.</p>]]></mattext></material></flow_mat></itemfeedback>
+        <itemfeedback ident="Q19_D"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Incorrect. Both options conform by preserving the complete label.</p>]]></mattext></material></flow_mat></itemfeedback>
+      </item>
+
+      <!-- Q20: Display Orientation Support (1F.03) - Answer: B -->
+      <item ident="Q20" title="Q20: Display Orientation Support">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html"><![CDATA[<p><img src="images/q20-stimulus.png" alt="Adobe Acrobat Reader mobile app shown in both portrait and landscape orientations." /></p><p><a href="https://www.figma.com/design/RcRGB4BL6fKAg04TawiIL6/Badge-one-exam-student-copy?node-id=42-2348" target="_blank">View stimulus in Figma</a></p><p>When a user rotates their phone, Acrobat Reader switches to landscape. Which statement is true?</p>]]></mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice shuffle="Yes">
+              <response_label ident="A"><material><mattext>This is a problem for users with motion sensitivity as the movement is disorienting</mattext></material></response_label>
+              <response_label ident="B"><material><mattext>This is a benefit for users who have mobile devices mounted to their wheelchairs in a fixed orientation</mattext></material></response_label>
+              <response_label ident="C"><material><mattext>This feature is meant to support 200% and 400% zoom by reflowing based on user preference</mattext></material></response_label>
+              <response_label ident="D"><material><mattext>This is a problem for low vision users, as the viewport should have restricted the orientation to portrait</mattext></material></response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">B</varequal></conditionvar><setvar action="Set" varname="SCORE">100</setvar><displayfeedback feedbacktype="Response" linkrefid="Q20_B"/></respcondition>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">A</varequal></conditionvar><setvar action="Set" varname="SCORE">0</setvar><displayfeedback feedbacktype="Response" linkrefid="Q20_A"/></respcondition>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">C</varequal></conditionvar><setvar action="Set" varname="SCORE">0</setvar><displayfeedback feedbacktype="Response" linkrefid="Q20_C"/></respcondition>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">D</varequal></conditionvar><setvar action="Set" varname="SCORE">0</setvar><displayfeedback feedbacktype="Response" linkrefid="Q20_D"/></respcondition>
+        </resprocessing>
+        <itemfeedback ident="Q20_B"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Correct! <a href="https://www.w3.org/WAI/WCAG22/Understanding/orientation.html" target="_blank">SC 1.3.4 Orientation</a> Orientation requires supporting both orientations for users with mounted devices.</p>]]></mattext></material></flow_mat></itemfeedback>
+        <itemfeedback ident="Q20_A"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Incorrect. User-initiated rotation is expected behavior, not a motion sensitivity issue.</p>]]></mattext></material></flow_mat></itemfeedback>
+        <itemfeedback ident="Q20_C"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Incorrect. Orientation and reflow are separate WCAG requirements.</p>]]></mattext></material></flow_mat></itemfeedback>
+        <itemfeedback ident="Q20_D"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Incorrect. Restricting orientation would violate <a href="https://www.w3.org/WAI/WCAG22/Understanding/orientation.html" target="_blank">SC 1.3.4 Orientation</a>.</p>]]></mattext></material></flow_mat></itemfeedback>
+      </item>
+
+      <!-- Q21: Duplicate Landmark Naming (1G.01) - Answer: D -->
+      <item ident="Q21" title="Q21: Duplicate Landmark Naming">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html"><![CDATA[<p><img src="images/q21-stimulus.png" alt="Adobe Express interface with two Nav landmarks without accessible names." /></p><p><a href="https://www.figma.com/design/RcRGB4BL6fKAg04TawiIL6/Badge-one-exam-student-copy?node-id=42-2519" target="_blank">View stimulus in Figma</a></p><p>What could you call out regarding the landmark annotations?</p>]]></mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice shuffle="Yes">
+              <response_label ident="A"><material><mattext>You cannot have the first nav landmark be a child of, or nested within, the header landmark</mattext></material></response_label>
+              <response_label ident="B"><material><mattext>When you have more than one landmark type, you have to use different colored annotation markers</mattext></material></response_label>
+              <response_label ident="C"><material><mattext>You cannot have the first nav landmark be a child of, or nested within, the main landmark</mattext></material></response_label>
+              <response_label ident="D"><material><mattext>When you have more than one landmark type, you must provide an accessible name for both</mattext></material></response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">D</varequal></conditionvar><setvar action="Set" varname="SCORE">100</setvar><displayfeedback feedbacktype="Response" linkrefid="Q21_D"/></respcondition>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">A</varequal></conditionvar><setvar action="Set" varname="SCORE">0</setvar><displayfeedback feedbacktype="Response" linkrefid="Q21_A"/></respcondition>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">B</varequal></conditionvar><setvar action="Set" varname="SCORE">0</setvar><displayfeedback feedbacktype="Response" linkrefid="Q21_B"/></respcondition>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">C</varequal></conditionvar><setvar action="Set" varname="SCORE">0</setvar><displayfeedback feedbacktype="Response" linkrefid="Q21_C"/></respcondition>
+        </resprocessing>
+        <itemfeedback ident="Q21_D"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Correct! Multiple landmarks of the same type need accessible names to differentiate them per <a href="https://www.w3.org/WAI/WCAG22/Understanding/identify-purpose.html" target="_blank">SC 1.3.6 Identify Purpose</a>.</p>]]></mattext></material></flow_mat></itemfeedback>
+        <itemfeedback ident="Q21_A"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Incorrect. Nav landmarks can be nested within header landmarks.</p>]]></mattext></material></flow_mat></itemfeedback>
+        <itemfeedback ident="Q21_B"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Incorrect. Marker colors don't affect accessibility conformance.</p>]]></mattext></material></flow_mat></itemfeedback>
+        <itemfeedback ident="Q21_C"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Incorrect. The nav landmarks are not nested within main in this interface.</p>]]></mattext></material></flow_mat></itemfeedback>
+      </item>
+
+      <!-- Q22: Consistent Identification (1G.02) - Answer: A (REBALANCED) -->
+      <item ident="Q22" title="Q22: Consistent Identification">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html"><![CDATA[<p><img src="images/q22-stimulus.png" alt="Three Adobe Express sections with Sort buttons having different accessible names." /></p><p><a href="https://www.figma.com/design/RcRGB4BL6fKAg04TawiIL6/Badge-one-exam-student-copy?node-id=42-2519" target="_blank">View stimulus in Figma</a></p><p>Which WCAG success criterion addresses inconsistent identification of same-function components?</p>]]></mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice shuffle="Yes">
+              <response_label ident="A"><material><mattext><a href="https://www.w3.org/WAI/WCAG22/Understanding/consistent-identification.html" target="_blank">SC 3.2.4 Consistent Identification</a> Consistent Identification (Level AA)</mattext></material></response_label>
+              <response_label ident="B"><material><mattext><a href="https://www.w3.org/WAI/WCAG22/Understanding/consistent-navigation.html" target="_blank">SC 3.2.3 Consistent Navigation</a> Consistent Navigation (Level AA)</mattext></material></response_label>
+              <response_label ident="C"><material><mattext><a href="https://www.w3.org/WAI/WCAG22/Understanding/change-on-request.html" target="_blank">SC 3.2.5 Change on Request</a> Change on Request (Level AAA)</mattext></material></response_label>
+              <response_label ident="D"><material><mattext><a href="https://www.w3.org/WAI/WCAG22/Understanding/consistent-help.html" target="_blank">SC 3.2.6 Consistent Help</a> Consistent Help (Level A)</mattext></material></response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">A</varequal></conditionvar><setvar action="Set" varname="SCORE">100</setvar><displayfeedback feedbacktype="Response" linkrefid="Q22_A"/></respcondition>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">B</varequal></conditionvar><setvar action="Set" varname="SCORE">0</setvar><displayfeedback feedbacktype="Response" linkrefid="Q22_B"/></respcondition>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">C</varequal></conditionvar><setvar action="Set" varname="SCORE">0</setvar><displayfeedback feedbacktype="Response" linkrefid="Q22_C"/></respcondition>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">D</varequal></conditionvar><setvar action="Set" varname="SCORE">0</setvar><displayfeedback feedbacktype="Response" linkrefid="Q22_D"/></respcondition>
+        </resprocessing>
+        <itemfeedback ident="Q22_A"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Correct! <a href="https://www.w3.org/WAI/WCAG22/Understanding/consistent-identification.html" target="_blank">SC 3.2.4 Consistent Identification</a> requires components with same functionality to be identified consistently.</p>]]></mattext></material></flow_mat></itemfeedback>
+        <itemfeedback ident="Q22_B"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Incorrect. <a href="https://www.w3.org/WAI/WCAG22/Understanding/consistent-navigation.html" target="_blank">SC 3.2.3 Consistent Navigation</a> addresses navigation order, not component labeling.</p>]]></mattext></material></flow_mat></itemfeedback>
+        <itemfeedback ident="Q22_C"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Incorrect. <a href="https://www.w3.org/WAI/WCAG22/Understanding/change-on-request.html" target="_blank">SC 3.2.5 Change on Request</a> is about context changes, not labeling.</p>]]></mattext></material></flow_mat></itemfeedback>
+        <itemfeedback ident="Q22_D"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Incorrect. <a href="https://www.w3.org/WAI/WCAG22/Understanding/consistent-help.html" target="_blank">SC 3.2.6 Consistent Help</a> is specifically about help features.</p>]]></mattext></material></flow_mat></itemfeedback>
+      </item>
+
+      <!-- Q23: Skip Link Focus Behavior (1G.03) - Answer: A -->
+      <item ident="Q23" title="Q23: Skip Link Focus Behavior">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html"><![CDATA[<p><img src="images/q23-stimulus.png" alt="Adobe Express icon picker with landmarks and focus markers A, B, C, D." /></p><p><a href="https://www.figma.com/design/RcRGB4BL6fKAg04TawiIL6/Badge-one-exam-student-copy?node-id=42-2519" target="_blank">View stimulus in Figma</a></p><p>If this interface had a skip to main link, the user activated it, then hit Tab, which element would gain focus?</p>]]></mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice shuffle="Yes">
+              <response_label ident="A"><material><mattext>The search bar</mattext></material></response_label>
+              <response_label ident="B"><material><mattext>Healthcare keyword</mattext></material></response_label>
+              <response_label ident="C"><material><mattext>The first icon</mattext></material></response_label>
+              <response_label ident="D"><material><mattext>The Back button</mattext></material></response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">A</varequal></conditionvar><setvar action="Set" varname="SCORE">100</setvar><displayfeedback feedbacktype="Response" linkrefid="Q23_A"/></respcondition>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">B</varequal></conditionvar><setvar action="Set" varname="SCORE">0</setvar><displayfeedback feedbacktype="Response" linkrefid="Q23_B"/></respcondition>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">C</varequal></conditionvar><setvar action="Set" varname="SCORE">0</setvar><displayfeedback feedbacktype="Response" linkrefid="Q23_C"/></respcondition>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">D</varequal></conditionvar><setvar action="Set" varname="SCORE">0</setvar><displayfeedback feedbacktype="Response" linkrefid="Q23_D"/></respcondition>
+        </resprocessing>
+        <itemfeedback ident="Q23_A"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Correct! Skip to main moves focus to main content, then Tab goes to the first interactive element: the search bar.</p>]]></mattext></material></flow_mat></itemfeedback>
+        <itemfeedback ident="Q23_B"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Incorrect. The search bar comes before the keywords in DOM order.</p>]]></mattext></material></flow_mat></itemfeedback>
+        <itemfeedback ident="Q23_C"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Incorrect. The icon grid comes after the search bar and keywords.</p>]]></mattext></material></flow_mat></itemfeedback>
+        <itemfeedback ident="Q23_D"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Incorrect. The Back button is in the footer, not main.</p>]]></mattext></material></flow_mat></itemfeedback>
+      </item>
+
+      <!-- Q24: Reduced Motion Preference (1H.01) - Answer: C -->
+      <item ident="Q24" title="Q24: Reduced Motion Preference">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html"><![CDATA[<p><img src="images/q24-stimulus.png" alt="Adobe Commerce page with paused animation showing a play button." /></p><p><a href="https://www.figma.com/design/RcRGB4BL6fKAg04TawiIL6/Badge-one-exam-student-copy?node-id=42-2531" target="_blank">View stimulus in Figma</a></p><p>When the page loads, the animation shows a play button (paused by default). Why?</p>]]></mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice shuffle="Yes">
+              <response_label ident="A"><material><mattext>It's non-conforming to have an animation play on page load</mattext></material></response_label>
+              <response_label ident="B"><material><mattext>The marketing team finds that people enjoy pressing play and pause buttons</mattext></material></response_label>
+              <response_label ident="C"><material><mattext>The user has reduced motion enabled, and the page honors that preference</mattext></material></response_label>
+              <response_label ident="D"><material><mattext>The page is showcasing a product's ability to create animated content</mattext></material></response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">C</varequal></conditionvar><setvar action="Set" varname="SCORE">100</setvar><displayfeedback feedbacktype="Response" linkrefid="Q24_C"/></respcondition>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">A</varequal></conditionvar><setvar action="Set" varname="SCORE">0</setvar><displayfeedback feedbacktype="Response" linkrefid="Q24_A"/></respcondition>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">B</varequal></conditionvar><setvar action="Set" varname="SCORE">0</setvar><displayfeedback feedbacktype="Response" linkrefid="Q24_B"/></respcondition>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">D</varequal></conditionvar><setvar action="Set" varname="SCORE">0</setvar><displayfeedback feedbacktype="Response" linkrefid="Q24_D"/></respcondition>
+        </resprocessing>
+        <itemfeedback ident="Q24_C"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Correct! The page honors prefers-reduced-motion via CSS media query, aligning with <a href="https://www.w3.org/WAI/WCAG22/Understanding/animation-from-interactions.html" target="_blank">SC 2.3.3 Animation from Interactions</a>.</p>]]></mattext></material></flow_mat></itemfeedback>
+        <itemfeedback ident="Q24_A"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Incorrect. WCAG allows auto-play if pause/stop controls are provided.</p>]]></mattext></material></flow_mat></itemfeedback>
+        <itemfeedback ident="Q24_B"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Incorrect. This is an accessibility accommodation, not a marketing choice.</p>]]></mattext></material></flow_mat></itemfeedback>
+        <itemfeedback ident="Q24_D"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Incorrect. The paused state is due to user's reduced motion preference.</p>]]></mattext></material></flow_mat></itemfeedback>
+      </item>
+
+      <!-- Q25: Flashing Content Risks (1H.02) - Answer: D -->
+      <item ident="Q25" title="Q25: Flashing Content Risks">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield><fieldlabel>question_type</fieldlabel><fieldentry>multiple_choice_question</fieldentry></qtimetadatafield>
+            <qtimetadatafield><fieldlabel>points_possible</fieldlabel><fieldentry>1</fieldentry></qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material><mattext texttype="text/html"><![CDATA[<p><img src="images/q25-stimulus.png" alt="Adobe Express Animation panel showing a Flicker effect option." /></p><p><a href="https://www.figma.com/design/RcRGB4BL6fKAg04TawiIL6/Badge-one-exam-student-copy?node-id=42-2531" target="_blank">View stimulus in Figma</a></p><p>The product team proposes a 'Flicker' animation feature. What advice would you offer?</p>]]></mattext></material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice shuffle="Yes">
+              <response_label ident="A"><material><mattext>Ensure the flashing content flashes at least three times per second and displays the preview in red</mattext></material></response_label>
+              <response_label ident="B"><material><mattext>Ensure the preview is a 341 x 256 pixel block representing a 10-degree viewport</mattext></material></response_label>
+              <response_label ident="C"><material><mattext>Nothing, the standard refers to flashing and blinking, which is flickering and is therefore out of scope</mattext></material></response_label>
+              <response_label ident="D"><material><mattext>At a minimum, add a warning for flashing content, do not trigger on hover, and consider not publishing this feature</mattext></material></response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes><decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/></outcomes>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">D</varequal></conditionvar><setvar action="Set" varname="SCORE">100</setvar><displayfeedback feedbacktype="Response" linkrefid="Q25_D"/></respcondition>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">A</varequal></conditionvar><setvar action="Set" varname="SCORE">0</setvar><displayfeedback feedbacktype="Response" linkrefid="Q25_A"/></respcondition>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">B</varequal></conditionvar><setvar action="Set" varname="SCORE">0</setvar><displayfeedback feedbacktype="Response" linkrefid="Q25_B"/></respcondition>
+          <respcondition continue="No"><conditionvar><varequal respident="response1">C</varequal></conditionvar><setvar action="Set" varname="SCORE">0</setvar><displayfeedback feedbacktype="Response" linkrefid="Q25_C"/></respcondition>
+        </resprocessing>
+        <itemfeedback ident="Q25_D"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Correct! Flashing content poses seizure risks under <a href="https://www.w3.org/WAI/WCAG22/Understanding/three-flashes-or-below-threshold.html" target="_blank">SC 2.3.1 Three Flashes or Below Threshold</a> and 2.3.2. Warnings and reconsidering the feature are responsible advice.</p>]]></mattext></material></flow_mat></itemfeedback>
+        <itemfeedback ident="Q25_A"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Incorrect. Content must NOT flash more than three times per second. Red is particularly dangerous.</p>]]></mattext></material></flow_mat></itemfeedback>
+        <itemfeedback ident="Q25_B"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Incorrect. Size doesn't make flashing safe. Flash rate and intensity are the concerns.</p>]]></mattext></material></flow_mat></itemfeedback>
+        <itemfeedback ident="Q25_C"><flow_mat><material><mattext texttype="text/html"><![CDATA[<p>Incorrect. Flicker, flash, and blink are all covered by WCAG's flashing requirements.</p>]]></mattext></material></flow_mat></itemfeedback>
+      </item>
+
+    </section>
+  </assessment>
+</questestinterop>
