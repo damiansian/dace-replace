@@ -160,27 +160,31 @@ export default function CourseHomeTable({
                     </Link>
                   </td>
                   <td className="border border-border px-4 py-4 align-middle text-left text-foreground">
-                    <div className="flex flex-col gap-1">
-                      <div className="flex items-center gap-2">
-                        {snapshot && (
-                          <TrackedItemStatus
-                            kind="quiz"
-                            complete={Boolean(best)}
-                          />
+                    {lesson.quizLabel === "N/A" ? (
+                      <span className="text-text-secondary">{lesson.quizLabel}</span>
+                    ) : (
+                      <div className="flex flex-col gap-1">
+                        <div className="flex items-center gap-2">
+                          {snapshot && (
+                            <TrackedItemStatus
+                              kind="quiz"
+                              complete={Boolean(best)}
+                            />
+                          )}
+                          <Link
+                            href={withToken(lesson.quizHref, token)}
+                            className="font-medium text-primary-text underline hover:text-primary-dark"
+                          >
+                            {lesson.quizLabel}
+                          </Link>
+                        </div>
+                        {best && (
+                          <p className="pl-7 text-xs text-text-secondary">
+                            Best score {best.score}/{best.total}
+                          </p>
                         )}
-                        <Link
-                          href={withToken(lesson.quizHref, token)}
-                          className="font-medium text-primary-text underline hover:text-primary-dark"
-                        >
-                          {lesson.quizLabel}
-                        </Link>
                       </div>
-                      {best && (
-                        <p className="pl-7 text-xs text-text-secondary">
-                          Best score {best.score}/{best.total}
-                        </p>
-                      )}
-                    </div>
+                    )}
                   </td>
                   {isFirstRow && (
                     <td
