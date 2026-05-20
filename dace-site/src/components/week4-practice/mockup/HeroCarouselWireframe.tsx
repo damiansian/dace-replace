@@ -26,13 +26,26 @@ const controlBtnClass =
 /** Static wireframe carousel matching live Northstar player layout (no motion). */
 export function HeroCarouselWireframe({
   pauseButtonId,
+  wrapPrevControl,
   wrapPauseControl,
 }: {
   /** When set (skip-nav mockup), matches live `id="slide-1"` on the pause control. */
   pauseButtonId?: string;
+  wrapPrevControl?: (prevButton: React.ReactNode) => React.ReactNode;
   wrapPauseControl?: (pauseButton: React.ReactNode) => React.ReactNode;
 }) {
   const slide = NORTHSTAR_HERO_SLIDES[0];
+
+  const prevButton = (
+    <button
+      type="button"
+      {...mockupControlProps}
+      className={`${controlBtnClass} px-2.5 py-1`}
+      aria-label="Previous slide"
+    >
+      Prev
+    </button>
+  );
 
   const pauseButton = (
     <button
@@ -68,14 +81,7 @@ export function HeroCarouselWireframe({
       </div>
 
       <div className="mt-3 flex items-center gap-2 flex-wrap">
-        <button
-          type="button"
-          {...mockupControlProps}
-          className={`${controlBtnClass} px-2.5 py-1`}
-          aria-label="Previous slide"
-        >
-          Prev
-        </button>
+        {wrapPrevControl ? wrapPrevControl(prevButton) : prevButton}
         {wrapPauseControl ? wrapPauseControl(pauseButton) : pauseButton}
         <ul className="list-none m-0 p-0 flex gap-1" aria-hidden="true">
           {NORTHSTAR_HERO_SLIDES.map((_, i) => (

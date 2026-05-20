@@ -33,7 +33,13 @@ export default async function Home({ searchParams }: HomeProps) {
         <div className="min-w-0 space-y-10">
           <div className="space-y-4">
             <h1 className="text-3xl font-bold tracking-tight text-foreground">
-              Welcome to DACE Cohort 2
+              {student?.displayName ? (
+                <>
+                  Welcome, {student.displayName}, to DACE Cohort 2
+                </>
+              ) : (
+                <>Welcome to DACE Cohort 2</>
+              )}
             </h1>
             <div className="rounded-lg border-l-4 border-primary bg-surface p-4">
               <p className="text-base text-foreground">

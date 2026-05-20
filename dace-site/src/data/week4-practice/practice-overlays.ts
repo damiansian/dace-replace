@@ -19,10 +19,11 @@ export const SKIP_TARGETS_BY_PAGE: Record<PracticePageId, SkipTarget[]> = {
     { id: "search", description: "Search field" },
     { id: "welcome-heading", description: "Welcome back heading" },
     {
-      id: "slide-1",
-      description: "Featured promotions (first slide control)",
+      id: "hero-carousel-prev",
+      description: "Previous slide",
       isCorrectFirstTab: true,
     },
+    { id: "slide-1", description: "Pause auto-advance" },
     { id: "footer-privacy", description: "Footer links (first link)" },
   ],
   products: [
@@ -131,7 +132,12 @@ export function matchesSkipLinkFirstTab(
 
   switch (pageId) {
     case "home":
-      return normalizedLower === "slide-1" || /slide\s*1/.test(normalizedLower);
+      return (
+        normalizedLower === "hero-carousel-prev" ||
+        normalizedLower === "carousel-prev" ||
+        /previous\s*slide/.test(normalizedLower) ||
+        (/\bprev\b/.test(normalizedLower) && /slide|carousel/.test(normalizedLower))
+      );
     case "products":
       return (
         normalizedLower === "trail-pack-cart" ||

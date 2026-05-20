@@ -78,9 +78,13 @@ function HomeMain({
       <div className="mb-4">
         <HeroCarouselWireframe
           pauseButtonId="slide-1"
-          wrapPauseControl={(pauseButton) => (
-            <SkipTargetOutline targetId="slide-1" pageId={pageId} className="inline-flex">
-              {pauseButton}
+          wrapPrevControl={(prevButton) => (
+            <SkipTargetOutline
+              targetId="hero-carousel-prev"
+              pageId={pageId}
+              className="inline-flex"
+            >
+              {prevButton}
             </SkipTargetOutline>
           )}
         />
