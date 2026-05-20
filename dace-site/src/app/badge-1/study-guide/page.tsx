@@ -87,7 +87,7 @@ export default async function StudyGuidePage({ searchParams }: PageProps) {
 
       <div className="rounded-lg bg-amber-50 border border-amber-200 p-5 space-y-2">
         <p className="text-sm text-foreground">
-          <strong>📄 Full Study Guide:</strong> The complete study guide with all modules, WCAG references, 
+          <strong>📄 Full Study Guide:</strong> The complete study guide with all modules, WCAG references,
           and test-taking strategies is available as a static HTML page.
         </p>
         <a
@@ -100,21 +100,6 @@ export default async function StudyGuidePage({ searchParams }: PageProps) {
           Open Full Study Guide (HTML)
         </a>
       </div>
-
-      <section aria-labelledby="exam-link" className="rounded-lg border border-border bg-surface p-6 space-y-4">
-        <h2 id="exam-link" className="text-xl font-semibold text-foreground">
-          Ready to take the exam?
-        </h2>
-        <p className="text-sm text-text-secondary">
-          Once you've reviewed the study guide, you can access the Discover Badge Final Assessment.
-        </p>
-        <Link
-          href={withToken("/badge-1/exam", student?.accessToken)}
-          className="inline-flex items-center gap-2 rounded-lg bg-primary px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-dark transition-colors"
-        >
-          Go to Discover Badge Exam
-        </Link>
-      </section>
     </div>
   );
 }
