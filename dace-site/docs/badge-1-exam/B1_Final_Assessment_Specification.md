@@ -26,7 +26,7 @@ This cumulative assessment verifies that learners have retained and can apply th
 
 - **25 scenario-based multiple choice questions**
 - **Open book:** Learners may reference the Adobe Design Accessibility Checklist, WCAG documentation, and course materials
-- **Mixed order:** Questions are shuffled to test holistic knowledge application
+- **Fixed order:** Questions are presented in learning-objective order (1A.01 → 1H.02) so learners move through the lessons in sequence. Answer options within each question are shuffled per attempt.
 - **Real-world context:** Each question presents an annotation or design example illustrating an accessibility principle
 
 ---
@@ -195,7 +195,7 @@ Each answer option includes:
 | Allowed Attempts | 1 |
 | Show Correct Answers | After submission |
 | One Question at a Time | No (show all) |
-| Shuffle Questions | Yes |
+| Shuffle Questions | No (LO order 1A.01 → 1H.02) |
 | Shuffle Answers | Yes |
 
 ### Passing Criteria

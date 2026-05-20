@@ -100,6 +100,7 @@ export default async function Badge1ExamPage({ searchParams }: PageProps) {
         accessToken={student?.accessToken}
         studentDisplayName={student?.displayName}
         examMode
+        shuffleQuestions={false}
         maxAttempts={1}
       />
     </div>
