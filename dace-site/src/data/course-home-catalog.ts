@@ -141,7 +141,7 @@ export const courseHomeCatalog: HomeWeek[] = [
     weekTitle: "Discover Badge Exam",
     weekHref: "/badge-1/study-guide",
     syllabusClassDate: "2026-05-26",
-    classDueDate: "2026-06-02",
+    classDueDate: "2026-05-26",
     lessons: [
       {
         progressId: "badge-1-study-guide",
@@ -153,8 +153,8 @@ export const courseHomeCatalog: HomeWeek[] = [
     ],
     appliedSkill: {
       progressId: "badge-1-exam",
-      title: "Discover Badge Exam",
-      href: "/badge-1/exam",
+      title: "In-person exam",
+      href: "#",
     },
   },
 ];
