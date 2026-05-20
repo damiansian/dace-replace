@@ -81,3 +81,25 @@ export function motionPageCompletion(
     PRACTICE_PAGES.map((p) => [p.id, isMotionPageComplete(state, p.id)])
   ) as Record<PracticePageId, boolean>;
 }
+
+function allPagesComplete(
+  check: (state: WorkbookState, pageId: PracticePageId) => boolean,
+  state: WorkbookState
+): boolean {
+  return PRACTICE_PAGES.every((p) => check(state, p.id));
+}
+
+/** Content-based completion for each workbook step (Start → Review). */
+export function workbookStepCompletion(state: WorkbookState): boolean[] {
+  const landmarksDone = allPagesComplete(isLandmarkPageComplete, state);
+  const skipDone = allPagesComplete(isSkipPageComplete, state);
+  const motionDone = allPagesComplete(isMotionPageComplete, state);
+
+  return [
+    state.currentStep > 0,
+    landmarksDone,
+    skipDone,
+    motionDone,
+    landmarksDone && skipDone && motionDone,
+  ];
+}

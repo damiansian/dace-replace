@@ -47,6 +47,7 @@ import {
   landmarkPageCompletion,
   motionPageCompletion,
   skipLinkPageCompletion,
+  workbookStepCompletion,
 } from "@/lib/week4-practice-page-completion";
 import PracticeSite from "./mockup/PracticeSite";
 import { PracticePageTabs } from "./mockup/PracticePageTabs";
@@ -303,6 +304,12 @@ export default function Week4PracticeWorkbook({
   const landmarkCompletion = useMemo(() => landmarkPageCompletion(state), [state]);
   const skipCompletion = useMemo(() => skipLinkPageCompletion(state), [state]);
   const motionCompletion = useMemo(() => motionPageCompletion(state), [state]);
+  const stepComplete = useMemo(() => workbookStepCompletion(state), [state]);
+  const incompleteLandmarkPageLabels = useMemo(
+    () =>
+      PRACTICE_PAGES.filter((p) => !landmarkCompletion[p.id]).map((p) => p.label),
+    [landmarkCompletion]
+  );
 
   useEffect(() => {
     if (!studentDisplayName?.trim()) return;
@@ -371,13 +378,14 @@ export default function Week4PracticeWorkbook({
       <WorkbookStepper
         steps={STEPS}
         currentStep={step}
+        stepComplete={stepComplete}
         stepHeading={stepHeading}
         onStepChange={goStep}
         stepTabClassName={(i) =>
           `rounded-full px-3 py-1.5 text-xs font-medium border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ${
             step === i
               ? "bg-primary text-white border-primary"
-              : i < step
+              : stepComplete[i]
                 ? "bg-surface text-foreground border-foreground/30"
                 : "bg-white text-text-secondary border-border"
           }`
@@ -507,12 +515,23 @@ export default function Week4PracticeWorkbook({
             pageCompletion={landmarkCompletion}
           />
           <div className="flex flex-wrap gap-3 items-end justify-between">
-            <PracticePageTabs
-              pageId={landmarkPage}
-              pageCompletion={landmarkCompletion}
-              onSelect={setLandmarkPage}
-              showLegend={false}
-            />
+            <div className="space-y-2 min-w-0 flex-1">
+              <PracticePageTabs
+                pageId={landmarkPage}
+                pageCompletion={landmarkCompletion}
+                onSelect={setLandmarkPage}
+                showLegend={false}
+              />
+              {incompleteLandmarkPageLabels.length > 0 ? (
+                <p className="text-sm text-amber-800 m-0" role="status">
+                  Still needed on this step:{" "}
+                  <strong className="font-semibold">
+                    {incompleteLandmarkPageLabels.join(", ")}
+                  </strong>
+                  . Each page has its own table (About includes Zone 5 contact form).
+                </p>
+              ) : null}
+            </div>
             {landmarkPage !== "home" ? (
               <button
                 type="button"

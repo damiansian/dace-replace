@@ -2,11 +2,17 @@
 
 import { useRef, type KeyboardEvent } from "react";
 
-export type WorkbookStepStatus = "current" | "completed" | "upcoming";
+export type WorkbookStepStatus =
+  | "current"
+  | "current-complete"
+  | "completed"
+  | "upcoming";
 
 type WorkbookStepperProps = {
   steps: readonly string[];
   currentStep: number;
+  /** When true, the step’s required answers are filled (not only “visited”). */
+  stepComplete: readonly boolean[];
   stepHeading: (index: number) => string;
   onStepChange: (index: number) => void;
   stepTabClassName: (index: number) => string;
@@ -14,18 +20,26 @@ type WorkbookStepperProps = {
 
 const STATUS_LABEL: Record<WorkbookStepStatus, string> = {
   completed: "Completed",
+  "current-complete": "Current step, complete",
   current: "Current step",
   upcoming: "Not yet reached",
 };
 
-function stepStatus(index: number, currentStep: number): WorkbookStepStatus {
-  if (index === currentStep) return "current";
-  if (index < currentStep) return "completed";
+function stepStatus(
+  index: number,
+  currentStep: number,
+  stepComplete: readonly boolean[]
+): WorkbookStepStatus {
+  const done = stepComplete[index] ?? false;
+  if (index === currentStep) {
+    return done ? "current-complete" : "current";
+  }
+  if (done) return "completed";
   return "upcoming";
 }
 
 function StepStatusIcon({ status }: { status: WorkbookStepStatus }) {
-  if (status === "completed") {
+  if (status === "completed" || status === "current-complete") {
     return (
       <svg
         viewBox="0 0 20 20"
@@ -80,6 +94,7 @@ function StepStatusIcon({ status }: { status: WorkbookStepStatus }) {
 export function WorkbookStepper({
   steps,
   currentStep,
+  stepComplete,
   stepHeading,
   onStepChange,
   stepTabClassName,
@@ -127,7 +142,7 @@ export function WorkbookStepper({
         className="flex flex-wrap gap-2"
       >
         {steps.map((label, i) => {
-          const status = stepStatus(i, currentStep);
+          const status = stepStatus(i, currentStep, stepComplete);
           const heading = stepHeading(i);
           return (
             <button
@@ -180,6 +195,24 @@ export function WorkbookStepper({
             <circle cx="10" cy="10" r="4" fill="currentColor" />
           </svg>
           {STATUS_LABEL.current}
+        </span>
+        <span className="inline-flex items-center gap-1.5 mr-3">
+          <svg
+            viewBox="0 0 20 20"
+            aria-hidden="true"
+            focusable="false"
+            className="h-3 w-3 text-primary"
+          >
+            <path
+              d="M5 10.5l3 3 7-7"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+          {STATUS_LABEL["current-complete"]}
         </span>
         <span className="inline-flex items-center gap-1.5">
           <svg
