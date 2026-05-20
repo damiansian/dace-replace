@@ -310,7 +310,7 @@ function AboutMain({
     );
 
   const contactFormBody = (
-    <form className="mt-6 space-y-3 max-w-md" noValidate>
+    <form className="space-y-3 w-full" noValidate>
       <h3 className="text-base font-semibold text-foreground mt-0 m-0">Contact us</h3>
       <div>
         <label htmlFor={`contact-name-${pageId}`} className="block text-sm font-medium text-foreground mb-1">
@@ -362,7 +362,7 @@ function AboutMain({
 
   const contactFormSection =
     overlayMode === "landmark" ? (
-      <ZoneOutline zoneId="contact-form" pageId={pageId} className="p-2 mt-2">
+      <ZoneOutline zoneId="contact-form" pageId={pageId} className="p-2">
         {contactFormBody}
       </ZoneOutline>
     ) : (
@@ -370,14 +370,16 @@ function AboutMain({
     );
 
   return (
-    <>
-      {heading}
-      <p className="text-sm text-text-secondary m-0">
-        We design outdoor gear for everyday adventures.
-      </p>
-      {teamSection}
-      {contactFormSection}
-    </>
+    <div className="flex flex-col sm:flex-row gap-6">
+      <div className="flex-1 min-w-0 space-y-4">
+        {heading}
+        <p className="text-sm text-text-secondary m-0">
+          We design outdoor gear for everyday adventures.
+        </p>
+        {teamSection}
+      </div>
+      <div className="w-full sm:w-56 shrink-0">{contactFormSection}</div>
+    </div>
   );
 }
 
